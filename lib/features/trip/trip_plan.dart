@@ -12,6 +12,7 @@ class TripStop {
     required this.underground,
     this.transferToLineId,
     this.walkToStationId,
+    this.through = false,
   });
 
   final String stationId;
@@ -29,6 +30,9 @@ class TripStop {
 
   /// Set when the change means walking to another station (上野 → 京成上野).
   final String? walkToStationId;
+
+  /// The train runs on onto [transferToLineId]: stay on.
+  final bool through;
 }
 
 /// A route turned into a timeline. Built once when tracking starts.
@@ -60,7 +64,10 @@ class TripPlan {
         final walkMin = from == to
             ? city.station(to).transferWalkMin(prevLine, leg.lineId)
             : city.walkMin(from, to) ?? 5;
-        final wait = walkMin * 60 + city.averageWaitSec(leg.lineId, boardingTime.add(Duration(seconds: t)));
+        // A through train just stops there as usual; otherwise walk, then wait.
+        final wait = leg.through
+            ? line.dwellSec
+            : walkMin * 60 + city.averageWaitSec(leg.lineId, boardingTime.add(Duration(seconds: t)));
         final arrived = stops.removeLast();
         t = arrived.arriveSec + wait;
         stops.add(
@@ -72,6 +79,7 @@ class TripPlan {
             underground: arrived.underground,
             transferToLineId: leg.lineId,
             walkToStationId: from == to ? null : to,
+            through: leg.through,
           ),
         );
       }

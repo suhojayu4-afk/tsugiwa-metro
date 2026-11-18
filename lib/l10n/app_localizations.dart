@@ -1239,6 +1239,12 @@ abstract class AppLocalizations {
   /// In ja, this message translates to:
   /// **'このルートにする'**
   String get altRouteUse;
+
+  /// No description provided for @throughHere.
+  ///
+  /// In ja, this message translates to:
+  /// **'そのまま{line}へ直通'**
+  String throughHere(String line);
 }
 
 class _AppLocalizationsDelegate

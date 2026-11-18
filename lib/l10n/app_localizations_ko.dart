@@ -690,4 +690,9 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get altRouteUse => '이 경로로';
+
+  @override
+  String throughHere(String line) {
+    return '그대로 $line 직통';
+  }
 }

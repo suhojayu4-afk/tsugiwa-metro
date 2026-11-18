@@ -8,6 +8,9 @@ L(key, ja, ko, en, colour, routes, ...)
           order by position (OSM's own order is not always right)
   drop    station names to leave out
   ends    (first, last) when the running order cannot be worked out alone
+  extra   (name, lat, lng) stations OSM leaves out of the route
+  tracks  key in tools/data/osm/rail_tracks.json: stations along the named
+          tracks, for lines OSM has no route relation for
   cut     (first, last) station names to keep (None = line end)
   pre / post   station names added before / after (shared track)
   kind    'jr' | 'jr_local' | 'jr_branch' | 'private' | 'private_branch'
@@ -20,8 +23,8 @@ already on the map stay as they are).
 
 
 def L(key, ja, ko, en, color, routes, cut=(None, None), pre=(), post=(), kind='private', loop=False, replace=None,
-      drop=(), ends=None):
-    return dict(ends=ends, key=key, ja=ja, ko=ko, en=en, color=color, routes=list(routes), cut=cut, pre=list(pre), drop=set(drop),
+      drop=(), ends=None, tracks=None, extra=()):
+    return dict(extra=list(extra), tracks=tracks, ends=ends, key=key, ja=ja, ko=ko, en=en, color=color, routes=list(routes), cut=cut, pre=list(pre), drop=set(drop),
                 post=list(post), kind=kind, loop=loop, replace=replace)
 
 
@@ -36,7 +39,7 @@ LINES = [
       kind='jr'),
     L('tokaido', '東海道線', '도카이도선', 'Tokaido Line', '#F68B1E', [12014184], kind='jr'),
     L('utsunomiya', '宇都宮線', '우쓰노미야선', 'Utsunomiya Line', '#F68B1E', [12210362], kind='jr'),
-    L('takasaki', '高崎線', '다카사키선', 'Takasaki Line', '#F68B1E', [5430810], kind='jr'),
+    L('takasaki', '高崎線', '다카사키선', 'Takasaki Line', '#F68B1E', [5430810], pre=['東京'], kind='jr'),
     L('joban_rapid', '常磐線快速', '조반선 쾌속', 'Joban Line (Rapid)', '#00B261', [14330371], kind='jr'),
     L('joban_local', '常磐線各駅停車', '조반선 각역정차', 'Joban Line (Local)', '#868D8D', [10025277], kind='jr_local'),
     L('saikyo', '埼京線', '사이쿄선', 'Saikyo Line', '#00AC9A', [21361897], kind='jr_local'),
@@ -55,14 +58,17 @@ LINES = [
     L('sagami', '相模線', '사가미선', 'Sagami Line', '#009793', [1942949], kind='jr_branch'),
     L('ome', '青梅線', '오메선', 'Ome Line', '#F15A22', [11814887], kind='jr_branch'),
     L('itsukaichi', '五日市線', '이쓰카이치선', 'Itsukaichi Line', '#F15A22', [11814879], kind='jr_branch'),
-    L('hachiko', '八高線', '하치코선', 'Hachiko Line', '#A8A39D', [14323630], kind='jr_branch'),
+    L('hachiko', '八高線', '하치코선', 'Hachiko Line', '#A8A39D', [14323630, 21268981], ends=('八王子', '高崎'),
+      kind='jr_branch'),
     L('narita', '成田線', '나리타선', 'Narita Line', '#00B261', [14298709, 3139193], ends=('千葉', '成田空港'),
-      drop=['久住', '滑河', '下総神崎', '大戸', '佐原'],
+      drop=['久住', '滑河', '下総神崎', '大戸', '佐原', '香取', '水郷', '小見川', '笹川', '下総橘',
+            '下総豊里', '椎柴', '松岸', '銚子'],
       kind='jr_branch'),
     L('narita_abiko', '成田線（我孫子支線）', '나리타선 (아비코 지선)', 'Narita Line (Abiko branch)', '#00B261', [5611753],
       kind='jr_branch'),
-    L('sotobo', '外房線', '소토보선', 'Sotobo Line', '#DB2027', [14303575], cut=('千葉', '大網'), kind='jr_branch'),
-    L('uchibo', '内房線', '우치보선', 'Uchibo Line', '#00B2E5', [17055693], cut=('蘇我', '五井'), kind='jr_branch'),
+    L('sotobo', '外房線', '소토보선', 'Sotobo Line', '#DB2027', [1949528], kind='jr_branch'),
+    L('uchibo', '内房線', '우치보선', 'Uchibo Line', '#00B2E5', [17055693, 14303807], cut=('蘇我', '安房鴨川'),
+      kind='jr_branch'),
 
     # ---- Tokyu ----
     L('tokyu_toyoko', '東急東横線', '도큐 도요코선', 'Tokyu Toyoko Line', '#DA0442', [9288982]),
@@ -107,7 +113,8 @@ LINES = [
       kind='private_branch'),
 
     # ---- Tobu ----
-    L('tobu_skytree', '東武スカイツリーライン', '도부 스카이트리 라인', 'Tobu Skytree Line', '#0F6CC3', [5392090]),
+    L('tobu_skytree', '東武スカイツリーライン', '도부 스카이트리 라인', 'Tobu Skytree Line', '#0F6CC3', [5392090],
+      extra=[('北千住', 35.7497, 139.8049)]),
     L('tobu_kameido', '東武亀戸線', '도부 가메이도선', 'Tobu Kameido Line', '#0F6CC3', [5219680], kind='private_branch'),
     L('tobu_daishi', '東武大師線', '도부 다이시선', 'Tobu Daishi Line', '#0F6CC3', [5219659], kind='private_branch'),
     L('tobu_urban_park', '東武アーバンパークライン', '도부 어반 파크 라인', 'Tobu Urban Park Line', '#00A3E4',
@@ -149,8 +156,7 @@ LINES = [
     L('toyo_rapid', '東葉高速線', '도요 고속선', 'Toyo Rapid Railway Line', '#33B169', [9283468]),
     L('ryutetsu', '流鉄流山線', '류테쓰 나가레야마선', 'Ryutetsu Nagareyama Line', '#F08300', [1979617],
       kind='private_branch'),
-    L('kanto_joso', '関東鉄道常総線', '간토 철도 조소선', 'Kanto Railway Joso Line', '#1E4D9C', [1949292],
-      cut=('取手', '守谷'), kind='private_branch'),
+    L('kanto_joso', '関東鉄道常総線', '간토 철도 조소선', 'Kanto Railway Joso Line', '#1E4D9C', [1949292], kind='private_branch'),
     L('enoden', '江ノ島電鉄線', '에노시마 전철선', 'Enoshima Electric Railway', '#005C3F', [1943301], kind='tram'),
 
     # ---- subways outside the 23 wards ----
@@ -178,4 +184,145 @@ LINES = [
     L('chiba_monorail_2', '千葉都市モノレール2号線', '지바 도시 모노레일 2호선', 'Chiba Urban Monorail Line 2', '#EA5413',
       [7715378], kind='agt'),
     L('shonan_monorail', '湘南モノレール', '쇼난 모노레일', 'Shonan Monorail', '#E2007F', [7715259], kind='agt'),
+
+    # ---- all of Kanto round the map (2026-11-19) ----
+    L('joban', '常磐線（取手以北）', '조반선 (도리데 이북)', 'Joban Line (north of Toride)', '#00B261', [1872548],
+      cut=('取手', '磯原'), kind='jr'),
+    L('chuo_main', '中央本線', '주오 본선', 'Chuo Main Line', '#6A3906', [9069258], cut=('高尾', '小淵沢'), kind='jr_branch'),
+    L('tokaido_shizuoka', '東海道線（熱海〜静岡）', '도카이도선 (아타미~시즈오카)', 'Tokaido Line (Atami - Shizuoka)', '#F68B1E',
+      [12015471], cut=('熱海', '静岡'), kind='jr'),
+    L('gotemba', '御殿場線', '고텐바선', 'Gotemba Line', '#40A0A0', [12032382], kind='jr_branch'),
+    L('ito', '伊東線', '이토선', 'Ito Line', '#F68B1E', [12014423], kind='jr_branch'),
+    L('minobu', '身延線', '미노부선', 'Minobu Line', '#9B7CB6', [8888169], kind='jr_branch'),
+    L('ryomo', '両毛線', '료모선', 'Ryomo Line', '#F0A030', [21708125], kind='jr_branch'),
+    L('mito', '水戸線', '미토선', 'Mito Line', '#4B8C3C', [1949283], kind='jr_branch'),
+    L('joetsu', '上越線', '조에쓰선', 'Joetsu Line', '#3CA0D8', [21006366], kind='jr_branch'),
+    L('shinetsu', '信越本線（高崎〜横川）', '신에쓰 본선 (다카사키~요코카와)', 'Shinetsu Line (Takasaki - Yokokawa)', '#F0A030',
+      [21453299], kind='jr_branch'),
+    L('suigun', '水郡線', '스이군선', 'Suigun Line', '#2E8B57', [1872551], kind='jr_branch'),
+    L('kashima', '鹿島線', '가시마선', 'Kashima Line', '#C8506E', [1949513], kind='jr_branch'),
+    L('sobu_main', '総武本線（千葉〜銚子）', '소부 본선 (지바~조시)', 'Sobu Main Line (Chiba - Choshi)', '#FFC20D', [14303195],
+      pre=['千葉'], kind='jr_branch'),
+    L('narita_choshi', '成田線（成田〜銚子）', '나리타선 (나리타~조시)', 'Narita Line (Narita - Choshi)', '#00B261', [3139193],
+      cut=('成田', '松岸'), kind='jr_branch'),
+    L('togane', '東金線', '도가네선', 'Togane Line', '#DB2027', [5219635], kind='jr_branch'),
+    L('kururi', '久留里線', '구루리선', 'Kururi Line', '#00B2B2', [14344304], kind='jr_branch'),
+    L('keikyu_kurihama', '京急久里浜線', '게이큐 구리하마선', 'Keikyu Kurihama Line', '#E5171F', [9499880], kind='private_branch'),
+    L('keikyu_zushi', '京急逗子線', '게이큐 즈시선', 'Keikyu Zushi Line', '#E5171F', [9499867], kind='private_branch'),
+    L('hakone_tozan', '箱根登山鉄道', '하코네 등산철도', 'Hakone Tozan Railway', '#C4282C', [11072815, 3414847],
+      kind='private_branch'),
+    L('izuhakone_daiyuzan', '伊豆箱根鉄道大雄山線', '이즈하코네 철도 다이유잔선', 'Izuhakone Daiyuzan Line', '#2E5FA8',
+      [5746641], kind='private_branch'),
+    L('izuhakone_sunzu', '伊豆箱根鉄道駿豆線', '이즈하코네 철도 슨즈선', 'Izuhakone Sunzu Line', '#2E5FA8', [11986729],
+      kind='private_branch'),
+    L('izukyu', '伊豆急行線', '이즈큐코선', 'Izukyu Line', '#3A9BD5', [12024921], kind='private_branch'),
+    L('fujikyu', '富士急行線', '후지큐코선', 'Fujikyu Line', '#2B5DAE', [1982965], kind='private_branch'),
+    L('shizutetsu', '静岡鉄道静岡清水線', '시즈오카 철도 시즈오카시미즈선', 'Shizuoka Railway', '#E44B88', [10272164],
+      kind='private_branch'),
+    L('gakunan', '岳南電車', '가쿠난 전차', 'Gakunan Railway', '#F08300', [11730918], kind='private_branch'),
+    L('seibu_chichibu', '西武秩父線', '세이부 지치부선', 'Seibu Chichibu Line', '#F28B00', [11763512, 1926312],
+      kind='private_branch'),
+    L('tobu_isesaki', '東武伊勢崎線', '도부 이세사키선', 'Tobu Isesaki Line', '#0F6CC3', [11703928]),
+    L('tobu_nikko', '東武日光線', '도부 닛코선', 'Tobu Nikko Line', '#0F6CC3', [1872553]),
+    L('tobu_utsunomiya', '東武宇都宮線', '도부 우쓰노미야선', 'Tobu Utsunomiya Line', '#0F6CC3', [1949384],
+      kind='private_branch'),
+    L('tobu_kiryu', '東武桐生線', '도부 기류선', 'Tobu Kiryu Line', '#0F6CC3', [1949386], kind='private_branch'),
+    L('tobu_sano', '東武佐野線', '도부 사노선', 'Tobu Sano Line', '#0F6CC3', [1949291], kind='private_branch'),
+    L('tobu_koizumi', '東武小泉線', '도부 고이즈미선', 'Tobu Koizumi Line', '#0F6CC3', [1949385], kind='private_branch'),
+    L('jomo', '上毛電気鉄道', '조모 전기철도', 'Jomo Electric Railway', '#E4007F', [11804580], kind='private_branch'),
+    L('kominato', '小湊鐵道', '고미나토 철도', 'Kominato Railway', '#C8A03C', [14706932], kind='private_branch'),
+    L('isumi', 'いすみ鉄道', '이스미 철도', 'Isumi Railway', '#F0C000', [5748913], kind='private_branch'),
+    L('choshi_dentetsu', '銚子電気鉄道', '조시 전기철도', 'Choshi Electric Railway', '#7A4A2A', [906154, 10006738],
+      tracks='choshi', ends=('銚子', '外川'), kind='private_branch'),
+    L('hitachinaka', 'ひたちなか海浜鉄道', '히타치나카 해변철도', 'Hitachinaka Seaside Railway', '#F08300', [9059060],
+      kind='private_branch'),
+    L('kashima_rinkai', '鹿島臨海鉄道大洗鹿島線', '가시마 임해철도 오아라이가시마선', 'Kashima Rinkai Railway', '#0091C8', [9062755],
+      kind='private_branch'),
+    L('kanto_ryugasaki', '関東鉄道竜ヶ崎線', '간토 철도 류가사키선', 'Kanto Railway Ryugasaki Line', '#1E4D9C', [5611693],
+      kind='private_branch'),
+    L('mooka', '真岡鐵道', '모오카 철도', 'Moka Railway', '#E08A2A', [1949285],
+      extra=[('茂木', 36.5329, 140.1868)], kind='private_branch'),
+    L('chichibu', '秩父鉄道', '지치부 철도', 'Chichibu Railway', '#2C5FAA', [], tracks='chichibu', ends=('羽生', '三峰口'), drop=['西武秩父'],
+      kind='private_branch'),
+    L('joshin', '上信電鉄', '조신 전철', 'Joshin Electric Railway', '#D7262C', [], tracks='joshin', pre=['高崎'],
+      kind='private_branch'),
+    L('watarase', 'わたらせ渓谷鐵道', '와타라세 계곡 철도', 'Watarase Keikoku Railway', '#C45A2A', [], tracks='watarase',
+      pre=['桐生'], kind='private_branch'),
+    L('agatsuma', '吾妻線', '아가쓰마선', 'Agatsuma Line', '#2E8B8B', [], tracks='agatsuma', pre=['渋川'], drop=['太子'],
+      kind='jr_branch'),
+    L('jr_nikko', 'JR日光線', 'JR 닛코선', 'JR Nikko Line', '#8E3B2F', [1872550], extra=[('日光', 36.7478, 139.6195)],
+      kind='jr_branch'),
+    L('tobu_kinugawa', '東武鬼怒川線', '도부 기누가와선', 'Tobu Kinugawa Line', '#0F6CC3', [5485482, 11801442],
+      kind='private_branch'),
+    L('karasuyama', '烏山線', '가라스야마선', 'Karasuyama Line', '#4E8C3A', [1949381], kind='jr_branch'),
+    L('koumi', '小海線', '고우미선', 'Koumi Line', '#2D9C6E', [10077097], kind='jr_branch'),
+    L('shinano', 'しなの鉄道線', '시나노 철도선', 'Shinano Railway', '#E0532D', [1926391, 15881702], kind='private_branch'),
+    # ---- services that run on other lines' tracks (2026-11-19) ----
+    L('shonan_shinjuku', '湘南新宿ライン', '쇼난신주쿠 라인', 'Shonan-Shinjuku Line', '#E21F26', [4684035], cut=('大船', '大宮'),
+      kind='jr'),
+    L('sotetsu_jr', '相鉄・JR直通線', '소테쓰·JR 직통선', 'Sotetsu-JR Link', '#2E3192', [10322301], cut=('新宿', '羽沢横浜国大'),
+      kind='jr'),
+    L('tobu_oshiage', '東武スカイツリーライン（押上〜曳舟）', '도부 스카이트리 라인 (오시아게~히키후네)', 'Tobu Skytree Line (Oshiage)',
+      '#0F6CC3', [], extra=[('押上', 35.7105, 139.8135), ('曳舟', 35.7187, 139.8164)], kind='private_branch'),
+]
+
+# Through trains: (line A, station, line B, next station on B, previous station on A or None).
+# A train on A arriving at the station goes on along B towards [next] without
+# changing; the reverse (B coming from [next], on along A towards [previous])
+# is added automatically. [previous] may be left out when the station is an
+# end of A. Keys are rail_lines keys (tokyo.<key>), names Japanese.
+THROUGH = [
+    # Tokyo Metro / Toei with the private railways and JR
+    ('fukutoshin', '渋谷', 'tokyu_toyoko', '代官山', None),
+    ('fukutoshin', '和光市', 'tobu_tojo', '朝霞', None),
+    ('yurakucho', '和光市', 'tobu_tojo', '朝霞', None),
+    ('fukutoshin', '小竹向原', 'seibu_yurakucho', '新桜台', '千川'),
+    ('yurakucho', '小竹向原', 'seibu_yurakucho', '新桜台', '千川'),
+    ('seibu_yurakucho', '練馬', 'seibu_ikebukuro', '中村橋', None),
+    ('hanzomon', '渋谷', 'tokyu_denentoshi', '池尻大橋', None),
+    ('hanzomon', '押上', 'tobu_oshiage', '曳舟', None),
+    ('tobu_oshiage', '曳舟', 'tobu_skytree', '東向島', None),
+    ('hibiya', '北千住', 'tobu_skytree', '小菅', None),
+    ('chiyoda', '綾瀬', 'joban_local', '亀有', '北千住'),
+    ('chiyoda', '代々木上原', 'odakyu', '東北沢', None),
+    ('tozai', '中野', 'chuo_sobu', '高円寺', None),
+    ('tozai', '西船橋', 'toyo_rapid', '東海神', None),
+    ('tozai', '西船橋', 'chuo_sobu', '船橋', None),
+    ('namboku', '目黒', 'tokyu_meguro', '不動前', None),
+    ('namboku', '赤羽岩淵', 'saitama_railway', '川口元郷', None),
+    ('toei_mita', '目黒', 'tokyu_meguro', '不動前', None),
+    ('toei_asakusa', '泉岳寺', 'keikyu', '品川', '高輪台'),
+    ('toei_asakusa', '押上', 'keisei_oshiage', '京成曳舟', None),
+    ('toei_shinjuku', '新宿', 'keio', '初台', None),
+    # Private railways
+    ('keisei_oshiage', '青砥', 'keisei', '京成高砂', None),
+    ('keisei', '京成高砂', 'hokuso', '新柴又', '青砥'),
+    ('keikyu_airport', '京急蒲田', 'keikyu', '梅屋敷', None),
+    ('keikyu_airport', '京急蒲田', 'keikyu', '雑色', None),
+    ('minatomirai', '横浜', 'tokyu_toyoko', '反町', None),
+    ('tokyu_meguro', '日吉', 'tokyu_shin_yokohama', '新綱島', None),
+    ('tokyu_toyoko', '日吉', 'tokyu_shin_yokohama', '新綱島', '元住吉'),
+    ('tokyu_shin_yokohama', '新横浜', 'sotetsu_shin_yokohama', '羽沢横浜国大', None),
+    ('sotetsu_shin_yokohama', '西谷', 'sotetsu', '鶴ヶ峰', None),
+    ('keio', '調布', 'keio_sagamihara', '京王多摩川', '布田'),
+    ('keio', '北野', 'keio_takao', '京王片倉', '長沼'),
+    ('keisei_matsudo', '京成津田沼', 'keisei_chiba', '京成幕張本郷', None),
+    ('keisei_chiba', '千葉中央', 'keisei_chihara', '千葉寺', None),
+    ('odakyu', '小田原', 'hakone_tozan', '箱根板橋', None),
+    # JR
+    ('utsunomiya', '東京', 'tokaido', '新橋', None),
+    ('takasaki', '東京', 'tokaido', '新橋', None),
+    ('joban_rapid', '取手', 'joban', '藤代', None),
+    ('saikyo', '大崎', 'rinkai', '大井町', None),
+    ('saikyo', '大宮', 'kawagoe', '日進', None),
+    ('chuo_rapid', '立川', 'ome', '西立川', '国立'),
+    ('ome', '拝島', 'itsukaichi', '熊川', '昭島'),
+    ('yokohama', '東神奈川', 'keihin_tohoku', '横浜', None),
+    ('tokaido', '熱海', 'ito', '来宮', None),
+    ('yokosuka_sobu', '千葉', 'sotobo', '本千葉', None),
+    ('shonan_shinjuku', '大宮', 'utsunomiya', '土呂', None),
+    ('shonan_shinjuku', '大宮', 'takasaki', '宮原', None),
+    ('shonan_shinjuku', '大船', 'yokosuka_sobu', '北鎌倉', None),
+    ('shonan_shinjuku', '大船', 'tokaido', '藤沢', None),
+    ('sotetsu_jr', '羽沢横浜国大', 'sotetsu_shin_yokohama', '西谷', None),
 ]

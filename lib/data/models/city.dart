@@ -14,6 +14,7 @@ class CityData {
     required this.stations,
     required this.timetables,
     this.walks = const [],
+    this.throughs = const [],
   });
 
   /// Builds a city from already-decoded JSON and checks that the files agree.
@@ -23,6 +24,7 @@ class CityData {
     required List<dynamic> lines,
     required Map<String, dynamic> timetables,
     List<dynamic> walks = const [],
+    List<dynamic> throughs = const [],
   }) {
     final stationMap = {
       for (final s in stations) (s as Map<String, dynamic>)['id'] as String: Station.fromJson(s),
@@ -60,6 +62,11 @@ class CityData {
           if (stationMap.containsKey(w['a']) && stationMap.containsKey(w['b']))
             WalkTransfer(w['a'] as String, w['b'] as String, w['min'] as int),
       ],
+      throughs: [
+        for (final t in throughs.cast<Map<String, dynamic>>())
+          if (lineMap.containsKey(t['a']) && lineMap.containsKey(t['b']) && stationMap.containsKey(t['at']))
+            ThroughRun(t['a'] as String, t['at'] as String, t['b'] as String, t['toward'] as String),
+      ],
     );
   }
 
@@ -72,6 +79,9 @@ class CityData {
 
   /// Walking transfers between stations with different names (上野 ↔ 京成上野).
   final List<WalkTransfer> walks;
+
+  /// Trains that run on from one line onto another (副都心線 → 東横線 at 渋谷).
+  final List<ThroughRun> throughs;
 
   /// Stations reachable on foot from [stationId], with the minutes.
   List<({String stationId, int minutes})> walksFrom(String stationId) => [
@@ -90,7 +100,9 @@ class CityData {
     return null;
   }
 
-  RailLine line(String id) => lines.firstWhere((l) => l.id == id);
+  late final Map<String, RailLine> _lineById = {for (final l in lines) l.id: l};
+
+  RailLine line(String id) => _lineById[id] ?? lines.firstWhere((l) => l.id == id);
   Station station(String id) => stations[id]!;
 
   /// Average wait for the next train on [lineId] at [time], in seconds.
@@ -99,6 +111,16 @@ class CityData {
     final headway = tt?.headwayMinAt(time) ?? 5;
     return headway * 60 ~/ 2;
   }
+}
+
+/// A through train: on line [a], at station [at], it goes on along line
+/// [b] towards [toward] (the next station on b) without anyone changing.
+class ThroughRun {
+  const ThroughRun(this.a, this.at, this.b, this.toward);
+  final String a;
+  final String at;
+  final String b;
+  final String toward;
 }
 
 /// Two nearby stations with different names, connected on foot.

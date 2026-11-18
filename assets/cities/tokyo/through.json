@@ -1,0 +1,602 @@
+[
+ {
+  "a": "tokyo.fukutoshin",
+  "at": "tokyo.shibuya",
+  "b": "tokyo.tokyu_toyoko",
+  "toward": "tokyo.daikan_yama"
+ },
+ {
+  "a": "tokyo.tokyu_toyoko",
+  "at": "tokyo.shibuya",
+  "b": "tokyo.fukutoshin",
+  "toward": "tokyo.meiji_jingumae"
+ },
+ {
+  "a": "tokyo.fukutoshin",
+  "at": "tokyo.wakoshi",
+  "b": "tokyo.tobu_tojo",
+  "toward": "tokyo.asaka"
+ },
+ {
+  "a": "tokyo.tobu_tojo",
+  "at": "tokyo.wakoshi",
+  "b": "tokyo.fukutoshin",
+  "toward": "tokyo.chikatetsu_narimasu"
+ },
+ {
+  "a": "tokyo.yurakucho",
+  "at": "tokyo.wakoshi",
+  "b": "tokyo.tobu_tojo",
+  "toward": "tokyo.asaka"
+ },
+ {
+  "a": "tokyo.tobu_tojo",
+  "at": "tokyo.wakoshi",
+  "b": "tokyo.yurakucho",
+  "toward": "tokyo.chikatetsu_narimasu"
+ },
+ {
+  "a": "tokyo.fukutoshin",
+  "at": "tokyo.kotake_mukaihara",
+  "b": "tokyo.seibu_yurakucho",
+  "toward": "tokyo.shin_sakuradai"
+ },
+ {
+  "a": "tokyo.seibu_yurakucho",
+  "at": "tokyo.kotake_mukaihara",
+  "b": "tokyo.fukutoshin",
+  "toward": "tokyo.senkawa"
+ },
+ {
+  "a": "tokyo.yurakucho",
+  "at": "tokyo.kotake_mukaihara",
+  "b": "tokyo.seibu_yurakucho",
+  "toward": "tokyo.shin_sakuradai"
+ },
+ {
+  "a": "tokyo.seibu_yurakucho",
+  "at": "tokyo.kotake_mukaihara",
+  "b": "tokyo.yurakucho",
+  "toward": "tokyo.senkawa"
+ },
+ {
+  "a": "tokyo.seibu_yurakucho",
+  "at": "tokyo.nerima",
+  "b": "tokyo.seibu_ikebukuro",
+  "toward": "tokyo.nakamurabashi"
+ },
+ {
+  "a": "tokyo.seibu_ikebukuro",
+  "at": "tokyo.nerima",
+  "b": "tokyo.seibu_yurakucho",
+  "toward": "tokyo.shin_sakuradai"
+ },
+ {
+  "a": "tokyo.hanzomon",
+  "at": "tokyo.shibuya",
+  "b": "tokyo.tokyu_denentoshi",
+  "toward": "tokyo.ikejiri_ohashi"
+ },
+ {
+  "a": "tokyo.tokyu_denentoshi",
+  "at": "tokyo.shibuya",
+  "b": "tokyo.hanzomon",
+  "toward": "tokyo.omotesando"
+ },
+ {
+  "a": "tokyo.hanzomon",
+  "at": "tokyo.oshiage",
+  "b": "tokyo.tobu_oshiage",
+  "toward": "tokyo.hikifune"
+ },
+ {
+  "a": "tokyo.tobu_oshiage",
+  "at": "tokyo.oshiage",
+  "b": "tokyo.hanzomon",
+  "toward": "tokyo.kinshicho"
+ },
+ {
+  "a": "tokyo.tobu_oshiage",
+  "at": "tokyo.hikifune",
+  "b": "tokyo.tobu_skytree",
+  "toward": "tokyo.higashi_mukojima"
+ },
+ {
+  "a": "tokyo.tobu_skytree",
+  "at": "tokyo.hikifune",
+  "b": "tokyo.tobu_oshiage",
+  "toward": "tokyo.oshiage"
+ },
+ {
+  "a": "tokyo.hibiya",
+  "at": "tokyo.kita_senju",
+  "b": "tokyo.tobu_skytree",
+  "toward": "tokyo.kosuge"
+ },
+ {
+  "a": "tokyo.tobu_skytree",
+  "at": "tokyo.kita_senju",
+  "b": "tokyo.hibiya",
+  "toward": "tokyo.minami_senju"
+ },
+ {
+  "a": "tokyo.chiyoda",
+  "at": "tokyo.ayase",
+  "b": "tokyo.joban_local",
+  "toward": "tokyo.kameari"
+ },
+ {
+  "a": "tokyo.joban_local",
+  "at": "tokyo.ayase",
+  "b": "tokyo.chiyoda",
+  "toward": "tokyo.kita_senju"
+ },
+ {
+  "a": "tokyo.chiyoda",
+  "at": "tokyo.yoyogi_uehara",
+  "b": "tokyo.odakyu",
+  "toward": "tokyo.higashi_kitazawa"
+ },
+ {
+  "a": "tokyo.odakyu",
+  "at": "tokyo.yoyogi_uehara",
+  "b": "tokyo.chiyoda",
+  "toward": "tokyo.yoyogi_koen"
+ },
+ {
+  "a": "tokyo.tozai",
+  "at": "tokyo.nakano",
+  "b": "tokyo.chuo_sobu",
+  "toward": "tokyo.koenji"
+ },
+ {
+  "a": "tokyo.chuo_sobu",
+  "at": "tokyo.nakano",
+  "b": "tokyo.tozai",
+  "toward": "tokyo.ochiai"
+ },
+ {
+  "a": "tokyo.tozai",
+  "at": "tokyo.nishi_funabashi",
+  "b": "tokyo.toyo_rapid",
+  "toward": "tokyo.higashi_kaijin"
+ },
+ {
+  "a": "tokyo.toyo_rapid",
+  "at": "tokyo.nishi_funabashi",
+  "b": "tokyo.tozai",
+  "toward": "tokyo.baraki_nakayama"
+ },
+ {
+  "a": "tokyo.tozai",
+  "at": "tokyo.nishi_funabashi",
+  "b": "tokyo.chuo_sobu",
+  "toward": "tokyo.funabashi"
+ },
+ {
+  "a": "tokyo.chuo_sobu",
+  "at": "tokyo.nishi_funabashi",
+  "b": "tokyo.tozai",
+  "toward": "tokyo.baraki_nakayama"
+ },
+ {
+  "a": "tokyo.namboku",
+  "at": "tokyo.meguro",
+  "b": "tokyo.tokyu_meguro",
+  "toward": "tokyo.fudomae"
+ },
+ {
+  "a": "tokyo.tokyu_meguro",
+  "at": "tokyo.meguro",
+  "b": "tokyo.namboku",
+  "toward": "tokyo.shirokanedai"
+ },
+ {
+  "a": "tokyo.namboku",
+  "at": "tokyo.akabane_iwabuchi",
+  "b": "tokyo.saitama_railway",
+  "toward": "tokyo.kawaguchi_motogo"
+ },
+ {
+  "a": "tokyo.saitama_railway",
+  "at": "tokyo.akabane_iwabuchi",
+  "b": "tokyo.namboku",
+  "toward": "tokyo.shimo"
+ },
+ {
+  "a": "tokyo.toei_mita",
+  "at": "tokyo.meguro",
+  "b": "tokyo.tokyu_meguro",
+  "toward": "tokyo.fudomae"
+ },
+ {
+  "a": "tokyo.tokyu_meguro",
+  "at": "tokyo.meguro",
+  "b": "tokyo.toei_mita",
+  "toward": "tokyo.shirokanedai"
+ },
+ {
+  "a": "tokyo.toei_asakusa",
+  "at": "tokyo.sengakuji",
+  "b": "tokyo.keikyu",
+  "toward": "tokyo.shinagawa"
+ },
+ {
+  "a": "tokyo.keikyu",
+  "at": "tokyo.sengakuji",
+  "b": "tokyo.toei_asakusa",
+  "toward": "tokyo.takanawadai"
+ },
+ {
+  "a": "tokyo.toei_asakusa",
+  "at": "tokyo.oshiage",
+  "b": "tokyo.keisei_oshiage",
+  "toward": "tokyo.keisei_hikifune"
+ },
+ {
+  "a": "tokyo.keisei_oshiage",
+  "at": "tokyo.oshiage",
+  "b": "tokyo.toei_asakusa",
+  "toward": "tokyo.honjo_azumabashi"
+ },
+ {
+  "a": "tokyo.toei_shinjuku",
+  "at": "tokyo.shinjuku",
+  "b": "tokyo.keio",
+  "toward": "tokyo.hatsudai"
+ },
+ {
+  "a": "tokyo.keio",
+  "at": "tokyo.shinjuku",
+  "b": "tokyo.toei_shinjuku",
+  "toward": "tokyo.shinjuku_sanchome"
+ },
+ {
+  "a": "tokyo.keisei_oshiage",
+  "at": "tokyo.aoto",
+  "b": "tokyo.keisei",
+  "toward": "tokyo.keisei_takasago"
+ },
+ {
+  "a": "tokyo.keisei",
+  "at": "tokyo.aoto",
+  "b": "tokyo.keisei_oshiage",
+  "toward": "tokyo.keisei_tateishi"
+ },
+ {
+  "a": "tokyo.keisei",
+  "at": "tokyo.keisei_takasago",
+  "b": "tokyo.hokuso",
+  "toward": "tokyo.shin_shibamata"
+ },
+ {
+  "a": "tokyo.hokuso",
+  "at": "tokyo.keisei_takasago",
+  "b": "tokyo.keisei",
+  "toward": "tokyo.aoto"
+ },
+ {
+  "a": "tokyo.keikyu_airport",
+  "at": "tokyo.keikyu_kamata",
+  "b": "tokyo.keikyu",
+  "toward": "tokyo.umeyashiki"
+ },
+ {
+  "a": "tokyo.keikyu",
+  "at": "tokyo.keikyu_kamata",
+  "b": "tokyo.keikyu_airport",
+  "toward": "tokyo.kojiya"
+ },
+ {
+  "a": "tokyo.keikyu_airport",
+  "at": "tokyo.keikyu_kamata",
+  "b": "tokyo.keikyu",
+  "toward": "tokyo.zoshiki"
+ },
+ {
+  "a": "tokyo.keikyu",
+  "at": "tokyo.keikyu_kamata",
+  "b": "tokyo.keikyu_airport",
+  "toward": "tokyo.kojiya"
+ },
+ {
+  "a": "tokyo.minatomirai",
+  "at": "tokyo.yokohama",
+  "b": "tokyo.tokyu_toyoko",
+  "toward": "tokyo.tammachi"
+ },
+ {
+  "a": "tokyo.tokyu_toyoko",
+  "at": "tokyo.yokohama",
+  "b": "tokyo.minatomirai",
+  "toward": "tokyo.shin_takashima"
+ },
+ {
+  "a": "tokyo.tokyu_meguro",
+  "at": "tokyo.hiyoshi",
+  "b": "tokyo.tokyu_shin_yokohama",
+  "toward": "tokyo.shin_tsunashima"
+ },
+ {
+  "a": "tokyo.tokyu_shin_yokohama",
+  "at": "tokyo.hiyoshi",
+  "b": "tokyo.tokyu_meguro",
+  "toward": "tokyo.motosumiyoshi"
+ },
+ {
+  "a": "tokyo.tokyu_toyoko",
+  "at": "tokyo.hiyoshi",
+  "b": "tokyo.tokyu_shin_yokohama",
+  "toward": "tokyo.shin_tsunashima"
+ },
+ {
+  "a": "tokyo.tokyu_shin_yokohama",
+  "at": "tokyo.hiyoshi",
+  "b": "tokyo.tokyu_toyoko",
+  "toward": "tokyo.motosumiyoshi"
+ },
+ {
+  "a": "tokyo.tokyu_shin_yokohama",
+  "at": "tokyo.shin_yokohama",
+  "b": "tokyo.sotetsu_shin_yokohama",
+  "toward": "tokyo.hazawa_yokohama_kokudai"
+ },
+ {
+  "a": "tokyo.sotetsu_shin_yokohama",
+  "at": "tokyo.shin_yokohama",
+  "b": "tokyo.tokyu_shin_yokohama",
+  "toward": "tokyo.shin_tsunashima"
+ },
+ {
+  "a": "tokyo.sotetsu_shin_yokohama",
+  "at": "tokyo.nishiya",
+  "b": "tokyo.sotetsu",
+  "toward": "tokyo.tsurugamine"
+ },
+ {
+  "a": "tokyo.sotetsu",
+  "at": "tokyo.nishiya",
+  "b": "tokyo.sotetsu_shin_yokohama",
+  "toward": "tokyo.hazawa_yokohama_kokudai"
+ },
+ {
+  "a": "tokyo.keio",
+  "at": "tokyo.chofu",
+  "b": "tokyo.keio_sagamihara",
+  "toward": "tokyo.keio_tamagawa"
+ },
+ {
+  "a": "tokyo.keio_sagamihara",
+  "at": "tokyo.chofu",
+  "b": "tokyo.keio",
+  "toward": "tokyo.fuda"
+ },
+ {
+  "a": "tokyo.keio",
+  "at": "tokyo.kitano",
+  "b": "tokyo.keio_takao",
+  "toward": "tokyo.keio_katakura"
+ },
+ {
+  "a": "tokyo.keio_takao",
+  "at": "tokyo.kitano",
+  "b": "tokyo.keio",
+  "toward": "tokyo.naganuma"
+ },
+ {
+  "a": "tokyo.keisei_matsudo",
+  "at": "tokyo.keisei_tsudanuma",
+  "b": "tokyo.keisei_chiba",
+  "toward": "tokyo.keisei_makuhari_hongo"
+ },
+ {
+  "a": "tokyo.keisei_chiba",
+  "at": "tokyo.keisei_tsudanuma",
+  "b": "tokyo.keisei_matsudo",
+  "toward": "tokyo.shin_tsudanuma"
+ },
+ {
+  "a": "tokyo.keisei_chiba",
+  "at": "tokyo.chiba_chuo",
+  "b": "tokyo.keisei_chihara",
+  "toward": "tokyo.chibadera"
+ },
+ {
+  "a": "tokyo.keisei_chihara",
+  "at": "tokyo.chiba_chuo",
+  "b": "tokyo.keisei_chiba",
+  "toward": "tokyo.keisei_chiba"
+ },
+ {
+  "a": "tokyo.odakyu",
+  "at": "tokyo.odawara",
+  "b": "tokyo.hakone_tozan",
+  "toward": "tokyo.hakone_itabashi"
+ },
+ {
+  "a": "tokyo.hakone_tozan",
+  "at": "tokyo.odawara",
+  "b": "tokyo.odakyu",
+  "toward": "tokyo.ashigara"
+ },
+ {
+  "a": "tokyo.utsunomiya",
+  "at": "tokyo.tokyo",
+  "b": "tokyo.tokaido",
+  "toward": "tokyo.shimbashi"
+ },
+ {
+  "a": "tokyo.tokaido",
+  "at": "tokyo.tokyo",
+  "b": "tokyo.utsunomiya",
+  "toward": "tokyo.ueno"
+ },
+ {
+  "a": "tokyo.takasaki",
+  "at": "tokyo.tokyo",
+  "b": "tokyo.tokaido",
+  "toward": "tokyo.shimbashi"
+ },
+ {
+  "a": "tokyo.tokaido",
+  "at": "tokyo.tokyo",
+  "b": "tokyo.takasaki",
+  "toward": "tokyo.ueno"
+ },
+ {
+  "a": "tokyo.joban_rapid",
+  "at": "tokyo.toride",
+  "b": "tokyo.joban",
+  "toward": "tokyo.fujishiro"
+ },
+ {
+  "a": "tokyo.joban",
+  "at": "tokyo.toride",
+  "b": "tokyo.joban_rapid",
+  "toward": "tokyo.tennodai"
+ },
+ {
+  "a": "tokyo.saikyo",
+  "at": "tokyo.osaki",
+  "b": "tokyo.rinkai",
+  "toward": "tokyo.oimachi"
+ },
+ {
+  "a": "tokyo.rinkai",
+  "at": "tokyo.osaki",
+  "b": "tokyo.saikyo",
+  "toward": "tokyo.ebisu"
+ },
+ {
+  "a": "tokyo.saikyo",
+  "at": "tokyo.omiya",
+  "b": "tokyo.kawagoe",
+  "toward": "tokyo.nisshin"
+ },
+ {
+  "a": "tokyo.kawagoe",
+  "at": "tokyo.omiya",
+  "b": "tokyo.saikyo",
+  "toward": "tokyo.kita_yono"
+ },
+ {
+  "a": "tokyo.chuo_rapid",
+  "at": "tokyo.tachikawa",
+  "b": "tokyo.ome",
+  "toward": "tokyo.nishi_tachikawa"
+ },
+ {
+  "a": "tokyo.ome",
+  "at": "tokyo.tachikawa",
+  "b": "tokyo.chuo_rapid",
+  "toward": "tokyo.kunitachi"
+ },
+ {
+  "a": "tokyo.ome",
+  "at": "tokyo.haijima",
+  "b": "tokyo.itsukaichi",
+  "toward": "tokyo.kumagawa"
+ },
+ {
+  "a": "tokyo.itsukaichi",
+  "at": "tokyo.haijima",
+  "b": "tokyo.ome",
+  "toward": "tokyo.akishima"
+ },
+ {
+  "a": "tokyo.yokohama",
+  "at": "tokyo.higashi_kanagawa",
+  "b": "tokyo.keihin_tohoku",
+  "toward": "tokyo.yokohama"
+ },
+ {
+  "a": "tokyo.keihin_tohoku",
+  "at": "tokyo.higashi_kanagawa",
+  "b": "tokyo.yokohama",
+  "toward": "tokyo.oguchi"
+ },
+ {
+  "a": "tokyo.tokaido",
+  "at": "tokyo.atami",
+  "b": "tokyo.ito",
+  "toward": "tokyo.kinomiya"
+ },
+ {
+  "a": "tokyo.ito",
+  "at": "tokyo.atami",
+  "b": "tokyo.tokaido",
+  "toward": "tokyo.yugawara"
+ },
+ {
+  "a": "tokyo.yokosuka_sobu",
+  "at": "tokyo.chiba",
+  "b": "tokyo.sotobo",
+  "toward": "tokyo.hon_chiba"
+ },
+ {
+  "a": "tokyo.sotobo",
+  "at": "tokyo.chiba",
+  "b": "tokyo.yokosuka_sobu",
+  "toward": "tokyo.inage"
+ },
+ {
+  "a": "tokyo.shonan_shinjuku",
+  "at": "tokyo.omiya",
+  "b": "tokyo.utsunomiya",
+  "toward": "tokyo.toro"
+ },
+ {
+  "a": "tokyo.utsunomiya",
+  "at": "tokyo.omiya",
+  "b": "tokyo.shonan_shinjuku",
+  "toward": "tokyo.urawa"
+ },
+ {
+  "a": "tokyo.shonan_shinjuku",
+  "at": "tokyo.omiya",
+  "b": "tokyo.takasaki",
+  "toward": "tokyo.miyahara"
+ },
+ {
+  "a": "tokyo.takasaki",
+  "at": "tokyo.omiya",
+  "b": "tokyo.shonan_shinjuku",
+  "toward": "tokyo.urawa"
+ },
+ {
+  "a": "tokyo.shonan_shinjuku",
+  "at": "tokyo.ofuna",
+  "b": "tokyo.yokosuka_sobu",
+  "toward": "tokyo.kita_kamakura"
+ },
+ {
+  "a": "tokyo.yokosuka_sobu",
+  "at": "tokyo.ofuna",
+  "b": "tokyo.shonan_shinjuku",
+  "toward": "tokyo.totsuka"
+ },
+ {
+  "a": "tokyo.shonan_shinjuku",
+  "at": "tokyo.ofuna",
+  "b": "tokyo.tokaido",
+  "toward": "tokyo.fujisawa"
+ },
+ {
+  "a": "tokyo.tokaido",
+  "at": "tokyo.ofuna",
+  "b": "tokyo.shonan_shinjuku",
+  "toward": "tokyo.totsuka"
+ },
+ {
+  "a": "tokyo.sotetsu_jr",
+  "at": "tokyo.hazawa_yokohama_kokudai",
+  "b": "tokyo.sotetsu_shin_yokohama",
+  "toward": "tokyo.nishiya"
+ },
+ {
+  "a": "tokyo.sotetsu_shin_yokohama",
+  "at": "tokyo.hazawa_yokohama_kokudai",
+  "b": "tokyo.sotetsu_jr",
+  "toward": "tokyo.musashi_kosugi"
+ }
+]

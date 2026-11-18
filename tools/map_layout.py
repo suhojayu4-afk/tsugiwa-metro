@@ -107,6 +107,8 @@ def schematize(rides, raw, order, closed, eps=lambda sid: EPS, half=None):
     def lay(chain):
         a, b = chain[0], chain[-1]
         inner = chain[1:-1]
+        if a == b and len(chain) <= 2:   # the same station twice in a row: nothing to lay
+            return
         if a == b:   # a loop closing on one fixed station: split it in the middle
             fix(chain[len(chain) // 2])
             k = len(chain) // 2
@@ -311,7 +313,9 @@ def ride_paths(lines, geo, group):
                     if r and len(r[1]) > 2 and max(_seg_dev(geo[s], geo[a], geo[b]) for s in r[1][1:-1]) \
                             <= max(0.5, 0.1 * direct):
                         via = r[1]
-            seq += (via[1:] if via else [b])
+            for x in (via[1:] if via else [b]):
+                if x != seq[-1]:
+                    seq.append(x)
         if l['loop']:
             seq = seq[:-1]
         out[l['id']] = seq

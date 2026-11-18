@@ -55,6 +55,8 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
       final z = _zoom;
       if (z != null) _controller.value = z.value;
     });
+    _controller.addListener(_keepOuterZoom);
+    _controller.addListener(_loadTiles);
     _load();
   }
 
@@ -102,6 +104,9 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     // Station names are drawn at screen size beside the stops, so keep a
     // fixed on-screen margin for them on the left and right.
     final w = b.max.dx - b.min.dx + 50, h = b.max.dy - b.min.dy + 60;
+    // A phone held upright: fill the height (all of Kanto top to bottom) and
+    // let the sides be panned, instead of a thin band in the middle.
+    if (vp.height > vp.width) return (vp.height - 190) / h;
     return math.min((vp.width - 130) / w, (vp.height - 190) / h);
   }
 
@@ -146,12 +151,93 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     _controller.value = _matrixFor(b.center, s, screenAt: Offset(vp.width / 2, vp.height / 2 + 30));
   }
 
+  /// Outside the detailed Tokyo-area picture the ground has big pixels
+  /// (the rest of Kanto): zooming in that far only shows blocks.
+  /// Out in the countryside (outside the detailed Tokyo tiles) the ground is
+  /// coarser: zoom up to 2 there.
+  static const _outerMaxScale = 2.0;
+
+  // ---------------- tiles (only the ones on screen are in memory) ----------------
+
+  final _tiles = <String, ui.Image>{};
+  final _tileLoading = <String>{};
+  final _tileUsed = <String, int>{};
+  int _tileClock = 0;
+  static const _keepTiles = 24;
+
+  void _loadTiles() {
+    final map = _map, vp = _viewport;
+    if (map == null || vp == null) return;
+    final a = _toWorld(Offset.zero), b = _toWorld(Offset(vp.width, vp.height));
+    final view = Rect.fromPoints(a, b);
+    _tileClock++;
+    final fine = map.tileSets.isEmpty ? null : map.tileSets.last;
+    for (final set in map.tileSets) {
+      if (_scale < set.from) continue;
+      final span = set.span;
+      for (var ty = ((view.top - set.origin.dy) / span).floor(); ty <= ((view.bottom - set.origin.dy) / span).floor(); ty++) {
+        for (var tx = ((view.left - set.origin.dx) / span).floor();
+            tx <= ((view.right - set.origin.dx) / span).floor();
+            tx++) {
+          final asset = set.asset(tx, ty);
+          if (asset == null) continue;
+          // Under the finer Tokyo tiles a coarse tile is not needed.
+          final r = Rect.fromLTWH(set.origin.dx + tx * span, set.origin.dy + ty * span, span, span);
+          if (fine != null && set != fine && _scale >= fine.from && fine.area.contains(r.topLeft) &&
+              fine.area.contains(r.bottomRight)) {
+            continue;
+          }
+          _tileUsed[asset] = _tileClock;
+          if (_tiles.containsKey(asset) || !_tileLoading.add(asset)) continue;
+          _image(asset).then((img) {
+            _tileLoading.remove(asset);
+            if (!mounted) return img.dispose();
+            setState(() => _tiles[asset] = img);
+            _forgetOldTiles();
+          });
+        }
+      }
+    }
+  }
+
+  /// Keep memory small: drop the tiles not seen for longest.
+  void _forgetOldTiles() {
+    if (_tiles.length <= _keepTiles) return;
+    final old = (_tiles.keys.toList()..sort((x, y) => (_tileUsed[x] ?? 0) - (_tileUsed[y] ?? 0)))
+        .take(_tiles.length - _keepTiles)
+        .toList();
+    for (final k in old) {
+      _tiles.remove(k)?.dispose();
+    }
+  }
+
+  /// The most zoom that still looks good with [world] in the middle.
+  double _maxScaleAt(Offset world) {
+    final map = _map;
+    if (map == null) return _maxScale;
+    return map.detailArea.contains(world) ? _maxScale : _outerMaxScale;
+  }
+
+  bool _clamping = false;
+
+  /// Pinch zoom too: pull back to [_outerMaxScale] out in the countryside.
+  void _keepOuterZoom() {
+    if (_clamping || _map == null || _terrain == null || _viewport == null) return;
+    final vp = _viewport!;
+    final centre = _toWorld(Offset(vp.width / 2, vp.height / 2));
+    final limit = _maxScaleAt(centre);
+    if (_scale <= limit + 1e-6) return;
+    _clamping = true;
+    _controller.value = _matrixFor(centre, limit);
+    _clamping = false;
+  }
+
   Offset _toWorld(Offset screen) => MatrixUtils.transformPoint(Matrix4.inverted(_controller.value), screen);
 
   void _zoomBy(double factor) {
     final vp = _viewport!;
     final centre = _toWorld(Offset(vp.width / 2, vp.height / 2));
-    final s = (_scale * factor).clamp(_fitScale() * 0.3, _maxScale);
+    final s = (_scale * factor).clamp(_fitScale() * 0.7, _maxScaleAt(centre));
     _animateTo(_matrixFor(centre, s));
   }
 
@@ -175,7 +261,7 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
       return;
     }
     // Empty spot: zoom in there.
-    final s = math.min(_maxScale, math.max(_scale * 2.2, _fitScale() * 2.5));
+    final s = math.min(_maxScaleAt(world), math.max(_scale * 2.2, _fitScale() * 2.5));
     _animateTo(_matrixFor(world, s));
   }
 
@@ -191,7 +277,7 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     setState(() => _selected = id);
     // Bring the station into the upper part of the screen, above the card.
     final vp = _viewport!;
-    final s = math.max(_scale, 1.6);
+    final s = math.min(math.max(_scale, 1.6), _maxScaleAt(stops.first.position));
     _animateTo(_matrixFor(stops.first.position, s, screenAt: Offset(vp.width / 2, vp.height * 0.28)));
     final from = await showModalBottomSheet<bool>(
       context: context,
@@ -234,16 +320,38 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                           child: InteractiveViewer(
                             transformationController: _controller,
                             constrained: false,
-                            minScale: 0.01, // far enough out to see Mt. Fuji and the whole of Kanto round the map
+                            minScale: 0.02, // the whole of Kanto with a little round it
                             maxScale: _maxScale,
-                            boundaryMargin: const EdgeInsets.all(6000), // the pale surroundings reach 6400 units out
+                            boundaryMargin: const EdgeInsets.all(3000), // the surroundings reach 3000 units out
                             onInteractionStart: (_) => _anim.stop(),
                             child: SizedBox(
                               width: map.size.width,
                               height: map.size.height,
-                              child: CustomPaint(
-                                painter: _TerrainPainter(terrain, map.size, outer: _outer, outerAt: map.outer),
-                                foregroundPainter: _GlintPainter(map.glints, _twinkle),
+                              // The ground is its own layer, drawn again only when a tile
+                              // comes in; the twinkling glints repaint on their own above it.
+                              child: Stack(
+                                children: [
+                                  Positioned.fill(
+                                    child: RepaintBoundary(
+                                      child: CustomPaint(
+                                        painter: _TerrainPainter(
+                                          terrain,
+                                          map.size,
+                                          tiles: _tiles,
+                                          tileCount: _tiles.length,
+                                          sets: map.tileSets,
+                                          outer: _outer,
+                                          outerAt: map.outer,
+                                          origin: map.terrainOrigin,
+                                          scale: map.terrainScale,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned.fill(
+                                    child: RepaintBoundary(child: CustomPaint(painter: _GlintPainter(map.glints, _twinkle))),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -342,15 +450,33 @@ class _GlintPainter extends CustomPainter {
 }
 
 class _TerrainPainter extends CustomPainter {
-  _TerrainPainter(this.image, this.mapSize, {this.outer, this.outerAt});
+  _TerrainPainter(
+    this.image,
+    this.mapSize, {
+    this.outer,
+    this.outerAt,
+    this.origin = Offset.zero,
+    this.scale = 2,
+    this.tiles = const {},
+    this.tileCount = 0,
+    this.sets = const [],
+  });
   final ui.Image image;
   final Size mapSize;
+
+  /// Tiles loaded so far (asset -> picture), of these [sets].
+  final Map<String, ui.Image> tiles;
+  final int tileCount;
+  final List<MapTileSet> sets;
+
+  /// Top-left of the overview picture (map units) and map units per pixel.
+  final Offset origin;
+  final double scale;
   final ui.Image? outer;
   final ({String image, Offset origin, double scale})? outerAt;
 
   @override
   void paint(Canvas canvas, Size size) {
-    // Pale surroundings first (they reach far beyond the map), then the map.
     if (outer != null && outerAt != null) {
       final o = outer!, at = outerAt!;
       canvas.drawImageRect(
@@ -360,19 +486,62 @@ class _TerrainPainter extends CustomPainter {
         Paint()..filterQuality = FilterQuality.none,
       );
     }
+    // The small overview of all Kanto (far zooms), then the loaded tiles,
+    // coarse to fine (Kanto, then Tokyo) - only those near the view are loaded.
+    final paint = Paint()..filterQuality = FilterQuality.none;
     canvas.drawImageRect(
       image,
       Rect.fromLTWH(0, 0, image.width.toDouble(), image.height.toDouble()),
-      Offset.zero & mapSize,
-      Paint()..filterQuality = FilterQuality.none,
+      origin & Size(image.width * scale, image.height * scale),
+      paint,
     );
+    for (final set in sets) {
+      final head = '${set.dir}/${set.prefix}';
+      for (final MapEntry(key: asset, value: img) in tiles.entries) {
+        if (!asset.startsWith(head)) continue;
+        final xy = asset.substring(head.length, asset.length - 4).split('_');
+        final x = int.parse(xy[0]), y = int.parse(xy[1]);
+        canvas.drawImageRect(
+          img,
+          Rect.fromLTWH(0, 0, img.width.toDouble(), img.height.toDouble()),
+          Rect.fromLTWH(set.origin.dx + x * set.span, set.origin.dy + y * set.span, img.width * set.scale,
+              img.height * set.scale),
+          paint,
+        );
+      }
+    }
   }
 
   @override
-  bool shouldRepaint(_TerrainPainter old) => old.image != image || old.outer != outer;
+  bool shouldRepaint(_TerrainPainter old) =>
+      old.image != image || old.outer != outer || old.tileCount != tileCount || !identical(old.tiles, tiles);
 }
 
 enum _Anchor { left, right, top, bottom }
+
+/// Names already drawn this frame, in 64-px buckets so a new one is checked
+/// only against its neighbours.
+class _Placed {
+  final _cells = <int, List<Rect>>{};
+
+  bool tryAdd(Rect r) {
+    final x0 = (r.left / 64).floor(), x1 = (r.right / 64).floor();
+    final y0 = (r.top / 64).floor(), y1 = (r.bottom / 64).floor();
+    for (var x = x0; x <= x1; x++) {
+      for (var y = y0; y <= y1; y++) {
+        for (final q in _cells[x * 100003 + y] ?? const <Rect>[]) {
+          if (q.overlaps(r)) return false;
+        }
+      }
+    }
+    for (var x = x0; x <= x1; x++) {
+      for (var y = y0; y <= y1; y++) {
+        (_cells[x * 100003 + y] ??= []).add(r);
+      }
+    }
+    return true;
+  }
+}
 
 class _MapOverlayPainter extends CustomPainter {
   _MapOverlayPainter({
@@ -401,6 +570,18 @@ class _MapOverlayPainter extends CustomPainter {
     if (f == null || f == lineId) return true;
     return f.startsWith('g:') && city.line(lineId).group == f.substring(2);
   }
+
+  static final _paths = Expando<Path>();
+
+  /// The line's path in map units, made once.
+  static Path _pathOf(MapLine line) => _paths[line] ??= () {
+    final p = Path()..moveTo(line.path.first.dx, line.path.first.dy);
+    for (final q in line.path.skip(1)) {
+      p.lineTo(q.dx, q.dy);
+    }
+    if (line.closed) p.close();
+    return p;
+  }();
 
   /// Text layouts kept between frames (laying out 1,000+ names every frame is slow).
   static final _textCache = <String, TextPainter>{};
@@ -526,26 +707,25 @@ class _MapOverlayPainter extends CustomPainter {
     }
 
     // ---- lines ----
+    // Paths are built once in map units and drawn through the zoom matrix
+    // (no rebuilding 160+ paths every frame while panning).
     final width = (5.5 * s).clamp(2.0, 7.0);
+    canvas.save();
+    canvas.transform(m.storage);
     for (final line in map.lines) {
       if (!line.bounds.overlaps(view)) continue;
-      final pts = line.path.map(sp).toList();
-      final path = Path()..moveTo(pts.first.dx, pts.first.dy);
-      for (final p in pts.skip(1)) {
-        path.lineTo(p.dx, p.dy);
-      }
-      if (line.closed) path.close();
       final dim = !_inFocus(line.lineId);
       canvas.drawPath(
-        path,
+        _pathOf(line),
         Paint()
           ..color = city.line(line.lineId).color.withValues(alpha: dim ? 0.22 : 1)
           ..style = PaintingStyle.stroke
-          ..strokeWidth = width
+          ..strokeWidth = width / s
           ..strokeJoin = StrokeJoin.round
           ..strokeCap = StrokeCap.round,
       );
     }
+    canvas.restore();
 
     // ---- stations ----
     final r = (6.5 * s).clamp(2.2, 8.5);
@@ -562,6 +742,8 @@ class _MapOverlayPainter extends CustomPainter {
       // Zoomed far out the whole network is on screen: only transfer
       // stations get a dot, so the lines stay readable.
       if (s < 0.3 && pts.length == 1 && id != selected) continue;
+      // All of Kanto on screen: only the big stations, or the middle is one white blob.
+      if (s < 0.12 && !_major.contains(id) && id != selected) continue;
       if (focusLine != null && !onFocus && s < 0.6) continue;
       if (pts.length > 1) {
         // Transfer station: one white pill round its stop on each line.
@@ -591,7 +773,7 @@ class _MapOverlayPainter extends CustomPainter {
     }
 
     // ---- names: minor ones only when zoomed in, never overlapping ----
-    final placed = <Rect>[];
+    final placed = _Placed();
     final font = (11 + 7 * (s - 0.4)).clamp(11.0, 19.0);
     final order = _labelOrder[map] ??= (map.stations.keys.toList()
       ..sort((a, b) {
@@ -622,16 +804,14 @@ class _MapOverlayPainter extends CustomPainter {
       final fs = ((font * (major ? 1.15 : 1)) * 2).roundToDouble() / 2;
       final rect = _bounds(station.name.ja, sub, origin, anchor, fs);
       if (rect.right < 0 || rect.left > size.width || rect.bottom < 0 || rect.top > size.height) continue;
-      if (placed.any((q) => q.overlaps(rect))) continue;
-      placed.add(rect);
+      if (!placed.tryAdd(rect)) continue;
       _label(canvas, station.name.ja, origin, size: fs, color: PixelColors.ink, anchor: anchor, sub: sub);
     }
 
     // ---- landmark names: on top of the lines, where no station name is ----
     for (final (name, at) in lmNames) {
       final rect = _bounds(name, null, at, _Anchor.top, 12);
-      if (placed.any((q) => q.overlaps(rect))) continue;
-      placed.add(rect);
+      if (!placed.tryAdd(rect)) continue;
       _label(canvas, name, at, size: 12, color: const Color(0xFF60666F), anchor: _Anchor.top);
     }
   }

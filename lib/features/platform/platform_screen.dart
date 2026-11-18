@@ -293,11 +293,14 @@ class PlatformScreenState extends State<PlatformScreen> {
           sky: sky,
           lineLabel: info['line']! as String,
           first: '${info['firstLabel']} ${info['firstTime']}',
+          weather: info['weather']! as String,
           temp: w?.tempC == null ? '' : '${w!.tempC!.round()}°',
           rain: w?.rainChance == null ? '' : '${w!.rainChance}%',
         ),
         headways: info['headways']! as List<int>,
         t: t,
+        route: info['route']! as String,
+        rainText: info['rain']! as String,
       );
     }
   }
@@ -308,9 +311,16 @@ class PlatformScreenState extends State<PlatformScreen> {
   /// evening or night — and its "every N min"), plus one for after the last
   /// train; the widget picks the one for now. Redrawn only when something on
   /// it changes.
-  Future<void> _syncNextArt(NextWidgetData d, {required List<int> headways, required AppLocalizations t}) async {
+  Future<void> _syncNextArt(
+    NextWidgetData d, {
+    required List<int> headways,
+    required AppLocalizations t,
+    required String route,
+    required String rainText,
+  }) async {
     final key =
         '${d.fromName}|${d.toName}|${d.lineColor}|${d.trip}|${d.last}|${d.alarm}|${d.sky}|${d.temp}|${d.rain}|'
+        '${d.weather}|$route|$rainText|'
         '$headways|${t.localeName}';
     if (key == _nextArtKey) return;
     _nextArtKey = key;
@@ -318,6 +328,8 @@ class PlatformScreenState extends State<PlatformScreen> {
       final pngs = <String, Uint8List>{
         // 地下鉄案内: one per time of day.
         for (final part in DayPart.values) 'board_${part.name}': await renderBoardWidget(d, part),
+        // MY駅: the info band, one per time of day.
+        for (final part in DayPart.values) 'band_${part.name}': await renderMyBand(d, route, rainText, part),
         'full_end': await renderNextWidget(d, t.serviceEndedShort, DayPart.night),
         for (var h = 0; h < 24; h++)
           'full_h$h': await renderNextWidget(

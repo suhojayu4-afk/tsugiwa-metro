@@ -17,6 +17,7 @@ CityData loadTokyo() {
     lines: read('lines.json') as List<dynamic>,
     timetables: read('timetables.json') as Map<String, dynamic>,
     walks: read('walks.json') as List<dynamic>,
+    throughs: read('through.json') as List<dynamic>,
   );
 }
 
@@ -132,6 +133,30 @@ void main() {
       expect(walk, isNotEmpty);
       final w = walk.first;
       expect(city.walkMin(w.stationId, w.walkToStationId!), isNotNull);
+    });
+
+    test('through trains: no change where the train runs on (Hanzomon -> Den-en-toshi at Shibuya)', () {
+      final r = route('oshiage', 'chuo_rinkan');
+      final ids = r.legs.map((l) => l.lineId).toList();
+      expect(ids, containsAllInOrder(['tokyo.hanzomon', 'tokyo.tokyu_denentoshi']));
+      final dt = r.legs.firstWhere((l) => l.lineId == 'tokyo.tokyu_denentoshi');
+      expect(dt.through, isTrue);
+      final plan = TripPlan.build(city, r, noon);
+      final shibuya = plan.stops.firstWhere((s) => s.stationId == 'tokyo.shibuya');
+      expect(shibuya.through, isTrue);
+      expect(shibuya.departSec - shibuya.arriveSec, lessThan(60)); // no waiting for another train
+      // ...and only in the direction the train goes on in: not back towards Shibuya's other side.
+      expect(city.throughs.where((t) => t.a == 'tokyo.hanzomon' && t.at == 'tokyo.shibuya').single.toward,
+          'tokyo.ikejiri_ohashi');
+    });
+
+    test('a long trip across Kanto (Kamakura -> Nikko) is found quickly', () {
+      final watch = Stopwatch()..start();
+      final r = RouteFinder(city).find('tokyo.kamakura', 'tokyo.nikko', at: noon);
+      watch.stop();
+      expect(r, isNotNull);
+      expect(r!.legs.last.stationIds.last, 'tokyo.nikko');
+      expect(watch.elapsedMilliseconds, lessThan(1500)); // all of Kanto: 2,000+ stations
     });
 
     test('same station gives no route', () {

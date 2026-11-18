@@ -19,7 +19,12 @@ THICKNESS = {'tower': 2, 'station': 1, 'kaminarimon': 2, 'skytree': 1, 'tocho': 
              'kokugikan': 2, 'akihabara': 2, 'sunshine': 2,
              'ferris': 3,
              'bigsight': 3,  # v2 (2026-11-18): bigsight_v2.png, 4 inverted pyramids; 1px outline + 2px side
-             'pagoda': 3, 'roppongi': 4, 'wako': 4, 'toyosu': 4}
+             'pagoda': 3, 'roppongi': 4, 'wako': 4, 'toyosu': 4,
+             # all of Kanto (2026-11-19)
+             'fuji': 4, 'daibutsu': 3, 'enoshima': 4, 'hakone': 4, 'minatomirai': 4, 'chinatown': 4,
+             'kawagoe': 3, 'naritasan': 3, 'chureito': 8, 'themepark': 3,
+             'nikko': 3, 'hitachi': 4, 'ashikaga': 4, 'tomioka': 3, 'oarai': 4,
+             'kusatsu': 3, 'karuizawa': 4, 'hachimangu': 3, 'atami': 4}
 # gatebridge.png has no base (stands on the sea): copied as it is.
 
 

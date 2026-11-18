@@ -22,9 +22,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CITY = os.path.join(ROOT, 'assets', 'cities', 'tokyo')
 BASE = os.path.join(ROOT, 'tools', 'data', 'base_tokyo')
 sys.path.insert(0, os.path.join(ROOT, 'tools', 'data'))
-from rail_lines import LINES  # noqa: E402
+from rail_lines import LINES, THROUGH  # noqa: E402
 
-AREA = (35.30, 139.20, 36.02, 140.42)
+AREA = (34.62, 138.15, 36.86, 141.00)   # all of Kanto (Izu to Shimoda, Fuji, Kofu, Takasaki, Nikko, Mito, Boso)
 load = lambda d, n: json.load(open(os.path.join(d, n), encoding='utf8'))  # noqa: E731
 stations = load(BASE, 'stations.json')
 lines = load(BASE, 'lines.json')
@@ -34,6 +34,8 @@ walks = load(BASE, 'walks.json')
 osm = json.load(open(os.path.join(ROOT, 'tools', 'data', 'osm', 'rail_routes.json'), encoding='utf8'))
 wd = json.load(open(os.path.join(ROOT, 'tools', 'data', 'wikidata_rail.json'), encoding='utf8'))
 ROUTES = {r['id']: r for r in osm['routes']}
+_tracks = os.path.join(ROOT, 'tools', 'data', 'osm', 'rail_tracks.json')
+TRACKS = json.load(open(_tracks, encoding='utf8')) if os.path.exists(_tracks) else {}
 NODES = osm['nodes']
 
 # Different spellings of one station.
@@ -198,7 +200,10 @@ for _n in NODES.values():
         for _k in ('name:ko', 'name:en', 'name:ja-Hira'):
             if _k in _t and _k not in _o:
                 _o[_k] = _t[_k]
-KO_FIX = {'町田': '마치다', '荒川遊園地前': '아라카와유엔치마에', '東池袋四丁目': '히가시이케부쿠로욘초메'}
+KO_FIX = {'町田': '마치다', '荒川遊園地前': '아라카와유엔치마에', '東池袋四丁目': '히가시이케부쿠로욘초메',
+          '静': '시즈', '旭': '아사히', '岳南江尾': '가쿠난에노오', '神谷': '가미야', '岳南富士岡': '가쿠난후지오카',
+          '比奈': '히나', '岳南原田': '가쿠난하라다', '吉原本町': '요시와라혼초', '滝': '다키',
+          '鬼怒川公園': '기누가와코엔', '新藤原': '신후지와라', '日光': '닛코', '茂木': '모테기'}
 
 
 def wd_near(key, lat, lng):
@@ -263,6 +268,8 @@ def stops_of(rid):
         if not n or 'name' not in n['tags']:
             continue
         nm = n['tags']['name']
+        if nm.endswith('信号場') or nm.endswith('信号所'):   # signal boxes, no passengers
+            continue
         if out and norm(out[-1][0]) == norm(nm):
             continue
         out.append((nm, n['lat'], n['lng'], n['tags']))
@@ -376,8 +383,12 @@ def group_of(key, kind):
 
 added = []
 for spec in LINES:
-    seq = [x for x in union([stops_of(r) for r in spec['routes']]) if inside(x[1], x[2])
-           and norm(x[0]) not in spec['drop']]
+    sources = [stops_of(r) for r in spec['routes']]
+    if spec.get('tracks'):
+        # Lines without an OSM route: the stations along their named tracks.
+        sources.append([(t['name'], t['lat'], t['lng'], t['tags']) for t in TRACKS.get(spec['tracks'], [])])
+    sources.append([(n, la, ln, {}) for n, la, ln in spec.get('extra', [])])
+    seq = [x for x in union(sources) if inside(x[1], x[2]) and norm(x[0]) not in spec['drop']]
     seq = order(seq, spec['loop'], [stops_of(r) for r in spec['routes']], spec['ends'])
     names = [norm(x[0]) for x in seq]
     a, b = spec['cut']
@@ -488,6 +499,72 @@ for i, a in enumerate(st_list):
                       'names': f"{a['name']['ja']} ↔ {b['name']['ja']}"})
         known.add(frozenset((a['id'], b['id'])))
 
+# Through trains (rail_lines.THROUGH): where a train runs on from one line
+# onto another without anyone changing, with the direction it carries on in.
+line_by_id = {l['id']: l for l in lines}
+st_name = {s['id']: s['name']['ja'] for s in stations}
+
+
+def _at(lid, name):
+    hit = [sid for sid in line_by_id[lid]['stations'] if norm(st_name[sid]) == norm(name)]
+    if not hit:
+        raise SystemExit(f'through: {name} is not on {lid}')
+    return hit[0]
+
+
+def _next_to(lid, sid, name):
+    seq = line_by_id[lid]['stations']
+    i = seq.index(sid)
+    nb = [seq[j] for j in (i - 1, i + 1) if 0 <= j < len(seq)]
+    if line_by_id[lid]['loop']:
+        nb = [seq[(i - 1) % len(seq)], seq[(i + 1) % len(seq)]]
+    if name is None:
+        if len(nb) != 1:
+            raise SystemExit(f'through: {st_name[sid]} is not an end of {lid}; give the previous station')
+        return nb[0]
+    hit = [x for x in nb if norm(st_name[x]) == norm(name)]
+    if not hit:
+        raise SystemExit(f'through: {name} is not next to {st_name[sid]} on {lid}')
+    return hit[0]
+
+
+def _lid(key):
+    return next(sp['replace'] for sp in LINES if sp['key'] == key and sp['replace'])         if any(sp['key'] == key and sp['replace'] for sp in LINES) else f'tokyo.{key}'
+
+
+through = []
+for a_key, at_name, b_key, toward, prev in THROUGH:
+    a, b = _lid(a_key), _lid(b_key)
+    at_a, at_b = _at(a, at_name), _at(b, at_name)
+    assert at_a == at_b, (a_key, b_key, at_name)
+    nxt = _next_to(b, at_b, toward)
+    back = _next_to(a, at_a, prev)
+    through.append({'a': a, 'at': at_a, 'b': b, 'toward': nxt})
+    through.append({'a': b, 'at': at_a, 'b': a, 'toward': back})
+print(len(through), 'through runs (both ways)')
+
+# Different stations with the same name (栄町 in Chiba and in Kita ward):
+# add the place in brackets, like the transit apps do - 栄町（千葉市）.
+_areas_f = os.path.join(ROOT, 'tools', 'data', 'osm', 'station_areas.json')
+_areas = json.load(open(_areas_f, encoding='utf8'))['areas'] if os.path.exists(_areas_f) else {}
+_by_name = {}
+for s_ in stations:
+    _by_name.setdefault(s_['name']['ja'], []).append(s_)
+for name, same in _by_name.items():
+    if len(same) < 2:
+        continue
+    # The best-known one (most lines, then nearest central Tokyo) keeps the plain name.
+    same.sort(key=lambda s_: (-len(s_['lines']), km((s_['geo']['lat'], s_['geo']['lng']), (35.681, 139.767))))
+    for s_ in same[1:]:
+        ward = _areas.get(s_['id'], {}).get('ward')
+        line0 = next(l for l in lines if l['id'] == s_['lines'][0])['name']
+        if not ward or ward['ja'] == name:
+            ward = line0            # 小川町 in 小川町 town: name the line instead
+        s_['name']['ja'] += f"（{ward['ja']}）"
+        s_['name']['ko'] += f" ({ward.get('ko') or ward['ja']})"
+        s_['name']['en'] += f" ({ward.get('en') or ward['ja']})"
+        print('   same name:', s_['name']['ja'], '/', s_['name']['ko'])
+
 allids = [s['id'] for s in stations]
 assert len(allids) == len(set(allids))
 missing_ko = [s['name']['ja'] for s in stations if not s['name']['ko']]
@@ -501,4 +578,5 @@ dump(lines, 'lines.json')
 dump(timetables, 'timetables.json')
 dump(city, 'city.json')
 dump(walks, 'walks.json')
+dump(through, 'through.json')
 print(len(stations), 'stations,', len(lines), 'lines,', len(walks), 'walks')

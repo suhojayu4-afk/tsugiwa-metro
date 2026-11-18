@@ -15,6 +15,7 @@ CityData loadTokyo() {
     lines: read('lines.json') as List<dynamic>,
     timetables: read('timetables.json') as Map<String, dynamic>,
     walks: read('walks.json') as List<dynamic>,
+    throughs: read('through.json') as List<dynamic>,
   );
 }
 

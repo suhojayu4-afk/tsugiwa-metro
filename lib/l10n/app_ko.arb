@@ -189,5 +189,6 @@
   "routeMissed": "이 경로는 막차를 놓쳤어요",
   "altRouteTitle": "다른 경로라면 아직 갈 수 있어요",
   "altRouteInfo": "{time}까지 출발 · {via}",
-  "altRouteUse": "이 경로로"
+  "altRouteUse": "이 경로로",
+  "throughHere": "그대로 {line} 직통"
 }

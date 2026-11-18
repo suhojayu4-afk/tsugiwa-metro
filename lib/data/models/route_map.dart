@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart' show compute;
 import 'package:flutter/services.dart';
 
 import '../../core/localized_text.dart';
@@ -48,6 +49,46 @@ class MapLine {
   }
 }
 
+/// Square pictures of the ground, loaded only when on screen: tile (x, y)
+/// is `dir/prefix{x}_{y}.png`, [size] pixels of [scale] map units, its
+/// top-left at [origin] + (x, y) * size * scale. Used from zoom [from] on.
+class MapTileSet {
+  MapTileSet({
+    required this.dir,
+    required this.prefix,
+    required this.origin,
+    required this.scale,
+    required this.size,
+    required this.from,
+    required this.have,
+  }) : area = _areaOf(origin, size * scale, have);
+
+  final String dir;
+  final String prefix;
+  final Offset origin;
+  final double scale;
+  final int size;
+  final double from;
+  final Set<String> have;
+
+  /// What the tiles cover, in map units.
+  final Rect area;
+
+  double get span => size * scale;
+
+  String? asset(int x, int y) => have.contains('${x}_$y') ? '$dir/$prefix${x}_$y.png' : null;
+
+  static Rect _areaOf(Offset origin, double span, Set<String> have) {
+    var mx = 0, my = 0;
+    for (final h in have) {
+      final xy = h.split('_');
+      mx = int.parse(xy[0]) > mx ? int.parse(xy[0]) : mx;
+      my = int.parse(xy[1]) > my ? int.parse(xy[1]) : my;
+    }
+    return Rect.fromLTWH(origin.dx, origin.dy, (mx + 1) * span, (my + 1) * span);
+  }
+}
+
 class MapLandmark {
   const MapLandmark({required this.image, required this.position, required this.name});
   final String image;
@@ -64,6 +105,9 @@ class RouteMapData {
   RouteMapData({
     required this.size,
     required this.terrainImage,
+    this.terrainOrigin = Offset.zero,
+    this.terrainScale = 2,
+    this.tileSets = const [],
     this.outer,
     required this.lines,
     required this.landmarks,
@@ -75,6 +119,21 @@ class RouteMapData {
 
   final Size size;
   final String terrainImage;
+
+  /// Where the detailed terrain picture's top-left sits (map units) and map
+  /// units per picture pixel. It covers the Tokyo area; the rest of Kanto is
+  /// in [outer].
+  final Offset terrainOrigin;
+  final double terrainScale;
+
+  /// Finer ground pictures in tiles, coarse to fine (all Kanto, then Tokyo):
+  /// [terrainImage] is only a small overview for the far zooms.
+  final List<MapTileSet> tileSets;
+
+  /// The detailed Tokyo area (the finest tiles), or the overview's area.
+  Rect get detailArea => tileSets.isEmpty
+      ? terrainOrigin & Size(size.width, size.height)
+      : tileSets.reduce((a, b) => a.scale <= b.scale ? a : b).area;
 
   /// Pale, coarse land and sea around the map: image, where its top-left
   /// sits in map units, and map units per pixel.
@@ -165,6 +224,24 @@ class RouteMapData {
     return RouteMapData(
       size: Size((size[0] as num).toDouble(), (size[1] as num).toDouble()),
       terrainImage: (map['terrain'] as Map<String, dynamic>)['image'] as String,
+      terrainOrigin: switch ((map['terrain'] as Map<String, dynamic>)['origin']) {
+        final List<dynamic> o => _pt(o),
+        _ => Offset.zero,
+      },
+      terrainScale: ((map['terrain'] as Map<String, dynamic>)['scale'] as num? ?? 2).toDouble(),
+      tileSets: [
+        for (final t in ((map['terrain'] as Map<String, dynamic>)['sets'] as List? ?? const [])
+            .cast<Map<String, dynamic>>())
+          MapTileSet(
+            dir: t['dir'] as String,
+            prefix: t['prefix'] as String? ?? '',
+            origin: _pt(t['origin']),
+            scale: (t['scale'] as num).toDouble(),
+            size: t['size'] as int,
+            from: (t['from'] as num? ?? 0).toDouble(),
+            have: {for (final h in t['have'] as List) h as String},
+          ),
+      ],
       outer: switch ((map['terrain'] as Map<String, dynamic>)['outer']) {
         final Map<String, dynamic> o => (
           image: o['image'] as String,
@@ -229,7 +306,8 @@ class RouteMapData {
   static final _cache = <String, Future<RouteMapData>>{};
 
   static Future<RouteMapData> load(String cityId) => _cache[cityId] ??= () async {
-    final map = jsonDecode(await rootBundle.loadString('assets/cities/$cityId/map.json'));
+    // Decoded off the UI thread (map.json is large).
+    final map = await compute(jsonDecode, await rootBundle.loadString('assets/cities/$cityId/map.json'));
     Map<String, dynamic> tips = const {};
     try {
       tips = jsonDecode(await rootBundle.loadString('assets/cities/$cityId/tips.json')) as Map<String, dynamic>;

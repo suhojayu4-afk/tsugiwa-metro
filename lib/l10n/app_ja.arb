@@ -599,5 +599,13 @@
   "altRouteTitle": "別ルートならまだ間に合う",
   "altRouteInfo": "{time}までに出発 · {via}",
   "@altRouteInfo": {"placeholders": {"time": {"type": "String"}, "via": {"type": "String"}}},
-  "altRouteUse": "このルートにする"
+  "altRouteUse": "このルートにする",
+  "throughHere": "そのまま{line}へ直通",
+  "@throughHere": {
+    "placeholders": {
+      "line": {
+        "type": "String"
+      }
+    }
+  }
 }

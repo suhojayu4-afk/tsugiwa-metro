@@ -690,4 +690,9 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get altRouteUse => 'このルートにする';
+
+  @override
+  String throughHere(String line) {
+    return 'そのまま$lineへ直通';
+  }
 }

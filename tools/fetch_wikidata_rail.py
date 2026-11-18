@@ -16,7 +16,7 @@ import urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'tools', 'data', 'wikidata_rail.json')
 URL = 'https://query.wikidata.org/sparql'
-SW, NE = (139.20, 35.30), (140.42, 36.02)
+SW, NE = (138.15, 34.62), (141.00, 36.82)
 
 BOX = f'''SERVICE wikibase:box {{ ?st wdt:P625 ?loc .
   bd:serviceParam wikibase:cornerSouthWest "Point({SW[0]} {SW[1]})"^^geo:wktLiteral ;

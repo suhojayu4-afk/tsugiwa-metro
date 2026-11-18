@@ -706,4 +706,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get altRouteUse => 'Use this route';
+
+  @override
+  String throughHere(String line) {
+    return 'Runs on as the $line (stay on)';
+  }
 }

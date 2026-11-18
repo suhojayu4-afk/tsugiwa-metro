@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart' show compute;
+
 import 'package:flutter/services.dart';
 
 import 'models/city.dart';
@@ -27,14 +29,15 @@ class CityRepository {
   Future<CityData> loadCity(String id) async {
     final cached = _cache[id];
     if (cached != null) return cached;
-    Future<dynamic> read(String file) async =>
-        jsonDecode(await _bundle.loadString('assets/cities/$id/$file'));
+    // Decoded off the UI thread: 2,000+ stations.
+    Future<dynamic> read(String file) async => compute(jsonDecode, await _bundle.loadString('assets/cities/$id/$file'));
     final city = CityData.fromJson(
       city: await read('city.json') as Map<String, dynamic>,
       stations: await read('stations.json') as List<dynamic>,
       lines: await read('lines.json') as List<dynamic>,
       timetables: await read('timetables.json') as Map<String, dynamic>,
       walks: await _optional('assets/cities/$id/walks.json'),
+      throughs: await _optional('assets/cities/$id/through.json'),
     );
     return _cache[id] = city;
   }

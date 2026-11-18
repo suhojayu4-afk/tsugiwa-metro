@@ -29,7 +29,11 @@ class NextWidgetData {
     required this.rain,
     this.lineLabel = '',
     this.first = '',
+    this.weather = '',
   });
+
+  /// MY駅 band only: 「くもり 13.0°C」.
+  final String weather;
 
   /// 地下鉄案内 only: 「宇都宮線 白岡方面」, 「始発 04:50」.
   final String lineLabel;
@@ -262,6 +266,88 @@ Future<Uint8List> renderBoardWidget(NextWidgetData d, DayPart part) async {
   if (bell != null) put(bell, 110, 59, sw: 14, sh: 14);
   text(d.first, 128, 62, 8, const Color(0xFF8FE08F), maxW: 60);
   text(d.trip, 6, 85, 8, const Color(0xFFE8E8EE), maxW: 180);
+
+  final pic = await rec.endRecording().toImage((w * _k).round(), (h * _k).round());
+  final bytes = await pic.toByteData(format: ui.ImageByteFormat.png);
+  pic.dispose();
+  return bytes!.buffer.asUint8List();
+}
+
+/// The MY駅 widget's info band, laid over the station picture at the bottom:
+///
+///   [date]  ☁ くもり 13.0°C              傘を忘れずに
+///   ┃東京 → 上野              [終電 00:30] 🔔
+///
+/// 192×30 art pixels, drawn 4×. The date is left empty (x 4–44, rows 7–15):
+/// the widget writes it itself in the same dot font so it stays right
+/// between app launches (MyStationWidget.kt).
+Future<Uint8List> renderMyBand(NextWidgetData d, String route, String rainText, DayPart part) async {
+  Future<ui.Image> img(String n) => SceneArt.load('$_a$n.png');
+  final ledFrame = await img('led');
+  final bell = d.alarm ? await img('icon_bell') : null;
+  final icon = await img('icon_${widgetIcon(d.sky, part)}');
+  const w = 192.0, h = 30.0;
+
+  final rec = ui.PictureRecorder();
+  final c = Canvas(rec)..scale(_k);
+  final crisp = Paint()..filterQuality = FilterQuality.none;
+  void put(ui.Image i, double x, double y, double sw, double sh) => c.drawImageRect(
+    i,
+    Rect.fromLTWH(0, 0, i.width.toDouble(), i.height.toDouble()),
+    Rect.fromLTWH(x, y, sw, sh),
+    crisp,
+  );
+
+  /// Draws [s] from x (or ending at x when [right]); returns its width.
+  double text(String s, double x, double y, double size, Color color, {bool right = false, double? maxW}) {
+    if (s.isEmpty) return 0;
+    final tp = TextPainter(
+      text: TextSpan(
+        text: s,
+        style: TextStyle(fontFamily: 'DotGothic16', fontSize: size, color: color, height: 1),
+      ),
+      textDirection: TextDirection.ltr,
+      maxLines: 1,
+    )..layout();
+    final k = maxW != null && tp.width > maxW ? maxW / tp.width : 1.0;
+    final width = tp.width * k;
+    c.save();
+    c.translate(right ? x - width : x, y);
+    c.scale(k, 1);
+    tp.paint(c, Offset.zero);
+    c.restore();
+    tp.dispose();
+    return width;
+  }
+
+  // Fades in from the picture above, then the dark band (pixel steps, no blur).
+  for (var i = 0; i < 5; i++) {
+    c.drawRect(Rect.fromLTWH(0, i.toDouble(), w, 1), Paint()..color = Color.fromARGB(0x20 + i * 0x22, 8, 8, 18));
+  }
+  c.drawRect(const Rect.fromLTWH(0, 5, w, h - 5), Paint()..color = const Color(0xCC080812));
+  // A thin line-colour rule on top of the band, like a station sign.
+  c.drawRect(const Rect.fromLTWH(0, 5, w, 1), Paint()..color = d.lineColor.withValues(alpha: 0.85));
+
+  // Row 1: (date) · weather icon + text · rain on the right.
+  put(icon, 46, 5, 12, 12);
+  final wet = d.sky == 'rain' || d.sky == 'snow' || d.sky == 'rainsoon' || d.sky == 'snowsoon';
+  final rainW = text(
+    rainText,
+    w - 4,
+    8,
+    7,
+    wet ? const Color(0xFF9FD3FF) : const Color(0xFFB8C0D0),
+    right: true,
+    maxW: 64,
+  );
+  text(d.weather, 60, 8, 8, const Color(0xFFFFFFFF), maxW: w - 4 - rainW - 6 - 60);
+
+  // Row 2: line chip + route · last train on the LED · bell.
+  c.drawRect(Rect.fromLTWH(4, 19, 3, 9), Paint()..color = d.lineColor);
+  text(route, 10, 20, 8, const Color(0xFFE8E8EE), maxW: 100);
+  put(ledFrame, 114, 17, 62, 12);
+  paintLed(c, const Rect.fromLTWH(116, 19, 58, 8), d.last, ledOrange);
+  if (bell != null) put(bell, 178, 17, 11, 11);
 
   final pic = await rec.endRecording().toImage((w * _k).round(), (h * _k).round());
   final bytes = await pic.toByteData(format: ui.ImageByteFormat.png);

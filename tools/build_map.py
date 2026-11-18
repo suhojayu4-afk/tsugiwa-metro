@@ -13,6 +13,7 @@ landmarks are 3D art.
 import json
 import math
 import os
+import sys
 
 from PIL import Image, ImageDraw
 
@@ -74,6 +75,26 @@ W, H = W + (-W) % TERRAIN_SCALE, H + (-H) % TERRAIN_SCALE
 def to_map(lat, lng):
     x, y = project(lat, lng)
     return x - min_x, y - min_y
+
+
+# The detailed pixel terrain covers the Tokyo area only (Yokohama - Omiya -
+# Narita - Takao); the rest of Kanto is painted coarser (outer picture).
+CORE_AREA = (35.30, 139.20, 36.02, 140.42)
+_core = [to_map(stations[sid]['geo']['lat'], stations[sid]['geo']['lng']) for sid in raw
+         if CORE_AREA[0] <= stations[sid]['geo']['lat'] <= CORE_AREA[2]
+         and CORE_AREA[1] <= stations[sid]['geo']['lng'] <= CORE_AREA[3]]
+_core += [to_map(35.6251, 139.2437), to_map(35.7720, 140.3929)]
+CX0 = int(min(p[0] for p in _core) - MARGIN) // TERRAIN_SCALE * TERRAIN_SCALE
+CY0 = int(min(p[1] for p in _core) - MARGIN - NORTH_PAD) // TERRAIN_SCALE * TERRAIN_SCALE
+CW = int(max(p[0] for p in _core) + MARGIN + EAST_PAD - CX0)
+CH = int(max(p[1] for p in _core) + MARGIN - CY0)
+CW, CH = CW + (-CW) % TERRAIN_SCALE, CH + (-CH) % TERRAIN_SCALE
+
+
+def to_core(lat, lng):
+    """Map units inside the detailed terrain picture."""
+    x, y = to_map(lat, lng)
+    return x - CX0, y - CY0
 
 
 # Stations, express trains along the local tracks, lines side by side (map_layout.py).
@@ -175,8 +196,8 @@ if os.environ.get('LINES_ONLY'):
 # Inside the map: a clean pixel picture (shorelines, trees, town texture).
 # Around it: the same land and sea in big, pale pixels, so the map does not
 # end at a hard rectangle.
-OUTER_SCALE = 16             # world units per pixel of the pale surroundings
-OUTER_MARGIN = 6400          # world units of surroundings on each side
+OUTER_SCALE = 6              # world units per pixel of the rest of Kanto (and round the map)
+OUTER_MARGIN = 3000          # world units of surroundings on each side
 
 LAND, WATER, PARK = 'land', 'water', 'park'
 
@@ -252,9 +273,9 @@ def kind_map(scale, ox, oy, w, h, detail, thin=True):
 # above further out.
 from terrain_paint import build_kinds, paint  # noqa: E402
 
-w, h = W // TERRAIN_SCALE, H // TERRAIN_SCALE
-kind_img, land_cls, park_cls = build_kinds(to_map, TERRAIN_SCALE, w, h, CENTER,
-                                           kind_map(TERRAIN_SCALE, 0, 0, w, h, detail=True))
+w, h = CW // TERRAIN_SCALE, CH // TERRAIN_SCALE
+kind_img, land_cls, park_cls = build_kinds(to_core, TERRAIN_SCALE, w, h, CENTER,
+                                           kind_map(TERRAIN_SCALE, CX0, CY0, w, h, detail=True))
 k = base = kind_img.load()
 
 placed_lms = []
@@ -277,7 +298,7 @@ def _in_poly(pt, poly):
 
 
 def on_water(p):
-    x, y = int(p[0] / TERRAIN_SCALE), int(p[1] / TERRAIN_SCALE)
+    x, y = int((p[0] - CX0) / TERRAIN_SCALE), int((p[1] - CY0) / TERRAIN_SCALE)
     return 0 <= x < w and 0 <= y < h and k[x, y] == 1
 
 
@@ -340,12 +361,47 @@ landmarks = [
     lm('toyosu.png', 35.6450, 139.7845, {'ja': '豊洲市場', 'ko': '도요스 시장', 'en': 'Toyosu Market'}, reach=60, gap=20),
     lm('gatebridge.png', 35.6135, 139.8370, {'ja': '東京ゲートブリッジ', 'ko': '도쿄 게이트브리지', 'en': 'Tokyo Gate Bridge'},
        water=True, reach=70),
+    # All of Kanto (2026-11-19): only the very famous sights.
+    lm('fuji.png', 35.3606, 138.7274, {'ja': '富士山', 'ko': '후지산', 'en': 'Mt. Fuji'}),
+    lm('daibutsu.png', 35.3168, 139.5358, {'ja': '鎌倉大仏', 'ko': '가마쿠라 대불', 'en': 'Great Buddha of Kamakura'},
+       reach=70, gap=20),
+    lm('enoshima.png', 35.2994, 139.4803, {'ja': '江の島', 'ko': '에노시마', 'en': 'Enoshima'}, water=True, reach=70),
+    lm('hakone.png', 35.2045, 139.0258, {'ja': '箱根 平和の鳥居', 'ko': '하코네 평화의 도리이', 'en': 'Hakone Torii'}),
+    lm('minatomirai.png', 35.4550, 139.6315, {'ja': 'みなとみらい', 'ko': '미나토미라이', 'en': 'Minato Mirai'},
+       reach=70, gap=20),
+    lm('chinatown.png', 35.4425, 139.6460, {'ja': '横浜中華街', 'ko': '요코하마 중화가', 'en': 'Yokohama Chinatown'},
+       reach=70, gap=20),
+    lm('kawagoe.png', 35.9205, 139.4853, {'ja': '川越 時の鐘', 'ko': '가와고에 시간의 종', 'en': 'Kawagoe Bell Tower'},
+       reach=70, gap=20),
+    lm('naritasan.png', 35.7860, 140.3180, {'ja': '成田山新勝寺', 'ko': '나리타산 신쇼지', 'en': 'Naritasan Shinshoji'},
+       reach=70, gap=20),
+    lm('chureito.png', 35.5013, 138.8017, {'ja': '新倉山浅間公園', 'ko': '아라쿠라야마 센겐 공원', 'en': 'Chureito Pagoda'}),
+    # An original theme park (no real park's design): the Maihama resort area.
+    lm('themepark.png', 35.6329, 139.8804, {'ja': '舞浜リゾート', 'ko': '마이하마 리조트', 'en': 'Maihama Resort'},
+       reach=70, gap=20),
+    # Round the north and east (2026-11-19).
+    lm('nikko.png', 36.7580, 139.5990, {'ja': '日光東照宮', 'ko': '닛코 도쇼구', 'en': 'Nikko Toshogu'}, reach=70, gap=20),
+    lm('hitachi.png', 36.4020, 140.5920, {'ja': '国営ひたち海浜公園', 'ko': '히타치 해변공원', 'en': 'Hitachi Seaside Park'},
+       reach=70, gap=20),
+    lm('ashikaga.png', 36.3150, 139.5200, {'ja': 'あしかがフラワーパーク', 'ko': '아시카가 플라워파크',
+                                          'en': 'Ashikaga Flower Park'}, reach=70, gap=20),
+    lm('tomioka.png', 36.2550, 138.8880, {'ja': '富岡製糸場', 'ko': '도미오카 제사장', 'en': 'Tomioka Silk Mill'},
+       reach=70, gap=20),
+    lm('oarai.png', 36.3460, 140.5970, {'ja': '大洗磯前神社 神磯の鳥居', 'ko': '오아라이 가미이소 도리이',
+                                       'en': 'Oarai Torii'}, water=True, reach=70),
+    lm('kusatsu.png', 36.6227, 138.5966, {'ja': '草津温泉 湯畑', 'ko': '구사쓰 온천 유바타케', 'en': 'Kusatsu Onsen'},
+       reach=70, gap=20),
+    lm('karuizawa.png', 36.3540, 138.6290, {'ja': '軽井沢', 'ko': '가루이자와', 'en': 'Karuizawa'}, reach=70, gap=20),
+    lm('hachimangu.png', 35.3259, 139.5563, {'ja': '鶴岡八幡宮', 'ko': '쓰루가오카 하치만구', 'en': 'Tsurugaoka Hachimangu'},
+       reach=70, gap=20),
+    lm('atami.png', 35.0960, 139.0770, {'ja': '熱海', 'ko': '아타미', 'en': 'Atami'}, reach=70, gap=20),
 ]
 
 data = {
     'size': [W, H],
-    'terrain': {'image': 'assets/art/map_tokyo_terrain.png', 'scale': TERRAIN_SCALE,
-                'outer': {'image': 'assets/art/map_tokyo_outer.png', 'origin': [-6400, -6400], 'scale': 16}},
+    'terrain': {'image': 'assets/art/map_tokyo_terrain.png', 'scale': TERRAIN_SCALE, 'origin': [CX0, CY0],
+                'outer': {'image': 'assets/art/map_tokyo_outer.png', 'origin': [-OUTER_MARGIN, -OUTER_MARGIN],
+                          'scale': OUTER_SCALE}},
     'lines': out_lines,
     'landmarks': landmarks,
 }
@@ -357,7 +413,7 @@ json.dump(data, open(os.path.join(CITY, 'map.json'), 'w', encoding='utf8'), ensu
 # decorations (trees, houses, office towers, boats) are scattered where they
 # do not crowd the lines.
 DECOR = os.path.join(ROOT, 'docs', 'art', 'gen', 'map_decor')
-t = paint(kind_img, land_cls, park_cls, to_map, TERRAIN_SCALE)
+t = paint(kind_img, land_cls, park_cls, to_core, TERRAIN_SCALE)
 px = t.load()
 
 # ---- decorations ----
@@ -371,7 +427,9 @@ DECOR_NAMES = ('towers', 'sailboat', 'ferry',
                'houses_a', 'houses_b', 'houses_c', 'mansion_a', 'mansion_b', 'mansion_c',
                'shops_a', 'shops_b', 'shops_c', 'shrine_a', 'shrine_b', 'temple_a', 'temple_b',
                'sakura_a', 'sakura_b', 'sakura_c', 'momiji_a', 'momiji_b', 'momiji_c',
-               'green_a', 'green_b', 'green_c')
+               'green_a', 'green_b', 'green_c',
+               'onsen_a', 'onsen_b', 'whale_a', 'whale_b', 'surfer_a', 'surfer_b', 'steam_a', 'steam_b',
+               'ropeway_a', 'ropeway_b', 'cablecar_a', 'cablecar_b')
 decor = {n: Image.open(os.path.join(DECOR, n + '.png')).convert('RGBA') for n in DECOR_NAMES}
 placed = []
 decor_list = []
@@ -391,7 +449,7 @@ def free_spot(x, y, r, need, line_gap=None, size=None):
     gap = line_gap if line_gap is not None else max(22, size * TERRAIN_SCALE * 0.42)
     vy = y - size * 0.25
     for px_, py_ in ((x, y), (x, vy)):
-        wx, wy = px_ * TERRAIN_SCALE, py_ * TERRAIN_SCALE
+        wx, wy = px_ * TERRAIN_SCALE + CX0, py_ * TERRAIN_SCALE + CY0
         if near_stop((wx, wy), 60) < 46:
             return False
         if near_line((wx, wy), gap + 10) < gap:
@@ -406,7 +464,7 @@ def put(name, x, y):
     placed.append((x, y - size * 0.25, size))
     # Drawn by the app (only when zoomed in), standing on this spot.
     decor_list.append({'image': f'assets/art/map_decor/{name}.png',
-                       'x': round(x * TERRAIN_SCALE), 'y': round(y * TERRAIN_SCALE)})
+                       'x': round(x * TERRAIN_SCALE + CX0), 'y': round(y * TERRAIN_SCALE + CY0)})
 
 
 def scatter(name, count, need, tries=4000):
@@ -429,7 +487,7 @@ def scatter_near(names, spots, reach_px, need):
     for i, (lat, lng) in enumerate(spots):
         name = names[i % len(names)]
         r = decor[name].width // 2
-        x0, y0 = to_map(lat, lng)
+        x0, y0 = to_core(lat, lng)
         x0, y0 = x0 / TERRAIN_SCALE, y0 / TERRAIN_SCALE
         cands = sorted(((x0 + dx, y0 + dy) for dx in range(-reach_px, reach_px + 1, 3)
                         for dy in range(-reach_px, reach_px + 1, 3)), key=lambda q: math.dist(q, (x0, y0)))
@@ -470,61 +528,344 @@ scatter_near(['shops_a', 'shops_b', 'shops_c'],
 scatter_near(['mansion_a', 'mansion_b', 'mansion_c'],
              [(35.6545, 139.7955), (35.6585, 139.7770), (35.6640, 139.7840), (35.6460, 139.8050),
               (35.5765, 139.6595), (35.6280, 139.7460)], 30, {0})
-towns = [q for q in stop_pts if 260 < math.dist(q, (cx, cy)) <= 600]
+_in_core = [q for q in stop_pts if CX0 < q[0] < CX0 + CW and CY0 < q[1] < CY0 + CH]
+towns = [q for q in _in_core if 260 < math.dist(q, (cx, cy)) <= 600]
 rnd.shuffle(towns)
 for i, (qx, qy) in enumerate(towns[:18]):
     name = ('mansion_a', 'mansion_b', 'mansion_c')[i % 3]
     for _ in range(30):
         ang, dist = rnd.random() * 2 * math.pi, rnd.uniform(46, 80)
-        x, y = (qx + math.cos(ang) * dist) / TERRAIN_SCALE, (qy + math.sin(ang) * dist) / TERRAIN_SCALE
+        x, y = (qx - CX0 + math.cos(ang) * dist) / TERRAIN_SCALE, (qy - CY0 + math.sin(ang) * dist) / TERRAIN_SCALE
         if free_spot(x, y, 8, {0}):
             put(name, x, y)
             break
 # Houses: little towns around the stations away from the centre.
-suburbs = [q for q in stop_pts if math.dist(q, (cx, cy)) > 520]
+suburbs = [q for q in _in_core if math.dist(q, (cx, cy)) > 520]
 rnd.shuffle(suburbs)
 for i, (qx, qy) in enumerate(suburbs[:44]):
     name = ('houses_a', 'houses_b', 'houses_c')[i % 3]
     for _ in range(30):
         ang, dist = rnd.random() * 2 * math.pi, rnd.uniform(50, 90)
-        x, y = (qx + math.cos(ang) * dist) / TERRAIN_SCALE, (qy + math.sin(ang) * dist) / TERRAIN_SCALE
+        x, y = (qx - CX0 + math.cos(ang) * dist) / TERRAIN_SCALE, (qy - CY0 + math.sin(ang) * dist) / TERRAIN_SCALE
         if free_spot(x, y, 8, {0}):
             put(name, x, y)
             break
 
 
+# Little cute points round Kanto, where they really are: hot springs (with a
+# snow monkey), whales off the coast, surfers on the surf beaches, steam
+# trains where SLs still run. Free spots near the place; anywhere on the map.
+CUTE = [
+    ('onsen', (35.2330, 139.1060)), ('onsen', (35.0960, 139.0720)), ('onsen', (34.9700, 139.1000)),
+    ('onsen', (36.8000, 139.7100)), ('onsen', (36.6200, 138.5960)),
+    ('whale', (35.1000, 140.3500)), ('whale', (35.6800, 140.9800)), ('whale', (34.8000, 139.5000)),
+    ('surfer', (35.3080, 139.4700)), ('surfer', (35.3700, 140.4200)), ('surfer', (34.6650, 138.9750)),
+    ('steam', (36.1050, 139.1100)), ('steam', (36.4400, 140.0100)), ('steam', (36.7800, 139.7250)),
+    # Mountain cable cars and ropeways: not drawn as lines, just their pictures.
+    ('ropeway', (35.2436, 139.0198), 'a'),     # Hakone Ropeway over Owakudani (steam)
+    ('ropeway', (36.2245, 140.1110), 'b'),     # Mt. Tsukuba
+    ('cablecar', (35.6320, 139.2620), 'a'),    # Mt. Takao
+    ('cablecar', (35.7880, 139.1660), 'b'),    # Mt. Mitake
+    ('cablecar', (35.4400, 139.2400), 'a'),    # Oyama
+    ('cablecar', (35.2510, 139.0430), 'b'),    # Hakone Tozan cable car (Gora - Sounzan)
+]
+for i_, (kind_, (lat_, lng_), *var_) in enumerate(CUTE):
+    name_ = f"{kind_}_{var_[0] if var_ else 'ab'[i_ % 2]}"
+    x_, y_ = to_map(lat_, lng_)
+    best_ = None
+    for r_ in range(0, 90, 6):
+        for a_ in range(0, 360, 30):
+            q_ = (x_ + r_ * math.cos(math.radians(a_)), y_ + r_ * math.sin(math.radians(a_)))
+            if near_stop(q_, 60) > 40 and near_line(q_, 40) > 26:
+                best_ = q_
+                break
+        if best_:
+            break
+    best_ = best_ or (x_, y_)
+    decor_list.append({'image': f'assets/art/map_decor/{name_}.png', 'x': round(best_[0]), 'y': round(best_[1])})
+
 # Bridges over the Sumida are drawn into the ground at their real size (terrain_paint.py).
 scatter('sailboat', 6, {1})
 scatter('ferry', 3, {1})
 
-# Soften the last few pixels towards the pale surroundings.
-FADE = 60
-pale_land, pale_water, pale_park = (241, 240, 233), (200, 224, 238), (222, 234, 210)
+def outer_kinds(ow, oh, scale=None, ox=None, oy=None):
+    """Land / sea / lake of the pale surroundings, from the real Kanto coast
+    (OpenStreetMap coastline_kanto + lakes_kanto): Sagami Bay, the Miura and
+    Boso peninsulas, the Pacific, Kasumigaura. Falls back to the old
+    hand-drawn bay when those files are missing."""
+    path = os.path.join(ROOT, 'tools', 'data', 'osm')
+    try:
+        coast = json.load(open(os.path.join(path, 'coastline_kanto.json'), encoding='utf8'))
+        lakes = json.load(open(os.path.join(path, 'lakes_kanto.json'), encoding='utf8'))
+    except FileNotFoundError:
+        return kind_map(OUTER_SCALE, -OUTER_MARGIN, -OUTER_MARGIN, ow, oh, detail=False)
+    scale = scale or OUTER_SCALE
+    ox = -OUTER_MARGIN if ox is None else ox
+    oy = -OUTER_MARGIN if oy is None else oy
+
+    def tp(lat, lng):
+        x, y = to_map(lat, lng)
+        return (x - ox) / scale, (y - oy) / scale
+
+    s_, w_, n_, e_ = coast['bbox']
+    edge = ([(s_ + (n_ - s_) * i / 200, w_) for i in range(201)] + [(n_, w_ + (e_ - w_) * i / 200) for i in range(201)]
+            + [(n_ - (n_ - s_) * i / 200, e_) for i in range(201)] + [(s_, e_ - (e_ - w_) * i / 200) for i in range(201)])
+    img = Image.new('L', (ow, oh), 0)
+    d = ImageDraw.Draw(img)
+    # Beyond the downloaded box: open sea to the south and east, land elsewhere.
+    sx, _ = tp(35.0, e_)
+    _, sy = tp(s_, 139.0)
+    if sx < ow:
+        d.rectangle([max(0, sx), 0, ow, oh], fill=1)
+    if sy < oh:
+        d.rectangle([0, max(0, sy), ow, oh], fill=1)
+    # Beyond the box's corners, roughly the real coast: Suruga Bay to the
+    # south-west, the Ibaraki / Fukushima coast to the north-east.
+    d.polygon([tp(34.95, w_), tp(34.80, 138.20), tp(34.60, 138.20), tp(34.66, 137.70), tp(34.70, 136.80),
+               tp(33.50, 136.80), tp(33.50, w_)], fill=1)
+    d.polygon([tp(n_, 140.86), tp(37.40, 140.98), tp(37.40, e_ + 1), tp(n_, e_ + 1)], fill=1)
+    d.polygon([tp(*q) for q in edge], fill=0)
+    d.line([tp(*q) for q in edge] + [tp(*edge[0])], fill=3, width=1)
+    for f in coast['features']:
+        for ring in f['outer']:
+            d.line([tp(*q) for q in ring], fill=3, width=1)
+    # Flood the sea from open water: the Pacific, Sagami Bay, Tokyo Bay, off Kashima.
+    for seed in ((34.70, 139.90), (35.15, 139.40), (35.50, 139.85), (36.10, 140.95), (34.85, 138.55),
+                 (34.95, 138.62), (34.60, 138.40)):
+        x, y = tp(*seed)
+        if 0 <= x < ow and 0 <= y < oh and img.getpixel((int(x), int(y))) == 0:
+            ImageDraw.floodfill(img, (int(x), int(y)), 1)
+    # The coastline strokes themselves: sea if next to sea, else land.
+    px_ = img.load()
+    for y in range(oh):
+        for x in range(ow):
+            if px_[x, y] == 3:
+                near = [px_[x + dx, y + dy] for dx in (-1, 0, 1) for dy in (-1, 0, 1)
+                        if 0 <= x + dx < ow and 0 <= y + dy < oh]
+                px_[x, y] = 1 if near.count(1) > near.count(0) else 0
+    for f in lakes['features']:
+        for ring in f['outer']:
+            if len(ring) > 2:
+                d.polygon([tp(*q) for q in ring], fill=1)
+    return img
+
+
+# Full-size pictures (tools and previews only; the app loads tiles).
+FULL_DIR = os.path.join(ROOT, 'docs', 'art', 'gen', 'map_full')
+os.makedirs(FULL_DIR, exist_ok=True)
+FULL_TERRAIN = os.path.join(FULL_DIR, 'terrain.png')
+FULL_OUTER = os.path.join(FULL_DIR, 'outer.png')
+
+# ---- the rest of Kanto: same brush as Tokyo, coarser pixels ----
+# Real coast and lakes (outer_kinds), big rivers, forests and parks, towns
+# round the stations and real cities by population (OSM place=city/town),
+# mountains round the real peaks. paint_kanto() paints it at any scale: the
+# whole-Kanto picture (OUTER_SCALE, with the margin round the map) and the
+# finer tiles the app loads when zoomed in outside Tokyo (KANTO_TILE_SCALE).
+from terrain_paint import BANK, ROOFS_RES, TREE, WATER_C, DEEP_C, _h  # noqa: E402
+from terrain_paint import FOREST as T_FOREST, PARK as T_PARK, RURAL as T_RURAL, SUB as T_SUB  # noqa: E402
+from terrain_paint import RES as T_RES, SHOP as T_SHOP  # noqa: E402
+from terrain_paint import paint as t_paint  # noqa: E402
+from PIL import ImageFilter  # noqa: E402
+import random as _random  # noqa: E402
+
+sys.path.insert(0, os.path.join(ROOT, 'tools'))
+from landmark_flatten import flatten as flatten_  # noqa: E402
+
+ow = (W + 2 * OUTER_MARGIN) // OUTER_SCALE
+oh = (H + 2 * OUTER_MARGIN) // OUTER_SCALE
+KANTO_TILE_SCALE = 3          # map units per pixel of the zoom-in tiles outside Tokyo
+KANTO_TILE = 512              # tile size in pixels
+
+
+def _osm(name):
+    f = os.path.join(ROOT, 'tools', 'data', 'osm', name + '.json')
+    return json.load(open(f, encoding='utf8'))['features'] if os.path.exists(f) else []
+
+
+KDIR = os.path.join(ROOT, 'docs', 'art', 'gen', 'map_decor', 'kanto')
+_sprites = {}
+
+
+def _sprite(kind, i, grow=1):
+    key = (kind, i, grow)
+    if key not in _sprites:
+        im = Image.open(os.path.join(KDIR, kind + '_pro', f'c{i}.png')).convert('RGBA')
+        if grow != 1:
+            im = im.resize((im.width * grow, im.height * grow), Image.NEAREST)
+        _sprites[key] = im
+    return _sprites[key]
+
+
+PEAKY = [6, 14, 19, 29, 33, 43, 44, 51, 53, 62]   # forested mountains
+ROCKY = [1, 8, 16, 21, 28, 37, 44, 55]             # high rocky ridges
+LIGHTS = [12, 21, 40]
+
+
+def _ele(f):
+    try:
+        return float(str(f['tags'].get('ele', '0')).replace('m', '').split(';')[0])
+    except ValueError:
+        return 0.0
+
+
+def _pop(f):
+    try:
+        return int(str(f['tags'].get('population', '0')).replace(',', '').split(';')[0])
+    except ValueError:
+        return 0
+
+
+_pk = {f['id']: f for f in _osm('peaks_kanto') + _osm('peaks_far')}
+peaks = sorted(((_ele(f), f['outer'][0][0]) for f in _pk.values() if _ele(f) >= 250), reverse=True)
+places = sorted(((_pop(f), f['outer'][0][0]) for f in _osm('places_far') if _pop(f) >= 8000))
+
+
+def paint_kanto(scale, ox, oy, pw, ph):
+    """All of Kanto painted at [scale] map units per pixel, picture top-left
+    at map point (ox, oy), [pw] x [ph] pixels."""
+    K = 8 / scale                 # sizes below were tuned at 8 units per pixel
+    grow = max(1, round(OUTER_SCALE / scale))
+
+    def otp(lat, lng):
+        x, y = to_map(lat, lng)
+        return (x - ox) / scale, (y - oy) / scale
+
+    okind = outer_kinds(pw, ph, scale, ox, oy)
+    ok = okind.load()
+    odraw = ImageDraw.Draw(okind)
+    for f in _osm('water_wide') + _osm('lakes_kanto'):
+        for ring in f['outer']:
+            if len(ring) > 2:
+                odraw.polygon([otp(*q) for q in ring], fill=1)
+    for f in _osm('rivers_kanto'):
+        big = f['tags'].get('name') in ('利根川', '荒川', '多摩川', '相模川', '鬼怒川', '江戸川', '富士川', '那珂川')
+        for ring in f['outer']:
+            if len(ring) > 1:
+                odraw.line([otp(*q) for q in ring], fill=1, width=max(1, round((2 if big else 1) * K / 1.33)))
+    green = Image.new('L', (pw, ph), 0)
+    gdraw = ImageDraw.Draw(green)
+    for f in _osm('forest_kanto') + _osm('parks_wide'):
+        for ring in f['outer']:
+            if len(ring) > 2:
+                gdraw.polygon([otp(*q) for q in ring], fill=1)
+        for ring in f['inner']:
+            if len(ring) > 2:
+                gdraw.polygon([otp(*q) for q in ring], fill=0)
+    # Towns: a little one round every station (busier = bigger), and the
+    # real cities by population: shops in the middle, then houses, then suburbs.
+    urban = Image.new('L', (pw, ph), 0)
+    udraw = ImageDraw.Draw(urban)
+
+    def blob(x, y, r, seed):
+        return [(x + math.cos(a) * r * (1 + 0.16 * math.sin(3 * a + seed) + 0.09 * math.sin(5 * a + seed * 1.7)),
+                 y + math.sin(a) * r * (1 + 0.16 * math.sin(3 * a + seed) + 0.09 * math.sin(5 * a + seed * 1.7)))
+                for a in [i / 28 * 2 * math.pi for i in range(28)]]
+
+    for sid, (qx, qy) in pos.items():
+        r = (34 + 10 * min(_through.get(sid, 1), 5)) / scale
+        udraw.ellipse([(qx - ox) / scale - r, (qy - oy) / scale - r, (qx - ox) / scale + r, (qy - oy) / scale + r],
+                      fill=1 + T_SUB)
+    for ring_k, cls_ in ((1.0, T_SUB), (0.62, T_RES), (0.3, T_SHOP)):
+        for popn, (lat, lng) in places:
+            x, y = otp(lat, lng)
+            R = math.sqrt(popn) * 0.33 / scale            # map units: about 170 for 270,000 people
+            if R * ring_k < 1.5:
+                continue
+            udraw.polygon(blob(x, y, R * ring_k, lat * 37 + lng * 11), fill=1 + cls_)
+    gp, up = green.load(), urban.load()
+
+    # Mountain ground: one soft area round the peaks (circles blurred together).
+    mmask = Image.new('L', (pw, ph), 0)
+    mdraw = ImageDraw.Draw(mmask)
+    for ele, (lat, lng) in peaks:
+        x, y = otp(lat, lng)
+        r = (3 + min(ele, 2500) / 2500 * 10) * K
+        if not (34.55 <= lat <= 36.90 and 138.30 <= lng <= 141.10):
+            r *= 1.8          # no forest outlines out there: a wider green round each peak
+        mdraw.ellipse([x - r, y - r, x + r, y + r], fill=255)
+    mblur = mmask.filter(ImageFilter.GaussianBlur(5 * K))
+    mp = mblur.point(lambda v: 255 if v > 110 else 0).load()
+
+    kind_o = okind.copy()
+    kpo = kind_o.load()
+    pcls_o = Image.new('L', (pw, ph), 0)
+    ppo = pcls_o.load()
+    cls_o = Image.new('L', (pw, ph), T_RURAL)
+    cpo = cls_o.load()
+    for y in range(ph):
+        for x in range(pw):
+            if kpo[x, y] == 1:
+                continue
+            if up[x, y]:
+                cpo[x, y] = up[x, y] - 1          # towns and cities win over forest (they sit in valleys)
+            elif gp[x, y] or mp[x, y]:
+                kpo[x, y] = T_PARK
+                ppo[x, y] = T_FOREST
+    o = t_paint(kind_o, cls_o, pcls_o, lambda la, ln: (to_map(la, ln)[0] - ox, to_map(la, ln)[1] - oy), scale)
+    op = o.load()
+    # Relief, softly over the trees: light from the north-west.
+    rp = mblur.filter(ImageFilter.GaussianBlur(3 * K)).load()
+    dd = max(1, round(2 * K))
+    for y in range(ph):
+        for x in range(pw):
+            if mp[x, y] and kpo[x, y] == T_PARK:
+                d = rp[max(x - dd, 0), max(y - dd, 0)] - rp[min(x + dd, pw - 1), min(y + dd, ph - 1)]
+                if d < -18:
+                    op[x, y] = tuple(round(v + (255 - v) * 0.14) for v in op[x, y])
+                elif d > 18:
+                    op[x, y] = tuple(round(v * 0.86) for v in op[x, y])
+    # A few mountain pictures, like symbols on a guide map (same place and size at every scale).
+    srnd = _random.Random(19)
+    core = ((CX0 - ox) / scale, (CY0 - oy) / scale, (CX0 + CW - ox) / scale, (CY0 + CH - oy) / scale)
+    placed_m = []
+    for ele, (lat, lng) in peaks:
+        if ele < 1200 or len(placed_m) >= 45:
+            continue
+        x, y = otp(lat, lng)
+        pick = srnd.choice(ROCKY) if ele >= 2000 else srnd.choice(PEAKY)
+        if not (0 <= x < pw and 0 <= y < ph) or ok[int(x), int(y)] == 1:
+            continue
+        if core[0] - 6 * K < x < core[2] + 6 * K and core[1] - 6 * K < y < core[3] + 6 * K:
+            continue
+        if any((x - qx) ** 2 + (y - qy) ** 2 < (70 * K) ** 2 for qx, qy in placed_m):
+            continue
+        im = _sprite('ridge' if ele >= 2000 else 'mountain', pick, grow)
+        o.paste(im, (int(x - im.width / 2), int(y - im.height * 0.62)), im)
+        placed_m.append((x, y))
+    for i, (lat, lng) in enumerate([(35.7073, 140.8689), (34.9017, 139.8883), (35.2563, 139.7450),
+                                    (35.1336, 139.6114), (36.3092, 140.5806)]):   # famous capes' lighthouses
+        x, y = otp(lat, lng)
+        if core[0] < x < core[2] and core[1] < y < core[3]:
+            continue
+        im = _sprite('lighthouse', LIGHTS[i % len(LIGHTS)], grow)
+        o.paste(im, (int(x - im.width / 2), int(y - im.height * 0.7)), im)
+    print(f'  Kanto at {scale} units/px: {pw}x{ph}, {len(placed_m)} mountains, {len(places)} towns by population')
+    return o
+
+
+o = paint_kanto(OUTER_SCALE, -OUTER_MARGIN, -OUTER_MARGIN, ow, oh)
+op = o.load()
+
+# Zoom-in tiles outside Tokyo: the same picture, twice as fine, cut in
+# KANTO_TILE squares; tiles the detailed Tokyo picture covers are left out.
+tw, th = -(-W // KANTO_TILE_SCALE), -(-H // KANTO_TILE_SCALE)
+hi = paint_kanto(KANTO_TILE_SCALE, 0, 0, tw, th)
+
+
+# Soften the last pixels of the detailed centre into the countryside under it.
+FADE = 260
 for y in range(h):
     for x in range(w):
         dist = min(x, y, w - 1 - x, h - 1 - y)
         if dist >= FADE:
             continue
         a = dist / FADE
-        pale = (pale_water if k[x, y] == 1 else pale_park if k[x, y] == 2 else pale_land)
-        px[x, y] = tuple(round(p + (q - p) * a) for p, q in zip(pale, px[x, y]))
-t.save(os.path.join(ROOT, 'assets', 'art', 'map_tokyo_terrain.png'))
-
-# Around: big, pale pixels.
-ow = (W + 2 * OUTER_MARGIN) // OUTER_SCALE
-oh = (H + 2 * OUTER_MARGIN) // OUTER_SCALE
-ok = kind_map(OUTER_SCALE, -OUTER_MARGIN, -OUTER_MARGIN, ow, oh, detail=False).load()
-o = Image.new('RGB', (ow, oh))
-op = o.load()
-for y in range(oh):
-    for x in range(ow):
-        v = ok[x, y]
-        c = pale_water if v == 1 else pale_park if v == 2 else pale_land
-        # A loose, hand-made feel: a few slightly darker pixels here and there.
-        if ((x * 7 + y * 13) % 23 == 0) or ((x * 5 + y * 3) % 31 == 0):
-            c = tuple(v2 - 5 for v2 in c)
-        op[x, y] = c
-o.save(os.path.join(ROOT, 'assets', 'art', 'map_tokyo_outer.png'))
+        wx, wy = x * TERRAIN_SCALE + CX0, y * TERRAIN_SCALE + CY0
+        under = op[min(ow - 1, int((wx + OUTER_MARGIN) / OUTER_SCALE)), min(oh - 1, int((wy + OUTER_MARGIN) / OUTER_SCALE))]
+        px[x, y] = tuple(round(p + (q - p) * a) for p, q in zip(under, px[x, y]))
+t.save(FULL_TERRAIN)
+o.save(FULL_OUTER)
 print('map.json + terrain written:', W, 'x', H, 'units,', len(out_lines), 'lines,', len(pos), 'stations')
 
 # Decorations go into map.json (the app draws them over the terrain when zoomed in).
@@ -561,7 +902,7 @@ for _ in range(20000):
     if any(base[min(max(xi + dx, 0), w - 1), min(max(yi + dy, 0), h - 1)] != 1
            for dx in (-12, 0, 12) for dy in (-12, 0, 12)):
         continue
-    glints.append([round(x * TERRAIN_SCALE), round(y * TERRAIN_SCALE)])
+    glints.append([round(x * TERRAIN_SCALE + CX0), round(y * TERRAIN_SCALE + CY0)])
 data['glints'] = glints
 
 # ---- compass rose (bottom left, on the ground) and Mt. Fuji far away ----
@@ -570,25 +911,96 @@ from PIL import ImageFont  # noqa: E402
 compass = Image.open(os.path.join(ROOT, 'docs', 'art', 'gen', 'landmarks_raw', 'compass.png')).convert('RGBA')
 soft = Image.blend(compass, Image.new('RGBA', compass.size, (240, 236, 222, 255)), 0.28)
 soft.putalpha(compass.getchannel('A'))
-t2 = Image.open(os.path.join(ROOT, 'assets', 'art', 'map_tokyo_terrain.png')).convert('RGBA')
+t2 = Image.open(FULL_TERRAIN).convert('RGBA')
 cxp, cyp = 70, t2.height - 92
 t2.alpha_composite(soft, (cxp, cyp))
 dn = ImageDraw.Draw(t2)
 font = ImageFont.truetype(os.path.join(ROOT, 'assets', 'fonts', 'DotGothic16-Regular.ttf'), 14)
 dn.text((cxp + 24, cyp - 4), 'N', font=font, fill=(60, 64, 76, 255), anchor='mb')
-t2.convert('RGB').save(os.path.join(ROOT, 'assets', 'art', 'map_tokyo_terrain.png'))
+t2.convert('RGB').save(FULL_TERRAIN)
 
 fuji = Image.open(os.path.join(ROOT, 'docs', 'art', 'gen', 'landmarks_raw', 'fuji.png')).convert('RGBA')
 # One picture pixel = one pale pixel: big enough to read, smaller than the city.
-outer = Image.open(os.path.join(ROOT, 'assets', 'art', 'map_tokyo_outer.png')).convert('RGBA')
+outer = Image.open(FULL_OUTER).convert('RGBA')
 fx, fy = to_map(35.3606, 138.7274)
 # Far away to the south-west, clear of the map itself.
 ox = (fx + OUTER_MARGIN) / OUTER_SCALE - fuji.width / 2 - 40
 oy = (fy + OUTER_MARGIN) / OUTER_SCALE - fuji.height + 70
+fuji = fuji.resize((fuji.width * 16 // OUTER_SCALE, fuji.height * 16 // OUTER_SCALE), Image.NEAREST)
+ox = (fx + OUTER_MARGIN) / OUTER_SCALE - fuji.width / 2 - 40 * 16 // OUTER_SCALE
+oy = (fy + OUTER_MARGIN) / OUTER_SCALE - fuji.height + 70 * 16 // OUTER_SCALE
 haze = Image.blend(fuji, Image.new('RGBA', fuji.size, (241, 240, 233, 255)), 0.5)
 haze.putalpha(fuji.getchannel('A'))
-outer.alpha_composite(haze, (int(ox), int(oy)))
-outer.convert('RGB').save(os.path.join(ROOT, 'assets', 'art', 'map_tokyo_outer.png'))
+# (Mt. Fuji is now a landmark on the map; the faint picture is no longer baked in.)
+outer.convert('RGB').save(FULL_OUTER)
 
 json.dump(data, open(os.path.join(CITY, 'map.json'), 'w', encoding='utf8'), ensure_ascii=False, indent=1)
 print(len(glints), 'glints; Fuji at outer px', int(ox), int(oy))
+
+
+# ---- what the app loads: an overview and tiles (2026-11-19, map too big) ----
+# Far out: one small picture of all Kanto (OVERVIEW_SCALE). Zoomed in: tiles,
+# only the ones on screen - Kanto at KANTO_TILE_SCALE (with the Tokyo
+# detail shrunk into it), and the detailed Tokyo picture itself.
+OVERVIEW_SCALE = 12
+CORE_FROM, KANTO_FROM = 0.4, 0.15          # zoom from which each tile set is used
+TILE_DIR = os.path.join(ROOT, 'assets', 'art', 'map_tiles')
+os.makedirs(TILE_DIR, exist_ok=True)
+for f_ in os.listdir(TILE_DIR):
+    if f_.endswith('.png'):
+        os.remove(os.path.join(TILE_DIR, f_))
+
+
+def save_png(img, path):
+    """Pixel art: an exact 256-colour palette when it fits, else the nearest one (no dithering)."""
+    img = img.convert('RGB')
+    if img.getcolors(256) is not None:
+        q = img.convert('P', palette=Image.Palette.ADAPTIVE, colors=256)
+    else:
+        q = img.quantize(256, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE)
+    q.save(path, optimize=True)
+
+
+core_full = Image.open(FULL_TERRAIN).convert('RGB')
+outer_full = Image.open(FULL_OUTER).convert('RGB')
+# Overview: the outer picture halved, with the Tokyo picture shrunk into its place.
+ov = outer_full.reduce(OVERVIEW_SCALE // OUTER_SCALE)
+cr = core_full.reduce(OVERVIEW_SCALE // TERRAIN_SCALE)
+ov.paste(cr, (round((CX0 + OUTER_MARGIN) / OVERVIEW_SCALE), round((CY0 + OUTER_MARGIN) / OVERVIEW_SCALE)))
+save_png(ov, os.path.join(ROOT, 'assets', 'art', 'map_overview.png'))
+# Kanto tiles, with Tokyo's detail in them for the middle zooms.
+hi_rgb = hi.convert('RGB')
+shrunk = core_full.resize((round(core_full.width * TERRAIN_SCALE / KANTO_TILE_SCALE),
+                           round(core_full.height * TERRAIN_SCALE / KANTO_TILE_SCALE)), Image.BOX)
+hi_rgb.paste(shrunk, (round(CX0 / KANTO_TILE_SCALE), round(CY0 / KANTO_TILE_SCALE)))
+
+
+def cut(img, prefix, inside=None):
+    names = []
+    for ty in range(-(-img.height // KANTO_TILE)):
+        for tx in range(-(-img.width // KANTO_TILE)):
+            part = img.crop((tx * KANTO_TILE, ty * KANTO_TILE,
+                             min(img.width, (tx + 1) * KANTO_TILE), min(img.height, (ty + 1) * KANTO_TILE)))
+            save_png(part, os.path.join(TILE_DIR, f'{prefix}{tx}_{ty}.png'))
+            names.append(f'{tx}_{ty}')
+    return names
+
+
+kanto_tiles = cut(hi_rgb, 'kanto_')
+core_tiles = cut(core_full, 'core_')
+data['terrain'] = {
+    'image': 'assets/art/map_overview.png', 'origin': [-OUTER_MARGIN, -OUTER_MARGIN], 'scale': OVERVIEW_SCALE,
+    'sets': [
+        {'dir': 'assets/art/map_tiles', 'prefix': 'kanto_', 'origin': [0, 0], 'scale': KANTO_TILE_SCALE,
+         'size': KANTO_TILE, 'from': KANTO_FROM, 'have': kanto_tiles},
+        {'dir': 'assets/art/map_tiles', 'prefix': 'core_', 'origin': [CX0, CY0], 'scale': TERRAIN_SCALE,
+         'size': KANTO_TILE, 'from': CORE_FROM, 'have': core_tiles},
+    ],
+    # Full pictures for the preview tools (not in the app).
+    'full': {'core': {'image': 'docs/art/gen/map_full/terrain.png', 'origin': [CX0, CY0], 'scale': TERRAIN_SCALE},
+             'outer': {'image': 'docs/art/gen/map_full/outer.png', 'origin': [-OUTER_MARGIN, -OUTER_MARGIN],
+                       'scale': OUTER_SCALE}},
+}
+json.dump(data, open(os.path.join(CITY, 'map.json'), 'w', encoding='utf8'), ensure_ascii=False, separators=(',', ':'))
+sz = sum(os.path.getsize(os.path.join(TILE_DIR, f_)) for f_ in os.listdir(TILE_DIR))
+print(f'overview {ov.size}, {len(kanto_tiles)} Kanto tiles + {len(core_tiles)} Tokyo tiles = {sz / 1e6:.1f} MB')

@@ -17,7 +17,7 @@ import urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'tools', 'data', 'osm', 'rail_routes.json')
 URL = 'https://overpass-api.de/api/interpreter'
-AREA = (35.30, 139.20, 36.02, 140.42)
+AREA = (34.62, 138.15, 36.82, 141.00)   # all of Kanto, Shimoda to Nikko
 B = '(%s,%s,%s,%s)' % AREA
 
 Q = f"""[out:json][timeout:300];

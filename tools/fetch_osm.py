@@ -49,15 +49,33 @@ LAYERS.update({
                    f'way["landuse"="forest"](if:length()>3000){BW};way["natural"="wood"](if:length()>3000){BW};'
                    f'relation["leisure"="park"](if:length()>3000){BW};'),
 })
+# Far round the map (zoomed right out): the Kanto coast from Izu to Choshi
+# and the big lakes, as the pale surroundings.
+KANTO = (34.55, 138.30, 36.90, 141.10)
+BK = '(%s,%s,%s,%s)' % KANTO
+LAYERS['coastline_kanto'] = f'way["natural"="coastline"]{BK};'
+LAYERS['lakes_kanto'] = (f'way["natural"="water"]["water"~"^(lake|reservoir)$"](if:length()>8000){BK};'
+                         f'relation["natural"="water"]["water"~"^(lake|reservoir)$"](if:length()>8000){BK};')
+LAYERS['rivers_kanto'] = (f'way["waterway"="river"]["name"~"^(利根川|荒川|多摩川|相模川|鬼怒川|江戸川|小貝川|入間川|'
+                          f'酒匂川|中川|綾瀬川|那珂川|渡良瀬川|富士川|桂川|狩野川|久慈川|養老川|小櫃川|印旛放水路)$"]{BK};')
+LAYERS['forest_kanto'] = (f'way["landuse"="forest"](if:length()>12000){BK};way["natural"="wood"](if:length()>12000){BK};'
+                          f'relation["landuse"="forest"](if:length()>12000){BK};'
+                          f'relation["natural"="wood"](if:length()>12000){BK};')
+LAYERS['places_far'] = 'node["place"~"^(city|town)$"]["population"](%s,%s,%s,%s);' % (34.20, 137.60, 37.30, 141.60)
+LAYERS['peaks_kanto'] = f'node["natural"="peak"]["ele"]{BK};'
+# Peaks round the whole outer picture too (Minami Alps, Yatsugatake, Nikko).
+FAR = (34.20, 137.60, 37.30, 141.60)
+LAYERS['peaks_far'] = 'node["natural"="peak"]["ele"](%s,%s,%s,%s);' % FAR
 LAYERS['airports_wide'] = (f'way["aeroway"~"^(runway|apron|aerodrome)$"]{BW};'
                            f'relation["aeroway"="aerodrome"]{BW};')
-BBOXES = {n: (WIDE if n.endswith('_wide') else BBOX) for n in LAYERS}
+BBOXES = {n: (KANTO if n.endswith('_kanto') else FAR if n.endswith('_far') else WIDE if n.endswith('_wide') else BBOX)
+          for n in LAYERS}
 KEEP_TAGS = ('aeroway', 'natural', 'water', 'waterway', 'leisure', 'landuse', 'name', 'name:en', 'highway', 'ref',
-             'bridge', 'layer', 'amenity', 'tunnel', 'intermittent')
+             'bridge', 'layer', 'amenity', 'tunnel', 'intermittent', 'ele')
 
 
 # Tiles (east-west x north-south) per heavy layer; motorways need small ones.
-TILES = {'motorways': (8, 6)}
+TILES = {'motorways': (8, 6), 'forest_kanto': (4, 3), 'rivers_kanto': (2, 2)}
 MIRRORS = [URL, 'https://overpass.kumi.systems/api/interpreter', 'https://overpass.private.coffee/api/interpreter']
 
 
@@ -132,19 +150,19 @@ def main():
     names = sys.argv[1:] or list(LAYERS)
     for name in names:
         print('fetching', name, '...')
-        if name.endswith('_wide') or name in ('coastline', 'water', 'waterways'):
+        if name not in TILES and (name.endswith(('_wide', '_kanto', '_far')) or name in ('coastline', 'water', 'waterways')):
             res = query(LAYERS[name])
             elements = res['elements']
         else:
             # Big layers over the whole area time out: ask for tiles and merge them.
             elements, seen = [], set()
-            s_, w_, n_, e_ = BBOX
+            s_, w_, n_, e_ = BBOXES[name]
             nx, ny = TILES.get(name, (4, 3))
             for i in range(nx):
                 for j in range(ny):
                     tb = '(%s,%s,%s,%s)' % (s_ + (n_ - s_) * j / ny, w_ + (e_ - w_) * i / nx,
                                            s_ + (n_ - s_) * (j + 1) / ny, w_ + (e_ - w_) * (i + 1) / nx)
-                    res = query(LAYERS[name].replace(B, tb))
+                    res = query(LAYERS[name].replace(BK if name.endswith('_kanto') else B, tb))
                     for el in res['elements']:
                         if (el['type'], el['id']) not in seen:
                             seen.add((el['type'], el['id']))
@@ -152,6 +170,10 @@ def main():
                     print('   tile', i, j, len(elements))
                     time.sleep(3)
         feats = [convert(e) for e in elements if e['type'] in ('way', 'relation')]
+        feats += [{'id': e['id'], 'tags': {k: v for k, v in e.get('tags', {}).items()
+                                           if k in ('name', 'ele', 'place', 'population')},
+                   'outer': [[[round(e['lat'], 5), round(e['lon'], 5)]] * 2], 'inner': []}
+                  for e in elements if e['type'] == 'node']
         feats = [f for f in feats if f['outer'] and any(len(r) > 1 for r in f['outer'])]
         json.dump({'source': '(c) OpenStreetMap contributors, ODbL', 'bbox': BBOXES[name],
                    'timestamp': res.get('osm3s', {}).get('timestamp_osm_base'), 'features': feats},

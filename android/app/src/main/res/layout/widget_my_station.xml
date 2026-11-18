@@ -29,7 +29,18 @@
         android:textSize="14sp"
         android:visibility="gone" />
 
-    <!-- Today at a glance: date, weather, rain; the usual route and its last train. -->
+    <!-- The pixel info band the app draws (band_<part>), with today's date written in. -->
+    <ImageView
+        android:id="@+id/band_art"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:adjustViewBounds="true"
+        android:importantForAccessibility="no"
+        android:scaleType="fitXY"
+        android:visibility="gone" />
+
+    <!-- Fallback (no usual route yet): date, weather, rain; the usual route and its last train. -->
     <LinearLayout
         android:id="@+id/band"
         android:layout_width="match_parent"

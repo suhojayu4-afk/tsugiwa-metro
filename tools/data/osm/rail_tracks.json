@@ -1,0 +1,1011 @@
+{
+"chichibu": [
+{
+"name": "樋口駅",
+"lat": 36.131047,
+"lng": 139.122181,
+"tags": {
+"name:ko": "히구치역",
+"name:en": "Higuchi Station",
+"name:ja-Hira": "ひぐちえき"
+}
+},
+{
+"name": "武州日野駅",
+"lat": 35.95405,
+"lng": 139.021375,
+"tags": {
+"name:ko": "부슈히노역",
+"name:en": "Bushū-Hino Station",
+"name:ja-Hira": "ぶしゅうひのえき"
+}
+},
+{
+"name": "武州中川駅",
+"lat": 35.958456,
+"lng": 139.035228,
+"tags": {
+"name:ko": "부슈나카가와역",
+"name:en": "Bushū-Nakagawa Station",
+"name:ja-Hira": "ぶしゅうなかがわえき"
+}
+},
+{
+"name": "ソシオ流通センター駅",
+"lat": 36.1365,
+"lng": 139.424333,
+"tags": {
+"name:ko": "소시오 유통센터역",
+"name:en": "Socio Distribution Center Station",
+"name:ja-Hira": "ソシオりゅうつうセンターえき"
+}
+},
+{
+"name": "ふかや花園駅",
+"lat": 36.130757,
+"lng": 139.248104,
+"tags": {
+"name:ko": "후카야하나조노 역",
+"name:en": "Fukaya Hanazono Station",
+"name:ja-Hira": "ふかやはなぞのえき"
+}
+},
+{
+"name": "明戸駅",
+"lat": 36.142944,
+"lng": 139.303783,
+"tags": {
+"name:ko": "아케토역",
+"name:en": "Aketo Station",
+"name:ja-Hira": "あけとえき"
+}
+},
+{
+"name": "野上駅",
+"lat": 36.1117,
+"lng": 139.1107,
+"tags": {
+"name:ko": "노가미역",
+"name:en": "Nogami Station",
+"name:ja-Hira": "のがみえき"
+}
+},
+{
+"name": "影森駅",
+"lat": 35.972125,
+"lng": 139.068133,
+"tags": {
+"name:ko": "가게모리역",
+"name:en": "Kagemori Station",
+"name:ja-Hira": "かげもりえき"
+}
+},
+{
+"name": "大麻生駅",
+"lat": 36.144803,
+"lng": 139.332358,
+"tags": {
+"name:ko": "오아소역",
+"name:en": "Ōasō Station",
+"name:ja-Hira": "おおあそうえき"
+}
+},
+{
+"name": "浦山口駅",
+"lat": 35.964,
+"lng": 139.059,
+"tags": {
+"name:ko": "우라야마구치역",
+"name:en": "Urayamaguchi Station",
+"name:ja-Hira": "うらやまぐちえき"
+}
+},
+{
+"name": "上長瀞駅",
+"lat": 36.086111,
+"lng": 139.113333,
+"tags": {
+"name:ko": "가미나가토로역",
+"name:en": "Kami-Nagatoro Station",
+"name:ja-Hira": "かみながとろえき"
+}
+},
+{
+"name": "白久駅",
+"lat": 35.958856,
+"lng": 138.993317,
+"tags": {
+"name:ko": "시로쿠역",
+"name:en": "Shiroku Station",
+"name:ja-Hira": "しろくえき"
+}
+},
+{
+"name": "持田駅",
+"lat": 36.137683,
+"lng": 139.442175,
+"tags": {
+"name:ko": "모치다역",
+"name:en": "Mochida Station",
+"name:ja-Hira": "もちだえき"
+}
+},
+{
+"name": "桜沢駅",
+"lat": 36.128672,
+"lng": 139.206981,
+"tags": {
+"name:ko": "사쿠라자와역",
+"name:en": "Sakurazawa Station",
+"name:ja-Hira": "さくらざわえき"
+}
+},
+{
+"name": "波久礼駅",
+"lat": 36.1265,
+"lng": 139.158,
+"tags": {
+"name:ko": "하구레역",
+"name:en": "Hagure Station",
+"name:ja-Hira": "はぐれえき"
+}
+},
+{
+"name": "武州荒木駅",
+"lat": 36.162536,
+"lng": 139.488172,
+"tags": {
+"name:ko": "부슈아라키역",
+"name:en": "Bushū-Araki Station",
+"name:ja-Hira": "ぶしゅうあらきえき"
+}
+},
+{
+"name": "秩父駅",
+"lat": 35.9987,
+"lng": 139.0858,
+"tags": {
+"name:ko": "지치부역",
+"name:en": "Chichibu Station",
+"name:ja-Hira": "ちちぶえき"
+}
+},
+{
+"name": "石原駅 (埼玉県)",
+"lat": 36.148056,
+"lng": 139.368611,
+"tags": {
+"name:ko": "이시와라역",
+"name:en": "Ishiwara Station",
+"name:ja-Hira": "いしわらえき"
+}
+},
+{
+"name": "三峰口駅",
+"lat": 35.959939,
+"lng": 138.978828,
+"tags": {
+"name:ko": "미쓰미네구치역",
+"name:en": "Mitsumineguchi Station",
+"name:ja-Hira": "みつみねぐちえき"
+}
+},
+{
+"name": "行田市駅",
+"lat": 36.143572,
+"lng": 139.459108,
+"tags": {
+"name:ko": "교다시역",
+"name:en": "Gyōdashi Station",
+"name:ja-Hira": "ぎょうだしえき"
+}
+},
+{
+"name": "東行田駅",
+"lat": 36.147222,
+"lng": 139.468333,
+"tags": {
+"name:ko": "히가시교다역",
+"name:en": "Higashi-Gyōda Station",
+"name:ja-Hira": "ひがしぎょうだえき"
+}
+},
+{
+"name": "ひろせ野鳥の森駅",
+"lat": 36.146139,
+"lng": 139.351492,
+"tags": {
+"name:ko": "히로세야초노모리역",
+"name:en": "Hirose-Yachō-no-Mori Station",
+"name:ja-Hira": "ひろせやちょうのもりえき"
+}
+},
+{
+"name": "上熊谷駅",
+"lat": 36.1425,
+"lng": 139.381389,
+"tags": {
+"name:ko": "가미쿠마가야역",
+"name:en": "Kami-Kumagaya Station",
+"name:ja-Hira": "かみくまがやえき"
+}
+},
+{
+"name": "熊谷駅",
+"lat": 36.139722,
+"lng": 139.39,
+"tags": {
+"name:ko": "구마가야역",
+"name:en": "Kumagaya Station",
+"name:ja-Hira": "くまがやえき"
+}
+},
+{
+"name": "親鼻駅",
+"lat": 36.077778,
+"lng": 139.105833,
+"tags": {
+"name:ko": "오야하나역",
+"name:en": "Oyahana Station",
+"name:ja-Hira": "おやはなえき"
+}
+},
+{
+"name": "西武秩父駅",
+"lat": 35.990068,
+"lng": 139.083111,
+"tags": {
+"name:ko": "세이부 지치부역",
+"name:en": "Seibu-Chichibu Station",
+"name:ja-Hira": "せいぶちちぶえき"
+}
+},
+{
+"name": "永田駅 (埼玉県)",
+"lat": 36.135,
+"lng": 139.259167,
+"tags": {
+"name:ko": "나가타역",
+"name:en": "Nagata Station",
+"name:ja-Hira": "ながたえき"
+}
+},
+{
+"name": "皆野駅",
+"lat": 36.0688,
+"lng": 139.0942,
+"tags": {
+"name:ko": "미나노역",
+"name:en": "Minano Station",
+"name:ja-Hira": "みなのえき"
+}
+},
+{
+"name": "西羽生駅",
+"lat": 36.176389,
+"lng": 139.523889,
+"tags": {
+"name:ko": "니시하뉴역",
+"name:en": "Nishi-Hanyū Station",
+"name:ja-Hira": "にしはにゅうえき"
+}
+},
+{
+"name": "御花畑駅",
+"lat": 35.992387,
+"lng": 139.083722,
+"tags": {
+"name:ko": "오하나바타케역",
+"name:en": "Ohanabatake Station",
+"name:ja-Hira": "おはなばたけえき"
+}
+},
+{
+"name": "小前田駅",
+"lat": 36.128889,
+"lng": 139.2225,
+"tags": {
+"name:ko": "오마에다역",
+"name:en": "Omaeda Station",
+"name:ja-Hira": "おまえだえき"
+}
+},
+{
+"name": "武川駅",
+"lat": 36.1421,
+"lng": 139.283,
+"tags": {
+"name:ko": "다케카와역",
+"name:en": "Takekawa Station",
+"name:ja-Hira": "たけかわえき"
+}
+},
+{
+"name": "和銅黒谷駅",
+"lat": 36.0469,
+"lng": 139.102,
+"tags": {
+"name:ko": "와도쿠로야역",
+"name:en": "Wadō-Kuroya Station",
+"name:ja-Hira": "わどうくろやえき"
+}
+},
+{
+"name": "長瀞駅",
+"lat": 36.095203,
+"lng": 139.112303,
+"tags": {
+"name:ko": "나가토로역",
+"name:en": "Nagatoro Station",
+"name:ja-Hira": "ながとろえき"
+}
+},
+{
+"name": "新郷駅",
+"lat": 36.1712,
+"lng": 139.5101,
+"tags": {
+"name:ko": "신고역",
+"name:en": "Shingō Station",
+"name:ja-Hira": "しんごうえき"
+}
+},
+{
+"name": "羽生駅",
+"lat": 36.170353,
+"lng": 139.534072,
+"tags": {
+"name:ko": "하뉴역",
+"name:en": "Hanyū Station",
+"name:ja-Hira": "はにゅうえき"
+}
+},
+{
+"name": "大野原駅",
+"lat": 36.0189,
+"lng": 139.094,
+"tags": {
+"name:ko": "오노하라역",
+"name:en": "Ōnohara Station",
+"name:ja-Hira": "おおのはらえき"
+}
+},
+{
+"name": "寄居駅",
+"lat": 36.117881,
+"lng": 139.194506,
+"tags": {
+"name:ko": "요리이역",
+"name:en": "Yorii Station",
+"name:ja-Hira": "よりいえき"
+}
+}
+],
+"joshin": [
+{
+"name": "上州一ノ宮駅",
+"lat": 36.253086,
+"lng": 138.86375,
+"tags": {
+"name:en": "Jōshū-Ichinomiya Station",
+"name:ja-Hira": "じょうしゅういちのみやえき"
+}
+},
+{
+"name": "上州七日市駅",
+"lat": 36.258597,
+"lng": 138.874672,
+"tags": {
+"name:en": "Jōshū-Nanokaichi Station",
+"name:ja-Hira": "じょうしゅうなのかいちえき"
+}
+},
+{
+"name": "上州富岡駅",
+"lat": 36.260317,
+"lng": 138.89225,
+"tags": {
+"name:en": "Jōshū-Tomioka Station",
+"name:ja-Hira": "じょうしゅうとみおかえき"
+}
+},
+{
+"name": "上州新屋駅",
+"lat": 36.255956,
+"lng": 138.951564,
+"tags": {
+"name:en": "Jōshū-Niiya Station",
+"name:ja-Hira": "じょうしゅうにいやえき"
+}
+},
+{
+"name": "上州福島駅",
+"lat": 36.256308,
+"lng": 138.929675,
+"tags": {
+"name:en": "Jōshū-Fukushima Station",
+"name:ja-Hira": "じょうしゅうふくしまえき"
+}
+},
+{
+"name": "南蛇井駅",
+"lat": 36.238239,
+"lng": 138.8141,
+"tags": {
+"name:en": "Nanjai Station",
+"name:ja-Hira": "なんじゃいえき"
+}
+},
+{
+"name": "南高崎駅",
+"lat": 36.312408,
+"lng": 139.012303,
+"tags": {
+"name:en": "Minami-Takasaki Station",
+"name:ja-Hira": "みなみたかさきえき"
+}
+},
+{
+"name": "吉井駅",
+"lat": 36.255967,
+"lng": 138.984603,
+"tags": {
+"name:en": "Yoshii Station",
+"name:ja-Hira": "よしいえき"
+}
+},
+{
+"name": "山名駅",
+"lat": 36.277667,
+"lng": 139.038225,
+"tags": {
+"name:en": "Yamana Station",
+"name:ja-Hira": "やまなえき"
+}
+},
+{
+"name": "東富岡駅",
+"lat": 36.260853,
+"lng": 138.901853,
+"tags": {
+"name:en": "Higashi-Tomioka Station",
+"name:ja-Hira": "ひがしとみおかえき"
+}
+},
+{
+"name": "根小屋駅",
+"lat": 36.291428,
+"lng": 139.018761,
+"tags": {
+"name:en": "Negoya Station",
+"name:ja-Hira": "ねごやえき"
+}
+},
+{
+"name": "神農原駅",
+"lat": 36.242733,
+"lng": 138.843894,
+"tags": {
+"name:en": "Kanohara Station",
+"name:ja-Hira": "かのはらえき"
+}
+},
+{
+"name": "西吉井駅",
+"lat": 36.255728,
+"lng": 138.966114,
+"tags": {
+"name:en": "Nishi-Yoshii Station",
+"name:ja-Hira": "にしよしいえき"
+}
+},
+{
+"name": "西富岡駅",
+"lat": 36.260122,
+"lng": 138.883197,
+"tags": {
+"name:en": "Nishi-Tomioka Station",
+"name:ja-Hira": "にしとみおかえき"
+}
+},
+{
+"name": "西山名駅",
+"lat": 36.270994,
+"lng": 139.032297,
+"tags": {
+"name:en": "Nishi-Yamana Station",
+"name:ja-Hira": "にしやまなえき"
+}
+},
+{
+"name": "馬庭駅",
+"lat": 36.261492,
+"lng": 139.009139,
+"tags": {
+"name:en": "Maniwa Station",
+"name:ja-Hira": "まにわえき"
+}
+},
+{
+"name": "高崎商科大学前駅",
+"lat": 36.284297,
+"lng": 139.029653,
+"tags": {
+"name:en": "Takasaki Station of Commerce pre-university",
+"name:ja-Hira": "たかさきしょうかだいがくまええき"
+}
+},
+{
+"name": "佐野のわたし駅",
+"lat": 36.302389,
+"lng": 139.018139,
+"tags": {
+"name:en": "Sanonowatashi Station",
+"name:ja-Hira": "さののわたしえき"
+}
+},
+{
+"name": "千平駅",
+"lat": 36.2299,
+"lng": 138.7983,
+"tags": {
+"name:en": "Sendaira Station",
+"name:ja-Hira": "せんだいらえき"
+}
+},
+{
+"name": "下仁田駅",
+"lat": 36.2106,
+"lng": 138.7869,
+"tags": {
+"name:en": "Shimonita Station",
+"name:ja-Hira": "しもにたえき"
+}
+}
+],
+"watarase": [
+{
+"name": "運動公園駅",
+"lat": 36.423286,
+"lng": 139.300875,
+"tags": {
+"name:ko": "운도코엔역",
+"name:en": "Undō-Kōen Station",
+"name:ja-Hira": "うんどうこうえんえき"
+}
+},
+{
+"name": "相老駅",
+"lat": 36.41,
+"lng": 139.3044,
+"tags": {
+"name:ko": "아이오이역",
+"name:en": "Aioi Station",
+"name:ja-Hira": "あいおいえき"
+}
+},
+{
+"name": "足尾駅",
+"lat": 36.641664,
+"lng": 139.447972,
+"tags": {
+"name:ko": "아시오역",
+"name:en": "Ashio Station",
+"name:ja-Hira": "あしおえき"
+}
+},
+{
+"name": "神戸駅",
+"lat": 36.5375,
+"lng": 139.356389,
+"tags": {
+"name:ko": "고도역",
+"name:en": "Gōdo Station",
+"name:ja-Hira": "ごうどえき"
+}
+},
+{
+"name": "上神梅駅",
+"lat": 36.470056,
+"lng": 139.257597,
+"tags": {
+"name:ko": "가미칸바이역",
+"name:en": "Kami-Kambai Station",
+"name:ja-Hira": "かみかんばいえき"
+}
+},
+{
+"name": "花輪駅",
+"lat": 36.520797,
+"lng": 139.307869,
+"tags": {
+"name:ko": "하나와역",
+"name:en": "Hanawa Station",
+"name:ja-Hira": "はなわえき"
+}
+},
+{
+"name": "原向駅",
+"lat": 36.617244,
+"lng": 139.420558,
+"tags": {
+"name:ko": "하라무코역",
+"name:en": "Haramukō Station",
+"name:ja-Hira": "はらむこうえき"
+}
+},
+{
+"name": "水沼駅",
+"lat": 36.5,
+"lng": 139.2775,
+"tags": {
+"name:ko": "미즈누마역",
+"name:en": "Mizunuma Station",
+"name:ja-Hira": "みずぬまえき"
+}
+},
+{
+"name": "下新田駅",
+"lat": 36.407586,
+"lng": 139.315067,
+"tags": {
+"name:ko": "시모신덴역",
+"name:en": "Shimo-Shinden Station",
+"name:ja-Hira": "しもしんでんえき"
+}
+},
+{
+"name": "小中駅",
+"lat": 36.535731,
+"lng": 139.3378,
+"tags": {
+"name:ko": "고나카역",
+"name:en": "Konaka Station",
+"name:ja-Hira": "こなかえき"
+}
+},
+{
+"name": "本宿駅",
+"lat": 36.481544,
+"lng": 139.259058,
+"tags": {
+"name:ko": "모토주쿠역",
+"name:en": "Motojuku Station",
+"name:ja-Hira": "もとじゅくえき"
+}
+},
+{
+"name": "中野駅",
+"lat": 36.524164,
+"lng": 139.317128,
+"tags": {
+"name:ko": "나카노역",
+"name:en": "Nakano Station",
+"name:ja-Hira": "なかのえき"
+}
+},
+{
+"name": "間藤駅",
+"lat": 36.653472,
+"lng": 139.450086,
+"tags": {
+"name:ko": "마토역",
+"name:en": "Matō Station",
+"name:ja-Hira": "まとうえき"
+}
+},
+{
+"name": "通洞駅",
+"lat": 36.6368,
+"lng": 139.44,
+"tags": {
+"name:ko": "쓰도역",
+"name:en": "Tsūdō Station",
+"name:ja-Hira": "つうどうえき"
+}
+},
+{
+"name": "沢入駅",
+"lat": 36.580375,
+"lng": 139.396233,
+"tags": {
+"name:ko": "소리역",
+"name:en": "Sōri Station",
+"name:ja-Hira": "そうりえき"
+}
+},
+{
+"name": "大間々駅",
+"lat": 36.434722,
+"lng": 139.2775,
+"tags": {
+"name:ko": "오마마역",
+"name:en": "Ōmama Station",
+"name:ja-Hira": "おおままえき"
+}
+}
+],
+"agatsuma": [
+{
+"name": "太子駅",
+"lat": 36.586389,
+"lng": 138.624583,
+"tags": {
+"name:en": "Ōshi Station",
+"name:ja-Hira": "おおしえき"
+}
+},
+{
+"name": "羽根尾駅",
+"lat": 36.550094,
+"lng": 138.605436,
+"tags": {
+"name:ko": "하네오역",
+"name:en": "Haneo Station",
+"name:ja-Hira": "はねおえき"
+}
+},
+{
+"name": "大前駅",
+"lat": 36.513733,
+"lng": 138.529042,
+"tags": {
+"name:ko": "오마에역",
+"name:en": "Ōmae Station",
+"name:ja-Hira": "おおまええき"
+}
+},
+{
+"name": "袋倉駅",
+"lat": 36.544089,
+"lng": 138.5789,
+"tags": {
+"name:ko": "후쿠로구라역",
+"name:en": "Fukurogura Station",
+"name:ja-Hira": "ふくろぐらえき"
+}
+},
+{
+"name": "川原湯温泉駅",
+"lat": 36.545,
+"lng": 138.697222,
+"tags": {
+"name:ko": "가와라유온센역",
+"name:en": "Kawarayu-Onsen Station",
+"name:ja-Hira": "かわらゆおんせんえき"
+}
+},
+{
+"name": "岩島駅",
+"lat": 36.563242,
+"lng": 138.759711,
+"tags": {
+"name:ko": "이와시마역",
+"name:en": "Iwashima Station",
+"name:ja-Hira": "いわしまえき"
+}
+},
+{
+"name": "市城駅",
+"lat": 36.570703,
+"lng": 138.882342,
+"tags": {
+"name:ko": "이치시로역",
+"name:en": "Ichishiro Station",
+"name:ja-Hira": "いちしろえき"
+}
+},
+{
+"name": "郷原駅",
+"lat": 36.548725,
+"lng": 138.801178,
+"tags": {
+"name:ko": "고바라역",
+"name:en": "Gōbara Station",
+"name:ja-Hira": "ごうばらえき"
+}
+},
+{
+"name": "金島駅",
+"lat": 36.529378,
+"lng": 138.976467,
+"tags": {
+"name:ko": "가나시마역",
+"name:en": "Kanashima Station",
+"name:ja-Hira": "かなしまえき"
+}
+},
+{
+"name": "群馬原町駅",
+"lat": 36.571717,
+"lng": 138.824378,
+"tags": {
+"name:ko": "군마하라마치역",
+"name:en": "Gunma-Haramachi Station",
+"name:ja-Hira": "ぐんまはらまちえき"
+}
+},
+{
+"name": "群馬大津駅",
+"lat": 36.553811,
+"lng": 138.627972,
+"tags": {
+"name:ko": "군마오쓰역",
+"name:en": "Gunma-Ōtsu Station",
+"name:ja-Hira": "ぐんまおおつえき"
+}
+},
+{
+"name": "小野上駅",
+"lat": 36.552431,
+"lng": 138.922075,
+"tags": {
+"name:ko": "오노가미역",
+"name:en": "Onogami Station",
+"name:ja-Hira": "おのがみえき"
+}
+},
+{
+"name": "小野上温泉駅",
+"lat": 36.556878,
+"lng": 138.904364,
+"tags": {
+"name:ko": "오노가미온센역",
+"name:en": "Onogami-Onsen Station",
+"name:ja-Hira": "おのがみおんせんえき"
+}
+},
+{
+"name": "長野原草津口駅",
+"lat": 36.546539,
+"lng": 138.649328,
+"tags": {
+"name:ko": "나가노하라쿠사쓰구치역",
+"name:en": "Naganohara-Kusatsuguchi Station",
+"name:ja-Hira": "ながのはらくさつぐちえき"
+}
+},
+{
+"name": "中之条駅",
+"lat": 36.58555,
+"lng": 138.850933,
+"tags": {
+"name:ko": "나카노조역",
+"name:en": "Nakanojō Station",
+"name:ja-Hira": "なかのじょうえき"
+}
+},
+{
+"name": "万座・鹿沢口駅",
+"lat": 36.531719,
+"lng": 138.550925,
+"tags": {
+"name:ko": "만자 · 카자와구치역",
+"name:en": "Manza-Kazawaguchi Station",
+"name:ja-Hira": "まんざ・かざわぐちえき"
+}
+},
+{
+"name": "祖母島駅",
+"lat": 36.540617,
+"lng": 138.957075,
+"tags": {
+"name:ko": "우바시마역",
+"name:en": "Ubashima Station",
+"name:ja-Hira": "うばしまえき"
+}
+},
+{
+"name": "矢倉駅",
+"lat": 36.552664,
+"lng": 138.784281,
+"tags": {
+"name:ko": "야구라역",
+"name:en": "Yagura Station",
+"name:ja-Hira": "やぐらえき"
+}
+}
+],
+"choshi": [
+{
+"name": "西海鹿島駅",
+"lat": 35.725556,
+"lng": 140.859722,
+"tags": {
+"name:ko": "니시아시카지마역",
+"name:en": "Nishi-Ashikajima Station",
+"name:ja-Hira": "にしあしかじまえき"
+}
+},
+{
+"name": "海鹿島駅",
+"lat": 35.721667,
+"lng": 140.863611,
+"tags": {
+"name:ko": "아시카지마역",
+"name:en": "Ashikajima Station",
+"name:ja-Hira": "あしかじまえき"
+}
+},
+{
+"name": "観音駅",
+"lat": 35.728889,
+"lng": 140.84,
+"tags": {
+"name:ko": "간논역",
+"name:en": "Kannon Station",
+"name:ja-Hira": "かんのんえき"
+}
+},
+{
+"name": "笠上黒生駅",
+"lat": 35.728333,
+"lng": 140.856944,
+"tags": {
+"name:ko": "가사가미쿠로하에역",
+"name:en": "Kasagami-Kurohae Station",
+"name:ja-Hira": "かさがみくろはええき"
+}
+},
+{
+"name": "君ヶ浜駅",
+"lat": 35.713611,
+"lng": 140.860556,
+"tags": {
+"name:ko": "기미가하마역",
+"name:en": "Kimigahama Station",
+"name:ja-Hira": "きみがはまえき"
+}
+},
+{
+"name": "犬吠駅",
+"lat": 35.706389,
+"lng": 140.861111,
+"tags": {
+"name:ko": "이누보역",
+"name:en": "Inuboh Station",
+"name:ja-Hira": "いぬぼうえき"
+}
+},
+{
+"name": "外川駅",
+"lat": 35.699365,
+"lng": 140.857155,
+"tags": {
+"name:ko": "도카와역",
+"name:en": "Tokawa Station",
+"name:ja-Hira": "とかわえき"
+}
+},
+{
+"name": "本銚子駅",
+"lat": 35.731111,
+"lng": 140.847778,
+"tags": {
+"name:ko": "모토초시역",
+"name:en": "Moto-Chōshi Station",
+"name:ja-Hira": "もとちょうしえき"
+}
+},
+{
+"name": "仲ノ町駅",
+"lat": 35.728889,
+"lng": 140.833611,
+"tags": {
+"name:ko": "나카노초역",
+"name:en": "Nakanochō Station",
+"name:ja-Hira": "なかのちょうえき"
+}
+},
+{
+"name": "銚子駅",
+"lat": 35.729167,
+"lng": 140.8275,
+"tags": {
+"name:ko": "조시역",
+"name:en": "Chōshi Station",
+"name:ja-Hira": "ちょうしえき"
+}
+}
+]
+}

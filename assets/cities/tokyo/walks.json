@@ -144,6 +144,30 @@
   "names": "馬喰横山 ↔ 東日本橋"
  },
  {
+  "a": "tokyo.seibu_chichibu",
+  "b": "tokyo.ohanabatake",
+  "min": 6,
+  "names": "西武秩父 ↔ 御花畑"
+ },
+ {
+  "a": "tokyo.matsuda",
+  "b": "tokyo.shin_matsuda",
+  "min": 5,
+  "names": "松田 ↔ 新松田"
+ },
+ {
+  "a": "tokyo.ashigara",
+  "b": "tokyo.gohyakurakan",
+  "min": 7,
+  "names": "足柄 ↔ 五百羅漢"
+ },
+ {
+  "a": "tokyo.kiryu",
+  "b": "tokyo.nishikiryu",
+  "min": 7,
+  "names": "桐生 ↔ 西桐生"
+ },
+ {
   "a": "tokyo.tachikawa_kita",
   "b": "tokyo.tachikawa",
   "min": 5,
@@ -226,6 +250,12 @@
   "b": "tokyo.musashi_mizonokuchi",
   "min": 4,
   "names": "溝の口 ↔ 武蔵溝ノ口"
+ },
+ {
+  "a": "tokyo.nikko",
+  "b": "tokyo.tobu_nikko",
+  "min": 3,
+  "names": "日光 ↔ 東武日光"
  },
  {
   "a": "tokyo.koganecho",
@@ -316,6 +346,12 @@
   "b": "tokyo.seibu_shinjuku",
   "min": 6,
   "names": "新宿西口 ↔ 西武新宿"
+ },
+ {
+  "a": "tokyo.kurihama",
+  "b": "tokyo.keikyu_kurihama",
+  "min": 4,
+  "names": "久里浜 ↔ 京急久里浜"
  },
  {
   "a": "tokyo.sendagaya",
@@ -640,6 +676,12 @@
   "b": "tokyo.toyo_katsutadai",
   "min": 3,
   "names": "勝田台 ↔ 東葉勝田台"
+ },
+ {
+  "a": "tokyo.ryugasakishi",
+  "b": "tokyo.sanuki",
+  "min": 3,
+  "names": "龍ケ崎市 ↔ 佐貫"
  },
  {
   "a": "tokyo.narita",

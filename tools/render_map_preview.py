@@ -42,11 +42,26 @@ def hexc(h, a=255):
     return (int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16), a)
 
 
-ts = d['terrain']['scale']
-ter = Image.open(os.path.join(ROOT, d['terrain']['image'])).convert('RGBA')
+# Full-size pictures (map.json terrain.full; the app itself loads tiles).
+_full = d['terrain'].get('full', {'core': d['terrain'], 'outer': d['terrain'].get('outer')})
+ts = _full['core']['scale']
+ter = Image.open(os.path.join(ROOT, _full['core']['image'])).convert('RGBA')
 canvas = Image.new('RGBA', (W, H), (255, 255, 255, 255) if PLAIN else (241, 240, 233, 255))
+def _layer(img, origin, scale):
+    """Paste the part of a terrain picture (top-left at [origin], [scale] units per pixel) under the view."""
+    ox, oy = origin
+    l, t = int((X0 - ox) // scale), int((Y0 - oy) // scale)
+    r, b = int(-(-(X1 - ox) // scale)), int(-(-(Y1 - oy) // scale))
+    part = img.convert('RGBA').crop((l, t, r, b))
+    part = part.resize((max(1, round((r - l) * scale * S)), max(1, round((b - t) * scale * S))), Image.NEAREST)
+    canvas.alpha_composite(part, (round((l * scale + ox - X0) * S), round((t * scale + oy - Y0) * S)))
+
+
 if not PLAIN:
-    canvas.alpha_composite(ter.crop((X0 // ts, Y0 // ts, -(-X1 // ts), -(-Y1 // ts))).resize((W, H), Image.NEAREST))
+    _o = _full.get('outer')
+    if _o:
+        _layer(Image.open(os.path.join(ROOT, _o['image'])), _o['origin'], _o['scale'])
+    _layer(ter, _full['core'].get('origin', [0, 0]), ts)
 
 cache = {}
 

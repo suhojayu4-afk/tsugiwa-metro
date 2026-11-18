@@ -170,6 +170,8 @@ class _TripScreenState extends State<TripScreen> {
                             isLast: i == plan.lastIndex,
                             transferNote: plan.stops[i].transferToLineId == null
                                 ? null
+                                : plan.stops[i].through
+                                ? t.throughHere(city.line(plan.stops[i].transferToLineId!).name.of(lang))
                                 : plan.stops[i].walkToStationId != null
                                 ? t.transferWalkTo(
                                     city.station(plan.stops[i].walkToStationId!).name.of(lang),

@@ -189,5 +189,6 @@
   "routeMissed": "This route's last train has gone",
   "altRouteTitle": "Another way still works",
   "altRouteInfo": "Leave by {time} · {via}",
-  "altRouteUse": "Use this route"
+  "altRouteUse": "Use this route",
+  "throughHere": "Runs on as the {line} (stay on)"
 }

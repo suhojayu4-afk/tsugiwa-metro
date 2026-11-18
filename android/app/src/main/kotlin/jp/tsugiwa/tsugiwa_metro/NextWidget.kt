@@ -39,7 +39,7 @@ class NextWidget : AppWidgetProvider() {
                 tmp.renameTo(File(d, "next_$name.png"))
             }
             refresh(context)
-            BoardWidget.refresh(context)
+            MyStationWidget.refresh(context) // also refreshes the board
         }
 
         /** A picture the app drew ("board_day", "full_h7", …), or null. */

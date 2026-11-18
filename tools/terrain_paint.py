@@ -26,7 +26,7 @@ OSM = os.path.join(HERE, 'data', 'osm')
 
 LAND, WATER, PARK = 0, 1, 2
 # land classes
-RES, SUB, SHOP, CBD, PORT, RAIL = 0, 1, 2, 3, 4, 5
+RES, SUB, SHOP, CBD, PORT, RAIL, RURAL = 0, 1, 2, 3, 4, 5, 6   # RURAL: fields with a farmhouse here and there
 # park classes
 LAWN, GARDEN, FOREST = 1, 2, 3
 
@@ -69,7 +69,7 @@ def build_kinds(to_map, scale, w, h, center, fallback):
     [fallback] is the old hand-drawn kind image, used outside the OSM area."""
     g = Geo(to_map, scale, w, h, center)
     osm = {n: _load(n) for n in ('coastline', 'water', 'waterways', 'parks', 'landuse',
-                                  'coastline_wide', 'water_wide', 'parks_wide')}
+                                  'coastline_wide', 'water_wide', 'parks_wide', 'forest_kanto')}
     kind = fallback.copy()
     if not osm['coastline']:
         print('  (no OSM data: run tools/fetch_osm.py) -- using the hand-drawn shapes')
@@ -80,6 +80,9 @@ def build_kinds(to_map, scale, w, h, center, fallback):
         out = list(osm[name]['features']) if osm.get(name) else []
         if osm.get(name + '_wide'):
             out += osm[name + '_wide']['features']
+        if name == 'parks' and osm.get('forest_kanto'):
+            # Big forests of all Kanto (Okutama, Tanzawa ...) so the hills match the outer picture.
+            out += osm['forest_kanto']['features']
         return out
 
     # The area OSM covers: the detailed one and the wide one together
@@ -193,8 +196,9 @@ ROOFS_RES = [(204, 168, 150), (176, 176, 190), (196, 186, 166), (162, 178, 194),
 ROOFS_SHOP = [(222, 182, 172), (190, 190, 208), (228, 214, 180), (180, 202, 216), (214, 190, 204), (236, 226, 214)]
 CONTAINERS = [(196, 150, 140), (150, 172, 192), (172, 188, 160), (204, 186, 150)]
 BASE = {RES: (236, 231, 221), SUB: (235, 236, 226), SHOP: (232, 226, 225), CBD: (221, 222, 233),
-        PORT: (226, 227, 226), RAIL: (220, 216, 212)}
-TARGET = {RES: 7, SUB: 9, SHOP: 5, CBD: 8, PORT: 13, RAIL: 11}
+        PORT: (226, 227, 226), RAIL: (220, 216, 212), RURAL: (232, 236, 220)}
+TARGET = {RES: 7, SUB: 9, SHOP: 5, CBD: 8, PORT: 13, RAIL: 11, RURAL: 14}
+FIELD_TONES = [(226, 234, 206), (234, 232, 208), (222, 230, 200), (236, 238, 222)]
 MOTORWAY, MOTORWAY_EDGE = (226, 224, 232), (196, 194, 208)
 AIRPORTS = ('東京国際空港', '成田国際空港')                   # Haneda, Narita
 AIRFIELD, AIRFIELD_DOT, APRON = (214, 228, 196), (200, 220, 182), (218, 218, 222)
@@ -347,6 +351,15 @@ def paint(kind, cls, park_cls, to_map, scale, seed=7):
                 elif style == 'yard':
                     col = _mix(base, CONTAINERS[((y - y0) // 2 + hb) % len(CONTAINERS)], 0.4) \
                         if (y - y0) % 2 == 0 and not (left or right) else base
+                elif style == RURAL:
+                    # Fields: each block one crop, in rows; a farmhouse with a tree in some.
+                    tone = FIELD_TONES[hb % len(FIELD_TONES)]
+                    rows = (y - y0) if hb % 2 else (x - x0)
+                    col = _mix(tone, base, 0.35) if rows % 2 else tone
+                    if hb % 7 == 0 and x - x0 < 2 and y - y0 < 1:
+                        col = ROOFS_RES[hb % len(ROOFS_RES)]
+                    elif hb % 7 == 0 and x - x0 == 2 and y - y0 < 2:
+                        col = TREE[2]
                 elif style == RAIL:
                     col = _mix(base, (188, 182, 180), 0.5) if (y + x // 6) % 3 == 0 else base
                 px[x, y] = col

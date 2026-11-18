@@ -5614,5 +5614,2501 @@
     "everyMin": 10
    }
   ]
+ },
+ "tokyo.joban": {
+  "firstTrain": "04:50",
+  "lastTrain": "24:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 5
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 7
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.chuo_main": {
+  "firstTrain": "04:50",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 15
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 10
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 12
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 15
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 15
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ]
+ },
+ "tokyo.tokaido_shizuoka": {
+  "firstTrain": "04:50",
+  "lastTrain": "24:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 5
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 7
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.gotemba": {
+  "firstTrain": "04:50",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 15
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 10
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 12
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 15
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 15
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ]
+ },
+ "tokyo.ito": {
+  "firstTrain": "04:50",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 15
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 10
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 12
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 15
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 15
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ]
+ },
+ "tokyo.minobu": {
+  "firstTrain": "04:50",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 15
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 10
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 12
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 15
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 15
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ]
+ },
+ "tokyo.ryomo": {
+  "firstTrain": "04:50",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 15
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 10
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 12
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 15
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 15
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ]
+ },
+ "tokyo.mito": {
+  "firstTrain": "04:50",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 15
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 10
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 12
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 15
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 15
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ]
+ },
+ "tokyo.joetsu": {
+  "firstTrain": "04:50",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 15
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 10
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 12
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 15
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 15
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ]
+ },
+ "tokyo.shinetsu": {
+  "firstTrain": "04:50",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 15
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 10
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 12
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 15
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 15
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ]
+ },
+ "tokyo.suigun": {
+  "firstTrain": "04:50",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 15
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 10
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 12
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 15
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 15
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ]
+ },
+ "tokyo.kashima": {
+  "firstTrain": "04:50",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 15
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 10
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 12
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 15
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 15
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ]
+ },
+ "tokyo.sobu_main": {
+  "firstTrain": "04:50",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 15
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 10
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 12
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 15
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 15
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ]
+ },
+ "tokyo.narita_choshi": {
+  "firstTrain": "04:50",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 15
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 10
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 12
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 15
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 15
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ]
+ },
+ "tokyo.togane": {
+  "firstTrain": "04:50",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 15
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 10
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 12
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 15
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 15
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ]
+ },
+ "tokyo.kururi": {
+  "firstTrain": "04:50",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 15
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 10
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 12
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 15
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 15
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ]
+ },
+ "tokyo.keikyu_kurihama": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.keikyu_zushi": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.hakone_tozan": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.izuhakone_daiyuzan": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.izuhakone_sunzu": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.izukyu": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.fujikyu": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.shizutetsu": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.gakunan": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.seibu_chichibu": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.tobu_isesaki": {
+  "firstTrain": "05:00",
+  "lastTrain": "24:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 6
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 3
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 5
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 4
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 8
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 6
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 5
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 8
+   }
+  ]
+ },
+ "tokyo.tobu_nikko": {
+  "firstTrain": "05:00",
+  "lastTrain": "24:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 6
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 3
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 5
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 4
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 8
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 6
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 5
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 8
+   }
+  ]
+ },
+ "tokyo.tobu_utsunomiya": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.tobu_kiryu": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.tobu_sano": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.tobu_koizumi": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.jomo": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.kominato": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.isumi": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.choshi_dentetsu": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.hitachinaka": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.kashima_rinkai": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.kanto_ryugasaki": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.mooka": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.chichibu": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.joshin": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.watarase": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.agatsuma": {
+  "firstTrain": "04:50",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 15
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 10
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 12
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 15
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 15
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ]
+ },
+ "tokyo.jr_nikko": {
+  "firstTrain": "04:50",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 15
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 10
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 12
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 15
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 15
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ]
+ },
+ "tokyo.tobu_kinugawa": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.karasuyama": {
+  "firstTrain": "04:50",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 15
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 10
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 12
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 15
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 15
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ]
+ },
+ "tokyo.koumi": {
+  "firstTrain": "04:50",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 15
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 10
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 12
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 15
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 15
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 20
+   }
+  ]
+ },
+ "tokyo.shinano": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.shonan_shinjuku": {
+  "firstTrain": "04:50",
+  "lastTrain": "24:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 5
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 7
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.sotetsu_jr": {
+  "firstTrain": "04:50",
+  "lastTrain": "24:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 5
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 7
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
+ },
+ "tokyo.tobu_oshiage": {
+  "firstTrain": "05:00",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "04:30",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 6
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 10
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 8
+   },
+   {
+    "from": "20:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "04:30",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "21:00",
+    "everyMin": 10
+   },
+   {
+    "from": "21:00",
+    "to": "25:00",
+    "everyMin": 15
+   }
+  ]
  }
 }

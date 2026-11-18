@@ -48,7 +48,11 @@ def main():
     lines = json.load(open(os.path.join(CITY, 'lines.json'), encoding='utf8'))
     used = {s for l in lines for s in l['stations']}
     stations = [s for s in json.load(open(os.path.join(CITY, 'stations.json'), encoding='utf8')) if s['id'] in used]
-    result = {}
+    # Keep what was fetched before; ask only for the new stations.
+    result = json.load(open(OUT, encoding='utf8'))['areas'] if os.path.exists(OUT) else {}
+    result = {k: v for k, v in result.items() if k in used}
+    stations = [s for s in stations if not result.get(s['id'], {}).get('ward')]
+    print(len(stations), 'stations to look up')
     for i in range(0, len(stations), CHUNK):
         part = stations[i:i + CHUNK]
         body = ''.join(
@@ -72,10 +76,13 @@ def main():
                 continue
             result[sid][key] = names(t)
         print(f'  {min(i + CHUNK, len(stations))}/{len(stations)}')
+        json.dump({'source': '(c) OpenStreetMap contributors, ODbL', 'areas': result},
+                  open(OUT, 'w', encoding='utf8'), ensure_ascii=False, indent=0)   # progress survives a failure
         time.sleep(3)
     json.dump({'source': '(c) OpenStreetMap contributors, ODbL', 'areas': result},
               open(OUT, 'w', encoding='utf8'), ensure_ascii=False, indent=0)
     missing = [s['id'] for s in stations if not result.get(s['id'], {}).get('ward')]
+    stations = stations  # (only the ones asked this run)
     print(len(result), 'stations;', len(missing), 'without a ward:', missing[:10])
 
 
