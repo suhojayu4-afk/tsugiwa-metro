@@ -172,5 +172,18 @@
   "taxiFareNight": "택시 약 {yen}엔 (심야)",
   "walkTime": "도보 {minutes}분",
   "nightWays": "전철 말고 가는 법 (예상)",
-  "serviceEndedShort": "오늘 운행 종료"
+  "serviceEndedShort": "오늘 운행 종료",
+  "myTabMelody": "멜로디",
+  "widgetLast": "막차",
+  "widgetFirst": "첫차",
+  "widgetChoose": "위젯 고르기",
+  "widgetKindMy": "MY역",
+  "widgetKindMyDesc": "사진 + 오늘 정보",
+  "widgetKindBoard": "지하철 안내",
+  "widgetKindBoardDesc": "전광판 스타일, 간단하게",
+  "widgetEvery": "약 {minutes}분 간격",
+  "widgetTrip": "{dest}까지 약 {minutes}분",
+  "widgetEnded": "운행 종료 · 첫차 {time}",
+  "widgetKindNext": "다음 전철",
+  "widgetKindNextDesc": "작게, 운행 간격과 소요 시간"
 }

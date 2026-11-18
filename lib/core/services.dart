@@ -1,8 +1,11 @@
+import 'package:flutter/foundation.dart';
+
 import '../data/realtime/realtime_provider.dart';
 import '../data/last_train_alarm.dart';
 import '../data/my_store.dart';
 import '../data/route_store.dart';
 import '../platform/home_widget_bridge.dart';
+import '../platform/melody_player.dart';
 import '../platform/purchases.dart';
 import '../platform/live_status_bridge.dart';
 import '../data/weather/weather_source.dart';
@@ -17,7 +20,11 @@ class Services {
   static RouteStore routes = RouteStore();
   static MyStore my = MyStore();
   static LastTrainAlarm lastTrain = LastTrainAlarm();
+
+  /// The latest weather from のりば, shared with the home screen widget.
+  static final weatherNow = ValueNotifier<WeatherNow?>(null);
   static Purchases purchases = const NotReadyPurchases();
   static HomeWidgetBridge homeWidget = MethodChannelHomeWidget();
   static LiveStatusBridge live = MethodChannelLiveStatusBridge();
+  static MelodyPlayer melody = const MelodyPlayer();
 }

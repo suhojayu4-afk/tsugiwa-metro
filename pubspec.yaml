@@ -36,8 +36,10 @@ flutter:
     - assets/art/decor/
     - assets/art/map_decor/
     - assets/art/weather/
+    - assets/art/widget/
     - assets/art/crowd/
     - assets/my/
+    - assets/sounds/
   fonts:
     # Pixel fonts, both SIL Open Font License (see assets/fonts/*OFL*).
     - family: DotGothic16

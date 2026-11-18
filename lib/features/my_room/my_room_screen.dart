@@ -76,6 +76,10 @@ class MyRoomScreenState extends State<MyRoomScreen> {
   }
 
   Future<void> _tapItem(MyItem item) async {
+    // Melodies: hear it first (even on silent: the user asked for it).
+    if (item.slot == MySlot.melody) {
+      item.sound == null ? Services.melody.stop() : Services.melody.play(item.sound!, force: true);
+    }
     if (_store.owns(item.id)) {
       await _store.equip(item.id);
       return;
@@ -98,6 +102,46 @@ class MyRoomScreenState extends State<MyRoomScreen> {
     backgroundColor: PixelColors.card,
     shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(22))),
     builder: (_) => child,
+  );
+
+  /// Which widget to add: 'my' (MY駅), 'board' (地下鉄案内) or 'next' (つぎの電車).
+  Future<String?> _chooseWidget(AppLocalizations t) => showModalBottomSheet<String>(
+    context: context,
+    showDragHandle: true,
+    backgroundColor: PixelColors.card,
+    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(22))),
+    builder: (context) => SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            PixelText(t.widgetChoose, size: 18),
+            const SizedBox(height: 12),
+            for (final (kind, icon, title, desc) in [
+              ('my', Icons.photo_rounded, t.widgetKindMy, t.widgetKindMyDesc),
+              ('board', Icons.departure_board_rounded, t.widgetKindBoard, t.widgetKindBoardDesc),
+              ('next', Icons.timer_rounded, t.widgetKindNext, t.widgetKindNextDesc),
+            ])
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Material(
+                  color: const Color(0xFFEFF7F1),
+                  borderRadius: BorderRadius.circular(12),
+                  child: ListTile(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    leading: Icon(icon, color: _green),
+                    title: PixelText(title, size: 17),
+                    subtitle: PixelText(desc, size: 12, color: PixelColors.muted),
+                    onTap: () => Navigator.pop(context, kind),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    ),
   );
 
   void _editPlate(String lang) => _sheet(PlateEditor(fallbackName: _store.sceneItem?.name.of(lang) ?? ''));
@@ -126,6 +170,7 @@ class MyRoomScreenState extends State<MyRoomScreen> {
       MySlot.roof: t.myTabRoof,
       MySlot.platform: t.myTabPlatform,
       MySlot.effect: t.myTabEffect,
+      MySlot.melody: t.myTabMelody,
     };
     return ListView(
       padding: const EdgeInsets.fromLTRB(20, 20, 20, 32),
@@ -138,12 +183,7 @@ class MyRoomScreenState extends State<MyRoomScreen> {
         ),
         const SizedBox(height: 14),
         // The same picture as the top of のりば, with everything equipped.
-        MyStationView(
-          look: _store.look,
-          plate: _plate(lang),
-          lineColor: myDefaultLine,
-          onTap: () => _editPlate(lang),
-        ),
+        MyStationView(look: _store.look, plate: _plate(lang), lineColor: myDefaultLine, onTap: () => _editPlate(lang)),
         const SizedBox(height: 10),
         Row(
           children: [
@@ -165,8 +205,7 @@ class MyRoomScreenState extends State<MyRoomScreen> {
               child: _ActionChip(
                 icon: Icons.ios_share_rounded,
                 label: t.shareOpen,
-                onTap: () =>
-                    _sheet(ShareCardSheet(city: widget.city, plate: _plate(lang), lineColor: myDefaultLine)),
+                onTap: () => _sheet(ShareCardSheet(city: widget.city, plate: _plate(lang), lineColor: myDefaultLine)),
               ),
             ),
             const SizedBox(width: 8),
@@ -175,7 +214,9 @@ class MyRoomScreenState extends State<MyRoomScreen> {
                 icon: Icons.widgets_rounded,
                 label: t.widgetAdd,
                 onTap: () async {
-                  if (await Services.homeWidget.requestPin() || !context.mounted) return;
+                  final kind = await _chooseWidget(t);
+                  if (kind == null || !context.mounted) return;
+                  if (await Services.homeWidget.requestPin(kind: kind) || !context.mounted) return;
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(t.widgetManual)));
                 },
               ),
@@ -206,11 +247,7 @@ class MyRoomScreenState extends State<MyRoomScreen> {
                         borderRadius: BorderRadius.circular(18),
                         border: Border.all(color: _tab == e.key ? _green : PixelColors.line),
                       ),
-                      child: PixelText(
-                        e.value,
-                        size: 16,
-                        color: _tab == e.key ? PixelColors.card : PixelColors.ink,
-                      ),
+                      child: PixelText(e.value, size: 16, color: _tab == e.key ? PixelColors.card : PixelColors.ink),
                     ),
                   ),
                 ),
@@ -291,12 +328,7 @@ class CoinIcon extends StatelessWidget {
     alignment: Alignment.center,
     child: Text(
       'C',
-      style: TextStyle(
-        fontSize: size * 0.55,
-        fontWeight: FontWeight.w900,
-        color: PixelColors.card,
-        height: 1,
-      ),
+      style: TextStyle(fontSize: size * 0.55, fontWeight: FontWeight.w900, color: PixelColors.card, height: 1),
     ),
   );
 }
@@ -422,6 +454,8 @@ class _Thumb extends StatelessWidget {
           'platform.vending' => Icons.local_drink_rounded,
           'effect.petals' => Icons.filter_vintage_rounded,
           'effect.fireflies' => Icons.flare_rounded,
+          'melody.off' => Icons.music_off_rounded,
+          _ when item.slot == MySlot.melody => Icons.music_note_rounded,
           _ => Icons.block_rounded,
         };
         return ColoredBox(
@@ -441,13 +475,8 @@ class SideTrain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const w = 56.0, h = 20.0;
-    Widget img(String a) => Image.asset(
-      a,
-      width: w * scale,
-      height: h * scale,
-      fit: BoxFit.fill,
-      filterQuality: FilterQuality.none,
-    );
+    Widget img(String a) =>
+        Image.asset(a, width: w * scale, height: h * scale, fit: BoxFit.fill, filterQuality: FilterQuality.none);
     return Stack(
       children: [
         img('assets/art/train_side_base.png'),
@@ -476,9 +505,8 @@ class _BuySheet extends StatelessWidget {
       await store.equip(item.id);
       if (!context.mounted) return;
       Navigator.pop(context);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(t.myGot(item.name.of(lang))), duration: const Duration(seconds: 2)),
-      );
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(t.myGot(item.name.of(lang))), duration: const Duration(seconds: 2)));
     }
 
     return SafeArea(
@@ -501,17 +529,12 @@ class _BuySheet extends StatelessWidget {
             if (item.unlock != null)
               Container(
                 padding: const EdgeInsets.all(14),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFFFF4D6),
-                  borderRadius: BorderRadius.circular(14),
-                ),
+                decoration: BoxDecoration(color: const Color(0xFFFFF4D6), borderRadius: BorderRadius.circular(14)),
                 child: Row(
                   children: [
                     const Icon(Icons.approval_rounded, color: Color(0xFFE2A61E)),
                     const SizedBox(width: 10),
-                    Expanded(
-                      child: PixelText(t.myUnlockHint(unlockLineName(city, item.unlock, lang)), size: 15),
-                    ),
+                    Expanded(child: PixelText(t.myUnlockHint(unlockLineName(city, item.unlock, lang)), size: 15)),
                   ],
                 ),
               ),

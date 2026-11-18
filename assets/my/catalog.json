@@ -1,389 +1,444 @@
 {
- "coinRules": {
-  "perTrip": 10,
-  "firstVisit": 20,
-  "firstTripOfDay": 5
- },
- "coinPacks": [
-  {
-   "id": "coins_500",
-   "coins": 500,
-   "priceYen": 160
+  "coinRules": {
+    "perTrip": 10,
+    "firstVisit": 20,
+    "firstTripOfDay": 5
   },
-  {
-   "id": "coins_1200",
-   "coins": 1200,
-   "priceYen": 320
-  },
-  {
-   "id": "coins_3000",
-   "coins": 3000,
-   "priceYen": 730
-  }
- ],
- "slots": [
-  "scene",
-  "plate",
-  "train",
-  "roof",
-  "platform",
-  "effect"
- ],
- "items": [
-  {
-   "id": "scene.standard",
-   "slot": "scene",
-   "name": {
-    "ja": "はじまりの駅",
-    "ko": "시작의 역",
-    "en": "First Station"
-   },
-   "price": 0
-  },
-  {
-   "id": "scene.shibuya",
-   "slot": "scene",
-   "name": {
-    "ja": "渋谷",
-    "ko": "시부야",
-    "en": "Shibuya"
-   },
-   "price": 0,
-   "images": {
-    "day": "assets/art/scenes/shibuya_day.png",
-    "evening": "assets/art/scenes/shibuya_evening.png",
-    "night": "assets/art/scenes/shibuya_night.png"
-   },
-   "station": "tokyo.shibuya"
-  },
-  {
-   "id": "scene.tokyo",
-   "slot": "scene",
-   "name": {
-    "ja": "東京",
-    "ko": "도쿄",
-    "en": "Tokyo"
-   },
-   "price": 1000,
-   "priceYen": 250,
-   "images": {
-    "day": "assets/art/scenes/tokyo_day.png",
-    "evening": "assets/art/scenes/tokyo_evening.png",
-    "night": "assets/art/scenes/tokyo_night.png"
-   },
-   "station": "tokyo.tokyo"
-  },
-  {
-   "id": "scene.shinjuku",
-   "slot": "scene",
-   "name": {
-    "ja": "新宿",
-    "ko": "신주쿠",
-    "en": "Shinjuku"
-   },
-   "price": 1000,
-   "priceYen": 250,
-   "images": {
-    "day": "assets/art/scenes/shinjuku_day.png",
-    "evening": "assets/art/scenes/shinjuku_evening.png",
-    "night": "assets/art/scenes/shinjuku_night.png"
-   },
-   "station": "tokyo.shinjuku"
-  },
-  {
-   "id": "scene.asakusa",
-   "slot": "scene",
-   "name": {
-    "ja": "浅草",
-    "ko": "아사쿠사",
-    "en": "Asakusa"
-   },
-   "price": 1000,
-   "priceYen": 250,
-   "images": {
-    "day": "assets/art/scenes/asakusa_day.png",
-    "evening": "assets/art/scenes/asakusa_evening.png",
-    "night": "assets/art/scenes/asakusa_night.png"
-   },
-   "station": "tokyo.asakusa"
-  },
-  {
-   "id": "scene.ginza",
-   "slot": "scene",
-   "name": {
-    "ja": "銀座",
-    "ko": "긴자",
-    "en": "Ginza"
-   },
-   "price": 1000,
-   "priceYen": 250,
-   "images": {
-    "day": "assets/art/scenes/ginza_day.png",
-    "evening": "assets/art/scenes/ginza_evening.png",
-    "night": "assets/art/scenes/ginza_night.png"
-   },
-   "station": "tokyo.ginza"
-  },
-  {
-   "id": "plate.basic",
-   "slot": "plate",
-   "name": {
-    "ja": "オレンジ",
-    "ko": "오렌지",
-    "en": "Orange"
-   },
-   "price": 0,
-   "plate": {
-    "led": [
-     "#FFAA3C"
-    ]
-   }
-  },
-  {
-   "id": "plate.green",
-   "slot": "plate",
-   "name": {
-    "ja": "みどり",
-    "ko": "초록",
-    "en": "Green"
-   },
-   "price": 100,
-   "plate": {
-    "led": [
-     "#7CF08C"
-    ]
-   }
-  },
-  {
-   "id": "plate.white",
-   "slot": "plate",
-   "name": {
-    "ja": "しろ",
-    "ko": "하양",
-    "en": "White"
-   },
-   "price": 150,
-   "plate": {
-    "led": [
-     "#F4F4EC"
-    ]
-   }
-  },
-  {
-   "id": "plate.sky",
-   "slot": "plate",
-   "name": {
-    "ja": "そら",
-    "ko": "하늘",
-    "en": "Sky"
-   },
-   "price": 150,
-   "plate": {
-    "led": [
-     "#6CD2FF"
-    ]
-   }
-  },
-  {
-   "id": "plate.pink",
-   "slot": "plate",
-   "name": {
-    "ja": "さくら",
-    "ko": "벚꽃",
-    "en": "Sakura"
-   },
-   "price": 200,
-   "plate": {
-    "led": [
-     "#FF9CC8"
-    ]
-   }
-  },
-  {
-   "id": "plate.full",
-   "slot": "plate",
-   "name": {
-    "ja": "フルカラー",
-    "ko": "풀컬러",
-    "en": "Full colour"
-   },
-   "price": 400,
-   "plate": {
-    "led": [
-     "#FFAA3C",
-     "#7CF08C",
-     "#6CD2FF",
-     "#FF9CC8"
-    ]
-   }
-  },
-  {
-   "id": "plate.yamanote",
-   "slot": "plate",
-   "name": {
-    "ja": "山手グリーン",
-    "ko": "야마노테 그린",
-    "en": "Yamanote green"
-   },
-   "price": 0,
-   "unlock": "line:tokyo.yamanote",
-   "plate": {
-    "led": [
-     "#B6F25A",
-     "#FFFFFF"
-    ]
-   }
-  },
-  {
-   "id": "train.line",
-   "slot": "train",
-   "name": {
-    "ja": "ラインカラー",
-    "ko": "노선색",
-    "en": "Line colour"
-   },
-   "price": 0
-  },
-  {
-   "id": "train.sakura",
-   "slot": "train",
-   "name": {
-    "ja": "さくら号",
-    "ko": "벚꽃호",
-    "en": "Sakura"
-   },
-   "price": 300,
-   "color": "#F28FB0"
-  },
-  {
-   "id": "train.retro",
-   "slot": "train",
-   "name": {
-    "ja": "レトロ橙",
-    "ko": "레트로 주황",
-    "en": "Retro orange"
-   },
-   "price": 120,
-   "color": "#F08A24"
-  },
-  {
-   "id": "train.sky",
-   "slot": "train",
-   "name": {
-    "ja": "そら号",
-    "ko": "하늘호",
-    "en": "Sky"
-   },
-   "price": 200,
-   "color": "#5AB4F0"
-  },
-  {
-   "id": "train.gold",
-   "slot": "train",
-   "name": {
-    "ja": "こがね号",
-    "ko": "황금호",
-    "en": "Gold"
-   },
-   "price": 500,
-   "color": "#E8B33A"
-  },
-  {
-   "id": "train.lemon",
-   "slot": "train",
-   "name": {
-    "ja": "銀座線マスター号",
-    "ko": "긴자선 마스터호",
-    "en": "Ginza master"
-   },
-   "price": 0,
-   "unlock": "line:tokyo.ginza",
-   "color": "#FFD21F"
-  },
-  {
-   "id": "roof.none",
-   "slot": "roof",
-   "name": {
-    "ja": "なし",
-    "ko": "없음",
-    "en": "None"
-   },
-   "price": 0
-  },
-  {
-   "id": "roof.lanterns",
-   "slot": "roof",
-   "name": {
-    "ja": "ちょうちん",
-    "ko": "등롱",
-    "en": "Lanterns"
-   },
-   "price": 150,
-   "overlay": "assets/art/decor/lanterns.png"
-  },
-  {
-   "id": "roof.garland",
-   "slot": "roof",
-   "name": {
-    "ja": "イルミ",
-    "ko": "일루미네이션",
-    "en": "Fairy lights"
-   },
-   "price": 200,
-   "effect": "garland"
-  },
-  {
-   "id": "platform.none",
-   "slot": "platform",
-   "name": {
-    "ja": "なし",
-    "ko": "없음",
-    "en": "None"
-   },
-   "price": 0
-  },
-  {
-   "id": "platform.vending",
-   "slot": "platform",
-   "name": {
-    "ja": "自販機",
-    "ko": "자판기",
-    "en": "Vending machine"
-   },
-   "price": 80,
-   "overlay": "assets/art/decor/vending.png"
-  },
-  {
-   "id": "effect.none",
-   "slot": "effect",
-   "name": {
-    "ja": "なし",
-    "ko": "없음",
-    "en": "None"
-   },
-   "price": 0
-  },
-  {
-   "id": "effect.petals",
-   "slot": "effect",
-   "name": {
-    "ja": "さくら吹雪",
-    "ko": "벚꽃잎",
-    "en": "Petals"
-   },
-   "price": 120,
-   "effect": "petals"
-  },
-  {
-   "id": "effect.fireflies",
-   "slot": "effect",
-   "name": {
-    "ja": "ほたる",
-    "ko": "반딧불",
-    "en": "Fireflies"
-   },
-   "price": 160,
-   "effect": "fireflies"
-  }
- ]
+  "coinPacks": [
+    {
+      "id": "coins_500",
+      "coins": 500,
+      "priceYen": 160
+    },
+    {
+      "id": "coins_1200",
+      "coins": 1200,
+      "priceYen": 320
+    },
+    {
+      "id": "coins_3000",
+      "coins": 3000,
+      "priceYen": 730
+    }
+  ],
+  "slots": [
+    "scene",
+    "plate",
+    "train",
+    "roof",
+    "platform",
+    "effect",
+    "melody"
+  ],
+  "items": [
+    {
+      "id": "scene.standard",
+      "slot": "scene",
+      "name": {
+        "ja": "はじまりの駅",
+        "ko": "시작의 역",
+        "en": "First Station"
+      },
+      "price": 0
+    },
+    {
+      "id": "scene.shibuya",
+      "slot": "scene",
+      "name": {
+        "ja": "渋谷",
+        "ko": "시부야",
+        "en": "Shibuya"
+      },
+      "price": 0,
+      "images": {
+        "day": "assets/art/scenes/shibuya_day.png",
+        "evening": "assets/art/scenes/shibuya_evening.png",
+        "night": "assets/art/scenes/shibuya_night.png"
+      },
+      "station": "tokyo.shibuya"
+    },
+    {
+      "id": "scene.tokyo",
+      "slot": "scene",
+      "name": {
+        "ja": "東京",
+        "ko": "도쿄",
+        "en": "Tokyo"
+      },
+      "price": 1000,
+      "priceYen": 250,
+      "images": {
+        "day": "assets/art/scenes/tokyo_day.png",
+        "evening": "assets/art/scenes/tokyo_evening.png",
+        "night": "assets/art/scenes/tokyo_night.png"
+      },
+      "station": "tokyo.tokyo"
+    },
+    {
+      "id": "scene.shinjuku",
+      "slot": "scene",
+      "name": {
+        "ja": "新宿",
+        "ko": "신주쿠",
+        "en": "Shinjuku"
+      },
+      "price": 1000,
+      "priceYen": 250,
+      "images": {
+        "day": "assets/art/scenes/shinjuku_day.png",
+        "evening": "assets/art/scenes/shinjuku_evening.png",
+        "night": "assets/art/scenes/shinjuku_night.png"
+      },
+      "station": "tokyo.shinjuku"
+    },
+    {
+      "id": "scene.asakusa",
+      "slot": "scene",
+      "name": {
+        "ja": "浅草",
+        "ko": "아사쿠사",
+        "en": "Asakusa"
+      },
+      "price": 1000,
+      "priceYen": 250,
+      "images": {
+        "day": "assets/art/scenes/asakusa_day.png",
+        "evening": "assets/art/scenes/asakusa_evening.png",
+        "night": "assets/art/scenes/asakusa_night.png"
+      },
+      "station": "tokyo.asakusa"
+    },
+    {
+      "id": "scene.ginza",
+      "slot": "scene",
+      "name": {
+        "ja": "銀座",
+        "ko": "긴자",
+        "en": "Ginza"
+      },
+      "price": 1000,
+      "priceYen": 250,
+      "images": {
+        "day": "assets/art/scenes/ginza_day.png",
+        "evening": "assets/art/scenes/ginza_evening.png",
+        "night": "assets/art/scenes/ginza_night.png"
+      },
+      "station": "tokyo.ginza"
+    },
+    {
+      "id": "plate.basic",
+      "slot": "plate",
+      "name": {
+        "ja": "オレンジ",
+        "ko": "오렌지",
+        "en": "Orange"
+      },
+      "price": 0,
+      "plate": {
+        "led": [
+          "#FFAA3C"
+        ]
+      }
+    },
+    {
+      "id": "plate.green",
+      "slot": "plate",
+      "name": {
+        "ja": "みどり",
+        "ko": "초록",
+        "en": "Green"
+      },
+      "price": 100,
+      "plate": {
+        "led": [
+          "#7CF08C"
+        ]
+      }
+    },
+    {
+      "id": "plate.white",
+      "slot": "plate",
+      "name": {
+        "ja": "しろ",
+        "ko": "하양",
+        "en": "White"
+      },
+      "price": 150,
+      "plate": {
+        "led": [
+          "#F4F4EC"
+        ]
+      }
+    },
+    {
+      "id": "plate.sky",
+      "slot": "plate",
+      "name": {
+        "ja": "そら",
+        "ko": "하늘",
+        "en": "Sky"
+      },
+      "price": 150,
+      "plate": {
+        "led": [
+          "#6CD2FF"
+        ]
+      }
+    },
+    {
+      "id": "plate.pink",
+      "slot": "plate",
+      "name": {
+        "ja": "さくら",
+        "ko": "벚꽃",
+        "en": "Sakura"
+      },
+      "price": 200,
+      "plate": {
+        "led": [
+          "#FF9CC8"
+        ]
+      }
+    },
+    {
+      "id": "plate.full",
+      "slot": "plate",
+      "name": {
+        "ja": "フルカラー",
+        "ko": "풀컬러",
+        "en": "Full colour"
+      },
+      "price": 400,
+      "plate": {
+        "led": [
+          "#FFAA3C",
+          "#7CF08C",
+          "#6CD2FF",
+          "#FF9CC8"
+        ]
+      }
+    },
+    {
+      "id": "plate.yamanote",
+      "slot": "plate",
+      "name": {
+        "ja": "山手グリーン",
+        "ko": "야마노테 그린",
+        "en": "Yamanote green"
+      },
+      "price": 0,
+      "unlock": "line:tokyo.yamanote",
+      "plate": {
+        "led": [
+          "#B6F25A",
+          "#FFFFFF"
+        ]
+      }
+    },
+    {
+      "id": "train.line",
+      "slot": "train",
+      "name": {
+        "ja": "ラインカラー",
+        "ko": "노선색",
+        "en": "Line colour"
+      },
+      "price": 0
+    },
+    {
+      "id": "train.sakura",
+      "slot": "train",
+      "name": {
+        "ja": "さくら号",
+        "ko": "벚꽃호",
+        "en": "Sakura"
+      },
+      "price": 300,
+      "color": "#F28FB0"
+    },
+    {
+      "id": "train.retro",
+      "slot": "train",
+      "name": {
+        "ja": "レトロ橙",
+        "ko": "레트로 주황",
+        "en": "Retro orange"
+      },
+      "price": 120,
+      "color": "#F08A24"
+    },
+    {
+      "id": "train.sky",
+      "slot": "train",
+      "name": {
+        "ja": "そら号",
+        "ko": "하늘호",
+        "en": "Sky"
+      },
+      "price": 200,
+      "color": "#5AB4F0"
+    },
+    {
+      "id": "train.gold",
+      "slot": "train",
+      "name": {
+        "ja": "こがね号",
+        "ko": "황금호",
+        "en": "Gold"
+      },
+      "price": 500,
+      "color": "#E8B33A"
+    },
+    {
+      "id": "train.lemon",
+      "slot": "train",
+      "name": {
+        "ja": "銀座線マスター号",
+        "ko": "긴자선 마스터호",
+        "en": "Ginza master"
+      },
+      "price": 0,
+      "unlock": "line:tokyo.ginza",
+      "color": "#FFD21F"
+    },
+    {
+      "id": "roof.none",
+      "slot": "roof",
+      "name": {
+        "ja": "なし",
+        "ko": "없음",
+        "en": "None"
+      },
+      "price": 0
+    },
+    {
+      "id": "roof.lanterns",
+      "slot": "roof",
+      "name": {
+        "ja": "ちょうちん",
+        "ko": "등롱",
+        "en": "Lanterns"
+      },
+      "price": 150,
+      "overlay": "assets/art/decor/lanterns.png"
+    },
+    {
+      "id": "roof.garland",
+      "slot": "roof",
+      "name": {
+        "ja": "イルミ",
+        "ko": "일루미네이션",
+        "en": "Fairy lights"
+      },
+      "price": 200,
+      "effect": "garland"
+    },
+    {
+      "id": "platform.none",
+      "slot": "platform",
+      "name": {
+        "ja": "なし",
+        "ko": "없음",
+        "en": "None"
+      },
+      "price": 0
+    },
+    {
+      "id": "platform.vending",
+      "slot": "platform",
+      "name": {
+        "ja": "自販機",
+        "ko": "자판기",
+        "en": "Vending machine"
+      },
+      "price": 80,
+      "overlay": "assets/art/decor/vending.png"
+    },
+    {
+      "id": "effect.none",
+      "slot": "effect",
+      "name": {
+        "ja": "なし",
+        "ko": "없음",
+        "en": "None"
+      },
+      "price": 0
+    },
+    {
+      "id": "effect.petals",
+      "slot": "effect",
+      "name": {
+        "ja": "さくら吹雪",
+        "ko": "벚꽃잎",
+        "en": "Petals"
+      },
+      "price": 120,
+      "effect": "petals"
+    },
+    {
+      "id": "effect.fireflies",
+      "slot": "effect",
+      "name": {
+        "ja": "ほたる",
+        "ko": "반딧불",
+        "en": "Fireflies"
+      },
+      "price": 160,
+      "effect": "fireflies"
+    },
+    {
+      "id": "melody.sakura",
+      "slot": "melody",
+      "name": {
+        "ja": "さくら",
+        "ko": "벚꽃",
+        "en": "Sakura"
+      },
+      "price": 0,
+      "sound": "assets/sounds/melody_sakura.wav"
+    },
+    {
+      "id": "melody.off",
+      "slot": "melody",
+      "name": {
+        "ja": "なし",
+        "ko": "없음",
+        "en": "Off"
+      },
+      "price": 0
+    },
+    {
+      "id": "melody.kaze",
+      "slot": "melody",
+      "name": {
+        "ja": "かぜ",
+        "ko": "바람",
+        "en": "Breeze"
+      },
+      "price": 150,
+      "sound": "assets/sounds/melody_kaze.wav"
+    },
+    {
+      "id": "melody.hoshi",
+      "slot": "melody",
+      "name": {
+        "ja": "ほし",
+        "ko": "별",
+        "en": "Stars"
+      },
+      "price": 150,
+      "sound": "assets/sounds/melody_hoshi.wav"
+    },
+    {
+      "id": "melody.umi",
+      "slot": "melody",
+      "name": {
+        "ja": "うみ",
+        "ko": "바다",
+        "en": "Sea"
+      },
+      "price": 200,
+      "sound": "assets/sounds/melody_umi.wav"
+    }
+  ]
 }

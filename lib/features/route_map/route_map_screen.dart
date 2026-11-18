@@ -151,7 +151,7 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
   void _zoomBy(double factor) {
     final vp = _viewport!;
     final centre = _toWorld(Offset(vp.width / 2, vp.height / 2));
-    final s = (_scale * factor).clamp(_fitScale() * 0.8, _maxScale);
+    final s = (_scale * factor).clamp(_fitScale() * 0.3, _maxScale);
     _animateTo(_matrixFor(centre, s));
   }
 
@@ -234,9 +234,9 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                           child: InteractiveViewer(
                             transformationController: _controller,
                             constrained: false,
-                            minScale: 0.03,
+                            minScale: 0.01, // far enough out to see Mt. Fuji and the whole of Kanto round the map
                             maxScale: _maxScale,
-                            boundaryMargin: const EdgeInsets.all(400),
+                            boundaryMargin: const EdgeInsets.all(6000), // the pale surroundings reach 6400 units out
                             onInteractionStart: (_) => _anim.stop(),
                             child: SizedBox(
                               width: map.size.width,

@@ -1,12 +1,14 @@
+import 'package:flutter/foundation.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../../app.dart';
-import '../../core/pixel/pixel_scene.dart' show StationSign;
+import '../../core/pixel/pixel_scene.dart' show DayPart, StationSign, dayPartOf;
 import '../../core/pixel/pixel_ui.dart';
 import '../../core/services.dart';
 import '../../data/congestion/congestion_source.dart';
 import '../../data/congestion/estimate_congestion.dart';
 import '../../data/last_train_alarm.dart';
+import '../../platform/next_widget_art.dart';
 import '../../data/models/city.dart';
 import '../../data/models/timetable.dart';
 import '../../data/weather/weather_source.dart';
@@ -187,7 +189,138 @@ class PlatformScreenState extends State<PlatformScreen> {
   }
 
   void _onStore() {
-    if (mounted) setState(() {});
+    if (mounted) {
+      setState(() {});
+      _syncWidgetInfo();
+    }
+  }
+
+  String? _widgetInfoKey;
+
+  /// [hour]:30 today in Japan (as a plain DateTime, like the timetables use).
+  static DateTime _jstToday(int hour) {
+    final j = DateTime.now().toUtc().add(const Duration(hours: 9));
+    return DateTime(j.year, j.month, j.day, hour, 30);
+  }
+
+  /// Both home screen widgets show today's information: the weather and the
+  /// usual route (the 終電アラーム one, else the first favourite, else the
+  /// latest) with its last and first train.
+  void _syncWidgetInfo() {
+    final t = AppLocalizations.of(context);
+    final lang = langOf(context);
+    final city = widget.city;
+    final w = Services.weatherNow.value;
+    final alarmFrom = _alarm.fromId, alarmTo = _alarm.toId;
+    final saved = alarmFrom != null && alarmTo != null
+        ? SavedRoute(alarmFrom, alarmTo)
+        : (_store.favourites.firstOrNull ?? _store.recents.firstOrNull);
+    final info = <String, Object?>{
+      'weather': w == null ? '' : _weatherText(t, w),
+      'rain': w == null
+          ? ''
+          : w.wetLater || w.kind == WeatherKind.rain || w.kind == WeatherKind.snow
+          ? t.umbrellaReminder
+          : (w.rainChance == null ? '' : '${t.rainChanceLabel} ${w.rainChance}%'),
+      'wet': w != null && (w.wetLater || w.kind == WeatherKind.rain || w.kind == WeatherKind.snow),
+      'route': '',
+    };
+    final ok = saved != null && city.stations.containsKey(saved.fromId) && city.stations.containsKey(saved.toId);
+    final route = ok ? RouteFinder(city).find(saved.fromId, saved.toId) : null;
+    if (route != null) {
+      final leg = route.legs.first;
+      final line = city.line(leg.lineId);
+      final last = lastDepartureMin(city, route);
+      final tt = city.timetables[leg.lineId];
+      info.addAll({
+        'route': '${city.station(saved!.fromId).name.of(lang)} → ${city.station(saved.toId).name.of(lang)}',
+        'line': '${line.name.of(lang)} ${line.directionName(leg.forward).of(lang)}',
+        'lineColor': line.color.toARGB32(),
+        'lastLabel': t.widgetLast,
+        'lastTime': last == null ? '―' : LastTrainAlarm.clock(last),
+        'firstLabel': t.widgetFirst,
+        'firstTime': tt == null ? '' : LineTimetable.clock(tt.firstTrainMin),
+        'alarm': _alarm.isOnFor(saved.fromId, saved.toId),
+        // つぎの電車: the ride and how often trains come, hour by hour today
+        // (the widget picks the hour itself).
+        'tripText': t.widgetTrip(
+          city.station(saved.toId).name.of(lang),
+          (TripPlan.build(city, route, DateTime.now()).totalSec / 60).ceil(),
+        ),
+        'everyFormat': t.widgetEvery(999).replaceAll('999', '%d'),
+        'endedText': tt == null ? '' : t.widgetEnded(LineTimetable.clock(tt.firstTrainMin)),
+        'firstMin': tt?.firstTrainMin ?? -1,
+        'lastMin': tt?.lastTrainMin ?? -1,
+        'headways': [for (var h = 0; h < 24; h++) tt?.headwayMinAt(_jstToday(h)) ?? 0],
+      });
+    }
+    final key = info.toString();
+    if (key == _widgetInfoKey) return;
+    _widgetInfoKey = key;
+    Services.homeWidget.setInfo(info);
+    if (route != null) {
+      final leg = route.legs.first;
+      // The widget's sky: what is falling now, what is coming, else the clouds.
+      final month = DateTime.now().toUtc().add(const Duration(hours: 9)).month;
+      final winter = month == 12 || month <= 2;
+      final sky = w == null
+          ? 'clear'
+          : w.kind == WeatherKind.rain
+          ? 'rain'
+          : w.kind == WeatherKind.snow
+          ? 'snow'
+          : w.wetLater
+          ? (winter && (w.tempC == null || w.tempC! <= 3) ? 'snowsoon' : 'rainsoon')
+          : w.kind == WeatherKind.cloudy
+          ? 'cloudy'
+          : 'clear';
+      _syncNextArt(
+        NextWidgetData(
+          fromName: city.station(saved!.fromId).name.of(lang),
+          toName: city.station(saved.toId).name.of(lang),
+          fromColor: city.line(leg.lineId).color,
+          toColor: city.line(route.legs.last.lineId).color,
+          lineColor: city.line(leg.lineId).color,
+          trip: info['tripText']! as String,
+          last: '${info['lastLabel']} ${info['lastTime']}',
+          alarm: info['alarm']! as bool,
+          sky: sky,
+          temp: w?.tempC == null ? '' : '${w!.tempC!.round()}°',
+          rain: w?.rainChance == null ? '' : '${w!.rainChance}%',
+        ),
+        headways: info['headways']! as List<int>,
+        t: t,
+      );
+    }
+  }
+
+  String? _nextArtKey;
+
+  /// つぎの電車 is one pixel picture per hour of the day (its sky — day,
+  /// evening or night — and its "every N min"), plus one for after the last
+  /// train; the widget picks the one for now. Redrawn only when something on
+  /// it changes.
+  Future<void> _syncNextArt(NextWidgetData d, {required List<int> headways, required AppLocalizations t}) async {
+    final key =
+        '${d.fromName}|${d.toName}|${d.lineColor}|${d.trip}|${d.last}|${d.alarm}|${d.sky}|${d.temp}|${d.rain}|'
+        '$headways|${t.localeName}';
+    if (key == _nextArtKey) return;
+    _nextArtKey = key;
+    try {
+      final pngs = <String, Uint8List>{
+        'full_end': await renderNextWidget(d, t.serviceEndedShort, DayPart.night),
+        for (var h = 0; h < 24; h++)
+          'full_h$h': await renderNextWidget(
+            d,
+            headways[h] > 0 ? t.widgetEvery(headways[h]) : t.serviceEndedShort,
+            dayPartOf(DateTime(2026, 1, 1, h)),
+          ),
+      };
+      await Services.homeWidget.setNextArt(pngs);
+    } catch (e) {
+      _nextArtKey = null;
+      debugPrint('next widget art: $e');
+    }
   }
 
   /// ☆ on the next-train card: save this route (asking what it is for), or
@@ -371,6 +504,8 @@ class PlatformScreenState extends State<PlatformScreen> {
                     onWeather: (w) {
                       setState(() => _weather = w);
                       Services.homeWidget.setWeather(_weatherText(t, w));
+                      Services.weatherNow.value = w;
+                      _syncWidgetInfo();
                     },
                   ),
                 const SizedBox(height: 12),
@@ -903,6 +1038,11 @@ class _Banner extends StatelessWidget {
       plate: PlateData.of(my, fallbackName: shownScene?.name.of(lang) ?? ''),
       led: route == null ? null : destinationLed(city, route!.legs.first),
       onTap: () => onOpenMy?.call(null),
+      // The train pulls in to the MY departure melody (not after the last train).
+      onArrive: () {
+        final melody = my.melody;
+        if (melody != null && !_closed()) Services.melody.play(melody);
+      },
     );
     if (stationScene == null || owned) return view;
     return Stack(

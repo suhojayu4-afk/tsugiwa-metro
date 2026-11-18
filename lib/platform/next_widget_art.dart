@@ -1,0 +1,164 @@
+import 'dart:typed_data';
+import 'dart:ui' as ui;
+
+import 'package:flutter/painting.dart';
+
+import '../core/pixel/pixel_scene.dart';
+
+/// The つぎの電車 widget, drawn whole as one pixel picture so the home screen
+/// keeps the app's look (PixelLab art in assets/art/widget, made by
+/// tools/make_widget_art.py; the dot font for every letter):
+///
+///   [東京]══🚃══[上野]      ☁ 13°
+///   ┃約15分おき┃ 上野まで 約5分   10%
+///                終電 00:30 🔔
+///
+/// 192×58 art pixels, drawn 4× so the letters stay sharp.
+class NextWidgetData {
+  const NextWidgetData({
+    required this.fromName,
+    required this.toName,
+    required this.fromColor,
+    required this.toColor,
+    required this.lineColor,
+    required this.trip,
+    required this.last,
+    required this.alarm,
+    required this.sky,
+    required this.temp,
+    required this.rain,
+  });
+
+  final String fromName;
+  final String toName;
+  final Color fromColor;
+  final Color toColor;
+  final Color lineColor;
+
+  /// 「上野まで 約5分」, 「終電 00:30」.
+  final String trip;
+  final String last;
+  final bool alarm;
+
+  /// clear, cloudy, rainsoon, rain, snowsoon or snow: picks the background
+  /// (`assets/art/widget/bg_<part>_<sky>.png`) and the weather icon.
+  final String sky;
+
+  /// 「13°」, 「10%」 (or 「傘」).
+  final String temp;
+  final String rain;
+}
+
+const _w = 192.0, _h = 58.0, _k = 4.0;
+const _a = 'assets/art/widget/';
+
+/// The weather icon for [sky] at [part] (a moon at night).
+String widgetIcon(String sky, DayPart part) {
+  final night = part == DayPart.night;
+  return switch (sky) {
+    'cloudy' => night ? 'mooncloud' : 'cloud2',
+    'rainsoon' => 'umbrella',
+    'rain' => 'raincloud',
+    'snowsoon' => 'snow',
+    'snow' => 'snowcloud',
+    _ => night ? 'moon' : 'sun',
+  };
+}
+
+/// Draws the widget at [part] with [led] on the LED panel.
+Future<Uint8List> renderNextWidget(NextWidgetData d, String led, DayPart part) async {
+  Future<ui.Image> img(String n) => SceneArt.load('$_a$n.png');
+  final bg = await img('bg_${part.name}_${d.sky}');
+  final signBase = await img('sign_base'), signBand = await img('sign_band');
+  final trainBase = await img('train_base'), trainBand = await img('train_band');
+  final ledFrame = await img('led');
+  final bell = d.alarm ? await img('icon_bell') : null;
+  final icon = await img('icon_${widgetIcon(d.sky, part)}');
+
+  final rec = ui.PictureRecorder();
+  final c = Canvas(rec)..scale(_k);
+  final crisp = Paint()..filterQuality = FilterQuality.none;
+  void put(ui.Image i, double x, double y, {Color? tint, double? w, double? h}) {
+    final src = Rect.fromLTWH(0, 0, i.width.toDouble(), i.height.toDouble());
+    final dst = Rect.fromLTWH(x, y, w ?? i.width.toDouble(), h ?? i.height.toDouble());
+    c.drawImageRect(
+      i,
+      src,
+      dst,
+      tint == null
+          ? crisp
+          : (Paint()
+              ..filterQuality = FilterQuality.none
+              ..colorFilter = ColorFilter.mode(tint, BlendMode.modulate)),
+    );
+  }
+
+  void text(String s, double x, double y, double size, Color color, {bool center = false, double? maxW}) {
+    final tp = TextPainter(
+      text: TextSpan(
+        text: s,
+        style: TextStyle(fontFamily: 'DotGothic16', fontSize: size, color: color, height: 1),
+      ),
+      textDirection: TextDirection.ltr,
+      maxLines: 1,
+    )..layout();
+    final k = maxW != null && tp.width > maxW ? maxW / tp.width : 1.0;
+    c.save();
+    c.translate(center ? x - tp.width * k / 2 : x, y);
+    c.scale(k, 1);
+    tp.paint(c, Offset.zero);
+    c.restore();
+    tp.dispose();
+  }
+
+  // The platform for this hour and sky, kept bright enough to show the
+  // weather; dark strips only behind the letters.
+  put(bg, 0, 0);
+  final veil = switch (part) {
+    DayPart.day => 0x30,
+    DayPart.evening => 0x28,
+    DayPart.night => 0x10,
+  };
+  c.drawRect(const Rect.fromLTWH(0, 0, _w, _h), Paint()..color = Color.fromARGB(veil, 8, 8, 18));
+  // Under the LED and the times, fading in from above.
+  for (var i = 0; i < 4; i++) {
+    c.drawRect(Rect.fromLTWH(0, 31.0 + i, _w - 34, 1), Paint()..color = Color.fromARGB(0x30 + i * 0x20, 8, 8, 18));
+  }
+  c.drawRect(const Rect.fromLTWH(0, 35, _w - 34, _h - 35), Paint()..color = const Color(0xB0080812));
+  // Behind the weather.
+  c.drawRRect(
+    RRect.fromRectAndRadius(const Rect.fromLTWH(_w - 32, 2, 30, 54), const Radius.circular(4)),
+    Paint()..color = const Color(0x8C080812),
+  );
+
+  // [from] ══ train ══ [to]
+  c.drawRect(const Rect.fromLTWH(46, 26, 68, 1), Paint()..color = const Color(0xFF50525C));
+  put(signBase, 2, 0);
+  put(signBand, 2, 0, tint: d.fromColor);
+  // The board's white face is rows 13–23: the name sits inside it.
+  text(d.fromName, 24, 14, 9, const Color(0xFF1E2030), center: true, maxW: 36);
+  put(trainBase, 50, 9);
+  put(trainBand, 50, 9, tint: d.lineColor);
+  put(signBase, 114, 0);
+  put(signBand, 114, 0, tint: d.toColor);
+  text(d.toName, 136, 14, 9, const Color(0xFF1E2030), center: true, maxW: 36);
+
+  // Weather, top right.
+  put(icon, 164, 1);
+  text(d.temp, 176, 27, 9, const Color(0xFFFFFFFF), center: true, maxW: 28);
+  text(d.rain, 176, 38, 8, const Color(0xFF9FD3FF), center: true, maxW: 28);
+
+  // LED: how often trains come now.
+  put(ledFrame, 2, 35);
+  paintLed(c, const Rect.fromLTWH(5, 38, 76, 14), led, ledOrange);
+
+  // Ride time and the last train.
+  text(d.trip, 88, 36, 9, const Color(0xFF8FE08F), maxW: 70);
+  text(d.last, 88, 48, 8, const Color(0xFFFFBE6E), maxW: 52);
+  if (bell != null) put(bell, 142, 46, w: 12, h: 12);
+
+  final pic = await rec.endRecording().toImage((_w * _k).round(), (_h * _k).round());
+  final bytes = await pic.toByteData(format: ui.ImageByteFormat.png);
+  pic.dispose();
+  return bytes!.buffer.asUint8List();
+}

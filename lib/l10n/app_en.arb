@@ -172,5 +172,18 @@
   "taxiFareNight": "Taxi about ¥{yen} (late night)",
   "walkTime": "{minutes} min walk",
   "nightWays": "Without trains (estimate)",
-  "serviceEndedShort": "Service ended for today"
+  "serviceEndedShort": "Service ended for today",
+  "myTabMelody": "Melody",
+  "widgetLast": "Last",
+  "widgetFirst": "First",
+  "widgetChoose": "Choose a widget",
+  "widgetKindMy": "MY station",
+  "widgetKindMyDesc": "Picture + today's info",
+  "widgetKindBoard": "Train board",
+  "widgetKindBoardDesc": "Departure-board style, simple",
+  "widgetEvery": "Every ~{minutes} min",
+  "widgetTrip": "{dest} in ~{minutes} min",
+  "widgetEnded": "Ended · first {time}",
+  "widgetKindNext": "Next train",
+  "widgetKindNextDesc": "Small: how often, and ride time"
 }

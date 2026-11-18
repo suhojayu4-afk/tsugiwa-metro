@@ -631,4 +631,49 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get serviceEndedShort => '오늘 운행 종료';
+
+  @override
+  String get myTabMelody => '멜로디';
+
+  @override
+  String get widgetLast => '막차';
+
+  @override
+  String get widgetFirst => '첫차';
+
+  @override
+  String get widgetChoose => '위젯 고르기';
+
+  @override
+  String get widgetKindMy => 'MY역';
+
+  @override
+  String get widgetKindMyDesc => '사진 + 오늘 정보';
+
+  @override
+  String get widgetKindBoard => '지하철 안내';
+
+  @override
+  String get widgetKindBoardDesc => '전광판 스타일, 간단하게';
+
+  @override
+  String widgetEvery(int minutes) {
+    return '약 $minutes분 간격';
+  }
+
+  @override
+  String widgetTrip(String dest, int minutes) {
+    return '$dest까지 약 $minutes분';
+  }
+
+  @override
+  String widgetEnded(String time) {
+    return '운행 종료 · 첫차 $time';
+  }
+
+  @override
+  String get widgetKindNext => '다음 전철';
+
+  @override
+  String get widgetKindNextDesc => '작게, 운행 간격과 소요 시간';
 }

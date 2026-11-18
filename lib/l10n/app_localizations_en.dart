@@ -647,4 +647,49 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get serviceEndedShort => 'Service ended for today';
+
+  @override
+  String get myTabMelody => 'Melody';
+
+  @override
+  String get widgetLast => 'Last';
+
+  @override
+  String get widgetFirst => 'First';
+
+  @override
+  String get widgetChoose => 'Choose a widget';
+
+  @override
+  String get widgetKindMy => 'MY station';
+
+  @override
+  String get widgetKindMyDesc => 'Picture + today\'s info';
+
+  @override
+  String get widgetKindBoard => 'Train board';
+
+  @override
+  String get widgetKindBoardDesc => 'Departure-board style, simple';
+
+  @override
+  String widgetEvery(int minutes) {
+    return 'Every ~$minutes min';
+  }
+
+  @override
+  String widgetTrip(String dest, int minutes) {
+    return '$dest in ~$minutes min';
+  }
+
+  @override
+  String widgetEnded(String time) {
+    return 'Ended · first $time';
+  }
+
+  @override
+  String get widgetKindNext => 'Next train';
+
+  @override
+  String get widgetKindNextDesc => 'Small: how often, and ride time';
 }

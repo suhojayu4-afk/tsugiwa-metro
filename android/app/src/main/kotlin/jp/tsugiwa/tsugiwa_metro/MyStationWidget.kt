@@ -58,6 +58,7 @@ class MyStationWidget : AppWidgetProvider() {
         fun refresh(context: Context) {
             val manager = AppWidgetManager.getInstance(context)
             val ids = manager.getAppWidgetIds(ComponentName(context, MyStationWidget::class.java))
+            BoardWidget.refresh(context)
             if (ids.isEmpty()) return
             val v = views(context)
             for (id in ids) manager.updateAppWidget(id, v)
@@ -73,12 +74,23 @@ class MyStationWidget : AppWidgetProvider() {
             } else {
                 v.setViewVisibility(R.id.empty, View.VISIBLE)
             }
-            val weather = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString("weather", null)
-            if (weather.isNullOrEmpty()) {
-                v.setViewVisibility(R.id.weather, View.GONE)
+            // The info band: date (live), weather and rain; the usual route and its last train.
+            val info = WidgetInfo.load(context)
+            val weather = info.weather.ifEmpty {
+                context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString("weather", null) ?: ""
+            }
+            v.setTextViewText(R.id.weather, weather)
+            v.setTextViewText(R.id.rain, info.rain)
+            if (info.hasRoute) {
+                v.setViewVisibility(R.id.route_row, View.VISIBLE)
+                v.setInt(R.id.line_chip, "setBackgroundColor", info.lineColor)
+                v.setTextViewText(R.id.route, info.route)
+                v.setTextViewText(
+                    R.id.last,
+                    "${if (info.alarm) "🔔 " else ""}${info.lastLabel} ${info.lastTime}",
+                )
             } else {
-                v.setViewVisibility(R.id.weather, View.VISIBLE)
-                v.setTextViewText(R.id.weather, weather)
+                v.setViewVisibility(R.id.route_row, View.GONE)
             }
             val open = context.packageManager.getLaunchIntentForPackage(context.packageName)
                 ?: Intent(context, MainActivity::class.java)

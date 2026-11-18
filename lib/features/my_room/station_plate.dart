@@ -53,10 +53,7 @@ class LedSign extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
     padding: EdgeInsets.all(width * 0.03),
-    decoration: BoxDecoration(
-      color: const Color(0xFF2A2833),
-      borderRadius: BorderRadius.circular(width * 0.03),
-    ),
+    decoration: BoxDecoration(color: const Color(0xFF2A2833), borderRadius: BorderRadius.circular(width * 0.03)),
     child: SizedBox(
       width: width,
       height: width * 7 / 43,
@@ -91,7 +88,11 @@ class MyStationView extends StatelessWidget {
     this.arrivalKey,
     this.sky,
     this.sign,
+    this.onArrive,
   });
+
+  /// See [PixelSceneBanner.onArrive].
+  final VoidCallback? onArrive;
 
   final SceneLook look;
   final PlateData plate;
@@ -123,6 +124,7 @@ class MyStationView extends StatelessWidget {
       aspect: aspect,
       arrivalKey: arrivalKey,
       sky: sky,
+      onArrive: onArrive,
     ),
   );
 }
@@ -136,6 +138,7 @@ Future<Uint8List> renderMyStationPng({
   required Color lineColor,
   WeatherKind weather = WeatherKind.sunny,
   int scale = 2,
+  String? sky,
 }) async {
   // A still picture shows the name only (no reading page).
   final image = await renderSceneImage(
@@ -144,6 +147,7 @@ Future<Uint8List> renderMyStationPng({
     lineColor: lineColor,
     weather: weather,
     scale: scale,
+    sky: sky,
   );
   final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
   image.dispose();

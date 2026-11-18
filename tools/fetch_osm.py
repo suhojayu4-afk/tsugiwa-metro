@@ -56,6 +56,8 @@ KEEP_TAGS = ('aeroway', 'natural', 'water', 'waterway', 'leisure', 'landuse', 'n
              'bridge', 'layer', 'amenity', 'tunnel', 'intermittent')
 
 
+# Tiles (east-west x north-south) per heavy layer; motorways need small ones.
+TILES = {'motorways': (8, 6)}
 MIRRORS = [URL, 'https://overpass.kumi.systems/api/interpreter', 'https://overpass.private.coffee/api/interpreter']
 
 
@@ -134,13 +136,14 @@ def main():
             res = query(LAYERS[name])
             elements = res['elements']
         else:
-            # Big layers over the whole area time out: ask for 4 x 3 tiles and merge them.
+            # Big layers over the whole area time out: ask for tiles and merge them.
             elements, seen = [], set()
             s_, w_, n_, e_ = BBOX
-            for i in range(4):
-                for j in range(3):
-                    tb = '(%s,%s,%s,%s)' % (s_ + (n_ - s_) * j / 3, w_ + (e_ - w_) * i / 4,
-                                           s_ + (n_ - s_) * (j + 1) / 3, w_ + (e_ - w_) * (i + 1) / 4)
+            nx, ny = TILES.get(name, (4, 3))
+            for i in range(nx):
+                for j in range(ny):
+                    tb = '(%s,%s,%s,%s)' % (s_ + (n_ - s_) * j / ny, w_ + (e_ - w_) * i / nx,
+                                           s_ + (n_ - s_) * (j + 1) / ny, w_ + (e_ - w_) * (i + 1) / nx)
                     res = query(LAYERS[name].replace(B, tb))
                     for el in res['elements']:
                         if (el['type'], el['id']) not in seen:

@@ -4,4 +4,9 @@
     <string name="widget_name">My Station</string>
     <string name="widget_description">Your station on the home screen</string>
     <string name="widget_empty">Open the app to build your station</string>
+    <string name="board_name">Train board</string>
+    <string name="board_description">Your route and last train, departure-board style</string>
+    <string name="board_empty">Pick a route in the app to show it here</string>
+    <string name="next_name">Next train</string>
+    <string name="next_description">How often trains run on your route, and the ride time</string>
 </resources>

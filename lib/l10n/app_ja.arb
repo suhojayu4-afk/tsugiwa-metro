@@ -578,5 +578,21 @@
     }
   },
   "nightWays": "電車以外の目安",
-  "serviceEndedShort": "本日の運行は終了"
+  "serviceEndedShort": "本日の運行は終了",
+  "myTabMelody": "メロディ",
+  "widgetLast": "終電",
+  "widgetFirst": "始発",
+  "widgetChoose": "ウィジェットをえらぶ",
+  "widgetKindMy": "MY駅",
+  "widgetKindMyDesc": "写真と きょうの情報",
+  "widgetKindBoard": "地下鉄案内",
+  "widgetKindBoardDesc": "電光掲示板ふう シンプル",
+  "widgetEvery": "約{minutes}分おき",
+  "@widgetEvery": {"placeholders": {"minutes": {"type": "int"}}},
+  "widgetTrip": "{dest}まで 約{minutes}分",
+  "@widgetTrip": {"placeholders": {"dest": {"type": "String"}, "minutes": {"type": "int"}}},
+  "widgetEnded": "運行終了 · 始発 {time}",
+  "@widgetEnded": {"placeholders": {"time": {"type": "String"}}},
+  "widgetKindNext": "つぎの電車",
+  "widgetKindNextDesc": "小さく 電車の間隔と所要時間"
 }

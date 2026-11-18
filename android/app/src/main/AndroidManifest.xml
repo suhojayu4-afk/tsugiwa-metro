@@ -56,6 +56,30 @@
                 <action android:name="android.intent.action.TIMEZONE_CHANGED" />
             </intent-filter>
         </receiver>
+        <!-- 地下鉄案内: the route and its last train, departure-board style -->
+        <receiver
+            android:name=".BoardWidget"
+            android:exported="false"
+            android:label="@string/board_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/board_widget_info" />
+        </receiver>
+        <!-- つぎの電車: small, how often trains come on the usual route -->
+        <receiver
+            android:name=".NextWidget"
+            android:exported="false"
+            android:label="@string/next_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/next_widget_info" />
+        </receiver>
         <!-- MY駅 on the home screen -->
         <receiver
             android:name=".MyStationWidget"

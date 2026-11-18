@@ -12,9 +12,18 @@ abstract class HomeWidgetBridge {
   Future<void> setPictures(Map<DayPart, Uint8List> pngs);
   Future<void> setWeather(String text);
 
+  /// Today's information for both widgets (texts already localized):
+  /// weather, rain, wet, route, line, lineColor, lastLabel, lastTime,
+  /// firstLabel, firstTime, alarm.
+  Future<void> setInfo(Map<String, Object?> info);
+
+  /// Pictures for つぎの電車: 'full_5' (one per interval), 'full_end'.
+  Future<void> setNextArt(Map<String, Uint8List> pngs);
+
   /// Ask the launcher to add the widget. False when it cannot (then the
   /// user adds it from the widget list).
-  Future<bool> requestPin();
+  /// [kind]: 'my' (MY駅), 'board' (地下鉄案内) or 'next' (つぎの電車).
+  Future<bool> requestPin({String kind = 'my'});
 }
 
 class NoHomeWidget implements HomeWidgetBridge {
@@ -24,7 +33,11 @@ class NoHomeWidget implements HomeWidgetBridge {
   @override
   Future<void> setWeather(String text) async {}
   @override
-  Future<bool> requestPin() async => false;
+  Future<void> setInfo(Map<String, Object?> info) async {}
+  @override
+  Future<void> setNextArt(Map<String, Uint8List> pngs) async {}
+  @override
+  Future<bool> requestPin({String kind = 'my'}) async => false;
 }
 
 /// Android: "tsugiwa/widget" channel, handled in MainActivity / MyStationWidget.
@@ -59,10 +72,34 @@ class MethodChannelHomeWidget implements HomeWidgetBridge {
   }
 
   @override
-  Future<bool> requestPin() async {
+  Future<void> setInfo(Map<String, Object?> info) async {
+    if (!_supported) return;
+    try {
+      await _channel.invokeMethod('info', info);
+    } on PlatformException catch (e) {
+      debugPrint('home widget: $e');
+    } on MissingPluginException {
+      // Not built with the widget.
+    }
+  }
+
+  @override
+  Future<void> setNextArt(Map<String, Uint8List> pngs) async {
+    if (!_supported) return;
+    try {
+      await _channel.invokeMethod('nextArt', pngs);
+    } on PlatformException catch (e) {
+      debugPrint('home widget: $e');
+    } on MissingPluginException {
+      // Not built with the widget.
+    }
+  }
+
+  @override
+  Future<bool> requestPin({String kind = 'my'}) async {
     if (!_supported) return false;
     try {
-      return await _channel.invokeMethod<bool>('pin') ?? false;
+      return await _channel.invokeMethod<bool>('pin', {'kind': kind}) ?? false;
     } on PlatformException {
       return false;
     } on MissingPluginException {

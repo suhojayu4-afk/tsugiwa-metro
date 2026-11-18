@@ -1,4 +1,4 @@
-﻿import 'dart:convert';
+import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -7,7 +7,7 @@ import '../core/localized_text.dart';
 import '../core/pixel/pixel_scene.dart';
 
 /// Where an item goes in MY駅.
-enum MySlot { scene, plate, train, roof, platform, effect }
+enum MySlot { scene, plate, train, roof, platform, effect, melody }
 
 class MyItem {
   const MyItem({
@@ -23,6 +23,7 @@ class MyItem {
     this.plate,
     this.unlock,
     this.station,
+    this.sound,
   });
 
   final String id;
@@ -52,10 +53,12 @@ class MyItem {
   /// leave from that station, のりば shows this scene if you own it.
   final String? station;
 
+  /// Melody items: the departure melody played when the train pulls in.
+  final String? sound;
+
   bool get free => price == 0 && priceYen == null && unlock == null;
 
-  static Color? _color(String? hex) =>
-      hex == null ? null : Color(int.parse(hex.substring(1), radix: 16) | 0xFF000000);
+  static Color? _color(String? hex) => hex == null ? null : Color(int.parse(hex.substring(1), radix: 16) | 0xFF000000);
 
   factory MyItem.fromJson(Map<String, dynamic> j) => MyItem(
     id: j['id'] as String,
@@ -73,6 +76,7 @@ class MyItem {
     plate: j['plate'] == null ? null : PlateStyle.fromJson(j['plate'] as Map<String, dynamic>),
     unlock: j['unlock'] as String?,
     station: j['station'] as String?,
+    sound: j['sound'] as String?,
   );
 }
 

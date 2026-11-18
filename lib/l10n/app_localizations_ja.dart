@@ -631,4 +631,49 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get serviceEndedShort => '本日の運行は終了';
+
+  @override
+  String get myTabMelody => 'メロディ';
+
+  @override
+  String get widgetLast => '終電';
+
+  @override
+  String get widgetFirst => '始発';
+
+  @override
+  String get widgetChoose => 'ウィジェットをえらぶ';
+
+  @override
+  String get widgetKindMy => 'MY駅';
+
+  @override
+  String get widgetKindMyDesc => '写真と きょうの情報';
+
+  @override
+  String get widgetKindBoard => '地下鉄案内';
+
+  @override
+  String get widgetKindBoardDesc => '電光掲示板ふう シンプル';
+
+  @override
+  String widgetEvery(int minutes) {
+    return '約$minutes分おき';
+  }
+
+  @override
+  String widgetTrip(String dest, int minutes) {
+    return '$destまで 約$minutes分';
+  }
+
+  @override
+  String widgetEnded(String time) {
+    return '運行終了 · 始発 $time';
+  }
+
+  @override
+  String get widgetKindNext => 'つぎの電車';
+
+  @override
+  String get widgetKindNextDesc => '小さく 電車の間隔と所要時間';
 }

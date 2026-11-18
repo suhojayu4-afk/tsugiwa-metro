@@ -271,8 +271,12 @@ class PixelSceneBanner extends StatefulWidget {
     this.look = const SceneLook(),
     this.arrivalKey,
     this.sky,
+    this.onArrive,
   });
   final Color lineColor;
+
+  /// Called when the train starts pulling in (for the departure melody).
+  final VoidCallback? onArrive;
 
   /// When this changes (a new route is picked) the train pulls in from the
   /// distance and stops at the platform.
@@ -344,6 +348,7 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with SingleTickerPr
     if (old.look != widget.look || old.sky != widget.sky) _load();
     if (widget.arrivalKey != null && old.arrivalKey != widget.arrivalKey) {
       _arrive.forward(from: 0);
+      widget.onArrive?.call();
     }
   }
 

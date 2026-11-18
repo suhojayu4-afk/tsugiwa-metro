@@ -1137,6 +1137,84 @@ abstract class AppLocalizations {
   /// In ja, this message translates to:
   /// **'本日の運行は終了'**
   String get serviceEndedShort;
+
+  /// No description provided for @myTabMelody.
+  ///
+  /// In ja, this message translates to:
+  /// **'メロディ'**
+  String get myTabMelody;
+
+  /// No description provided for @widgetLast.
+  ///
+  /// In ja, this message translates to:
+  /// **'終電'**
+  String get widgetLast;
+
+  /// No description provided for @widgetFirst.
+  ///
+  /// In ja, this message translates to:
+  /// **'始発'**
+  String get widgetFirst;
+
+  /// No description provided for @widgetChoose.
+  ///
+  /// In ja, this message translates to:
+  /// **'ウィジェットをえらぶ'**
+  String get widgetChoose;
+
+  /// No description provided for @widgetKindMy.
+  ///
+  /// In ja, this message translates to:
+  /// **'MY駅'**
+  String get widgetKindMy;
+
+  /// No description provided for @widgetKindMyDesc.
+  ///
+  /// In ja, this message translates to:
+  /// **'写真と きょうの情報'**
+  String get widgetKindMyDesc;
+
+  /// No description provided for @widgetKindBoard.
+  ///
+  /// In ja, this message translates to:
+  /// **'地下鉄案内'**
+  String get widgetKindBoard;
+
+  /// No description provided for @widgetKindBoardDesc.
+  ///
+  /// In ja, this message translates to:
+  /// **'電光掲示板ふう シンプル'**
+  String get widgetKindBoardDesc;
+
+  /// No description provided for @widgetEvery.
+  ///
+  /// In ja, this message translates to:
+  /// **'約{minutes}分おき'**
+  String widgetEvery(int minutes);
+
+  /// No description provided for @widgetTrip.
+  ///
+  /// In ja, this message translates to:
+  /// **'{dest}まで 約{minutes}分'**
+  String widgetTrip(String dest, int minutes);
+
+  /// No description provided for @widgetEnded.
+  ///
+  /// In ja, this message translates to:
+  /// **'運行終了 · 始発 {time}'**
+  String widgetEnded(String time);
+
+  /// No description provided for @widgetKindNext.
+  ///
+  /// In ja, this message translates to:
+  /// **'つぎの電車'**
+  String get widgetKindNext;
+
+  /// No description provided for @widgetKindNextDesc.
+  ///
+  /// In ja, this message translates to:
+  /// **'小さく 電車の間隔と所要時間'**
+  String get widgetKindNextDesc;
 }
 
 class _AppLocalizationsDelegate

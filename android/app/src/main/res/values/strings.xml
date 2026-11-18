@@ -4,4 +4,10 @@
     <string name="widget_name">MY駅</string>
     <string name="widget_description">わたしの駅を ホーム画面に</string>
     <string name="widget_empty">アプリをひらいて MY駅をつくってね</string>
+    <string name="board_name">地下鉄案内</string>
+    <string name="board_description">ルートと終電を 電光掲示板ふうに</string>
+    <string name="board_empty">アプリでルートを選ぶと ここに出ます</string>
+    <string name="bell" translatable="false">🔔</string>
+    <string name="next_name">つぎの電車</string>
+    <string name="next_description">よく行くルートの 電車の間隔と所要時間</string>
 </resources>

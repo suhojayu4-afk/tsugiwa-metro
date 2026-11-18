@@ -1,0 +1,3296 @@
+{
+"source": "(c) OpenStreetMap contributors, ODbL",
+"areas": {
+"tokyo.tokyo": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "丸の内",
+"ko": "마루노우치",
+"en": "Marunouchi"
+}
+},
+"tokyo.kanda": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "鍛冶町",
+"en": "Kajicho"
+}
+},
+"tokyo.akihabara": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "神田花岡町",
+"en": "Kanda-Hanaokachō"
+}
+},
+"tokyo.okachimachi": {
+"ward": {
+"ja": "台東区",
+"ko": "다이토구",
+"en": "Taito"
+},
+"town": {
+"ja": "上野",
+"en": "Ueno"
+}
+},
+"tokyo.ueno": {
+"ward": {
+"ja": "台東区",
+"ko": "다이토구",
+"en": "Taito"
+},
+"town": {
+"ja": "上野",
+"en": "Ueno"
+}
+},
+"tokyo.uguisudani": {
+"ward": {
+"ja": "台東区",
+"ko": "다이토구",
+"en": "Taito"
+},
+"town": {
+"ja": "根岸",
+"en": "Negishi"
+}
+},
+"tokyo.nippori": {
+"ward": {
+"ja": "荒川区",
+"ko": "아라카와구",
+"en": "Arakawa"
+},
+"town": {
+"ja": "西日暮里",
+"en": "Nishi-Nippori"
+}
+},
+"tokyo.nishi_nippori": {
+"ward": {
+"ja": "荒川区",
+"ko": "아라카와구",
+"en": "Arakawa"
+},
+"town": {
+"ja": "西日暮里",
+"en": "Nishi-Nippori"
+}
+},
+"tokyo.tabata": {
+"ward": {
+"ja": "北区",
+"ko": "기타구",
+"en": "Kita"
+},
+"town": {
+"ja": "東田端",
+"en": "Higashi Tabata"
+}
+},
+"tokyo.komagome": {
+"ward": {
+"ja": "豊島区",
+"ko": "도시마구",
+"en": "Toshima"
+},
+"town": {
+"ja": "駒込",
+"en": "Komagome"
+}
+},
+"tokyo.sugamo": {
+"ward": {
+"ja": "豊島区",
+"ko": "도시마구",
+"en": "Toshima"
+},
+"town": {
+"ja": "巣鴨",
+"en": "Sugamo"
+}
+},
+"tokyo.otsuka": {
+"ward": {
+"ja": "豊島区",
+"ko": "도시마구",
+"en": "Toshima"
+},
+"town": {
+"ja": "南大塚",
+"en": "Minami-Ōtsuka"
+}
+},
+"tokyo.ikebukuro": {
+"ward": {
+"ja": "豊島区",
+"ko": "도시마구",
+"en": "Toshima"
+},
+"town": {
+"ja": "南池袋",
+"en": "Minami-Ikebukuro"
+}
+},
+"tokyo.mejiro": {
+"ward": {
+"ja": "豊島区",
+"ko": "도시마구",
+"en": "Toshima"
+},
+"town": {
+"ja": "目白",
+"en": "Mejiro"
+}
+},
+"tokyo.takadanobaba": {
+"ward": {
+"ja": "新宿区",
+"ko": "신주쿠구",
+"en": "Shinjuku"
+},
+"town": {
+"ja": "高田馬場",
+"en": "Takadanobaba"
+}
+},
+"tokyo.shin_okubo": {
+"ward": {
+"ja": "新宿区",
+"ko": "신주쿠구",
+"en": "Shinjuku"
+},
+"town": {
+"ja": "百人町",
+"en": "Hyakuninchō"
+}
+},
+"tokyo.shinjuku": {
+"ward": {
+"ja": "新宿区",
+"ko": "신주쿠구",
+"en": "Shinjuku"
+},
+"town": {
+"ja": "新宿",
+"ko": "신주쿠",
+"en": "Shinjuku"
+}
+},
+"tokyo.yoyogi": {
+"ward": {
+"ja": "渋谷区",
+"ko": "시부야구",
+"en": "Shibuya"
+},
+"town": {
+"ja": "代々木",
+"ko": "요요기",
+"en": "Yoyogi"
+}
+},
+"tokyo.harajuku": {
+"ward": {
+"ja": "渋谷区",
+"ko": "시부야구",
+"en": "Shibuya"
+},
+"town": {
+"ja": "神宮前",
+"ko": "진구마에",
+"en": "Jingumae"
+}
+},
+"tokyo.shibuya": {
+"ward": {
+"ja": "渋谷区",
+"ko": "시부야구",
+"en": "Shibuya"
+},
+"town": {
+"ja": "渋谷",
+"ko": "시부야",
+"en": "Shibuya"
+}
+},
+"tokyo.ebisu": {
+"ward": {
+"ja": "渋谷区",
+"ko": "시부야구",
+"en": "Shibuya"
+},
+"town": {
+"ja": "恵比寿",
+"ko": "에비스",
+"en": "Ebisu"
+}
+},
+"tokyo.meguro": {
+"ward": {
+"ja": "品川区",
+"ko": "시나가와구",
+"en": "Shinagawa"
+},
+"town": {
+"ja": "上大崎",
+"en": "Kami-Ōsaki"
+}
+},
+"tokyo.gotanda": {
+"ward": {
+"ja": "品川区",
+"ko": "시나가와구",
+"en": "Shinagawa"
+},
+"town": {
+"ja": "東五反田",
+"en": "Higashi Gotanda"
+}
+},
+"tokyo.osaki": {
+"ward": {
+"ja": "品川区",
+"ko": "시나가와구",
+"en": "Shinagawa"
+},
+"town": {
+"ja": "大崎",
+"en": "Osaki"
+}
+},
+"tokyo.shinagawa": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "港南",
+"en": "Kōnan"
+}
+},
+"tokyo.takanawa_gateway": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "港南",
+"en": "Kōnan"
+}
+},
+"tokyo.tamachi": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "芝浦",
+"en": "Shibaura"
+}
+},
+"tokyo.hamamatsucho": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "海岸",
+"en": "Kaigan"
+}
+},
+"tokyo.shimbashi": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "新橋",
+"ko": "신바시",
+"en": "Shinbashi"
+}
+},
+"tokyo.yurakucho": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "有楽町",
+"ko": "유라쿠초",
+"en": "Yurakuchō"
+}
+},
+"tokyo.omotesando": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "北青山",
+"ko": "키타아오야마",
+"en": "Kita-Aoyama"
+}
+},
+"tokyo.gaiemmae": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "北青山",
+"ko": "키타아오야마",
+"en": "Kita-Aoyama"
+}
+},
+"tokyo.aoyama_itchome": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "北青山",
+"ko": "키타아오야마",
+"en": "Kita-Aoyama"
+}
+},
+"tokyo.akasaka_mitsuke": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "赤坂",
+"ko": "아카사카",
+"en": "Akasaka"
+}
+},
+"tokyo.tameike_sanno": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "永田町",
+"ko": "나가타초",
+"en": "Nagatacho"
+}
+},
+"tokyo.toranomon": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "虎ノ門",
+"ko": "토라노몬",
+"en": "Toranomon"
+}
+},
+"tokyo.ginza": {
+"ward": {
+"ja": "中央区",
+"ko": "주오구",
+"en": "Chuo"
+},
+"town": {
+"ja": "銀座",
+"ko": "긴자",
+"en": "Ginza"
+}
+},
+"tokyo.kyobashi": {
+"ward": {
+"ja": "中央区",
+"ko": "주오구",
+"en": "Chuo"
+},
+"town": {
+"ja": "京橋",
+"ko": "교바시",
+"en": "Kyōbashi"
+}
+},
+"tokyo.nihombashi": {
+"ward": {
+"ja": "中央区",
+"ko": "주오구",
+"en": "Chuo"
+},
+"town": {
+"ja": "日本橋",
+"ko": "니혼바시",
+"en": "Nihonbashi"
+}
+},
+"tokyo.mitsukoshimae": {
+"ward": {
+"ja": "中央区",
+"ko": "주오구",
+"en": "Chuo"
+},
+"town": {
+"ja": "日本橋室町",
+"ko": "니혼바시무로마치",
+"en": "Nihonbashi-Muromachi"
+}
+},
+"tokyo.suehirocho": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "外神田",
+"en": "Soto-Kanda"
+}
+},
+"tokyo.ueno_hirokoji": {
+"ward": {
+"ja": "台東区",
+"ko": "다이토구",
+"en": "Taito"
+},
+"town": {
+"ja": "上野",
+"en": "Ueno"
+}
+},
+"tokyo.inaricho": {
+"ward": {
+"ja": "台東区",
+"ko": "다이토구",
+"en": "Taito"
+},
+"town": {
+"ja": "東上野",
+"en": "Higashi Ueno"
+}
+},
+"tokyo.tawaramachi": {
+"ward": {
+"ja": "台東区",
+"ko": "다이토구",
+"en": "Taito"
+},
+"town": {
+"ja": "西浅草",
+"en": "Nishi Asakusa"
+}
+},
+"tokyo.asakusa": {
+"ward": {
+"ja": "台東区",
+"ko": "다이토구",
+"en": "Taito"
+},
+"town": {
+"ja": "浅草",
+"en": "Asakusa"
+}
+},
+"tokyo.ogikubo": {
+"ward": {
+"ja": "杉並区",
+"ko": "스기나미구",
+"en": "Suginami"
+},
+"town": {
+"ja": "上荻",
+"en": "Kamiogi"
+}
+},
+"tokyo.minami_asagaya": {
+"ward": {
+"ja": "杉並区",
+"ko": "스기나미구",
+"en": "Suginami"
+},
+"town": {
+"ja": "成田東",
+"en": "Narita-higashi"
+}
+},
+"tokyo.shin_koenji": {
+"ward": {
+"ja": "杉並区",
+"ko": "스기나미구",
+"en": "Suginami"
+},
+"town": {
+"ja": "梅里",
+"en": "Umezato"
+}
+},
+"tokyo.higashi_koenji": {
+"ward": {
+"ja": "杉並区",
+"ko": "스기나미구",
+"en": "Suginami"
+},
+"town": {
+"ja": "和田",
+"en": "Wada"
+}
+},
+"tokyo.shin_nakano": {
+"ward": {
+"ja": "中野区",
+"ko": "나카노구",
+"en": "Nakano"
+},
+"town": {
+"ja": "本町",
+"en": "Honchō"
+}
+},
+"tokyo.nakano_sakaue": {
+"ward": {
+"ja": "中野区",
+"ko": "나카노구",
+"en": "Nakano"
+},
+"town": {
+"ja": "本町",
+"en": "Honchō"
+}
+},
+"tokyo.nishi_shinjuku": {
+"ward": {
+"ja": "新宿区",
+"ko": "신주쿠구",
+"en": "Shinjuku"
+},
+"town": {
+"ja": "西新宿",
+"ko": "니시신주쿠",
+"en": "Nishi-Shinjuku"
+}
+},
+"tokyo.shinjuku_sanchome": {
+"ward": {
+"ja": "新宿区",
+"ko": "신주쿠구",
+"en": "Shinjuku"
+},
+"town": {
+"ja": "新宿",
+"ko": "신주쿠",
+"en": "Shinjuku"
+}
+},
+"tokyo.shinjuku_gyoemmae": {
+"ward": {
+"ja": "新宿区",
+"ko": "신주쿠구",
+"en": "Shinjuku"
+},
+"town": {
+"ja": "新宿",
+"ko": "신주쿠",
+"en": "Shinjuku"
+}
+},
+"tokyo.yotsuya_sanchome": {
+"ward": {
+"ja": "新宿区",
+"ko": "신주쿠구",
+"en": "Shinjuku"
+},
+"town": {
+"ja": "四谷",
+"en": "Yotsuya"
+}
+},
+"tokyo.yotsuya": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "麹町",
+"ko": "고치마치",
+"en": "Kōjimachi"
+}
+},
+"tokyo.kokkai_gijido_mae": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "永田町",
+"ko": "나가타초",
+"en": "Nagatacho"
+}
+},
+"tokyo.kasumigaseki": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "霞が関",
+"ko": "가스미가세키",
+"en": "Kasumigaseki"
+}
+},
+"tokyo.otemachi": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "丸の内",
+"ko": "마루노우치",
+"en": "Marunouchi"
+}
+},
+"tokyo.awajicho": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "神田小川町",
+"en": "Kanda-Ogawamachi"
+}
+},
+"tokyo.ochanomizu": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "神田駿河台",
+"en": "Kanda-Surugadai"
+}
+},
+"tokyo.hongo_sanchome": {
+"ward": {
+"ja": "文京区",
+"ko": "분쿄구",
+"en": "Bunkyō"
+},
+"town": {
+"ja": "本郷",
+"en": "Hongō"
+}
+},
+"tokyo.korakuen": {
+"ward": {
+"ja": "文京区",
+"ko": "분쿄구",
+"en": "Bunkyō"
+},
+"town": {
+"ja": "春日",
+"en": "Kasuga"
+}
+},
+"tokyo.myogadani": {
+"ward": {
+"ja": "文京区",
+"ko": "분쿄구",
+"en": "Bunkyō"
+},
+"town": {
+"ja": "小日向",
+"en": "Kohinata"
+}
+},
+"tokyo.shin_otsuka": {
+"ward": {
+"ja": "文京区",
+"ko": "분쿄구",
+"en": "Bunkyō"
+},
+"town": {
+"ja": "大塚",
+"en": "Ōtsuka"
+}
+},
+"tokyo.nakano_shimbashi": {
+"ward": {
+"ja": "中野区",
+"ko": "나카노구",
+"en": "Nakano"
+},
+"town": {
+"ja": "弥生町",
+"en": "Yayoichō"
+}
+},
+"tokyo.nakano_fujimicho": {
+"ward": {
+"ja": "中野区",
+"ko": "나카노구",
+"en": "Nakano"
+},
+"town": {
+"ja": "弥生町",
+"en": "Yayoichō"
+}
+},
+"tokyo.honancho": {
+"ward": {
+"ja": "杉並区",
+"ko": "스기나미구",
+"en": "Suginami"
+},
+"town": {
+"ja": "和泉",
+"en": "Izumi"
+}
+},
+"tokyo.naka_meguro": {
+"ward": {
+"ja": "目黒区",
+"ko": "메구로구",
+"en": "Meguro"
+},
+"town": {
+"ja": "上目黒",
+"ko": "가미메구로",
+"en": "Kami-Meguro"
+}
+},
+"tokyo.hiroo": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "南麻布",
+"en": "Minami-Azabu"
+}
+},
+"tokyo.roppongi": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "六本木",
+"ko": "롯본기",
+"en": "Roppongi"
+}
+},
+"tokyo.kamiyacho": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "虎ノ門",
+"ko": "토라노몬",
+"en": "Toranomon"
+}
+},
+"tokyo.toranomon_hills": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "虎ノ門",
+"ko": "토라노몬",
+"en": "Toranomon"
+}
+},
+"tokyo.hibiya": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "有楽町",
+"ko": "유라쿠초",
+"en": "Yurakuchō"
+}
+},
+"tokyo.higashi_ginza": {
+"ward": {
+"ja": "中央区",
+"ko": "주오구",
+"en": "Chuo"
+},
+"town": {
+"ja": "銀座",
+"ko": "긴자",
+"en": "Ginza"
+}
+},
+"tokyo.tsukiji": {
+"ward": {
+"ja": "中央区",
+"ko": "주오구",
+"en": "Chuo"
+},
+"town": {
+"ja": "築地",
+"ko": "츠키지",
+"en": "Tsukiji"
+}
+},
+"tokyo.hatchobori": {
+"ward": {
+"ja": "中央区",
+"ko": "주오구",
+"en": "Chuo"
+},
+"town": {
+"ja": "八丁堀",
+"ko": "핫초보리",
+"en": "Hatchōbori"
+}
+},
+"tokyo.kayabacho": {
+"ward": {
+"ja": "中央区",
+"ko": "주오구",
+"en": "Chuo"
+},
+"town": {
+"ja": "日本橋茅場町",
+"ko": "니혼바시카야바초",
+"en": "Nihonbashi-Kayabachō"
+}
+},
+"tokyo.ningyocho": {
+"ward": {
+"ja": "中央区",
+"ko": "주오구",
+"en": "Chuo"
+},
+"town": {
+"ja": "日本橋人形町",
+"ko": "니혼바시닌교초",
+"en": "Nihonbashi ningyocho"
+}
+},
+"tokyo.kodemmacho": {
+"ward": {
+"ja": "中央区",
+"ko": "주오구",
+"en": "Chuo"
+},
+"town": {
+"ja": "日本橋小伝馬町",
+"ko": "니혼바시코덴마초",
+"en": "Nihonbashi kodenmacho"
+}
+},
+"tokyo.naka_okachimachi": {
+"ward": {
+"ja": "台東区",
+"ko": "다이토구",
+"en": "Taito"
+},
+"town": {
+"ja": "上野",
+"en": "Ueno"
+}
+},
+"tokyo.iriya": {
+"ward": {
+"ja": "台東区",
+"ko": "다이토구",
+"en": "Taito"
+},
+"town": {
+"ja": "下谷",
+"en": "Shitaya"
+}
+},
+"tokyo.minowa": {
+"ward": {
+"ja": "台東区",
+"ko": "다이토구",
+"en": "Taito"
+},
+"town": {
+"ja": "根岸",
+"en": "Negishi"
+}
+},
+"tokyo.minami_senju": {
+"ward": {
+"ja": "荒川区",
+"ko": "아라카와구",
+"en": "Arakawa"
+},
+"town": {
+"ja": "南千住",
+"en": "Minami-Senju"
+}
+},
+"tokyo.kita_senju": {
+"ward": {
+"ja": "足立区",
+"ko": "아다치구",
+"en": "Adachi"
+},
+"town": {
+"ja": "千住旭町",
+"en": "Senju asahi cho"
+}
+},
+"tokyo.nakano": {
+"ward": {
+"ja": "中野区",
+"ko": "나카노구",
+"en": "Nakano"
+},
+"town": {
+"ja": "中野",
+"en": "Nakano"
+}
+},
+"tokyo.ochiai": {
+"ward": {
+"ja": "中野区",
+"ko": "나카노구",
+"en": "Nakano"
+},
+"town": {
+"ja": "東中野",
+"en": "Higashi Nakano"
+}
+},
+"tokyo.waseda": {
+"ward": {
+"ja": "新宿区",
+"ko": "신주쿠구",
+"en": "Shinjuku"
+},
+"town": {
+"ja": "早稲田町",
+"en": "Waseda machi"
+}
+},
+"tokyo.kagurazaka": {
+"ward": {
+"ja": "新宿区",
+"ko": "신주쿠구",
+"en": "Shinjuku"
+},
+"town": {
+"ja": "矢来町",
+"en": "Yaraicho"
+}
+},
+"tokyo.iidabashi": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "飯田橋",
+"en": "Iidabashi"
+}
+},
+"tokyo.kudanshita": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "九段南",
+"ko": "구단미나미",
+"en": "Kudan-Minami"
+}
+},
+"tokyo.takebashi": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "一ツ橋",
+"en": "Hitotsubashi"
+}
+},
+"tokyo.monzen_nakacho": {
+"ward": {
+"ja": "江東区",
+"ko": "고토구",
+"en": "Koto"
+},
+"town": {
+"ja": "門前仲町",
+"en": "Monzennakacho"
+}
+},
+"tokyo.kiba": {
+"ward": {
+"ja": "江東区",
+"ko": "고토구",
+"en": "Koto"
+},
+"town": {
+"ja": "木場",
+"en": "Kiba"
+}
+},
+"tokyo.toyocho": {
+"ward": {
+"ja": "江東区",
+"ko": "고토구",
+"en": "Koto"
+},
+"town": {
+"ja": "東陽",
+"en": "Toyo"
+}
+},
+"tokyo.minami_sunamachi": {
+"ward": {
+"ja": "江東区",
+"ko": "고토구",
+"en": "Koto"
+},
+"town": {
+"ja": "南砂",
+"en": "Minami suna"
+}
+},
+"tokyo.nishi_kasai": {
+"ward": {
+"ja": "江戸川区",
+"ko": "에도가와구",
+"en": "Edogawa"
+},
+"town": {
+"ja": "西葛西",
+"en": "Nishi Kasai"
+}
+},
+"tokyo.kasai": {
+"ward": {
+"ja": "江戸川区",
+"ko": "에도가와구",
+"en": "Edogawa"
+},
+"town": {
+"ja": "中葛西",
+"en": "Naka Kasai"
+}
+},
+"tokyo.urayasu": {
+"ward": {
+"ja": "浦安市",
+"ko": "우라야스시",
+"en": "Urayasu"
+},
+"town": {
+"ja": "北栄",
+"en": "Kitazakae"
+}
+},
+"tokyo.minami_gyotoku": {
+"ward": {
+"ja": "市川市",
+"ko": "이치카와시",
+"en": "Ichikawa"
+}
+},
+"tokyo.gyotoku": {
+"ward": {
+"ja": "市川市",
+"ko": "이치카와시",
+"en": "Ichikawa"
+}
+},
+"tokyo.myoden": {
+"ward": {
+"ja": "市川市",
+"ko": "이치카와시",
+"en": "Ichikawa"
+}
+},
+"tokyo.baraki_nakayama": {
+"ward": {
+"ja": "船橋市",
+"ko": "후나바시시",
+"en": "Funabashi"
+}
+},
+"tokyo.nishi_funabashi": {
+"ward": {
+"ja": "船橋市",
+"ko": "후나바시시",
+"en": "Funabashi"
+}
+},
+"tokyo.yoyogi_uehara": {
+"ward": {
+"ja": "渋谷区",
+"ko": "시부야구",
+"en": "Shibuya"
+},
+"town": {
+"ja": "西原",
+"ko": "니시하라",
+"en": "Nishihara"
+}
+},
+"tokyo.yoyogi_koen": {
+"ward": {
+"ja": "渋谷区",
+"ko": "시부야구",
+"en": "Shibuya"
+},
+"town": {
+"ja": "代々木神園町",
+"ko": "요요기카미조노초",
+"en": "Yoyogi Kamizono-chō"
+}
+},
+"tokyo.meiji_jingumae": {
+"ward": {
+"ja": "渋谷区",
+"ko": "시부야구",
+"en": "Shibuya"
+},
+"town": {
+"ja": "神宮前",
+"ko": "진구마에",
+"en": "Jingumae"
+}
+},
+"tokyo.nogizaka": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "六本木",
+"ko": "롯본기",
+"en": "Roppongi"
+}
+},
+"tokyo.akasaka": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "赤坂",
+"ko": "아카사카",
+"en": "Akasaka"
+}
+},
+"tokyo.nijubashimae": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "丸の内",
+"ko": "마루노우치",
+"en": "Marunouchi"
+}
+},
+"tokyo.shin_ochanomizu": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "神田駿河台",
+"en": "Kanda-Surugadai"
+}
+},
+"tokyo.yushima": {
+"ward": {
+"ja": "文京区",
+"ko": "분쿄구",
+"en": "Bunkyō"
+},
+"town": {
+"ja": "湯島",
+"en": "Yushima"
+}
+},
+"tokyo.nezu": {
+"ward": {
+"ja": "文京区",
+"ko": "분쿄구",
+"en": "Bunkyō"
+},
+"town": {
+"ja": "根津",
+"en": "Nezu"
+}
+},
+"tokyo.sendagi": {
+"ward": {
+"ja": "文京区",
+"ko": "분쿄구",
+"en": "Bunkyō"
+},
+"town": {
+"ja": "千駄木",
+"en": "Sendagi"
+}
+},
+"tokyo.machiya": {
+"ward": {
+"ja": "荒川区",
+"ko": "아라카와구",
+"en": "Arakawa"
+},
+"town": {
+"ja": "荒川",
+"en": "Arakawa"
+}
+},
+"tokyo.ayase": {
+"ward": {
+"ja": "足立区",
+"ko": "아다치구",
+"en": "Adachi"
+},
+"town": {
+"ja": "綾瀬",
+"en": "Ayase"
+}
+},
+"tokyo.kita_ayase": {
+"ward": {
+"ja": "足立区",
+"ko": "아다치구",
+"en": "Adachi"
+},
+"town": {
+"ja": "谷中",
+"en": "Yanaka"
+}
+},
+"tokyo.wakoshi": {
+"ward": {
+"ja": "和光市",
+"ko": "와코시",
+"en": "Wako"
+}
+},
+"tokyo.chikatetsu_narimasu": {
+"ward": {
+"ja": "板橋区",
+"ko": "이타바시구",
+"en": "Itabashi"
+},
+"town": {
+"ja": "成増",
+"en": "Narimasu"
+}
+},
+"tokyo.chikatetsu_akatsuka": {
+"ward": {
+"ja": "練馬区",
+"ko": "네리마구",
+"en": "Nerima"
+},
+"town": {
+"ja": "田柄",
+"en": "Tagara"
+}
+},
+"tokyo.heiwadai": {
+"ward": {
+"ja": "練馬区",
+"ko": "네리마구",
+"en": "Nerima"
+},
+"town": {
+"ja": "早宮",
+"en": "Hayamiya"
+}
+},
+"tokyo.hikawadai": {
+"ward": {
+"ja": "練馬区",
+"ko": "네리마구",
+"en": "Nerima"
+},
+"town": {
+"ja": "氷川台",
+"en": "Hikawadai"
+}
+},
+"tokyo.kotake_mukaihara": {
+"ward": {
+"ja": "練馬区",
+"ko": "네리마구",
+"en": "Nerima"
+},
+"town": {
+"ja": "小竹町",
+"en": "Kotake cho"
+}
+},
+"tokyo.senkawa": {
+"ward": {
+"ja": "豊島区",
+"ko": "도시마구",
+"en": "Toshima"
+},
+"town": {
+"ja": "要町",
+"en": "Kanamecho"
+}
+},
+"tokyo.kanamecho": {
+"ward": {
+"ja": "豊島区",
+"ko": "도시마구",
+"en": "Toshima"
+},
+"town": {
+"ja": "要町",
+"en": "Kanamecho"
+}
+},
+"tokyo.higashi_ikebukuro": {
+"ward": {
+"ja": "豊島区",
+"ko": "도시마구",
+"en": "Toshima"
+},
+"town": {
+"ja": "南池袋",
+"en": "Minami-Ikebukuro"
+}
+},
+"tokyo.gokokuji": {
+"ward": {
+"ja": "文京区",
+"ko": "분쿄구",
+"en": "Bunkyō"
+},
+"town": {
+"ja": "音羽",
+"en": "Otowa"
+}
+},
+"tokyo.edogawabashi": {
+"ward": {
+"ja": "文京区",
+"ko": "분쿄구",
+"en": "Bunkyō"
+},
+"town": {
+"ja": "関口",
+"en": "Sekiguchi"
+}
+},
+"tokyo.ichigaya": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "五番町",
+"ko": "고반초",
+"en": "Gobanchō"
+}
+},
+"tokyo.kojimachi": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "麹町",
+"ko": "고치마치",
+"en": "Kōjimachi"
+}
+},
+"tokyo.nagatacho": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "永田町",
+"ko": "나가타초",
+"en": "Nagatacho"
+}
+},
+"tokyo.sakuradamon": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "霞が関",
+"ko": "가스미가세키",
+"en": "Kasumigaseki"
+}
+},
+"tokyo.ginza_itchome": {
+"ward": {
+"ja": "中央区",
+"ko": "주오구",
+"en": "Chuo"
+},
+"town": {
+"ja": "銀座",
+"ko": "긴자",
+"en": "Ginza"
+}
+},
+"tokyo.shintomicho": {
+"ward": {
+"ja": "中央区",
+"ko": "주오구",
+"en": "Chuo"
+},
+"town": {
+"ja": "築地",
+"ko": "츠키지",
+"en": "Tsukiji"
+}
+},
+"tokyo.tsukishima": {
+"ward": {
+"ja": "中央区",
+"ko": "주오구",
+"en": "Chuo"
+},
+"town": {
+"ja": "月島",
+"ko": "츠키시마",
+"en": "Tsukishima"
+}
+},
+"tokyo.toyosu": {
+"ward": {
+"ja": "江東区",
+"ko": "고토구",
+"en": "Koto"
+},
+"town": {
+"ja": "豊洲",
+"en": "Toyosu"
+}
+},
+"tokyo.tatsumi": {
+"ward": {
+"ja": "江東区",
+"ko": "고토구",
+"en": "Koto"
+},
+"town": {
+"ja": "辰巳",
+"en": "Tatsumi"
+}
+},
+"tokyo.shin_kiba": {
+"ward": {
+"ja": "江東区",
+"ko": "고토구",
+"en": "Koto"
+},
+"town": {
+"ja": "新木場",
+"en": "Shinkiba"
+}
+},
+"tokyo.hanzomon": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "麹町",
+"ko": "고치마치",
+"en": "Kōjimachi"
+}
+},
+"tokyo.jimbocho": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "神田神保町",
+"en": "Kanda-Jimbocho"
+}
+},
+"tokyo.suitengumae": {
+"ward": {
+"ja": "中央区",
+"ko": "주오구",
+"en": "Chuo"
+},
+"town": {
+"ja": "日本橋蛎殻町",
+"ko": "니혼바시카키가라초",
+"en": "Nihonbashi Kakigaracho"
+}
+},
+"tokyo.kiyosumi_shirakawa": {
+"ward": {
+"ja": "江東区",
+"ko": "고토구",
+"en": "Koto"
+},
+"town": {
+"ja": "清澄",
+"en": "Kiyosumi"
+}
+},
+"tokyo.sumiyoshi": {
+"ward": {
+"ja": "江東区",
+"ko": "고토구",
+"en": "Koto"
+},
+"town": {
+"ja": "住吉",
+"en": "Sumiyoshi"
+}
+},
+"tokyo.kinshicho": {
+"ward": {
+"ja": "墨田区",
+"ko": "스미다구",
+"en": "Sumida"
+},
+"town": {
+"ja": "江東橋",
+"en": "Kotobashi"
+}
+},
+"tokyo.oshiage": {
+"ward": {
+"ja": "墨田区",
+"ko": "스미다구",
+"en": "Sumida"
+},
+"town": {
+"ja": "押上",
+"en": "Oshiage"
+}
+},
+"tokyo.shirokanedai": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "白金台",
+"en": "Shirokanedai"
+}
+},
+"tokyo.shirokane_takanawa": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "白金",
+"en": "Shirokane"
+}
+},
+"tokyo.azabu_juban": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "麻布十番",
+"en": "Azabu-Jūban"
+}
+},
+"tokyo.roppongi_itchome": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "六本木",
+"ko": "롯본기",
+"en": "Roppongi"
+}
+},
+"tokyo.todaimae": {
+"ward": {
+"ja": "文京区",
+"ko": "분쿄구",
+"en": "Bunkyō"
+},
+"town": {
+"ja": "向丘",
+"en": "Mukōgaoka"
+}
+},
+"tokyo.hon_komagome": {
+"ward": {
+"ja": "文京区",
+"ko": "분쿄구",
+"en": "Bunkyō"
+},
+"town": {
+"ja": "向丘",
+"en": "Mukōgaoka"
+}
+},
+"tokyo.nishigahara": {
+"ward": {
+"ja": "北区",
+"ko": "기타구",
+"en": "Kita"
+},
+"town": {
+"ja": "西ケ原",
+"en": "Nishigahara"
+}
+},
+"tokyo.oji": {
+"ward": {
+"ja": "北区",
+"ko": "기타구",
+"en": "Kita"
+},
+"town": {
+"ja": "王子",
+"en": "Ōji"
+}
+},
+"tokyo.oji_kamiya": {
+"ward": {
+"ja": "北区",
+"ko": "기타구",
+"en": "Kita"
+},
+"town": {
+"ja": "王子",
+"en": "Ōji"
+}
+},
+"tokyo.shimo": {
+"ward": {
+"ja": "北区",
+"ko": "기타구",
+"en": "Kita"
+},
+"town": {
+"ja": "志茂",
+"en": "Shimo"
+}
+},
+"tokyo.akabane_iwabuchi": {
+"ward": {
+"ja": "北区",
+"ko": "기타구",
+"en": "Kita"
+},
+"town": {
+"ja": "赤羽",
+"en": "Akabane"
+}
+},
+"tokyo.zoshigaya": {
+"ward": {
+"ja": "豊島区",
+"ko": "도시마구",
+"en": "Toshima"
+},
+"town": {
+"ja": "雑司が谷",
+"en": "Zōshigaya"
+}
+},
+"tokyo.nishi_waseda": {
+"ward": {
+"ja": "新宿区",
+"ko": "신주쿠구",
+"en": "Shinjuku"
+},
+"town": {
+"ja": "戸山",
+"en": "Toyama"
+}
+},
+"tokyo.higashi_shinjuku": {
+"ward": {
+"ja": "新宿区",
+"ko": "신주쿠구",
+"en": "Shinjuku"
+},
+"town": {
+"ja": "新宿",
+"ko": "신주쿠",
+"en": "Shinjuku"
+}
+},
+"tokyo.kitasando": {
+"ward": {
+"ja": "渋谷区",
+"ko": "시부야구",
+"en": "Shibuya"
+},
+"town": {
+"ja": "千駄ヶ谷",
+"ko": "센다가야",
+"en": "Sendagaya"
+}
+},
+"tokyo.nishi_magome": {
+"ward": {
+"ja": "大田区",
+"ko": "오타구",
+"en": "Ota"
+},
+"town": {
+"ja": "西馬込",
+"en": "Nishi Magome"
+}
+},
+"tokyo.magome": {
+"ward": {
+"ja": "大田区",
+"ko": "오타구",
+"en": "Ota"
+},
+"town": {
+"ja": "東馬込",
+"en": "Higashi Magome"
+}
+},
+"tokyo.nakanobu": {
+"ward": {
+"ja": "品川区",
+"ko": "시나가와구",
+"en": "Shinagawa"
+},
+"town": {
+"ja": "中延",
+"en": "Nakanobu"
+}
+},
+"tokyo.togoshi": {
+"ward": {
+"ja": "品川区",
+"ko": "시나가와구",
+"en": "Shinagawa"
+},
+"town": {
+"ja": "戸越",
+"en": "Togoshi"
+}
+},
+"tokyo.takanawadai": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "白金台",
+"en": "Shirokanedai"
+}
+},
+"tokyo.sengakuji": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "高輪",
+"en": "Takanawa"
+}
+},
+"tokyo.mita": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "芝",
+"en": "Shiba"
+}
+},
+"tokyo.daimon": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "芝大門",
+"en": "Shiba Daimon"
+}
+},
+"tokyo.takaracho": {
+"ward": {
+"ja": "中央区",
+"ko": "주오구",
+"en": "Chuo"
+},
+"town": {
+"ja": "京橋",
+"ko": "교바시",
+"en": "Kyōbashi"
+}
+},
+"tokyo.higashi_nihonbashi": {
+"ward": {
+"ja": "中央区",
+"ko": "주오구",
+"en": "Chuo"
+},
+"town": {
+"ja": "東日本橋",
+"ko": "히가시니혼바시",
+"en": "Higashi nihonbashi"
+}
+},
+"tokyo.asakusabashi": {
+"ward": {
+"ja": "台東区",
+"ko": "다이토구",
+"en": "Taito"
+},
+"town": {
+"ja": "浅草橋",
+"en": "Asakusabashi"
+}
+},
+"tokyo.kuramae": {
+"ward": {
+"ja": "台東区",
+"ko": "다이토구",
+"en": "Taito"
+},
+"town": {
+"ja": "蔵前",
+"en": "Kuramae"
+}
+},
+"tokyo.honjo_azumabashi": {
+"ward": {
+"ja": "墨田区",
+"ko": "스미다구",
+"en": "Sumida"
+},
+"town": {
+"ja": "吾妻橋",
+"en": "Azumabashi"
+}
+},
+"tokyo.shibakoen": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "芝公園",
+"ko": "시바코엔",
+"en": "Parc de Shiba"
+}
+},
+"tokyo.onarimon": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "西新橋",
+"ko": "니시신바시",
+"en": "Nishi-Shinbashi"
+}
+},
+"tokyo.uchisaiwaicho": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "内幸町",
+"ko": "우치사이와이초",
+"en": "Uchisaiwaichō"
+}
+},
+"tokyo.suidobashi": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "神田三崎町",
+"en": "Kanda-Misakichō"
+}
+},
+"tokyo.kasuga": {
+"ward": {
+"ja": "文京区",
+"ko": "분쿄구",
+"en": "Bunkyō"
+},
+"town": {
+"ja": "本郷",
+"en": "Hongō"
+}
+},
+"tokyo.hakusan": {
+"ward": {
+"ja": "文京区",
+"ko": "분쿄구",
+"en": "Bunkyō"
+},
+"town": {
+"ja": "白山",
+"en": "Hakusan"
+}
+},
+"tokyo.sengoku": {
+"ward": {
+"ja": "文京区",
+"ko": "분쿄구",
+"en": "Bunkyō"
+},
+"town": {
+"ja": "本駒込",
+"en": "Honkomagome"
+}
+},
+"tokyo.nishi_sugamo": {
+"ward": {
+"ja": "豊島区",
+"ko": "도시마구",
+"en": "Toshima"
+},
+"town": {
+"ja": "西巣鴨",
+"en": "Nishi-Sugamo"
+}
+},
+"tokyo.shin_itabashi": {
+"ward": {
+"ja": "板橋区",
+"ko": "이타바시구",
+"en": "Itabashi"
+},
+"town": {
+"ja": "板橋",
+"en": "Itabashi"
+}
+},
+"tokyo.itabashi_kuyakushomae": {
+"ward": {
+"ja": "板橋区",
+"ko": "이타바시구",
+"en": "Itabashi"
+},
+"town": {
+"ja": "板橋",
+"en": "Itabashi"
+}
+},
+"tokyo.itabashi_honcho": {
+"ward": {
+"ja": "板橋区",
+"ko": "이타바시구",
+"en": "Itabashi"
+},
+"town": {
+"ja": "大和町",
+"en": "Yamato cho"
+}
+},
+"tokyo.motohasunuma": {
+"ward": {
+"ja": "板橋区",
+"ko": "이타바시구",
+"en": "Itabashi"
+},
+"town": {
+"ja": "蓮沼町",
+"en": "Hasunumacho"
+}
+},
+"tokyo.shimura_sakaue": {
+"ward": {
+"ja": "板橋区",
+"ko": "이타바시구",
+"en": "Itabashi"
+},
+"town": {
+"ja": "小豆沢",
+"en": "Azusawa"
+}
+},
+"tokyo.shimura_sanchome": {
+"ward": {
+"ja": "板橋区",
+"ko": "이타바시구",
+"en": "Itabashi"
+},
+"town": {
+"ja": "志村",
+"en": "Shimura"
+}
+},
+"tokyo.hasune": {
+"ward": {
+"ja": "板橋区",
+"ko": "이타바시구",
+"en": "Itabashi"
+},
+"town": {
+"ja": "蓮根",
+"en": "Hasune"
+}
+},
+"tokyo.nishidai": {
+"ward": {
+"ja": "板橋区",
+"ko": "이타바시구",
+"en": "Itabashi"
+},
+"town": {
+"ja": "高島平",
+"en": "Takashimadaira"
+}
+},
+"tokyo.takashimadaira": {
+"ward": {
+"ja": "板橋区",
+"ko": "이타바시구",
+"en": "Itabashi"
+},
+"town": {
+"ja": "高島平",
+"en": "Takashimadaira"
+}
+},
+"tokyo.shin_takashimadaira": {
+"ward": {
+"ja": "板橋区",
+"ko": "이타바시구",
+"en": "Itabashi"
+},
+"town": {
+"ja": "高島平",
+"en": "Takashimadaira"
+}
+},
+"tokyo.nishi_takashimadaira": {
+"ward": {
+"ja": "板橋区",
+"ko": "이타바시구",
+"en": "Itabashi"
+},
+"town": {
+"ja": "高島平",
+"en": "Takashimadaira"
+}
+},
+"tokyo.akebonobashi": {
+"ward": {
+"ja": "新宿区",
+"ko": "신주쿠구",
+"en": "Shinjuku"
+},
+"town": {
+"ja": "住吉町",
+"en": "Sumiyoshicho"
+}
+},
+"tokyo.ogawamachi": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "神田小川町",
+"en": "Kanda-Ogawamachi"
+}
+},
+"tokyo.iwamotocho": {
+"ward": {
+"ja": "千代田区",
+"ko": "지요다구",
+"en": "Chiyoda"
+},
+"town": {
+"ja": "岩本町",
+"en": "Iwamotocho"
+}
+},
+"tokyo.bakuro_yokoyama": {
+"ward": {
+"ja": "中央区",
+"ko": "주오구",
+"en": "Chuo"
+},
+"town": {
+"ja": "日本橋横山町",
+"en": "Nihonbashi yokoyamacho"
+}
+},
+"tokyo.hamacho": {
+"ward": {
+"ja": "中央区",
+"ko": "주오구",
+"en": "Chuo"
+},
+"town": {
+"ja": "日本橋浜町",
+"ko": "니혼바시카하마초",
+"en": "Nihonbashi hamacho"
+}
+},
+"tokyo.morishita": {
+"ward": {
+"ja": "江東区",
+"ko": "고토구",
+"en": "Koto"
+},
+"town": {
+"ja": "森下",
+"en": "Morishita"
+}
+},
+"tokyo.kikukawa": {
+"ward": {
+"ja": "墨田区",
+"ko": "스미다구",
+"en": "Sumida"
+},
+"town": {
+"ja": "菊川",
+"en": "Kikukawa"
+}
+},
+"tokyo.nishi_ojima": {
+"ward": {
+"ja": "江東区",
+"ko": "고토구",
+"en": "Koto"
+},
+"town": {
+"ja": "大島",
+"en": "Ōjima"
+}
+},
+"tokyo.ojima": {
+"ward": {
+"ja": "江東区",
+"ko": "고토구",
+"en": "Koto"
+},
+"town": {
+"ja": "大島",
+"en": "Ōjima"
+}
+},
+"tokyo.higashi_ojima": {
+"ward": {
+"ja": "江戸川区",
+"ko": "에도가와구",
+"en": "Edogawa"
+},
+"town": {
+"ja": "小松川",
+"en": "Komatsugawa"
+}
+},
+"tokyo.funabori": {
+"ward": {
+"ja": "江戸川区",
+"ko": "에도가와구",
+"en": "Edogawa"
+},
+"town": {
+"ja": "船堀",
+"en": "Funabori"
+}
+},
+"tokyo.ichinoe": {
+"ward": {
+"ja": "江戸川区",
+"ko": "에도가와구",
+"en": "Edogawa"
+},
+"town": {
+"ja": "一之江",
+"en": "Ichinoe"
+}
+},
+"tokyo.mizue": {
+"ward": {
+"ja": "江戸川区",
+"ko": "에도가와구",
+"en": "Edogawa"
+},
+"town": {
+"ja": "瑞江",
+"en": "Mizue"
+}
+},
+"tokyo.shinozaki": {
+"ward": {
+"ja": "江戸川区",
+"ko": "에도가와구",
+"en": "Edogawa"
+},
+"town": {
+"ja": "篠崎町",
+"en": "Shinozakimachi"
+}
+},
+"tokyo.motoyawata": {
+"ward": {
+"ja": "市川市",
+"ko": "이치카와시",
+"en": "Ichikawa"
+}
+},
+"tokyo.tochomae": {
+"ward": {
+"ja": "新宿区",
+"ko": "신주쿠구",
+"en": "Shinjuku"
+},
+"town": {
+"ja": "西新宿",
+"ko": "니시신주쿠",
+"en": "Nishi-Shinjuku"
+}
+},
+"tokyo.shinjuku_nishiguchi": {
+"ward": {
+"ja": "新宿区",
+"ko": "신주쿠구",
+"en": "Shinjuku"
+},
+"town": {
+"ja": "西新宿",
+"ko": "니시신주쿠",
+"en": "Nishi-Shinjuku"
+}
+},
+"tokyo.wakamatsu_kawada": {
+"ward": {
+"ja": "新宿区",
+"ko": "신주쿠구",
+"en": "Shinjuku"
+},
+"town": {
+"ja": "若松町",
+"en": "Wakamatsucho"
+}
+},
+"tokyo.ushigome_yanagicho": {
+"ward": {
+"ja": "新宿区",
+"ko": "신주쿠구",
+"en": "Shinjuku"
+},
+"town": {
+"ja": "原町",
+"en": "Haramachi"
+}
+},
+"tokyo.ushigome_kagurazaka": {
+"ward": {
+"ja": "新宿区",
+"ko": "신주쿠구",
+"en": "Shinjuku"
+},
+"town": {
+"ja": "箪笥町",
+"en": "Tansumachi"
+}
+},
+"tokyo.ueno_okachimachi": {
+"ward": {
+"ja": "台東区",
+"ko": "다이토구",
+"en": "Taito"
+},
+"town": {
+"ja": "上野",
+"en": "Ueno"
+}
+},
+"tokyo.shin_okachimachi": {
+"ward": {
+"ja": "台東区",
+"ko": "다이토구",
+"en": "Taito"
+},
+"town": {
+"ja": "東上野",
+"en": "Higashi Ueno"
+}
+},
+"tokyo.ryogoku": {
+"ward": {
+"ja": "墨田区",
+"ko": "스미다구",
+"en": "Sumida"
+},
+"town": {
+"ja": "横網",
+"en": "Yokoami"
+}
+},
+"tokyo.kachidoki": {
+"ward": {
+"ja": "中央区",
+"ko": "주오구",
+"en": "Chuo"
+},
+"town": {
+"ja": "勝どき",
+"ko": "가치도키",
+"en": "Kachidoki"
+}
+},
+"tokyo.tsukijishijo": {
+"ward": {
+"ja": "中央区",
+"ko": "주오구",
+"en": "Chuo"
+},
+"town": {
+"ja": "築地",
+"ko": "츠키지",
+"en": "Tsukiji"
+}
+},
+"tokyo.shiodome": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "東新橋",
+"ko": "히가시신바시",
+"en": "Higashi Shinbashi"
+}
+},
+"tokyo.akabanebashi": {
+"ward": {
+"ja": "港区",
+"ko": "미나토구",
+"en": "Minato"
+},
+"town": {
+"ja": "東麻布",
+"en": "Higashi-Azabu"
+}
+},
+"tokyo.kokuritsu_kyogijo": {
+"ward": {
+"ja": "渋谷区",
+"ko": "시부야구",
+"en": "Shibuya"
+},
+"town": {
+"ja": "千駄ヶ谷",
+"ko": "센다가야",
+"en": "Sendagaya"
+}
+},
+"tokyo.nishi_shinjuku_gochome": {
+"ward": {
+"ja": "新宿区",
+"ko": "신주쿠구",
+"en": "Shinjuku"
+},
+"town": {
+"ja": "西新宿",
+"ko": "니시신주쿠",
+"en": "Nishi-Shinjuku"
+}
+},
+"tokyo.higashi_nakano": {
+"ward": {
+"ja": "中野区",
+"ko": "나카노구",
+"en": "Nakano"
+},
+"town": {
+"ja": "東中野",
+"en": "Higashi Nakano"
+}
+},
+"tokyo.nakai": {
+"ward": {
+"ja": "新宿区",
+"ko": "신주쿠구",
+"en": "Shinjuku"
+},
+"town": {
+"ja": "上落合",
+"en": "Kami Ochiai"
+}
+},
+"tokyo.ochiai_minami_nagasaki": {
+"ward": {
+"ja": "新宿区",
+"ko": "신주쿠구",
+"en": "Shinjuku"
+},
+"town": {
+"ja": "西落合",
+"en": "Nishi Ochiai"
+}
+},
+"tokyo.shin_egota": {
+"ward": {
+"ja": "中野区",
+"ko": "나카노구",
+"en": "Nakano"
+},
+"town": {
+"ja": "江原町",
+"en": "Eharacho"
+}
+},
+"tokyo.nerima": {
+"ward": {
+"ja": "練馬区",
+"ko": "네리마구",
+"en": "Nerima"
+},
+"town": {
+"ja": "練馬",
+"en": "Nerima"
+}
+},
+"tokyo.toshimaen": {
+"ward": {
+"ja": "練馬区",
+"ko": "네리마구",
+"en": "Nerima"
+},
+"town": {
+"ja": "練馬",
+"en": "Nerima"
+}
+},
+"tokyo.nerima_kasugacho": {
+"ward": {
+"ja": "練馬区",
+"ko": "네리마구",
+"en": "Nerima"
+},
+"town": {
+"ja": "春日町",
+"en": "Kasugacho"
+}
+},
+"tokyo.hikarigaoka": {
+"ward": {
+"ja": "練馬区",
+"ko": "네리마구",
+"en": "Nerima"
+},
+"town": {
+"ja": "光が丘",
+"en": "Hikarigaoka"
+}
+},
+"tokyo.kitashinagawa": {
+"ward": {
+"ja": "品川区",
+"ko": "시나가와구",
+"en": "Shinagawa"
+},
+"town": {
+"ja": "北品川",
+"en": "Kita-Shinagawa"
+}
+},
+"tokyo.shimbamba": {
+"ward": {
+"ja": "品川区",
+"ko": "시나가와구",
+"en": "Shinagawa"
+},
+"town": {
+"ja": "北品川",
+"en": "Kita-Shinagawa"
+}
+},
+"tokyo.aomono_yokocho": {
+"ward": {
+"ja": "品川区",
+"ko": "시나가와구",
+"en": "Shinagawa"
+},
+"town": {
+"ja": "南品川",
+"en": "Minami-Shinagawa"
+}
+},
+"tokyo.samezu": {
+"ward": {
+"ja": "品川区",
+"ko": "시나가와구",
+"en": "Shinagawa"
+},
+"town": {
+"ja": "東大井",
+"en": "Higashi-Ōi"
+}
+},
+"tokyo.tachiaigawa": {
+"ward": {
+"ja": "品川区",
+"ko": "시나가와구",
+"en": "Shinagawa"
+},
+"town": {
+"ja": "東大井",
+"en": "Higashi-Ōi"
+}
+},
+"tokyo.omori_kaigan": {
+"ward": {
+"ja": "品川区",
+"ko": "시나가와구",
+"en": "Shinagawa"
+},
+"town": {
+"ja": "南大井",
+"en": "Minami-Ōi"
+}
+},
+"tokyo.heiwajima": {
+"ward": {
+"ja": "大田区",
+"ko": "오타구",
+"en": "Ota"
+},
+"town": {
+"ja": "大森北",
+"en": "Omori Kita"
+}
+},
+"tokyo.omorimachi": {
+"ward": {
+"ja": "大田区",
+"ko": "오타구",
+"en": "Ota"
+},
+"town": {
+"ja": "大森西",
+"en": "Omori nishi"
+}
+},
+"tokyo.umeyashiki": {
+"ward": {
+"ja": "大田区",
+"ko": "오타구",
+"en": "Ota"
+},
+"town": {
+"ja": "蒲田",
+"en": "Kamata"
+}
+},
+"tokyo.keikyu_kamata": {
+"ward": {
+"ja": "大田区",
+"ko": "오타구",
+"en": "Ota"
+},
+"town": {
+"ja": "蒲田",
+"en": "Kamata"
+}
+},
+"tokyo.kojiya": {
+"ward": {
+"ja": "大田区",
+"ko": "오타구",
+"en": "Ota"
+},
+"town": {
+"ja": "西糀谷",
+"en": "Nishi Kojiya"
+}
+},
+"tokyo.otorii": {
+"ward": {
+"ja": "大田区",
+"ko": "오타구",
+"en": "Ota"
+},
+"town": {
+"ja": "西糀谷",
+"en": "Nishi Kojiya"
+}
+},
+"tokyo.anamori_inari": {
+"ward": {
+"ja": "大田区",
+"ko": "오타구",
+"en": "Ota"
+},
+"town": {
+"ja": "羽田",
+"en": "Haneda"
+}
+},
+"tokyo.tenkubashi": {
+"ward": {
+"ja": "大田区",
+"ko": "오타구",
+"en": "Ota"
+},
+"town": {
+"ja": "羽田空港",
+"en": "Haneda Airport"
+}
+},
+"tokyo.haneda_airport_terminal_3": {
+"ward": {
+"ja": "大田区",
+"ko": "오타구",
+"en": "Ota"
+},
+"town": {
+"ja": "羽田空港",
+"en": "Haneda Airport"
+}
+},
+"tokyo.haneda_airport_terminal_12": {
+"ward": {
+"ja": "大田区",
+"ko": "오타구",
+"en": "Ota"
+},
+"town": {
+"ja": "羽田空港",
+"en": "Haneda Airport"
+}
+},
+"tokyo.keisei_hikifune": {
+"ward": {
+"ja": "墨田区",
+"ko": "스미다구",
+"en": "Sumida"
+},
+"town": {
+"ja": "京島",
+"en": "Kyojima"
+}
+},
+"tokyo.yahiro": {
+"ward": {
+"ja": "墨田区",
+"ko": "스미다구",
+"en": "Sumida"
+},
+"town": {
+"ja": "八広",
+"en": "Yahiro"
+}
+},
+"tokyo.yotsugi": {
+"ward": {
+"ja": "葛飾区",
+"ko": "가쓰시카구",
+"en": "Katsushika"
+},
+"town": {
+"ja": "四つ木",
+"en": "Yotsugi"
+}
+},
+"tokyo.keisei_tateishi": {
+"ward": {
+"ja": "葛飾区",
+"ko": "가쓰시카구",
+"en": "Katsushika"
+},
+"town": {
+"ja": "立石",
+"en": "Tateishi"
+}
+},
+"tokyo.aoto": {
+"ward": {
+"ja": "葛飾区",
+"ko": "가쓰시카구",
+"en": "Katsushika"
+},
+"town": {
+"ja": "青戸",
+"en": "Aoto"
+}
+},
+"tokyo.keisei_takasago": {
+"ward": {
+"ja": "葛飾区",
+"ko": "가쓰시카구",
+"en": "Katsushika"
+},
+"town": {
+"ja": "高砂",
+"en": "Takasago"
+}
+},
+"tokyo.keisei_koiwa": {
+"ward": {
+"ja": "江戸川区",
+"ko": "에도가와구",
+"en": "Edogawa"
+},
+"town": {
+"ja": "北小岩",
+"en": "Kita-Koiwa"
+}
+},
+"tokyo.edogawa": {
+"ward": {
+"ja": "江戸川区",
+"ko": "에도가와구",
+"en": "Edogawa"
+},
+"town": {
+"ja": "北小岩",
+"en": "Kita-Koiwa"
+}
+},
+"tokyo.fudomae": {
+"ward": {
+"ja": "品川区",
+"ko": "시나가와구",
+"en": "Shinagawa"
+},
+"town": {
+"ja": "西五反田",
+"en": "Nishi-Gotanda"
+}
+},
+"tokyo.musashi_koyama": {
+"ward": {
+"ja": "品川区",
+"ko": "시나가와구",
+"en": "Shinagawa"
+},
+"town": {
+"ja": "小山",
+"en": "Koyama"
+}
+},
+"tokyo.nishi_koyama": {
+"ward": {
+"ja": "品川区",
+"ko": "시나가와구",
+"en": "Shinagawa"
+},
+"town": {
+"ja": "小山",
+"en": "Koyama"
+}
+},
+"tokyo.senzoku": {
+"ward": {
+"ja": "目黒区",
+"ko": "메구로구",
+"en": "Meguro"
+},
+"town": {
+"ja": "洗足",
+"ko": "센조쿠",
+"en": "Senzoku"
+}
+},
+"tokyo.ookayama": {
+"ward": {
+"ja": "大田区",
+"ko": "오타구",
+"en": "Ota"
+},
+"town": {
+"ja": "北千束",
+"en": "Kita Senzoku"
+}
+},
+"tokyo.okusawa": {
+"ward": {
+"ja": "世田谷区",
+"ko": "세타가야구",
+"en": "Setagaya"
+},
+"town": {
+"ja": "奥沢",
+"en": "Okusawa"
+}
+},
+"tokyo.den_en_chofu": {
+"ward": {
+"ja": "大田区",
+"ko": "오타구",
+"en": "Ota"
+},
+"town": {
+"ja": "田園調布",
+"en": "Denenchofu"
+}
+},
+"tokyo.tamagawa": {
+"ward": {
+"ja": "大田区",
+"ko": "오타구",
+"en": "Ota"
+},
+"town": {
+"ja": "田園調布",
+"en": "Denenchofu"
+}
+},
+"tokyo.hatsudai": {
+"ward": {
+"ja": "渋谷区",
+"ko": "시부야구",
+"en": "Shibuya"
+},
+"town": {
+"ja": "本町",
+"ko": "혼마치",
+"en": "Honmachi"
+}
+},
+"tokyo.hatagaya": {
+"ward": {
+"ja": "渋谷区",
+"ko": "시부야구",
+"en": "Shibuya"
+},
+"town": {
+"ja": "幡ヶ谷",
+"ko": "하타가야",
+"en": "Hatagaya"
+}
+},
+"tokyo.sasazuka": {
+"ward": {
+"ja": "渋谷区",
+"ko": "시부야구",
+"en": "Shibuya"
+},
+"town": {
+"ja": "笹塚",
+"ko": "사사즈카",
+"en": "Sasazuka"
+}
+},
+"tokyo.daitabashi": {
+"ward": {
+"ja": "世田谷区",
+"ko": "세타가야구",
+"en": "Setagaya"
+},
+"town": {
+"ja": "大原",
+"ko": "오하라",
+"en": "Ōhara"
+}
+},
+"tokyo.meidaimae": {
+"ward": {
+"ja": "世田谷区",
+"ko": "세타가야구",
+"en": "Setagaya"
+},
+"town": {
+"ja": "松原",
+"ko": "마츠바라",
+"en": "Matsubara"
+}
+},
+"tokyo.shimo_takaido": {
+"ward": {
+"ja": "世田谷区",
+"ko": "세타가야구",
+"en": "Setagaya"
+},
+"town": {
+"ja": "松原",
+"ko": "마츠바라",
+"en": "Matsubara"
+}
+},
+"tokyo.sakurajosui": {
+"ward": {
+"ja": "世田谷区",
+"ko": "세타가야구",
+"en": "Setagaya"
+},
+"town": {
+"ja": "桜上水",
+"ko": "사쿠라조스이",
+"en": "Sakurajosui"
+}
+},
+"tokyo.kami_kitazawa": {
+"ward": {
+"ja": "世田谷区",
+"ko": "세타가야구",
+"en": "Setagaya"
+},
+"town": {
+"ja": "上北沢",
+"ko": "가미키타자와",
+"en": "Kami Kitazawa"
+}
+},
+"tokyo.hachimanyama": {
+"ward": {
+"ja": "杉並区",
+"ko": "스기나미구",
+"en": "Suginami"
+},
+"town": {
+"ja": "上高井戸",
+"en": "Kami Takaido"
+}
+},
+"tokyo.roka_koen": {
+"ward": {
+"ja": "世田谷区",
+"ko": "세타가야구",
+"en": "Setagaya"
+},
+"town": {
+"ja": "南烏山",
+"en": "Minami Karasuyama"
+}
+},
+"tokyo.chitose_karasuyama": {
+"ward": {
+"ja": "世田谷区",
+"ko": "세타가야구",
+"en": "Setagaya"
+},
+"town": {
+"ja": "南烏山",
+"en": "Minami Karasuyama"
+}
+},
+"tokyo.sengawa": {
+"ward": {
+"ja": "調布市",
+"ko": "조후시",
+"en": "Chofu"
+}
+},
+"tokyo.tsutsujigaoka": {
+"ward": {
+"ja": "調布市",
+"ko": "조후시",
+"en": "Chofu"
+}
+},
+"tokyo.shibasaki": {
+"ward": {
+"ja": "調布市",
+"ko": "조후시",
+"en": "Chofu"
+}
+},
+"tokyo.kokuryo": {
+"ward": {
+"ja": "調布市",
+"ko": "조후시",
+"en": "Chofu"
+},
+"town": {
+"ja": "国領町",
+"en": "Kokuryocho"
+}
+},
+"tokyo.fuda": {
+"ward": {
+"ja": "調布市",
+"ko": "조후시",
+"en": "Chofu"
+},
+"town": {
+"ja": "国領町",
+"en": "Kokuryocho"
+}
+},
+"tokyo.chofu": {
+"ward": {
+"ja": "調布市",
+"ko": "조후시",
+"en": "Chofu"
+},
+"town": {
+"ja": "布田",
+"en": "Fuda"
+}
+},
+"tokyo.nishi_chofu": {
+"ward": {
+"ja": "調布市",
+"ko": "조후시",
+"en": "Chofu"
+},
+"town": {
+"ja": "上石原",
+"en": "Kami ishiwara"
+}
+},
+"tokyo.tobitakyu": {
+"ward": {
+"ja": "調布市",
+"ko": "조후시",
+"en": "Chofu"
+},
+"town": {
+"ja": "飛田給",
+"en": "Tobitakyu"
+}
+},
+"tokyo.musashinodai": {
+"ward": {
+"ja": "府中市",
+"ko": "후추시",
+"en": "Fuchu"
+}
+},
+"tokyo.tama_reien": {
+"ward": {
+"ja": "府中市",
+"ko": "후추시",
+"en": "Fuchu"
+}
+},
+"tokyo.higashi_fuchu": {
+"ward": {
+"ja": "府中市",
+"ko": "후추시",
+"en": "Fuchu"
+}
+},
+"tokyo.fuchu": {
+"ward": {
+"ja": "府中市",
+"ko": "후추시",
+"en": "Fuchu"
+}
+},
+"tokyo.bubaigawara": {
+"ward": {
+"ja": "府中市",
+"ko": "후추시",
+"en": "Fuchu"
+}
+},
+"tokyo.nakagawara": {
+"ward": {
+"ja": "府中市",
+"ko": "후추시",
+"en": "Fuchu"
+}
+},
+"tokyo.seiseki_sakuragaoka": {
+"ward": {
+"ja": "多摩市",
+"ko": "다마시",
+"en": "Tama"
+}
+},
+"tokyo.mogusaen": {
+"ward": {
+"ja": "日野市",
+"ko": "히노시",
+"en": "Hino"
+},
+"town": {
+"ja": "百草",
+"en": "Mogusa"
+}
+},
+"tokyo.takahatafudo": {
+"ward": {
+"ja": "日野市",
+"ko": "히노시",
+"en": "Hino"
+},
+"town": {
+"ja": "高幡",
+"en": "Takahata"
+}
+},
+"tokyo.minamidaira": {
+"ward": {
+"ja": "日野市",
+"ko": "히노시",
+"en": "Hino"
+},
+"town": {
+"ja": "南平",
+"en": "Minamidaira"
+}
+},
+"tokyo.hirayamajoshi_koen": {
+"ward": {
+"ja": "日野市",
+"ko": "히노시",
+"en": "Hino"
+},
+"town": {
+"ja": "平山",
+"en": "Hirayama"
+}
+},
+"tokyo.naganuma": {
+"ward": {
+"ja": "八王子市",
+"ko": "하치오지시",
+"en": "Hachioji"
+}
+},
+"tokyo.kitano": {
+"ward": {
+"ja": "八王子市",
+"ko": "하치오지시",
+"en": "Hachioji"
+}
+},
+"tokyo.keio_hachioji": {
+"ward": {
+"ja": "八王子市",
+"ko": "하치오지시",
+"en": "Hachioji"
+}
+},
+"tokyo.keisei_ueno": {
+"ward": {
+"ja": "台東区",
+"ko": "다이토구",
+"en": "Taito"
+},
+"town": {
+"ja": "上野公園",
+"en": "Ueno Park"
+}
+},
+"tokyo.airport_terminal_2": {
+"ward": {
+"ja": "成田市",
+"ko": "나리타시",
+"en": "Narita"
+}
+},
+"tokyo.narita_airport": {
+"ward": {
+"ja": "成田市",
+"ko": "나리타시",
+"en": "Narita"
+}
+},
+"tokyo.higashi_matsudo": {
+"ward": {
+"ja": "松戸市",
+"ko": "마쓰도시",
+"en": "Matsudo"
+}
+},
+"tokyo.shin_kamagaya": {
+"ward": {
+"ja": "鎌ケ谷市",
+"ko": "가마가야시",
+"en": "Kamagaya"
+}
+},
+"tokyo.chiba_new_town_chuo": {
+"ward": {
+"ja": "印西市",
+"ko": "인자이시",
+"en": "Inzai"
+}
+},
+"tokyo.inba_nihon_idai": {
+"ward": {
+"ja": "印西市",
+"ko": "인자이시",
+"en": "Inzai"
+}
+},
+"tokyo.narita_yukawa": {
+"ward": {
+"ja": "成田市",
+"ko": "나리타시",
+"en": "Narita"
+}
+}
+}
+}

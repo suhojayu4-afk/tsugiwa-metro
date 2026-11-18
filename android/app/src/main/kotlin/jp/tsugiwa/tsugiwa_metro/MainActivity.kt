@@ -103,6 +103,27 @@ class MainActivity : FlutterActivity() {
         }
         handleEnd(intent)
 
+        // "tsugiwa/sound": departure melodies.
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "tsugiwa/sound").setMethodCallHandler { call, result ->
+            try {
+                when (call.method) {
+                    "play" -> {
+                        @Suppress("UNCHECKED_CAST")
+                        val args = call.arguments as Map<String, Any?>
+                        MelodyPlayer.play(applicationContext, args["asset"] as String, args["force"] == true)
+                        result.success(null)
+                    }
+                    "stop" -> {
+                        MelodyPlayer.stop()
+                        result.success(null)
+                    }
+                    else -> result.notImplemented()
+                }
+            } catch (e: Exception) {
+                result.error("sound", e.message, null)
+            }
+        }
+
         // "tsugiwa/widget": pictures and weather for the home screen widget.
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "tsugiwa/widget").setMethodCallHandler { call, result ->
             try {
@@ -114,6 +135,15 @@ class MainActivity : FlutterActivity() {
                         Thread { MyStationWidget.savePictures(applicationContext, pngs) }.start()
                         result.success(null)
                     }
+                    "nextArt" -> {
+                        val pngs = args.mapNotNull { (k, v) -> (v as? ByteArray)?.let { k to it } }.toMap()
+                        Thread { NextWidget.saveArt(applicationContext, pngs) }.start()
+                        result.success(null)
+                    }
+                    "info" -> {
+                        WidgetInfo.save(applicationContext, args)
+                        result.success(null)
+                    }
                     "weather" -> {
                         MyStationWidget.saveWeather(applicationContext, args["text"] as? String ?: "")
                         result.success(null)
@@ -122,7 +152,16 @@ class MainActivity : FlutterActivity() {
                         val manager = android.appwidget.AppWidgetManager.getInstance(this)
                         val ok = Build.VERSION.SDK_INT >= 26 && manager.isRequestPinAppWidgetSupported &&
                             manager.requestPinAppWidget(
-                                android.content.ComponentName(this, MyStationWidget::class.java), null, null,
+                                android.content.ComponentName(
+                                    this,
+                                    when (args["kind"]) {
+                                        "board" -> BoardWidget::class.java
+                                        "next" -> NextWidget::class.java
+                                        else -> MyStationWidget::class.java
+                                    },
+                                ),
+                                null,
+                                null,
                             )
                         result.success(ok)
                     }

@@ -4,6 +4,7 @@ import '../../app.dart';
 import '../../core/pixel/pixel_ui.dart';
 import '../../core/services.dart';
 import '../../data/models/city.dart';
+import '../../data/weather/weather_source.dart';
 import '../../l10n/app_localizations.dart';
 import '../../platform/home_widget_bridge.dart';
 import '../my_room/my_room_screen.dart';
@@ -53,19 +54,27 @@ class _MainShellState extends State<MainShell> {
     // Keep the home screen widget's pictures in step with MY駅.
     _widgetSync = HomeWidgetSync(
       bridge: Services.homeWidget,
-      listenable: my,
+      listenable: Listenable.merge([my, Services.weatherNow]),
+      // The widget shows today's weather too: rain, snow, rain or snow on
+      // the way, winter coats (the same pictures as のりば).
       render: (part) => renderMyStationPng(
         look: my.look,
         plate: _plateData(),
         part: part,
         lineColor: myDefaultLine,
         scale: 3,
+        weather: Services.weatherNow.value?.kind ?? WeatherKind.sunny,
+        sky: _widgetSky(),
       ),
-    )..start(() => my.loaded ? '${my.look.key}|${_plateData().hashCode}|$_lang' : '');
+    )..start(() => my.loaded ? '${my.look.key}|${_plateData().hashCode}|$_lang|${_widgetSky()}' : '');
   }
 
-  PlateData _plateData() =>
-      PlateData.of(Services.my, fallbackName: Services.my.sceneItem?.name.of(_lang) ?? '');
+  String? _widgetSky() {
+    final w = Services.weatherNow.value;
+    return w == null ? null : sceneSky(w);
+  }
+
+  PlateData _plateData() => PlateData.of(Services.my, fallbackName: Services.my.sceneItem?.name.of(_lang) ?? '');
 
   @override
   void didChangeDependencies() {
@@ -196,13 +205,7 @@ class _NavItem extends StatelessWidget {
     final dpr = MediaQuery.devicePixelRatioOf(context);
     // 32px art, whole device pixels per art pixel.
     final size = 32 * (36 / 32 * dpr).round().clamp(1, 8) / dpr;
-    Widget image = Image.asset(
-      icon,
-      width: size,
-      height: size,
-      fit: BoxFit.fill,
-      filterQuality: FilterQuality.none,
-    );
+    Widget image = Image.asset(icon, width: size, height: size, fit: BoxFit.fill, filterQuality: FilterQuality.none);
     if (!selected) {
       image = Opacity(
         opacity: 0.6,

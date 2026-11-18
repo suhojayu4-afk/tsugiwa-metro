@@ -147,9 +147,7 @@ class MyStore extends ChangeNotifier {
       // Broken saved data: start from the defaults.
     }
     try {
-      _plate = PlateText.fromJson(
-        jsonDecode(prefs.getString('$prefix.plate') ?? '{}') as Map<String, dynamic>,
-      );
+      _plate = PlateText.fromJson(jsonDecode(prefs.getString('$prefix.plate') ?? '{}') as Map<String, dynamic>);
     } catch (_) {
       _plate = const PlateText();
     }
@@ -209,10 +207,7 @@ class MyStore extends ChangeNotifier {
   /// are stamped; finishing a line gives its reward item.
   Future<TripReward> rewardTrip(List<String> stationIds, {DateTime? now}) async {
     final rules = _catalog?.rules ?? const CoinRules();
-    final day = (now ?? DateTime.now().toUtc().add(const Duration(hours: 9))).toIso8601String().substring(
-      0,
-      10,
-    );
+    final day = (now ?? DateTime.now().toUtc().add(const Duration(hours: 9))).toIso8601String().substring(0, 10);
     final fresh = [
       for (final id in stationIds.toSet())
         if (!_visited.containsKey(id)) id,
@@ -240,6 +235,9 @@ class MyStore extends ChangeNotifier {
     await _save();
     return reward;
   }
+
+  /// The equipped departure melody (asset), or null when it is off.
+  String? get melody => _catalog?.item(equipped(MySlot.melody)).sound;
 
   /// The picture settings for the platform header and the MY preview.
   SceneLook get look {
@@ -300,10 +298,7 @@ class MyStore extends ChangeNotifier {
     await prefs.setStringList('$prefix.visited', _visited.keys.toList());
     await prefs.setString('$prefix.visitedAt', jsonEncode(_visited));
     if (_lastTripDay != null) await prefs.setString('$prefix.lastTripDay', _lastTripDay!);
-    await prefs.setString(
-      '$prefix.equipped',
-      jsonEncode({for (final e in _equipped.entries) e.key.name: e.value}),
-    );
+    await prefs.setString('$prefix.equipped', jsonEncode({for (final e in _equipped.entries) e.key.name: e.value}));
     await prefs.setString('$prefix.plate', jsonEncode(_plate.toJson()));
   }
 }

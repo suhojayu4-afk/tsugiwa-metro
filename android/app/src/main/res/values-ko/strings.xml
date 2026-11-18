@@ -4,4 +4,9 @@
     <string name="widget_name">MY역</string>
     <string name="widget_description">내 역을 홈 화면에</string>
     <string name="widget_empty">앱을 열어 MY역을 만들어 주세요</string>
+    <string name="board_name">지하철 안내</string>
+    <string name="board_description">경로와 막차를 전광판처럼</string>
+    <string name="board_empty">앱에서 경로를 고르면 여기에 나와요</string>
+    <string name="next_name">다음 전철</string>
+    <string name="next_description">자주 가는 경로의 운행 간격과 소요 시간</string>
 </resources>

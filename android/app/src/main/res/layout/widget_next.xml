@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  つぎの電車 (small, 4x1): one pixel picture drawn by the app
+  (lib/platform/next_widget_art.dart) — the route as two station signs with the
+  train between them, an LED with how often trains come, the ride time, the
+  last train and the weather. The widget picks the picture for the hour.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/n_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_board_bg"
+    android:clipToOutline="true">
+
+    <ImageView
+        android:id="@+id/n_art"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/next_name"
+        android:scaleType="fitCenter"
+        android:src="@drawable/widget_next_preview" />
+
+    <TextView
+        android:id="@+id/n_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/widget_pill"
+        android:paddingStart="12dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="6dp"
+        android:text="@string/board_empty"
+        android:textColor="#FFFFFF"
+        android:textSize="13sp"
+        android:visibility="gone" />
+</FrameLayout>
