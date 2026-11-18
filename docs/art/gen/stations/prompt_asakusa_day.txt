@@ -1,0 +1,9 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:\dev\tsugiwa-metro\docs\art\gen\stations\asakusa_day_raw.png
+(copy it there from wherever the tool stores it). Do not write or change any other files. Reply with the saved path only.
+
+Look at C:\dev\tsugiwa-metro\docs\art\gen\stations\asakusa_evening_raw.png first. Make the SAME scene with the SAME composition, camera, buildings, platform, fence and people positions - only the time of day changes to: bright clear midday: blue sky with a few soft white clouds, crisp daylight, light shadows, windows reflecting the sky (not lit)
+
+- Landscape 1536x1024, same detailed 16-bit era pixel art style, crisp square pixels, almost no black outlines, hue-shifted shading.
+- The tracks in the centre stay EMPTY: no train.
+- ABSOLUTELY NO text, letters, numbers, logos or company marks.

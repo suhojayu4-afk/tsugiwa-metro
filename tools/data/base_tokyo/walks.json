@@ -1,0 +1,146 @@
+[
+ {
+  "a": "tokyo.mita",
+  "b": "tokyo.tamachi",
+  "min": 4,
+  "names": "三田 ↔ 田町"
+ },
+ {
+  "a": "tokyo.ueno_hirokoji",
+  "b": "tokyo.ueno_okachimachi",
+  "min": 3,
+  "names": "上野広小路 ↔ 上野御徒町"
+ },
+ {
+  "a": "tokyo.keisei_ueno",
+  "b": "tokyo.ueno",
+  "min": 5,
+  "names": "京成上野 ↔ 上野"
+ },
+ {
+  "a": "tokyo.naka_okachimachi",
+  "b": "tokyo.okachimachi",
+  "min": 3,
+  "names": "仲御徒町 ↔ 御徒町"
+ },
+ {
+  "a": "tokyo.naka_okachimachi",
+  "b": "tokyo.ueno_hirokoji",
+  "min": 5,
+  "names": "仲御徒町 ↔ 上野広小路"
+ },
+ {
+  "a": "tokyo.naka_okachimachi",
+  "b": "tokyo.ueno_okachimachi",
+  "min": 4,
+  "names": "仲御徒町 ↔ 上野御徒町"
+ },
+ {
+  "a": "tokyo.harajuku",
+  "b": "tokyo.meiji_jingumae",
+  "min": 3,
+  "names": "原宿 ↔ 明治神宮前"
+ },
+ {
+  "a": "tokyo.kokkai_gijido_mae",
+  "b": "tokyo.tameike_sanno",
+  "min": 5,
+  "names": "国会議事堂前 ↔ 溜池山王"
+ },
+ {
+  "a": "tokyo.daimon",
+  "b": "tokyo.hamamatsucho",
+  "min": 4,
+  "names": "大門 ↔ 浜松町"
+ },
+ {
+  "a": "tokyo.ogawamachi",
+  "b": "tokyo.shin_ochanomizu",
+  "min": 3,
+  "names": "小川町 ↔ 新御茶ノ水"
+ },
+ {
+  "a": "tokyo.okachimachi",
+  "b": "tokyo.ueno_hirokoji",
+  "min": 3,
+  "names": "御徒町 ↔ 上野広小路"
+ },
+ {
+  "a": "tokyo.okachimachi",
+  "b": "tokyo.ueno_okachimachi",
+  "min": 3,
+  "names": "御徒町 ↔ 上野御徒町"
+ },
+ {
+  "a": "tokyo.ochanomizu",
+  "b": "tokyo.shin_ochanomizu",
+  "min": 4,
+  "names": "御茶ノ水 ↔ 新御茶ノ水"
+ },
+ {
+  "a": "tokyo.shimbashi",
+  "b": "tokyo.shiodome",
+  "min": 5,
+  "names": "新橋 ↔ 汐留"
+ },
+ {
+  "a": "tokyo.hibiya",
+  "b": "tokyo.yurakucho",
+  "min": 4,
+  "names": "日比谷 ↔ 有楽町"
+ },
+ {
+  "a": "tokyo.kasuga",
+  "b": "tokyo.korakuen",
+  "min": 4,
+  "names": "春日 ↔ 後楽園"
+ },
+ {
+  "a": "tokyo.awajicho",
+  "b": "tokyo.shin_ochanomizu",
+  "min": 4,
+  "names": "淡路町 ↔ 新御茶ノ水"
+ },
+ {
+  "a": "tokyo.awajicho",
+  "b": "tokyo.ogawamachi",
+  "min": 3,
+  "names": "淡路町 ↔ 小川町"
+ },
+ {
+  "a": "tokyo.akihabara",
+  "b": "tokyo.iwamotocho",
+  "min": 6,
+  "names": "秋葉原 ↔ 岩本町"
+ },
+ {
+  "a": "tokyo.toranomon",
+  "b": "tokyo.toranomon_hills",
+  "min": 5,
+  "names": "虎ノ門 ↔ 虎ノ門ヒルズ"
+ },
+ {
+  "a": "tokyo.akasaka_mitsuke",
+  "b": "tokyo.nagatacho",
+  "min": 5,
+  "names": "赤坂見附 ↔ 永田町"
+ },
+ {
+  "a": "tokyo.ginza",
+  "b": "tokyo.yurakucho",
+  "min": 5,
+  "names": "銀座 ↔ 有楽町"
+ },
+ {
+  "a": "tokyo.ginza",
+  "b": "tokyo.ginza_itchome",
+  "min": 5,
+  "names": "銀座 ↔ 銀座一丁目"
+ },
+ {
+  "a": "tokyo.bakuro_yokoyama",
+  "b": "tokyo.higashi_nihonbashi",
+  "min": 3,
+  "names": "馬喰横山 ↔ 東日本橋"
+ }
+]

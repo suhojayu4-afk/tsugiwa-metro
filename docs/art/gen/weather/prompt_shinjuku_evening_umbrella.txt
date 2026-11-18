@@ -1,0 +1,14 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/weather/shinjuku_evening_umbrella_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at C:/dev/tsugiwa-metro/docs/art/gen/stations/shinjuku_evening_raw.png first (Shinjuku with tall skyscrapers). Make the SAME picture with ONE change. Keep EVERYTHING else exactly the same: identical composition and camera (do not move, zoom or crop), the same horizon, the same buildings, the fence, the EMPTY double track in the centre with the rails in exactly the same place, the covered platform on the right with the yellow tactile paving, the roof, pillars and overhead wires, and the SAME people in the SAME places at the SAME sizes.
+
+The change: it looks like it will RAIN SOON (50% chance), but it is NOT raining yet.
+- MOST of the people hold a CLOSED, folded umbrella in one hand (a long umbrella hanging down, or a short folded one), drawn at the right size for that person. Nobody has an umbrella open.
+- The sky is covered with heavy, low, dark grey rain clouds; only a little light breaks through. The whole scene is dimmer and cooler than the original, a calm "rain is coming" mood, still evening (keep the sunset colours of the original, only dimmed by the clouds).
+- The ground is still DRY. No rain, no wet reflections, no puddles.
+
+- Landscape 1536x1024, the same detailed 16-bit era pixel art style as the original, crisp square pixels, almost no black outlines, hue-shifted shading.
+- The tracks in the centre stay EMPTY: no train.
+- ABSOLUTELY NO text, letters, numbers, logos or signboards.

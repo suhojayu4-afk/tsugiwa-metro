@@ -1,0 +1,77 @@
+{
+ "source": "Wikidata (CC0), query.wikidata.org, 2026-11-18: Narita airport lines",
+ "stations": [
+  {
+   "qid": "Q3467990",
+   "ja": "東松戸駅",
+   "en": "Higashi-Matsudo Station",
+   "ko": "히가시마쓰도역",
+   "kana": "ひがしまつどえき",
+   "lat": 35.770616,
+   "lng": 139.94381111
+  },
+  {
+   "qid": "Q841454",
+   "ja": "空港第2ビル駅",
+   "en": "Narita Airport Terminal 2･3 Station",
+   "ko": "공항 제2빌딩역",
+   "kana": "くうこうだいにビルえき",
+   "lat": 35.772967,
+   "lng": 140.387639
+  },
+  {
+   "qid": "Q842992",
+   "ja": "新鎌ヶ谷駅",
+   "en": "Shin-Kamagaya Station",
+   "ko": "신카마가야역",
+   "kana": "しんかまがやえき",
+   "lat": 35.77944444,
+   "lng": 139.99833333
+  },
+  {
+   "qid": "Q855466",
+   "ja": "千葉ニュータウン中央駅",
+   "en": "Chiba Newtown Chūō Station",
+   "ko": "지바뉴타운추오역",
+   "kana": "ちばニュータウンちゅうおうえき",
+   "lat": 35.8003,
+   "lng": 140.1163
+  },
+  {
+   "qid": "Q859077",
+   "ja": "印旛日本医大駅",
+   "en": "Inba-Nihon-Idai Station",
+   "ko": "인바니혼이다이역",
+   "kana": "いんばにほんいだいえき",
+   "lat": 35.787583333,
+   "lng": 140.2032
+  },
+  {
+   "qid": "Q859802",
+   "ja": "成田湯川駅",
+   "en": "Narita Yukawa Station",
+   "ko": "나리타유카와역",
+   "kana": "なりたゆかわえき",
+   "lat": 35.79944444,
+   "lng": 140.29111111
+  },
+  {
+   "qid": "Q906732",
+   "ja": "成田空港駅",
+   "en": "Narita Airport Terminal 1 Station",
+   "ko": "나리타 공항역",
+   "kana": "なりたくうこうえき",
+   "lat": 35.765786,
+   "lng": 140.386347
+  },
+  {
+   "qid": "Q907059",
+   "ja": "京成上野駅",
+   "en": "Keisei Ueno Station",
+   "ko": "게이세이우에노역",
+   "kana": "けいせいうえのえき",
+   "lat": 35.711222222,
+   "lng": 139.773555555
+  }
+ ]
+}

@@ -1,0 +1,582 @@
+{
+  "@@locale": "ja",
+  "appTitle": "つぎは Metro",
+  "nearestButton": "現在地から",
+  "locating": "現在地をさがしています…",
+  "nearestNone": "近くに対応している駅がありません",
+  "locationOff": "位置情報がオフです。設定で許可してください",
+  "nearestFound": "いちばん近い駅：{station}（約{meters}m）",
+  "@nearestFound": {
+    "placeholders": {
+      "station": {
+        "type": "String"
+      },
+      "meters": {
+        "type": "int"
+      }
+    }
+  },
+  "weatherSunny": "晴れ",
+  "weatherCloudy": "くもり",
+  "weatherRain": "雨",
+  "weatherSnow": "雪",
+  "weatherUnknown": "―",
+  "humidityLabel": "湿度",
+  "rainChanceLabel": "降水確率",
+  "weatherCredit": "出典：気象庁（データを加工して作成）",
+  "weatherError": "天気を取得できませんでした",
+  "platformInfo": "のりば情報",
+  "nextTrainIn": "つぎの電車 {minutes}分後",
+  "@nextTrainIn": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "trainsEvery": "約{minutes}分おきに来ます",
+  "@trainsEvery": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "lastTrainAbout": "終電の目安 {time}",
+  "@lastTrainAbout": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "outOfService": "運転時間外です（始発の目安 {time}）",
+  "@outOfService": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "estimateBadge": "予想",
+  "liveBadge": "リアルタイム",
+  "tabPlatform": "のりば",
+  "tabMap": "路線図",
+  "tabMy": "MY",
+  "comingSoon": "じゅんび中…",
+  "comingSoonMap": "路線図は次のステップでできあがります",
+  "comingSoonMy": "MYルームは もうすこし先で 開きます",
+  "from": "出発",
+  "to": "到着",
+  "selectStation": "駅をえらぶ",
+  "searchHint": "駅名で検索（ひらがな・ローマ字もOK）",
+  "swap": "入れかえ",
+  "startTrip": "追跡スタート",
+  "endTrip": "終了する",
+  "routeSummary": "約{minutes}分 · {stops}駅 · {transfers, plural, =0{乗換なし} other{乗換{transfers}回}}",
+  "@routeSummary": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      },
+      "stops": {
+        "type": "int"
+      },
+      "transfers": {
+        "type": "int"
+      }
+    }
+  },
+  "stopCount": "{count}駅",
+  "@stopCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "nowLabel": "いま",
+  "nextLabel": "つぎは",
+  "remainingLabel": "のこり",
+  "etaLabel": "到着予定",
+  "betweenStations": "{from} → {to}",
+  "@betweenStations": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "gpsCorrected": "GPSで補正中",
+  "gpsUnderground": "地下区間・時刻表で推定",
+  "gpsWaiting": "時刻表で推定中",
+  "gpsOff": "位置情報オフ・時刻表で推定",
+  "approachingTitle": "つぎは {station}",
+  "@approachingTitle": {
+    "placeholders": {
+      "station": {
+        "type": "String"
+      }
+    }
+  },
+  "approachingBody": "まもなく到着です。降りる準備をしましょう",
+  "arrivedTitle": "到着しました！",
+  "arrivedBody": "{station}に着きました。おつかれさま！",
+  "@arrivedBody": {
+    "placeholders": {
+      "station": {
+        "type": "String"
+      }
+    }
+  },
+  "backHome": "ホームへ",
+  "transferHere": "ここで{line}に乗り換え",
+  "@transferHere": {
+    "placeholders": {
+      "line": {
+        "type": "String"
+      }
+    }
+  },
+  "sameStation": "出発駅と到着駅が同じです",
+  "noRoute": "経路が見つかりません",
+  "testSpeed": "テスト速度",
+  "loading": "読み込み中…",
+  "estimateNote": "時刻は時刻表からの推定です",
+  "destinationLabel": "行き先",
+  "quickRoutes": "よく使うルート",
+  "recentRoutes": "さいきん",
+  "favHome": "自宅へ",
+  "favWork": "会社へ",
+  "nextTrainTitle": "つぎの電車",
+  "favHint": "経路をえらんで ☆ をおすと、ここに登録されます",
+  "favChooseTitle": "どんなルート？",
+  "favOther": "お気に入り",
+  "favRemoveConfirm": "「{route}」をお気に入りから外しますか？",
+  "remove": "外す",
+  "cancel": "キャンセル",
+  "favAdded": "お気に入りに登録しました",
+  "@favRemoveConfirm": {
+    "placeholders": {
+      "route": {
+        "type": "String"
+      }
+    }
+  },
+  "liveFar": "{dest}まで あと{n}駅",
+  "liveNear": "あと{n}駅で {dest}",
+  "liveNext": "つぎは {station}",
+  "liveArrived": "{dest}に到着",
+  "liveFlow": "いま {now} → つぎ {next}",
+  "liveSub": "{line} · {eta}着",
+  "liveShort": "あと{n}駅",
+  "liveEnd": "終了",
+  "alertApproachTitle": "まもなく {dest}",
+  "alertApproachBody": "つぎで降ります。準備してね",
+  "alertArrivedTitle": "{dest}に到着しました",
+  "alertArrivedBody": "おつかれさま！",
+  "channelTrip": "移動中の表示",
+  "channelApproach": "降りる駅のお知らせ",
+  "channelArrive": "到着のお知らせ",
+  "@liveFar": {
+    "placeholders": {
+      "dest": {
+        "type": "String"
+      },
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@liveNear": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "dest": {
+        "type": "String"
+      }
+    }
+  },
+  "@liveNext": {
+    "placeholders": {
+      "station": {
+        "type": "String"
+      }
+    }
+  },
+  "@liveArrived": {
+    "placeholders": {
+      "dest": {
+        "type": "String"
+      }
+    }
+  },
+  "@liveFlow": {
+    "placeholders": {
+      "now": {
+        "type": "String"
+      },
+      "next": {
+        "type": "String"
+      }
+    }
+  },
+  "@liveSub": {
+    "placeholders": {
+      "line": {
+        "type": "String"
+      },
+      "eta": {
+        "type": "String"
+      }
+    }
+  },
+  "@liveShort": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@alertApproachTitle": {
+    "placeholders": {
+      "dest": {
+        "type": "String"
+      }
+    }
+  },
+  "@alertArrivedTitle": {
+    "placeholders": {
+      "dest": {
+        "type": "String"
+      }
+    }
+  },
+  "mapFitAll": "全体",
+  "mapZoomIn": "拡大",
+  "mapZoomOut": "縮小",
+  "mapSearch": "駅をさがす",
+  "mapTransfers": "のりかえ",
+  "mapTips": "駅のヒント",
+  "mapTipsNote": "※ 情報は目安です。現地の案内も確認してね",
+  "mapNoTips": "この駅のヒントは じゅんび中です",
+  "mapSetFrom": "出発にする",
+  "mapSetTo": "到着にする",
+  "transferWalk": "乗換 徒歩{minutes}分",
+  "@transferWalk": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "myTitle": "MY駅",
+  "myTabScene": "駅",
+  "myTabTrain": "電車",
+  "myTabRoof": "屋根",
+  "myTabPlatform": "ホーム",
+  "myTabEffect": "演出",
+  "myEquipped": "設置中",
+  "myOwned": "もってる",
+  "myFree": "無料",
+  "myBuyCoins": "{price}コインで買う",
+  "myBuyYen": "¥{price}で買う",
+  "myNotEnough": "コインが あと{missing}たりません",
+  "myCoinShop": "コインを買う",
+  "myIapNotReady": "お支払いは じゅんび中です（リリース前に対応）",
+  "myTestCoins": "テスト用：無料で追加",
+  "myGot": "{name} を手に入れた！",
+  "myEarnRules": "移動するたびに +{trip}・はじめての駅 +{visit}・その日はじめて +{day}",
+  "myCoinsEarned": "+{coins} コイン",
+  "myUse": "つかう",
+  "@myBuyCoins": {
+    "placeholders": {
+      "price": {
+        "type": "int"
+      }
+    }
+  },
+  "@myBuyYen": {
+    "placeholders": {
+      "price": {
+        "type": "int"
+      }
+    }
+  },
+  "@myNotEnough": {
+    "placeholders": {
+      "missing": {
+        "type": "int"
+      }
+    }
+  },
+  "@myGot": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@myEarnRules": {
+    "placeholders": {
+      "trip": {
+        "type": "int"
+      },
+      "visit": {
+        "type": "int"
+      },
+      "day": {
+        "type": "int"
+      }
+    }
+  },
+  "@myCoinsEarned": {
+    "placeholders": {
+      "coins": {
+        "type": "int"
+      }
+    }
+  },
+  "myTabPlate": "行先LED",
+  "myLocked": "限定",
+  "myUnlockHint": "{line}の駅をぜんぶ集めると もらえます",
+  "@myUnlockHint": {
+    "placeholders": {
+      "line": {
+        "type": "String"
+      }
+    }
+  },
+  "plateTitle": "行先LEDに駅名を",
+  "plateEdit": "駅名",
+  "plateName": "駅の名前（6文字まで）",
+  "plateKana": "よみがな（8文字まで）",
+  "plateKanaHint": "れい：さくら",
+  "plateSave": "保存する",
+  "stampTitle": "駅スタンプ帳",
+  "stampOpen": "スタンプ帳",
+  "stampTotal": "{done} / {total} 駅 あつめた",
+  "@stampTotal": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "stampHint": "はじめて行った駅にスタンプ。路線をぜんぶ集めると 限定アイテム！",
+  "stampReward": "ぜんぶ集めると「{item}」",
+  "@stampReward": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "stampRewardGot": "制覇！「{item}」ゲット",
+  "@stampRewardGot": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "shareOpen": "シェア",
+  "shareTitle": "シェアカード",
+  "shareHeading": "わたしの駅",
+  "shareStation": "ようこそ「{name}」へ",
+  "@shareStation": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "shareStamps": "スタンプ",
+  "shareStampUnit": "駅",
+  "shareLines": "制覇した路線",
+  "shareLineUnit": "路線",
+  "shareButton": "シェアする",
+  "shareText": "わたしの駅をつくったよ #つぎはMetro",
+  "shareFailed": "シェアできませんでした",
+  "arrivedStamps": "スタンプ +{count}",
+  "@arrivedStamps": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "arrivedLineDone": "{line} 制覇！「{item}」ゲット",
+  "@arrivedLineDone": {
+    "placeholders": {
+      "line": {
+        "type": "String"
+      },
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "widgetAdd": "ウィジェット",
+  "widgetManual": "ホーム画面を長押し →「ウィジェット」→「つぎは Metro」から追加できます",
+  "plateHint": "電車の行先表示に、名前とよみがなが 交互に出ます",
+  "mapWalkTransfers": "徒歩でのりかえ",
+  "walkMinutes": "徒歩{minutes}分",
+  "@walkMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "transferWalkTo": "{station}まで歩いて {line}にのりかえ",
+  "@transferWalkTo": {
+    "placeholders": {
+      "station": {
+        "type": "String"
+      },
+      "line": {
+        "type": "String"
+      }
+    }
+  },
+  "sceneGet": "{name}の景色をGET",
+  "@sceneGet": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "lastTrainWarn": "終電まであと{minutes}分",
+  "@lastTrainWarn": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "serviceEnded": "本日の運行は終了（始発 {time}）",
+  "@serviceEnded": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "crowdTitle": "混雑予想",
+  "crowdRelaxed": "すいてる",
+  "crowdNormal": "ふつう",
+  "crowdCrowded": "混雑",
+  "crowdPacked": "大混雑",
+  "umbrellaReminder": "傘を忘れずに",
+  "lastTrainAlarm": "終電アラーム",
+  "lastTrainAlarmBody": "{from} → {to} の終電は {time}ごろ発。そろそろ帰る準備を！",
+  "@lastTrainAlarmBody": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "lastTrainAlarmSet": "毎晩 {alarm} にお知らせします（終電 {time}ごろ）",
+  "@lastTrainAlarmSet": {
+    "placeholders": {
+      "alarm": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "lastTrainAlarmOff": "終電アラームをオフにしました",
+  "firstTrainIn": "始発まで {hours}時間{minutes}分（{time}発）",
+  "@firstTrainIn": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "firstTrainAlarm": "始発アラーム",
+  "firstTrainAlarmTitle": "始発まであと{minutes}分",
+  "@firstTrainAlarmTitle": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "firstTrainAlarmBody": "{from} → {to} の始発は {time}ごろ発です",
+  "@firstTrainAlarmBody": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "firstTrainAlarmSet": "{alarm} にお知らせします（始発 {time}ごろ）",
+  "@firstTrainAlarmSet": {
+    "placeholders": {
+      "alarm": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "firstTrainAlarmOff": "始発アラームをオフにしました",
+  "taxiFare": "タクシー 約{yen}円",
+  "@taxiFare": {
+    "placeholders": {
+      "yen": {
+        "type": "String"
+      }
+    }
+  },
+  "taxiFareNight": "タクシー 約{yen}円（深夜）",
+  "@taxiFareNight": {
+    "placeholders": {
+      "yen": {
+        "type": "String"
+      }
+    }
+  },
+  "walkTime": "徒歩 {minutes}分",
+  "@walkTime": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "nightWays": "電車以外の目安",
+  "serviceEndedShort": "本日の運行は終了"
+}

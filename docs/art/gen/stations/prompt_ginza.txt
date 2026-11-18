@@ -1,0 +1,11 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:\dev\tsugiwa-metro\docs\art\gen\stations\ginza_evening_raw.png
+(copy it there from wherever the tool stores it). Do not write or change any other files. Reply with the saved path only.
+
+Look at C:\dev\tsugiwa-metro\docs\art\gen\bg_evening_raw.png first and KEEP ITS EXACT COMPOSITION AND CAMERA: elevated railway, the empty double rail track running from the bottom centre to a vanishing point slightly right of centre, the railway fence on the left, the covered platform with yellow tactile paving and roof on the right, overhead wire gantries, same horizon height. Only the SURROUNDINGS change, to show this place:
+Ginza: elegant shopping street buildings with stone facades and warm shop windows, a classic corner building with a clock tower, refined street lamps, well-dressed shoppers on the platform.
+
+- Landscape 1536x1024, same detailed 16-bit era pixel art style, crisp square pixels, almost no black outlines, hue-shifted shading, warm sunset evening light.
+- The tracks in the centre stay EMPTY: no train.
+- Keep important content inside the middle 75% of the height.
+- ABSOLUTELY NO text, letters, numbers, logos, company marks or real station signboards. Screens and signs show only colours or simple shapes.

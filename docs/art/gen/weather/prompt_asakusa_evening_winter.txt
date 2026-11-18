@@ -1,0 +1,15 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/weather/asakusa_evening_winter_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at C:/dev/tsugiwa-metro/docs/art/gen/stations/asakusa_evening_raw.png first (Asakusa with a temple, a pagoda and lanterns). Make the SAME picture with ONE change. Keep EVERYTHING else exactly the same: identical composition and camera (do not move, zoom or crop), the same horizon, the same buildings, the fence, the EMPTY double track in the centre with the rails in exactly the same place, the covered platform on the right with the yellow tactile paving, the roof, pillars and overhead wires, and the SAME people in the SAME places at the SAME sizes.
+
+The change: it is a clear, cold WINTER day in Tokyo (December to February), evening (keep the sunset colours of the original, only dimmed by the clouds). No snow, no rain.
+- EVERY person wears thick winter clothes: puffy down jackets or long wool coats in dark navy, black, camel, grey or beige, wool scarves wrapped around the neck, some knit hats, earmuffs or gloves. They look bundled up and a little rounder than before, but stand in the SAME places at the SAME sizes.
+- Deciduous trees are bare (no leaves, thin brown branches); evergreen trees and bushes stay green, a bit darker.
+- Crisp, clear winter air: slightly cooler, bluer light and longer soft shadows; the sky stays the same kind of sky as the original.
+- The ground is DRY: no snow, no puddles.
+
+- Landscape 1536x1024, the same detailed 16-bit era pixel art style as the original, crisp square pixels, almost no black outlines, hue-shifted shading.
+- The tracks in the centre stay EMPTY: no train.
+- ABSOLUTELY NO text, letters, numbers, logos or signboards.

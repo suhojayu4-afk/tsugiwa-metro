@@ -1,0 +1,23 @@
+import '../data/realtime/realtime_provider.dart';
+import '../data/last_train_alarm.dart';
+import '../data/my_store.dart';
+import '../data/route_store.dart';
+import '../platform/home_widget_bridge.dart';
+import '../platform/purchases.dart';
+import '../platform/live_status_bridge.dart';
+import '../data/weather/weather_source.dart';
+import '../features/trip/location_source.dart';
+
+/// Swappable outside services. Tests replace these with fakes; later steps
+/// swap in ODPT for [realtime] without touching screen code.
+class Services {
+  static LocationSource location = const GeolocatorLocationSource();
+  static WeatherSource weather = JmaWeatherSource();
+  static RealtimeProvider realtime = const TimetableOnlyProvider();
+  static RouteStore routes = RouteStore();
+  static MyStore my = MyStore();
+  static LastTrainAlarm lastTrain = LastTrainAlarm();
+  static Purchases purchases = const NotReadyPurchases();
+  static HomeWidgetBridge homeWidget = MethodChannelHomeWidget();
+  static LiveStatusBridge live = MethodChannelLiveStatusBridge();
+}

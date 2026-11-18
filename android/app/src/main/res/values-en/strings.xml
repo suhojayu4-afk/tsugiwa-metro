@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tsugiwa Metro</string>
+    <string name="widget_name">My Station</string>
+    <string name="widget_description">Your station on the home screen</string>
+    <string name="widget_empty">Open the app to build your station</string>
+</resources>

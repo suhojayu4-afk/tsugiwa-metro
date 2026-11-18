@@ -1,0 +1,13 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/weather/shinjuku_day_snow_few_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at C:/dev/tsugiwa-metro/docs/art/gen/weather/shinjuku_day_snow_raw.png first (Shinjuku with tall skyscrapers, a snowy day: snow on roofs and trees, winter coats). Make the SAME picture with ONE change: the NUMBER of people waiting on the platform. Keep EVERYTHING else exactly the same: identical composition and camera (do not move, zoom or crop), the same weather, sky, light and ground (wet, snowy or dry exactly as now), the same buildings, the fence, the EMPTY double track in the centre with the rails in exactly the same place, the covered platform on the right with the yellow tactile paving, the roof, pillars and overhead wires.
+
+The change: it is a QUIET time. Only FOUR to SIX people wait on the whole platform, spread out with lots of empty floor between them; keep the nearest one or two people at the front at the same size as now.
+- They are dressed and equipped for the SAME weather as now (same kind of coats, umbrellas).
+- Everybody stands ON the platform, behind the yellow line, never on the tracks. Sizes follow the perspective: smaller further away.
+
+- Landscape 1536x1024, the same detailed 16-bit era pixel art style as the original, crisp square pixels, almost no black outlines, hue-shifted shading.
+- The tracks in the centre stay EMPTY: no train.
+- ABSOLUTELY NO text, letters, numbers, logos or signboards.

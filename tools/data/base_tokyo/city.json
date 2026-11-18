@@ -1,0 +1,44 @@
+{
+ "id": "tokyo",
+ "name": {
+  "ja": "東京",
+  "ko": "도쿄",
+  "en": "Tokyo"
+ },
+ "timezone": "Asia/Tokyo",
+ "center": {
+  "lat": 35.6812,
+  "lng": 139.7671
+ },
+ "lines": [
+  "tokyo.yamanote",
+  "tokyo.ginza",
+  "tokyo.marunouchi",
+  "tokyo.marunouchi_branch",
+  "tokyo.hibiya",
+  "tokyo.tozai",
+  "tokyo.chiyoda",
+  "tokyo.yurakucho",
+  "tokyo.hanzomon",
+  "tokyo.namboku",
+  "tokyo.fukutoshin",
+  "tokyo.toei_asakusa",
+  "tokyo.toei_mita",
+  "tokyo.toei_shinjuku",
+  "tokyo.toei_oedo",
+  "tokyo.toei_oedo_branch",
+  "tokyo.keikyu",
+  "tokyo.keisei",
+  "tokyo.tokyu_meguro",
+  "tokyo.keio",
+  "tokyo.skyliner",
+  "tokyo.access_express",
+  "tokyo.narita_express"
+ ],
+ "weather": {
+  "forecastOffice": "130000",
+  "forecastArea": "130010",
+  "amedas": "44132"
+ },
+ "dataNote": "Station coordinates and names: Wikidata (CC0). Run times and headways are approximate estimates for the MVP. Replace with licensed timetable data later."
+}

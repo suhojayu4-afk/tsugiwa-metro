@@ -1,0 +1,13 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:\dev\tsugiwa-metro\docs\art\gen\bg_evening_raw.png
+(copy it there from wherever the tool stores it). Do not write or change any other files. Reply with the saved path only.
+
+Use C:\dev\tsugiwa-metro\docs\art\reference_shinjuku_evening.png as the STYLE reference (look at it first).
+
+Image spec:
+- Landscape 1536x1024.
+- Detailed 16-bit era pixel art, crisp square pixels of a consistent size (about 4 screen pixels per art pixel), clusters of colour, almost no black outlines, hue-shifted shading (purple/indigo shadows, warm orange highlights), little dithering.
+- Scene: evening sunset at an elevated train platform in a Tokyo-like city, one-point perspective looking down the tracks. Pink-orange sky with a low sun, distant skyscrapers fading into the haze, near office buildings with warm lit windows, trees along the viaduct, overhead wire gantries, platform roof with fluorescent lights on the right, yellow tactile paving, a few commuters waiting (small, not the focus).
+- The TRACKS IN THE CENTRE MUST BE EMPTY: no train anywhere (a train will be added as a separate layer later). Keep the area where an approaching train would stand clear.
+- Keep all important content inside the middle 75% of the height (the top 12% and bottom 12% will be cropped to a 2:1 banner).
+- ABSOLUTELY NO text, letters, numbers, logos, company marks, signboards with writing, or real railway company branding.

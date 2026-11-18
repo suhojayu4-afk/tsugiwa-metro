@@ -1,0 +1,50 @@
+name: tsugiwa_metro
+description: "Tsugiwa Metro - Japan train trip companion"
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.14.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  material_ui: ^1.1.0
+  cupertino_icons: ^1.0.8
+  geolocator: ^14.1.2
+  intl: any
+  http: ^1.6.0
+  shared_preferences: ^2.5.6
+  share_plus: ^13.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true
+  assets:
+    - assets/cities/
+    - assets/cities/tokyo/
+    - assets/art/
+    - assets/art/landmarks/
+    - assets/art/scenes/
+    - assets/art/decor/
+    - assets/art/map_decor/
+    - assets/art/weather/
+    - assets/art/crowd/
+    - assets/my/
+  fonts:
+    # Pixel fonts, both SIL Open Font License (see assets/fonts/*OFL*).
+    - family: DotGothic16
+      fonts:
+        - asset: assets/fonts/DotGothic16-Regular.ttf
+    - family: Galmuri11
+      fonts:
+        - asset: assets/fonts/Galmuri11.ttf
+        - asset: assets/fonts/Galmuri11-Bold.ttf
+          weight: 700

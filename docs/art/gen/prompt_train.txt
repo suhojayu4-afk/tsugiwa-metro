@@ -1,0 +1,13 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:\dev\tsugiwa-metro\docs\art\gen\train_front_raw.png
+(copy it there from wherever the tool stores it). Do not write or change any other files. Reply with the saved path only.
+
+Look at C:\dev\tsugiwa-metro\docs\art\gen\bg_evening_raw.png first for style and camera. Draw ONLY a train, isolated, for compositing onto that scene later.
+
+- Landscape 1536x1024. Background: one flat solid pure magenta colour (#FF00FF) everywhere around the train - no ground, no rails, no sky, no shadows on the background.
+- The train: an ORIGINAL commuter EMU design that does NOT copy any real JR or Tokyo Metro model. Brushed stainless silver body, a black front mask with a large windshield (dark glass, a driver silhouette inside is fine), a friendly rounded face, two warm glowing headlights low on the front, a coupler and skirt at the bottom.
+- ONE horizontal stripe band of pure bright green (#33CC33) runs across the front below the windshield and along the side. That stripe is the ONLY green on the train (it will be recoloured per line in the app). No other green anywhere.
+- Camera: same as the scene - standing at the platform edge, looking down the tracks. The train faces the viewer, front face large in the lower centre of the image, and its long body recedes into the distance toward a vanishing point slightly above and to the right of the windshield (left side of the body visible in perspective).
+- Front face occupies roughly the middle 40% of the image width; the wheels/skirt bottom is at about 85% of the image height.
+- Same detailed 16-bit era pixel art style, crisp square pixels, hue-shifted shading with warm evening rim light on the left edges.
+- The destination display above the windshield shows only glowing amber dots - ABSOLUTELY NO text, letters, numbers, logos or company marks anywhere.

@@ -1,0 +1,15 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/weather/asakusa_night_rain_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at C:/dev/tsugiwa-metro/docs/art/gen/stations/asakusa_night_raw.png first (Asakusa with a temple, a pagoda and lanterns). Make the SAME picture with ONE change. Keep EVERYTHING else exactly the same: identical composition and camera (do not move, zoom or crop), the same horizon, the same buildings, the fence, the EMPTY double track in the centre with the rails in exactly the same place, the covered platform on the right with the yellow tactile paving, the roof, pillars and overhead wires, and the SAME people in the SAME places at the SAME sizes.
+
+The change: it is RAINING, night (keep the night lighting of the original: lit windows, platform lights).
+- Only SOME of the people (about one in three) hold an OPEN umbrella above their head (clear vinyl, navy, black or beige), drawn in perspective at the right size for that person. The others stand under the platform roof without opening theirs; some of them hold a closed, wet umbrella.
+- Grey overcast sky with rain clouds; everything slightly darker and cooler.
+- The platform floor and the rails look wet, with gentle reflections of the people and the lights.
+- Do NOT draw falling rain streaks or drops (the app adds animated rain on top).
+
+- Landscape 1536x1024, the same detailed 16-bit era pixel art style as the original, crisp square pixels, almost no black outlines, hue-shifted shading.
+- The tracks in the centre stay EMPTY: no train.
+- ABSOLUTELY NO text, letters, numbers, logos or signboards.

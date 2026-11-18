@@ -1,0 +1,15 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/weather/standard_evening_snowsoon_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at C:/dev/tsugiwa-metro/docs/art/gen/bg_evening2_raw.png first (a generic Tokyo station with city buildings). Make the SAME picture with ONE change. Keep EVERYTHING else exactly the same: identical composition and camera (do not move, zoom or crop), the same horizon, the same buildings, the fence, the EMPTY double track in the centre with the rails in exactly the same place, the covered platform on the right with the yellow tactile paving, the roof, pillars and overhead wires, and the SAME people in the SAME places at the SAME sizes.
+
+The change: a cold WINTER day in Tokyo when it looks like it will SNOW SOON, but it is NOT snowing yet, evening (keep the sunset colours of the original, only dimmed by the clouds).
+- The sky is covered with thick, low, pale grey-white snow clouds; the light is flat, dim and cold, a quiet "snow is coming" mood.
+- EVERY person wears thick winter clothes: down jackets or long wool coats, scarves, knit hats, gloves; a few hold a CLOSED umbrella. Same places, same sizes.
+- Deciduous trees are bare; evergreens stay green.
+- The ground is DRY: no snow anywhere yet, no puddles.
+
+- Landscape 1536x1024, the same detailed 16-bit era pixel art style as the original, crisp square pixels, almost no black outlines, hue-shifted shading.
+- The tracks in the centre stay EMPTY: no train.
+- ABSOLUTELY NO text, letters, numbers, logos or signboards.

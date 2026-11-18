@@ -1,0 +1,5777 @@
+[
+ {
+  "id": "tokyo.tokyo",
+  "name": {
+   "ja": "東京",
+   "ko": "도쿄",
+   "en": "Tokyo"
+  },
+  "kana": "とうきょう",
+  "geo": {
+   "lat": 35.6812,
+   "lng": 139.7671
+  },
+  "lines": [
+   "tokyo.yamanote",
+   "tokyo.marunouchi",
+   "tokyo.narita_express"
+  ],
+  "underground": [
+   "tokyo.marunouchi",
+   "tokyo.narita_express"
+  ]
+ },
+ {
+  "id": "tokyo.kanda",
+  "name": {
+   "ja": "神田",
+   "ko": "간다",
+   "en": "Kanda"
+  },
+  "kana": "かんだ",
+  "geo": {
+   "lat": 35.6918,
+   "lng": 139.7709
+  },
+  "lines": [
+   "tokyo.yamanote",
+   "tokyo.ginza"
+  ],
+  "underground": [
+   "tokyo.ginza"
+  ],
+  "transfers": [
+   {
+    "lines": [
+     "tokyo.yamanote",
+     "tokyo.ginza"
+    ],
+    "walkMin": 4
+   }
+  ]
+ },
+ {
+  "id": "tokyo.akihabara",
+  "name": {
+   "ja": "秋葉原",
+   "ko": "아키하바라",
+   "en": "Akihabara"
+  },
+  "kana": "あきはばら",
+  "geo": {
+   "lat": 35.6984,
+   "lng": 139.7731
+  },
+  "lines": [
+   "tokyo.yamanote",
+   "tokyo.hibiya"
+  ],
+  "underground": [
+   "tokyo.hibiya"
+  ]
+ },
+ {
+  "id": "tokyo.okachimachi",
+  "name": {
+   "ja": "御徒町",
+   "ko": "오카치마치",
+   "en": "Okachimachi"
+  },
+  "kana": "おかちまち",
+  "geo": {
+   "lat": 35.7074,
+   "lng": 139.7748
+  },
+  "lines": [
+   "tokyo.yamanote"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.ueno",
+  "name": {
+   "ja": "上野",
+   "ko": "우에노",
+   "en": "Ueno"
+  },
+  "kana": "うえの",
+  "geo": {
+   "lat": 35.7138,
+   "lng": 139.7773
+  },
+  "lines": [
+   "tokyo.yamanote",
+   "tokyo.ginza",
+   "tokyo.hibiya"
+  ],
+  "underground": [
+   "tokyo.ginza",
+   "tokyo.hibiya"
+  ],
+  "transfers": [
+   {
+    "lines": [
+     "tokyo.yamanote",
+     "tokyo.ginza"
+    ],
+    "walkMin": 5
+   }
+  ]
+ },
+ {
+  "id": "tokyo.uguisudani",
+  "name": {
+   "ja": "鶯谷",
+   "ko": "우구이스다니",
+   "en": "Uguisudani"
+  },
+  "kana": "うぐいすだに",
+  "geo": {
+   "lat": 35.7215,
+   "lng": 139.7781
+  },
+  "lines": [
+   "tokyo.yamanote"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.nippori",
+  "name": {
+   "ja": "日暮里",
+   "ko": "닛포리",
+   "en": "Nippori"
+  },
+  "kana": "にっぽり",
+  "geo": {
+   "lat": 35.7281,
+   "lng": 139.7707
+  },
+  "lines": [
+   "tokyo.yamanote",
+   "tokyo.skyliner"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.nishi_nippori",
+  "name": {
+   "ja": "西日暮里",
+   "ko": "니시닛포리",
+   "en": "Nishi-Nippori"
+  },
+  "kana": "にしにっぽり",
+  "geo": {
+   "lat": 35.732,
+   "lng": 139.7668
+  },
+  "lines": [
+   "tokyo.yamanote",
+   "tokyo.chiyoda"
+  ],
+  "underground": [
+   "tokyo.chiyoda"
+  ]
+ },
+ {
+  "id": "tokyo.tabata",
+  "name": {
+   "ja": "田端",
+   "ko": "다바타",
+   "en": "Tabata"
+  },
+  "kana": "たばた",
+  "geo": {
+   "lat": 35.7381,
+   "lng": 139.7608
+  },
+  "lines": [
+   "tokyo.yamanote"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.komagome",
+  "name": {
+   "ja": "駒込",
+   "ko": "고마고메",
+   "en": "Komagome"
+  },
+  "kana": "こまごめ",
+  "geo": {
+   "lat": 35.7365,
+   "lng": 139.747
+  },
+  "lines": [
+   "tokyo.yamanote",
+   "tokyo.namboku"
+  ],
+  "underground": [
+   "tokyo.namboku"
+  ]
+ },
+ {
+  "id": "tokyo.sugamo",
+  "name": {
+   "ja": "巣鴨",
+   "ko": "스가모",
+   "en": "Sugamo"
+  },
+  "kana": "すがも",
+  "geo": {
+   "lat": 35.7334,
+   "lng": 139.7393
+  },
+  "lines": [
+   "tokyo.yamanote",
+   "tokyo.toei_mita"
+  ],
+  "underground": [
+   "tokyo.toei_mita"
+  ]
+ },
+ {
+  "id": "tokyo.otsuka",
+  "name": {
+   "ja": "大塚",
+   "ko": "오쓰카",
+   "en": "Otsuka"
+  },
+  "kana": "おおつか",
+  "geo": {
+   "lat": 35.7318,
+   "lng": 139.7286
+  },
+  "lines": [
+   "tokyo.yamanote"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.ikebukuro",
+  "name": {
+   "ja": "池袋",
+   "ko": "이케부쿠로",
+   "en": "Ikebukuro"
+  },
+  "kana": "いけぶくろ",
+  "geo": {
+   "lat": 35.7295,
+   "lng": 139.7109
+  },
+  "lines": [
+   "tokyo.yamanote",
+   "tokyo.marunouchi",
+   "tokyo.yurakucho",
+   "tokyo.fukutoshin"
+  ],
+  "underground": [
+   "tokyo.marunouchi",
+   "tokyo.yurakucho",
+   "tokyo.fukutoshin"
+  ]
+ },
+ {
+  "id": "tokyo.mejiro",
+  "name": {
+   "ja": "目白",
+   "ko": "메지로",
+   "en": "Mejiro"
+  },
+  "kana": "めじろ",
+  "geo": {
+   "lat": 35.7212,
+   "lng": 139.7066
+  },
+  "lines": [
+   "tokyo.yamanote"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.takadanobaba",
+  "name": {
+   "ja": "高田馬場",
+   "ko": "다카다노바바",
+   "en": "Takadanobaba"
+  },
+  "kana": "たかだのばば",
+  "geo": {
+   "lat": 35.7128,
+   "lng": 139.7038
+  },
+  "lines": [
+   "tokyo.yamanote",
+   "tokyo.tozai"
+  ],
+  "underground": [
+   "tokyo.tozai"
+  ]
+ },
+ {
+  "id": "tokyo.shin_okubo",
+  "name": {
+   "ja": "新大久保",
+   "ko": "신오쿠보",
+   "en": "Shin-Okubo"
+  },
+  "kana": "しんおおくぼ",
+  "geo": {
+   "lat": 35.7012,
+   "lng": 139.7
+  },
+  "lines": [
+   "tokyo.yamanote"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.shinjuku",
+  "name": {
+   "ja": "新宿",
+   "ko": "신주쿠",
+   "en": "Shinjuku"
+  },
+  "kana": "しんじゅく",
+  "geo": {
+   "lat": 35.6896,
+   "lng": 139.7006
+  },
+  "lines": [
+   "tokyo.yamanote",
+   "tokyo.marunouchi",
+   "tokyo.toei_shinjuku",
+   "tokyo.toei_oedo",
+   "tokyo.keio"
+  ],
+  "underground": [
+   "tokyo.marunouchi",
+   "tokyo.toei_shinjuku",
+   "tokyo.toei_oedo",
+   "tokyo.keio"
+  ]
+ },
+ {
+  "id": "tokyo.yoyogi",
+  "name": {
+   "ja": "代々木",
+   "ko": "요요기",
+   "en": "Yoyogi"
+  },
+  "kana": "よよぎ",
+  "geo": {
+   "lat": 35.6831,
+   "lng": 139.702
+  },
+  "lines": [
+   "tokyo.yamanote",
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.harajuku",
+  "name": {
+   "ja": "原宿",
+   "ko": "하라주쿠",
+   "en": "Harajuku"
+  },
+  "kana": "はらじゅく",
+  "geo": {
+   "lat": 35.6702,
+   "lng": 139.7027
+  },
+  "lines": [
+   "tokyo.yamanote"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.shibuya",
+  "name": {
+   "ja": "渋谷",
+   "ko": "시부야",
+   "en": "Shibuya"
+  },
+  "kana": "しぶや",
+  "geo": {
+   "lat": 35.658,
+   "lng": 139.7016
+  },
+  "lines": [
+   "tokyo.yamanote",
+   "tokyo.ginza",
+   "tokyo.hanzomon",
+   "tokyo.fukutoshin"
+  ],
+  "underground": [
+   "tokyo.hanzomon",
+   "tokyo.fukutoshin"
+  ],
+  "transfers": [
+   {
+    "lines": [
+     "tokyo.yamanote",
+     "tokyo.ginza"
+    ],
+    "walkMin": 6
+   }
+  ]
+ },
+ {
+  "id": "tokyo.ebisu",
+  "name": {
+   "ja": "恵比寿",
+   "ko": "에비스",
+   "en": "Ebisu"
+  },
+  "kana": "えびす",
+  "geo": {
+   "lat": 35.6467,
+   "lng": 139.7101
+  },
+  "lines": [
+   "tokyo.yamanote",
+   "tokyo.hibiya"
+  ],
+  "underground": [
+   "tokyo.hibiya"
+  ]
+ },
+ {
+  "id": "tokyo.meguro",
+  "name": {
+   "ja": "目黒",
+   "ko": "메구로",
+   "en": "Meguro"
+  },
+  "kana": "めぐろ",
+  "geo": {
+   "lat": 35.6339,
+   "lng": 139.7157
+  },
+  "lines": [
+   "tokyo.yamanote",
+   "tokyo.namboku",
+   "tokyo.toei_mita",
+   "tokyo.tokyu_meguro"
+  ],
+  "underground": [
+   "tokyo.namboku",
+   "tokyo.toei_mita",
+   "tokyo.tokyu_meguro"
+  ]
+ },
+ {
+  "id": "tokyo.gotanda",
+  "name": {
+   "ja": "五反田",
+   "ko": "고탄다",
+   "en": "Gotanda"
+  },
+  "kana": "ごたんだ",
+  "geo": {
+   "lat": 35.6262,
+   "lng": 139.7236
+  },
+  "lines": [
+   "tokyo.yamanote",
+   "tokyo.toei_asakusa"
+  ],
+  "underground": [
+   "tokyo.toei_asakusa"
+  ]
+ },
+ {
+  "id": "tokyo.osaki",
+  "name": {
+   "ja": "大崎",
+   "ko": "오사키",
+   "en": "Osaki"
+  },
+  "kana": "おおさき",
+  "geo": {
+   "lat": 35.6197,
+   "lng": 139.7286
+  },
+  "lines": [
+   "tokyo.yamanote"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.shinagawa",
+  "name": {
+   "ja": "品川",
+   "ko": "시나가와",
+   "en": "Shinagawa"
+  },
+  "kana": "しながわ",
+  "geo": {
+   "lat": 35.6285,
+   "lng": 139.7388
+  },
+  "lines": [
+   "tokyo.yamanote",
+   "tokyo.keikyu",
+   "tokyo.narita_express"
+  ],
+  "underground": [
+   "tokyo.narita_express"
+  ]
+ },
+ {
+  "id": "tokyo.takanawa_gateway",
+  "name": {
+   "ja": "高輪ゲートウェイ",
+   "ko": "다카나와게이트웨이",
+   "en": "Takanawa Gateway"
+  },
+  "kana": "たかなわげーとうぇい",
+  "geo": {
+   "lat": 35.6355,
+   "lng": 139.7407
+  },
+  "lines": [
+   "tokyo.yamanote"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.tamachi",
+  "name": {
+   "ja": "田町",
+   "ko": "다마치",
+   "en": "Tamachi"
+  },
+  "kana": "たまち",
+  "geo": {
+   "lat": 35.6457,
+   "lng": 139.7476
+  },
+  "lines": [
+   "tokyo.yamanote"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.hamamatsucho",
+  "name": {
+   "ja": "浜松町",
+   "ko": "하마마쓰초",
+   "en": "Hamamatsucho"
+  },
+  "kana": "はままつちょう",
+  "geo": {
+   "lat": 35.6555,
+   "lng": 139.757
+  },
+  "lines": [
+   "tokyo.yamanote"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.shimbashi",
+  "name": {
+   "ja": "新橋",
+   "ko": "신바시",
+   "en": "Shimbashi"
+  },
+  "kana": "しんばし",
+  "geo": {
+   "lat": 35.6663,
+   "lng": 139.7583
+  },
+  "lines": [
+   "tokyo.yamanote",
+   "tokyo.ginza",
+   "tokyo.toei_asakusa"
+  ],
+  "underground": [
+   "tokyo.ginza",
+   "tokyo.toei_asakusa"
+  ],
+  "transfers": [
+   {
+    "lines": [
+     "tokyo.yamanote",
+     "tokyo.ginza"
+    ],
+    "walkMin": 4
+   }
+  ]
+ },
+ {
+  "id": "tokyo.yurakucho",
+  "name": {
+   "ja": "有楽町",
+   "ko": "유라쿠초",
+   "en": "Yurakucho"
+  },
+  "kana": "ゆうらくちょう",
+  "geo": {
+   "lat": 35.6749,
+   "lng": 139.763
+  },
+  "lines": [
+   "tokyo.yamanote",
+   "tokyo.yurakucho"
+  ],
+  "underground": [
+   "tokyo.yurakucho"
+  ]
+ },
+ {
+  "id": "tokyo.omotesando",
+  "name": {
+   "ja": "表参道",
+   "ko": "오모테산도",
+   "en": "Omote-sando"
+  },
+  "kana": "おもてさんどう",
+  "geo": {
+   "lat": 35.6652,
+   "lng": 139.7123
+  },
+  "lines": [
+   "tokyo.ginza",
+   "tokyo.chiyoda",
+   "tokyo.hanzomon"
+  ],
+  "underground": [
+   "tokyo.ginza",
+   "tokyo.chiyoda",
+   "tokyo.hanzomon"
+  ]
+ },
+ {
+  "id": "tokyo.gaiemmae",
+  "name": {
+   "ja": "外苑前",
+   "ko": "가이엔마에",
+   "en": "Gaiemmae"
+  },
+  "kana": "がいえんまえ",
+  "geo": {
+   "lat": 35.6705,
+   "lng": 139.7178
+  },
+  "lines": [
+   "tokyo.ginza"
+  ],
+  "underground": [
+   "tokyo.ginza"
+  ]
+ },
+ {
+  "id": "tokyo.aoyama_itchome",
+  "name": {
+   "ja": "青山一丁目",
+   "ko": "아오야마잇초메",
+   "en": "Aoyama-itchome"
+  },
+  "kana": "あおやまいっちょうめ",
+  "geo": {
+   "lat": 35.6728,
+   "lng": 139.724
+  },
+  "lines": [
+   "tokyo.ginza",
+   "tokyo.hanzomon",
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.ginza",
+   "tokyo.hanzomon",
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.akasaka_mitsuke",
+  "name": {
+   "ja": "赤坂見附",
+   "ko": "아카사카미쓰케",
+   "en": "Akasaka-mitsuke"
+  },
+  "kana": "あかさかみつけ",
+  "geo": {
+   "lat": 35.677,
+   "lng": 139.737
+  },
+  "lines": [
+   "tokyo.ginza",
+   "tokyo.marunouchi"
+  ],
+  "underground": [
+   "tokyo.ginza",
+   "tokyo.marunouchi"
+  ]
+ },
+ {
+  "id": "tokyo.tameike_sanno",
+  "name": {
+   "ja": "溜池山王",
+   "ko": "다메이케산노",
+   "en": "Tameike-sanno"
+  },
+  "kana": "ためいけさんのう",
+  "geo": {
+   "lat": 35.6736,
+   "lng": 139.7414
+  },
+  "lines": [
+   "tokyo.ginza",
+   "tokyo.namboku"
+  ],
+  "underground": [
+   "tokyo.ginza",
+   "tokyo.namboku"
+  ]
+ },
+ {
+  "id": "tokyo.toranomon",
+  "name": {
+   "ja": "虎ノ門",
+   "ko": "도라노몬",
+   "en": "Toranomon"
+  },
+  "kana": "とらのもん",
+  "geo": {
+   "lat": 35.6704,
+   "lng": 139.7495
+  },
+  "lines": [
+   "tokyo.ginza"
+  ],
+  "underground": [
+   "tokyo.ginza"
+  ]
+ },
+ {
+  "id": "tokyo.ginza",
+  "name": {
+   "ja": "銀座",
+   "ko": "긴자",
+   "en": "Ginza"
+  },
+  "kana": "ぎんざ",
+  "geo": {
+   "lat": 35.6717,
+   "lng": 139.765
+  },
+  "lines": [
+   "tokyo.ginza",
+   "tokyo.marunouchi",
+   "tokyo.hibiya"
+  ],
+  "underground": [
+   "tokyo.ginza",
+   "tokyo.marunouchi",
+   "tokyo.hibiya"
+  ]
+ },
+ {
+  "id": "tokyo.kyobashi",
+  "name": {
+   "ja": "京橋",
+   "ko": "교바시",
+   "en": "Kyobashi"
+  },
+  "kana": "きょうばし",
+  "geo": {
+   "lat": 35.6767,
+   "lng": 139.7701
+  },
+  "lines": [
+   "tokyo.ginza"
+  ],
+  "underground": [
+   "tokyo.ginza"
+  ]
+ },
+ {
+  "id": "tokyo.nihombashi",
+  "name": {
+   "ja": "日本橋",
+   "ko": "니혼바시",
+   "en": "Nihombashi"
+  },
+  "kana": "にほんばし",
+  "geo": {
+   "lat": 35.682,
+   "lng": 139.774
+  },
+  "lines": [
+   "tokyo.ginza",
+   "tokyo.tozai",
+   "tokyo.toei_asakusa"
+  ],
+  "underground": [
+   "tokyo.ginza",
+   "tokyo.tozai",
+   "tokyo.toei_asakusa"
+  ]
+ },
+ {
+  "id": "tokyo.mitsukoshimae",
+  "name": {
+   "ja": "三越前",
+   "ko": "미쓰코시마에",
+   "en": "Mitsukoshimae"
+  },
+  "kana": "みつこしまえ",
+  "geo": {
+   "lat": 35.6872,
+   "lng": 139.7735
+  },
+  "lines": [
+   "tokyo.ginza",
+   "tokyo.hanzomon"
+  ],
+  "underground": [
+   "tokyo.ginza",
+   "tokyo.hanzomon"
+  ]
+ },
+ {
+  "id": "tokyo.suehirocho",
+  "name": {
+   "ja": "末広町",
+   "ko": "스에히로초",
+   "en": "Suehirocho"
+  },
+  "kana": "すえひろちょう",
+  "geo": {
+   "lat": 35.7027,
+   "lng": 139.7716
+  },
+  "lines": [
+   "tokyo.ginza"
+  ],
+  "underground": [
+   "tokyo.ginza"
+  ]
+ },
+ {
+  "id": "tokyo.ueno_hirokoji",
+  "name": {
+   "ja": "上野広小路",
+   "ko": "우에노히로코지",
+   "en": "Ueno-hirokoji"
+  },
+  "kana": "うえのひろこうじ",
+  "geo": {
+   "lat": 35.7077,
+   "lng": 139.7727
+  },
+  "lines": [
+   "tokyo.ginza"
+  ],
+  "underground": [
+   "tokyo.ginza"
+  ]
+ },
+ {
+  "id": "tokyo.inaricho",
+  "name": {
+   "ja": "稲荷町",
+   "ko": "이나리초",
+   "en": "Inaricho"
+  },
+  "kana": "いなりちょう",
+  "geo": {
+   "lat": 35.7112,
+   "lng": 139.7826
+  },
+  "lines": [
+   "tokyo.ginza"
+  ],
+  "underground": [
+   "tokyo.ginza"
+  ]
+ },
+ {
+  "id": "tokyo.tawaramachi",
+  "name": {
+   "ja": "田原町",
+   "ko": "다와라마치",
+   "en": "Tawaramachi"
+  },
+  "kana": "たわらまち",
+  "geo": {
+   "lat": 35.7108,
+   "lng": 139.7906
+  },
+  "lines": [
+   "tokyo.ginza"
+  ],
+  "underground": [
+   "tokyo.ginza"
+  ]
+ },
+ {
+  "id": "tokyo.asakusa",
+  "name": {
+   "ja": "浅草",
+   "ko": "아사쿠사",
+   "en": "Asakusa"
+  },
+  "kana": "あさくさ",
+  "geo": {
+   "lat": 35.711,
+   "lng": 139.7975
+  },
+  "lines": [
+   "tokyo.ginza",
+   "tokyo.toei_asakusa"
+  ],
+  "underground": [
+   "tokyo.ginza",
+   "tokyo.toei_asakusa"
+  ]
+ },
+ {
+  "id": "tokyo.ogikubo",
+  "name": {
+   "ja": "荻窪",
+   "ko": "오기쿠보",
+   "en": "Ogikubo"
+  },
+  "kana": "おぎくぼ",
+  "geo": {
+   "lat": 35.70464,
+   "lng": 139.62
+  },
+  "lines": [
+   "tokyo.marunouchi"
+  ],
+  "underground": [
+   "tokyo.marunouchi"
+  ]
+ },
+ {
+  "id": "tokyo.minami_asagaya",
+  "name": {
+   "ja": "南阿佐ケ谷",
+   "ko": "미나미아사가야",
+   "en": "Minami-asagaya"
+  },
+  "kana": "みなみあさがや",
+  "geo": {
+   "lat": 35.69941,
+   "lng": 139.6356
+  },
+  "lines": [
+   "tokyo.marunouchi"
+  ],
+  "underground": [
+   "tokyo.marunouchi"
+  ]
+ },
+ {
+  "id": "tokyo.shin_koenji",
+  "name": {
+   "ja": "新高円寺",
+   "ko": "신코엔지",
+   "en": "Shin-Koenji"
+  },
+  "kana": "しんこうえんじ",
+  "geo": {
+   "lat": 35.69781,
+   "lng": 139.6484
+  },
+  "lines": [
+   "tokyo.marunouchi"
+  ],
+  "underground": [
+   "tokyo.marunouchi"
+  ]
+ },
+ {
+  "id": "tokyo.higashi_koenji",
+  "name": {
+   "ja": "東高円寺",
+   "ko": "히가시코엔지",
+   "en": "Higashi-Koenji"
+  },
+  "kana": "ひがしこうえんじ",
+  "geo": {
+   "lat": 35.69778,
+   "lng": 139.6575
+  },
+  "lines": [
+   "tokyo.marunouchi"
+  ],
+  "underground": [
+   "tokyo.marunouchi"
+  ]
+ },
+ {
+  "id": "tokyo.shin_nakano",
+  "name": {
+   "ja": "新中野",
+   "ko": "신나카노",
+   "en": "Shin-Nakano"
+  },
+  "kana": "しんなかの",
+  "geo": {
+   "lat": 35.69747,
+   "lng": 139.66907
+  },
+  "lines": [
+   "tokyo.marunouchi"
+  ],
+  "underground": [
+   "tokyo.marunouchi"
+  ]
+ },
+ {
+  "id": "tokyo.nakano_sakaue",
+  "name": {
+   "ja": "中野坂上",
+   "ko": "나카노사카우에",
+   "en": "Nakano-sakaue"
+  },
+  "kana": "なかのさかうえ",
+  "geo": {
+   "lat": 35.69699,
+   "lng": 139.6828
+  },
+  "lines": [
+   "tokyo.marunouchi",
+   "tokyo.marunouchi_branch",
+   "tokyo.toei_oedo_branch"
+  ],
+  "underground": [
+   "tokyo.marunouchi",
+   "tokyo.marunouchi_branch",
+   "tokyo.toei_oedo_branch"
+  ]
+ },
+ {
+  "id": "tokyo.nishi_shinjuku",
+  "name": {
+   "ja": "西新宿",
+   "ko": "니시신주쿠",
+   "en": "Nishi-Shinjuku"
+  },
+  "kana": "にししんじゅく",
+  "geo": {
+   "lat": 35.69449,
+   "lng": 139.69255
+  },
+  "lines": [
+   "tokyo.marunouchi"
+  ],
+  "underground": [
+   "tokyo.marunouchi"
+  ]
+ },
+ {
+  "id": "tokyo.shinjuku_sanchome",
+  "name": {
+   "ja": "新宿三丁目",
+   "ko": "신주쿠 3초메",
+   "en": "Shinjuku-sanchome"
+  },
+  "kana": "しんじゅくさんちょうめ",
+  "geo": {
+   "lat": 35.69061,
+   "lng": 139.70627
+  },
+  "lines": [
+   "tokyo.marunouchi",
+   "tokyo.fukutoshin",
+   "tokyo.toei_shinjuku"
+  ],
+  "underground": [
+   "tokyo.marunouchi",
+   "tokyo.fukutoshin",
+   "tokyo.toei_shinjuku"
+  ]
+ },
+ {
+  "id": "tokyo.shinjuku_gyoemmae",
+  "name": {
+   "ja": "新宿御苑前",
+   "ko": "신주쿠교엔마에",
+   "en": "Shinjuku-gyoemmae"
+  },
+  "kana": "しんじゅくぎょえんまえ",
+  "geo": {
+   "lat": 35.68858,
+   "lng": 139.71076
+  },
+  "lines": [
+   "tokyo.marunouchi"
+  ],
+  "underground": [
+   "tokyo.marunouchi"
+  ]
+ },
+ {
+  "id": "tokyo.yotsuya_sanchome",
+  "name": {
+   "ja": "四谷三丁目",
+   "ko": "요쓰야 3초메",
+   "en": "Yotsuya-sanchome"
+  },
+  "kana": "よつやさんちょうめ",
+  "geo": {
+   "lat": 35.68796,
+   "lng": 139.72023
+  },
+  "lines": [
+   "tokyo.marunouchi"
+  ],
+  "underground": [
+   "tokyo.marunouchi"
+  ]
+ },
+ {
+  "id": "tokyo.yotsuya",
+  "name": {
+   "ja": "四ツ谷",
+   "ko": "요쓰야",
+   "en": "Yotsuya"
+  },
+  "kana": "よつや",
+  "geo": {
+   "lat": 35.68611,
+   "lng": 139.73056
+  },
+  "lines": [
+   "tokyo.marunouchi",
+   "tokyo.namboku"
+  ],
+  "underground": [
+   "tokyo.namboku"
+  ]
+ },
+ {
+  "id": "tokyo.kokkai_gijido_mae",
+  "name": {
+   "ja": "国会議事堂前",
+   "ko": "곳카이기지도마에",
+   "en": "Kokkai-gijido-mae"
+  },
+  "kana": "こっかいぎじどうまえ",
+  "geo": {
+   "lat": 35.67412,
+   "lng": 139.74525
+  },
+  "lines": [
+   "tokyo.marunouchi",
+   "tokyo.chiyoda"
+  ],
+  "underground": [
+   "tokyo.marunouchi",
+   "tokyo.chiyoda"
+  ]
+ },
+ {
+  "id": "tokyo.kasumigaseki",
+  "name": {
+   "ja": "霞ケ関",
+   "ko": "가스미가세키",
+   "en": "Kasumigaseki"
+  },
+  "kana": "かすみがせき",
+  "geo": {
+   "lat": 35.67389,
+   "lng": 139.75106
+  },
+  "lines": [
+   "tokyo.marunouchi",
+   "tokyo.hibiya",
+   "tokyo.chiyoda"
+  ],
+  "underground": [
+   "tokyo.marunouchi",
+   "tokyo.hibiya",
+   "tokyo.chiyoda"
+  ]
+ },
+ {
+  "id": "tokyo.otemachi",
+  "name": {
+   "ja": "大手町",
+   "ko": "오테마치",
+   "en": "Otemachi"
+  },
+  "kana": "おおてまち",
+  "geo": {
+   "lat": 35.6847,
+   "lng": 139.76596
+  },
+  "lines": [
+   "tokyo.marunouchi",
+   "tokyo.tozai",
+   "tokyo.chiyoda",
+   "tokyo.hanzomon",
+   "tokyo.toei_mita"
+  ],
+  "underground": [
+   "tokyo.marunouchi",
+   "tokyo.tozai",
+   "tokyo.chiyoda",
+   "tokyo.hanzomon",
+   "tokyo.toei_mita"
+  ]
+ },
+ {
+  "id": "tokyo.awajicho",
+  "name": {
+   "ja": "淡路町",
+   "ko": "아와지초",
+   "en": "Awajicho"
+  },
+  "kana": "あわじちょう",
+  "geo": {
+   "lat": 35.69492,
+   "lng": 139.76746
+  },
+  "lines": [
+   "tokyo.marunouchi"
+  ],
+  "underground": [
+   "tokyo.marunouchi"
+  ]
+ },
+ {
+  "id": "tokyo.ochanomizu",
+  "name": {
+   "ja": "御茶ノ水",
+   "ko": "오차노미즈",
+   "en": "Ochanomizu"
+  },
+  "kana": "おちゃのみず",
+  "geo": {
+   "lat": 35.69972,
+   "lng": 139.76389
+  },
+  "lines": [
+   "tokyo.marunouchi"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.hongo_sanchome",
+  "name": {
+   "ja": "本郷三丁目",
+   "ko": "혼고 3초메",
+   "en": "Hongo-sanchome"
+  },
+  "kana": "ほんごうさんちょうめ",
+  "geo": {
+   "lat": 35.70673,
+   "lng": 139.75989
+  },
+  "lines": [
+   "tokyo.marunouchi",
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.marunouchi",
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.korakuen",
+  "name": {
+   "ja": "後楽園",
+   "ko": "고라쿠엔",
+   "en": "Korakuen"
+  },
+  "kana": "こうらくえん",
+  "geo": {
+   "lat": 35.70734,
+   "lng": 139.7513
+  },
+  "lines": [
+   "tokyo.marunouchi",
+   "tokyo.namboku"
+  ],
+  "underground": [
+   "tokyo.namboku"
+  ]
+ },
+ {
+  "id": "tokyo.myogadani",
+  "name": {
+   "ja": "茗荷谷",
+   "ko": "묘가다니",
+   "en": "Myogadani"
+  },
+  "kana": "みょうがだに",
+  "geo": {
+   "lat": 35.71728,
+   "lng": 139.73691
+  },
+  "lines": [
+   "tokyo.marunouchi"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.shin_otsuka",
+  "name": {
+   "ja": "新大塚",
+   "ko": "신오쓰카",
+   "en": "Shin-otsuka"
+  },
+  "kana": "しんおおつか",
+  "geo": {
+   "lat": 35.72583,
+   "lng": 139.72987
+  },
+  "lines": [
+   "tokyo.marunouchi"
+  ],
+  "underground": [
+   "tokyo.marunouchi"
+  ]
+ },
+ {
+  "id": "tokyo.nakano_shimbashi",
+  "name": {
+   "ja": "中野新橋",
+   "ko": "나카노신바시",
+   "en": "Nakano-shimbashi"
+  },
+  "kana": "なかのしんばし",
+  "geo": {
+   "lat": 35.69211,
+   "lng": 139.67387
+  },
+  "lines": [
+   "tokyo.marunouchi_branch"
+  ],
+  "underground": [
+   "tokyo.marunouchi_branch"
+  ]
+ },
+ {
+  "id": "tokyo.nakano_fujimicho",
+  "name": {
+   "ja": "中野富士見町",
+   "ko": "나카노후지미초",
+   "en": "Nakano-fujimicho"
+  },
+  "kana": "なかのふじみちょう",
+  "geo": {
+   "lat": 35.69056,
+   "lng": 139.66703
+  },
+  "lines": [
+   "tokyo.marunouchi_branch"
+  ],
+  "underground": [
+   "tokyo.marunouchi_branch"
+  ]
+ },
+ {
+  "id": "tokyo.honancho",
+  "name": {
+   "ja": "方南町",
+   "ko": "호난초",
+   "en": "Honancho"
+  },
+  "kana": "ほうなんちょう",
+  "geo": {
+   "lat": 35.68337,
+   "lng": 139.65687
+  },
+  "lines": [
+   "tokyo.marunouchi_branch"
+  ],
+  "underground": [
+   "tokyo.marunouchi_branch"
+  ]
+ },
+ {
+  "id": "tokyo.naka_meguro",
+  "name": {
+   "ja": "中目黒",
+   "ko": "나카메구로",
+   "en": "Naka-Meguro"
+  },
+  "kana": "なかめぐろ",
+  "geo": {
+   "lat": 35.64431,
+   "lng": 139.69919
+  },
+  "lines": [
+   "tokyo.hibiya"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.hiroo",
+  "name": {
+   "ja": "広尾",
+   "ko": "히로오",
+   "en": "Hiroo"
+  },
+  "kana": "ひろお",
+  "geo": {
+   "lat": 35.65219,
+   "lng": 139.72223
+  },
+  "lines": [
+   "tokyo.hibiya"
+  ],
+  "underground": [
+   "tokyo.hibiya"
+  ]
+ },
+ {
+  "id": "tokyo.roppongi",
+  "name": {
+   "ja": "六本木",
+   "ko": "롯폰기",
+   "en": "Roppongi"
+  },
+  "kana": "ろっぽんぎ",
+  "geo": {
+   "lat": 35.66278,
+   "lng": 139.73139
+  },
+  "lines": [
+   "tokyo.hibiya",
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.hibiya",
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.kamiyacho",
+  "name": {
+   "ja": "神谷町",
+   "ko": "가미야초",
+   "en": "Kamiyacho"
+  },
+  "kana": "かみやちょう",
+  "geo": {
+   "lat": 35.66295,
+   "lng": 139.74501
+  },
+  "lines": [
+   "tokyo.hibiya"
+  ],
+  "underground": [
+   "tokyo.hibiya"
+  ]
+ },
+ {
+  "id": "tokyo.toranomon_hills",
+  "name": {
+   "ja": "虎ノ門ヒルズ",
+   "ko": "도라노몬힐스",
+   "en": "Toranomon Hills"
+  },
+  "kana": "とらのもんヒルズ",
+  "geo": {
+   "lat": 35.66744,
+   "lng": 139.74778
+  },
+  "lines": [
+   "tokyo.hibiya"
+  ],
+  "underground": [
+   "tokyo.hibiya"
+  ]
+ },
+ {
+  "id": "tokyo.hibiya",
+  "name": {
+   "ja": "日比谷",
+   "ko": "히비야",
+   "en": "Hibiya"
+  },
+  "kana": "ひびや",
+  "geo": {
+   "lat": 35.67495,
+   "lng": 139.75962
+  },
+  "lines": [
+   "tokyo.hibiya",
+   "tokyo.chiyoda",
+   "tokyo.toei_mita"
+  ],
+  "underground": [
+   "tokyo.hibiya",
+   "tokyo.chiyoda",
+   "tokyo.toei_mita"
+  ]
+ },
+ {
+  "id": "tokyo.higashi_ginza",
+  "name": {
+   "ja": "東銀座",
+   "ko": "히가시긴자",
+   "en": "Higashi-ginza"
+  },
+  "kana": "ひがしぎんざ",
+  "geo": {
+   "lat": 35.6697,
+   "lng": 139.7673
+  },
+  "lines": [
+   "tokyo.hibiya",
+   "tokyo.toei_asakusa"
+  ],
+  "underground": [
+   "tokyo.hibiya",
+   "tokyo.toei_asakusa"
+  ]
+ },
+ {
+  "id": "tokyo.tsukiji",
+  "name": {
+   "ja": "築地",
+   "ko": "쓰키지",
+   "en": "Tsukiji"
+  },
+  "kana": "つきじ",
+  "geo": {
+   "lat": 35.6681,
+   "lng": 139.7725
+  },
+  "lines": [
+   "tokyo.hibiya"
+  ],
+  "underground": [
+   "tokyo.hibiya"
+  ]
+ },
+ {
+  "id": "tokyo.hatchobori",
+  "name": {
+   "ja": "八丁堀",
+   "ko": "핫초보리",
+   "en": "Hatchobori"
+  },
+  "kana": "はっちょうぼり",
+  "geo": {
+   "lat": 35.67458,
+   "lng": 139.77778
+  },
+  "lines": [
+   "tokyo.hibiya"
+  ],
+  "underground": [
+   "tokyo.hibiya"
+  ]
+ },
+ {
+  "id": "tokyo.kayabacho",
+  "name": {
+   "ja": "茅場町",
+   "ko": "가야바초",
+   "en": "Kayabacho"
+  },
+  "kana": "かやばちょう",
+  "geo": {
+   "lat": 35.67994,
+   "lng": 139.78016
+  },
+  "lines": [
+   "tokyo.hibiya",
+   "tokyo.tozai"
+  ],
+  "underground": [
+   "tokyo.hibiya",
+   "tokyo.tozai"
+  ]
+ },
+ {
+  "id": "tokyo.ningyocho",
+  "name": {
+   "ja": "人形町",
+   "ko": "닌교초",
+   "en": "Ningyocho"
+  },
+  "kana": "にんぎょうちょう",
+  "geo": {
+   "lat": 35.68631,
+   "lng": 139.78228
+  },
+  "lines": [
+   "tokyo.hibiya",
+   "tokyo.toei_asakusa"
+  ],
+  "underground": [
+   "tokyo.hibiya",
+   "tokyo.toei_asakusa"
+  ]
+ },
+ {
+  "id": "tokyo.kodemmacho",
+  "name": {
+   "ja": "小伝馬町",
+   "ko": "고덴마초",
+   "en": "Kodemmacho"
+  },
+  "kana": "こでんまちょう",
+  "geo": {
+   "lat": 35.6906,
+   "lng": 139.7785
+  },
+  "lines": [
+   "tokyo.hibiya"
+  ],
+  "underground": [
+   "tokyo.hibiya"
+  ]
+ },
+ {
+  "id": "tokyo.naka_okachimachi",
+  "name": {
+   "ja": "仲御徒町",
+   "ko": "나카오카치마치",
+   "en": "Naka-Okachimachi"
+  },
+  "kana": "なかおかちまち",
+  "geo": {
+   "lat": 35.7064,
+   "lng": 139.776
+  },
+  "lines": [
+   "tokyo.hibiya"
+  ],
+  "underground": [
+   "tokyo.hibiya"
+  ]
+ },
+ {
+  "id": "tokyo.iriya",
+  "name": {
+   "ja": "入谷",
+   "ko": "이리야",
+   "en": "Iriya"
+  },
+  "kana": "いりや",
+  "geo": {
+   "lat": 35.72073,
+   "lng": 139.78454
+  },
+  "lines": [
+   "tokyo.hibiya"
+  ],
+  "underground": [
+   "tokyo.hibiya"
+  ]
+ },
+ {
+  "id": "tokyo.minowa",
+  "name": {
+   "ja": "三ノ輪",
+   "ko": "미노와",
+   "en": "Minowa"
+  },
+  "kana": "みのわ",
+  "geo": {
+   "lat": 35.7298,
+   "lng": 139.7915
+  },
+  "lines": [
+   "tokyo.hibiya"
+  ],
+  "underground": [
+   "tokyo.hibiya"
+  ]
+ },
+ {
+  "id": "tokyo.minami_senju",
+  "name": {
+   "ja": "南千住",
+   "ko": "미나미센주",
+   "en": "Minami-Senju"
+  },
+  "kana": "みなみせんじゅ",
+  "geo": {
+   "lat": 35.7332,
+   "lng": 139.7993
+  },
+  "lines": [
+   "tokyo.hibiya"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.kita_senju",
+  "name": {
+   "ja": "北千住",
+   "ko": "기타센주",
+   "en": "Kita-Senju"
+  },
+  "kana": "きたせんじゅ",
+  "geo": {
+   "lat": 35.74941,
+   "lng": 139.8051
+  },
+  "lines": [
+   "tokyo.hibiya",
+   "tokyo.chiyoda"
+  ],
+  "underground": [
+   "tokyo.chiyoda"
+  ]
+ },
+ {
+  "id": "tokyo.nakano",
+  "name": {
+   "ja": "中野",
+   "ko": "나카노",
+   "en": "Nakano"
+  },
+  "kana": "なかの",
+  "geo": {
+   "lat": 35.70583,
+   "lng": 139.66556
+  },
+  "lines": [
+   "tokyo.tozai"
+  ],
+  "underground": [
+   "tokyo.tozai"
+  ]
+ },
+ {
+  "id": "tokyo.ochiai",
+  "name": {
+   "ja": "落合",
+   "ko": "오치아이",
+   "en": "Ochiai"
+  },
+  "kana": "おちあい",
+  "geo": {
+   "lat": 35.71074,
+   "lng": 139.68634
+  },
+  "lines": [
+   "tokyo.tozai"
+  ],
+  "underground": [
+   "tokyo.tozai"
+  ]
+ },
+ {
+  "id": "tokyo.waseda",
+  "name": {
+   "ja": "早稲田",
+   "ko": "와세다",
+   "en": "Waseda"
+  },
+  "kana": "わせだ",
+  "geo": {
+   "lat": 35.7057,
+   "lng": 139.722
+  },
+  "lines": [
+   "tokyo.tozai"
+  ],
+  "underground": [
+   "tokyo.tozai"
+  ]
+ },
+ {
+  "id": "tokyo.kagurazaka",
+  "name": {
+   "ja": "神楽坂",
+   "ko": "가구라자카",
+   "en": "Kagurazaka"
+  },
+  "kana": "かぐらざか",
+  "geo": {
+   "lat": 35.7039,
+   "lng": 139.73424
+  },
+  "lines": [
+   "tokyo.tozai"
+  ],
+  "underground": [
+   "tokyo.tozai"
+  ]
+ },
+ {
+  "id": "tokyo.iidabashi",
+  "name": {
+   "ja": "飯田橋",
+   "ko": "이다바시",
+   "en": "Iidabashi"
+  },
+  "kana": "いいだばし",
+  "geo": {
+   "lat": 35.70206,
+   "lng": 139.745
+  },
+  "lines": [
+   "tokyo.tozai",
+   "tokyo.yurakucho",
+   "tokyo.namboku",
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.tozai",
+   "tokyo.yurakucho",
+   "tokyo.namboku",
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.kudanshita",
+  "name": {
+   "ja": "九段下",
+   "ko": "구단시타",
+   "en": "Kudanshita"
+  },
+  "kana": "くだんした",
+  "geo": {
+   "lat": 35.6954,
+   "lng": 139.7514
+  },
+  "lines": [
+   "tokyo.tozai",
+   "tokyo.hanzomon",
+   "tokyo.toei_shinjuku"
+  ],
+  "underground": [
+   "tokyo.tozai",
+   "tokyo.hanzomon",
+   "tokyo.toei_shinjuku"
+  ]
+ },
+ {
+  "id": "tokyo.takebashi",
+  "name": {
+   "ja": "竹橋",
+   "ko": "다케바시",
+   "en": "Takebashi"
+  },
+  "kana": "たけばし",
+  "geo": {
+   "lat": 35.69071,
+   "lng": 139.75682
+  },
+  "lines": [
+   "tokyo.tozai"
+  ],
+  "underground": [
+   "tokyo.tozai"
+  ]
+ },
+ {
+  "id": "tokyo.monzen_nakacho",
+  "name": {
+   "ja": "門前仲町",
+   "ko": "몬젠나카초",
+   "en": "Monzen-Nakacho"
+  },
+  "kana": "もんぜんなかちょう",
+  "geo": {
+   "lat": 35.67198,
+   "lng": 139.79579
+  },
+  "lines": [
+   "tokyo.tozai",
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.tozai",
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.kiba",
+  "name": {
+   "ja": "木場",
+   "ko": "기바",
+   "en": "Kiba"
+  },
+  "kana": "きば",
+  "geo": {
+   "lat": 35.66944,
+   "lng": 139.80653
+  },
+  "lines": [
+   "tokyo.tozai"
+  ],
+  "underground": [
+   "tokyo.tozai"
+  ]
+ },
+ {
+  "id": "tokyo.toyocho",
+  "name": {
+   "ja": "東陽町",
+   "ko": "도요초",
+   "en": "Toyocho"
+  },
+  "kana": "とうようちょう",
+  "geo": {
+   "lat": 35.66958,
+   "lng": 139.8175
+  },
+  "lines": [
+   "tokyo.tozai"
+  ],
+  "underground": [
+   "tokyo.tozai"
+  ]
+ },
+ {
+  "id": "tokyo.minami_sunamachi",
+  "name": {
+   "ja": "南砂町",
+   "ko": "미나미스나마치",
+   "en": "Minami-Sunamachi"
+  },
+  "kana": "みなみすなまち",
+  "geo": {
+   "lat": 35.66883,
+   "lng": 139.83067
+  },
+  "lines": [
+   "tokyo.tozai"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.nishi_kasai",
+  "name": {
+   "ja": "西葛西",
+   "ko": "니시카사이",
+   "en": "Nishi-Kasai"
+  },
+  "kana": "にしかさい",
+  "geo": {
+   "lat": 35.66458,
+   "lng": 139.85936
+  },
+  "lines": [
+   "tokyo.tozai"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.kasai",
+  "name": {
+   "ja": "葛西",
+   "ko": "가사이",
+   "en": "Kasai"
+  },
+  "kana": "かさい",
+  "geo": {
+   "lat": 35.66361,
+   "lng": 139.87269
+  },
+  "lines": [
+   "tokyo.tozai"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.urayasu",
+  "name": {
+   "ja": "浦安",
+   "ko": "우라야스",
+   "en": "Urayasu"
+  },
+  "kana": "うらやす",
+  "geo": {
+   "lat": 35.6658,
+   "lng": 139.893
+  },
+  "lines": [
+   "tokyo.tozai"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.minami_gyotoku",
+  "name": {
+   "ja": "南行徳",
+   "ko": "미나미교토쿠",
+   "en": "Minami-Gyotoku"
+  },
+  "kana": "みなみぎょうとく",
+  "geo": {
+   "lat": 35.67278,
+   "lng": 139.90228
+  },
+  "lines": [
+   "tokyo.tozai"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.gyotoku",
+  "name": {
+   "ja": "行徳",
+   "ko": "교토쿠",
+   "en": "Gyotoku"
+  },
+  "kana": "ぎょうとく",
+  "geo": {
+   "lat": 35.68264,
+   "lng": 139.91417
+  },
+  "lines": [
+   "tokyo.tozai"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.myoden",
+  "name": {
+   "ja": "妙典",
+   "ko": "묘덴",
+   "en": "Myoden"
+  },
+  "kana": "みょうでん",
+  "geo": {
+   "lat": 35.69161,
+   "lng": 139.925
+  },
+  "lines": [
+   "tokyo.tozai"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.baraki_nakayama",
+  "name": {
+   "ja": "原木中山",
+   "ko": "바라키나카야마",
+   "en": "Baraki-Nakayama"
+  },
+  "kana": "ばらきなかやま",
+  "geo": {
+   "lat": 35.70325,
+   "lng": 139.94181
+  },
+  "lines": [
+   "tokyo.tozai"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.nishi_funabashi",
+  "name": {
+   "ja": "西船橋",
+   "ko": "니시후나바시",
+   "en": "Nishi-Funabashi"
+  },
+  "kana": "にしふなばし",
+  "geo": {
+   "lat": 35.707,
+   "lng": 139.959
+  },
+  "lines": [
+   "tokyo.tozai"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.yoyogi_uehara",
+  "name": {
+   "ja": "代々木上原",
+   "ko": "요요기우에하라",
+   "en": "Yoyogi-Uehara"
+  },
+  "kana": "よよぎうえはら",
+  "geo": {
+   "lat": 35.66903,
+   "lng": 139.67972
+  },
+  "lines": [
+   "tokyo.chiyoda"
+  ],
+  "underground": [
+   "tokyo.chiyoda"
+  ]
+ },
+ {
+  "id": "tokyo.yoyogi_koen",
+  "name": {
+   "ja": "代々木公園",
+   "ko": "요요기코엔",
+   "en": "Yoyogi-Koen"
+  },
+  "kana": "よよぎこうえん",
+  "geo": {
+   "lat": 35.66894,
+   "lng": 139.69133
+  },
+  "lines": [
+   "tokyo.chiyoda"
+  ],
+  "underground": [
+   "tokyo.chiyoda"
+  ]
+ },
+ {
+  "id": "tokyo.meiji_jingumae",
+  "name": {
+   "ja": "明治神宮前",
+   "ko": "메이지진구마에",
+   "en": "Meiji-Jingumae"
+  },
+  "kana": "めいじじんぐうまえ",
+  "geo": {
+   "lat": 35.66845,
+   "lng": 139.70535
+  },
+  "lines": [
+   "tokyo.chiyoda",
+   "tokyo.fukutoshin"
+  ],
+  "underground": [
+   "tokyo.chiyoda",
+   "tokyo.fukutoshin"
+  ]
+ },
+ {
+  "id": "tokyo.nogizaka",
+  "name": {
+   "ja": "乃木坂",
+   "ko": "노기자카",
+   "en": "Nogizaka"
+  },
+  "kana": "のぎざか",
+  "geo": {
+   "lat": 35.66654,
+   "lng": 139.72619
+  },
+  "lines": [
+   "tokyo.chiyoda"
+  ],
+  "underground": [
+   "tokyo.chiyoda"
+  ]
+ },
+ {
+  "id": "tokyo.akasaka",
+  "name": {
+   "ja": "赤坂",
+   "ko": "아카사카",
+   "en": "Akasaka"
+  },
+  "kana": "あかさか",
+  "geo": {
+   "lat": 35.67236,
+   "lng": 139.73653
+  },
+  "lines": [
+   "tokyo.chiyoda"
+  ],
+  "underground": [
+   "tokyo.chiyoda"
+  ]
+ },
+ {
+  "id": "tokyo.nijubashimae",
+  "name": {
+   "ja": "二重橋前",
+   "ko": "니주바시마에",
+   "en": "Nijubashimae"
+  },
+  "kana": "にじゅうばしまえ",
+  "geo": {
+   "lat": 35.68032,
+   "lng": 139.76171
+  },
+  "lines": [
+   "tokyo.chiyoda"
+  ],
+  "underground": [
+   "tokyo.chiyoda"
+  ]
+ },
+ {
+  "id": "tokyo.shin_ochanomizu",
+  "name": {
+   "ja": "新御茶ノ水",
+   "ko": "신오차노미즈",
+   "en": "Shin-Ochanomizu"
+  },
+  "kana": "しんおちゃのみず",
+  "geo": {
+   "lat": 35.69774,
+   "lng": 139.76584
+  },
+  "lines": [
+   "tokyo.chiyoda"
+  ],
+  "underground": [
+   "tokyo.chiyoda"
+  ]
+ },
+ {
+  "id": "tokyo.yushima",
+  "name": {
+   "ja": "湯島",
+   "ko": "유시마",
+   "en": "Yushima"
+  },
+  "kana": "ゆしま",
+  "geo": {
+   "lat": 35.708,
+   "lng": 139.77
+  },
+  "lines": [
+   "tokyo.chiyoda"
+  ],
+  "underground": [
+   "tokyo.chiyoda"
+  ]
+ },
+ {
+  "id": "tokyo.nezu",
+  "name": {
+   "ja": "根津",
+   "ko": "네즈",
+   "en": "Nezu"
+  },
+  "kana": "ねづ",
+  "geo": {
+   "lat": 35.71738,
+   "lng": 139.76574
+  },
+  "lines": [
+   "tokyo.chiyoda"
+  ],
+  "underground": [
+   "tokyo.chiyoda"
+  ]
+ },
+ {
+  "id": "tokyo.sendagi",
+  "name": {
+   "ja": "千駄木",
+   "ko": "센다기",
+   "en": "Sendagi"
+  },
+  "kana": "せんだぎ",
+  "geo": {
+   "lat": 35.72533,
+   "lng": 139.76319
+  },
+  "lines": [
+   "tokyo.chiyoda"
+  ],
+  "underground": [
+   "tokyo.chiyoda"
+  ]
+ },
+ {
+  "id": "tokyo.machiya",
+  "name": {
+   "ja": "町屋",
+   "ko": "마치야",
+   "en": "Machiya"
+  },
+  "kana": "まちや",
+  "geo": {
+   "lat": 35.7424,
+   "lng": 139.7816
+  },
+  "lines": [
+   "tokyo.chiyoda"
+  ],
+  "underground": [
+   "tokyo.chiyoda"
+  ]
+ },
+ {
+  "id": "tokyo.ayase",
+  "name": {
+   "ja": "綾瀬",
+   "ko": "아야세",
+   "en": "Ayase"
+  },
+  "kana": "あやせ",
+  "geo": {
+   "lat": 35.76222,
+   "lng": 139.825
+  },
+  "lines": [
+   "tokyo.chiyoda"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.kita_ayase",
+  "name": {
+   "ja": "北綾瀬",
+   "ko": "기타아야세",
+   "en": "Kita-Ayase"
+  },
+  "kana": "きたあやせ",
+  "geo": {
+   "lat": 35.77694,
+   "lng": 139.83208
+  },
+  "lines": [
+   "tokyo.chiyoda"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.wakoshi",
+  "name": {
+   "ja": "和光市",
+   "ko": "와코시",
+   "en": "Wakoshi"
+  },
+  "kana": "わこうし",
+  "geo": {
+   "lat": 35.78841,
+   "lng": 139.61289
+  },
+  "lines": [
+   "tokyo.yurakucho",
+   "tokyo.fukutoshin"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.chikatetsu_narimasu",
+  "name": {
+   "ja": "地下鉄成増",
+   "ko": "지카테쓰나리마스",
+   "en": "Chikatetsu-Narimasu"
+  },
+  "kana": "ちかてつなります",
+  "geo": {
+   "lat": 35.77653,
+   "lng": 139.63153
+  },
+  "lines": [
+   "tokyo.yurakucho",
+   "tokyo.fukutoshin"
+  ],
+  "underground": [
+   "tokyo.yurakucho",
+   "tokyo.fukutoshin"
+  ]
+ },
+ {
+  "id": "tokyo.chikatetsu_akatsuka",
+  "name": {
+   "ja": "地下鉄赤塚",
+   "ko": "지카테쓰아카쓰카",
+   "en": "Chikatetsu-Akatsuka"
+  },
+  "kana": "ちかてつあかつか",
+  "geo": {
+   "lat": 35.76994,
+   "lng": 139.64405
+  },
+  "lines": [
+   "tokyo.yurakucho",
+   "tokyo.fukutoshin"
+  ],
+  "underground": [
+   "tokyo.yurakucho",
+   "tokyo.fukutoshin"
+  ]
+ },
+ {
+  "id": "tokyo.heiwadai",
+  "name": {
+   "ja": "平和台",
+   "ko": "헤이와다이",
+   "en": "Heiwadai"
+  },
+  "kana": "へいわだい",
+  "geo": {
+   "lat": 35.75786,
+   "lng": 139.65378
+  },
+  "lines": [
+   "tokyo.yurakucho",
+   "tokyo.fukutoshin"
+  ],
+  "underground": [
+   "tokyo.yurakucho",
+   "tokyo.fukutoshin"
+  ]
+ },
+ {
+  "id": "tokyo.hikawadai",
+  "name": {
+   "ja": "氷川台",
+   "ko": "히카와다이",
+   "en": "Hikawadai"
+  },
+  "kana": "ひかわだい",
+  "geo": {
+   "lat": 35.74981,
+   "lng": 139.665
+  },
+  "lines": [
+   "tokyo.yurakucho",
+   "tokyo.fukutoshin"
+  ],
+  "underground": [
+   "tokyo.yurakucho",
+   "tokyo.fukutoshin"
+  ]
+ },
+ {
+  "id": "tokyo.kotake_mukaihara",
+  "name": {
+   "ja": "小竹向原",
+   "ko": "고타케무카이하라",
+   "en": "Kotake-mukaihara"
+  },
+  "kana": "こたけむかいはら",
+  "geo": {
+   "lat": 35.74333,
+   "lng": 139.67949
+  },
+  "lines": [
+   "tokyo.yurakucho",
+   "tokyo.fukutoshin"
+  ],
+  "underground": [
+   "tokyo.yurakucho",
+   "tokyo.fukutoshin"
+  ]
+ },
+ {
+  "id": "tokyo.senkawa",
+  "name": {
+   "ja": "千川",
+   "ko": "센카와",
+   "en": "Senkawa"
+  },
+  "kana": "せんかわ",
+  "geo": {
+   "lat": 35.73842,
+   "lng": 139.68917
+  },
+  "lines": [
+   "tokyo.yurakucho",
+   "tokyo.fukutoshin"
+  ],
+  "underground": [
+   "tokyo.yurakucho",
+   "tokyo.fukutoshin"
+  ]
+ },
+ {
+  "id": "tokyo.kanamecho",
+  "name": {
+   "ja": "要町",
+   "ko": "가나메초",
+   "en": "Kanamecho"
+  },
+  "kana": "かなめちょう",
+  "geo": {
+   "lat": 35.73322,
+   "lng": 139.69872
+  },
+  "lines": [
+   "tokyo.yurakucho",
+   "tokyo.fukutoshin"
+  ],
+  "underground": [
+   "tokyo.yurakucho",
+   "tokyo.fukutoshin"
+  ]
+ },
+ {
+  "id": "tokyo.higashi_ikebukuro",
+  "name": {
+   "ja": "東池袋",
+   "ko": "히가시이케부쿠로",
+   "en": "Higashi-Ikebukuro"
+  },
+  "kana": "ひがしいけぶくろ",
+  "geo": {
+   "lat": 35.72523,
+   "lng": 139.72019
+  },
+  "lines": [
+   "tokyo.yurakucho"
+  ],
+  "underground": [
+   "tokyo.yurakucho"
+  ]
+ },
+ {
+  "id": "tokyo.gokokuji",
+  "name": {
+   "ja": "護国寺",
+   "ko": "고코쿠지",
+   "en": "Gokokuji"
+  },
+  "kana": "ごこくじ",
+  "geo": {
+   "lat": 35.71899,
+   "lng": 139.72757
+  },
+  "lines": [
+   "tokyo.yurakucho"
+  ],
+  "underground": [
+   "tokyo.yurakucho"
+  ]
+ },
+ {
+  "id": "tokyo.edogawabashi",
+  "name": {
+   "ja": "江戸川橋",
+   "ko": "에도가와바시",
+   "en": "Edogawabashi"
+  },
+  "kana": "えどがわばし",
+  "geo": {
+   "lat": 35.70948,
+   "lng": 139.73354
+  },
+  "lines": [
+   "tokyo.yurakucho"
+  ],
+  "underground": [
+   "tokyo.yurakucho"
+  ]
+ },
+ {
+  "id": "tokyo.ichigaya",
+  "name": {
+   "ja": "市ケ谷",
+   "ko": "이치가야",
+   "en": "Ichigaya"
+  },
+  "kana": "いちがや",
+  "geo": {
+   "lat": 35.691,
+   "lng": 139.73558
+  },
+  "lines": [
+   "tokyo.yurakucho",
+   "tokyo.namboku",
+   "tokyo.toei_shinjuku"
+  ],
+  "underground": [
+   "tokyo.yurakucho",
+   "tokyo.namboku",
+   "tokyo.toei_shinjuku"
+  ]
+ },
+ {
+  "id": "tokyo.kojimachi",
+  "name": {
+   "ja": "麹町",
+   "ko": "고지마치",
+   "en": "Kojimachi"
+  },
+  "kana": "こうじまち",
+  "geo": {
+   "lat": 35.68393,
+   "lng": 139.73768
+  },
+  "lines": [
+   "tokyo.yurakucho"
+  ],
+  "underground": [
+   "tokyo.yurakucho"
+  ]
+ },
+ {
+  "id": "tokyo.nagatacho",
+  "name": {
+   "ja": "永田町",
+   "ko": "나가타초",
+   "en": "Nagatacho"
+  },
+  "kana": "ながたちょう",
+  "geo": {
+   "lat": 35.67875,
+   "lng": 139.74026
+  },
+  "lines": [
+   "tokyo.yurakucho",
+   "tokyo.hanzomon",
+   "tokyo.namboku"
+  ],
+  "underground": [
+   "tokyo.yurakucho",
+   "tokyo.hanzomon",
+   "tokyo.namboku"
+  ]
+ },
+ {
+  "id": "tokyo.sakuradamon",
+  "name": {
+   "ja": "桜田門",
+   "ko": "사쿠라다몬",
+   "en": "Sakuradamon"
+  },
+  "kana": "さくらだもん",
+  "geo": {
+   "lat": 35.67735,
+   "lng": 139.75178
+  },
+  "lines": [
+   "tokyo.yurakucho"
+  ],
+  "underground": [
+   "tokyo.yurakucho"
+  ]
+ },
+ {
+  "id": "tokyo.ginza_itchome",
+  "name": {
+   "ja": "銀座一丁目",
+   "ko": "긴자 1초메",
+   "en": "Ginza-itchome"
+  },
+  "kana": "ぎんざいっちょうめ",
+  "geo": {
+   "lat": 35.67435,
+   "lng": 139.76705
+  },
+  "lines": [
+   "tokyo.yurakucho"
+  ],
+  "underground": [
+   "tokyo.yurakucho"
+  ]
+ },
+ {
+  "id": "tokyo.shintomicho",
+  "name": {
+   "ja": "新富町",
+   "ko": "신토미초",
+   "en": "Shintomicho"
+  },
+  "kana": "しんとみちょう",
+  "geo": {
+   "lat": 35.67046,
+   "lng": 139.77372
+  },
+  "lines": [
+   "tokyo.yurakucho"
+  ],
+  "underground": [
+   "tokyo.yurakucho"
+  ]
+ },
+ {
+  "id": "tokyo.tsukishima",
+  "name": {
+   "ja": "月島",
+   "ko": "쓰키시마",
+   "en": "Tsukishima"
+  },
+  "kana": "つきしま",
+  "geo": {
+   "lat": 35.66435,
+   "lng": 139.78486
+  },
+  "lines": [
+   "tokyo.yurakucho",
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.yurakucho",
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.toyosu",
+  "name": {
+   "ja": "豊洲",
+   "ko": "도요스",
+   "en": "Toyosu"
+  },
+  "kana": "とよす",
+  "geo": {
+   "lat": 35.65499,
+   "lng": 139.79608
+  },
+  "lines": [
+   "tokyo.yurakucho"
+  ],
+  "underground": [
+   "tokyo.yurakucho"
+  ]
+ },
+ {
+  "id": "tokyo.tatsumi",
+  "name": {
+   "ja": "辰巳",
+   "ko": "다쓰미",
+   "en": "Tatsumi"
+  },
+  "kana": "たつみ",
+  "geo": {
+   "lat": 35.64556,
+   "lng": 139.81056
+  },
+  "lines": [
+   "tokyo.yurakucho"
+  ],
+  "underground": [
+   "tokyo.yurakucho"
+  ]
+ },
+ {
+  "id": "tokyo.shin_kiba",
+  "name": {
+   "ja": "新木場",
+   "ko": "신키바",
+   "en": "Shin-Kiba"
+  },
+  "kana": "しんきば",
+  "geo": {
+   "lat": 35.64611,
+   "lng": 139.82736
+  },
+  "lines": [
+   "tokyo.yurakucho"
+  ],
+  "underground": [
+   "tokyo.yurakucho"
+  ]
+ },
+ {
+  "id": "tokyo.hanzomon",
+  "name": {
+   "ja": "半蔵門",
+   "ko": "한조몬",
+   "en": "Hanzomon"
+  },
+  "kana": "はんぞうもん",
+  "geo": {
+   "lat": 35.68569,
+   "lng": 139.74166
+  },
+  "lines": [
+   "tokyo.hanzomon"
+  ],
+  "underground": [
+   "tokyo.hanzomon"
+  ]
+ },
+ {
+  "id": "tokyo.jimbocho",
+  "name": {
+   "ja": "神保町",
+   "ko": "진보초",
+   "en": "Jimbocho"
+  },
+  "kana": "じんぼうちょう",
+  "geo": {
+   "lat": 35.6959,
+   "lng": 139.7577
+  },
+  "lines": [
+   "tokyo.hanzomon",
+   "tokyo.toei_mita",
+   "tokyo.toei_shinjuku"
+  ],
+  "underground": [
+   "tokyo.hanzomon",
+   "tokyo.toei_mita",
+   "tokyo.toei_shinjuku"
+  ]
+ },
+ {
+  "id": "tokyo.suitengumae",
+  "name": {
+   "ja": "水天宮前",
+   "ko": "스이텐구마에",
+   "en": "Suitengumae"
+  },
+  "kana": "すいてんぐうまえ",
+  "geo": {
+   "lat": 35.6826,
+   "lng": 139.7852
+  },
+  "lines": [
+   "tokyo.hanzomon"
+  ],
+  "underground": [
+   "tokyo.hanzomon"
+  ]
+ },
+ {
+  "id": "tokyo.kiyosumi_shirakawa",
+  "name": {
+   "ja": "清澄白河",
+   "ko": "기요스미시라카와",
+   "en": "Kiyosumi-shirakawa"
+  },
+  "kana": "きよすみしらかわ",
+  "geo": {
+   "lat": 35.6823,
+   "lng": 139.7987
+  },
+  "lines": [
+   "tokyo.hanzomon",
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.hanzomon",
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.sumiyoshi",
+  "name": {
+   "ja": "住吉",
+   "ko": "스미요시",
+   "en": "Sumiyoshi"
+  },
+  "kana": "すみよし",
+  "geo": {
+   "lat": 35.6891,
+   "lng": 139.816
+  },
+  "lines": [
+   "tokyo.hanzomon",
+   "tokyo.toei_shinjuku"
+  ],
+  "underground": [
+   "tokyo.hanzomon",
+   "tokyo.toei_shinjuku"
+  ]
+ },
+ {
+  "id": "tokyo.kinshicho",
+  "name": {
+   "ja": "錦糸町",
+   "ko": "긴시초",
+   "en": "Kinshicho"
+  },
+  "kana": "きんしちょう",
+  "geo": {
+   "lat": 35.696,
+   "lng": 139.814
+  },
+  "lines": [
+   "tokyo.hanzomon"
+  ],
+  "underground": [
+   "tokyo.hanzomon"
+  ]
+ },
+ {
+  "id": "tokyo.oshiage",
+  "name": {
+   "ja": "押上",
+   "ko": "오시아게",
+   "en": "Oshiage"
+  },
+  "kana": "おしあげ",
+  "geo": {
+   "lat": 35.71075,
+   "lng": 139.81289
+  },
+  "lines": [
+   "tokyo.hanzomon",
+   "tokyo.toei_asakusa",
+   "tokyo.keisei",
+   "tokyo.access_express"
+  ],
+  "underground": [
+   "tokyo.hanzomon",
+   "tokyo.toei_asakusa",
+   "tokyo.keisei",
+   "tokyo.access_express"
+  ]
+ },
+ {
+  "id": "tokyo.shirokanedai",
+  "name": {
+   "ja": "白金台",
+   "ko": "시로카네다이",
+   "en": "Shirokanedai"
+  },
+  "kana": "しろかねだい",
+  "geo": {
+   "lat": 35.638,
+   "lng": 139.72632
+  },
+  "lines": [
+   "tokyo.namboku",
+   "tokyo.toei_mita"
+  ],
+  "underground": [
+   "tokyo.namboku",
+   "tokyo.toei_mita"
+  ]
+ },
+ {
+  "id": "tokyo.shirokane_takanawa",
+  "name": {
+   "ja": "白金高輪",
+   "ko": "시로카네타카나와",
+   "en": "Shirokane-takanawa"
+  },
+  "kana": "しろかねたかなわ",
+  "geo": {
+   "lat": 35.64318,
+   "lng": 139.73413
+  },
+  "lines": [
+   "tokyo.namboku",
+   "tokyo.toei_mita"
+  ],
+  "underground": [
+   "tokyo.namboku",
+   "tokyo.toei_mita"
+  ]
+ },
+ {
+  "id": "tokyo.azabu_juban",
+  "name": {
+   "ja": "麻布十番",
+   "ko": "아자부주반",
+   "en": "Azabu-Juban"
+  },
+  "kana": "あざぶじゅうばん",
+  "geo": {
+   "lat": 35.65474,
+   "lng": 139.73701
+  },
+  "lines": [
+   "tokyo.namboku",
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.namboku",
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.roppongi_itchome",
+  "name": {
+   "ja": "六本木一丁目",
+   "ko": "롯폰기 1초메",
+   "en": "Roppongi-itchome"
+  },
+  "kana": "ろっぽんぎいっちょうめ",
+  "geo": {
+   "lat": 35.6649,
+   "lng": 139.73888
+  },
+  "lines": [
+   "tokyo.namboku"
+  ],
+  "underground": [
+   "tokyo.namboku"
+  ]
+ },
+ {
+  "id": "tokyo.todaimae",
+  "name": {
+   "ja": "東大前",
+   "ko": "도다이마에",
+   "en": "Todaimae"
+  },
+  "kana": "とうだいまえ",
+  "geo": {
+   "lat": 35.71758,
+   "lng": 139.75806
+  },
+  "lines": [
+   "tokyo.namboku"
+  ],
+  "underground": [
+   "tokyo.namboku"
+  ]
+ },
+ {
+  "id": "tokyo.hon_komagome",
+  "name": {
+   "ja": "本駒込",
+   "ko": "혼코마고메",
+   "en": "Hon-komagome"
+  },
+  "kana": "ほんこまごめ",
+  "geo": {
+   "lat": 35.72454,
+   "lng": 139.75376
+  },
+  "lines": [
+   "tokyo.namboku"
+  ],
+  "underground": [
+   "tokyo.namboku"
+  ]
+ },
+ {
+  "id": "tokyo.nishigahara",
+  "name": {
+   "ja": "西ケ原",
+   "ko": "니시가하라",
+   "en": "Nishigahara"
+  },
+  "kana": "にしがはら",
+  "geo": {
+   "lat": 35.74583,
+   "lng": 139.74222
+  },
+  "lines": [
+   "tokyo.namboku"
+  ],
+  "underground": [
+   "tokyo.namboku"
+  ]
+ },
+ {
+  "id": "tokyo.oji",
+  "name": {
+   "ja": "王子",
+   "ko": "오지",
+   "en": "Oji"
+  },
+  "kana": "おうじ",
+  "geo": {
+   "lat": 35.75303,
+   "lng": 139.73767
+  },
+  "lines": [
+   "tokyo.namboku"
+  ],
+  "underground": [
+   "tokyo.namboku"
+  ]
+ },
+ {
+  "id": "tokyo.oji_kamiya",
+  "name": {
+   "ja": "王子神谷",
+   "ko": "오지카미야",
+   "en": "Oji-Kamiya"
+  },
+  "kana": "おうじかみや",
+  "geo": {
+   "lat": 35.76511,
+   "lng": 139.73578
+  },
+  "lines": [
+   "tokyo.namboku"
+  ],
+  "underground": [
+   "tokyo.namboku"
+  ]
+ },
+ {
+  "id": "tokyo.shimo",
+  "name": {
+   "ja": "志茂",
+   "ko": "시모",
+   "en": "Shimo"
+  },
+  "kana": "しも",
+  "geo": {
+   "lat": 35.77792,
+   "lng": 139.73258
+  },
+  "lines": [
+   "tokyo.namboku"
+  ],
+  "underground": [
+   "tokyo.namboku"
+  ]
+ },
+ {
+  "id": "tokyo.akabane_iwabuchi",
+  "name": {
+   "ja": "赤羽岩淵",
+   "ko": "아카바네이와부치",
+   "en": "Akabane-iwabuchi"
+  },
+  "kana": "あかばねいわぶち",
+  "geo": {
+   "lat": 35.78333,
+   "lng": 139.72222
+  },
+  "lines": [
+   "tokyo.namboku"
+  ],
+  "underground": [
+   "tokyo.namboku"
+  ]
+ },
+ {
+  "id": "tokyo.zoshigaya",
+  "name": {
+   "ja": "雑司が谷",
+   "ko": "조시가야",
+   "en": "Zoshigaya"
+  },
+  "kana": "ぞうしがや",
+  "geo": {
+   "lat": 35.72057,
+   "lng": 139.71514
+  },
+  "lines": [
+   "tokyo.fukutoshin"
+  ],
+  "underground": [
+   "tokyo.fukutoshin"
+  ]
+ },
+ {
+  "id": "tokyo.nishi_waseda",
+  "name": {
+   "ja": "西早稲田",
+   "ko": "니시와세다",
+   "en": "Nishi-Waseda"
+  },
+  "kana": "にしわせだ",
+  "geo": {
+   "lat": 35.70722,
+   "lng": 139.70917
+  },
+  "lines": [
+   "tokyo.fukutoshin"
+  ],
+  "underground": [
+   "tokyo.fukutoshin"
+  ]
+ },
+ {
+  "id": "tokyo.higashi_shinjuku",
+  "name": {
+   "ja": "東新宿",
+   "ko": "히가시신주쿠",
+   "en": "Higashi-Shinjuku"
+  },
+  "kana": "ひがししんじゅく",
+  "geo": {
+   "lat": 35.6979,
+   "lng": 139.708
+  },
+  "lines": [
+   "tokyo.fukutoshin",
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.fukutoshin",
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.kitasando",
+  "name": {
+   "ja": "北参道",
+   "ko": "기타산도",
+   "en": "Kitasando"
+  },
+  "kana": "きたさんどう",
+  "geo": {
+   "lat": 35.67861,
+   "lng": 139.70528
+  },
+  "lines": [
+   "tokyo.fukutoshin"
+  ],
+  "underground": [
+   "tokyo.fukutoshin"
+  ]
+ },
+ {
+  "id": "tokyo.nishi_magome",
+  "name": {
+   "ja": "西馬込",
+   "ko": "니시마고메",
+   "en": "Nishi-magome"
+  },
+  "kana": "にしまごめ",
+  "geo": {
+   "lat": 35.58686,
+   "lng": 139.70594
+  },
+  "lines": [
+   "tokyo.toei_asakusa"
+  ],
+  "underground": [
+   "tokyo.toei_asakusa"
+  ]
+ },
+ {
+  "id": "tokyo.magome",
+  "name": {
+   "ja": "馬込",
+   "ko": "마고메",
+   "en": "Magome"
+  },
+  "kana": "まごめ",
+  "geo": {
+   "lat": 35.5963,
+   "lng": 139.7119
+  },
+  "lines": [
+   "tokyo.toei_asakusa"
+  ],
+  "underground": [
+   "tokyo.toei_asakusa"
+  ]
+ },
+ {
+  "id": "tokyo.nakanobu",
+  "name": {
+   "ja": "中延",
+   "ko": "나카노부",
+   "en": "Nakanobu"
+  },
+  "kana": "なかのぶ",
+  "geo": {
+   "lat": 35.60583,
+   "lng": 139.71278
+  },
+  "lines": [
+   "tokyo.toei_asakusa"
+  ],
+  "underground": [
+   "tokyo.toei_asakusa"
+  ]
+ },
+ {
+  "id": "tokyo.togoshi",
+  "name": {
+   "ja": "戸越",
+   "ko": "도고시",
+   "en": "Togoshi"
+  },
+  "kana": "とごし",
+  "geo": {
+   "lat": 35.61472,
+   "lng": 139.71642
+  },
+  "lines": [
+   "tokyo.toei_asakusa"
+  ],
+  "underground": [
+   "tokyo.toei_asakusa"
+  ]
+ },
+ {
+  "id": "tokyo.takanawadai",
+  "name": {
+   "ja": "高輪台",
+   "ko": "다카나와다이",
+   "en": "Takanawadai"
+  },
+  "kana": "たかなわだい",
+  "geo": {
+   "lat": 35.6318,
+   "lng": 139.7303
+  },
+  "lines": [
+   "tokyo.toei_asakusa"
+  ],
+  "underground": [
+   "tokyo.toei_asakusa"
+  ]
+ },
+ {
+  "id": "tokyo.sengakuji",
+  "name": {
+   "ja": "泉岳寺",
+   "ko": "센가쿠지",
+   "en": "Sengakuji"
+  },
+  "kana": "せんがくじ",
+  "geo": {
+   "lat": 35.63869,
+   "lng": 139.74002
+  },
+  "lines": [
+   "tokyo.toei_asakusa",
+   "tokyo.keikyu"
+  ],
+  "underground": [
+   "tokyo.toei_asakusa",
+   "tokyo.keikyu"
+  ]
+ },
+ {
+  "id": "tokyo.mita",
+  "name": {
+   "ja": "三田",
+   "ko": "미타",
+   "en": "Mita"
+  },
+  "kana": "みた",
+  "geo": {
+   "lat": 35.64817,
+   "lng": 139.74881
+  },
+  "lines": [
+   "tokyo.toei_asakusa",
+   "tokyo.toei_mita"
+  ],
+  "underground": [
+   "tokyo.toei_asakusa",
+   "tokyo.toei_mita"
+  ]
+ },
+ {
+  "id": "tokyo.daimon",
+  "name": {
+   "ja": "大門",
+   "ko": "다이몬",
+   "en": "Daimon"
+  },
+  "kana": "だいもん",
+  "geo": {
+   "lat": 35.65676,
+   "lng": 139.75465
+  },
+  "lines": [
+   "tokyo.toei_asakusa",
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.toei_asakusa",
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.takaracho",
+  "name": {
+   "ja": "宝町",
+   "ko": "다카라초",
+   "en": "Takaracho"
+  },
+  "kana": "たからちょう",
+  "geo": {
+   "lat": 35.67545,
+   "lng": 139.7719
+  },
+  "lines": [
+   "tokyo.toei_asakusa"
+  ],
+  "underground": [
+   "tokyo.toei_asakusa"
+  ]
+ },
+ {
+  "id": "tokyo.higashi_nihonbashi",
+  "name": {
+   "ja": "東日本橋",
+   "ko": "히가시니혼바시",
+   "en": "Higashi-Nihonbashi"
+  },
+  "kana": "ひがしにほんばし",
+  "geo": {
+   "lat": 35.692,
+   "lng": 139.7847
+  },
+  "lines": [
+   "tokyo.toei_asakusa"
+  ],
+  "underground": [
+   "tokyo.toei_asakusa"
+  ]
+ },
+ {
+  "id": "tokyo.asakusabashi",
+  "name": {
+   "ja": "浅草橋",
+   "ko": "아사쿠사바시",
+   "en": "Asakusabashi"
+  },
+  "kana": "あさくさばし",
+  "geo": {
+   "lat": 35.697,
+   "lng": 139.786
+  },
+  "lines": [
+   "tokyo.toei_asakusa"
+  ],
+  "underground": [
+   "tokyo.toei_asakusa"
+  ]
+ },
+ {
+  "id": "tokyo.kuramae",
+  "name": {
+   "ja": "蔵前",
+   "ko": "구라마에",
+   "en": "Kuramae"
+  },
+  "kana": "くらまえ",
+  "geo": {
+   "lat": 35.703,
+   "lng": 139.7911
+  },
+  "lines": [
+   "tokyo.toei_asakusa",
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.toei_asakusa",
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.honjo_azumabashi",
+  "name": {
+   "ja": "本所吾妻橋",
+   "ko": "혼조아즈마바시",
+   "en": "Honjo-azumabashi"
+  },
+  "kana": "ほんじょあづまばし",
+  "geo": {
+   "lat": 35.7086,
+   "lng": 139.80465
+  },
+  "lines": [
+   "tokyo.toei_asakusa"
+  ],
+  "underground": [
+   "tokyo.toei_asakusa"
+  ]
+ },
+ {
+  "id": "tokyo.shibakoen",
+  "name": {
+   "ja": "芝公園",
+   "ko": "시바코엔",
+   "en": "Shibakoen"
+  },
+  "kana": "しばこうえん",
+  "geo": {
+   "lat": 35.6543,
+   "lng": 139.7499
+  },
+  "lines": [
+   "tokyo.toei_mita"
+  ],
+  "underground": [
+   "tokyo.toei_mita"
+  ]
+ },
+ {
+  "id": "tokyo.onarimon",
+  "name": {
+   "ja": "御成門",
+   "ko": "오나리몬",
+   "en": "Onarimon"
+  },
+  "kana": "おなりもん",
+  "geo": {
+   "lat": 35.6614,
+   "lng": 139.7515
+  },
+  "lines": [
+   "tokyo.toei_mita"
+  ],
+  "underground": [
+   "tokyo.toei_mita"
+  ]
+ },
+ {
+  "id": "tokyo.uchisaiwaicho",
+  "name": {
+   "ja": "内幸町",
+   "ko": "우치사이와이초",
+   "en": "Uchisaiwaicho"
+  },
+  "kana": "うちさいわいちょう",
+  "geo": {
+   "lat": 35.6696,
+   "lng": 139.756
+  },
+  "lines": [
+   "tokyo.toei_mita"
+  ],
+  "underground": [
+   "tokyo.toei_mita"
+  ]
+ },
+ {
+  "id": "tokyo.suidobashi",
+  "name": {
+   "ja": "水道橋",
+   "ko": "스이도바시",
+   "en": "Suidobashi"
+  },
+  "kana": "すいどうばし",
+  "geo": {
+   "lat": 35.702,
+   "lng": 139.754
+  },
+  "lines": [
+   "tokyo.toei_mita"
+  ],
+  "underground": [
+   "tokyo.toei_mita"
+  ]
+ },
+ {
+  "id": "tokyo.kasuga",
+  "name": {
+   "ja": "春日",
+   "ko": "가스가",
+   "en": "Kasuga"
+  },
+  "kana": "かすが",
+  "geo": {
+   "lat": 35.70972,
+   "lng": 139.75333
+  },
+  "lines": [
+   "tokyo.toei_mita",
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.toei_mita",
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.hakusan",
+  "name": {
+   "ja": "白山",
+   "ko": "하쿠산",
+   "en": "Hakusan"
+  },
+  "kana": "はくさん",
+  "geo": {
+   "lat": 35.72133,
+   "lng": 139.75208
+  },
+  "lines": [
+   "tokyo.toei_mita"
+  ],
+  "underground": [
+   "tokyo.toei_mita"
+  ]
+ },
+ {
+  "id": "tokyo.sengoku",
+  "name": {
+   "ja": "千石",
+   "ko": "센고쿠",
+   "en": "Sengoku"
+  },
+  "kana": "せんごく",
+  "geo": {
+   "lat": 35.7281,
+   "lng": 139.745
+  },
+  "lines": [
+   "tokyo.toei_mita"
+  ],
+  "underground": [
+   "tokyo.toei_mita"
+  ]
+ },
+ {
+  "id": "tokyo.nishi_sugamo",
+  "name": {
+   "ja": "西巣鴨",
+   "ko": "니시스가모",
+   "en": "Nishi-Sugamo"
+  },
+  "kana": "にしすがも",
+  "geo": {
+   "lat": 35.7435,
+   "lng": 139.729
+  },
+  "lines": [
+   "tokyo.toei_mita"
+  ],
+  "underground": [
+   "tokyo.toei_mita"
+  ]
+ },
+ {
+  "id": "tokyo.shin_itabashi",
+  "name": {
+   "ja": "新板橋",
+   "ko": "신이타바시",
+   "en": "Shin-Itabashi"
+  },
+  "kana": "しんいたばし",
+  "geo": {
+   "lat": 35.74878,
+   "lng": 139.71961
+  },
+  "lines": [
+   "tokyo.toei_mita"
+  ],
+  "underground": [
+   "tokyo.toei_mita"
+  ]
+ },
+ {
+  "id": "tokyo.itabashi_kuyakushomae",
+  "name": {
+   "ja": "板橋区役所前",
+   "ko": "이타바시쿠야쿠쇼마에",
+   "en": "Itabashi-kuyakushomae"
+  },
+  "kana": "いたばしくやくしょまえ",
+  "geo": {
+   "lat": 35.75139,
+   "lng": 139.71008
+  },
+  "lines": [
+   "tokyo.toei_mita"
+  ],
+  "underground": [
+   "tokyo.toei_mita"
+  ]
+ },
+ {
+  "id": "tokyo.itabashi_honcho",
+  "name": {
+   "ja": "板橋本町",
+   "ko": "이타바시혼초",
+   "en": "Itabashi-honcho"
+  },
+  "kana": "いたばしほんちょう",
+  "geo": {
+   "lat": 35.76133,
+   "lng": 139.70556
+  },
+  "lines": [
+   "tokyo.toei_mita"
+  ],
+  "underground": [
+   "tokyo.toei_mita"
+  ]
+ },
+ {
+  "id": "tokyo.motohasunuma",
+  "name": {
+   "ja": "本蓮沼",
+   "ko": "모토하스누마",
+   "en": "Motohasunuma"
+  },
+  "kana": "もとはすぬま",
+  "geo": {
+   "lat": 35.76875,
+   "lng": 139.70228
+  },
+  "lines": [
+   "tokyo.toei_mita"
+  ],
+  "underground": [
+   "tokyo.toei_mita"
+  ]
+ },
+ {
+  "id": "tokyo.shimura_sakaue",
+  "name": {
+   "ja": "志村坂上",
+   "ko": "시무라사카우에",
+   "en": "Shimura-sakaue"
+  },
+  "kana": "しむらさかうえ",
+  "geo": {
+   "lat": 35.77578,
+   "lng": 139.69542
+  },
+  "lines": [
+   "tokyo.toei_mita"
+  ],
+  "underground": [
+   "tokyo.toei_mita"
+  ]
+ },
+ {
+  "id": "tokyo.shimura_sanchome",
+  "name": {
+   "ja": "志村三丁目",
+   "ko": "시무라 3초메",
+   "en": "Shimura-sanchome"
+  },
+  "kana": "しむらさんちょうめ",
+  "geo": {
+   "lat": 35.7775,
+   "lng": 139.68589
+  },
+  "lines": [
+   "tokyo.toei_mita"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.hasune",
+  "name": {
+   "ja": "蓮根",
+   "ko": "하스네",
+   "en": "Hasune"
+  },
+  "kana": "はすね",
+  "geo": {
+   "lat": 35.78417,
+   "lng": 139.67903
+  },
+  "lines": [
+   "tokyo.toei_mita"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.nishidai",
+  "name": {
+   "ja": "西台",
+   "ko": "니시다이",
+   "en": "Nishidai"
+  },
+  "kana": "にしだい",
+  "geo": {
+   "lat": 35.78694,
+   "lng": 139.67397
+  },
+  "lines": [
+   "tokyo.toei_mita"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.takashimadaira",
+  "name": {
+   "ja": "高島平",
+   "ko": "다카시마다이라",
+   "en": "Takashimadaira"
+  },
+  "kana": "たかしまだいら",
+  "geo": {
+   "lat": 35.78861,
+   "lng": 139.66117
+  },
+  "lines": [
+   "tokyo.toei_mita"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.shin_takashimadaira",
+  "name": {
+   "ja": "新高島平",
+   "ko": "신타카시마다이라",
+   "en": "Shin-Takashimadaira"
+  },
+  "kana": "しんたかしまだいら",
+  "geo": {
+   "lat": 35.79028,
+   "lng": 139.65425
+  },
+  "lines": [
+   "tokyo.toei_mita"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.nishi_takashimadaira",
+  "name": {
+   "ja": "西高島平",
+   "ko": "니시타카시마다이라",
+   "en": "Nishi-Takashimadaira"
+  },
+  "kana": "にしたかしまだいら",
+  "geo": {
+   "lat": 35.79167,
+   "lng": 139.64583
+  },
+  "lines": [
+   "tokyo.toei_mita"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.akebonobashi",
+  "name": {
+   "ja": "曙橋",
+   "ko": "아케보노바시",
+   "en": "Akebonobashi"
+  },
+  "kana": "あけぼのばし",
+  "geo": {
+   "lat": 35.69239,
+   "lng": 139.72278
+  },
+  "lines": [
+   "tokyo.toei_shinjuku"
+  ],
+  "underground": [
+   "tokyo.toei_shinjuku"
+  ]
+ },
+ {
+  "id": "tokyo.ogawamachi",
+  "name": {
+   "ja": "小川町",
+   "ko": "오가와마치",
+   "en": "Ogawamachi"
+  },
+  "kana": "おがわまち",
+  "geo": {
+   "lat": 35.69505,
+   "lng": 139.76667
+  },
+  "lines": [
+   "tokyo.toei_shinjuku"
+  ],
+  "underground": [
+   "tokyo.toei_shinjuku"
+  ]
+ },
+ {
+  "id": "tokyo.iwamotocho",
+  "name": {
+   "ja": "岩本町",
+   "ko": "이와모토초",
+   "en": "Iwamotocho"
+  },
+  "kana": "いわもとちょう",
+  "geo": {
+   "lat": 35.69554,
+   "lng": 139.77586
+  },
+  "lines": [
+   "tokyo.toei_shinjuku"
+  ],
+  "underground": [
+   "tokyo.toei_shinjuku"
+  ]
+ },
+ {
+  "id": "tokyo.bakuro_yokoyama",
+  "name": {
+   "ja": "馬喰横山",
+   "ko": "바쿠로요코야마",
+   "en": "Bakuro-yokoyama"
+  },
+  "kana": "ばくろよこやま",
+  "geo": {
+   "lat": 35.69212,
+   "lng": 139.78279
+  },
+  "lines": [
+   "tokyo.toei_shinjuku"
+  ],
+  "underground": [
+   "tokyo.toei_shinjuku"
+  ]
+ },
+ {
+  "id": "tokyo.hamacho",
+  "name": {
+   "ja": "浜町",
+   "ko": "하마초",
+   "en": "Hamacho"
+  },
+  "kana": "はまちょう",
+  "geo": {
+   "lat": 35.68826,
+   "lng": 139.78919
+  },
+  "lines": [
+   "tokyo.toei_shinjuku"
+  ],
+  "underground": [
+   "tokyo.toei_shinjuku"
+  ]
+ },
+ {
+  "id": "tokyo.morishita",
+  "name": {
+   "ja": "森下",
+   "ko": "모리시타",
+   "en": "Morishita"
+  },
+  "kana": "もりした",
+  "geo": {
+   "lat": 35.68801,
+   "lng": 139.79824
+  },
+  "lines": [
+   "tokyo.toei_shinjuku",
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.toei_shinjuku",
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.kikukawa",
+  "name": {
+   "ja": "菊川",
+   "ko": "기쿠카와",
+   "en": "Kikukawa"
+  },
+  "kana": "きくかわ",
+  "geo": {
+   "lat": 35.68838,
+   "lng": 139.80601
+  },
+  "lines": [
+   "tokyo.toei_shinjuku"
+  ],
+  "underground": [
+   "tokyo.toei_shinjuku"
+  ]
+ },
+ {
+  "id": "tokyo.nishi_ojima",
+  "name": {
+   "ja": "西大島",
+   "ko": "니시오지마",
+   "en": "Nishi-ojima"
+  },
+  "kana": "にしおおじま",
+  "geo": {
+   "lat": 35.68936,
+   "lng": 139.82619
+  },
+  "lines": [
+   "tokyo.toei_shinjuku"
+  ],
+  "underground": [
+   "tokyo.toei_shinjuku"
+  ]
+ },
+ {
+  "id": "tokyo.ojima",
+  "name": {
+   "ja": "大島",
+   "ko": "오지마",
+   "en": "Ojima"
+  },
+  "kana": "おおじま",
+  "geo": {
+   "lat": 35.68989,
+   "lng": 139.83564
+  },
+  "lines": [
+   "tokyo.toei_shinjuku"
+  ],
+  "underground": [
+   "tokyo.toei_shinjuku"
+  ]
+ },
+ {
+  "id": "tokyo.higashi_ojima",
+  "name": {
+   "ja": "東大島",
+   "ko": "히가시오지마",
+   "en": "Higashi-ojima"
+  },
+  "kana": "ひがしおおじま",
+  "geo": {
+   "lat": 35.68972,
+   "lng": 139.84781
+  },
+  "lines": [
+   "tokyo.toei_shinjuku"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.funabori",
+  "name": {
+   "ja": "船堀",
+   "ko": "후나보리",
+   "en": "Funabori"
+  },
+  "kana": "ふなぼり",
+  "geo": {
+   "lat": 35.68381,
+   "lng": 139.86431
+  },
+  "lines": [
+   "tokyo.toei_shinjuku"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.ichinoe",
+  "name": {
+   "ja": "一之江",
+   "ko": "이치노에",
+   "en": "Ichinoe"
+  },
+  "kana": "いちのえ",
+  "geo": {
+   "lat": 35.686,
+   "lng": 139.88294
+  },
+  "lines": [
+   "tokyo.toei_shinjuku"
+  ],
+  "underground": [
+   "tokyo.toei_shinjuku"
+  ]
+ },
+ {
+  "id": "tokyo.mizue",
+  "name": {
+   "ja": "瑞江",
+   "ko": "미즈에",
+   "en": "Mizue"
+  },
+  "kana": "みずえ",
+  "geo": {
+   "lat": 35.69325,
+   "lng": 139.89769
+  },
+  "lines": [
+   "tokyo.toei_shinjuku"
+  ],
+  "underground": [
+   "tokyo.toei_shinjuku"
+  ]
+ },
+ {
+  "id": "tokyo.shinozaki",
+  "name": {
+   "ja": "篠崎",
+   "ko": "시노자키",
+   "en": "Shinozaki"
+  },
+  "kana": "しのざき",
+  "geo": {
+   "lat": 35.70597,
+   "lng": 139.90375
+  },
+  "lines": [
+   "tokyo.toei_shinjuku"
+  ],
+  "underground": [
+   "tokyo.toei_shinjuku"
+  ]
+ },
+ {
+  "id": "tokyo.motoyawata",
+  "name": {
+   "ja": "本八幡",
+   "ko": "모토야와타",
+   "en": "Motoyawata"
+  },
+  "kana": "もとやわた",
+  "geo": {
+   "lat": 35.7218,
+   "lng": 139.9269
+  },
+  "lines": [
+   "tokyo.toei_shinjuku"
+  ],
+  "underground": [
+   "tokyo.toei_shinjuku"
+  ]
+ },
+ {
+  "id": "tokyo.tochomae",
+  "name": {
+   "ja": "都庁前",
+   "ko": "도초마에",
+   "en": "Tochomae"
+  },
+  "kana": "とちょうまえ",
+  "geo": {
+   "lat": 35.6907,
+   "lng": 139.6926
+  },
+  "lines": [
+   "tokyo.toei_oedo",
+   "tokyo.toei_oedo_branch"
+  ],
+  "underground": [
+   "tokyo.toei_oedo",
+   "tokyo.toei_oedo_branch"
+  ]
+ },
+ {
+  "id": "tokyo.shinjuku_nishiguchi",
+  "name": {
+   "ja": "新宿西口",
+   "ko": "신주쿠니시구치",
+   "en": "Shinjuku-Nishiguchi"
+  },
+  "kana": "しんじゅくにしぐち",
+  "geo": {
+   "lat": 35.6934,
+   "lng": 139.699
+  },
+  "lines": [
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.wakamatsu_kawada",
+  "name": {
+   "ja": "若松河田",
+   "ko": "와카마쓰카와다",
+   "en": "Wakamatsu-kawada"
+  },
+  "kana": "わかまつかわだ",
+  "geo": {
+   "lat": 35.69925,
+   "lng": 139.71819
+  },
+  "lines": [
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.ushigome_yanagicho",
+  "name": {
+   "ja": "牛込柳町",
+   "ko": "우시고메야나기초",
+   "en": "Ushigome-yanagicho"
+  },
+  "kana": "うしごめやなぎちょう",
+  "geo": {
+   "lat": 35.69952,
+   "lng": 139.72503
+  },
+  "lines": [
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.ushigome_kagurazaka",
+  "name": {
+   "ja": "牛込神楽坂",
+   "ko": "우시고메카구라자카",
+   "en": "Ushigome-kagurazaka"
+  },
+  "kana": "うしごめかぐらざか",
+  "geo": {
+   "lat": 35.70086,
+   "lng": 139.73578
+  },
+  "lines": [
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.ueno_okachimachi",
+  "name": {
+   "ja": "上野御徒町",
+   "ko": "우에노오카치마치",
+   "en": "Ueno-okachimachi"
+  },
+  "kana": "うえのおかちまち",
+  "geo": {
+   "lat": 35.7079,
+   "lng": 139.774
+  },
+  "lines": [
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.shin_okachimachi",
+  "name": {
+   "ja": "新御徒町",
+   "ko": "신오카치마치",
+   "en": "Shin-Okachimachi"
+  },
+  "kana": "しんおかちまち",
+  "geo": {
+   "lat": 35.7072,
+   "lng": 139.7818
+  },
+  "lines": [
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.ryogoku",
+  "name": {
+   "ja": "両国",
+   "ko": "료고쿠",
+   "en": "Ryogoku"
+  },
+  "kana": "りょうごく",
+  "geo": {
+   "lat": 35.69574,
+   "lng": 139.79396
+  },
+  "lines": [
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.kachidoki",
+  "name": {
+   "ja": "勝どき",
+   "ko": "가치도키",
+   "en": "Kachidoki"
+  },
+  "kana": "かちどき",
+  "geo": {
+   "lat": 35.6587,
+   "lng": 139.7765
+  },
+  "lines": [
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.tsukijishijo",
+  "name": {
+   "ja": "築地市場",
+   "ko": "쓰키지시조",
+   "en": "Tsukijishijo"
+  },
+  "kana": "つきじしじょう",
+  "geo": {
+   "lat": 35.6649,
+   "lng": 139.7671
+  },
+  "lines": [
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.shiodome",
+  "name": {
+   "ja": "汐留",
+   "ko": "시오도메",
+   "en": "Shiodome"
+  },
+  "kana": "しおどめ",
+  "geo": {
+   "lat": 35.66431,
+   "lng": 139.76061
+  },
+  "lines": [
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.akabanebashi",
+  "name": {
+   "ja": "赤羽橋",
+   "ko": "아카바네바시",
+   "en": "Akabanebashi"
+  },
+  "kana": "あかばねばし",
+  "geo": {
+   "lat": 35.655,
+   "lng": 139.74362
+  },
+  "lines": [
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.kokuritsu_kyogijo",
+  "name": {
+   "ja": "国立競技場",
+   "ko": "고쿠리쓰쿄기조",
+   "en": "Kokuritsu-Kyogijo"
+  },
+  "kana": "こくりつきょうぎじょう",
+  "geo": {
+   "lat": 35.68005,
+   "lng": 139.7141
+  },
+  "lines": [
+   "tokyo.toei_oedo"
+  ],
+  "underground": [
+   "tokyo.toei_oedo"
+  ]
+ },
+ {
+  "id": "tokyo.nishi_shinjuku_gochome",
+  "name": {
+   "ja": "西新宿五丁目",
+   "ko": "니시신주쿠 5초메",
+   "en": "Nishi-Shinjuku-gochome"
+  },
+  "kana": "にししんじゅくごちょうめ",
+  "geo": {
+   "lat": 35.6897,
+   "lng": 139.6844
+  },
+  "lines": [
+   "tokyo.toei_oedo_branch"
+  ],
+  "underground": [
+   "tokyo.toei_oedo_branch"
+  ]
+ },
+ {
+  "id": "tokyo.higashi_nakano",
+  "name": {
+   "ja": "東中野",
+   "ko": "히가시나카노",
+   "en": "Higashi-Nakano"
+  },
+  "kana": "ひがしなかの",
+  "geo": {
+   "lat": 35.706,
+   "lng": 139.686
+  },
+  "lines": [
+   "tokyo.toei_oedo_branch"
+  ],
+  "underground": [
+   "tokyo.toei_oedo_branch"
+  ]
+ },
+ {
+  "id": "tokyo.nakai",
+  "name": {
+   "ja": "中井",
+   "ko": "나카이",
+   "en": "Nakai"
+  },
+  "kana": "なかい",
+  "geo": {
+   "lat": 35.7146,
+   "lng": 139.6867
+  },
+  "lines": [
+   "tokyo.toei_oedo_branch"
+  ],
+  "underground": [
+   "tokyo.toei_oedo_branch"
+  ]
+ },
+ {
+  "id": "tokyo.ochiai_minami_nagasaki",
+  "name": {
+   "ja": "落合南長崎",
+   "ko": "오치아이미나미나가사키",
+   "en": "Ochiai-minami-nagasaki"
+  },
+  "kana": "おちあいみなみながさき",
+  "geo": {
+   "lat": 35.72347,
+   "lng": 139.68344
+  },
+  "lines": [
+   "tokyo.toei_oedo_branch"
+  ],
+  "underground": [
+   "tokyo.toei_oedo_branch"
+  ]
+ },
+ {
+  "id": "tokyo.shin_egota",
+  "name": {
+   "ja": "新江古田",
+   "ko": "신에고타",
+   "en": "Shin-egota"
+  },
+  "kana": "しんえごた",
+  "geo": {
+   "lat": 35.7323,
+   "lng": 139.6708
+  },
+  "lines": [
+   "tokyo.toei_oedo_branch"
+  ],
+  "underground": [
+   "tokyo.toei_oedo_branch"
+  ]
+ },
+ {
+  "id": "tokyo.nerima",
+  "name": {
+   "ja": "練馬",
+   "ko": "네리마",
+   "en": "Nerima"
+  },
+  "kana": "ねりま",
+  "geo": {
+   "lat": 35.73786,
+   "lng": 139.65409
+  },
+  "lines": [
+   "tokyo.toei_oedo_branch"
+  ],
+  "underground": [
+   "tokyo.toei_oedo_branch"
+  ]
+ },
+ {
+  "id": "tokyo.toshimaen",
+  "name": {
+   "ja": "豊島園",
+   "ko": "도시마엔",
+   "en": "Toshimaen"
+  },
+  "kana": "としまえん",
+  "geo": {
+   "lat": 35.74229,
+   "lng": 139.64855
+  },
+  "lines": [
+   "tokyo.toei_oedo_branch"
+  ],
+  "underground": [
+   "tokyo.toei_oedo_branch"
+  ]
+ },
+ {
+  "id": "tokyo.nerima_kasugacho",
+  "name": {
+   "ja": "練馬春日町",
+   "ko": "네리마카스가초",
+   "en": "Nerima-kasugacho"
+  },
+  "kana": "ねりまかすがちょう",
+  "geo": {
+   "lat": 35.7517,
+   "lng": 139.64
+  },
+  "lines": [
+   "tokyo.toei_oedo_branch"
+  ],
+  "underground": [
+   "tokyo.toei_oedo_branch"
+  ]
+ },
+ {
+  "id": "tokyo.hikarigaoka",
+  "name": {
+   "ja": "光が丘",
+   "ko": "히카리가오카",
+   "en": "Hikarigaoka"
+  },
+  "kana": "ひかりがおか",
+  "geo": {
+   "lat": 35.75855,
+   "lng": 139.62872
+  },
+  "lines": [
+   "tokyo.toei_oedo_branch"
+  ],
+  "underground": [
+   "tokyo.toei_oedo_branch"
+  ]
+ },
+ {
+  "id": "tokyo.kitashinagawa",
+  "name": {
+   "ja": "北品川",
+   "ko": "기타시나가와",
+   "en": "Kitashinagawa"
+  },
+  "kana": "きたしながわ",
+  "geo": {
+   "lat": 35.6222,
+   "lng": 139.7394
+  },
+  "lines": [
+   "tokyo.keikyu"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.shimbamba",
+  "name": {
+   "ja": "新馬場",
+   "ko": "신반바",
+   "en": "Shimbamba"
+  },
+  "kana": "しんばんば",
+  "geo": {
+   "lat": 35.6176,
+   "lng": 139.7414
+  },
+  "lines": [
+   "tokyo.keikyu"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.aomono_yokocho",
+  "name": {
+   "ja": "青物横丁",
+   "ko": "아오모노요코초",
+   "en": "Aomono-Yokocho"
+  },
+  "kana": "あおものよこちょう",
+  "geo": {
+   "lat": 35.60931,
+   "lng": 139.74292
+  },
+  "lines": [
+   "tokyo.keikyu"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.samezu",
+  "name": {
+   "ja": "鮫洲",
+   "ko": "사메즈",
+   "en": "Samezu"
+  },
+  "kana": "さめず",
+  "geo": {
+   "lat": 35.6051,
+   "lng": 139.7423
+  },
+  "lines": [
+   "tokyo.keikyu"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.tachiaigawa",
+  "name": {
+   "ja": "立会川",
+   "ko": "다치아이가와",
+   "en": "Tachiaigawa"
+  },
+  "kana": "たちあいがわ",
+  "geo": {
+   "lat": 35.5983,
+   "lng": 139.739
+  },
+  "lines": [
+   "tokyo.keikyu"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.omori_kaigan",
+  "name": {
+   "ja": "大森海岸",
+   "ko": "오모리카이간",
+   "en": "Omori-Kaigan"
+  },
+  "kana": "おおもりかいがん",
+  "geo": {
+   "lat": 35.5877,
+   "lng": 139.735
+  },
+  "lines": [
+   "tokyo.keikyu"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.heiwajima",
+  "name": {
+   "ja": "平和島",
+   "ko": "헤이와지마",
+   "en": "Heiwajima"
+  },
+  "kana": "へいわじま",
+  "geo": {
+   "lat": 35.5781,
+   "lng": 139.7347
+  },
+  "lines": [
+   "tokyo.keikyu"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.omorimachi",
+  "name": {
+   "ja": "大森町",
+   "ko": "오모리마치",
+   "en": "Omorimachi"
+  },
+  "kana": "おおもりまち",
+  "geo": {
+   "lat": 35.5725,
+   "lng": 139.73206
+  },
+  "lines": [
+   "tokyo.keikyu"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.umeyashiki",
+  "name": {
+   "ja": "梅屋敷",
+   "ko": "우메야시키",
+   "en": "Umeyashiki"
+  },
+  "kana": "うめやしき",
+  "geo": {
+   "lat": 35.56703,
+   "lng": 139.72833
+  },
+  "lines": [
+   "tokyo.keikyu"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.keikyu_kamata",
+  "name": {
+   "ja": "京急蒲田",
+   "ko": "게이큐 가마타",
+   "en": "Keikyu Kamata"
+  },
+  "kana": "けいきゅうかまた",
+  "geo": {
+   "lat": 35.56068,
+   "lng": 139.72373
+  },
+  "lines": [
+   "tokyo.keikyu"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.kojiya",
+  "name": {
+   "ja": "糀谷",
+   "ko": "고지야",
+   "en": "Kojiya"
+  },
+  "kana": "こうじや",
+  "geo": {
+   "lat": 35.5543,
+   "lng": 139.7298
+  },
+  "lines": [
+   "tokyo.keikyu"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.otorii",
+  "name": {
+   "ja": "大鳥居",
+   "ko": "오토리이",
+   "en": "Otorii"
+  },
+  "kana": "おおとりい",
+  "geo": {
+   "lat": 35.5525,
+   "lng": 139.74
+  },
+  "lines": [
+   "tokyo.keikyu"
+  ],
+  "underground": [
+   "tokyo.keikyu"
+  ]
+ },
+ {
+  "id": "tokyo.anamori_inari",
+  "name": {
+   "ja": "穴守稲荷",
+   "ko": "아나모리이나리",
+   "en": "Anamori-inari"
+  },
+  "kana": "あなもりいなり",
+  "geo": {
+   "lat": 35.55056,
+   "lng": 139.74667
+  },
+  "lines": [
+   "tokyo.keikyu"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.tenkubashi",
+  "name": {
+   "ja": "天空橋",
+   "ko": "덴쿠바시",
+   "en": "Tenkubashi"
+  },
+  "kana": "てんくうばし",
+  "geo": {
+   "lat": 35.5491,
+   "lng": 139.754
+  },
+  "lines": [
+   "tokyo.keikyu"
+  ],
+  "underground": [
+   "tokyo.keikyu"
+  ]
+ },
+ {
+  "id": "tokyo.haneda_airport_terminal_3",
+  "name": {
+   "ja": "羽田空港第3ターミナル",
+   "ko": "하네다 공항 제3터미널",
+   "en": "Haneda Airport Terminal 3"
+  },
+  "kana": "はねだくうこうだいさんターミナル",
+  "geo": {
+   "lat": 35.54461,
+   "lng": 139.76799
+  },
+  "lines": [
+   "tokyo.keikyu"
+  ],
+  "underground": [
+   "tokyo.keikyu"
+  ]
+ },
+ {
+  "id": "tokyo.haneda_airport_terminal_12",
+  "name": {
+   "ja": "羽田空港第1・第2ターミナル",
+   "ko": "하네다 공항 제1·제2터미널",
+   "en": "Haneda Airport Terminal 1·2"
+  },
+  "kana": "はねだくうこうだいいちだいにターミナル",
+  "geo": {
+   "lat": 35.54999,
+   "lng": 139.78647
+  },
+  "lines": [
+   "tokyo.keikyu"
+  ],
+  "underground": [
+   "tokyo.keikyu"
+  ]
+ },
+ {
+  "id": "tokyo.keisei_hikifune",
+  "name": {
+   "ja": "京成曳舟",
+   "ko": "게이세이 히키후네",
+   "en": "Keisei Hikifune"
+  },
+  "kana": "けいせいひきふね",
+  "geo": {
+   "lat": 35.71861,
+   "lng": 139.82028
+  },
+  "lines": [
+   "tokyo.keisei"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.yahiro",
+  "name": {
+   "ja": "八広",
+   "ko": "야히로",
+   "en": "Yahiro"
+  },
+  "kana": "やひろ",
+  "geo": {
+   "lat": 35.72728,
+   "lng": 139.82836
+  },
+  "lines": [
+   "tokyo.keisei"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.yotsugi",
+  "name": {
+   "ja": "四ツ木",
+   "ko": "요쓰기",
+   "en": "Yotsugi"
+  },
+  "kana": "よつぎ",
+  "geo": {
+   "lat": 35.73183,
+   "lng": 139.83494
+  },
+  "lines": [
+   "tokyo.keisei"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.keisei_tateishi",
+  "name": {
+   "ja": "京成立石",
+   "ko": "게이세이 다테이시",
+   "en": "Keisei Tateishi"
+  },
+  "kana": "けいせいたていし",
+  "geo": {
+   "lat": 35.7383,
+   "lng": 139.8486
+  },
+  "lines": [
+   "tokyo.keisei"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.aoto",
+  "name": {
+   "ja": "青砥",
+   "ko": "아오토",
+   "en": "Aoto"
+  },
+  "kana": "あおと",
+  "geo": {
+   "lat": 35.7457,
+   "lng": 139.8561
+  },
+  "lines": [
+   "tokyo.keisei",
+   "tokyo.access_express"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.keisei_takasago",
+  "name": {
+   "ja": "京成高砂",
+   "ko": "게이세이 다카사고",
+   "en": "Keisei-Takasago"
+  },
+  "kana": "けいせいたかさご",
+  "geo": {
+   "lat": 35.75097,
+   "lng": 139.86758
+  },
+  "lines": [
+   "tokyo.keisei",
+   "tokyo.access_express"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.keisei_koiwa",
+  "name": {
+   "ja": "京成小岩",
+   "ko": "게이세이코이와",
+   "en": "Keisei Koiwa"
+  },
+  "kana": "けいせいこいわ",
+  "geo": {
+   "lat": 35.74208,
+   "lng": 139.88386
+  },
+  "lines": [
+   "tokyo.keisei"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.edogawa",
+  "name": {
+   "ja": "江戸川",
+   "ko": "에도가와",
+   "en": "Edogawa"
+  },
+  "kana": "えどがわ",
+  "geo": {
+   "lat": 35.73772,
+   "lng": 139.89622
+  },
+  "lines": [
+   "tokyo.keisei"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.fudomae",
+  "name": {
+   "ja": "不動前",
+   "ko": "후도마에",
+   "en": "Fudomae"
+  },
+  "kana": "ふどうまえ",
+  "geo": {
+   "lat": 35.62533,
+   "lng": 139.713
+  },
+  "lines": [
+   "tokyo.tokyu_meguro"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.musashi_koyama",
+  "name": {
+   "ja": "武蔵小山",
+   "ko": "무사시코야마",
+   "en": "Musashi-Koyama"
+  },
+  "kana": "むさしこやま",
+  "geo": {
+   "lat": 35.6203,
+   "lng": 139.7047
+  },
+  "lines": [
+   "tokyo.tokyu_meguro"
+  ],
+  "underground": [
+   "tokyo.tokyu_meguro"
+  ]
+ },
+ {
+  "id": "tokyo.nishi_koyama",
+  "name": {
+   "ja": "西小山",
+   "ko": "니시코야마",
+   "en": "Nishi-Koyama"
+  },
+  "kana": "にしこやま",
+  "geo": {
+   "lat": 35.6157,
+   "lng": 139.6989
+  },
+  "lines": [
+   "tokyo.tokyu_meguro"
+  ],
+  "underground": [
+   "tokyo.tokyu_meguro"
+  ]
+ },
+ {
+  "id": "tokyo.senzoku",
+  "name": {
+   "ja": "洗足",
+   "ko": "센조쿠",
+   "en": "Senzoku"
+  },
+  "kana": "せんぞく",
+  "geo": {
+   "lat": 35.6105,
+   "lng": 139.6946
+  },
+  "lines": [
+   "tokyo.tokyu_meguro"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.ookayama",
+  "name": {
+   "ja": "大岡山",
+   "ko": "오오카야마",
+   "en": "Ookayama"
+  },
+  "kana": "おおおかやま",
+  "geo": {
+   "lat": 35.60722,
+   "lng": 139.68564
+  },
+  "lines": [
+   "tokyo.tokyu_meguro"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.okusawa",
+  "name": {
+   "ja": "奥沢",
+   "ko": "오쿠사와",
+   "en": "Okusawa"
+  },
+  "kana": "おくさわ",
+  "geo": {
+   "lat": 35.60389,
+   "lng": 139.67222
+  },
+  "lines": [
+   "tokyo.tokyu_meguro"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.den_en_chofu",
+  "name": {
+   "ja": "田園調布",
+   "ko": "덴엔초후",
+   "en": "Den-en-chofu"
+  },
+  "kana": "でんえんちょうふ",
+  "geo": {
+   "lat": 35.59688,
+   "lng": 139.66732
+  },
+  "lines": [
+   "tokyo.tokyu_meguro"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.tamagawa",
+  "name": {
+   "ja": "多摩川",
+   "ko": "다마가와",
+   "en": "Tamagawa"
+  },
+  "kana": "たまがわ",
+  "geo": {
+   "lat": 35.58933,
+   "lng": 139.66886
+  },
+  "lines": [
+   "tokyo.tokyu_meguro"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.hatsudai",
+  "name": {
+   "ja": "初台",
+   "ko": "하쓰다이",
+   "en": "Hatsudai"
+  },
+  "kana": "はつだい",
+  "geo": {
+   "lat": 35.68125,
+   "lng": 139.68639
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": [
+   "tokyo.keio"
+  ]
+ },
+ {
+  "id": "tokyo.hatagaya",
+  "name": {
+   "ja": "幡ヶ谷",
+   "ko": "하타가야",
+   "en": "Hatagaya"
+  },
+  "kana": "はたがや",
+  "geo": {
+   "lat": 35.67706,
+   "lng": 139.67619
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": [
+   "tokyo.keio"
+  ]
+ },
+ {
+  "id": "tokyo.sasazuka",
+  "name": {
+   "ja": "笹塚",
+   "ko": "사사즈카",
+   "en": "Sasazuka"
+  },
+  "kana": "ささづか",
+  "geo": {
+   "lat": 35.67367,
+   "lng": 139.66722
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.daitabashi",
+  "name": {
+   "ja": "代田橋",
+   "ko": "다이타바시",
+   "en": "Daitabashi"
+  },
+  "kana": "だいたばし",
+  "geo": {
+   "lat": 35.67097,
+   "lng": 139.65878
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.meidaimae",
+  "name": {
+   "ja": "明大前",
+   "ko": "메이다이마에",
+   "en": "Meidaimae"
+  },
+  "kana": "めいだいまえ",
+  "geo": {
+   "lat": 35.66836,
+   "lng": 139.6505
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.shimo_takaido",
+  "name": {
+   "ja": "下高井戸",
+   "ko": "시모타카이도",
+   "en": "Shimo-Takaido"
+  },
+  "kana": "しもたかいど",
+  "geo": {
+   "lat": 35.66611,
+   "lng": 139.64139
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.sakurajosui",
+  "name": {
+   "ja": "桜上水",
+   "ko": "사쿠라조스이",
+   "en": "Sakurajosui"
+  },
+  "kana": "さくらじょうすい",
+  "geo": {
+   "lat": 35.66761,
+   "lng": 139.63183
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.kami_kitazawa",
+  "name": {
+   "ja": "上北沢",
+   "ko": "가미키타자와",
+   "en": "Kami-Kitazawa"
+  },
+  "kana": "かみきたざわ",
+  "geo": {
+   "lat": 35.66883,
+   "lng": 139.62344
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.hachimanyama",
+  "name": {
+   "ja": "八幡山",
+   "ko": "하치만야마",
+   "en": "Hachimanyama"
+  },
+  "kana": "はちまんやま",
+  "geo": {
+   "lat": 35.66989,
+   "lng": 139.61572
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.roka_koen",
+  "name": {
+   "ja": "芦花公園",
+   "ko": "로카코엔",
+   "en": "Roka-koen"
+  },
+  "kana": "ろかこうえん",
+  "geo": {
+   "lat": 35.67061,
+   "lng": 139.60889
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.chitose_karasuyama",
+  "name": {
+   "ja": "千歳烏山",
+   "ko": "지토세카라스야마",
+   "en": "Chitose-Karasuyama"
+  },
+  "kana": "ちとせからすやま",
+  "geo": {
+   "lat": 35.66819,
+   "lng": 139.60111
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.sengawa",
+  "name": {
+   "ja": "仙川",
+   "ko": "센가와",
+   "en": "Sengawa"
+  },
+  "kana": "せんがわ",
+  "geo": {
+   "lat": 35.66231,
+   "lng": 139.58489
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.tsutsujigaoka",
+  "name": {
+   "ja": "つつじヶ丘",
+   "ko": "쓰쓰지가오카",
+   "en": "Tsutsujigaoka"
+  },
+  "kana": "つつじがおか",
+  "geo": {
+   "lat": 35.65806,
+   "lng": 139.575
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.shibasaki",
+  "name": {
+   "ja": "柴崎",
+   "ko": "시바사키",
+   "en": "Shibasaki"
+  },
+  "kana": "しばさき",
+  "geo": {
+   "lat": 35.65417,
+   "lng": 139.56667
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.kokuryo",
+  "name": {
+   "ja": "国領",
+   "ko": "고쿠료",
+   "en": "Kokuryo"
+  },
+  "kana": "こくりょう",
+  "geo": {
+   "lat": 35.65028,
+   "lng": 139.55861
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": [
+   "tokyo.keio"
+  ]
+ },
+ {
+  "id": "tokyo.fuda",
+  "name": {
+   "ja": "布田",
+   "ko": "후다",
+   "en": "Fuda"
+  },
+  "kana": "ふだ",
+  "geo": {
+   "lat": 35.64992,
+   "lng": 139.55139
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": [
+   "tokyo.keio"
+  ]
+ },
+ {
+  "id": "tokyo.chofu",
+  "name": {
+   "ja": "調布",
+   "ko": "조후",
+   "en": "Chofu"
+  },
+  "kana": "ちょうふ",
+  "geo": {
+   "lat": 35.65217,
+   "lng": 139.54404
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": [
+   "tokyo.keio"
+  ]
+ },
+ {
+  "id": "tokyo.nishi_chofu",
+  "name": {
+   "ja": "西調布",
+   "ko": "니시초후",
+   "en": "Nishi-Chofu"
+  },
+  "kana": "にしちょうふ",
+  "geo": {
+   "lat": 35.65706,
+   "lng": 139.53022
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.tobitakyu",
+  "name": {
+   "ja": "飛田給",
+   "ko": "도비타큐",
+   "en": "Tobitakyu"
+  },
+  "kana": "とびたきゅう",
+  "geo": {
+   "lat": 35.66047,
+   "lng": 139.52333
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.musashinodai",
+  "name": {
+   "ja": "武蔵野台",
+   "ko": "무사시노다이",
+   "en": "Musashinodai"
+  },
+  "kana": "むさしのだい",
+  "geo": {
+   "lat": 35.66417,
+   "lng": 139.51111
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.tama_reien",
+  "name": {
+   "ja": "多磨霊園",
+   "ko": "다마레이엔",
+   "en": "Tama-Reien"
+  },
+  "kana": "たまれいえん",
+  "geo": {
+   "lat": 35.66611,
+   "lng": 139.50297
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.higashi_fuchu",
+  "name": {
+   "ja": "東府中",
+   "ko": "히가시후추",
+   "en": "Higashi-Fuchu"
+  },
+  "kana": "ひがしふちゅう",
+  "geo": {
+   "lat": 35.66889,
+   "lng": 139.49528
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.fuchu",
+  "name": {
+   "ja": "府中",
+   "ko": "후추",
+   "en": "Fuchu"
+  },
+  "kana": "ふちゅう",
+  "geo": {
+   "lat": 35.67211,
+   "lng": 139.48056
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.bubaigawara",
+  "name": {
+   "ja": "分倍河原",
+   "ko": "부바이가와라",
+   "en": "Bubaigawara"
+  },
+  "kana": "ぶばいがわら",
+  "geo": {
+   "lat": 35.6684,
+   "lng": 139.4686
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.nakagawara",
+  "name": {
+   "ja": "中河原",
+   "ko": "나카가와라",
+   "en": "Nakagawara"
+  },
+  "kana": "なかがわら",
+  "geo": {
+   "lat": 35.65958,
+   "lng": 139.45778
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.seiseki_sakuragaoka",
+  "name": {
+   "ja": "聖蹟桜ヶ丘",
+   "ko": "세이세키사쿠라가오카",
+   "en": "Seiseki-Sakuragaoka"
+  },
+  "kana": "せいせきさくらがおか",
+  "geo": {
+   "lat": 35.65083,
+   "lng": 139.44686
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.mogusaen",
+  "name": {
+   "ja": "百草園",
+   "ko": "모구사엔",
+   "en": "Mogusaen"
+  },
+  "kana": "もぐさえん",
+  "geo": {
+   "lat": 35.6575,
+   "lng": 139.43083
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.takahatafudo",
+  "name": {
+   "ja": "高幡不動",
+   "ko": "다카하타후도",
+   "en": "Takahatafudo"
+  },
+  "kana": "たかはたふどう",
+  "geo": {
+   "lat": 35.6621,
+   "lng": 139.41339
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.minamidaira",
+  "name": {
+   "ja": "南平",
+   "ko": "미나미다이라",
+   "en": "Minamidaira"
+  },
+  "kana": "みなみだいら",
+  "geo": {
+   "lat": 35.65458,
+   "lng": 139.39194
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.hirayamajoshi_koen",
+  "name": {
+   "ja": "平山城址公園",
+   "ko": "히라야마조시코엔",
+   "en": "Hirayamajoshi-koen"
+  },
+  "kana": "ひらやまじょうしこうえん",
+  "geo": {
+   "lat": 35.6475,
+   "lng": 139.38028
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.naganuma",
+  "name": {
+   "ja": "長沼",
+   "ko": "나가누마",
+   "en": "Naganuma"
+  },
+  "kana": "ながぬま",
+  "geo": {
+   "lat": 35.64278,
+   "lng": 139.36494
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.kitano",
+  "name": {
+   "ja": "北野",
+   "ko": "기타노",
+   "en": "Kitano"
+  },
+  "kana": "きたの",
+  "geo": {
+   "lat": 35.64442,
+   "lng": 139.35464
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.keio_hachioji",
+  "name": {
+   "ja": "京王八王子",
+   "ko": "게이오 하치오지",
+   "en": "Keio Hachioji"
+  },
+  "kana": "けいおうはちおうじ",
+  "geo": {
+   "lat": 35.65786,
+   "lng": 139.34314
+  },
+  "lines": [
+   "tokyo.keio"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.keisei_ueno",
+  "name": {
+   "ja": "京成上野",
+   "ko": "게이세이우에노",
+   "en": "Keisei Ueno"
+  },
+  "kana": "けいせいうえの",
+  "geo": {
+   "lat": 35.71122,
+   "lng": 139.77356
+  },
+  "lines": [
+   "tokyo.skyliner"
+  ],
+  "underground": [
+   "tokyo.skyliner"
+  ]
+ },
+ {
+  "id": "tokyo.airport_terminal_2",
+  "name": {
+   "ja": "空港第2ビル",
+   "ko": "공항 제2빌딩",
+   "en": "Airport Terminal 2"
+  },
+  "kana": "くうこうだいにビル",
+  "geo": {
+   "lat": 35.77297,
+   "lng": 140.38764
+  },
+  "lines": [
+   "tokyo.skyliner",
+   "tokyo.access_express",
+   "tokyo.narita_express"
+  ],
+  "underground": [
+   "tokyo.skyliner",
+   "tokyo.access_express",
+   "tokyo.narita_express"
+  ]
+ },
+ {
+  "id": "tokyo.narita_airport",
+  "name": {
+   "ja": "成田空港",
+   "ko": "나리타 공항",
+   "en": "Narita Airport"
+  },
+  "kana": "なりたくうこう",
+  "geo": {
+   "lat": 35.76579,
+   "lng": 140.38635
+  },
+  "lines": [
+   "tokyo.skyliner",
+   "tokyo.access_express",
+   "tokyo.narita_express"
+  ],
+  "underground": [
+   "tokyo.skyliner",
+   "tokyo.access_express",
+   "tokyo.narita_express"
+  ]
+ },
+ {
+  "id": "tokyo.higashi_matsudo",
+  "name": {
+   "ja": "東松戸",
+   "ko": "히가시마쓰도",
+   "en": "Higashi-Matsudo"
+  },
+  "kana": "ひがしまつど",
+  "geo": {
+   "lat": 35.77062,
+   "lng": 139.94381
+  },
+  "lines": [
+   "tokyo.access_express"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.shin_kamagaya",
+  "name": {
+   "ja": "新鎌ヶ谷",
+   "ko": "신카마가야",
+   "en": "Shin-Kamagaya"
+  },
+  "kana": "しんかまがや",
+  "geo": {
+   "lat": 35.77944,
+   "lng": 139.99833
+  },
+  "lines": [
+   "tokyo.access_express"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.chiba_new_town_chuo",
+  "name": {
+   "ja": "千葉ニュータウン中央",
+   "ko": "지바뉴타운추오",
+   "en": "Chiba New Town Chuo"
+  },
+  "kana": "ちばニュータウンちゅうおう",
+  "geo": {
+   "lat": 35.8003,
+   "lng": 140.1163
+  },
+  "lines": [
+   "tokyo.access_express"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.inba_nihon_idai",
+  "name": {
+   "ja": "印旛日本医大",
+   "ko": "인바니혼이다이",
+   "en": "Inba-Nihon-Idai"
+  },
+  "kana": "いんばにほんいだい",
+  "geo": {
+   "lat": 35.78758,
+   "lng": 140.2032
+  },
+  "lines": [
+   "tokyo.access_express"
+  ],
+  "underground": []
+ },
+ {
+  "id": "tokyo.narita_yukawa",
+  "name": {
+   "ja": "成田湯川",
+   "ko": "나리타유카와",
+   "en": "Narita Yukawa"
+  },
+  "kana": "なりたゆかわ",
+  "geo": {
+   "lat": 35.79944,
+   "lng": 140.29111
+  },
+  "lines": [
+   "tokyo.access_express"
+  ],
+  "underground": []
+ }
+]

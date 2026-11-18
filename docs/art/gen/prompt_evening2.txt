@@ -1,0 +1,15 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:\dev\tsugiwa-metro\docs\art\gen\bg_evening2_raw.png
+(copy it there from wherever the tool stores it). Do not write or change any other files. Reply with the saved path only.
+
+Look at C:\dev\tsugiwa-metro\docs\art\gen\bg_evening_raw.png first. Make the SAME scene with the SAME composition, camera, sunset sky, buildings, fences, trees, gantries and platform. Only change the PEOPLE on the platform to an after-work Tokyo evening mood:
+- a pair of tipsy salarymen in suits with loosened ties and slightly red faces, one with an arm around the other's shoulder, laughing
+- a tired salaryman leaning against a pillar holding his briefcase, jacket over his shoulder
+- two office workers in coats chatting, one holding a small paper takeout bag
+- a few more commuters in suits further down the platform
+Keep it warm and light-hearted (no vomiting, no lying on the floor). People stay on the right-side platform behind the yellow tactile line.
+
+- Landscape 1536x1024, same detailed 16-bit era pixel art style, crisp square pixels, almost no black outlines, hue-shifted shading.
+- The tracks in the centre stay EMPTY: no train.
+- Keep important content inside the middle 75% of the height.
+- ABSOLUTELY NO text, letters, numbers, logos or company marks.

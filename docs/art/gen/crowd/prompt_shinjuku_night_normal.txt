@@ -1,0 +1,14 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/crowd/shinjuku_night_normal_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at C:/dev/tsugiwa-metro/docs/art/gen/stations/shinjuku_night_raw.png first (Shinjuku with tall skyscrapers). Make the SAME picture with ONE change: the NUMBER of people waiting on the platform. Keep EVERYTHING else exactly the same: identical composition and camera (do not move, zoom or crop), the same sky and light, the same horizon, the same buildings, the fence, the EMPTY double track in the centre with the rails in exactly the same place, the covered platform on the right with the yellow tactile paving, the roof, pillars and overhead wires.
+
+The change: an ORDINARY, calm amount of people, night (keep the night lighting of the original: lit windows, platform lights).
+- About EIGHT to TWELVE people wait along the platform in small groups of one to three, with clear empty floor between the groups. The people in front are the same size as in the original.
+- Everybody stands ON the platform, behind the yellow line, never on the tracks. Sizes follow the perspective: smaller further away.
+- The same everyday clothes as the people in the original.
+
+- Landscape 1536x1024, the same detailed 16-bit era pixel art style as the original, crisp square pixels, almost no black outlines, hue-shifted shading.
+- The tracks in the centre stay EMPTY: no train.
+- ABSOLUTELY NO text, letters, numbers, logos or signboards.

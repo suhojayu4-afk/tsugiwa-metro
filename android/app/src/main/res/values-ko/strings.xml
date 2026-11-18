@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">츠기와 Metro</string>
+    <string name="widget_name">MY역</string>
+    <string name="widget_description">내 역을 홈 화면에</string>
+    <string name="widget_empty">앱을 열어 MY역을 만들어 주세요</string>
+</resources>

@@ -1,0 +1,6520 @@
+[
+ {
+  "id": "tokyo.yamanote",
+  "name": {
+   "ja": "山手線",
+   "ko": "야마노테선",
+   "en": "Yamanote Line"
+  },
+  "color": "#80C241",
+  "loop": true,
+  "dwellSec": 30,
+  "directions": {
+   "forward": {
+    "ja": "内回り",
+    "ko": "내선순환",
+    "en": "Inner loop"
+   },
+   "reverse": {
+    "ja": "外回り",
+    "ko": "외선순환",
+    "en": "Outer loop"
+   }
+  },
+  "stations": [
+   "tokyo.tokyo",
+   "tokyo.kanda",
+   "tokyo.akihabara",
+   "tokyo.okachimachi",
+   "tokyo.ueno",
+   "tokyo.uguisudani",
+   "tokyo.nippori",
+   "tokyo.nishi_nippori",
+   "tokyo.tabata",
+   "tokyo.komagome",
+   "tokyo.sugamo",
+   "tokyo.otsuka",
+   "tokyo.ikebukuro",
+   "tokyo.mejiro",
+   "tokyo.takadanobaba",
+   "tokyo.shin_okubo",
+   "tokyo.shinjuku",
+   "tokyo.yoyogi",
+   "tokyo.harajuku",
+   "tokyo.shibuya",
+   "tokyo.ebisu",
+   "tokyo.meguro",
+   "tokyo.gotanda",
+   "tokyo.osaki",
+   "tokyo.shinagawa",
+   "tokyo.takanawa_gateway",
+   "tokyo.tamachi",
+   "tokyo.hamamatsucho",
+   "tokyo.shimbashi",
+   "tokyo.yurakucho"
+  ],
+  "runSec": [
+   90,
+   80,
+   80,
+   80,
+   90,
+   90,
+   60,
+   80,
+   100,
+   80,
+   80,
+   120,
+   100,
+   90,
+   90,
+   90,
+   70,
+   90,
+   110,
+   110,
+   100,
+   100,
+   80,
+   150,
+   80,
+   80,
+   100,
+   90,
+   80,
+   70
+  ],
+  "group": "jr"
+ },
+ {
+  "id": "tokyo.ginza",
+  "name": {
+   "ja": "銀座線",
+   "ko": "긴자선",
+   "en": "Ginza Line"
+  },
+  "color": "#FF9500",
+  "loop": false,
+  "dwellSec": 25,
+  "directions": {
+   "forward": {
+    "ja": "浅草方面",
+    "ko": "아사쿠사 방면",
+    "en": "for Asakusa"
+   },
+   "reverse": {
+    "ja": "渋谷方面",
+    "ko": "시부야 방면",
+    "en": "for Shibuya"
+   }
+  },
+  "stations": [
+   "tokyo.shibuya",
+   "tokyo.omotesando",
+   "tokyo.gaiemmae",
+   "tokyo.aoyama_itchome",
+   "tokyo.akasaka_mitsuke",
+   "tokyo.tameike_sanno",
+   "tokyo.toranomon",
+   "tokyo.shimbashi",
+   "tokyo.ginza",
+   "tokyo.kyobashi",
+   "tokyo.nihombashi",
+   "tokyo.mitsukoshimae",
+   "tokyo.kanda",
+   "tokyo.suehirocho",
+   "tokyo.ueno_hirokoji",
+   "tokyo.ueno",
+   "tokyo.inaricho",
+   "tokyo.tawaramachi",
+   "tokyo.asakusa"
+  ],
+  "runSec": [
+   120,
+   70,
+   70,
+   110,
+   70,
+   80,
+   90,
+   80,
+   60,
+   60,
+   60,
+   80,
+   90,
+   70,
+   60,
+   70,
+   60,
+   70
+  ],
+  "group": "metro"
+ },
+ {
+  "id": "tokyo.marunouchi",
+  "name": {
+   "ja": "丸ノ内線",
+   "ko": "마루노우치선",
+   "en": "Marunouchi Line"
+  },
+  "color": "#F62E36",
+  "loop": false,
+  "dwellSec": 25,
+  "directions": {
+   "forward": {
+    "ja": "池袋方面",
+    "ko": "이케부쿠로 방면",
+    "en": "for Ikebukuro"
+   },
+   "reverse": {
+    "ja": "荻窪方面",
+    "ko": "오기쿠보 방면",
+    "en": "for Ogikubo"
+   }
+  },
+  "stations": [
+   "tokyo.ogikubo",
+   "tokyo.minami_asagaya",
+   "tokyo.shin_koenji",
+   "tokyo.higashi_koenji",
+   "tokyo.shin_nakano",
+   "tokyo.nakano_sakaue",
+   "tokyo.nishi_shinjuku",
+   "tokyo.shinjuku",
+   "tokyo.shinjuku_sanchome",
+   "tokyo.shinjuku_gyoemmae",
+   "tokyo.yotsuya_sanchome",
+   "tokyo.yotsuya",
+   "tokyo.akasaka_mitsuke",
+   "tokyo.kokkai_gijido_mae",
+   "tokyo.kasumigaseki",
+   "tokyo.ginza",
+   "tokyo.tokyo",
+   "tokyo.otemachi",
+   "tokyo.awajicho",
+   "tokyo.ochanomizu",
+   "tokyo.hongo_sanchome",
+   "tokyo.korakuen",
+   "tokyo.myogadani",
+   "tokyo.shin_otsuka",
+   "tokyo.ikebukuro"
+  ],
+  "runSec": [
+   165,
+   130,
+   100,
+   120,
+   140,
+   110,
+   110,
+   75,
+   70,
+   105,
+   115,
+   130,
+   100,
+   75,
+   140,
+   125,
+   65,
+   130,
+   85,
+   105,
+   100,
+   180,
+   130,
+   185
+  ],
+  "group": "metro"
+ },
+ {
+  "id": "tokyo.marunouchi_branch",
+  "name": {
+   "ja": "丸ノ内線（方南町支線）",
+   "ko": "마루노우치선 (호난초 지선)",
+   "en": "Marunouchi Line (Honancho branch)"
+  },
+  "color": "#F62E36",
+  "loop": false,
+  "dwellSec": 25,
+  "directions": {
+   "forward": {
+    "ja": "方南町方面",
+    "ko": "호난초 방면",
+    "en": "for Honancho"
+   },
+   "reverse": {
+    "ja": "中野坂上方面",
+    "ko": "나카노사카우에 방면",
+    "en": "for Nakano-sakaue"
+   }
+  },
+  "stations": [
+   "tokyo.nakano_sakaue",
+   "tokyo.nakano_shimbashi",
+   "tokyo.nakano_fujimicho",
+   "tokyo.honancho"
+  ],
+  "runSec": [
+   115,
+   85,
+   135
+  ],
+  "group": "metro"
+ },
+ {
+  "id": "tokyo.hibiya",
+  "name": {
+   "ja": "日比谷線",
+   "ko": "히비야선",
+   "en": "Hibiya Line"
+  },
+  "color": "#B5B5AC",
+  "loop": false,
+  "dwellSec": 25,
+  "directions": {
+   "forward": {
+    "ja": "北千住方面",
+    "ko": "기타센주 방면",
+    "en": "for Kita-Senju"
+   },
+   "reverse": {
+    "ja": "中目黒方面",
+    "ko": "나카메구로 방면",
+    "en": "for Naka-Meguro"
+   }
+  },
+  "stations": [
+   "tokyo.naka_meguro",
+   "tokyo.ebisu",
+   "tokyo.hiroo",
+   "tokyo.roppongi",
+   "tokyo.kamiyacho",
+   "tokyo.toranomon_hills",
+   "tokyo.kasumigaseki",
+   "tokyo.hibiya",
+   "tokyo.ginza",
+   "tokyo.higashi_ginza",
+   "tokyo.tsukiji",
+   "tokyo.hatchobori",
+   "tokyo.kayabacho",
+   "tokyo.ningyocho",
+   "tokyo.kodemmacho",
+   "tokyo.akihabara",
+   "tokyo.naka_okachimachi",
+   "tokyo.ueno",
+   "tokyo.iriya",
+   "tokyo.minowa",
+   "tokyo.minami_senju",
+   "tokyo.kita_senju"
+  ],
+  "runSec": [
+   120,
+   140,
+   155,
+   140,
+   80,
+   95,
+   100,
+   85,
+   60,
+   75,
+   105,
+   85,
+   95,
+   80,
+   115,
+   110,
+   100,
+   120,
+   135,
+   100,
+   195
+  ],
+  "group": "metro"
+ },
+ {
+  "id": "tokyo.tozai",
+  "name": {
+   "ja": "東西線",
+   "ko": "도자이선",
+   "en": "Tozai Line"
+  },
+  "color": "#009BBF",
+  "loop": false,
+  "dwellSec": 25,
+  "directions": {
+   "forward": {
+    "ja": "西船橋方面",
+    "ko": "니시후나바시 방면",
+    "en": "for Nishi-Funabashi"
+   },
+   "reverse": {
+    "ja": "中野方面",
+    "ko": "나카노 방면",
+    "en": "for Nakano"
+   }
+  },
+  "stations": [
+   "tokyo.nakano",
+   "tokyo.ochiai",
+   "tokyo.takadanobaba",
+   "tokyo.waseda",
+   "tokyo.kagurazaka",
+   "tokyo.iidabashi",
+   "tokyo.kudanshita",
+   "tokyo.takebashi",
+   "tokyo.otemachi",
+   "tokyo.nihombashi",
+   "tokyo.kayabacho",
+   "tokyo.monzen_nakacho",
+   "tokyo.kiba",
+   "tokyo.toyocho",
+   "tokyo.minami_sunamachi",
+   "tokyo.nishi_kasai",
+   "tokyo.kasai",
+   "tokyo.urayasu",
+   "tokyo.minami_gyotoku",
+   "tokyo.gyotoku",
+   "tokyo.myoden",
+   "tokyo.baraki_nakayama",
+   "tokyo.nishi_funabashi"
+  ],
+  "runSec": [
+   200,
+   170,
+   190,
+   130,
+   115,
+   110,
+   90,
+   125,
+   100,
+   85,
+   175,
+   120,
+   115,
+   135,
+   260,
+   135,
+   190,
+   130,
+   165,
+   150,
+   205,
+   170
+  ],
+  "group": "metro"
+ },
+ {
+  "id": "tokyo.chiyoda",
+  "name": {
+   "ja": "千代田線",
+   "ko": "지요다선",
+   "en": "Chiyoda Line"
+  },
+  "color": "#00BB85",
+  "loop": false,
+  "dwellSec": 25,
+  "directions": {
+   "forward": {
+    "ja": "北綾瀬方面",
+    "ko": "기타아야세 방면",
+    "en": "for Kita-Ayase"
+   },
+   "reverse": {
+    "ja": "代々木上原方面",
+    "ko": "요요기우에하라 방면",
+    "en": "for Yoyogi-Uehara"
+   }
+  },
+  "stations": [
+   "tokyo.yoyogi_uehara",
+   "tokyo.yoyogi_koen",
+   "tokyo.meiji_jingumae",
+   "tokyo.omotesando",
+   "tokyo.nogizaka",
+   "tokyo.akasaka",
+   "tokyo.kokkai_gijido_mae",
+   "tokyo.kasumigaseki",
+   "tokyo.hibiya",
+   "tokyo.nijubashimae",
+   "tokyo.otemachi",
+   "tokyo.shin_ochanomizu",
+   "tokyo.yushima",
+   "tokyo.nezu",
+   "tokyo.sendagi",
+   "tokyo.nishi_nippori",
+   "tokyo.machiya",
+   "tokyo.kita_senju",
+   "tokyo.ayase",
+   "tokyo.kita_ayase"
+  ],
+  "runSec": [
+   120,
+   140,
+   95,
+   140,
+   130,
+   100,
+   75,
+   100,
+   85,
+   85,
+   155,
+   135,
+   125,
+   110,
+   100,
+   185,
+   230,
+   230,
+   185
+  ],
+  "group": "metro"
+ },
+ {
+  "id": "tokyo.yurakucho",
+  "name": {
+   "ja": "有楽町線",
+   "ko": "유라쿠초선",
+   "en": "Yurakucho Line"
+  },
+  "color": "#C1A470",
+  "loop": false,
+  "dwellSec": 25,
+  "directions": {
+   "forward": {
+    "ja": "新木場方面",
+    "ko": "신키바 방면",
+    "en": "for Shin-Kiba"
+   },
+   "reverse": {
+    "ja": "和光市方面",
+    "ko": "와코시 방면",
+    "en": "for Wakoshi"
+   }
+  },
+  "stations": [
+   "tokyo.wakoshi",
+   "tokyo.chikatetsu_narimasu",
+   "tokyo.chikatetsu_akatsuka",
+   "tokyo.heiwadai",
+   "tokyo.hikawadai",
+   "tokyo.kotake_mukaihara",
+   "tokyo.senkawa",
+   "tokyo.kanamecho",
+   "tokyo.ikebukuro",
+   "tokyo.higashi_ikebukuro",
+   "tokyo.gokokuji",
+   "tokyo.edogawabashi",
+   "tokyo.iidabashi",
+   "tokyo.ichigaya",
+   "tokyo.kojimachi",
+   "tokyo.nagatacho",
+   "tokyo.sakuradamon",
+   "tokyo.yurakucho",
+   "tokyo.ginza_itchome",
+   "tokyo.shintomicho",
+   "tokyo.tsukishima",
+   "tokyo.toyosu",
+   "tokyo.tatsumi",
+   "tokyo.shin_kiba"
+  ],
+  "runSec": [
+   215,
+   150,
+   170,
+   150,
+   160,
+   120,
+   120,
+   135,
+   115,
+   115,
+   135,
+   145,
+   160,
+   100,
+   85,
+   120,
+   120,
+   60,
+   95,
+   135,
+   155,
+   175,
+   165
+  ],
+  "group": "metro"
+ },
+ {
+  "id": "tokyo.hanzomon",
+  "name": {
+   "ja": "半蔵門線",
+   "ko": "한조몬선",
+   "en": "Hanzomon Line"
+  },
+  "color": "#8F76D6",
+  "loop": false,
+  "dwellSec": 25,
+  "directions": {
+   "forward": {
+    "ja": "押上方面",
+    "ko": "오시아게 방면",
+    "en": "for Oshiage"
+   },
+   "reverse": {
+    "ja": "渋谷方面",
+    "ko": "시부야 방면",
+    "en": "for Shibuya"
+   }
+  },
+  "stations": [
+   "tokyo.shibuya",
+   "tokyo.omotesando",
+   "tokyo.aoyama_itchome",
+   "tokyo.nagatacho",
+   "tokyo.hanzomon",
+   "tokyo.kudanshita",
+   "tokyo.jimbocho",
+   "tokyo.otemachi",
+   "tokyo.mitsukoshimae",
+   "tokyo.suitengumae",
+   "tokyo.kiyosumi_shirakawa",
+   "tokyo.sumiyoshi",
+   "tokyo.kinshicho",
+   "tokyo.oshiage"
+  ],
+  "runSec": [
+   140,
+   150,
+   170,
+   100,
+   150,
+   80,
+   155,
+   95,
+   135,
+   135,
+   180,
+   100,
+   175
+  ],
+  "group": "metro"
+ },
+ {
+  "id": "tokyo.namboku",
+  "name": {
+   "ja": "南北線",
+   "ko": "난보쿠선",
+   "en": "Namboku Line"
+  },
+  "color": "#00AC9B",
+  "loop": false,
+  "dwellSec": 25,
+  "directions": {
+   "forward": {
+    "ja": "赤羽岩淵方面",
+    "ko": "아카바네이와부치 방면",
+    "en": "for Akabane-iwabuchi"
+   },
+   "reverse": {
+    "ja": "目黒方面",
+    "ko": "메구로 방면",
+    "en": "for Meguro"
+   }
+  },
+  "stations": [
+   "tokyo.meguro",
+   "tokyo.shirokanedai",
+   "tokyo.shirokane_takanawa",
+   "tokyo.azabu_juban",
+   "tokyo.roppongi_itchome",
+   "tokyo.tameike_sanno",
+   "tokyo.nagatacho",
+   "tokyo.yotsuya",
+   "tokyo.ichigaya",
+   "tokyo.iidabashi",
+   "tokyo.korakuen",
+   "tokyo.todaimae",
+   "tokyo.hon_komagome",
+   "tokyo.komagome",
+   "tokyo.nishigahara",
+   "tokyo.oji",
+   "tokyo.oji_kamiya",
+   "tokyo.shimo",
+   "tokyo.akabane_iwabuchi"
+  ],
+  "runSec": [
+   125,
+   110,
+   145,
+   130,
+   115,
+   80,
+   135,
+   90,
+   160,
+   100,
+   140,
+   105,
+   155,
+   130,
+   110,
+   150,
+   155,
+   125
+  ],
+  "group": "metro"
+ },
+ {
+  "id": "tokyo.fukutoshin",
+  "name": {
+   "ja": "副都心線",
+   "ko": "후쿠토신선",
+   "en": "Fukutoshin Line"
+  },
+  "color": "#9C5E31",
+  "loop": false,
+  "dwellSec": 25,
+  "directions": {
+   "forward": {
+    "ja": "渋谷方面",
+    "ko": "시부야 방면",
+    "en": "for Shibuya"
+   },
+   "reverse": {
+    "ja": "和光市方面",
+    "ko": "와코시 방면",
+    "en": "for Wakoshi"
+   }
+  },
+  "stations": [
+   "tokyo.wakoshi",
+   "tokyo.chikatetsu_narimasu",
+   "tokyo.chikatetsu_akatsuka",
+   "tokyo.heiwadai",
+   "tokyo.hikawadai",
+   "tokyo.kotake_mukaihara",
+   "tokyo.senkawa",
+   "tokyo.kanamecho",
+   "tokyo.ikebukuro",
+   "tokyo.zoshigaya",
+   "tokyo.nishi_waseda",
+   "tokyo.higashi_shinjuku",
+   "tokyo.shinjuku_sanchome",
+   "tokyo.kitasando",
+   "tokyo.meiji_jingumae",
+   "tokyo.shibuya"
+  ],
+  "runSec": [
+   215,
+   150,
+   170,
+   150,
+   160,
+   120,
+   120,
+   135,
+   120,
+   165,
+   120,
+   100,
+   145,
+   130,
+   135
+  ],
+  "group": "metro"
+ },
+ {
+  "id": "tokyo.toei_asakusa",
+  "name": {
+   "ja": "都営浅草線",
+   "ko": "도에이 아사쿠사선",
+   "en": "Toei Asakusa Line"
+  },
+  "color": "#E85298",
+  "loop": false,
+  "dwellSec": 25,
+  "directions": {
+   "forward": {
+    "ja": "押上方面",
+    "ko": "오시아게 방면",
+    "en": "for Oshiage"
+   },
+   "reverse": {
+    "ja": "西馬込方面",
+    "ko": "니시마고메 방면",
+    "en": "for Nishi-magome"
+   }
+  },
+  "stations": [
+   "tokyo.nishi_magome",
+   "tokyo.magome",
+   "tokyo.nakanobu",
+   "tokyo.togoshi",
+   "tokyo.gotanda",
+   "tokyo.takanawadai",
+   "tokyo.sengakuji",
+   "tokyo.mita",
+   "tokyo.daimon",
+   "tokyo.shimbashi",
+   "tokyo.higashi_ginza",
+   "tokyo.takaracho",
+   "tokyo.nihombashi",
+   "tokyo.ningyocho",
+   "tokyo.higashi_nihonbashi",
+   "tokyo.asakusabashi",
+   "tokyo.kuramae",
+   "tokyo.asakusa",
+   "tokyo.honjo_azumabashi",
+   "tokyo.oshiage"
+  ],
+  "runSec": [
+   135,
+   120,
+   120,
+   155,
+   105,
+   130,
+   145,
+   125,
+   125,
+   110,
+   95,
+   95,
+   110,
+   90,
+   80,
+   100,
+   120,
+   90,
+   100
+  ],
+  "group": "toei"
+ },
+ {
+  "id": "tokyo.toei_mita",
+  "name": {
+   "ja": "都営三田線",
+   "ko": "도에이 미타선",
+   "en": "Toei Mita Line"
+  },
+  "color": "#0079C2",
+  "loop": false,
+  "dwellSec": 25,
+  "directions": {
+   "forward": {
+    "ja": "西高島平方面",
+    "ko": "니시타카시마다이라 방면",
+    "en": "for Nishi-Takashimadaira"
+   },
+   "reverse": {
+    "ja": "目黒方面",
+    "ko": "메구로 방면",
+    "en": "for Meguro"
+   }
+  },
+  "stations": [
+   "tokyo.meguro",
+   "tokyo.shirokanedai",
+   "tokyo.shirokane_takanawa",
+   "tokyo.mita",
+   "tokyo.shibakoen",
+   "tokyo.onarimon",
+   "tokyo.uchisaiwaicho",
+   "tokyo.hibiya",
+   "tokyo.otemachi",
+   "tokyo.jimbocho",
+   "tokyo.suidobashi",
+   "tokyo.kasuga",
+   "tokyo.hakusan",
+   "tokyo.sengoku",
+   "tokyo.sugamo",
+   "tokyo.nishi_sugamo",
+   "tokyo.shin_itabashi",
+   "tokyo.itabashi_kuyakushomae",
+   "tokyo.itabashi_honcho",
+   "tokyo.motohasunuma",
+   "tokyo.shimura_sakaue",
+   "tokyo.shimura_sanchome",
+   "tokyo.hasune",
+   "tokyo.nishidai",
+   "tokyo.takashimadaira",
+   "tokyo.shin_takashimadaira",
+   "tokyo.nishi_takashimadaira"
+  ],
+  "runSec": [
+   125,
+   110,
+   155,
+   90,
+   100,
+   115,
+   90,
+   135,
+   155,
+   95,
+   105,
+   140,
+   115,
+   100,
+   155,
+   120,
+   110,
+   130,
+   105,
+   115,
+   105,
+   115,
+   80,
+   135,
+   85,
+   100
+  ],
+  "group": "toei"
+ },
+ {
+  "id": "tokyo.toei_shinjuku",
+  "name": {
+   "ja": "都営新宿線",
+   "ko": "도에이 신주쿠선",
+   "en": "Toei Shinjuku Line"
+  },
+  "color": "#6CBB5A",
+  "loop": false,
+  "dwellSec": 25,
+  "directions": {
+   "forward": {
+    "ja": "本八幡方面",
+    "ko": "모토야와타 방면",
+    "en": "for Motoyawata"
+   },
+   "reverse": {
+    "ja": "新宿方面",
+    "ko": "신주쿠 방면",
+    "en": "for Shinjuku"
+   }
+  },
+  "stations": [
+   "tokyo.shinjuku",
+   "tokyo.shinjuku_sanchome",
+   "tokyo.akebonobashi",
+   "tokyo.ichigaya",
+   "tokyo.kudanshita",
+   "tokyo.jimbocho",
+   "tokyo.ogawamachi",
+   "tokyo.iwamotocho",
+   "tokyo.bakuro_yokoyama",
+   "tokyo.hamacho",
+   "tokyo.morishita",
+   "tokyo.kikukawa",
+   "tokyo.sumiyoshi",
+   "tokyo.nishi_ojima",
+   "tokyo.ojima",
+   "tokyo.higashi_ojima",
+   "tokyo.funabori",
+   "tokyo.ichinoe",
+   "tokyo.mizue",
+   "tokyo.shinozaki",
+   "tokyo.motoyawata"
+  ],
+  "runSec": [
+   75,
+   160,
+   130,
+   160,
+   80,
+   100,
+   105,
+   95,
+   95,
+   100,
+   90,
+   110,
+   110,
+   105,
+   125,
+   170,
+   180,
+   165,
+   160,
+   270
+  ],
+  "group": "toei"
+ },
+ {
+  "id": "tokyo.toei_oedo",
+  "name": {
+   "ja": "都営大江戸線",
+   "ko": "도에이 오에도선",
+   "en": "Toei Oedo Line"
+  },
+  "color": "#CE045B",
+  "loop": true,
+  "dwellSec": 25,
+  "directions": {
+   "forward": {
+    "ja": "飯田橋・両国方面",
+    "ko": "이다바시·료고쿠 방면",
+    "en": "via Iidabashi / Ryogoku"
+   },
+   "reverse": {
+    "ja": "六本木・大門方面",
+    "ko": "롯폰기·다이몬 방면",
+    "en": "via Roppongi / Daimon"
+   }
+  },
+  "stations": [
+   "tokyo.tochomae",
+   "tokyo.shinjuku_nishiguchi",
+   "tokyo.higashi_shinjuku",
+   "tokyo.wakamatsu_kawada",
+   "tokyo.ushigome_yanagicho",
+   "tokyo.ushigome_kagurazaka",
+   "tokyo.iidabashi",
+   "tokyo.kasuga",
+   "tokyo.hongo_sanchome",
+   "tokyo.ueno_okachimachi",
+   "tokyo.shin_okachimachi",
+   "tokyo.kuramae",
+   "tokyo.ryogoku",
+   "tokyo.morishita",
+   "tokyo.kiyosumi_shirakawa",
+   "tokyo.monzen_nakacho",
+   "tokyo.tsukishima",
+   "tokyo.kachidoki",
+   "tokyo.tsukijishijo",
+   "tokyo.shiodome",
+   "tokyo.daimon",
+   "tokyo.akabanebashi",
+   "tokyo.azabu_juban",
+   "tokyo.roppongi",
+   "tokyo.aoyama_itchome",
+   "tokyo.kokuritsu_kyogijo",
+   "tokyo.yoyogi",
+   "tokyo.shinjuku"
+  ],
+  "runSec": [
+   85,
+   115,
+   110,
+   85,
+   115,
+   105,
+   130,
+   90,
+   140,
+   90,
+   115,
+   105,
+   110,
+   85,
+   130,
+   145,
+   115,
+   125,
+   80,
+   115,
+   120,
+   80,
+   120,
+   145,
+   135,
+   130,
+   95,
+   95
+  ],
+  "group": "toei"
+ },
+ {
+  "id": "tokyo.toei_oedo_branch",
+  "name": {
+   "ja": "都営大江戸線（光が丘方面）",
+   "ko": "도에이 오에도선 (히카리가오카 방면)",
+   "en": "Toei Oedo Line (Hikarigaoka)"
+  },
+  "color": "#CE045B",
+  "loop": false,
+  "dwellSec": 25,
+  "directions": {
+   "forward": {
+    "ja": "光が丘方面",
+    "ko": "히카리가오카 방면",
+    "en": "for Hikarigaoka"
+   },
+   "reverse": {
+    "ja": "都庁前方面",
+    "ko": "도초마에 방면",
+    "en": "for Tochomae"
+   }
+  },
+  "stations": [
+   "tokyo.tochomae",
+   "tokyo.nishi_shinjuku_gochome",
+   "tokyo.nakano_sakaue",
+   "tokyo.higashi_nakano",
+   "tokyo.nakai",
+   "tokyo.ochiai_minami_nagasaki",
+   "tokyo.shin_egota",
+   "tokyo.nerima",
+   "tokyo.toshimaen",
+   "tokyo.nerima_kasugacho",
+   "tokyo.hikarigaoka"
+  ],
+  "runSec": [
+   95,
+   100,
+   120,
+   115,
+   120,
+   160,
+   175,
+   90,
+   145,
+   140
+  ],
+  "group": "toei"
+ },
+ {
+  "id": "tokyo.keikyu",
+  "name": {
+   "ja": "京急本線",
+   "ko": "게이큐 본선",
+   "en": "Keikyu Main Line"
+  },
+  "color": "#E5171F",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "keikyu",
+  "directions": {
+   "forward": {
+    "ja": "京急田浦方面",
+    "ko": "게이큐다우라 방면",
+    "en": "for Keikyu-Taura"
+   },
+   "reverse": {
+    "ja": "泉岳寺方面",
+    "ko": "센가쿠지 방면",
+    "en": "for Sengakuji"
+   }
+  },
+  "stations": [
+   "tokyo.sengakuji",
+   "tokyo.shinagawa",
+   "tokyo.kitashinagawa",
+   "tokyo.shimbamba",
+   "tokyo.aomono_yokocho",
+   "tokyo.samezu",
+   "tokyo.tachiaigawa",
+   "tokyo.omori_kaigan",
+   "tokyo.heiwajima",
+   "tokyo.omorimachi",
+   "tokyo.umeyashiki",
+   "tokyo.keikyu_kamata",
+   "tokyo.zoshiki",
+   "tokyo.rokugodote",
+   "tokyo.keikyu_kawasaki",
+   "tokyo.hatchonawate",
+   "tokyo.tsurumi_ichiba",
+   "tokyo.keikyu_tsurumi",
+   "tokyo.kagetsu_sojiji",
+   "tokyo.namamugi",
+   "tokyo.keikyu_shinkoyasu",
+   "tokyo.koyasu",
+   "tokyo.kanagawa_shimmachi",
+   "tokyo.keikyu_higashi_kanagawa",
+   "tokyo.kanagawa",
+   "tokyo.yokohama",
+   "tokyo.tobe",
+   "tokyo.hinodecho",
+   "tokyo.koganecho",
+   "tokyo.minami_ota",
+   "tokyo.idogaya",
+   "tokyo.gumyoji",
+   "tokyo.kami_ooka",
+   "tokyo.byobugaura",
+   "tokyo.sugita",
+   "tokyo.keikyu_tomioka",
+   "tokyo.nokendai",
+   "tokyo.kanazawa_bunko",
+   "tokyo.kanazawa_hakkei",
+   "tokyo.oppama",
+   "tokyo.keikyu_taura"
+  ],
+  "runSec": [
+   115,
+   80,
+   70,
+   100,
+   65,
+   90,
+   120,
+   110,
+   80,
+   80,
+   90,
+   140,
+   115,
+   110,
+   130,
+   90,
+   125,
+   95,
+   85,
+   140,
+   105,
+   75,
+   80,
+   95,
+   90,
+   105,
+   135,
+   80,
+   100,
+   120,
+   110,
+   155,
+   185,
+   120,
+   200,
+   80,
+   185,
+   125,
+   160,
+   155
+  ]
+ },
+ {
+  "id": "tokyo.keisei",
+  "name": {
+   "ja": "京成本線",
+   "ko": "게이세이 본선",
+   "en": "Keisei Main Line"
+  },
+  "color": "#1E50A2",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "keisei",
+  "directions": {
+   "forward": {
+    "ja": "京成上野方面",
+    "ko": "게이세이우에노 방면",
+    "en": "for Keisei Ueno"
+   },
+   "reverse": {
+    "ja": "成田空港方面",
+    "ko": "나리타 공항 방면",
+    "en": "for Narita Airport"
+   }
+  },
+  "stations": [
+   "tokyo.narita_airport",
+   "tokyo.airport_terminal_2",
+   "tokyo.keisei_narita",
+   "tokyo.kozunomori",
+   "tokyo.sogosando",
+   "tokyo.keisei_shisui",
+   "tokyo.osakura",
+   "tokyo.keisei_sakura",
+   "tokyo.keisei_usui",
+   "tokyo.yukarigaoka",
+   "tokyo.shizu",
+   "tokyo.katsutadai",
+   "tokyo.keisei_owada",
+   "tokyo.yachiyodai",
+   "tokyo.mimomi",
+   "tokyo.keisei_okubo",
+   "tokyo.keisei_tsudanuma",
+   "tokyo.yatsu",
+   "tokyo.funabashi_keibajo",
+   "tokyo.daijingu_shita",
+   "tokyo.keisei_funabashi",
+   "tokyo.kaijin",
+   "tokyo.keisei_nishifuna",
+   "tokyo.higashi_nakayama",
+   "tokyo.keisei_nakayama",
+   "tokyo.onigoe",
+   "tokyo.keisei_yawata",
+   "tokyo.sugano",
+   "tokyo.ichikawamama",
+   "tokyo.konodai",
+   "tokyo.edogawa",
+   "tokyo.keisei_koiwa",
+   "tokyo.keisei_takasago",
+   "tokyo.aoto",
+   "tokyo.ohanajaya",
+   "tokyo.horikirishobuen",
+   "tokyo.keisei_sekiya",
+   "tokyo.senjuohashi",
+   "tokyo.machiya",
+   "tokyo.shim_mikawashima",
+   "tokyo.nippori",
+   "tokyo.keisei_ueno"
+  ],
+  "runSec": [
+   90,
+   515,
+   220,
+   145,
+   180,
+   170,
+   180,
+   360,
+   210,
+   115,
+   160,
+   150,
+   180,
+   220,
+   165,
+   190,
+   145,
+   105,
+   90,
+   90,
+   130,
+   130,
+   80,
+   85,
+   85,
+   100,
+   100,
+   90,
+   105,
+   75,
+   120,
+   160,
+   120,
+   140,
+   115,
+   140,
+   130,
+   130,
+   95,
+   110,
+   170
+  ]
+ },
+ {
+  "id": "tokyo.tokyu_meguro",
+  "name": {
+   "ja": "東急目黒線",
+   "ko": "도큐 메구로선",
+   "en": "Tokyu Meguro Line"
+  },
+  "color": "#009CD2",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "tokyu",
+  "directions": {
+   "forward": {
+    "ja": "日吉方面",
+    "ko": "히요시 방면",
+    "en": "for Hiyoshi"
+   },
+   "reverse": {
+    "ja": "目黒方面",
+    "ko": "메구로 방면",
+    "en": "for Meguro"
+   }
+  },
+  "stations": [
+   "tokyo.meguro",
+   "tokyo.fudomae",
+   "tokyo.musashi_koyama",
+   "tokyo.nishi_koyama",
+   "tokyo.senzoku",
+   "tokyo.ookayama",
+   "tokyo.okusawa",
+   "tokyo.den_en_chofu",
+   "tokyo.tamagawa",
+   "tokyo.shin_maruko",
+   "tokyo.musashi_kosugi",
+   "tokyo.motosumiyoshi",
+   "tokyo.hiyoshi"
+  ],
+  "runSec": [
+   105,
+   100,
+   85,
+   80,
+   95,
+   125,
+   95,
+   95,
+   115,
+   80,
+   135,
+   130
+  ]
+ },
+ {
+  "id": "tokyo.keio",
+  "name": {
+   "ja": "京王線",
+   "ko": "게이오선",
+   "en": "Keio Line"
+  },
+  "color": "#DD0077",
+  "loop": false,
+  "dwellSec": 25,
+  "directions": {
+   "forward": {
+    "ja": "京王八王子方面",
+    "ko": "게이오 하치오지 방면",
+    "en": "for Keio Hachioji"
+   },
+   "reverse": {
+    "ja": "新宿方面",
+    "ko": "신주쿠 방면",
+    "en": "for Shinjuku"
+   }
+  },
+  "stations": [
+   "tokyo.shinjuku",
+   "tokyo.hatsudai",
+   "tokyo.hatagaya",
+   "tokyo.sasazuka",
+   "tokyo.daitabashi",
+   "tokyo.meidaimae",
+   "tokyo.shimo_takaido",
+   "tokyo.sakurajosui",
+   "tokyo.kami_kitazawa",
+   "tokyo.hachimanyama",
+   "tokyo.roka_koen",
+   "tokyo.chitose_karasuyama",
+   "tokyo.sengawa",
+   "tokyo.tsutsujigaoka",
+   "tokyo.shibasaki",
+   "tokyo.kokuryo",
+   "tokyo.fuda",
+   "tokyo.chofu",
+   "tokyo.nishi_chofu",
+   "tokyo.tobitakyu",
+   "tokyo.musashinodai",
+   "tokyo.tama_reien",
+   "tokyo.higashi_fuchu",
+   "tokyo.fuchu",
+   "tokyo.bubaigawara",
+   "tokyo.nakagawara",
+   "tokyo.seiseki_sakuragaoka",
+   "tokyo.mogusaen",
+   "tokyo.takahatafudo",
+   "tokyo.minamidaira",
+   "tokyo.hirayamajoshi_koen",
+   "tokyo.naganuma",
+   "tokyo.kitano",
+   "tokyo.keio_hachioji"
+  ],
+  "runSec": [
+   145,
+   105,
+   95,
+   90,
+   90,
+   90,
+   95,
+   85,
+   80,
+   75,
+   85,
+   145,
+   105,
+   90,
+   90,
+   75,
+   80,
+   130,
+   80,
+   115,
+   85,
+   85,
+   130,
+   115,
+   130,
+   130,
+   145,
+   150,
+   180,
+   125,
+   135,
+   100,
+   160
+  ],
+  "group": "keio"
+ },
+ {
+  "id": "tokyo.skyliner",
+  "name": {
+   "ja": "京成スカイライナー",
+   "ko": "게이세이 스카이라이너",
+   "en": "Keisei Skyliner"
+  },
+  "color": "#22356B",
+  "loop": false,
+  "dwellSec": 25,
+  "directions": {
+   "forward": {
+    "ja": "成田空港方面",
+    "ko": "나리타 공항 방면",
+    "en": "for Narita Airport"
+   },
+   "reverse": {
+    "ja": "京成上野方面",
+    "ko": "게이세이우에노 방면",
+    "en": "for Keisei Ueno"
+   }
+  },
+  "stations": [
+   "tokyo.keisei_ueno",
+   "tokyo.nippori",
+   "tokyo.airport_terminal_2",
+   "tokyo.narita_airport"
+  ],
+  "runSec": [
+   105,
+   2285,
+   60
+  ],
+  "group": "keisei"
+ },
+ {
+  "id": "tokyo.access_express",
+  "name": {
+   "ja": "アクセス特急（成田スカイアクセス線）",
+   "ko": "액세스 특급 (나리타 스카이 액세스선)",
+   "en": "Access Express (Narita Sky Access)"
+  },
+  "color": "#F08300",
+  "loop": false,
+  "dwellSec": 25,
+  "directions": {
+   "forward": {
+    "ja": "成田空港方面",
+    "ko": "나리타 공항 방면",
+    "en": "for Narita Airport"
+   },
+   "reverse": {
+    "ja": "押上方面",
+    "ko": "오시아게 방면",
+    "en": "for Oshiage"
+   }
+  },
+  "stations": [
+   "tokyo.oshiage",
+   "tokyo.aoto",
+   "tokyo.keisei_takasago",
+   "tokyo.higashi_matsudo",
+   "tokyo.shin_kamagaya",
+   "tokyo.chiba_new_town_chuo",
+   "tokyo.inba_nihon_idai",
+   "tokyo.narita_yukawa",
+   "tokyo.airport_terminal_2",
+   "tokyo.narita_airport"
+  ],
+  "runSec": [
+   355,
+   100,
+   460,
+   325,
+   675,
+   505,
+   505,
+   575,
+   75
+  ],
+  "group": "keisei"
+ },
+ {
+  "id": "tokyo.narita_express",
+  "name": {
+   "ja": "成田エクスプレス",
+   "ko": "나리타 익스프레스",
+   "en": "Narita Express (N'EX)"
+  },
+  "color": "#B8102C",
+  "loop": false,
+  "dwellSec": 25,
+  "directions": {
+   "forward": {
+    "ja": "成田空港方面",
+    "ko": "나리타 공항 방면",
+    "en": "for Narita Airport"
+   },
+   "reverse": {
+    "ja": "品川方面",
+    "ko": "시나가와 방면",
+    "en": "for Shinagawa"
+   }
+  },
+  "stations": [
+   "tokyo.shinagawa",
+   "tokyo.tokyo",
+   "tokyo.airport_terminal_2",
+   "tokyo.narita_airport"
+  ],
+  "runSec": [
+   385,
+   3220,
+   75
+  ],
+  "group": "jr"
+ },
+ {
+  "id": "tokyo.keihin_tohoku",
+  "name": {
+   "ja": "京浜東北線・根岸線",
+   "ko": "게이힌토호쿠선·네기시선",
+   "en": "Keihin-Tohoku / Negishi Line"
+  },
+  "color": "#00B2E5",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "大宮方面",
+    "ko": "오미야 방면",
+    "en": "for Omiya"
+   },
+   "reverse": {
+    "ja": "大船方面",
+    "ko": "오후나 방면",
+    "en": "for Ofuna"
+   }
+  },
+  "stations": [
+   "tokyo.ofuna",
+   "tokyo.hongodai",
+   "tokyo.konandai",
+   "tokyo.yokodai",
+   "tokyo.shin_sugita",
+   "tokyo.isogo",
+   "tokyo.negishi",
+   "tokyo.yamate",
+   "tokyo.ishikawacho",
+   "tokyo.kannai",
+   "tokyo.sakuragicho",
+   "tokyo.yokohama",
+   "tokyo.higashi_kanagawa",
+   "tokyo.shin_koyasu",
+   "tokyo.tsurumi",
+   "tokyo.kawasaki",
+   "tokyo.kamata",
+   "tokyo.omori",
+   "tokyo.oimachi",
+   "tokyo.shinagawa",
+   "tokyo.takanawa_gateway",
+   "tokyo.tamachi",
+   "tokyo.hamamatsucho",
+   "tokyo.shimbashi",
+   "tokyo.yurakucho",
+   "tokyo.tokyo",
+   "tokyo.kanda",
+   "tokyo.akihabara",
+   "tokyo.okachimachi",
+   "tokyo.ueno",
+   "tokyo.uguisudani",
+   "tokyo.nippori",
+   "tokyo.nishi_nippori",
+   "tokyo.tabata",
+   "tokyo.kami_nakazato",
+   "tokyo.oji",
+   "tokyo.higashi_jujo",
+   "tokyo.akabane",
+   "tokyo.kawaguchi",
+   "tokyo.nishi_kawaguchi",
+   "tokyo.warabi",
+   "tokyo.minami_urawa",
+   "tokyo.urawa",
+   "tokyo.kita_urawa",
+   "tokyo.yono",
+   "tokyo.saitama_shintoshin",
+   "tokyo.omiya"
+  ],
+  "runSec": [
+   205,
+   225,
+   170,
+   205,
+   145,
+   210,
+   155,
+   135,
+   95,
+   100,
+   170,
+   160,
+   195,
+   270,
+   275,
+   325,
+   265,
+   190,
+   220,
+   90,
+   130,
+   135,
+   125,
+   110,
+   90,
+   125,
+   90,
+   110,
+   85,
+   95,
+   105,
+   75,
+   95,
+   155,
+   110,
+   150,
+   160,
+   235,
+   180,
+   175,
+   255,
+   155,
+   165,
+   145,
+   115,
+   155
+  ]
+ },
+ {
+  "id": "tokyo.chuo_rapid",
+  "name": {
+   "ja": "中央線快速",
+   "ko": "주오선 쾌속",
+   "en": "Chuo Line (Rapid)"
+  },
+  "color": "#F15A22",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "高尾方面",
+    "ko": "다카오 방면",
+    "en": "for Takao"
+   },
+   "reverse": {
+    "ja": "東京方面",
+    "ko": "도쿄 방면",
+    "en": "for Tokyo"
+   }
+  },
+  "stations": [
+   "tokyo.tokyo",
+   "tokyo.kanda",
+   "tokyo.ochanomizu",
+   "tokyo.yotsuya",
+   "tokyo.shinjuku",
+   "tokyo.nakano",
+   "tokyo.koenji",
+   "tokyo.asagaya",
+   "tokyo.ogikubo",
+   "tokyo.nishi_ogikubo",
+   "tokyo.kichijoji",
+   "tokyo.mitaka",
+   "tokyo.musashi_sakai",
+   "tokyo.higashi_koganei",
+   "tokyo.musashi_koganei",
+   "tokyo.kokubunji",
+   "tokyo.nishi_kokubunji",
+   "tokyo.kunitachi",
+   "tokyo.tachikawa",
+   "tokyo.hino",
+   "tokyo.toyoda",
+   "tokyo.hachioji",
+   "tokyo.nishi_hachioji",
+   "tokyo.takao"
+  ],
+  "runSec": [
+   125,
+   115,
+   290,
+   240,
+   310,
+   140,
+   130,
+   135,
+   175,
+   165,
+   165,
+   150,
+   170,
+   150,
+   215,
+   130,
+   165,
+   260,
+   240,
+   215,
+   325,
+   220,
+   275
+  ]
+ },
+ {
+  "id": "tokyo.chuo_sobu",
+  "name": {
+   "ja": "中央・総武線各駅停車",
+   "ko": "주오·소부선 각역정차",
+   "en": "Chuo-Sobu Line (Local)"
+  },
+  "color": "#FFD400",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "千葉方面",
+    "ko": "지바 방면",
+    "en": "for Chiba"
+   },
+   "reverse": {
+    "ja": "三鷹方面",
+    "ko": "미타카 방면",
+    "en": "for Mitaka"
+   }
+  },
+  "stations": [
+   "tokyo.mitaka",
+   "tokyo.kichijoji",
+   "tokyo.nishi_ogikubo",
+   "tokyo.ogikubo",
+   "tokyo.asagaya",
+   "tokyo.koenji",
+   "tokyo.nakano",
+   "tokyo.higashi_nakano",
+   "tokyo.okubo",
+   "tokyo.shinjuku",
+   "tokyo.yoyogi",
+   "tokyo.sendagaya",
+   "tokyo.shinanomachi",
+   "tokyo.yotsuya",
+   "tokyo.ichigaya",
+   "tokyo.iidabashi",
+   "tokyo.suidobashi",
+   "tokyo.ochanomizu",
+   "tokyo.akihabara",
+   "tokyo.asakusabashi",
+   "tokyo.ryogoku",
+   "tokyo.kinshicho",
+   "tokyo.kameido",
+   "tokyo.hirai",
+   "tokyo.shin_koiwa",
+   "tokyo.koiwa",
+   "tokyo.ichikawa",
+   "tokyo.motoyawata",
+   "tokyo.shimosa_nakayama",
+   "tokyo.nishi_funabashi",
+   "tokyo.funabashi",
+   "tokyo.higashi_funabashi",
+   "tokyo.tsudanuma",
+   "tokyo.makuhari_hongo",
+   "tokyo.makuhari",
+   "tokyo.shin_kemigawa",
+   "tokyo.inage",
+   "tokyo.nishi_chiba",
+   "tokyo.chiba"
+  ],
+  "runSec": [
+   165,
+   165,
+   175,
+   135,
+   130,
+   140,
+   175,
+   120,
+   130,
+   85,
+   95,
+   95,
+   120,
+   85,
+   145,
+   95,
+   100,
+   95,
+   120,
+   85,
+   170,
+   120,
+   165,
+   170,
+   245,
+   220,
+   175,
+   160,
+   160,
+   220,
+   165,
+   160,
+   250,
+   190,
+   155,
+   215,
+   175,
+   135
+  ]
+ },
+ {
+  "id": "tokyo.yokosuka_sobu",
+  "name": {
+   "ja": "横須賀・総武快速線",
+   "ko": "요코스카·소부 쾌속선",
+   "en": "Yokosuka / Sobu Rapid Line"
+  },
+  "color": "#0067C0",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "千葉方面",
+    "ko": "지바 방면",
+    "en": "for Chiba"
+   },
+   "reverse": {
+    "ja": "鎌倉方面",
+    "ko": "가마쿠라 방면",
+    "en": "for Kamakura"
+   }
+  },
+  "stations": [
+   "tokyo.kamakura",
+   "tokyo.kita_kamakura",
+   "tokyo.ofuna",
+   "tokyo.totsuka",
+   "tokyo.higashi_totsuka",
+   "tokyo.hodogaya",
+   "tokyo.yokohama",
+   "tokyo.shin_kawasaki",
+   "tokyo.musashi_kosugi",
+   "tokyo.nishi_oi",
+   "tokyo.shinagawa",
+   "tokyo.shimbashi",
+   "tokyo.tokyo",
+   "tokyo.shin_nihombashi",
+   "tokyo.bakurocho",
+   "tokyo.kinshicho",
+   "tokyo.shin_koiwa",
+   "tokyo.ichikawa",
+   "tokyo.funabashi",
+   "tokyo.tsudanuma",
+   "tokyo.inage",
+   "tokyo.chiba"
+  ],
+  "runSec": [
+   150,
+   160,
+   335,
+   260,
+   285,
+   205,
+   650,
+   185,
+   390,
+   225,
+   300,
+   140,
+   95,
+   80,
+   200,
+   300,
+   310,
+   480,
+   230,
+   555,
+   215
+  ]
+ },
+ {
+  "id": "tokyo.tokaido",
+  "name": {
+   "ja": "東海道線",
+   "ko": "도카이도선",
+   "en": "Tokaido Line"
+  },
+  "color": "#F68B1E",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "東京方面",
+    "ko": "도쿄 방면",
+    "en": "for Tokyo"
+   },
+   "reverse": {
+    "ja": "大磯方面",
+    "ko": "오이소 방면",
+    "en": "for Oiso"
+   }
+  },
+  "stations": [
+   "tokyo.oiso",
+   "tokyo.hiratsuka",
+   "tokyo.chigasaki",
+   "tokyo.tsujido",
+   "tokyo.fujisawa",
+   "tokyo.ofuna",
+   "tokyo.totsuka",
+   "tokyo.yokohama",
+   "tokyo.kawasaki",
+   "tokyo.shinagawa",
+   "tokyo.shimbashi",
+   "tokyo.tokyo"
+  ],
+  "runSec": [
+   250,
+   345,
+   240,
+   245,
+   290,
+   335,
+   665,
+   615,
+   700,
+   300,
+   140
+  ]
+ },
+ {
+  "id": "tokyo.utsunomiya",
+  "name": {
+   "ja": "宇都宮線",
+   "ko": "우쓰노미야선",
+   "en": "Utsunomiya Line"
+  },
+  "color": "#F68B1E",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "白岡方面",
+    "ko": "시라오카 방면",
+    "en": "for Shiraoka"
+   },
+   "reverse": {
+    "ja": "東京方面",
+    "ko": "도쿄 방면",
+    "en": "for Tokyo"
+   }
+  },
+  "stations": [
+   "tokyo.tokyo",
+   "tokyo.ueno",
+   "tokyo.oku",
+   "tokyo.akabane",
+   "tokyo.urawa",
+   "tokyo.saitama_shintoshin",
+   "tokyo.omiya",
+   "tokyo.toro",
+   "tokyo.higashi_omiya",
+   "tokyo.hasuda",
+   "tokyo.shiraoka"
+  ],
+  "runSec": [
+   250,
+   280,
+   300,
+   660,
+   290,
+   125,
+   200,
+   150,
+   255,
+   275
+  ]
+ },
+ {
+  "id": "tokyo.takasaki",
+  "name": {
+   "ja": "高崎線",
+   "ko": "다카사키선",
+   "en": "Takasaki Line"
+  },
+  "color": "#F68B1E",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "桶川方面",
+    "ko": "오케가와 방면",
+    "en": "for Okegawa"
+   },
+   "reverse": {
+    "ja": "上野方面",
+    "ko": "우에노 방면",
+    "en": "for Ueno"
+   }
+  },
+  "stations": [
+   "tokyo.ueno",
+   "tokyo.oku",
+   "tokyo.akabane",
+   "tokyo.urawa",
+   "tokyo.saitama_shintoshin",
+   "tokyo.omiya",
+   "tokyo.miyahara",
+   "tokyo.ageo",
+   "tokyo.kita_ageo",
+   "tokyo.okegawa"
+  ],
+  "runSec": [
+   280,
+   300,
+   660,
+   290,
+   125,
+   265,
+   275,
+   130,
+   140
+  ]
+ },
+ {
+  "id": "tokyo.joban_rapid",
+  "name": {
+   "ja": "常磐線快速",
+   "ko": "조반선 쾌속",
+   "en": "Joban Line (Rapid)"
+  },
+  "color": "#00B261",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "品川方面",
+    "ko": "시나가와 방면",
+    "en": "for Shinagawa"
+   },
+   "reverse": {
+    "ja": "取手方面",
+    "ko": "도리데 방면",
+    "en": "for Toride"
+   }
+  },
+  "stations": [
+   "tokyo.toride",
+   "tokyo.tennodai",
+   "tokyo.abiko",
+   "tokyo.kashiwa",
+   "tokyo.matsudo",
+   "tokyo.kita_senju",
+   "tokyo.minami_senju",
+   "tokyo.mikawashima",
+   "tokyo.nippori",
+   "tokyo.ueno",
+   "tokyo.tokyo",
+   "tokyo.shimbashi",
+   "tokyo.shinagawa"
+  ],
+  "runSec": [
+   220,
+   190,
+   255,
+   665,
+   590,
+   140,
+   145,
+   80,
+   130,
+   250,
+   140,
+   300
+  ]
+ },
+ {
+  "id": "tokyo.joban_local",
+  "name": {
+   "ja": "常磐線各駅停車",
+   "ko": "조반선 각역정차",
+   "en": "Joban Line (Local)"
+  },
+  "color": "#868D8D",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "綾瀬方面",
+    "ko": "아야세 방면",
+    "en": "for Ayase"
+   },
+   "reverse": {
+    "ja": "取手方面",
+    "ko": "도리데 방면",
+    "en": "for Toride"
+   }
+  },
+  "stations": [
+   "tokyo.toride",
+   "tokyo.tennodai",
+   "tokyo.abiko",
+   "tokyo.kita_kashiwa",
+   "tokyo.kashiwa",
+   "tokyo.minami_kashiwa",
+   "tokyo.kita_kogane",
+   "tokyo.shin_matsudo",
+   "tokyo.mabashi",
+   "tokyo.kita_matsudo",
+   "tokyo.matsudo",
+   "tokyo.kanamachi",
+   "tokyo.kameari",
+   "tokyo.ayase"
+  ],
+  "runSec": [
+   280,
+   240,
+   190,
+   195,
+   220,
+   215,
+   125,
+   150,
+   130,
+   190,
+   275,
+   190,
+   195
+  ]
+ },
+ {
+  "id": "tokyo.saikyo",
+  "name": {
+   "ja": "埼京線",
+   "ko": "사이쿄선",
+   "en": "Saikyo Line"
+  },
+  "color": "#00AC9A",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "大宮方面",
+    "ko": "오미야 방면",
+    "en": "for Omiya"
+   },
+   "reverse": {
+    "ja": "大崎方面",
+    "ko": "오사키 방면",
+    "en": "for Osaki"
+   }
+  },
+  "stations": [
+   "tokyo.osaki",
+   "tokyo.ebisu",
+   "tokyo.shibuya",
+   "tokyo.shinjuku",
+   "tokyo.ikebukuro",
+   "tokyo.itabashi",
+   "tokyo.jujo",
+   "tokyo.akabane",
+   "tokyo.kita_akabane",
+   "tokyo.ukimafunado",
+   "tokyo.todakoen",
+   "tokyo.toda",
+   "tokyo.kita_toda",
+   "tokyo.musashi_urawa",
+   "tokyo.naka_urawa",
+   "tokyo.minami_yono",
+   "tokyo.yono_hommachi",
+   "tokyo.kita_yono",
+   "tokyo.omiya"
+  ],
+  "runSec": [
+   295,
+   145,
+   300,
+   380,
+   175,
+   155,
+   185,
+   160,
+   140,
+   200,
+   135,
+   135,
+   210,
+   125,
+   160,
+   150,
+   115,
+   165
+  ]
+ },
+ {
+  "id": "tokyo.kawagoe",
+  "name": {
+   "ja": "川越線",
+   "ko": "가와고에선",
+   "en": "Kawagoe Line"
+  },
+  "color": "#00AC9A",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "高麗川方面",
+    "ko": "고마가와 방면",
+    "en": "for Komagawa"
+   },
+   "reverse": {
+    "ja": "大宮方面",
+    "ko": "오미야 방면",
+    "en": "for Omiya"
+   }
+  },
+  "stations": [
+   "tokyo.omiya",
+   "tokyo.nisshin",
+   "tokyo.nishi_omiya",
+   "tokyo.sashiogi",
+   "tokyo.minami_furuya",
+   "tokyo.kawagoe",
+   "tokyo.nishi_kawagoe",
+   "tokyo.matoba",
+   "tokyo.kasahata",
+   "tokyo.musashi_takahagi",
+   "tokyo.komagawa"
+  ],
+  "runSec": [
+   260,
+   215,
+   135,
+   345,
+   270,
+   210,
+   185,
+   235,
+   265,
+   250
+  ]
+ },
+ {
+  "id": "tokyo.keiyo",
+  "name": {
+   "ja": "京葉線",
+   "ko": "게이요선",
+   "en": "Keiyo Line"
+  },
+  "color": "#C9242F",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "東京方面",
+    "ko": "도쿄 방면",
+    "en": "for Tokyo"
+   },
+   "reverse": {
+    "ja": "蘇我方面",
+    "ko": "소가 방면",
+    "en": "for Soga"
+   }
+  },
+  "stations": [
+   "tokyo.soga",
+   "tokyo.chiba_minato",
+   "tokyo.inage_kaigan",
+   "tokyo.kemigawahama",
+   "tokyo.kaihim_makuhari",
+   "tokyo.makuhari_toyosuna",
+   "tokyo.shin_narashino",
+   "tokyo.minami_funabashi",
+   "tokyo.futamata_shinmachi",
+   "tokyo.ichikawa_shiohama",
+   "tokyo.shin_urayasu",
+   "tokyo.maihama",
+   "tokyo.kasai_rinkai_park",
+   "tokyo.shin_kiba",
+   "tokyo.shiomi",
+   "tokyo.etchujima",
+   "tokyo.hatchobori",
+   "tokyo.tokyo"
+  ],
+  "runSec": [
+   315,
+   310,
+   150,
+   185,
+   160,
+   160,
+   205,
+   295,
+   360,
+   195,
+   260,
+   200,
+   270,
+   160,
+   220,
+   150,
+   125
+  ]
+ },
+ {
+  "id": "tokyo.musashino",
+  "name": {
+   "ja": "武蔵野線",
+   "ko": "무사시노선",
+   "en": "Musashino Line"
+  },
+  "color": "#F15A22",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "府中本町方面",
+    "ko": "후추혼마치 방면",
+    "en": "for Fuchu-Hommachi"
+   },
+   "reverse": {
+    "ja": "南船橋方面",
+    "ko": "미나미후나바시 방면",
+    "en": "for Minami-Funabashi"
+   }
+  },
+  "stations": [
+   "tokyo.minami_funabashi",
+   "tokyo.nishi_funabashi",
+   "tokyo.funabashi_hoten",
+   "tokyo.ichikawa_ono",
+   "tokyo.higashi_matsudo",
+   "tokyo.shin_yahashira",
+   "tokyo.shin_matsudo",
+   "tokyo.minami_nagareyama",
+   "tokyo.misato",
+   "tokyo.shim_misato",
+   "tokyo.yoshikawa_minami",
+   "tokyo.yoshikawa",
+   "tokyo.koshigaya_laketown",
+   "tokyo.minami_koshigaya",
+   "tokyo.higashi_kawaguchi",
+   "tokyo.higashi_urawa",
+   "tokyo.minami_urawa",
+   "tokyo.musashi_urawa",
+   "tokyo.nishi_urawa",
+   "tokyo.kita_asaka",
+   "tokyo.niiza",
+   "tokyo.higashi_tokorozawa",
+   "tokyo.shin_akitsu",
+   "tokyo.shin_kodaira",
+   "tokyo.nishi_kokubunji",
+   "tokyo.kita_fuchu",
+   "tokyo.fuchu_hommachi"
+  ],
+  "runSec": [
+   365,
+   240,
+   265,
+   170,
+   215,
+   340,
+   185,
+   170,
+   200,
+   140,
+   155,
+   180,
+   250,
+   355,
+   325,
+   315,
+   185,
+   160,
+   410,
+   265,
+   330,
+   230,
+   465,
+   300,
+   195,
+   160
+  ]
+ },
+ {
+  "id": "tokyo.nambu",
+  "name": {
+   "ja": "南武線",
+   "ko": "난부선",
+   "en": "Nambu Line"
+  },
+  "color": "#FFD400",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "立川方面",
+    "ko": "다치카와 방면",
+    "en": "for Tachikawa"
+   },
+   "reverse": {
+    "ja": "川崎方面",
+    "ko": "가와사키 방면",
+    "en": "for Kawasaki"
+   }
+  },
+  "stations": [
+   "tokyo.kawasaki",
+   "tokyo.shitte",
+   "tokyo.yako",
+   "tokyo.kashimada",
+   "tokyo.hirama",
+   "tokyo.mukaigawara",
+   "tokyo.musashi_kosugi",
+   "tokyo.musashi_nakahara",
+   "tokyo.musashi_shinjo",
+   "tokyo.musashi_mizonokuchi",
+   "tokyo.tsudayama",
+   "tokyo.kuji",
+   "tokyo.shukugawara",
+   "tokyo.noborito",
+   "tokyo.nakanoshima",
+   "tokyo.inadazutsumi",
+   "tokyo.yanokuchi",
+   "tokyo.inagi_naganuma",
+   "tokyo.minami_tama",
+   "tokyo.fuchu_hommachi",
+   "tokyo.bubaigawara",
+   "tokyo.nishifu",
+   "tokyo.yaho",
+   "tokyo.yagawa",
+   "tokyo.nishi_kunitachi",
+   "tokyo.tachikawa"
+  ],
+  "runSec": [
+   120,
+   105,
+   140,
+   115,
+   130,
+   65,
+   190,
+   130,
+   195,
+   115,
+   105,
+   130,
+   115,
+   185,
+   140,
+   155,
+   160,
+   125,
+   200,
+   95,
+   110,
+   145,
+   140,
+   120,
+   110
+  ]
+ },
+ {
+  "id": "tokyo.nambu_branch",
+  "name": {
+   "ja": "南武線（浜川崎支線）",
+   "ko": "난부선 (하마카와사키 지선)",
+   "en": "Nambu Line (Hamakawasaki branch)"
+  },
+  "color": "#FFD400",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "尻手方面",
+    "ko": "싯테 방면",
+    "en": "for Shitte"
+   },
+   "reverse": {
+    "ja": "浜川崎方面",
+    "ko": "하마카와사키 방면",
+    "en": "for Hama-Kawasaki"
+   }
+  },
+  "stations": [
+   "tokyo.hama_kawasaki",
+   "tokyo.odasakae",
+   "tokyo.kawasaki_shimmachi",
+   "tokyo.hatchonawate",
+   "tokyo.shitte"
+  ],
+  "runSec": [
+   90,
+   80,
+   95,
+   110
+  ]
+ },
+ {
+  "id": "tokyo.yokohama",
+  "name": {
+   "ja": "横浜線",
+   "ko": "요코하마선",
+   "en": "Yokohama Line"
+  },
+  "color": "#7FC342",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "八王子方面",
+    "ko": "하치오지 방면",
+    "en": "for Hachioji"
+   },
+   "reverse": {
+    "ja": "東神奈川方面",
+    "ko": "히가시카나가와 방면",
+    "en": "for Higashi-Kanagawa"
+   }
+  },
+  "stations": [
+   "tokyo.higashi_kanagawa",
+   "tokyo.oguchi",
+   "tokyo.kikuna",
+   "tokyo.shin_yokohama",
+   "tokyo.kozukue",
+   "tokyo.kamoi",
+   "tokyo.nakayama",
+   "tokyo.tokaichiba",
+   "tokyo.nagatsuta",
+   "tokyo.naruse",
+   "tokyo.machida",
+   "tokyo.kobuchi",
+   "tokyo.fuchinobe",
+   "tokyo.yabe",
+   "tokyo.sagamihara",
+   "tokyo.hashimoto",
+   "tokyo.aihara",
+   "tokyo.hachioji_minamino",
+   "tokyo.katakura",
+   "tokyo.hachioji"
+  ],
+  "runSec": [
+   185,
+   215,
+   125,
+   155,
+   260,
+   225,
+   220,
+   185,
+   190,
+   230,
+   250,
+   230,
+   100,
+   160,
+   245,
+   170,
+   240,
+   135,
+   165
+  ]
+ },
+ {
+  "id": "tokyo.tsurumi",
+  "name": {
+   "ja": "鶴見線",
+   "ko": "쓰루미선",
+   "en": "Tsurumi Line"
+  },
+  "color": "#FFD400",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "鶴見方面",
+    "ko": "쓰루미 방면",
+    "en": "for Tsurumi"
+   },
+   "reverse": {
+    "ja": "扇町方面",
+    "ko": "오기마치 방면",
+    "en": "for Ogimachi"
+   }
+  },
+  "stations": [
+   "tokyo.ogimachi",
+   "tokyo.showa",
+   "tokyo.hama_kawasaki",
+   "tokyo.musashi_shiraishi",
+   "tokyo.anzen",
+   "tokyo.asano",
+   "tokyo.bentembashi",
+   "tokyo.tsurumiono",
+   "tokyo.kokudo",
+   "tokyo.tsurumi"
+  ],
+  "runSec": [
+   70,
+   105,
+   115,
+   70,
+   70,
+   70,
+   85,
+   80,
+   90
+  ]
+ },
+ {
+  "id": "tokyo.tsurumi_umishibaura",
+  "name": {
+   "ja": "鶴見線（海芝浦支線）",
+   "ko": "쓰루미선 (우미시바우라 지선)",
+   "en": "Tsurumi Line (Umi-Shibaura branch)"
+  },
+  "color": "#FFD400",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "浅野方面",
+    "ko": "아사노 방면",
+    "en": "for Asano"
+   },
+   "reverse": {
+    "ja": "海芝浦方面",
+    "ko": "우미시바우라 방면",
+    "en": "for Umi-Shibaura"
+   }
+  },
+  "stations": [
+   "tokyo.umi_shibaura",
+   "tokyo.shin_shibaura",
+   "tokyo.asano"
+  ],
+  "runSec": [
+   75,
+   85
+  ]
+ },
+ {
+  "id": "tokyo.tsurumi_okawa",
+  "name": {
+   "ja": "鶴見線（大川支線）",
+   "ko": "쓰루미선 (오카와 지선)",
+   "en": "Tsurumi Line (Okawa branch)"
+  },
+  "color": "#FFD400",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "大川方面",
+    "ko": "오카와 방면",
+    "en": "for Okawa"
+   },
+   "reverse": {
+    "ja": "安善方面",
+    "ko": "안젠 방면",
+    "en": "for Anzen"
+   }
+  },
+  "stations": [
+   "tokyo.anzen",
+   "tokyo.okawa"
+  ],
+  "runSec": [
+   105
+  ]
+ },
+ {
+  "id": "tokyo.sagami",
+  "name": {
+   "ja": "相模線",
+   "ko": "사가미선",
+   "en": "Sagami Line"
+  },
+  "color": "#009793",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "橋本方面",
+    "ko": "하시모토 방면",
+    "en": "for Hashimoto"
+   },
+   "reverse": {
+    "ja": "茅ヶ崎方面",
+    "ko": "지가사키 방면",
+    "en": "for Chigasaki"
+   }
+  },
+  "stations": [
+   "tokyo.chigasaki",
+   "tokyo.kita_chigasaki",
+   "tokyo.kagawa",
+   "tokyo.samukawa",
+   "tokyo.miyayama",
+   "tokyo.kurami",
+   "tokyo.kadosawabashi",
+   "tokyo.shake",
+   "tokyo.atsugi",
+   "tokyo.ebina",
+   "tokyo.iriya_sagami",
+   "tokyo.sobusaishita",
+   "tokyo.shimomizo",
+   "tokyo.harataima",
+   "tokyo.banda",
+   "tokyo.kamimizo",
+   "tokyo.minami_hashimoto",
+   "tokyo.hashimoto"
+  ],
+  "runSec": [
+   100,
+   175,
+   150,
+   155,
+   130,
+   125,
+   140,
+   215,
+   140,
+   220,
+   150,
+   235,
+   125,
+   180,
+   125,
+   220,
+   155
+  ]
+ },
+ {
+  "id": "tokyo.ome",
+  "name": {
+   "ja": "青梅線",
+   "ko": "오메선",
+   "en": "Ome Line"
+  },
+  "color": "#F15A22",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "軍畑方面",
+    "ko": "이쿠사바타 방면",
+    "en": "for Ikusabata"
+   },
+   "reverse": {
+    "ja": "立川方面",
+    "ko": "다치카와 방면",
+    "en": "for Tachikawa"
+   }
+  },
+  "stations": [
+   "tokyo.tachikawa",
+   "tokyo.nishi_tachikawa",
+   "tokyo.higashi_nakagami",
+   "tokyo.nakagami",
+   "tokyo.akishima",
+   "tokyo.haijima",
+   "tokyo.ushihama",
+   "tokyo.fussa",
+   "tokyo.hamura",
+   "tokyo.ozaku",
+   "tokyo.kabe",
+   "tokyo.higashi_ome",
+   "tokyo.ome",
+   "tokyo.miyanohira",
+   "tokyo.hinatawada",
+   "tokyo.ishigamimae",
+   "tokyo.futamatao",
+   "tokyo.ikusabata"
+  ],
+  "runSec": [
+   165,
+   95,
+   90,
+   130,
+   160,
+   155,
+   100,
+   180,
+   200,
+   160,
+   120,
+   120,
+   170,
+   75,
+   105,
+   115,
+   90
+  ]
+ },
+ {
+  "id": "tokyo.itsukaichi",
+  "name": {
+   "ja": "五日市線",
+   "ko": "이쓰카이치선",
+   "en": "Itsukaichi Line"
+  },
+  "color": "#F15A22",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "拝島方面",
+    "ko": "하이지마 방면",
+    "en": "for Haijima"
+   },
+   "reverse": {
+    "ja": "武蔵五日市方面",
+    "ko": "무사시이쓰카이치 방면",
+    "en": "for Musashi-Itsukaichi"
+   }
+  },
+  "stations": [
+   "tokyo.musashi_itsukaichi",
+   "tokyo.musashi_masuko",
+   "tokyo.musashi_hikida",
+   "tokyo.akigawa",
+   "tokyo.higashi_akiru",
+   "tokyo.kumagawa",
+   "tokyo.haijima"
+  ],
+  "runSec": [
+   215,
+   120,
+   140,
+   190,
+   190,
+   110
+  ]
+ },
+ {
+  "id": "tokyo.hachiko",
+  "name": {
+   "ja": "八高線",
+   "ko": "하치코선",
+   "en": "Hachiko Line"
+  },
+  "color": "#A8A39D",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "高麗川方面",
+    "ko": "고마가와 방면",
+    "en": "for Komagawa"
+   },
+   "reverse": {
+    "ja": "八王子方面",
+    "ko": "하치오지 방면",
+    "en": "for Hachioji"
+   }
+  },
+  "stations": [
+   "tokyo.hachioji",
+   "tokyo.kita_hachioji",
+   "tokyo.komiya",
+   "tokyo.haijima",
+   "tokyo.higashi_fussa",
+   "tokyo.hakonegasaki",
+   "tokyo.kaneko",
+   "tokyo.higashi_hanno",
+   "tokyo.komagawa"
+  ],
+  "runSec": [
+   220,
+   165,
+   355,
+   230,
+   245,
+   365,
+   365,
+   380
+  ]
+ },
+ {
+  "id": "tokyo.narita",
+  "name": {
+   "ja": "成田線",
+   "ko": "나리타선",
+   "en": "Narita Line"
+  },
+  "color": "#00B261",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "成田空港方面",
+    "ko": "나리타 공항 방면",
+    "en": "for Narita Airport"
+   },
+   "reverse": {
+    "ja": "千葉方面",
+    "ko": "지바 방면",
+    "en": "for Chiba"
+   }
+  },
+  "stations": [
+   "tokyo.chiba",
+   "tokyo.higashi_chiba",
+   "tokyo.tsuga",
+   "tokyo.yotsukaido",
+   "tokyo.monoi",
+   "tokyo.sakura",
+   "tokyo.shisui",
+   "tokyo.narita",
+   "tokyo.airport_terminal_2",
+   "tokyo.narita_airport"
+  ],
+  "runSec": [
+   100,
+   265,
+   270,
+   315,
+   285,
+   395,
+   475,
+   510,
+   90
+  ]
+ },
+ {
+  "id": "tokyo.narita_abiko",
+  "name": {
+   "ja": "成田線（我孫子支線）",
+   "ko": "나리타선 (아비코 지선)",
+   "en": "Narita Line (Abiko branch)"
+  },
+  "color": "#00B261",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "我孫子方面",
+    "ko": "아비코 방면",
+    "en": "for Abiko"
+   },
+   "reverse": {
+    "ja": "成田方面",
+    "ko": "나리타 방면",
+    "en": "for Narita"
+   }
+  },
+  "stations": [
+   "tokyo.narita",
+   "tokyo.shimosa_manzaki",
+   "tokyo.ajiki",
+   "tokyo.kobayashi",
+   "tokyo.kioroshi",
+   "tokyo.fusa",
+   "tokyo.araki",
+   "tokyo.kohoku",
+   "tokyo.higashi_abiko",
+   "tokyo.abiko"
+  ],
+  "runSec": [
+   365,
+   350,
+   350,
+   330,
+   155,
+   230,
+   225,
+   225,
+   270
+  ]
+ },
+ {
+  "id": "tokyo.sotobo",
+  "name": {
+   "ja": "外房線",
+   "ko": "소토보선",
+   "en": "Sotobo Line"
+  },
+  "color": "#DB2027",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "大網方面",
+    "ko": "오아미 방면",
+    "en": "for Oami"
+   },
+   "reverse": {
+    "ja": "千葉方面",
+    "ko": "지바 방면",
+    "en": "for Chiba"
+   }
+  },
+  "stations": [
+   "tokyo.chiba",
+   "tokyo.hon_chiba",
+   "tokyo.soga",
+   "tokyo.kamatori",
+   "tokyo.honda",
+   "tokyo.toke",
+   "tokyo.oami"
+  ],
+  "runSec": [
+   140,
+   190,
+   375,
+   295,
+   410,
+   305
+  ]
+ },
+ {
+  "id": "tokyo.uchibo",
+  "name": {
+   "ja": "内房線",
+   "ko": "우치보선",
+   "en": "Uchibo Line"
+  },
+  "color": "#00B2E5",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "五井方面",
+    "ko": "고이 방면",
+    "en": "for Goi"
+   },
+   "reverse": {
+    "ja": "蘇我方面",
+    "ko": "소가 방면",
+    "en": "for Soga"
+   }
+  },
+  "stations": [
+   "tokyo.soga",
+   "tokyo.hamano",
+   "tokyo.yawatajuku",
+   "tokyo.goi"
+  ],
+  "runSec": [
+   270,
+   180,
+   300
+  ]
+ },
+ {
+  "id": "tokyo.tokyu_toyoko",
+  "name": {
+   "ja": "東急東横線",
+   "ko": "도큐 도요코선",
+   "en": "Tokyu Toyoko Line"
+  },
+  "color": "#DA0442",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "tokyu",
+  "directions": {
+   "forward": {
+    "ja": "横浜方面",
+    "ko": "요코하마 방면",
+    "en": "for Yokohama"
+   },
+   "reverse": {
+    "ja": "渋谷方面",
+    "ko": "시부야 방면",
+    "en": "for Shibuya"
+   }
+  },
+  "stations": [
+   "tokyo.shibuya",
+   "tokyo.daikan_yama",
+   "tokyo.naka_meguro",
+   "tokyo.yutenji",
+   "tokyo.gakugei_daigaku",
+   "tokyo.toritsu_daigaku",
+   "tokyo.jiyugaoka",
+   "tokyo.den_en_chofu",
+   "tokyo.tamagawa",
+   "tokyo.shin_maruko",
+   "tokyo.musashi_kosugi",
+   "tokyo.motosumiyoshi",
+   "tokyo.hiyoshi",
+   "tokyo.tsunashima",
+   "tokyo.okurayama",
+   "tokyo.kikuna",
+   "tokyo.myorenji",
+   "tokyo.hakuraku",
+   "tokyo.higashi_hakuraku",
+   "tokyo.tammachi",
+   "tokyo.yokohama"
+  ],
+  "runSec": [
+   110,
+   70,
+   110,
+   110,
+   140,
+   125,
+   120,
+   95,
+   115,
+   80,
+   135,
+   130,
+   190,
+   155,
+   130,
+   125,
+   115,
+   85,
+   105,
+   105
+  ]
+ },
+ {
+  "id": "tokyo.tokyu_denentoshi",
+  "name": {
+   "ja": "東急田園都市線",
+   "ko": "도큐 덴엔토시선",
+   "en": "Tokyu Den-en-toshi Line"
+  },
+  "color": "#20A288",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "tokyu",
+  "directions": {
+   "forward": {
+    "ja": "中央林間方面",
+    "ko": "주오린칸 방면",
+    "en": "for Chuo-rinkan"
+   },
+   "reverse": {
+    "ja": "渋谷方面",
+    "ko": "시부야 방면",
+    "en": "for Shibuya"
+   }
+  },
+  "stations": [
+   "tokyo.shibuya",
+   "tokyo.ikejiri_ohashi",
+   "tokyo.sangen_jaya",
+   "tokyo.komazawa_daigaku",
+   "tokyo.sakura_shimmachi",
+   "tokyo.yoga",
+   "tokyo.futako_tamagawa",
+   "tokyo.futako_shinchi",
+   "tokyo.takatsu",
+   "tokyo.mizonokuchi",
+   "tokyo.kajigaya",
+   "tokyo.miyazakidai",
+   "tokyo.miyamaedaira",
+   "tokyo.saginuma",
+   "tokyo.tama_plaza",
+   "tokyo.azamino",
+   "tokyo.eda",
+   "tokyo.ichigao",
+   "tokyo.fujigaoka",
+   "tokyo.aobadai",
+   "tokyo.tana",
+   "tokyo.nagatsuta",
+   "tokyo.tsukushino",
+   "tokyo.suzukakedai",
+   "tokyo.minami_machida_grandberry_park",
+   "tokyo.tsukimino",
+   "tokyo.chuo_rinkan"
+  ],
+  "runSec": [
+   160,
+   140,
+   140,
+   135,
+   115,
+   160,
+   80,
+   80,
+   80,
+   90,
+   140,
+   90,
+   110,
+   125,
+   110,
+   115,
+   120,
+   140,
+   105,
+   130,
+   105,
+   110,
+   120,
+   115,
+   115,
+   125
+  ]
+ },
+ {
+  "id": "tokyo.tokyu_oimachi",
+  "name": {
+   "ja": "東急大井町線",
+   "ko": "도큐 오이마치선",
+   "en": "Tokyu Oimachi Line"
+  },
+  "color": "#F18C43",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "tokyu",
+  "directions": {
+   "forward": {
+    "ja": "溝の口方面",
+    "ko": "미조노쿠치 방면",
+    "en": "for Mizonokuchi"
+   },
+   "reverse": {
+    "ja": "大井町方面",
+    "ko": "오이마치 방면",
+    "en": "for Oimachi"
+   }
+  },
+  "stations": [
+   "tokyo.oimachi",
+   "tokyo.shimo_simmei",
+   "tokyo.togoshi_koen",
+   "tokyo.nakanobu",
+   "tokyo.ebara_machi",
+   "tokyo.hatanodai",
+   "tokyo.kita_senzoku",
+   "tokyo.ookayama",
+   "tokyo.midorigaoka",
+   "tokyo.jiyugaoka",
+   "tokyo.kuhombutsu",
+   "tokyo.oyamadai",
+   "tokyo.todoroki",
+   "tokyo.kaminoge",
+   "tokyo.futako_tamagawa",
+   "tokyo.futako_shinchi",
+   "tokyo.takatsu",
+   "tokyo.mizonokuchi"
+  ],
+  "runSec": [
+   90,
+   85,
+   75,
+   70,
+   65,
+   95,
+   80,
+   75,
+   100,
+   85,
+   80,
+   70,
+   100,
+   110,
+   80,
+   80,
+   80
+  ]
+ },
+ {
+  "id": "tokyo.tokyu_ikegami",
+  "name": {
+   "ja": "東急池上線",
+   "ko": "도큐 이케가미선",
+   "en": "Tokyu Ikegami Line"
+  },
+  "color": "#EE86A7",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "tokyu",
+  "directions": {
+   "forward": {
+    "ja": "蒲田方面",
+    "ko": "가마타 방면",
+    "en": "for Kamata"
+   },
+   "reverse": {
+    "ja": "五反田方面",
+    "ko": "고탄다 방면",
+    "en": "for Gotanda"
+   }
+  },
+  "stations": [
+   "tokyo.gotanda",
+   "tokyo.osakihirokoji",
+   "tokyo.togoshi_ginza",
+   "tokyo.ebara_nakanobu",
+   "tokyo.hatanodai",
+   "tokyo.nagahara",
+   "tokyo.senzoku_ike",
+   "tokyo.ishikawa_dai",
+   "tokyo.yukigaya_otsuka",
+   "tokyo.ontakesan",
+   "tokyo.kugahara",
+   "tokyo.chidoricho",
+   "tokyo.ikegami",
+   "tokyo.hasunuma",
+   "tokyo.kamata"
+  ],
+  "runSec": [
+   60,
+   105,
+   85,
+   105,
+   70,
+   80,
+   75,
+   80,
+   85,
+   80,
+   100,
+   105,
+   105,
+   80
+  ]
+ },
+ {
+  "id": "tokyo.tokyu_tamagawa",
+  "name": {
+   "ja": "東急多摩川線",
+   "ko": "도큐 다마가와선",
+   "en": "Tokyu Tamagawa Line"
+  },
+  "color": "#AE0378",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "tokyu",
+  "directions": {
+   "forward": {
+    "ja": "蒲田方面",
+    "ko": "가마타 방면",
+    "en": "for Kamata"
+   },
+   "reverse": {
+    "ja": "多摩川方面",
+    "ko": "다마가와 방면",
+    "en": "for Tamagawa"
+   }
+  },
+  "stations": [
+   "tokyo.tamagawa",
+   "tokyo.numabe",
+   "tokyo.unoki",
+   "tokyo.shimomaruko",
+   "tokyo.musashi_nitta",
+   "tokyo.yaguchi_no_watashi",
+   "tokyo.kamata"
+  ],
+  "runSec": [
+   90,
+   110,
+   80,
+   85,
+   100,
+   135
+  ]
+ },
+ {
+  "id": "tokyo.tokyu_setagaya",
+  "name": {
+   "ja": "東急世田谷線",
+   "ko": "도큐 세타가야선",
+   "en": "Tokyu Setagaya Line"
+  },
+  "color": "#FCC70D",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "tokyu",
+  "directions": {
+   "forward": {
+    "ja": "三軒茶屋方面",
+    "ko": "산겐자야 방면",
+    "en": "for Sangen-jaya"
+   },
+   "reverse": {
+    "ja": "下高井戸方面",
+    "ko": "시모타카이도 방면",
+    "en": "for Shimo-Takaido"
+   }
+  },
+  "stations": [
+   "tokyo.shimo_takaido",
+   "tokyo.matsubara",
+   "tokyo.yamashita",
+   "tokyo.miyanosaka",
+   "tokyo.kamimachi",
+   "tokyo.setagaya",
+   "tokyo.shoin_jinja_mae",
+   "tokyo.wakabayashi",
+   "tokyo.nishi_taishido",
+   "tokyo.sangen_jaya"
+  ],
+  "runSec": [
+   155,
+   180,
+   155,
+   120,
+   105,
+   100,
+   115,
+   140,
+   115
+  ]
+ },
+ {
+  "id": "tokyo.tokyu_kodomonokuni",
+  "name": {
+   "ja": "東急こどもの国線",
+   "ko": "도큐 고도모노쿠니선",
+   "en": "Tokyu Kodomonokuni Line"
+  },
+  "color": "#0068B7",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "tokyu",
+  "directions": {
+   "forward": {
+    "ja": "こどもの国方面",
+    "ko": "고도모노쿠니 방면",
+    "en": "for Kodomonokuni"
+   },
+   "reverse": {
+    "ja": "長津田方面",
+    "ko": "나가쓰다 방면",
+    "en": "for Nagatsuta"
+   }
+  },
+  "stations": [
+   "tokyo.nagatsuta",
+   "tokyo.onda",
+   "tokyo.kodomonokuni"
+  ],
+  "runSec": [
+   160,
+   155
+  ]
+ },
+ {
+  "id": "tokyo.tokyu_shin_yokohama",
+  "name": {
+   "ja": "東急新横浜線",
+   "ko": "도큐 신요코하마선",
+   "en": "Tokyu Shin-Yokohama Line"
+  },
+  "color": "#0071BC",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "tokyu",
+  "directions": {
+   "forward": {
+    "ja": "日吉方面",
+    "ko": "히요시 방면",
+    "en": "for Hiyoshi"
+   },
+   "reverse": {
+    "ja": "新横浜方面",
+    "ko": "신요코하마 방면",
+    "en": "for Shin-Yokohama"
+   }
+  },
+  "stations": [
+   "tokyo.shin_yokohama",
+   "tokyo.shin_tsunashima",
+   "tokyo.hiyoshi"
+  ],
+  "runSec": [
+   335,
+   215
+  ]
+ },
+ {
+  "id": "tokyo.odakyu",
+  "name": {
+   "ja": "小田急小田原線",
+   "ko": "오다큐 오다와라선",
+   "en": "Odakyu Odawara Line"
+  },
+  "color": "#2288CC",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "odakyu",
+  "directions": {
+   "forward": {
+    "ja": "秦野方面",
+    "ko": "하다노 방면",
+    "en": "for Hadano"
+   },
+   "reverse": {
+    "ja": "新宿方面",
+    "ko": "신주쿠 방면",
+    "en": "for Shinjuku"
+   }
+  },
+  "stations": [
+   "tokyo.shinjuku",
+   "tokyo.minami_shinjuku",
+   "tokyo.sangubashi",
+   "tokyo.yoyogi_hachiman",
+   "tokyo.yoyogi_uehara",
+   "tokyo.higashi_kitazawa",
+   "tokyo.shimo_kitazawa",
+   "tokyo.setagaya_daita",
+   "tokyo.umegaoka",
+   "tokyo.gotokuji",
+   "tokyo.kyodo",
+   "tokyo.chitose_funabashi",
+   "tokyo.soshigaya_okura",
+   "tokyo.seijogakuen_mae",
+   "tokyo.kitami",
+   "tokyo.komae",
+   "tokyo.izumi_tamagawa",
+   "tokyo.noborito",
+   "tokyo.mukogaoka_yuen",
+   "tokyo.ikuta",
+   "tokyo.yomiuriland_mae",
+   "tokyo.yurigaoka",
+   "tokyo.shin_yurigaoka",
+   "tokyo.kakio",
+   "tokyo.tsurukawa",
+   "tokyo.tamagawagakuen_mae",
+   "tokyo.machida",
+   "tokyo.sagami_ono",
+   "tokyo.odakyu_sagamihara",
+   "tokyo.sobudai_mae",
+   "tokyo.zama",
+   "tokyo.ebina",
+   "tokyo.atsugi",
+   "tokyo.hon_atsugi",
+   "tokyo.aiko_ishida",
+   "tokyo.isehara",
+   "tokyo.tsurumaki_onsen",
+   "tokyo.tokaidaigaku_mae",
+   "tokyo.hadano"
+  ],
+  "runSec": [
+   80,
+   85,
+   115,
+   85,
+   90,
+   80,
+   75,
+   85,
+   85,
+   100,
+   120,
+   130,
+   110,
+   115,
+   100,
+   75,
+   90,
+   75,
+   185,
+   125,
+   120,
+   100,
+   165,
+   150,
+   230,
+   245,
+   125,
+   200,
+   195,
+   195,
+   260,
+   145,
+   135,
+   255,
+   300,
+   300,
+   105,
+   340
+  ]
+ },
+ {
+  "id": "tokyo.odakyu_enoshima",
+  "name": {
+   "ja": "小田急江ノ島線",
+   "ko": "오다큐 에노시마선",
+   "en": "Odakyu Enoshima Line"
+  },
+  "color": "#2288CC",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "odakyu",
+  "directions": {
+   "forward": {
+    "ja": "片瀬江ノ島方面",
+    "ko": "가타세에노시마 방면",
+    "en": "for Katase-Enoshima"
+   },
+   "reverse": {
+    "ja": "相模大野方面",
+    "ko": "사가미오노 방면",
+    "en": "for Sagami-Ono"
+   }
+  },
+  "stations": [
+   "tokyo.sagami_ono",
+   "tokyo.higashi_rinkan",
+   "tokyo.chuo_rinkan",
+   "tokyo.minami_rinkan",
+   "tokyo.tsuruma",
+   "tokyo.yamato",
+   "tokyo.sakuragaoka",
+   "tokyo.koza_shibuya",
+   "tokyo.chogo",
+   "tokyo.shonandai",
+   "tokyo.mutsuai_nichidaimae",
+   "tokyo.zengyo",
+   "tokyo.fujisawa_hommachi",
+   "tokyo.fujisawa",
+   "tokyo.hon_kugenuma",
+   "tokyo.kugenuma_kaigan",
+   "tokyo.katase_enoshima"
+  ],
+  "runSec": [
+   130,
+   140,
+   130,
+   80,
+   215,
+   190,
+   185,
+   190,
+   160,
+   140,
+   200,
+   155,
+   130,
+   130,
+   115,
+   155
+  ]
+ },
+ {
+  "id": "tokyo.odakyu_tama",
+  "name": {
+   "ja": "小田急多摩線",
+   "ko": "오다큐 다마선",
+   "en": "Odakyu Tama Line"
+  },
+  "color": "#2288CC",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "odakyu",
+  "directions": {
+   "forward": {
+    "ja": "新百合ヶ丘方面",
+    "ko": "신유리가오카 방면",
+    "en": "for Shin-Yurigaoka"
+   },
+   "reverse": {
+    "ja": "唐木田方面",
+    "ko": "가라키다 방면",
+    "en": "for Karakida"
+   }
+  },
+  "stations": [
+   "tokyo.karakida",
+   "tokyo.odakyu_tama_center",
+   "tokyo.odakyu_nagayama",
+   "tokyo.haruhino",
+   "tokyo.kurokawa",
+   "tokyo.kurihira",
+   "tokyo.satsukidai",
+   "tokyo.shin_yurigaoka"
+  ],
+  "runSec": [
+   155,
+   215,
+   190,
+   100,
+   130,
+   140,
+   140
+  ]
+ },
+ {
+  "id": "tokyo.keio_sagamihara",
+  "name": {
+   "ja": "京王相模原線",
+   "ko": "게이오 사가미하라선",
+   "en": "Keio Sagamihara Line"
+  },
+  "color": "#DD0077",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "keio",
+  "directions": {
+   "forward": {
+    "ja": "橋本方面",
+    "ko": "하시모토 방면",
+    "en": "for Hashimoto"
+   },
+   "reverse": {
+    "ja": "調布方面",
+    "ko": "조후 방면",
+    "en": "for Chofu"
+   }
+  },
+  "stations": [
+   "tokyo.chofu",
+   "tokyo.keio_tamagawa",
+   "tokyo.keio_inadazutsumi",
+   "tokyo.keio_yomiuri_land",
+   "tokyo.inagi",
+   "tokyo.wakabadai",
+   "tokyo.keio_nagayama",
+   "tokyo.keio_tama_center",
+   "tokyo.keio_horinouchi",
+   "tokyo.minami_osawa",
+   "tokyo.tamasakai",
+   "tokyo.hashimoto"
+  ],
+  "runSec": [
+   110,
+   125,
+   125,
+   145,
+   265,
+   215,
+   195,
+   190,
+   190,
+   165,
+   190
+  ]
+ },
+ {
+  "id": "tokyo.keio_takao",
+  "name": {
+   "ja": "京王高尾線",
+   "ko": "게이오 다카오선",
+   "en": "Keio Takao Line"
+  },
+  "color": "#DD0077",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "keio",
+  "directions": {
+   "forward": {
+    "ja": "高尾山口方面",
+    "ko": "다카오산구치 방면",
+    "en": "for Takaosanguchi"
+   },
+   "reverse": {
+    "ja": "北野方面",
+    "ko": "기타노 방면",
+    "en": "for Kitano"
+   }
+  },
+  "stations": [
+   "tokyo.kitano",
+   "tokyo.keio_katakura",
+   "tokyo.yamada",
+   "tokyo.mejirodai",
+   "tokyo.hazama",
+   "tokyo.takao",
+   "tokyo.takaosanguchi"
+  ],
+  "runSec": [
+   165,
+   150,
+   130,
+   145,
+   110,
+   160
+  ]
+ },
+ {
+  "id": "tokyo.keio_inokashira",
+  "name": {
+   "ja": "京王井の頭線",
+   "ko": "게이오 이노카시라선",
+   "en": "Keio Inokashira Line"
+  },
+  "color": "#1B3B8C",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "keio",
+  "directions": {
+   "forward": {
+    "ja": "吉祥寺方面",
+    "ko": "기치조지 방면",
+    "en": "for Kichijoji"
+   },
+   "reverse": {
+    "ja": "渋谷方面",
+    "ko": "시부야 방면",
+    "en": "for Shibuya"
+   }
+  },
+  "stations": [
+   "tokyo.shibuya",
+   "tokyo.shinsen",
+   "tokyo.komaba_todaimae",
+   "tokyo.ikenoue",
+   "tokyo.shimo_kitazawa",
+   "tokyo.shindaita",
+   "tokyo.higashi_matsubara",
+   "tokyo.meidaimae",
+   "tokyo.eifukucho",
+   "tokyo.nishi_eifuku",
+   "tokyo.hamadayama",
+   "tokyo.takaido",
+   "tokyo.fujimigaoka",
+   "tokyo.kugayama",
+   "tokyo.mitakadai",
+   "tokyo.inokashira_koen",
+   "tokyo.kichijoji"
+  ],
+  "runSec": [
+   85,
+   95,
+   105,
+   75,
+   75,
+   60,
+   90,
+   115,
+   85,
+   90,
+   115,
+   85,
+   90,
+   110,
+   90,
+   80
+  ]
+ },
+ {
+  "id": "tokyo.keio_keibajo",
+  "name": {
+   "ja": "京王競馬場線",
+   "ko": "게이오 경마장선",
+   "en": "Keio Keibajo Line"
+  },
+  "color": "#DD0077",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "keio",
+  "directions": {
+   "forward": {
+    "ja": "府中競馬正門前方面",
+    "ko": "후추경마정문앞 방면",
+    "en": "for Fuchukeiba-seimonmae"
+   },
+   "reverse": {
+    "ja": "東府中方面",
+    "ko": "히가시후추 방면",
+    "en": "for Higashi-Fuchu"
+   }
+  },
+  "stations": [
+   "tokyo.higashi_fuchu",
+   "tokyo.fuchukeiba_seimonmae"
+  ],
+  "runSec": [
+   110
+  ]
+ },
+ {
+  "id": "tokyo.keio_dobutsuen",
+  "name": {
+   "ja": "京王動物園線",
+   "ko": "게이오 동물원선",
+   "en": "Keio Dobutsuen Line"
+  },
+  "color": "#DD0077",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "keio",
+  "directions": {
+   "forward": {
+    "ja": "高幡不動方面",
+    "ko": "다카하타후도 방면",
+    "en": "for Takahatafudo"
+   },
+   "reverse": {
+    "ja": "多摩動物公園方面",
+    "ko": "다마동물공원 방면",
+    "en": "for Tama-dobutsukoen"
+   }
+  },
+  "stations": [
+   "tokyo.tama_dobutsukoen",
+   "tokyo.takahatafudo"
+  ],
+  "runSec": [
+   160
+  ]
+ },
+ {
+  "id": "tokyo.seibu_ikebukuro",
+  "name": {
+   "ja": "西武池袋線",
+   "ko": "세이부 이케부쿠로선",
+   "en": "Seibu Ikebukuro Line"
+  },
+  "color": "#F28B00",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "seibu",
+  "directions": {
+   "forward": {
+    "ja": "飯能方面",
+    "ko": "한노 방면",
+    "en": "for Hanno"
+   },
+   "reverse": {
+    "ja": "池袋方面",
+    "ko": "이케부쿠로 방면",
+    "en": "for Ikebukuro"
+   }
+  },
+  "stations": [
+   "tokyo.ikebukuro",
+   "tokyo.shiinamachi",
+   "tokyo.higashi_nagasaki",
+   "tokyo.ekoda",
+   "tokyo.sakuradai",
+   "tokyo.nerima",
+   "tokyo.nakamurabashi",
+   "tokyo.fujimidai",
+   "tokyo.nerima_takanodai",
+   "tokyo.shakujii_koen",
+   "tokyo.oizumi_gakuen",
+   "tokyo.hoya",
+   "tokyo.hibarigaoka",
+   "tokyo.higashi_kurume",
+   "tokyo.kiyose",
+   "tokyo.akitsu",
+   "tokyo.tokorozawa",
+   "tokyo.nishi_tokorozawa",
+   "tokyo.kotesashi",
+   "tokyo.sayamagaoka",
+   "tokyo.musashi_fujisawa",
+   "tokyo.inariyama_koen",
+   "tokyo.irumashi",
+   "tokyo.bushi",
+   "tokyo.motokaji",
+   "tokyo.hanno"
+  ],
+  "runSec": [
+   140,
+   115,
+   120,
+   100,
+   85,
+   140,
+   85,
+   130,
+   100,
+   170,
+   155,
+   180,
+   135,
+   165,
+   205,
+   195,
+   150,
+   185,
+   195,
+   125,
+   245,
+   90,
+   235,
+   130,
+   230
+  ]
+ },
+ {
+  "id": "tokyo.seibu_shinjuku",
+  "name": {
+   "ja": "西武新宿線",
+   "ko": "세이부 신주쿠선",
+   "en": "Seibu Shinjuku Line"
+  },
+  "color": "#0099CC",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "seibu",
+  "directions": {
+   "forward": {
+    "ja": "本川越方面",
+    "ko": "혼카와고에 방면",
+    "en": "for Hon-Kawagoe"
+   },
+   "reverse": {
+    "ja": "西武新宿方面",
+    "ko": "세이부신주쿠 방면",
+    "en": "for Seibu-Shinjuku"
+   }
+  },
+  "stations": [
+   "tokyo.seibu_shinjuku",
+   "tokyo.takadanobaba",
+   "tokyo.shimo_ochiai",
+   "tokyo.nakai",
+   "tokyo.araiyakushi_mae",
+   "tokyo.numabukuro",
+   "tokyo.nogata",
+   "tokyo.toritsu_kasei",
+   "tokyo.saginomiya",
+   "tokyo.shimo_igusa",
+   "tokyo.iogi",
+   "tokyo.kami_igusa",
+   "tokyo.kami_shakujii",
+   "tokyo.musashi_seki",
+   "tokyo.higashi_fushimi",
+   "tokyo.seibu_yagisawa",
+   "tokyo.tanashi",
+   "tokyo.hana_koganei",
+   "tokyo.kodaira",
+   "tokyo.kumegawa",
+   "tokyo.higashi_murayama",
+   "tokyo.tokorozawa",
+   "tokyo.koku_koen",
+   "tokyo.shin_tokorozawa",
+   "tokyo.iriso",
+   "tokyo.sayamashi",
+   "tokyo.shin_sayama",
+   "tokyo.minami_otsuka",
+   "tokyo.hon_kawagoe"
+  ],
+  "runSec": [
+   170,
+   90,
+   90,
+   125,
+   90,
+   110,
+   90,
+   65,
+   125,
+   100,
+   110,
+   100,
+   140,
+   110,
+   105,
+   120,
+   205,
+   220,
+   180,
+   130,
+   260,
+   135,
+   125,
+   315,
+   255,
+   225,
+   220,
+   300
+  ]
+ },
+ {
+  "id": "tokyo.seibu_haijima",
+  "name": {
+   "ja": "西武拝島線",
+   "ko": "세이부 하이지마선",
+   "en": "Seibu Haijima Line"
+  },
+  "color": "#0099CC",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "seibu",
+  "directions": {
+   "forward": {
+    "ja": "拝島方面",
+    "ko": "하이지마 방면",
+    "en": "for Haijima"
+   },
+   "reverse": {
+    "ja": "小平方面",
+    "ko": "고다이라 방면",
+    "en": "for Kodaira"
+   }
+  },
+  "stations": [
+   "tokyo.kodaira",
+   "tokyo.hagiyama",
+   "tokyo.ogawa",
+   "tokyo.higashiyamatoshi",
+   "tokyo.tamagawa_josui",
+   "tokyo.musashi_sunagawa",
+   "tokyo.seibu_tachikawa",
+   "tokyo.haijima"
+  ],
+  "runSec": [
+   120,
+   135,
+   255,
+   155,
+   230,
+   200,
+   235
+  ]
+ },
+ {
+  "id": "tokyo.seibu_tamako",
+  "name": {
+   "ja": "西武多摩湖線",
+   "ko": "세이부 다마코선",
+   "en": "Seibu Tamako Line"
+  },
+  "color": "#00A960",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "seibu",
+  "directions": {
+   "forward": {
+    "ja": "多摩湖方面",
+    "ko": "다마코 방면",
+    "en": "for Tamako"
+   },
+   "reverse": {
+    "ja": "国分寺方面",
+    "ko": "고쿠분지 방면",
+    "en": "for Kokubunji"
+   }
+  },
+  "stations": [
+   "tokyo.kokubunji",
+   "tokyo.hitotsubashi_gakuen",
+   "tokyo.ome_kaido",
+   "tokyo.hagiyama",
+   "tokyo.yasaka",
+   "tokyo.musashi_yamato",
+   "tokyo.tamako"
+  ],
+  "runSec": [
+   230,
+   115,
+   120,
+   115,
+   235,
+   120
+  ]
+ },
+ {
+  "id": "tokyo.seibu_kokubunji",
+  "name": {
+   "ja": "西武国分寺線",
+   "ko": "세이부 고쿠분지선",
+   "en": "Seibu Kokubunji Line"
+  },
+  "color": "#00A960",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "seibu",
+  "directions": {
+   "forward": {
+    "ja": "国分寺方面",
+    "ko": "고쿠분지 방면",
+    "en": "for Kokubunji"
+   },
+   "reverse": {
+    "ja": "東村山方面",
+    "ko": "히가시무라야마 방면",
+    "en": "for Higashi-Murayama"
+   }
+  },
+  "stations": [
+   "tokyo.higashi_murayama",
+   "tokyo.ogawa",
+   "tokyo.takanodai",
+   "tokyo.koigakubo",
+   "tokyo.kokubunji"
+  ],
+  "runSec": [
+   240,
+   160,
+   145,
+   190
+  ]
+ },
+ {
+  "id": "tokyo.seibu_seibuen",
+  "name": {
+   "ja": "西武園線",
+   "ko": "세이부엔선",
+   "en": "Seibu Seibuen Line"
+  },
+  "color": "#00A960",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "seibu",
+  "directions": {
+   "forward": {
+    "ja": "東村山方面",
+    "ko": "히가시무라야마 방면",
+    "en": "for Higashi-Murayama"
+   },
+   "reverse": {
+    "ja": "西武園方面",
+    "ko": "세이부엔 방면",
+    "en": "for Seibuen"
+   }
+  },
+  "stations": [
+   "tokyo.seibuen",
+   "tokyo.higashi_murayama"
+  ],
+  "runSec": [
+   175
+  ]
+ },
+ {
+  "id": "tokyo.seibu_sayama",
+  "name": {
+   "ja": "西武狭山線",
+   "ko": "세이부 사야마선",
+   "en": "Seibu Sayama Line"
+  },
+  "color": "#F28B00",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "seibu",
+  "directions": {
+   "forward": {
+    "ja": "西所沢方面",
+    "ko": "니시토코로자와 방면",
+    "en": "for Nishi-Tokorozawa"
+   },
+   "reverse": {
+    "ja": "西武球場前方面",
+    "ko": "세이부구장앞 방면",
+    "en": "for Seibukyujo-mae"
+   }
+  },
+  "stations": [
+   "tokyo.seibukyujo_mae",
+   "tokyo.shimo_yamaguchi",
+   "tokyo.nishi_tokorozawa"
+  ],
+  "runSec": [
+   215,
+   170
+  ]
+ },
+ {
+  "id": "tokyo.seibu_yamaguchi",
+  "name": {
+   "ja": "西武山口線",
+   "ko": "세이부 야마구치선",
+   "en": "Seibu Yamaguchi Line"
+  },
+  "color": "#00A960",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "seibu",
+  "directions": {
+   "forward": {
+    "ja": "多摩湖方面",
+    "ko": "다마코 방면",
+    "en": "for Tamako"
+   },
+   "reverse": {
+    "ja": "西武球場前方面",
+    "ko": "세이부구장앞 방면",
+    "en": "for Seibukyujo-mae"
+   }
+  },
+  "stations": [
+   "tokyo.seibukyujo_mae",
+   "tokyo.seibuen_yuenchi",
+   "tokyo.tamako"
+  ],
+  "runSec": [
+   240,
+   75
+  ]
+ },
+ {
+  "id": "tokyo.seibu_toshima",
+  "name": {
+   "ja": "西武豊島線",
+   "ko": "세이부 도시마선",
+   "en": "Seibu Toshima Line"
+  },
+  "color": "#F28B00",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "seibu",
+  "directions": {
+   "forward": {
+    "ja": "練馬方面",
+    "ko": "네리마 방면",
+    "en": "for Nerima"
+   },
+   "reverse": {
+    "ja": "豊島園方面",
+    "ko": "도시마엔 방면",
+    "en": "for Toshimaen"
+   }
+  },
+  "stations": [
+   "tokyo.toshimaen",
+   "tokyo.nerima"
+  ],
+  "runSec": [
+   90
+  ]
+ },
+ {
+  "id": "tokyo.seibu_yurakucho",
+  "name": {
+   "ja": "西武有楽町線",
+   "ko": "세이부 유라쿠초선",
+   "en": "Seibu Yurakucho Line"
+  },
+  "color": "#F28B00",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "seibu",
+  "directions": {
+   "forward": {
+    "ja": "小竹向原方面",
+    "ko": "고타케무카이하라 방면",
+    "en": "for Kotake-mukaihara"
+   },
+   "reverse": {
+    "ja": "練馬方面",
+    "ko": "네리마 방면",
+    "en": "for Nerima"
+   }
+  },
+  "stations": [
+   "tokyo.nerima",
+   "tokyo.shin_sakuradai",
+   "tokyo.kotake_mukaihara"
+  ],
+  "runSec": [
+   145,
+   115
+  ]
+ },
+ {
+  "id": "tokyo.seibu_tamagawa",
+  "name": {
+   "ja": "西武多摩川線",
+   "ko": "세이부 다마가와선",
+   "en": "Seibu Tamagawa Line"
+  },
+  "color": "#00A960",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "seibu",
+  "directions": {
+   "forward": {
+    "ja": "武蔵境方面",
+    "ko": "무사시사카이 방면",
+    "en": "for Musashi-Sakai"
+   },
+   "reverse": {
+    "ja": "是政方面",
+    "ko": "고레마사 방면",
+    "en": "for Koremasa"
+   }
+  },
+  "stations": [
+   "tokyo.koremasa",
+   "tokyo.kyoteijo_mae",
+   "tokyo.shiraitodai",
+   "tokyo.tama",
+   "tokyo.shin_koganei",
+   "tokyo.musashi_sakai"
+  ],
+  "runSec": [
+   105,
+   155,
+   140,
+   220,
+   175
+  ]
+ },
+ {
+  "id": "tokyo.tobu_skytree",
+  "name": {
+   "ja": "東武スカイツリーライン",
+   "ko": "도부 스카이트리 라인",
+   "en": "Tobu Skytree Line"
+  },
+  "color": "#0F6CC3",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "tobu",
+  "directions": {
+   "forward": {
+    "ja": "姫宮方面",
+    "ko": "히메미야 방면",
+    "en": "for Himemiya"
+   },
+   "reverse": {
+    "ja": "浅草方面",
+    "ko": "아사쿠사 방면",
+    "en": "for Asakusa"
+   }
+  },
+  "stations": [
+   "tokyo.asakusa",
+   "tokyo.tokyo_skytree",
+   "tokyo.hikifune",
+   "tokyo.higashi_mukojima",
+   "tokyo.kanegafuchi",
+   "tokyo.horikiri",
+   "tokyo.ushida",
+   "tokyo.kosuge",
+   "tokyo.gotanno",
+   "tokyo.umejima",
+   "tokyo.nishiarai",
+   "tokyo.takenotsuka",
+   "tokyo.yatsuka",
+   "tokyo.soka",
+   "tokyo.dokkyodaigakumaesoka_matsubara",
+   "tokyo.shinden",
+   "tokyo.gamo",
+   "tokyo.shin_koshigaya",
+   "tokyo.koshigaya",
+   "tokyo.kita_koshigaya",
+   "tokyo.obukuro",
+   "tokyo.sengendai",
+   "tokyo.takesato",
+   "tokyo.ichinowari",
+   "tokyo.kasukabe",
+   "tokyo.kita_kasukabe",
+   "tokyo.himemiya"
+  ],
+  "runSec": [
+   120,
+   105,
+   80,
+   110,
+   110,
+   70,
+   145,
+   95,
+   125,
+   95,
+   170,
+   205,
+   145,
+   155,
+   125,
+   140,
+   100,
+   140,
+   150,
+   215,
+   130,
+   140,
+   160,
+   190,
+   130,
+   150
+  ]
+ },
+ {
+  "id": "tokyo.tobu_kameido",
+  "name": {
+   "ja": "東武亀戸線",
+   "ko": "도부 가메이도선",
+   "en": "Tobu Kameido Line"
+  },
+  "color": "#0F6CC3",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "tobu",
+  "directions": {
+   "forward": {
+    "ja": "曳舟方面",
+    "ko": "히키후네 방면",
+    "en": "for Hikifune"
+   },
+   "reverse": {
+    "ja": "亀戸方面",
+    "ko": "가메이도 방면",
+    "en": "for Kameido"
+   }
+  },
+  "stations": [
+   "tokyo.kameido",
+   "tokyo.kameidosuijin",
+   "tokyo.higashi_azuma",
+   "tokyo.omurai",
+   "tokyo.hikifune"
+  ],
+  "runSec": [
+   85,
+   95,
+   75,
+   140
+  ]
+ },
+ {
+  "id": "tokyo.tobu_daishi",
+  "name": {
+   "ja": "東武大師線",
+   "ko": "도부 다이시선",
+   "en": "Tobu Daishi Line"
+  },
+  "color": "#0F6CC3",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "tobu",
+  "directions": {
+   "forward": {
+    "ja": "大師前方面",
+    "ko": "다이시마에 방면",
+    "en": "for Daishimae"
+   },
+   "reverse": {
+    "ja": "西新井方面",
+    "ko": "니시아라이 방면",
+    "en": "for Nishiarai"
+   }
+  },
+  "stations": [
+   "tokyo.nishiarai",
+   "tokyo.daishimae"
+  ],
+  "runSec": [
+   95
+  ]
+ },
+ {
+  "id": "tokyo.tobu_urban_park",
+  "name": {
+   "ja": "東武アーバンパークライン",
+   "ko": "도부 어반 파크 라인",
+   "en": "Tobu Urban Park Line"
+  },
+  "color": "#00A3E4",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "tobu",
+  "directions": {
+   "forward": {
+    "ja": "船橋方面",
+    "ko": "후나바시 방면",
+    "en": "for Funabashi"
+   },
+   "reverse": {
+    "ja": "大宮方面",
+    "ko": "오미야 방면",
+    "en": "for Omiya"
+   }
+  },
+  "stations": [
+   "tokyo.omiya",
+   "tokyo.kita_omiya",
+   "tokyo.omiya_park",
+   "tokyo.owada",
+   "tokyo.nanasato",
+   "tokyo.iwatsuki",
+   "tokyo.higashi_iwatsuki",
+   "tokyo.toyoharu",
+   "tokyo.yagisaki",
+   "tokyo.kasukabe",
+   "tokyo.fujino_ushijima",
+   "tokyo.minami_sakurai",
+   "tokyo.kawama",
+   "tokyo.nanakodai",
+   "tokyo.shimizu_koen",
+   "tokyo.atago",
+   "tokyo.nodashi",
+   "tokyo.umesato",
+   "tokyo.unga",
+   "tokyo.edogawadai",
+   "tokyo.hatsuishi",
+   "tokyo.nagareyama_otakanomori",
+   "tokyo.toyoshiki",
+   "tokyo.kashiwa",
+   "tokyo.shin_kashiwa",
+   "tokyo.masuo",
+   "tokyo.sakasai",
+   "tokyo.takayanagi",
+   "tokyo.mutsumi",
+   "tokyo.shin_kamagaya",
+   "tokyo.kamagaya",
+   "tokyo.magomezawa",
+   "tokyo.tsukada",
+   "tokyo.shin_funabashi",
+   "tokyo.funabashi"
+  ],
+  "runSec": [
+   120,
+   105,
+   155,
+   150,
+   245,
+   200,
+   130,
+   170,
+   100,
+   205,
+   230,
+   205,
+   175,
+   135,
+   105,
+   100,
+   200,
+   200,
+   170,
+   150,
+   145,
+   130,
+   245,
+   230,
+   130,
+   100,
+   190,
+   150,
+   150,
+   155,
+   220,
+   205,
+   115,
+   120
+  ]
+ },
+ {
+  "id": "tokyo.tobu_tojo",
+  "name": {
+   "ja": "東武東上線",
+   "ko": "도부 도조선",
+   "en": "Tobu Tojo Line"
+  },
+  "color": "#004098",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "tobu",
+  "directions": {
+   "forward": {
+    "ja": "池袋方面",
+    "ko": "이케부쿠로 방면",
+    "en": "for Ikebukuro"
+   },
+   "reverse": {
+    "ja": "高坂方面",
+    "ko": "다카사카 방면",
+    "en": "for Takasaka"
+   }
+  },
+  "stations": [
+   "tokyo.takasaka",
+   "tokyo.kita_sakado",
+   "tokyo.sakado",
+   "tokyo.wakaba",
+   "tokyo.tsurugashima",
+   "tokyo.kasumigaseki_tobu_tojo",
+   "tokyo.kawagoeshi",
+   "tokyo.kawagoe",
+   "tokyo.shingashi",
+   "tokyo.kami_fukuoka",
+   "tokyo.fujimino",
+   "tokyo.tsuruse",
+   "tokyo.mizuhodai",
+   "tokyo.yanasegawa",
+   "tokyo.shiki",
+   "tokyo.asakadai",
+   "tokyo.asaka",
+   "tokyo.wakoshi",
+   "tokyo.narimasu",
+   "tokyo.shimo_akatsuka",
+   "tokyo.tobu_nerima",
+   "tokyo.kami_itabashi",
+   "tokyo.tokiwadai",
+   "tokyo.naka_itabashi",
+   "tokyo.oyama",
+   "tokyo.shimo_itabashi",
+   "tokyo.kita_ikebukuro",
+   "tokyo.ikebukuro"
+  ],
+  "runSec": [
+   280,
+   155,
+   150,
+   170,
+   190,
+   280,
+   100,
+   190,
+   205,
+   160,
+   195,
+   130,
+   125,
+   140,
+   130,
+   200,
+   140,
+   190,
+   125,
+   150,
+   135,
+   120,
+   75,
+   115,
+   120,
+   65,
+   135
+  ]
+ },
+ {
+  "id": "tokyo.tobu_ogose",
+  "name": {
+   "ja": "東武越生線",
+   "ko": "도부 오고세선",
+   "en": "Tobu Ogose Line"
+  },
+  "color": "#004098",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "tobu",
+  "directions": {
+   "forward": {
+    "ja": "越生方面",
+    "ko": "오고세 방면",
+    "en": "for Ogose"
+   },
+   "reverse": {
+    "ja": "坂戸方面",
+    "ko": "사카도 방면",
+    "en": "for Sakado"
+   }
+  },
+  "stations": [
+   "tokyo.sakado",
+   "tokyo.ippommatsu",
+   "tokyo.nishi_oya",
+   "tokyo.kawakado",
+   "tokyo.bushu_nagase",
+   "tokyo.higashi_moro",
+   "tokyo.bushu_karasawa",
+   "tokyo.ogose"
+  ],
+  "runSec": [
+   265,
+   165,
+   125,
+   190,
+   120,
+   95,
+   155
+  ]
+ },
+ {
+  "id": "tokyo.keisei_oshiage",
+  "name": {
+   "ja": "京成押上線",
+   "ko": "게이세이 오시아게선",
+   "en": "Keisei Oshiage Line"
+  },
+  "color": "#1E50A2",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "keisei",
+  "directions": {
+   "forward": {
+    "ja": "押上方面",
+    "ko": "오시아게 방면",
+    "en": "for Oshiage"
+   },
+   "reverse": {
+    "ja": "青砥方面",
+    "ko": "아오토 방면",
+    "en": "for Aoto"
+   }
+  },
+  "stations": [
+   "tokyo.aoto",
+   "tokyo.keisei_tateishi",
+   "tokyo.yotsugi",
+   "tokyo.yahiro",
+   "tokyo.keisei_hikifune",
+   "tokyo.oshiage"
+  ],
+  "runSec": [
+   110,
+   135,
+   90,
+   120,
+   110
+  ]
+ },
+ {
+  "id": "tokyo.keisei_kanamachi",
+  "name": {
+   "ja": "京成金町線",
+   "ko": "게이세이 가나마치선",
+   "en": "Keisei Kanamachi Line"
+  },
+  "color": "#1E50A2",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "keisei",
+  "directions": {
+   "forward": {
+    "ja": "京成高砂方面",
+    "ko": "게이세이 다카사고 방면",
+    "en": "for Keisei-Takasago"
+   },
+   "reverse": {
+    "ja": "京成金町方面",
+    "ko": "게이세이카나마치 방면",
+    "en": "for Keisei Kanamachi"
+   }
+  },
+  "stations": [
+   "tokyo.keisei_kanamachi",
+   "tokyo.shibamata",
+   "tokyo.keisei_takasago"
+  ],
+  "runSec": [
+   150,
+   105
+  ]
+ },
+ {
+  "id": "tokyo.keisei_chiba",
+  "name": {
+   "ja": "京成千葉線",
+   "ko": "게이세이 지바선",
+   "en": "Keisei Chiba Line"
+  },
+  "color": "#1E50A2",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "keisei",
+  "directions": {
+   "forward": {
+    "ja": "千葉中央方面",
+    "ko": "지바추오 방면",
+    "en": "for Chiba-Chuo"
+   },
+   "reverse": {
+    "ja": "京成津田沼方面",
+    "ko": "게이세이쓰다누마 방면",
+    "en": "for Keisei Tsudanuma"
+   }
+  },
+  "stations": [
+   "tokyo.keisei_tsudanuma",
+   "tokyo.keisei_makuhari_hongo",
+   "tokyo.keisei_makuhari",
+   "tokyo.kemigawa",
+   "tokyo.keisei_inage",
+   "tokyo.midoridai",
+   "tokyo.nishi_nobuto",
+   "tokyo.shin_chiba",
+   "tokyo.keisei_chiba",
+   "tokyo.chiba_chuo"
+  ],
+  "runSec": [
+   175,
+   165,
+   130,
+   210,
+   160,
+   100,
+   85,
+   70,
+   75
+  ]
+ },
+ {
+  "id": "tokyo.keisei_chihara",
+  "name": {
+   "ja": "京成千原線",
+   "ko": "게이세이 지하라선",
+   "en": "Keisei Chihara Line"
+  },
+  "color": "#1E50A2",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "keisei",
+  "directions": {
+   "forward": {
+    "ja": "ちはら台方面",
+    "ko": "지하라다이 방면",
+    "en": "for Chiharadai"
+   },
+   "reverse": {
+    "ja": "千葉中央方面",
+    "ko": "지바추오 방면",
+    "en": "for Chiba-Chuo"
+   }
+  },
+  "stations": [
+   "tokyo.chiba_chuo",
+   "tokyo.chibadera",
+   "tokyo.omoridai",
+   "tokyo.gakuemmae",
+   "tokyo.oyumino",
+   "tokyo.chiharadai"
+  ],
+  "runSec": [
+   220,
+   170,
+   260,
+   145,
+   185
+  ]
+ },
+ {
+  "id": "tokyo.keisei_matsudo",
+  "name": {
+   "ja": "京成松戸線",
+   "ko": "게이세이 마쓰도선",
+   "en": "Keisei Matsudo Line"
+  },
+  "color": "#EE86A7",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "keisei",
+  "directions": {
+   "forward": {
+    "ja": "松戸方面",
+    "ko": "마쓰도 방면",
+    "en": "for Matsudo"
+   },
+   "reverse": {
+    "ja": "京成津田沼方面",
+    "ko": "게이세이쓰다누마 방면",
+    "en": "for Keisei Tsudanuma"
+   }
+  },
+  "stations": [
+   "tokyo.keisei_tsudanuma",
+   "tokyo.shin_tsudanuma",
+   "tokyo.maebara",
+   "tokyo.yakuendai",
+   "tokyo.narashino",
+   "tokyo.kita_narashino",
+   "tokyo.takanekido",
+   "tokyo.takanekodan",
+   "tokyo.takifudo",
+   "tokyo.misaki",
+   "tokyo.futawamukodai",
+   "tokyo.kamagayadaibutsu",
+   "tokyo.hatsutomi",
+   "tokyo.shin_kamagaya",
+   "tokyo.kita_hatsutomi",
+   "tokyo.kunugiyama",
+   "tokyo.motoyama",
+   "tokyo.goko",
+   "tokyo.tokiwadaira",
+   "tokyo.yabashira",
+   "tokyo.minoridai",
+   "tokyo.matsudo_shinden",
+   "tokyo.kamihongo",
+   "tokyo.matsudo"
+  ],
+  "runSec": [
+   85,
+   125,
+   130,
+   80,
+   80,
+   95,
+   75,
+   95,
+   125,
+   85,
+   100,
+   180,
+   90,
+   80,
+   145,
+   95,
+   115,
+   150,
+   160,
+   90,
+   75,
+   75,
+   145
+  ]
+ },
+ {
+  "id": "tokyo.keisei_higashi_narita",
+  "name": {
+   "ja": "京成東成田線・芝山鉄道線",
+   "ko": "게이세이 히가시나리타선·시바야마 철도선",
+   "en": "Keisei Higashi-Narita / Shibayama Line"
+  },
+  "color": "#1E50A2",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "keisei",
+  "directions": {
+   "forward": {
+    "ja": "芝山千代田方面",
+    "ko": "시바야마치요다 방면",
+    "en": "for Shibayama-Chiyoda"
+   },
+   "reverse": {
+    "ja": "京成成田方面",
+    "ko": "게이세이나리타 방면",
+    "en": "for Keisei-Narita"
+   }
+  },
+  "stations": [
+   "tokyo.keisei_narita",
+   "tokyo.higashi_narita",
+   "tokyo.shibayama_chiyoda"
+  ],
+  "runSec": [
+   575,
+   205
+  ]
+ },
+ {
+  "id": "tokyo.hokuso",
+  "name": {
+   "ja": "北総線",
+   "ko": "호쿠소선",
+   "en": "Hokuso Line"
+  },
+  "color": "#17A2C9",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "keisei",
+  "directions": {
+   "forward": {
+    "ja": "印旛日本医大方面",
+    "ko": "인바니혼이다이 방면",
+    "en": "for Inba-Nihon-Idai"
+   },
+   "reverse": {
+    "ja": "京成高砂方面",
+    "ko": "게이세이 다카사고 방면",
+    "en": "for Keisei-Takasago"
+   }
+  },
+  "stations": [
+   "tokyo.keisei_takasago",
+   "tokyo.shin_shibamata",
+   "tokyo.yagiri",
+   "tokyo.kita_kokubun",
+   "tokyo.akiyama",
+   "tokyo.higashi_matsudo",
+   "tokyo.matsuhidai",
+   "tokyo.omachi",
+   "tokyo.shin_kamagaya",
+   "tokyo.nishi_shiroi",
+   "tokyo.shiroi",
+   "tokyo.komuro",
+   "tokyo.chiba_new_town_chuo",
+   "tokyo.inzai_makinohara",
+   "tokyo.inba_nihon_idai"
+  ],
+  "runSec": [
+   110,
+   180,
+   130,
+   145,
+   130,
+   130,
+   140,
+   200,
+   260,
+   180,
+   180,
+   320,
+   375,
+   305
+  ]
+ },
+ {
+  "id": "tokyo.keikyu_airport",
+  "name": {
+   "ja": "京急空港線",
+   "ko": "게이큐 공항선",
+   "en": "Keikyu Airport Line"
+  },
+  "color": "#E5171F",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "keikyu",
+  "directions": {
+   "forward": {
+    "ja": "羽田空港第1・第2ターミナル方面",
+    "ko": "하네다 공항 제1·제2터미널 방면",
+    "en": "for Haneda Airport Terminal 1·2"
+   },
+   "reverse": {
+    "ja": "京急蒲田方面",
+    "ko": "게이큐 가마타 방면",
+    "en": "for Keikyu Kamata"
+   }
+  },
+  "stations": [
+   "tokyo.keikyu_kamata",
+   "tokyo.kojiya",
+   "tokyo.otorii",
+   "tokyo.anamori_inari",
+   "tokyo.tenkubashi",
+   "tokyo.haneda_airport_terminal_3",
+   "tokyo.haneda_airport_terminal_12"
+  ],
+  "runSec": [
+   95,
+   100,
+   80,
+   80,
+   130,
+   160
+  ]
+ },
+ {
+  "id": "tokyo.keikyu_daishi",
+  "name": {
+   "ja": "京急大師線",
+   "ko": "게이큐 다이시선",
+   "en": "Keikyu Daishi Line"
+  },
+  "color": "#E5171F",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "keikyu",
+  "directions": {
+   "forward": {
+    "ja": "京急川崎方面",
+    "ko": "게이큐가와사키 방면",
+    "en": "for Keikyu-Kawasaki"
+   },
+   "reverse": {
+    "ja": "小島新田方面",
+    "ko": "고지마신덴 방면",
+    "en": "for Kojimashinden"
+   }
+  },
+  "stations": [
+   "tokyo.kojimashinden",
+   "tokyo.daishibashi",
+   "tokyo.higashimonzen",
+   "tokyo.kawasakidaishi",
+   "tokyo.suzukicho",
+   "tokyo.minatocho",
+   "tokyo.keikyu_kawasaki"
+  ],
+  "runSec": [
+   85,
+   75,
+   95,
+   70,
+   90,
+   120
+  ]
+ },
+ {
+  "id": "tokyo.sotetsu",
+  "name": {
+   "ja": "相鉄本線",
+   "ko": "소테쓰 본선",
+   "en": "Sotetsu Main Line"
+  },
+  "color": "#004EA2",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "sotetsu",
+  "directions": {
+   "forward": {
+    "ja": "横浜方面",
+    "ko": "요코하마 방면",
+    "en": "for Yokohama"
+   },
+   "reverse": {
+    "ja": "海老名方面",
+    "ko": "에비나 방면",
+    "en": "for Ebina"
+   }
+  },
+  "stations": [
+   "tokyo.ebina",
+   "tokyo.kashiwadai",
+   "tokyo.sagamino",
+   "tokyo.sagami_otsuka",
+   "tokyo.yamato",
+   "tokyo.seya",
+   "tokyo.mitsukyo",
+   "tokyo.kibogaoka",
+   "tokyo.futamatagawa",
+   "tokyo.tsurugamine",
+   "tokyo.nishiya",
+   "tokyo.kami_hoshikawa",
+   "tokyo.wadamachi",
+   "tokyo.hoshikawa",
+   "tokyo.tennocho",
+   "tokyo.nishi_yokohama",
+   "tokyo.hiranuma_bashi",
+   "tokyo.yokohama"
+  ],
+  "runSec": [
+   235,
+   125,
+   115,
+   170,
+   175,
+   160,
+   125,
+   160,
+   180,
+   140,
+   160,
+   80,
+   100,
+   95,
+   70,
+   105,
+   90
+  ]
+ },
+ {
+  "id": "tokyo.sotetsu_izumino",
+  "name": {
+   "ja": "相鉄いずみ野線",
+   "ko": "소테쓰 이즈미노선",
+   "en": "Sotetsu Izumino Line"
+  },
+  "color": "#004EA2",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "sotetsu",
+  "directions": {
+   "forward": {
+    "ja": "二俣川方面",
+    "ko": "후타마타가와 방면",
+    "en": "for Futamatagawa"
+   },
+   "reverse": {
+    "ja": "湘南台方面",
+    "ko": "쇼난다이 방면",
+    "en": "for Shonandai"
+   }
+  },
+  "stations": [
+   "tokyo.shonandai",
+   "tokyo.yumegaoka",
+   "tokyo.izumi_chuo",
+   "tokyo.izumino",
+   "tokyo.yayoidai",
+   "tokyo.ryokuen_toshi",
+   "tokyo.minami_makigahara",
+   "tokyo.futamatagawa"
+  ],
+  "runSec": [
+   160,
+   115,
+   160,
+   105,
+   160,
+   140,
+   130
+  ]
+ },
+ {
+  "id": "tokyo.sotetsu_shin_yokohama",
+  "name": {
+   "ja": "相鉄新横浜線",
+   "ko": "소테쓰 신요코하마선",
+   "en": "Sotetsu Shin-Yokohama Line"
+  },
+  "color": "#004EA2",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "sotetsu",
+  "directions": {
+   "forward": {
+    "ja": "新横浜方面",
+    "ko": "신요코하마 방면",
+    "en": "for Shin-Yokohama"
+   },
+   "reverse": {
+    "ja": "西谷方面",
+    "ko": "니시야 방면",
+    "en": "for Nishiya"
+   }
+  },
+  "stations": [
+   "tokyo.nishiya",
+   "tokyo.hazawa_yokohama_kokudai",
+   "tokyo.shin_yokohama"
+  ],
+  "runSec": [
+   185,
+   365
+  ]
+ },
+ {
+  "id": "tokyo.tsukuba_express",
+  "name": {
+   "ja": "つくばエクスプレス",
+   "ko": "쓰쿠바 익스프레스",
+   "en": "Tsukuba Express"
+  },
+  "color": "#2A2F8C",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "other",
+  "directions": {
+   "forward": {
+    "ja": "秋葉原方面",
+    "ko": "아키하바라 방면",
+    "en": "for Akihabara"
+   },
+   "reverse": {
+    "ja": "みらい平方面",
+    "ko": "미라이다이라 방면",
+    "en": "for Miraidaira"
+   }
+  },
+  "stations": [
+   "tokyo.miraidaira",
+   "tokyo.moriya",
+   "tokyo.kashiwa_tanaka",
+   "tokyo.kashiwanoha_campus",
+   "tokyo.nagareyama_otakanomori",
+   "tokyo.nagareyama_centralpark",
+   "tokyo.minami_nagareyama",
+   "tokyo.misato_chuo",
+   "tokyo.yashio",
+   "tokyo.rokucho",
+   "tokyo.aoi",
+   "tokyo.kita_senju",
+   "tokyo.minami_senju",
+   "tokyo.asakusa",
+   "tokyo.shin_okachimachi",
+   "tokyo.akihabara"
+  ],
+  "runSec": [
+   510,
+   425,
+   180,
+   280,
+   190,
+   190,
+   235,
+   295,
+   275,
+   140,
+   240,
+   170,
+   215,
+   140,
+   125
+  ]
+ },
+ {
+  "id": "tokyo.rinkai",
+  "name": {
+   "ja": "りんかい線",
+   "ko": "린카이선",
+   "en": "Rinkai Line"
+  },
+  "color": "#00418E",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "other",
+  "directions": {
+   "forward": {
+    "ja": "大崎方面",
+    "ko": "오사키 방면",
+    "en": "for Osaki"
+   },
+   "reverse": {
+    "ja": "新木場方面",
+    "ko": "신키바 방면",
+    "en": "for Shin-Kiba"
+   }
+  },
+  "stations": [
+   "tokyo.shin_kiba",
+   "tokyo.shinonome",
+   "tokyo.kokusai_tenjijo",
+   "tokyo.tokyo_teleport",
+   "tokyo.tennozu_isle",
+   "tokyo.shinagawa_seaside",
+   "tokyo.oimachi",
+   "tokyo.osaki"
+  ],
+  "runSec": [
+   195,
+   125,
+   140,
+   220,
+   120,
+   135,
+   145
+  ]
+ },
+ {
+  "id": "tokyo.saitama_railway",
+  "name": {
+   "ja": "埼玉高速鉄道線",
+   "ko": "사이타마 고속철도선",
+   "en": "Saitama Railway Line"
+  },
+  "color": "#00A3D9",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "other",
+  "directions": {
+   "forward": {
+    "ja": "浦和美園方面",
+    "ko": "우라와미소노 방면",
+    "en": "for Urawa-misono"
+   },
+   "reverse": {
+    "ja": "赤羽岩淵方面",
+    "ko": "아카바네이와부치 방면",
+    "en": "for Akabane-iwabuchi"
+   }
+  },
+  "stations": [
+   "tokyo.akabane_iwabuchi",
+   "tokyo.kawaguchi_motogo",
+   "tokyo.minami_hatogaya",
+   "tokyo.hatogaya",
+   "tokyo.araijuku",
+   "tokyo.tozuka_angyo",
+   "tokyo.higashi_kawaguchi",
+   "tokyo.urawa_misono"
+  ],
+  "runSec": [
+   180,
+   170,
+   150,
+   130,
+   195,
+   180,
+   220
+  ]
+ },
+ {
+  "id": "tokyo.toyo_rapid",
+  "name": {
+   "ja": "東葉高速線",
+   "ko": "도요 고속선",
+   "en": "Toyo Rapid Railway Line"
+  },
+  "color": "#33B169",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "other",
+  "directions": {
+   "forward": {
+    "ja": "東葉勝田台方面",
+    "ko": "도요카쓰타다이 방면",
+    "en": "for Toyo-Katsutadai"
+   },
+   "reverse": {
+    "ja": "西船橋方面",
+    "ko": "니시후나바시 방면",
+    "en": "for Nishi-Funabashi"
+   }
+  },
+  "stations": [
+   "tokyo.nishi_funabashi",
+   "tokyo.higashi_kaijin",
+   "tokyo.hasama",
+   "tokyo.kita_narashino",
+   "tokyo.funabashi_nichidaimae",
+   "tokyo.yachiyo_midorigaoka",
+   "tokyo.yachiyo_chuo",
+   "tokyo.murakami",
+   "tokyo.toyo_katsutadai"
+  ],
+  "runSec": [
+   175,
+   320,
+   175,
+   150,
+   125,
+   235,
+   135,
+   115
+  ]
+ },
+ {
+  "id": "tokyo.ryutetsu",
+  "name": {
+   "ja": "流鉄流山線",
+   "ko": "류테쓰 나가레야마선",
+   "en": "Ryutetsu Nagareyama Line"
+  },
+  "color": "#F08300",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "other",
+  "directions": {
+   "forward": {
+    "ja": "馬橋方面",
+    "ko": "마바시 방면",
+    "en": "for Mabashi"
+   },
+   "reverse": {
+    "ja": "流山方面",
+    "ko": "나가레야마 방면",
+    "en": "for Nagareyama"
+   }
+  },
+  "stations": [
+   "tokyo.nagareyama",
+   "tokyo.heiwadai_ryutetsu",
+   "tokyo.hiregasaki",
+   "tokyo.koganejoshi",
+   "tokyo.koya",
+   "tokyo.mabashi"
+  ],
+  "runSec": [
+   75,
+   145,
+   95,
+   120,
+   170
+  ]
+ },
+ {
+  "id": "tokyo.kanto_joso",
+  "name": {
+   "ja": "関東鉄道常総線",
+   "ko": "간토 철도 조소선",
+   "en": "Kanto Railway Joso Line"
+  },
+  "color": "#1E4D9C",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "other",
+  "directions": {
+   "forward": {
+    "ja": "守谷方面",
+    "ko": "모리야 방면",
+    "en": "for Moriya"
+   },
+   "reverse": {
+    "ja": "取手方面",
+    "ko": "도리데 방면",
+    "en": "for Toride"
+   }
+  },
+  "stations": [
+   "tokyo.toride",
+   "tokyo.nishi_toride",
+   "tokyo.terahara",
+   "tokyo.shin_toride",
+   "tokyo.yumemino",
+   "tokyo.inatoi",
+   "tokyo.togashira",
+   "tokyo.minami_moriya",
+   "tokyo.moriya"
+  ],
+  "runSec": [
+   155,
+   75,
+   135,
+   95,
+   135,
+   100,
+   130,
+   195
+  ]
+ },
+ {
+  "id": "tokyo.enoden",
+  "name": {
+   "ja": "江ノ島電鉄線",
+   "ko": "에노시마 전철선",
+   "en": "Enoshima Electric Railway"
+  },
+  "color": "#005C3F",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "other",
+  "directions": {
+   "forward": {
+    "ja": "藤沢方面",
+    "ko": "후지사와 방면",
+    "en": "for Fujisawa"
+   },
+   "reverse": {
+    "ja": "鎌倉方面",
+    "ko": "가마쿠라 방면",
+    "en": "for Kamakura"
+   }
+  },
+  "stations": [
+   "tokyo.kamakura",
+   "tokyo.wadazuka",
+   "tokyo.yuigahama",
+   "tokyo.hase",
+   "tokyo.gokurakuji",
+   "tokyo.inamuragasaki",
+   "tokyo.shichirigahama",
+   "tokyo.kamakurakokomae",
+   "tokyo.koshigoe",
+   "tokyo.enoshima",
+   "tokyo.shonankaigankoen",
+   "tokyo.kugenuma",
+   "tokyo.yanagikoji",
+   "tokyo.ishigami",
+   "tokyo.fujisawa"
+  ],
+  "runSec": [
+   165,
+   100,
+   125,
+   155,
+   180,
+   235,
+   185,
+   160,
+   140,
+   135,
+   155,
+   165,
+   130,
+   160
+  ]
+ },
+ {
+  "id": "tokyo.yokohama_blue",
+  "name": {
+   "ja": "横浜市営地下鉄ブルーライン",
+   "ko": "요코하마 시영 지하철 블루라인",
+   "en": "Yokohama Municipal Subway Blue Line"
+  },
+  "color": "#0070C0",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "yokohama",
+  "directions": {
+   "forward": {
+    "ja": "あざみ野方面",
+    "ko": "아자미노 방면",
+    "en": "for Azamino"
+   },
+   "reverse": {
+    "ja": "湘南台方面",
+    "ko": "쇼난다이 방면",
+    "en": "for Shonandai"
+   }
+  },
+  "stations": [
+   "tokyo.shonandai",
+   "tokyo.shimoiida",
+   "tokyo.tateba",
+   "tokyo.nakada",
+   "tokyo.odoriba",
+   "tokyo.totsuka",
+   "tokyo.maioka",
+   "tokyo.shimonagaya",
+   "tokyo.kaminagaya",
+   "tokyo.konan_chuo",
+   "tokyo.kami_ooka",
+   "tokyo.gumyoji",
+   "tokyo.maita",
+   "tokyo.yoshinocho",
+   "tokyo.bandobashi",
+   "tokyo.isezaki_chojamachi",
+   "tokyo.kannai",
+   "tokyo.sakuragicho",
+   "tokyo.takashimacho",
+   "tokyo.yokohama",
+   "tokyo.mitsuzawa_shimocho",
+   "tokyo.mitsuzawa_kamicho",
+   "tokyo.katakuracho",
+   "tokyo.kishine_koen",
+   "tokyo.shin_yokohama",
+   "tokyo.kita_shin_yokohama",
+   "tokyo.nippa",
+   "tokyo.nakamachidai",
+   "tokyo.center_minami",
+   "tokyo.center_kita",
+   "tokyo.nakagawa",
+   "tokyo.azamino"
+  ],
+  "runSec": [
+   180,
+   200,
+   120,
+   110,
+   165,
+   165,
+   95,
+   135,
+   175,
+   120,
+   175,
+   145,
+   115,
+   85,
+   100,
+   70,
+   110,
+   120,
+   100,
+   145,
+   115,
+   165,
+   130,
+   135,
+   155,
+   110,
+   220,
+   185,
+   115,
+   145,
+   170
+  ]
+ },
+ {
+  "id": "tokyo.yokohama_green",
+  "name": {
+   "ja": "横浜市営地下鉄グリーンライン",
+   "ko": "요코하마 시영 지하철 그린라인",
+   "en": "Yokohama Municipal Subway Green Line"
+  },
+  "color": "#00A73C",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "yokohama",
+  "directions": {
+   "forward": {
+    "ja": "中山方面",
+    "ko": "나카야마 방면",
+    "en": "for Nakayama"
+   },
+   "reverse": {
+    "ja": "日吉方面",
+    "ko": "히요시 방면",
+    "en": "for Hiyoshi"
+   }
+  },
+  "stations": [
+   "tokyo.hiyoshi",
+   "tokyo.hiyoshi_honcho",
+   "tokyo.takata",
+   "tokyo.higashi_yamata",
+   "tokyo.kita_yamata",
+   "tokyo.center_kita",
+   "tokyo.center_minami",
+   "tokyo.tsuzuki_fureainooka",
+   "tokyo.kawawacho",
+   "tokyo.nakayama"
+  ],
+  "runSec": [
+   145,
+   135,
+   160,
+   145,
+   165,
+   115,
+   165,
+   155,
+   185
+  ]
+ },
+ {
+  "id": "tokyo.minatomirai",
+  "name": {
+   "ja": "みなとみらい線",
+   "ko": "미나토미라이선",
+   "en": "Minatomirai Line"
+  },
+  "color": "#11316A",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "yokohama",
+  "directions": {
+   "forward": {
+    "ja": "横浜方面",
+    "ko": "요코하마 방면",
+    "en": "for Yokohama"
+   },
+   "reverse": {
+    "ja": "元町・中華街方面",
+    "ko": "모토마치·주카가이 방면",
+    "en": "for Motomachi-chukagai"
+   }
+  },
+  "stations": [
+   "tokyo.motomachi_chukagai",
+   "tokyo.nihon_odori",
+   "tokyo.bashamichi",
+   "tokyo.minatomirai",
+   "tokyo.shin_takashima",
+   "tokyo.yokohama"
+  ],
+  "runSec": [
+   110,
+   90,
+   105,
+   95,
+   80
+  ]
+ },
+ {
+  "id": "tokyo.tokyo_monorail",
+  "name": {
+   "ja": "東京モノレール",
+   "ko": "도쿄 모노레일",
+   "en": "Tokyo Monorail"
+  },
+  "color": "#26326A",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "other",
+  "directions": {
+   "forward": {
+    "ja": "羽田空港第2ターミナル方面",
+    "ko": "하네다공항 제2터미널 방면",
+    "en": "for Haneda Airport Terminal 2"
+   },
+   "reverse": {
+    "ja": "浜松町方面",
+    "ko": "하마마쓰초 방면",
+    "en": "for Hamamatsucho"
+   }
+  },
+  "stations": [
+   "tokyo.hamamatsucho",
+   "tokyo.tennozu_isle",
+   "tokyo.oikeibajo_mae",
+   "tokyo.ryutsu_center",
+   "tokyo.showajima",
+   "tokyo.seibijo",
+   "tokyo.tenkubashi",
+   "tokyo.haneda_airport_terminal_3",
+   "tokyo.shinseibijo",
+   "tokyo.haneda_airport_terminal_1",
+   "tokyo.haneda_airport_terminal_2"
+  ],
+  "runSec": [
+   465,
+   345,
+   195,
+   165,
+   225,
+   105,
+   180,
+   220,
+   110,
+   75
+  ]
+ },
+ {
+  "id": "tokyo.yurikamome",
+  "name": {
+   "ja": "ゆりかもめ",
+   "ko": "유리카모메",
+   "en": "Yurikamome"
+  },
+  "color": "#1662B8",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "other",
+  "directions": {
+   "forward": {
+    "ja": "豊洲方面",
+    "ko": "도요스 방면",
+    "en": "for Toyosu"
+   },
+   "reverse": {
+    "ja": "新橋方面",
+    "ko": "신바시 방면",
+    "en": "for Shimbashi"
+   }
+  },
+  "stations": [
+   "tokyo.shimbashi",
+   "tokyo.shiodome",
+   "tokyo.takeshiba",
+   "tokyo.hinode",
+   "tokyo.shibaura_futo",
+   "tokyo.odaiba_kaihinkoen",
+   "tokyo.daiba",
+   "tokyo.tokyo_international_cruise_terminal",
+   "tokyo.telecom_center",
+   "tokyo.aomi",
+   "tokyo.tokyo_big_sight",
+   "tokyo.ariake",
+   "tokyo.ariake_tennis_no_mori",
+   "tokyo.shijo_mae",
+   "tokyo.shin_toyosu",
+   "tokyo.toyosu"
+  ],
+  "runSec": [
+   65,
+   160,
+   95,
+   120,
+   290,
+   120,
+   85,
+   110,
+   120,
+   155,
+   85,
+   110,
+   105,
+   90,
+   125
+  ]
+ },
+ {
+  "id": "tokyo.nippori_toneri",
+  "name": {
+   "ja": "日暮里・舎人ライナー",
+   "ko": "닛포리·도네리 라이너",
+   "en": "Nippori-Toneri Liner"
+  },
+  "color": "#E85298",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "other",
+  "directions": {
+   "forward": {
+    "ja": "日暮里方面",
+    "ko": "닛포리 방면",
+    "en": "for Nippori"
+   },
+   "reverse": {
+    "ja": "見沼代親水公園方面",
+    "ko": "미누마다이친수공원 방면",
+    "en": "for Minumadai-shinsuikoen"
+   }
+  },
+  "stations": [
+   "tokyo.minumadai_shinsuikoen",
+   "tokyo.toneri",
+   "tokyo.toneri_koen",
+   "tokyo.yazaike",
+   "tokyo.nishiaraidaishi_nishi",
+   "tokyo.kohoku_nippori_toneri",
+   "tokyo.koya_nippori_toneri",
+   "tokyo.ogi_ohashi",
+   "tokyo.adachi_odai",
+   "tokyo.kumanomae",
+   "tokyo.akado_shogakkomae",
+   "tokyo.nishi_nippori",
+   "tokyo.nippori"
+  ],
+  "runSec": [
+   140,
+   145,
+   125,
+   120,
+   125,
+   100,
+   85,
+   145,
+   105,
+   100,
+   165,
+   90
+  ]
+ },
+ {
+  "id": "tokyo.toden_arakawa",
+  "name": {
+   "ja": "都電荒川線（東京さくらトラム）",
+   "ko": "도덴 아라카와선 (도쿄 사쿠라 트램)",
+   "en": "Toden Arakawa Line (Tokyo Sakura Tram)"
+  },
+  "color": "#EE86A7",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "other",
+  "directions": {
+   "forward": {
+    "ja": "早稲田方面",
+    "ko": "와세다 방면",
+    "en": "for Waseda"
+   },
+   "reverse": {
+    "ja": "三ノ輪橋方面",
+    "ko": "미노와바시 방면",
+    "en": "for Minowabashi"
+   }
+  },
+  "stations": [
+   "tokyo.minowabashi",
+   "tokyo.arakawa_itchumae",
+   "tokyo.arakawa_kuyakushomae",
+   "tokyo.arakawa_nichome",
+   "tokyo.arakawa_nanachome",
+   "tokyo.machiya_ekimae",
+   "tokyo.machiya_nichome",
+   "tokyo.higashi_ogu_sanchome",
+   "tokyo.kumanomae",
+   "tokyo.miyanomae",
+   "tokyo.odai",
+   "tokyo.arakawa_yuenchimae",
+   "tokyo.arakawa_shakomae",
+   "tokyo.kajiwara",
+   "tokyo.sakaecho",
+   "tokyo.oji_ekimae",
+   "tokyo.asukayama",
+   "tokyo.takinogawa_itchome",
+   "tokyo.nishigahara_yonchome",
+   "tokyo.shin_koshinzuka",
+   "tokyo.koshinzuka",
+   "tokyo.sugamoshinden",
+   "tokyo.otsuka_ekimae",
+   "tokyo.mukohara",
+   "tokyo.higashi_ikebukuro_yonchome",
+   "tokyo.toden_zoshigaya",
+   "tokyo.kishibojimmae",
+   "tokyo.gakushuinshita",
+   "tokyo.omokagebashi",
+   "tokyo.waseda"
+  ],
+  "runSec": [
+   85,
+   80,
+   115,
+   95,
+   85,
+   105,
+   90,
+   115,
+   115,
+   85,
+   95,
+   115,
+   105,
+   125,
+   110,
+   85,
+   95,
+   95,
+   100,
+   75,
+   120,
+   120,
+   110,
+   145,
+   75,
+   125,
+   120,
+   105,
+   220
+  ]
+ },
+ {
+  "id": "tokyo.tama_monorail",
+  "name": {
+   "ja": "多摩モノレール",
+   "ko": "다마 모노레일",
+   "en": "Tama Monorail"
+  },
+  "color": "#F08300",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "other",
+  "directions": {
+   "forward": {
+    "ja": "多摩センター方面",
+    "ko": "다마센터 방면",
+    "en": "for Tama Center"
+   },
+   "reverse": {
+    "ja": "上北台方面",
+    "ko": "가미키타다이 방면",
+    "en": "for Kamikitadai"
+   }
+  },
+  "stations": [
+   "tokyo.kamikitadai",
+   "tokyo.sakurakaido",
+   "tokyo.tamagawa_josui",
+   "tokyo.sunagawa_nanaban",
+   "tokyo.izumi_taiikukan",
+   "tokyo.tachihi",
+   "tokyo.takamatsu",
+   "tokyo.tachikawa_kita",
+   "tokyo.tachikawa_minami",
+   "tokyo.shibasaki_taiikukan",
+   "tokyo.koshukaido",
+   "tokyo.manganji",
+   "tokyo.takahatafudo",
+   "tokyo.hodokubo",
+   "tokyo.tama_dobutsukoen",
+   "tokyo.chuo_daigakumeisei_daigaku",
+   "tokyo.otsukateikyo_daigaku",
+   "tokyo.matsugaya",
+   "tokyo.tama_center"
+  ],
+  "runSec": [
+   115,
+   125,
+   130,
+   90,
+   90,
+   95,
+   165,
+   70,
+   115,
+   175,
+   170,
+   160,
+   120,
+   120,
+   130,
+   130,
+   115,
+   125
+  ]
+ },
+ {
+  "id": "tokyo.new_shuttle",
+  "name": {
+   "ja": "ニューシャトル",
+   "ko": "뉴셔틀",
+   "en": "New Shuttle"
+  },
+  "color": "#10A899",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "other",
+  "directions": {
+   "forward": {
+    "ja": "内宿方面",
+    "ko": "우치주쿠 방면",
+    "en": "for Uchijuku"
+   },
+   "reverse": {
+    "ja": "大宮方面",
+    "ko": "오미야 방면",
+    "en": "for Omiya"
+   }
+  },
+  "stations": [
+   "tokyo.omiya",
+   "tokyo.tetsudo_hakubutsukan",
+   "tokyo.kamonomiya",
+   "tokyo.higashi_miyahara",
+   "tokyo.komba",
+   "tokyo.yoshinohara",
+   "tokyo.haraichi",
+   "tokyo.shonan",
+   "tokyo.maruyama",
+   "tokyo.shiku",
+   "tokyo.ina_chuo",
+   "tokyo.hanuki",
+   "tokyo.uchijuku"
+  ],
+  "runSec": [
+   215,
+   220,
+   115,
+   120,
+   120,
+   115,
+   120,
+   140,
+   175,
+   140,
+   165,
+   150
+  ]
+ },
+ {
+  "id": "tokyo.seaside_line",
+  "name": {
+   "ja": "金沢シーサイドライン",
+   "ko": "가나자와 시사이드라인",
+   "en": "Kanazawa Seaside Line"
+  },
+  "color": "#00A7DB",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "yokohama",
+  "directions": {
+   "forward": {
+    "ja": "新杉田方面",
+    "ko": "신스기타 방면",
+    "en": "for Shin-Sugita"
+   },
+   "reverse": {
+    "ja": "金沢八景方面",
+    "ko": "가나자와핫케이 방면",
+    "en": "for Kanazawa-Hakkei"
+   }
+  },
+  "stations": [
+   "tokyo.kanazawa_hakkei",
+   "tokyo.nojimakoen",
+   "tokyo.uminokoen_minamiguchi",
+   "tokyo.uminokoen_shibaguchi",
+   "tokyo.hakkeijima",
+   "tokyo.shidai_igakubu",
+   "tokyo.fukuura",
+   "tokyo.sangyoshinko_center",
+   "tokyo.sachiura",
+   "tokyo.namiki_chuo",
+   "tokyo.namiki_kita",
+   "tokyo.torihama",
+   "tokyo.nambu_shijo",
+   "tokyo.shin_sugita"
+  ],
+  "runSec": [
+   145,
+   110,
+   105,
+   85,
+   130,
+   100,
+   80,
+   95,
+   120,
+   110,
+   95,
+   125,
+   190
+  ]
+ },
+ {
+  "id": "tokyo.disney_resort_line",
+  "name": {
+   "ja": "ディズニーリゾートライン",
+   "ko": "디즈니 리조트 라인",
+   "en": "Disney Resort Line"
+  },
+  "color": "#3BB4E5",
+  "loop": true,
+  "dwellSec": 25,
+  "group": "other",
+  "directions": {
+   "forward": {
+    "ja": "右回り",
+    "ko": "시계 방향",
+    "en": "Clockwise"
+   },
+   "reverse": {
+    "ja": "左回り",
+    "ko": "반시계 방향",
+    "en": "Counterclockwise"
+   }
+  },
+  "stations": [
+   "tokyo.resort_gateway",
+   "tokyo.tokyo_disneyland",
+   "tokyo.bayside",
+   "tokyo.tokyo_disneysea"
+  ],
+  "runSec": [
+   95,
+   135,
+   165,
+   135
+  ]
+ },
+ {
+  "id": "tokyo.yamaman",
+  "name": {
+   "ja": "山万ユーカリが丘線",
+   "ko": "야마만 유카리가오카선",
+   "en": "Yamaman Yukarigaoka Line"
+  },
+  "color": "#E95295",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "other",
+  "directions": {
+   "forward": {
+    "ja": "井野方面",
+    "ko": "이노 방면",
+    "en": "for Ino"
+   },
+   "reverse": {
+    "ja": "ユーカリが丘方面",
+    "ko": "유카리가오카 방면",
+    "en": "for Yukarigaoka"
+   }
+  },
+  "stations": [
+   "tokyo.yukarigaoka",
+   "tokyo.chikucenter",
+   "tokyo.koen",
+   "tokyo.joshidai",
+   "tokyo.chugakko",
+   "tokyo.ino"
+  ],
+  "runSec": [
+   85,
+   90,
+   120,
+   100,
+   125
+  ]
+ },
+ {
+  "id": "tokyo.chiba_monorail_1",
+  "name": {
+   "ja": "千葉都市モノレール1号線",
+   "ko": "지바 도시 모노레일 1호선",
+   "en": "Chiba Urban Monorail Line 1"
+  },
+  "color": "#23AC38",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "other",
+  "directions": {
+   "forward": {
+    "ja": "千葉みなと方面",
+    "ko": "지바미나토 방면",
+    "en": "for Chiba-Minato"
+   },
+   "reverse": {
+    "ja": "県庁前方面",
+    "ko": "겐초마에 방면",
+    "en": "for Kencho-Mae"
+   }
+  },
+  "stations": [
+   "tokyo.kencho_mae",
+   "tokyo.yoshikawa_koen",
+   "tokyo.sakaecho_chiba_monorail_1",
+   "tokyo.chiba",
+   "tokyo.shiyakushomae",
+   "tokyo.chiba_minato"
+  ],
+  "runSec": [
+   95,
+   85,
+   90,
+   120,
+   80
+  ]
+ },
+ {
+  "id": "tokyo.chiba_monorail_2",
+  "name": {
+   "ja": "千葉都市モノレール2号線",
+   "ko": "지바 도시 모노레일 2호선",
+   "en": "Chiba Urban Monorail Line 2"
+  },
+  "color": "#EA5413",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "other",
+  "directions": {
+   "forward": {
+    "ja": "千葉みなと方面",
+    "ko": "지바미나토 방면",
+    "en": "for Chiba-Minato"
+   },
+   "reverse": {
+    "ja": "千城台方面",
+    "ko": "지시로다이 방면",
+    "en": "for Chishirodai"
+   }
+  },
+  "stations": [
+   "tokyo.chishirodai",
+   "tokyo.chishirodai_kita",
+   "tokyo.oguradai",
+   "tokyo.sakuragi",
+   "tokyo.tsuga",
+   "tokyo.mitsuwadai",
+   "tokyo.dobutsu_koen",
+   "tokyo.sports_center",
+   "tokyo.anagawa",
+   "tokyo.tendai",
+   "tokyo.sakusabe",
+   "tokyo.chiba_koen",
+   "tokyo.chiba",
+   "tokyo.shiyakushomae",
+   "tokyo.chiba_minato"
+  ],
+  "runSec": [
+   120,
+   135,
+   145,
+   165,
+   175,
+   135,
+   125,
+   95,
+   130,
+   105,
+   105,
+   125,
+   120,
+   80
+  ]
+ },
+ {
+  "id": "tokyo.shonan_monorail",
+  "name": {
+   "ja": "湘南モノレール",
+   "ko": "쇼난 모노레일",
+   "en": "Shonan Monorail"
+  },
+  "color": "#E2007F",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "other",
+  "directions": {
+   "forward": {
+    "ja": "湘南江の島方面",
+    "ko": "쇼난에노시마 방면",
+    "en": "for Shonan-Enoshima"
+   },
+   "reverse": {
+    "ja": "大船方面",
+    "ko": "오후나 방면",
+    "en": "for Ofuna"
+   }
+  },
+  "stations": [
+   "tokyo.ofuna",
+   "tokyo.fujimicho",
+   "tokyo.shonan_machiya",
+   "tokyo.shonan_fukasawa",
+   "tokyo.nishi_kamakura",
+   "tokyo.kataseyama",
+   "tokyo.mejiroyamashita",
+   "tokyo.shonan_enoshima"
+  ],
+  "runSec": [
+   140,
+   145,
+   105,
+   250,
+   115,
+   95,
+   75
+  ]
+ }
+]

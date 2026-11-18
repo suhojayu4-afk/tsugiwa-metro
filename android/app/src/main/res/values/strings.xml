@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">つぎは Metro</string>
+    <string name="widget_name">MY駅</string>
+    <string name="widget_description">わたしの駅を ホーム画面に</string>
+    <string name="widget_empty">アプリをひらいて MY駅をつくってね</string>
+</resources>

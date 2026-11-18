@@ -1,0 +1,656 @@
+[
+ {
+  "a": "tokyo.mita",
+  "b": "tokyo.tamachi",
+  "min": 4,
+  "names": "三田 ↔ 田町"
+ },
+ {
+  "a": "tokyo.ueno_hirokoji",
+  "b": "tokyo.ueno_okachimachi",
+  "min": 3,
+  "names": "上野広小路 ↔ 上野御徒町"
+ },
+ {
+  "a": "tokyo.keisei_ueno",
+  "b": "tokyo.ueno",
+  "min": 5,
+  "names": "京成上野 ↔ 上野"
+ },
+ {
+  "a": "tokyo.naka_okachimachi",
+  "b": "tokyo.okachimachi",
+  "min": 3,
+  "names": "仲御徒町 ↔ 御徒町"
+ },
+ {
+  "a": "tokyo.naka_okachimachi",
+  "b": "tokyo.ueno_hirokoji",
+  "min": 5,
+  "names": "仲御徒町 ↔ 上野広小路"
+ },
+ {
+  "a": "tokyo.naka_okachimachi",
+  "b": "tokyo.ueno_okachimachi",
+  "min": 4,
+  "names": "仲御徒町 ↔ 上野御徒町"
+ },
+ {
+  "a": "tokyo.harajuku",
+  "b": "tokyo.meiji_jingumae",
+  "min": 3,
+  "names": "原宿 ↔ 明治神宮前"
+ },
+ {
+  "a": "tokyo.kokkai_gijido_mae",
+  "b": "tokyo.tameike_sanno",
+  "min": 5,
+  "names": "国会議事堂前 ↔ 溜池山王"
+ },
+ {
+  "a": "tokyo.daimon",
+  "b": "tokyo.hamamatsucho",
+  "min": 4,
+  "names": "大門 ↔ 浜松町"
+ },
+ {
+  "a": "tokyo.ogawamachi",
+  "b": "tokyo.shin_ochanomizu",
+  "min": 3,
+  "names": "小川町 ↔ 新御茶ノ水"
+ },
+ {
+  "a": "tokyo.okachimachi",
+  "b": "tokyo.ueno_hirokoji",
+  "min": 3,
+  "names": "御徒町 ↔ 上野広小路"
+ },
+ {
+  "a": "tokyo.okachimachi",
+  "b": "tokyo.ueno_okachimachi",
+  "min": 3,
+  "names": "御徒町 ↔ 上野御徒町"
+ },
+ {
+  "a": "tokyo.ochanomizu",
+  "b": "tokyo.shin_ochanomizu",
+  "min": 4,
+  "names": "御茶ノ水 ↔ 新御茶ノ水"
+ },
+ {
+  "a": "tokyo.shimbashi",
+  "b": "tokyo.shiodome",
+  "min": 5,
+  "names": "新橋 ↔ 汐留"
+ },
+ {
+  "a": "tokyo.hibiya",
+  "b": "tokyo.yurakucho",
+  "min": 4,
+  "names": "日比谷 ↔ 有楽町"
+ },
+ {
+  "a": "tokyo.kasuga",
+  "b": "tokyo.korakuen",
+  "min": 4,
+  "names": "春日 ↔ 後楽園"
+ },
+ {
+  "a": "tokyo.awajicho",
+  "b": "tokyo.shin_ochanomizu",
+  "min": 4,
+  "names": "淡路町 ↔ 新御茶ノ水"
+ },
+ {
+  "a": "tokyo.awajicho",
+  "b": "tokyo.ogawamachi",
+  "min": 3,
+  "names": "淡路町 ↔ 小川町"
+ },
+ {
+  "a": "tokyo.akihabara",
+  "b": "tokyo.iwamotocho",
+  "min": 6,
+  "names": "秋葉原 ↔ 岩本町"
+ },
+ {
+  "a": "tokyo.toranomon",
+  "b": "tokyo.toranomon_hills",
+  "min": 5,
+  "names": "虎ノ門 ↔ 虎ノ門ヒルズ"
+ },
+ {
+  "a": "tokyo.akasaka_mitsuke",
+  "b": "tokyo.nagatacho",
+  "min": 5,
+  "names": "赤坂見附 ↔ 永田町"
+ },
+ {
+  "a": "tokyo.ginza",
+  "b": "tokyo.yurakucho",
+  "min": 5,
+  "names": "銀座 ↔ 有楽町"
+ },
+ {
+  "a": "tokyo.ginza",
+  "b": "tokyo.ginza_itchome",
+  "min": 5,
+  "names": "銀座 ↔ 銀座一丁目"
+ },
+ {
+  "a": "tokyo.bakuro_yokoyama",
+  "b": "tokyo.higashi_nihonbashi",
+  "min": 3,
+  "names": "馬喰横山 ↔ 東日本橋"
+ },
+ {
+  "a": "tokyo.tachikawa_kita",
+  "b": "tokyo.tachikawa",
+  "min": 5,
+  "names": "立川北 ↔ 立川"
+ },
+ {
+  "a": "tokyo.tachikawa_minami",
+  "b": "tokyo.tachikawa",
+  "min": 5,
+  "names": "立川南 ↔ 立川"
+ },
+ {
+  "a": "tokyo.tama_center",
+  "b": "tokyo.keio_tama_center",
+  "min": 5,
+  "names": "多摩センター ↔ 京王多摩センター"
+ },
+ {
+  "a": "tokyo.tama_center",
+  "b": "tokyo.odakyu_tama_center",
+  "min": 5,
+  "names": "多摩センター ↔ 小田急多摩センター"
+ },
+ {
+  "a": "tokyo.keio_tama_center",
+  "b": "tokyo.odakyu_tama_center",
+  "min": 2,
+  "names": "京王多摩センター ↔ 小田急多摩センター"
+ },
+ {
+  "a": "tokyo.odakyu_nagayama",
+  "b": "tokyo.keio_nagayama",
+  "min": 2,
+  "names": "小田急永山 ↔ 京王永山"
+ },
+ {
+  "a": "tokyo.kawagoeshi",
+  "b": "tokyo.hon_kawagoe",
+  "min": 7,
+  "names": "川越市 ↔ 本川越"
+ },
+ {
+  "a": "tokyo.yumegaoka",
+  "b": "tokyo.shimoiida",
+  "min": 6,
+  "names": "ゆめが丘 ↔ 下飯田"
+ },
+ {
+  "a": "tokyo.enoshima",
+  "b": "tokyo.shonan_enoshima",
+  "min": 3,
+  "names": "江ノ島 ↔ 湘南江の島"
+ },
+ {
+  "a": "tokyo.shin_akitsu",
+  "b": "tokyo.akitsu",
+  "min": 5,
+  "names": "新秋津 ↔ 秋津"
+ },
+ {
+  "a": "tokyo.shiraitodai",
+  "b": "tokyo.musashinodai",
+  "min": 6,
+  "names": "白糸台 ↔ 武蔵野台"
+ },
+ {
+  "a": "tokyo.keio_inadazutsumi",
+  "b": "tokyo.inadazutsumi",
+  "min": 8,
+  "names": "京王稲田堤 ↔ 稲田堤"
+ },
+ {
+  "a": "tokyo.asakadai",
+  "b": "tokyo.kita_asaka",
+  "min": 3,
+  "names": "朝霞台 ↔ 北朝霞"
+ },
+ {
+  "a": "tokyo.mizonokuchi",
+  "b": "tokyo.musashi_mizonokuchi",
+  "min": 4,
+  "names": "溝の口 ↔ 武蔵溝ノ口"
+ },
+ {
+  "a": "tokyo.koganecho",
+  "b": "tokyo.bandobashi",
+  "min": 6,
+  "names": "黄金町 ↔ 阪東橋"
+ },
+ {
+  "a": "tokyo.tammachi",
+  "b": "tokyo.kanagawa",
+  "min": 8,
+  "names": "反町 ↔ 神奈川"
+ },
+ {
+  "a": "tokyo.chikatetsu_narimasu",
+  "b": "tokyo.narimasu",
+  "min": 5,
+  "names": "地下鉄成増 ↔ 成増"
+ },
+ {
+  "a": "tokyo.higashi_kanagawa",
+  "b": "tokyo.keikyu_higashi_kanagawa",
+  "min": 4,
+  "names": "東神奈川 ↔ 京急東神奈川"
+ },
+ {
+  "a": "tokyo.tsunashima",
+  "b": "tokyo.shin_tsunashima",
+  "min": 4,
+  "names": "綱島 ↔ 新綱島"
+ },
+ {
+  "a": "tokyo.chikatetsu_akatsuka",
+  "b": "tokyo.shimo_akatsuka",
+  "min": 3,
+  "names": "地下鉄赤塚 ↔ 下赤塚"
+ },
+ {
+  "a": "tokyo.yamashita",
+  "b": "tokyo.gotokuji",
+  "min": 3,
+  "names": "山下 ↔ 豪徳寺"
+ },
+ {
+  "a": "tokyo.shin_koyasu",
+  "b": "tokyo.keikyu_shinkoyasu",
+  "min": 4,
+  "names": "新子安 ↔ 京急新子安"
+ },
+ {
+  "a": "tokyo.shin_kawasaki",
+  "b": "tokyo.kashimada",
+  "min": 6,
+  "names": "新川崎 ↔ 鹿島田"
+ },
+ {
+  "a": "tokyo.kagetsu_sojiji",
+  "b": "tokyo.kokudo",
+  "min": 5,
+  "names": "花月総持寺 ↔ 国道"
+ },
+ {
+  "a": "tokyo.tsurumi",
+  "b": "tokyo.keikyu_tsurumi",
+  "min": 5,
+  "names": "鶴見 ↔ 京急鶴見"
+ },
+ {
+  "a": "tokyo.yoyogi_hachiman",
+  "b": "tokyo.yoyogi_koen",
+  "min": 6,
+  "names": "代々木八幡 ↔ 代々木公園"
+ },
+ {
+  "a": "tokyo.okubo",
+  "b": "tokyo.shin_okubo",
+  "min": 5,
+  "names": "大久保 ↔ 新大久保"
+ },
+ {
+  "a": "tokyo.minami_shinjuku",
+  "b": "tokyo.yoyogi",
+  "min": 6,
+  "names": "南新宿 ↔ 代々木"
+ },
+ {
+  "a": "tokyo.shinjuku_nishiguchi",
+  "b": "tokyo.seibu_shinjuku",
+  "min": 6,
+  "names": "新宿西口 ↔ 西武新宿"
+ },
+ {
+  "a": "tokyo.sendagaya",
+  "b": "tokyo.kokuritsu_kyogijo",
+  "min": 6,
+  "names": "千駄ケ谷 ↔ 国立競技場"
+ },
+ {
+  "a": "tokyo.kishibojimmae",
+  "b": "tokyo.zoshigaya",
+  "min": 3,
+  "names": "鬼子母神前 ↔ 雑司が谷"
+ },
+ {
+  "a": "tokyo.togoshi_ginza",
+  "b": "tokyo.togoshi",
+  "min": 5,
+  "names": "戸越銀座 ↔ 戸越"
+ },
+ {
+  "a": "tokyo.shimo_itabashi",
+  "b": "tokyo.itabashi",
+  "min": 7,
+  "names": "下板橋 ↔ 板橋"
+ },
+ {
+  "a": "tokyo.toden_zoshigaya",
+  "b": "tokyo.higashi_ikebukuro",
+  "min": 5,
+  "names": "都電雑司ヶ谷 ↔ 東池袋"
+ },
+ {
+  "a": "tokyo.itabashi",
+  "b": "tokyo.shin_itabashi",
+  "min": 8,
+  "names": "板橋 ↔ 新板橋"
+ },
+ {
+  "a": "tokyo.higashi_ikebukuro",
+  "b": "tokyo.higashi_ikebukuro_yonchome",
+  "min": 2,
+  "names": "東池袋 ↔ 東池袋四丁目"
+ },
+ {
+  "a": "tokyo.otsuka",
+  "b": "tokyo.otsuka_ekimae",
+  "min": 3,
+  "names": "大塚 ↔ 大塚駅前"
+ },
+ {
+  "a": "tokyo.nishi_sugamo",
+  "b": "tokyo.shin_koshinzuka",
+  "min": 6,
+  "names": "西巣鴨 ↔ 新庚申塚"
+ },
+ {
+  "a": "tokyo.nishi_sugamo",
+  "b": "tokyo.nishigahara_yonchome",
+  "min": 8,
+  "names": "西巣鴨 ↔ 西ヶ原四丁目"
+ },
+ {
+  "a": "tokyo.kagurazaka",
+  "b": "tokyo.ushigome_kagurazaka",
+  "min": 7,
+  "names": "神楽坂 ↔ 牛込神楽坂"
+ },
+ {
+  "a": "tokyo.asukayama",
+  "b": "tokyo.oji",
+  "min": 7,
+  "names": "飛鳥山 ↔ 王子"
+ },
+ {
+  "a": "tokyo.oji",
+  "b": "tokyo.oji_ekimae",
+  "min": 3,
+  "names": "王子 ↔ 王子駅前"
+ },
+ {
+  "a": "tokyo.sengakuji",
+  "b": "tokyo.takanawa_gateway",
+  "min": 7,
+  "names": "泉岳寺 ↔ 高輪ゲートウェイ"
+ },
+ {
+  "a": "tokyo.nishigahara",
+  "b": "tokyo.kami_nakazato",
+  "min": 8,
+  "names": "西ケ原 ↔ 上中里"
+ },
+ {
+  "a": "tokyo.kasumigaseki",
+  "b": "tokyo.sakuradamon",
+  "min": 8,
+  "names": "霞ケ関 ↔ 桜田門"
+ },
+ {
+  "a": "tokyo.hakusan",
+  "b": "tokyo.hon_komagome",
+  "min": 8,
+  "names": "白山 ↔ 本駒込"
+ },
+ {
+  "a": "tokyo.ginza_itchome",
+  "b": "tokyo.kyobashi",
+  "min": 7,
+  "names": "銀座一丁目 ↔ 京橋"
+ },
+ {
+  "a": "tokyo.yushima",
+  "b": "tokyo.ueno_hirokoji",
+  "min": 6,
+  "names": "湯島 ↔ 上野広小路"
+ },
+ {
+  "a": "tokyo.yushima",
+  "b": "tokyo.ueno_okachimachi",
+  "min": 7,
+  "names": "湯島 ↔ 上野御徒町"
+ },
+ {
+  "a": "tokyo.kyobashi",
+  "b": "tokyo.takaracho",
+  "min": 5,
+  "names": "京橋 ↔ 宝町"
+ },
+ {
+  "a": "tokyo.tsukiji",
+  "b": "tokyo.shintomicho",
+  "min": 6,
+  "names": "築地 ↔ 新富町"
+ },
+ {
+  "a": "tokyo.ueno_hirokoji",
+  "b": "tokyo.keisei_ueno",
+  "min": 8,
+  "names": "上野広小路 ↔ 京成上野"
+ },
+ {
+  "a": "tokyo.mitsukoshimae",
+  "b": "tokyo.shin_nihombashi",
+  "min": 5,
+  "names": "三越前 ↔ 新日本橋"
+ },
+ {
+  "a": "tokyo.keisei_ueno",
+  "b": "tokyo.ueno_okachimachi",
+  "min": 7,
+  "names": "京成上野 ↔ 上野御徒町"
+ },
+ {
+  "a": "tokyo.tokyo_teleport",
+  "b": "tokyo.odaiba_kaihinkoen",
+  "min": 7,
+  "names": "東京テレポート ↔ お台場海浜公園"
+ },
+ {
+  "a": "tokyo.tokyo_teleport",
+  "b": "tokyo.aomi",
+  "min": 7,
+  "names": "東京テレポート ↔ 青海"
+ },
+ {
+  "a": "tokyo.machiya_ekimae",
+  "b": "tokyo.machiya",
+  "min": 3,
+  "names": "町屋駅前 ↔ 町屋"
+ },
+ {
+  "a": "tokyo.machiya",
+  "b": "tokyo.arakawa_nanachome",
+  "min": 5,
+  "names": "町屋 ↔ 荒川七丁目"
+ },
+ {
+  "a": "tokyo.bakurocho",
+  "b": "tokyo.bakuro_yokoyama",
+  "min": 4,
+  "names": "馬喰町 ↔ 馬喰横山"
+ },
+ {
+  "a": "tokyo.bakurocho",
+  "b": "tokyo.higashi_nihonbashi",
+  "min": 6,
+  "names": "馬喰町 ↔ 東日本橋"
+ },
+ {
+  "a": "tokyo.haneda_airport_terminal_1",
+  "b": "tokyo.haneda_airport_terminal_12",
+  "min": 5,
+  "names": "羽田空港第1ターミナル ↔ 羽田空港第1・第2ターミナル"
+ },
+ {
+  "a": "tokyo.haneda_airport_terminal_12",
+  "b": "tokyo.haneda_airport_terminal_2",
+  "min": 5,
+  "names": "羽田空港第1・第2ターミナル ↔ 羽田空港第2ターミナル"
+ },
+ {
+  "a": "tokyo.shin_koshigaya",
+  "b": "tokyo.minami_koshigaya",
+  "min": 4,
+  "names": "新越谷 ↔ 南越谷"
+ },
+ {
+  "a": "tokyo.minowa",
+  "b": "tokyo.minowabashi",
+  "min": 6,
+  "names": "三ノ輪 ↔ 三ノ輪橋"
+ },
+ {
+  "a": "tokyo.kokusai_tenjijo",
+  "b": "tokyo.ariake",
+  "min": 4,
+  "names": "国際展示場 ↔ 有明"
+ },
+ {
+  "a": "tokyo.tokyo_skytree",
+  "b": "tokyo.oshiage",
+  "min": 4,
+  "names": "とうきょうスカイツリー ↔ 押上"
+ },
+ {
+  "a": "tokyo.keisei_sekiya",
+  "b": "tokyo.ushida",
+  "min": 3,
+  "names": "京成関屋 ↔ 牛田"
+ },
+ {
+  "a": "tokyo.hikifune",
+  "b": "tokyo.keisei_hikifune",
+  "min": 7,
+  "names": "曳舟 ↔ 京成曳舟"
+ },
+ {
+  "a": "tokyo.keisei_kanamachi",
+  "b": "tokyo.kanamachi",
+  "min": 4,
+  "names": "京成金町 ↔ 金町"
+ },
+ {
+  "a": "tokyo.maihama",
+  "b": "tokyo.resort_gateway",
+  "min": 5,
+  "names": "舞浜 ↔ リゾートゲートウェイ"
+ },
+ {
+  "a": "tokyo.koya",
+  "b": "tokyo.shin_matsudo",
+  "min": 4,
+  "names": "幸谷 ↔ 新松戸"
+ },
+ {
+  "a": "tokyo.motoyawata",
+  "b": "tokyo.keisei_yawata",
+  "min": 6,
+  "names": "本八幡 ↔ 京成八幡"
+ },
+ {
+  "a": "tokyo.yabashira",
+  "b": "tokyo.shin_yahashira",
+  "min": 3,
+  "names": "八柱 ↔ 新八柱"
+ },
+ {
+  "a": "tokyo.shimosa_nakayama",
+  "b": "tokyo.keisei_nakayama",
+  "min": 6,
+  "names": "下総中山 ↔ 京成中山"
+ },
+ {
+  "a": "tokyo.funabashi",
+  "b": "tokyo.keisei_funabashi",
+  "min": 4,
+  "names": "船橋 ↔ 京成船橋"
+ },
+ {
+  "a": "tokyo.tsudanuma",
+  "b": "tokyo.shin_tsudanuma",
+  "min": 7,
+  "names": "津田沼 ↔ 新津田沼"
+ },
+ {
+  "a": "tokyo.keisei_makuhari_hongo",
+  "b": "tokyo.makuhari_hongo",
+  "min": 2,
+  "names": "京成幕張本郷 ↔ 幕張本郷"
+ },
+ {
+  "a": "tokyo.keisei_makuhari",
+  "b": "tokyo.makuhari",
+  "min": 6,
+  "names": "京成幕張 ↔ 幕張"
+ },
+ {
+  "a": "tokyo.shin_chiba",
+  "b": "tokyo.chiba",
+  "min": 7,
+  "names": "新千葉 ↔ 千葉"
+ },
+ {
+  "a": "tokyo.chiba",
+  "b": "tokyo.keisei_chiba",
+  "min": 6,
+  "names": "千葉 ↔ 京成千葉"
+ },
+ {
+  "a": "tokyo.chiba_chuo",
+  "b": "tokyo.yoshikawa_koen",
+  "min": 6,
+  "names": "千葉中央 ↔ 葭川公園"
+ },
+ {
+  "a": "tokyo.hon_chiba",
+  "b": "tokyo.kencho_mae",
+  "min": 6,
+  "names": "本千葉 ↔ 県庁前"
+ },
+ {
+  "a": "tokyo.katsutadai",
+  "b": "tokyo.toyo_katsutadai",
+  "min": 3,
+  "names": "勝田台 ↔ 東葉勝田台"
+ },
+ {
+  "a": "tokyo.narita",
+  "b": "tokyo.keisei_narita",
+  "min": 5,
+  "names": "成田 ↔ 京成成田"
+ },
+ {
+  "a": "tokyo.higashi_narita",
+  "b": "tokyo.airport_terminal_2",
+  "min": 7,
+  "names": "東成田 ↔ 空港第2ビル"
+ }
+]

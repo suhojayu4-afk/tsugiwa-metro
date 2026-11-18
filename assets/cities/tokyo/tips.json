@@ -1,0 +1,107 @@
+{
+ "tokyo.ueno": [
+  {
+   "ja": "上野公園・美術館・動物園は「公園口」がいちばん近い",
+   "ko": "우에노 공원·미술관·동물원은 「공원 출구(公園口)」가 가장 가까워요",
+   "en": "Ueno Park, the museums and the zoo: use the Park Exit (公園口)"
+  },
+  {
+   "ja": "アメ横は「不忍口」を出てすぐ",
+   "ko": "아메요코는 「시노바즈 출구(不忍口)」로 나가면 바로예요",
+   "en": "Ameyoko market is right outside the Shinobazu Exit"
+  },
+  {
+   "ja": "JRと銀座線の乗り換えは 徒歩数分",
+   "ko": "JR과 긴자선 환승은 걸어서 몇 분",
+   "en": "JR ⇄ Ginza Line transfer is a few minutes on foot"
+  }
+ ],
+ "tokyo.tokyo": [
+  {
+   "ja": "赤レンガの駅舎は「丸の内口」側",
+   "ko": "빨간 벽돌 역사는 「마루노우치 출구」 쪽",
+   "en": "The red-brick station building is on the Marunouchi side"
+  },
+  {
+   "ja": "高速バスのりばは「八重洲口」側",
+   "ko": "고속버스 승강장은 「야에스 출구」 쪽",
+   "en": "Highway buses leave from the Yaesu side"
+  },
+  {
+   "ja": "とても広い駅。乗り換えは時間に余裕を",
+   "ko": "매우 넓은 역이에요. 환승은 여유 있게",
+   "en": "A huge station — allow extra time to change"
+  }
+ ],
+ "tokyo.shibuya": [
+  {
+   "ja": "スクランブル交差点・ハチ公は「ハチ公口」",
+   "ko": "스크램블 교차로·하치코 동상은 「하치코 출구」",
+   "en": "Scramble Crossing and Hachiko: Hachiko Exit"
+  },
+  {
+   "ja": "銀座線のホームは地上3階の高いところ",
+   "ko": "긴자선 승강장은 지상 3층 높은 곳에 있어요",
+   "en": "The Ginza Line platform is up on the 3rd floor"
+  }
+ ],
+ "tokyo.shinjuku": [
+  {
+   "ja": "都庁は「西口」から 徒歩約10分",
+   "ko": "도쿄도청은 「서쪽 출구」에서 걸어서 약 10분",
+   "en": "Metropolitan Government Building: ~10 min from the West Exit"
+  },
+  {
+   "ja": "世界一乗降客が多い駅。出口名を確認してから歩こう",
+   "ko": "세계에서 가장 붐비는 역. 출구 이름을 확인하고 움직여요",
+   "en": "The world's busiest station — check the exit name first"
+  }
+ ],
+ "tokyo.asakusa": [
+  {
+   "ja": "雷門・浅草寺は 銀座線の出口からすぐ",
+   "ko": "가미나리몬·센소지는 긴자선 출구에서 바로",
+   "en": "Kaminarimon and Sensoji are right by the Ginza Line exits"
+  },
+  {
+   "ja": "スカイツリーは隅田川の向こう。歩くと約20分",
+   "ko": "스카이트리는 스미다강 건너편. 걸으면 약 20분",
+   "en": "Skytree is across the Sumida River, ~20 min on foot"
+  }
+ ],
+ "tokyo.akihabara": [
+  {
+   "ja": "電気街は「電気街口」から",
+   "ko": "전자상가는 「전기가 출구(電気街口)」로",
+   "en": "Electric Town: use the Electric Town Exit"
+  }
+ ],
+ "tokyo.harajuku": [
+  {
+   "ja": "竹下通りは「竹下口」、明治神宮は「表参道口」側",
+   "ko": "다케시타 거리는 「다케시타 출구」, 메이지 신궁은 「오모테산도 출구」 쪽",
+   "en": "Takeshita St: Takeshita Exit · Meiji Shrine: Omotesando side"
+  }
+ ],
+ "tokyo.hamamatsucho": [
+  {
+   "ja": "東京タワーまで 徒歩約15分",
+   "ko": "도쿄타워까지 걸어서 약 15분",
+   "en": "Tokyo Tower is ~15 min on foot"
+  }
+ ],
+ "tokyo.ikebukuro": [
+  {
+   "ja": "サンシャインシティは「東口」から",
+   "ko": "선샤인 시티는 「동쪽 출구」에서",
+   "en": "Sunshine City: East Exit"
+  }
+ ],
+ "tokyo.ginza": [
+  {
+   "ja": "銀座の中心・四丁目交差点は 地下からすぐ",
+   "ko": "긴자 중심 4초메 교차로는 지하에서 바로",
+   "en": "Ginza 4-chome crossing is right above the station"
+  }
+ ]
+}
