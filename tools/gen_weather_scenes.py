@@ -23,6 +23,8 @@ GEN = f'{ROOT}/docs/art/gen'
 OUT_RAW = f'{GEN}/weather'
 OUT = f'{ROOT}/assets/art/weather'
 MODEL = 'gpt-6.2-sol'           # owner's choice (2026-11-18)
+# The picture is drawn by the image tool; the model only writes the request and
+# saves the file, so low reasoning gives the same picture for far fewer tokens.
 
 SCENES = {
     'standard': 'a generic Tokyo station with city buildings',
@@ -110,7 +112,7 @@ def job(name, scene, part, weather):
                                                 [EXTRA[k] for k in ((weather, part), (weather, scene)) if k in EXTRA]))
         open(f'{OUT_RAW}/prompt_{name}.txt', 'w', encoding='utf8').write(prompt)
         for attempt in range(2):
-            subprocess.run(['codex', 'exec', '-m', MODEL, '-s', 'workspace-write',
+            subprocess.run(['codex', 'exec', '-m', MODEL, '-c', 'model_reasoning_effort=low', '-s', 'workspace-write',
                             '--skip-git-repo-check', '-'], input=prompt.encode('utf8'),
                            cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
                            timeout=900, shell=sys.platform == 'win32')

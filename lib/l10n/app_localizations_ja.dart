@@ -676,4 +676,18 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get widgetKindNextDesc => '小さく 電車の間隔と所要時間';
+
+  @override
+  String get routeMissed => 'このルートは終電に間に合いません';
+
+  @override
+  String get altRouteTitle => '別ルートならまだ間に合う';
+
+  @override
+  String altRouteInfo(String time, String via) {
+    return '$timeまでに出発 · $via';
+  }
+
+  @override
+  String get altRouteUse => 'このルートにする';
 }

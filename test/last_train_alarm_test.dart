@@ -26,4 +26,23 @@ void main() {
     expect(dep, lessThanOrEqualTo(first));
     expect(dep, lessThan(second));
   });
+
+  test('after one last train: another way that still works, or none', () {
+    final from = id('渋谷'), to = id('上野');
+    final first = RouteFinder(city).find(from, to)!;
+    final dep = lastDepartureMin(city, first)!;
+    // Before its last departure nothing is missed.
+    expect(missedLines(city, first, dep - 10), isEmpty);
+    // Just after it, something is missed; any other way found must still work.
+    final late = dep + 1;
+    expect(missedLines(city, first, late), isNotEmpty);
+    final alt = stillPossible(city, from, to, late);
+    if (alt != null) {
+      expect(missedLines(city, alt.route, late), isEmpty);
+      expect(alt.avoid, isNotEmpty);
+      expect(alt.lastDep, greaterThanOrEqualTo(late));
+    }
+    // Far past every last train: no way at all.
+    expect(stillPossible(city, from, to, 27 * 60), isNull);
+  });
 }

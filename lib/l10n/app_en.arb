@@ -185,5 +185,9 @@
   "widgetTrip": "{dest} in ~{minutes} min",
   "widgetEnded": "Ended · first {time}",
   "widgetKindNext": "Next train",
-  "widgetKindNextDesc": "Small: how often, and ride time"
+  "widgetKindNextDesc": "Small: how often, and ride time",
+  "routeMissed": "This route's last train has gone",
+  "altRouteTitle": "Another way still works",
+  "altRouteInfo": "Leave by {time} · {via}",
+  "altRouteUse": "Use this route"
 }

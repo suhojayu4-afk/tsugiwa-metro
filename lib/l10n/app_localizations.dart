@@ -1215,6 +1215,30 @@ abstract class AppLocalizations {
   /// In ja, this message translates to:
   /// **'小さく 電車の間隔と所要時間'**
   String get widgetKindNextDesc;
+
+  /// No description provided for @routeMissed.
+  ///
+  /// In ja, this message translates to:
+  /// **'このルートは終電に間に合いません'**
+  String get routeMissed;
+
+  /// No description provided for @altRouteTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'別ルートならまだ間に合う'**
+  String get altRouteTitle;
+
+  /// No description provided for @altRouteInfo.
+  ///
+  /// In ja, this message translates to:
+  /// **'{time}までに出発 · {via}'**
+  String altRouteInfo(String time, String via);
+
+  /// No description provided for @altRouteUse.
+  ///
+  /// In ja, this message translates to:
+  /// **'このルートにする'**
+  String get altRouteUse;
 }
 
 class _AppLocalizationsDelegate

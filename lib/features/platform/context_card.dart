@@ -9,6 +9,7 @@ import '../../core/pixel/pixel_ui.dart';
 import '../../core/services.dart';
 import '../../data/models/city.dart';
 import '../../data/models/timetable.dart';
+import '../../data/last_train_alarm.dart';
 import '../../data/night_options.dart';
 import '../../data/route_store.dart';
 import '../../l10n/app_localizations.dart';
@@ -48,6 +49,7 @@ class ContextCard extends StatelessWidget {
     this.onBell,
     this.firstAlarmOn = false,
     this.onFirstBell,
+    this.onUseAlt,
   });
 
   final CityData city;
@@ -66,6 +68,10 @@ class ContextCard extends StatelessWidget {
   /// 始発アラーム, shown when the trains have stopped.
   final bool firstAlarmOn;
   final VoidCallback? onFirstBell;
+
+  /// 「このルートにする」: ride the other way that still works tonight,
+  /// avoiding these lines.
+  final ValueChanged<Set<String>>? onUseAlt;
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +98,7 @@ class ContextCard extends StatelessWidget {
               onBell: onBell,
               firstAlarmOn: firstAlarmOn,
               onFirstBell: onFirstBell,
+              onUseAlt: onUseAlt,
             ),
     );
   }
@@ -273,6 +280,7 @@ class _NextTrain extends StatelessWidget {
     this.onBell,
     this.firstAlarmOn = false,
     this.onFirstBell,
+    this.onUseAlt,
   });
 
   final CityData city;
@@ -283,53 +291,101 @@ class _NextTrain extends StatelessWidget {
   final VoidCallback? onBell;
   final bool firstAlarmOn;
   final VoidCallback? onFirstBell;
+  final ValueChanged<Set<String>>? onUseAlt;
+
+  /// A last train on this route has gone: say so, then offer another way
+  /// that still works tonight, or (none left) the first train and the ways
+  /// home without trains.
+  List<Widget> _missed(AppLocalizations t, String lang, LineTimetable? tt, DateTime jst, int nowMin) {
+    final from = route.legs.first.stationIds.first, to = route.legs.last.stationIds.last;
+    final alt = stillPossible(city, from, to, nowMin);
+    final via = alt == null ? '' : {for (final l in alt.route.legs) city.line(l.lineId).name.of(lang)}.join(' → ');
+    return [
+      const SizedBox(height: 6),
+      Row(
+        children: [
+          const Icon(Icons.do_not_disturb_on_rounded, size: 15, color: PixelColors.danger),
+          const SizedBox(width: 4),
+          Expanded(child: PixelText(t.routeMissed, size: 13, color: PixelColors.danger, maxLines: 1)),
+        ],
+      ),
+      if (alt != null) ...[
+        const SizedBox(height: 6),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.fromLTRB(10, 8, 10, 4),
+          decoration: BoxDecoration(color: const Color(0xFFEFF7F1), borderRadius: BorderRadius.circular(10)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              PixelText(t.altRouteTitle, size: 14, color: _green, bold: true, maxLines: 1),
+              const SizedBox(height: 2),
+              PixelText(t.altRouteInfo(LineTimetable.clock(alt.lastDep), via), size: 12, color: PixelColors.muted),
+              if (onUseAlt != null)
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton.icon(
+                    onPressed: () => onUseAlt!(alt.avoid),
+                    icon: const Icon(Icons.alt_route_rounded, size: 18, color: _green),
+                    label: PixelText(t.altRouteUse, size: 13, color: _green),
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ] else if (tt != null)
+        ..._noTrains(t, tt, jst),
+    ];
+  }
 
   /// No trains now: when the first one comes (with its alarm) and the ways
   /// home without trains — a rough taxi fare and, if not too far, walking.
   List<Widget> _noTrains(AppLocalizations t, LineTimetable tt, DateTime jst) {
-    final toFirst = tt.minutesToFirstTrain(jst) ?? 0;
+    final toFirst = tt.minutesToFirstTrain(jst);
     final from = route.legs.first.stationIds.first, to = route.legs.last.stationIds.last;
     final metres = roadMetres(city, from, to);
     final walk = walkMinutes(metres);
     final fare = NumberFormat.decimalPattern('ja').format(taxiFareYen(metres, lateNight: isLateNight(jst)));
     return [
-      const SizedBox(height: 6),
-      Row(
-        children: [
-          const Icon(Icons.wb_twilight_rounded, size: 16, color: _green),
-          const SizedBox(width: 4),
-          Expanded(
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
-              alignment: Alignment.centerLeft,
-              child: PixelText(
-                t.firstTrainIn(toFirst ~/ 60, toFirst % 60, LineTimetable.clock(tt.firstTrainMin)),
-                size: 14,
-                color: _green,
-                maxLines: 1,
-              ),
-            ),
-          ),
-          if (onFirstBell != null)
-            Semantics(
-              button: true,
-              label: t.firstTrainAlarm,
-              selected: firstAlarmOn,
-              child: GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: onFirstBell,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                  child: Icon(
-                    firstAlarmOn ? Icons.notifications_active_rounded : Icons.notifications_none_rounded,
-                    size: 22,
-                    color: firstAlarmOn ? _green : PixelColors.muted,
-                  ),
+      if (toFirst != null) ...[
+        const SizedBox(height: 6),
+        Row(
+          children: [
+            const Icon(Icons.wb_twilight_rounded, size: 16, color: _green),
+            const SizedBox(width: 4),
+            Expanded(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.centerLeft,
+                child: PixelText(
+                  t.firstTrainIn(toFirst ~/ 60, toFirst % 60, LineTimetable.clock(tt.firstTrainMin)),
+                  size: 14,
+                  color: _green,
+                  maxLines: 1,
                 ),
               ),
             ),
-        ],
-      ),
+            if (onFirstBell != null)
+              Semantics(
+                button: true,
+                label: t.firstTrainAlarm,
+                selected: firstAlarmOn,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: onFirstBell,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    child: Icon(
+                      firstAlarmOn ? Icons.notifications_active_rounded : Icons.notifications_none_rounded,
+                      size: 22,
+                      color: firstAlarmOn ? _green : PixelColors.muted,
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ],
       const SizedBox(height: 4),
       PixelText(t.nightWays, size: 11, color: PixelColors.muted),
       const SizedBox(height: 2),
@@ -383,6 +439,9 @@ class _NextTrain extends StatelessWidget {
         // Japan time: last trains and rush hours are Tokyo's.
         final jst = now.toUtc().add(const Duration(hours: 9));
         final toLast = tt?.minutesToLastTrain(jst);
+        // Every last train on the way, not just the first line's.
+        final nowMin = LineTimetable.serviceMinute(jst);
+        final missed = missedLines(city, route, nowMin);
         final ended = tt != null && tt.endedFor(jst);
         if (live != null) {
           main = t.nextTrainIn(live);
@@ -454,7 +513,9 @@ class _NextTrain extends StatelessWidget {
                           ),
                         const SizedBox(height: 2),
                         PixelText(extra.join('  ·  '), size: 12, color: PixelColors.muted, maxLines: 1),
-                        if (tt == null || tt.inService(jst)) ...[
+                        if (missed.isNotEmpty)
+                          ..._missed(t, lang, tt, jst, nowMin)
+                        else if (tt == null || tt.inService(jst)) ...[
                           const SizedBox(height: 6),
                           CrowdChip(level: EstimateCongestionSource.levelAt(leg.lineId, jst)),
                         ] else

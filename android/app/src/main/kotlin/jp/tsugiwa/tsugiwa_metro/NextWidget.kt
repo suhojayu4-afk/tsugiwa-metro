@@ -39,7 +39,12 @@ class NextWidget : AppWidgetProvider() {
                 tmp.renameTo(File(d, "next_$name.png"))
             }
             refresh(context)
+            BoardWidget.refresh(context)
         }
+
+        /** A picture the app drew ("board_day", "full_h7", …), or null. */
+        fun art(context: Context, name: String) =
+            File(dir(context), "next_$name.png").takeIf { it.exists() }?.let { BitmapFactory.decodeFile(it.path) }
 
         fun refresh(context: Context) {
             val manager = AppWidgetManager.getInstance(context)

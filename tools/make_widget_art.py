@@ -49,6 +49,12 @@ def main():
         src(os.path.join('bg', f)).crop((0, 6, 320, 103)).resize((192, 58), Image.BOX).save(
             os.path.join(OUT, f'bg_{f}'))
 
+    # The bigger 地下鉄案内 widget (4x2): the same backgrounds at 192×96,
+    # scaled to the height and cropped to the middle.
+    for f in sorted(os.listdir(os.path.join(SRC, 'bg'))):
+        im = src(os.path.join('bg', f)).resize((274, 96), Image.BOX)
+        im.crop((41, 0, 233, 96)).save(os.path.join(OUT, f'board_{f}'))
+
     sign = src(PICK['sign']).crop((1, 0, 45, 28))
     ImageDraw.Draw(sign).line([(1, 27), (43, 27)], fill=(60, 62, 72, 255))  # bottom of the frame
     for name, im in zip(('sign', 'train'), (sign, src(PICK['train']).crop((3, 7, 62, 24)))):

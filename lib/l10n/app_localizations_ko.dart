@@ -676,4 +676,18 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get widgetKindNextDesc => '작게, 운행 간격과 소요 시간';
+
+  @override
+  String get routeMissed => '이 경로는 막차를 놓쳤어요';
+
+  @override
+  String get altRouteTitle => '다른 경로라면 아직 갈 수 있어요';
+
+  @override
+  String altRouteInfo(String time, String via) {
+    return '$time까지 출발 · $via';
+  }
+
+  @override
+  String get altRouteUse => '이 경로로';
 }

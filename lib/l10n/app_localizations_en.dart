@@ -692,4 +692,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get widgetKindNextDesc => 'Small: how often, and ride time';
+
+  @override
+  String get routeMissed => 'This route\'s last train has gone';
+
+  @override
+  String get altRouteTitle => 'Another way still works';
+
+  @override
+  String altRouteInfo(String time, String via) {
+    return 'Leave by $time · $via';
+  }
+
+  @override
+  String get altRouteUse => 'Use this route';
 }

@@ -27,7 +27,13 @@ class NextWidgetData {
     required this.sky,
     required this.temp,
     required this.rain,
+    this.lineLabel = '',
+    this.first = '',
   });
+
+  /// 地下鉄案内 only: 「宇都宮線 白岡方面」, 「始発 04:50」.
+  final String lineLabel;
+  final String first;
 
   final String fromName;
   final String toName;
@@ -158,6 +164,106 @@ Future<Uint8List> renderNextWidget(NextWidgetData d, String led, DayPart part) a
   if (bell != null) put(bell, 142, 46, w: 12, h: 12);
 
   final pic = await rec.endRecording().toImage((_w * _k).round(), (_h * _k).round());
+  final bytes = await pic.toByteData(format: ui.ImageByteFormat.png);
+  pic.dispose();
+  return bytes!.buffer.asUint8List();
+}
+
+/// 地下鉄案内 (4x2): a departure board on the platform — the line, the route
+/// as signs with the train, the last train big on the LED, the first train,
+/// the ride time and the weather. 192×96 art pixels, drawn 4×; one picture
+/// per time of day.
+Future<Uint8List> renderBoardWidget(NextWidgetData d, DayPart part) async {
+  Future<ui.Image> img(String n) => SceneArt.load('$_a$n.png');
+  final bg = await img('board_${part.name}_${d.sky}');
+  final signBase = await img('sign_base'), signBand = await img('sign_band');
+  final trainBase = await img('train_base'), trainBand = await img('train_band');
+  final ledFrame = await img('led');
+  final bell = d.alarm ? await img('icon_bell') : null;
+  final icon = await img('icon_${widgetIcon(d.sky, part)}');
+  const w = 192.0, h = 96.0;
+
+  final rec = ui.PictureRecorder();
+  final c = Canvas(rec)..scale(_k);
+  final crisp = Paint()..filterQuality = FilterQuality.none;
+  void put(ui.Image i, double x, double y, {Color? tint, double? sw, double? sh}) {
+    final src = Rect.fromLTWH(0, 0, i.width.toDouble(), i.height.toDouble());
+    final dst = Rect.fromLTWH(x, y, sw ?? i.width.toDouble(), sh ?? i.height.toDouble());
+    c.drawImageRect(
+      i,
+      src,
+      dst,
+      tint == null
+          ? crisp
+          : (Paint()
+              ..filterQuality = FilterQuality.none
+              ..colorFilter = ColorFilter.mode(tint, BlendMode.modulate)),
+    );
+  }
+
+  double text(String s, double x, double y, double size, Color color, {bool center = false, double? maxW}) {
+    final tp = TextPainter(
+      text: TextSpan(
+        text: s,
+        style: TextStyle(fontFamily: 'DotGothic16', fontSize: size, color: color, height: 1),
+      ),
+      textDirection: TextDirection.ltr,
+      maxLines: 1,
+    )..layout();
+    final k = maxW != null && tp.width > maxW ? maxW / tp.width : 1.0;
+    c.save();
+    c.translate(center ? x - tp.width * k / 2 : x, y);
+    c.scale(k, 1);
+    tp.paint(c, Offset.zero);
+    c.restore();
+    final width = tp.width * k;
+    tp.dispose();
+    return width;
+  }
+
+  put(bg, 0, 0);
+  final veil = switch (part) {
+    DayPart.day => 0x30,
+    DayPart.evening => 0x28,
+    DayPart.night => 0x10,
+  };
+  c.drawRect(const Rect.fromLTWH(0, 0, w, h), Paint()..color = Color.fromARGB(veil, 8, 8, 18));
+
+  // Line chip, top left; weather, top right.
+  final chipW = text(d.lineLabel, -999, -999, 8, const Color(0x00000000)) + 6;
+  c.drawRect(Rect.fromLTWH(4, 4, chipW.clamp(0, 140), 11), Paint()..color = d.lineColor);
+  text(d.lineLabel, 7, 5.5, 8, const Color(0xFFFFFFFF), maxW: 134);
+  c.drawRRect(
+    RRect.fromRectAndRadius(const Rect.fromLTWH(w - 34, 3, 31, 40), const Radius.circular(4)),
+    Paint()..color = const Color(0x8C080812),
+  );
+  put(icon, w - 30, 3);
+  text(d.temp, w - 18.5, 27, 8, const Color(0xFFFFFFFF), center: true, maxW: 28);
+  text(d.rain, w - 18.5, 35, 7, const Color(0xFF9FD3FF), center: true, maxW: 28);
+
+  // [from] ══ train ══ [to]
+  c.drawRect(const Rect.fromLTWH(48, 44, 66, 1), Paint()..color = const Color(0xFF50525C));
+  put(signBase, 4, 18);
+  put(signBand, 4, 18, tint: d.fromColor);
+  text(d.fromName, 26, 32, 9, const Color(0xFF1E2030), center: true, maxW: 36);
+  put(trainBase, 52, 27);
+  put(trainBand, 52, 27, tint: d.lineColor);
+  put(signBase, 113, 18);
+  put(signBand, 113, 18, tint: d.toColor);
+  text(d.toName, 135, 32, 9, const Color(0xFF1E2030), center: true, maxW: 36);
+
+  // Dark strip with the last train on a big LED, the first train beside it.
+  for (var i = 0; i < 4; i++) {
+    c.drawRect(Rect.fromLTWH(0, 49.0 + i, w, 1), Paint()..color = Color.fromARGB(0x30 + i * 0x20, 8, 8, 18));
+  }
+  c.drawRect(const Rect.fromLTWH(0, 53, w, h - 53), Paint()..color = const Color(0xB4080812));
+  put(ledFrame, 4, 56, sw: 104, sh: 25);
+  paintLed(c, const Rect.fromLTWH(8, 60, 96, 17), d.last, ledOrange);
+  if (bell != null) put(bell, 110, 59, sw: 14, sh: 14);
+  text(d.first, 128, 62, 8, const Color(0xFF8FE08F), maxW: 60);
+  text(d.trip, 6, 85, 8, const Color(0xFFE8E8EE), maxW: 180);
+
+  final pic = await rec.endRecording().toImage((w * _k).round(), (h * _k).round());
   final bytes = await pic.toByteData(format: ui.ImageByteFormat.png);
   pic.dispose();
   return bytes!.buffer.asUint8List();

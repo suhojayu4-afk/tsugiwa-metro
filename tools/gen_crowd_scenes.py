@@ -61,7 +61,7 @@ def job(name, scene, part, level):
                                change=CROWD[level].format(light=LIGHT[part]))
         open(f'{OUT_RAW}/prompt_{name}.txt', 'w', encoding='utf8').write(prompt)
         for _ in range(2):
-            subprocess.run(['codex', 'exec', '-m', MODEL, '-s', 'workspace-write',
+            subprocess.run(['codex', 'exec', '-m', MODEL, '-c', 'model_reasoning_effort=low', '-s', 'workspace-write',
                             '--skip-git-repo-check', '-'], input=prompt.encode('utf8'),
                            cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
                            timeout=900, shell=sys.platform == 'win32')

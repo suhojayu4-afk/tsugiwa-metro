@@ -32,15 +32,17 @@ class RouteFinder {
   final CityData city;
   final int transferPenaltySec;
 
-  RouteResult? find(String fromId, String toId, {DateTime? at}) {
+  /// [avoid]: lines not to ride (e.g. those whose last train has gone).
+  RouteResult? find(String fromId, String toId, {DateTime? at, Set<String> avoid = const {}}) {
     if (fromId == toId) return null;
     final time = at ?? DateTime.now();
-    final edges = _buildEdges(time);
+    final edges = _buildEdges(time, avoid);
 
     final dist = <String, int>{};
     final prev = <String, _Edge>{};
     final open = <String>{};
     for (final lineId in city.station(fromId).lines) {
+      if (avoid.contains(lineId)) continue;
       final key = _key(lineId, fromId);
       dist[key] = 0;
       open.add(key);
@@ -89,9 +91,12 @@ class RouteFinder {
     return legs.isEmpty ? null : RouteResult(legs);
   }
 
-  Map<String, List<_Edge>> _buildEdges(DateTime time) {
+  Map<String, List<_Edge>> _buildEdges(DateTime time, Set<String> avoid) {
     final edges = <String, List<_Edge>>{};
-    void add(_Edge e) => (edges[e.from] ??= []).add(e);
+    void add(_Edge e) {
+      if (avoid.contains(e.lineId) || avoid.contains(e.from.substring(0, e.from.indexOf('|')))) return;
+      (edges[e.from] ??= []).add(e);
+    }
 
     for (final line in city.lines) {
       final n = line.stations.length;
@@ -107,8 +112,7 @@ class RouteFinder {
       for (final from in station.lines) {
         for (final to in station.lines) {
           if (from == to) continue;
-          final cost =
-              station.transferWalkMin(from, to) * 60 + city.averageWaitSec(to, time) + transferPenaltySec;
+          final cost = station.transferWalkMin(from, to) * 60 + city.averageWaitSec(to, time) + transferPenaltySec;
           add(_Edge(_key(from, station.id), _key(to, station.id), cost, to, isTransfer: true));
         }
       }

@@ -70,8 +70,14 @@ class PlatformScreenState extends State<PlatformScreen> {
   String? _fromId;
   String? _toId;
 
-  RouteResult? get _route =>
-      (_fromId != null && _toId != null) ? RouteFinder(widget.city).find(_fromId!, _toId!) : null;
+  /// Lines to avoid for this from → to, set by 「このルートにする」 after a
+  /// last train has gone.
+  Set<String> _avoid = const {};
+  String? _avoidFor;
+
+  RouteResult? get _route => (_fromId != null && _toId != null)
+      ? RouteFinder(widget.city).find(_fromId!, _toId!, avoid: _avoidFor == '$_fromId>$_toId' ? _avoid : const {})
+      : null;
 
   WeatherNow? _weather;
 
@@ -285,6 +291,8 @@ class PlatformScreenState extends State<PlatformScreen> {
           last: '${info['lastLabel']} ${info['lastTime']}',
           alarm: info['alarm']! as bool,
           sky: sky,
+          lineLabel: info['line']! as String,
+          first: '${info['firstLabel']} ${info['firstTime']}',
           temp: w?.tempC == null ? '' : '${w!.tempC!.round()}°',
           rain: w?.rainChance == null ? '' : '${w!.rainChance}%',
         ),
@@ -308,6 +316,8 @@ class PlatformScreenState extends State<PlatformScreen> {
     _nextArtKey = key;
     try {
       final pngs = <String, Uint8List>{
+        // 地下鉄案内: one per time of day.
+        for (final part in DayPart.values) 'board_${part.name}': await renderBoardWidget(d, part),
         'full_end': await renderNextWidget(d, t.serviceEndedShort, DayPart.night),
         for (var h = 0; h < 24; h++)
           'full_h$h': await renderNextWidget(
@@ -525,6 +535,10 @@ class PlatformScreenState extends State<PlatformScreen> {
                   alarmOn: _fromId != null && _toId != null && _alarm.isOnFor(_fromId!, _toId!),
                   firstAlarmOn: _fromId != null && _toId != null && _alarm.firstOnFor(_fromId!, _toId!),
                   onFirstBell: _toggleFirstAlarm,
+                  onUseAlt: (avoid) => setState(() {
+                    _avoid = avoid;
+                    _avoidFor = '$_fromId>$_toId';
+                  }),
                   onBell: route != null && lastDepartureMin(widget.city, route) != null ? _toggleAlarm : null,
                 ),
               ],

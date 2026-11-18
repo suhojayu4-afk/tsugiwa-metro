@@ -185,5 +185,9 @@
   "widgetTrip": "{dest}까지 약 {minutes}분",
   "widgetEnded": "운행 종료 · 첫차 {time}",
   "widgetKindNext": "다음 전철",
-  "widgetKindNextDesc": "작게, 운행 간격과 소요 시간"
+  "widgetKindNextDesc": "작게, 운행 간격과 소요 시간",
+  "routeMissed": "이 경로는 막차를 놓쳤어요",
+  "altRouteTitle": "다른 경로라면 아직 갈 수 있어요",
+  "altRouteInfo": "{time}까지 출발 · {via}",
+  "altRouteUse": "이 경로로"
 }

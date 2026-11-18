@@ -28,6 +28,44 @@ int? lastDepartureMin(CityData city, RouteResult route) {
   return best;
 }
 
+/// Lines on [route] whose last train is gone (or has not started yet) if you
+/// leave its first station at [nowMin] (service minutes, Japan time).
+Set<String> missedLines(CityData city, RouteResult route, int nowMin) {
+  final plan = TripPlan.build(city, route, DateTime.utc(2026, 1, 5, 23));
+  final out = <String>{};
+  void check(String lineId, int boardSec) {
+    final tt = city.timetables[lineId];
+    if (tt == null) return;
+    final board = nowMin + (boardSec / 60).ceil();
+    if (board > tt.lastTrainMin || board < tt.firstTrainMin) out.add(lineId);
+  }
+
+  check(plan.lineAt(0), 0);
+  for (final s in plan.stops) {
+    if (s.transferToLineId != null) check(s.transferToLineId!, s.departSec);
+  }
+  return out;
+}
+
+/// After a last train has gone: another way that still gets there tonight,
+/// avoiding every line whose last train is missed. Null when there is none.
+({RouteResult route, int lastDep, Set<String> avoid})? stillPossible(
+  CityData city,
+  String fromId,
+  String toId,
+  int nowMin,
+) {
+  final avoid = <String>{};
+  for (var i = 0; i < 8; i++) {
+    final r = RouteFinder(city).find(fromId, toId, avoid: avoid);
+    if (r == null) return null;
+    final missed = missedLines(city, r, nowMin);
+    if (missed.isEmpty) return (route: r, lastDep: lastDepartureMin(city, r) ?? nowMin, avoid: Set.of(avoid));
+    avoid.addAll(missed);
+  }
+  return null;
+}
+
 /// What the alarm says; texts come from the app's language.
 typedef LastTrainTexts = ({String title, String body, String channel});
 

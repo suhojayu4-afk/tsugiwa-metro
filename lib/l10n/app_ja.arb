@@ -594,5 +594,10 @@
   "widgetEnded": "運行終了 · 始発 {time}",
   "@widgetEnded": {"placeholders": {"time": {"type": "String"}}},
   "widgetKindNext": "つぎの電車",
-  "widgetKindNextDesc": "小さく 電車の間隔と所要時間"
+  "widgetKindNextDesc": "小さく 電車の間隔と所要時間",
+  "routeMissed": "このルートは終電に間に合いません",
+  "altRouteTitle": "別ルートならまだ間に合う",
+  "altRouteInfo": "{time}までに出発 · {via}",
+  "@altRouteInfo": {"placeholders": {"time": {"type": "String"}, "via": {"type": "String"}}},
+  "altRouteUse": "このルートにする"
 }
