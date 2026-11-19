@@ -156,6 +156,35 @@ class MyRoomScreenState extends State<MyRoomScreen> {
     );
   }
 
+  Future<void> _enterInvite(AppLocalizations t) async {
+    final field = TextEditingController();
+    final code = await showDialog<String>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(t.myInviteEnter),
+        content: TextField(
+          controller: field,
+          autofocus: true,
+          maxLength: 6,
+          textCapitalization: TextCapitalization.characters,
+          decoration: InputDecoration(hintText: t.myInviteField),
+        ),
+        actions: [TextButton(onPressed: () => Navigator.pop(context, field.text), child: Text(t.myInviteUse))],
+      ),
+    );
+    field.dispose();
+    if (code == null || code.trim().isEmpty || !mounted) return;
+    final result = await _store.useInvite(code);
+    if (!mounted) return;
+    final text = switch (result) {
+      InviteResult.ok => t.myInviteOk(MyStore.inviteCoins),
+      InviteResult.own => t.myInviteOwn,
+      InviteResult.used => t.myInviteUsed,
+      InviteResult.invalid => t.myInviteInvalid,
+    };
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
+  }
+
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
@@ -229,6 +258,20 @@ class MyRoomScreenState extends State<MyRoomScreen> {
           size: 12,
           color: PixelColors.muted,
         ),
+        // A friend's invite code (from their share card): coins, once.
+        if (!_store.inviteUsed)
+          Align(
+            alignment: Alignment.centerLeft,
+            child: TextButton.icon(
+              style: TextButton.styleFrom(padding: EdgeInsets.zero, visualDensity: VisualDensity.compact),
+              onPressed: () => _enterInvite(t),
+              icon: const Icon(Icons.card_giftcard_rounded, size: 16, color: _green),
+              label: Text(
+                '${t.myInviteEnter} (+${MyStore.inviteCoins})',
+                style: const TextStyle(fontSize: 12, color: PixelColors.ink),
+              ),
+            ),
+          ),
         const SizedBox(height: 14),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
