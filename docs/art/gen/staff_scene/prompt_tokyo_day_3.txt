@@ -1,0 +1,13 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/staff_scene/tokyo_day_3_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at these first: C:/dev/tsugiwa-metro/docs/art/gen/stations/tokyo_day_raw.png (the station picture) and C:/dev/tsugiwa-metro/docs/art/gen/events/staff_raw.png, C:/dev/tsugiwa-metro/docs/art/gen/events/staff_toward_raw.png, C:/dev/tsugiwa-metro/docs/art/gen/events/staff_away_raw.png (the station attendant: navy uniform with gold buttons, navy cap with a gold band, white gloves, black shoes).
+
+Make the SAME station picture with ONE change: add that ONE station attendant on the platform. Keep EVERYTHING else exactly the same, pixel for pixel as far as possible: identical composition and camera (do not move, zoom or crop), the same sky, light, buildings, fence, the EMPTY double track in the centre (no train), the platform, roof, pillars, wires and every waiting person in the same place.
+
+The attendant: at the same place and size as standing on the yellow line, doing 指差確認: his right arm stretched out straight, index finger pointing along the track towards the far end where trains arrive, looking the same way, mouth open as if calling out. His size follows the perspective of the platform, his feet on the platform floor, with a small soft shadow under his feet. He never stands in front of or on top of a waiting person.
+
+- Landscape 1536x1024, the same detailed 16-bit era pixel art style as the original, crisp square pixels, almost no black outlines, hue-shifted shading.
+- The tracks in the centre stay EMPTY: no train.
+- ABSOLUTELY NO text, letters, numbers, logos or signboards added.
