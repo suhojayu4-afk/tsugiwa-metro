@@ -54,6 +54,9 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
   ui.Image? _terrain;
   ui.Image? _outer;
   final _landmarkImages = <String, ui.Image>{};
+
+  /// Sticker pictures for the stickers stuck on stations (after trips).
+  final Map<String, ui.Image> _stickerImages = {};
   Size? _viewport;
   bool _fitted = false;
   String? _selected;
@@ -134,6 +137,8 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     _controller.addListener(_keepOuterZoom);
     _controller.addListener(_loadTiles);
     Services.chosenRoute.addListener(_onRoute);
+    Services.stickers.addListener(_onStickers);
+    _onStickers();
     _trainTicker.start();
     // The night map comes on by itself at dusk.
     _minute = Timer.periodic(const Duration(minutes: 1), (_) {
@@ -214,12 +219,27 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     return (await codec.getNextFrame()).image;
   }
 
+  /// Loads the pictures of the stickers stuck on stations, then redraws.
+  Future<void> _onStickers() async {
+    await Services.stickers.load();
+    for (final name in Services.stickers.marks.values.toSet()) {
+      if (_stickerImages.containsKey(name)) continue;
+      try {
+        _stickerImages[name] = await _image('assets/art/stickers/$name.png');
+      } catch (_) {
+        // A sticker that is gone from the app: skip it.
+      }
+    }
+    if (mounted) setState(() {});
+  }
+
   @override
   void dispose() {
     _anim.dispose();
     _twinkle.dispose();
     _scenery.dispose();
     Services.chosenRoute.removeListener(_onRoute);
+    Services.stickers.removeListener(_onStickers);
     _trainTicker.dispose();
     _minute?.cancel();
     _trainTick.dispose();
@@ -646,6 +666,8 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                         route: _routeOn ? _route : null,
                         night: night,
                         labels: true,
+                        stickers: Services.stickers.marks,
+                        stickerImages: _stickerImages,
                       ),
                     ),
                   ),
@@ -948,7 +970,13 @@ class _MapOverlayPainter extends CustomPainter {
     required this.route,
     required this.labels,
     this.night = false,
+    this.stickers = const {},
+    this.stickerImages = const {},
   }) : super(repaint: matrix);
+
+  /// Stickers stuck on stations (station id → sticker), and their pictures.
+  final Map<String, String> stickers;
+  final Map<String, ui.Image> stickerImages;
 
   /// Night map: lights round the towns, dimmed pictures, light names.
   final bool night;
@@ -1303,6 +1331,28 @@ class _MapOverlayPainter extends CustomPainter {
       }
     }
 
+    // ---- stickers the user stuck on stations after trips ----
+    final stickerSize = (22 + 10 * s).clamp(20.0, 40.0);
+    for (final MapEntry(key: id, value: name) in stickers.entries) {
+      final img = stickerImages[name];
+      final stops = map.stopsOf(id);
+      if (img == null || stops.isEmpty || !view.contains(stops.first.position)) continue;
+      final p = sp(stops.first.position);
+      // Up and to the left of the dot, slightly tilted like a real sticker.
+      final k = stickerSize / math.max(img.width, img.height);
+      final w = img.width * k, h = img.height * k;
+      canvas.save();
+      canvas.translate(p.dx - r - w * 0.35, p.dy - r - h * 0.55);
+      canvas.rotate(((id.hashCode % 7) - 3) * 0.04);
+      canvas.drawImageRect(
+        img,
+        Rect.fromLTWH(0, 0, img.width.toDouble(), img.height.toDouble()),
+        Rect.fromCenter(center: Offset.zero, width: w, height: h),
+        Paint()..filterQuality = FilterQuality.none,
+      );
+      canvas.restore();
+    }
+
     // ---- my route: start, changes, destination ----
     final placed = _Placed();
     final ends = <String>{};
@@ -1465,6 +1515,8 @@ class _MapOverlayPainter extends CustomPainter {
       old.route != route ||
       old.labels != labels ||
       old.night != night ||
+      old.stickers != stickers ||
+      old.stickerImages.length != stickerImages.length ||
       old.landmarks.length != landmarks.length;
 }
 

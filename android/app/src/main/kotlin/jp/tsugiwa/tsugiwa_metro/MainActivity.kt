@@ -124,6 +124,31 @@ class MainActivity : FlutterActivity() {
             }
         }
 
+        // "tsugiwa/share": the share card (PNG or GIF) through the phone's share
+        // menu. Done here because share_plus's JNI path breaks in release builds.
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "tsugiwa/share").setMethodCallHandler { call, result ->
+            try {
+                @Suppress("UNCHECKED_CAST")
+                val args = call.arguments as Map<String, Any?>
+                val dir = java.io.File(cacheDir, "share_plus").apply { mkdirs() }
+                val file = java.io.File(dir, args["name"] as String)
+                file.writeBytes(args["bytes"] as ByteArray)
+                val uri = androidx.core.content.FileProvider.getUriForFile(
+                    this, "$packageName.flutter.share_provider", file,
+                )
+                val send = android.content.Intent(android.content.Intent.ACTION_SEND).apply {
+                    type = args["mime"] as String
+                    putExtra(android.content.Intent.EXTRA_STREAM, uri)
+                    (args["text"] as String?)?.let { putExtra(android.content.Intent.EXTRA_TEXT, it) }
+                    addFlags(android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                }
+                startActivity(android.content.Intent.createChooser(send, null))
+                result.success(true)
+            } catch (e: Exception) {
+                result.error("share", e.message, null)
+            }
+        }
+
         // "tsugiwa/widget": pictures and weather for the home screen widget.
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "tsugiwa/widget").setMethodCallHandler { call, result ->
             try {

@@ -2,7 +2,6 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/rendering.dart';
 import 'package:material_ui/material_ui.dart';
-import 'package:share_plus/share_plus.dart';
 
 import '../../core/pixel/pixel_scene.dart';
 import '../../core/pixel/pixel_ui.dart';
@@ -12,6 +11,7 @@ import '../../data/my_stats.dart';
 import '../../data/my_store.dart';
 import '../../data/sticker_marks.dart';
 import '../../l10n/app_localizations.dart';
+import '../../platform/share_bridge.dart';
 import 'share_gif.dart';
 import 'stamp_book_screen.dart';
 import 'station_plate.dart';
@@ -80,14 +80,9 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
       );
       card.dispose();
       stickers?.dispose();
-      await SharePlus.instance.share(
-        ShareParams(
-          text: t.shareText,
-          files: [XFile.fromData(gif, mimeType: 'image/gif', name: 'my_station.gif')],
-          fileNameOverrides: ['my_station.gif'],
-        ),
-      );
-    } catch (_) {
+      await shareFile(gif, name: 'my_station.gif', mime: 'image/gif', text: t.shareText);
+    } catch (e, st) {
+      debugPrint('share gif failed: $e $st');
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(t.shareFailed)));
       }
@@ -104,13 +99,7 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
       final image = await boundary.toImage(pixelRatio: 1080 / ShareCard.width);
       final png = await image.toByteData(format: ui.ImageByteFormat.png);
       image.dispose();
-      await SharePlus.instance.share(
-        ShareParams(
-          text: t.shareText,
-          files: [XFile.fromData(png!.buffer.asUint8List(), mimeType: 'image/png', name: 'my_station.png')],
-          fileNameOverrides: ['my_station.png'],
-        ),
-      );
+      await shareFile(png!.buffer.asUint8List(), name: 'my_station.png', mime: 'image/png', text: t.shareText);
     } catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(t.shareFailed)));
