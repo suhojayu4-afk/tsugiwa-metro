@@ -1,0 +1,29 @@
+# iPhone test build on Codemagic's cloud Mac (no Apple developer account).
+# Makes an unsigned .ipa; install it with Sideloadly on Windows, which signs
+# it with a free Apple ID (the app then runs for 7 days).
+# Widgets, the last/first train alarms and the melodies are Android only for now.
+workflows:
+  ios-unsigned:
+    name: iPhone test (unsigned IPA)
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+    environment:
+      flutter: 3.50.0
+      xcode: latest
+      cocoapods: default
+    triggering:
+      events: []   # run by hand from the Codemagic page
+    scripts:
+      - name: Packages
+        script: flutter pub get
+      - name: Build (no signing)
+        # Also creates ios/Podfile and runs pod install.
+        script: flutter build ios --release --no-codesign
+      - name: Pack the IPA
+        script: |
+          rm -rf Payload tsugiwa-metro-unsigned.ipa
+          mkdir Payload
+          cp -R build/ios/iphoneos/Runner.app Payload/
+          zip -qry tsugiwa-metro-unsigned.ipa Payload
+    artifacts:
+      - tsugiwa-metro-unsigned.ipa
