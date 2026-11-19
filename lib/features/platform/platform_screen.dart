@@ -455,6 +455,14 @@ class PlatformScreenState extends State<PlatformScreen> {
     setState(() => isFrom ? _fromId = id : _toId = id);
   }
 
+  /// Share the route with the route map (drawn boldly there).
+  void _publishRoute(RouteResult? route) {
+    if (Services.chosenRoute.value?.key == route?.key) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) Services.chosenRoute.value = route;
+    });
+  }
+
   void _start(RouteResult route) {
     final from = _fromId, to = _toId;
     if (from != null && to != null) _store.addRecent(from, to);
@@ -471,6 +479,7 @@ class PlatformScreenState extends State<PlatformScreen> {
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
     final route = _route;
+    _publishRoute(route);
     final sameStation = _fromId != null && _fromId == _toId;
     final trainColor = route == null ? widget.city.lines.first.color : widget.city.line(route.legs.first.lineId).color;
 
@@ -1064,10 +1073,10 @@ class _Banner extends StatelessWidget {
       plate: PlateData.of(my, fallbackName: shownScene?.name.of(lang) ?? ''),
       led: route == null ? null : destinationLed(city, route!.legs.first),
       onTap: () => onOpenMy?.call(null),
-      // The train pulls in to the MY departure melody (not after the last train).
+      // The train pulls in with a quiet arrival sound, then the MY departure
+      // melody once it has stopped (not after the last train).
       onArrive: () {
-        final melody = my.melody;
-        if (melody != null && !_closed()) Services.melody.play(melody);
+        if (!_closed()) Services.melody.arrive(my.melody);
       },
     );
     if (stationScene == null || owned) return view;
