@@ -1,0 +1,16 @@
+tokyo_day_L=d9022da4-fd49-442a-83b3-35949a0c37d3 tokyo_day_R=0060ddb5-5f84-4057-8a79-8d1f0554594c
+tokyo_evening_L=31f7f99c-d374-4511-b19c-c511bf708f80 tokyo_evening_R=c0827d3c-be07-4736-b295-5aaf950c5364
+tokyo_night_L=a86bc03d-2648-4932-82ca-6fcf21ac2878 tokyo_night_R=e89f8f27-7920-462f-86ab-3cb94efc95d4
+shibuya_day_L=eb8f5b14-402c-4b89-95a8-de7a4098d03e shibuya_day_R=73813f50-b00a-4717-9dac-140e7c6532f5
+shibuya_evening_L=15d21c2a-d5b3-4770-ac04-a4ef90d16d64 shibuya_evening_R=91c206ac-2483-4420-82d2-d6fe24bd3c30
+shibuya_night_L=d6b799de-3bda-48f6-886f-4c237d3900f8 shibuya_night_R=7cafee9f-169b-46cf-a6d8-20dd3ce67f15
+shinjuku_day_L=4083b595-2288-423c-a564-d37b290474d6 shinjuku_day_R=adf24922-0620-486a-8824-0f9b62f58af5
+shinjuku_evening_L=9f629116-6288-428d-9a42-4667148386ff shinjuku_evening_R=0c2bdb9f-38ea-47f5-82e1-cc73bd317dcd
+shinjuku_night_L=a60547ea-74c6-4c5f-a4c5-8913491bfcd9 shinjuku_night_R=bd709c92-ecb3-4fb3-9b07-2deca7b9a845
+asakusa_day_L=510d4b2b-18b9-4757-a5f2-e6eb09a9d30c asakusa_day_R=348f6ce2-c23d-4b59-8abf-21f68bcb83f3
+asakusa_evening_L=9e41529c-f275-4d39-9ee3-81e952031e0d asakusa_evening_R=a42a2f6d-0bd8-461d-8adf-070713b1e223
+asakusa_night_L=56f2f15c-8346-41e7-965d-c93d8ce2495c asakusa_night_R=4b49fd52-a94f-45c9-959f-4ed608d44487
+ginza_day_L=8d9cc39b-699d-49e6-bc7f-fcb1f649889a
+ginza_day_R=6556a7c8-da26-4dd4-b3db-a2b841936d2a
+ginza_evening_L=857bee52-cd8a-4d96-9ced-2db52ccbd608 ginza_evening_R=fa3400a5-666f-46da-931d-789b737f7bdb
+ginza_night_L=b16ccf4d-52dd-42f9-a6bc-47970f7fedcd ginza_night_R=4312ee53-ce1c-4601-896a-490db2380365

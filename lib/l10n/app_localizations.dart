@@ -670,6 +670,18 @@ abstract class AppLocalizations {
   /// **'到着にする'**
   String get mapSetTo;
 
+  /// No description provided for @mapNightView.
+  ///
+  /// In ja, this message translates to:
+  /// **'夜の地図'**
+  String get mapNightView;
+
+  /// No description provided for @mapDayView.
+  ///
+  /// In ja, this message translates to:
+  /// **'昼の地図'**
+  String get mapDayView;
+
   /// No description provided for @mapMyRoute.
   ///
   /// In ja, this message translates to:

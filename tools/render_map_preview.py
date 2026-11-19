@@ -90,10 +90,13 @@ if LS > 0.42 and not NO3D:
         if not (X0 - 80 < lm['x'] < X1 + 80 and Y0 - 20 < lm['y'] < Y1 + 90):
             continue
         im = img(lm['image'])
-        w, h = int(im.width * px), int(im.height * px)
+        if lm.get('frames', 1) > 1:
+            im = im.crop((0, 0, im.width // lm['frames'], im.height))
+        k = 2 * S if lm.get('ground') else px
+        w, h = int(im.width * k), int(im.height * k)
         big = im.resize((w, h), Image.NEAREST)
         x, y = sp(lm['x'], lm['y'])
-        left, top = int(x - w / 2), int(y - h + 4 * px)
+        left, top = int(x - w / 2), int(y - h + 4 * k)
         sh = Image.new('RGBA', canvas.size, (0, 0, 0, 0))
         spx, ap = sh.load(), big.getchannel('A').load()
         for yy in range(h):

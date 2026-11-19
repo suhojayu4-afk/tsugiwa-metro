@@ -357,6 +357,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mapSetTo => 'Set as destination';
 
   @override
+  String get mapNightView => 'Night map';
+
+  @override
+  String get mapDayView => 'Day map';
+
+  @override
   String get mapMyRoute => 'My route';
 
   @override
@@ -498,7 +504,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get stampHint =>
-      'A stamp for every new station. Finish a line for a limited item!';
+      'A stamp for every new station, gold ★ if you stay 5 minutes. Finish a line for a limited item!';
 
   @override
   String stampReward(String item) {

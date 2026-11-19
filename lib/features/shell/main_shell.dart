@@ -11,6 +11,7 @@ import '../my_room/my_room_screen.dart';
 import '../my_room/station_plate.dart';
 import '../platform/platform_screen.dart';
 import '../route_map/route_map_screen.dart';
+import '../trip/stay_watcher.dart';
 
 /// Bottom tabs, left to right: のりば (set where you go) / 路線図 / MY.
 class MainShell extends StatefulWidget {
@@ -43,6 +44,24 @@ class _MainShellState extends State<MainShell> {
   }
 
   HomeWidgetSync? _widgetSync;
+  StayWatcher? _stay;
+
+  /// Stayed 5 minutes at a station: gold stamp and a note at the bottom.
+  Future<void> _onStay(String stationId) async {
+    final my = Services.my;
+    if (!my.loaded || my.stayed(stationId)) return;
+    final coins = await my.stampStay(stationId);
+    if (coins == 0 || !mounted) return;
+    final t = AppLocalizations.of(context);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(t.stayStamped(widget.city.station(stationId).name.of(_lang), coins)),
+        backgroundColor: const Color(0xFFB9861A),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+
   String _lang = 'ja';
 
   @override
@@ -51,6 +70,7 @@ class _MainShellState extends State<MainShell> {
     final my = Services.my;
     my.lines = {for (final l in widget.city.lines) l.id: l.stations};
     if (!my.loaded) my.load();
+    _stay = StayWatcher(city: widget.city, location: Services.location, onStay: _onStay)..start();
     // Keep the home screen widget's pictures in step with MY駅.
     _widgetSync = HomeWidgetSync(
       bridge: Services.homeWidget,
@@ -85,6 +105,7 @@ class _MainShellState extends State<MainShell> {
   @override
   void dispose() {
     _widgetSync?.dispose();
+    _stay?.stop();
     super.dispose();
   }
 

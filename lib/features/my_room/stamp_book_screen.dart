@@ -128,6 +128,7 @@ class _LineSection extends StatelessWidget {
                   day: store.stamps[id],
                   color: line.color,
                   seed: id.hashCode,
+                  gold: store.stayed(id),
                 ),
             ],
           ),
@@ -140,7 +141,17 @@ class _LineSection extends StatelessWidget {
 /// One stamp: inked in the line colour once visited (with the day), a
 /// faint dotted circle before.
 class StationStamp extends StatelessWidget {
-  const StationStamp({super.key, required this.name, required this.day, required this.color, this.seed = 0});
+  const StationStamp({
+    super.key,
+    required this.name,
+    required this.day,
+    required this.color,
+    this.seed = 0,
+    this.gold = false,
+  });
+
+  /// Stayed there 5 minutes: gold ink and a star.
+  final bool gold;
 
   final String name;
 
@@ -151,16 +162,19 @@ class StationStamp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => CustomPaint(
-    painter: _StampPainter(name: name, day: day, color: color, seed: seed),
+    painter: _StampPainter(name: name, day: day, color: gold ? _gold : color, seed: seed, gold: gold),
   );
 }
 
+const _gold = Color(0xFFC9951E);
+
 class _StampPainter extends CustomPainter {
-  _StampPainter({required this.name, required this.day, required this.color, required this.seed});
+  _StampPainter({required this.name, required this.day, required this.color, required this.seed, this.gold = false});
   final String name;
   final String? day;
   final Color color;
   final int seed;
+  final bool gold;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -186,6 +200,18 @@ class _StampPainter extends CustomPainter {
       );
       canvas.drawRect(Rect.fromLTWH(-5, -r + 8.5, 3, 2), Paint()..color = PixelColors.card);
       canvas.drawRect(Rect.fromLTWH(2, -r + 8.5, 3, 2), Paint()..color = PixelColors.card);
+      if (gold) {
+        // Gold: a soft fill and a small star on the right of the ring.
+        canvas.drawCircle(Offset.zero, r - 5, Paint()..color = const Color(0x22E8B33A));
+        final star = Path();
+        for (var i = 0; i < 10; i++) {
+          final a = -math.pi / 2 + i * math.pi / 5;
+          final rr = i.isEven ? 5.5 : 2.4;
+          final q = Offset(r * 0.72 + rr * math.cos(a), -r * 0.62 + rr * math.sin(a));
+          i == 0 ? star.moveTo(q.dx, q.dy) : star.lineTo(q.dx, q.dy);
+        }
+        canvas.drawPath(star..close(), Paint()..color = const Color(0xFFE8B33A));
+      }
     } else {
       // Dotted outline.
       const n = 28;
@@ -239,5 +265,6 @@ class _StampPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_StampPainter old) => old.day != day || old.name != name || old.color != color;
+  bool shouldRepaint(_StampPainter old) =>
+      old.day != day || old.name != name || old.color != color || old.gold != gold;
 }

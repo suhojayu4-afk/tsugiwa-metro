@@ -38,6 +38,9 @@ class SceneArt {
       art == null ? 'assets/art/train_front_base_${part.name}.png' : '$art/front_base_${part.name}.png';
   static String trainStripeOf([String? art]) => art == null ? trainStripe : '$art/front_stripe.png';
   static const trainStripe = 'assets/art/train_front_stripe.png';
+
+  /// The vending machine decoration (stands behind the people, see _frontMask).
+  static const vending = 'assets/art/decor/vending.png';
   static String trainWeatherOf(String sky, [String? art]) =>
       art == null ? 'assets/art/train_front_$sky.png' : '$art/front_$sky.png';
 
@@ -140,6 +143,18 @@ class SceneArt {
     } catch (_) {
       _images.remove(animation(part));
       return load(background(part));
+    }
+  }
+
+  /// A bought scene's picture, moving when it has an ambient animation
+  /// next to it (`tokyo_day.png` → `tokyo_day_anim.png`, frames stacked).
+  static Future<ui.Image> loadMoving(String still) async {
+    final anim = still.replaceFirst(RegExp(r'\.png$'), '_anim.png');
+    try {
+      return await load(anim);
+    } catch (_) {
+      _images.remove(anim);
+      return load(still);
     }
   }
 
@@ -492,6 +507,7 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
                             sign: widget.look.sign,
                             part: art.part,
                             vanishing: art.vanishing,
+                            front: art.front,
                           ),
                         ),
                       ),
@@ -529,6 +545,9 @@ typedef SceneArtSet = ({
   List<Walker> walkers,
   // Where this picture's rails meet: the train comes from there.
   Offset vanishing,
+  // The people standing in front of the vending machine in this picture
+  // (alpha = person), drawn again over it; null without one.
+  ui.Image? front,
 });
 
 /// A passenger waiting at the train door, seen from behind: frame 0
@@ -573,6 +592,20 @@ Future<List<Walker>> _loadWalkers(String? sky) async {
 
 /// Loads the scene for [look] at [part]. A station scene without a picture
 /// for this time of day uses another one, colour-graded.
+/// Mask of the people in front of the vending machine in picture [bgAsset]
+/// (tools/make_vending_masks.py), when the machine is set up.
+Future<ui.Image?> _frontMask(SceneLook look, String bgAsset) async {
+  if (!look.overlays.contains(SceneArt.vending)) return null;
+  final name = bgAsset.split('/').last.replaceFirst('_anim.png', '.png');
+  final asset = 'assets/art/decor/vending_front/$name';
+  try {
+    return await SceneArt.load(asset);
+  } catch (_) {
+    SceneArt.forget(asset);
+    return null;
+  }
+}
+
 Future<SceneArtSet> loadSceneArt(SceneLook look, DayPart part, {String? sky}) async {
   DayPart? graded;
   Future<ui.Image> bg;
@@ -600,11 +633,11 @@ Future<SceneArtSet> loadSceneArt(SceneLook look, DayPart part, {String? sky}) as
     bg = SceneArt.loadScene(part);
   } else if (look.images[part] != null) {
     bgAsset = look.images[part]!;
-    bg = SceneArt.load(bgAsset);
+    bg = SceneArt.loadMoving(bgAsset);
   } else {
     graded = part;
     bgAsset = look.images[DayPart.evening] ?? look.images.values.first;
-    bg = SceneArt.load(bgAsset);
+    bg = SceneArt.loadMoving(bgAsset);
   }
   final wx = weathered != null && (baseSky == 'snow' || baseSky == 'rain')
       ? SceneArt.trainWeatherOf(baseSky!, look.trainArt)
@@ -630,6 +663,7 @@ Future<SceneArtSet> loadSceneArt(SceneLook look, DayPart part, {String? sky}) as
     trainWeather: wx == null ? null : images[3],
     walkers: await _loadWalkers(sky),
     vanishing: await SceneArt.vanishingFor(bgAsset),
+    front: await _frontMask(look, bgAsset),
     // Snow and drops take the light of the hour: bluish at night.
     trainWeatherTint: switch (part) {
       DayPart.day => const Color(0xFFFFFFFF),
@@ -712,6 +746,7 @@ Future<ui.Image> renderSceneImage({
     trainWeatherTint: art.trainWeatherTint,
     part: part,
     vanishing: art.vanishing,
+    front: art.front,
     // Review renders: the train part way through its arrival.
     arrive: arrive == null ? null : AlwaysStoppedAnimation(arrive),
     platform: platform == null ? null : AlwaysStoppedAnimation(platform),
@@ -775,6 +810,7 @@ class _ScenePainter extends CustomPainter {
     this.sign,
     this.part = DayPart.day,
     this.vanishing = SceneArt.vanishing,
+    this.front,
   }) : super(repaint: Listenable.merge([life, ?arrive, ?platform]));
 
   final StationSign? sign;
@@ -784,6 +820,9 @@ class _ScenePainter extends CustomPainter {
 
   /// Where the picture's rails meet: the arriving train comes from there.
   final Offset vanishing;
+
+  /// People in front of the vending machine (alpha mask), or null.
+  final ui.Image? front;
 
   /// Train arrival, 0 far away … 1 at the platform (null = always arrived).
   final Animation<double>? arrive;
@@ -980,6 +1019,19 @@ class _ScenePainter extends CustomPainter {
     // Decorations sit on the platform, in front of the train's back.
     for (final o in overlays) {
       canvas.drawImage(o, Offset.zero, art);
+    }
+    // People standing closer than the vending machine are drawn again over it.
+    if (front != null) {
+      const full = Rect.fromLTWH(0, 0, SceneArt.width * 1.0, SceneArt.height * 1.0);
+      canvas.saveLayer(full, Paint());
+      canvas.drawImageRect(
+        bg,
+        Rect.fromLTWH(0, f * SceneArt.height.toDouble(), SceneArt.width.toDouble(), SceneArt.height.toDouble()),
+        full,
+        bgPaint,
+      );
+      canvas.drawImage(front!, Offset.zero, Paint()..blendMode = BlendMode.dstIn);
+      canvas.restore();
     }
     _passengers(canvas);
     _effects(canvas, life.value);
@@ -1272,16 +1324,65 @@ class _ScenePainter extends CustomPainter {
         canvas.drawRect(Rect.fromLTWH(x.toDouble(), y.toDouble(), 1, 1), p);
       }
     }
-    if (effects.contains('garland')) {
-      // Along the front edge of the platform roof.
-      const colors = [Color(0xFFFF6B6B), Color(0xFFFFD25E), Color(0xFF7BE07B), Color(0xFF6BB8FF)];
-      for (var i = 0; i < 18; i++) {
-        final t = i / 17;
-        final x = 262 - 26 * t;
-        final y = 6 + 90 * t + 3 * (1 - (2 * ((i % 3) / 2) - 1).abs());
-        final on = (i + f) % 4 != 0;
-        p.color = colors[i % 4].withValues(alpha: on ? 1 : 0.35);
-        canvas.drawRect(Rect.fromLTWH(x, y, 2, 2), p);
+    if (effects.contains('garland')) _garland(canvas, f);
+  }
+
+  /// Warm festoon lights hanging in swags between the platform pillars,
+  /// smaller and closer together towards the far end (the same roof in
+  /// every scene). They glow at dusk and at night and twinkle slowly.
+  void _garland(Canvas canvas, int f) {
+    // Hanging line: from near the vanishing point to the top right, through the pillars.
+    double lineY(double x) => 93 - 0.404 * (x - 228);
+    const pillars = <double>[384, 358, 311, 290, 278, 268, 261];
+    final glow = switch (part) {
+      DayPart.day => 0.0,
+      DayPart.evening => 0.7,
+      DayPart.night => 1.0,
+    };
+    final wire = Paint()
+      ..color = const Color(0xB0302838)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 0.8;
+    var n = 0;
+    for (var k = 0; k + 1 < pillars.length; k++) {
+      final x1 = pillars[k], x2 = pillars[k + 1];
+      final span = x1 - x2;
+      final sag = span * 0.2;
+      Offset at(double t) {
+        final x = x1 - span * t;
+        return Offset(x, lineY(x) + sag * 4 * t * (1 - t));
+      }
+
+      final path = Path()..moveTo(x1, lineY(x1));
+      for (var i = 1; i <= 12; i++) {
+        final q = at(i / 12);
+        path.lineTo(q.dx, q.dy);
+      }
+      canvas.drawPath(path, wire);
+      // Bulbs: nearer ones bigger and further apart.
+      final depth = ((x1 - 240) / 144).clamp(0.25, 1.0);
+      final count = math.max(3, (span / (6 * depth)).round());
+      for (var i = 1; i < count; i++) {
+        final q = at(i / count);
+        n++;
+        final tw = 0.72 + 0.28 * math.sin((f + n * 5) * 0.45);
+        final r = 0.9 + 0.9 * depth;
+        final color = n % 5 == 0 ? const Color(0xFFFFE6A8) : const Color(0xFFFFC870);
+        if (glow > 0) {
+          canvas.drawCircle(
+            q,
+            r * 5,
+            Paint()
+              ..shader = ui.Gradient.radial(q, r * 5, [
+                color.withValues(alpha: 0.55 * glow * tw),
+                color.withValues(alpha: 0),
+              ]),
+          );
+        }
+        canvas.drawRect(
+          Rect.fromCenter(center: q, width: r * 1.6, height: r * 1.6),
+          Paint()..color = Color.lerp(const Color(0xFF8A7050), color, 0.55 + 0.45 * math.max(glow, 0.4) * tw)!,
+        );
       }
     }
   }

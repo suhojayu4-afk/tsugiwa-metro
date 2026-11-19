@@ -343,6 +343,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get mapSetTo => '到着にする';
 
   @override
+  String get mapNightView => '夜の地図';
+
+  @override
+  String get mapDayView => '昼の地図';
+
+  @override
   String get mapMyRoute => 'マイルート';
 
   @override

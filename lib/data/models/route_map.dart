@@ -90,8 +90,18 @@ class MapTileSet {
 }
 
 class MapLandmark {
-  const MapLandmark({required this.image, required this.position, required this.name, this.frames = 1});
+  const MapLandmark({
+    required this.image,
+    required this.position,
+    required this.name,
+    this.frames = 1,
+    this.ground = false,
+  });
   final String image;
+
+  /// Drawn at the map's own scale (1 picture pixel = 2 map units), like the
+  /// ground, so a bridge keeps both ends on the shores at every zoom.
+  final bool ground;
 
   /// More than 1: [image] holds that many frames side by side (it moves).
   final int frames;
@@ -289,6 +299,7 @@ class RouteMapData {
           MapLandmark(
             image: lm['image'] as String,
             frames: lm['frames'] as int? ?? 1,
+            ground: lm['ground'] as bool? ?? false,
             position: _pt(lm),
             name: LocalizedText.fromJson(lm['name'] as Map<String, dynamic>),
           ),

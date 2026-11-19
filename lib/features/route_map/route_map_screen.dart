@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math' as math;
 import 'dart:typed_data';
 import 'dart:ui' as ui;
@@ -13,6 +14,7 @@ import '../../data/models/city.dart';
 import '../../data/models/rail_line.dart';
 import '../../data/models/route_map.dart';
 import '../../l10n/app_localizations.dart';
+import '../platform/nearest_station.dart';
 import '../platform/station_picker.dart';
 import '../trip/route_finder.dart';
 import 'landmark_sheet.dart';
@@ -75,6 +77,48 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
   String? _routeKey;
   bool _routeHidden = false;
 
+  /// Night map: on by itself after dark in Japan; the moon button flips it.
+  bool? _nightOverride;
+  Timer? _minute;
+  static bool nightAt(DateTime now) {
+    final h = now.toUtc().add(const Duration(hours: 9)).hour;
+    return h >= 18 || h < 5;
+  }
+
+  bool get _night => _nightOverride ?? nightAt(DateTime.now());
+
+  /// The ground at night: dark navy, water deeper, parks dark green.
+  static const _nightGround = ColorFilter.matrix([
+    0.22, 0, 0, 0, 4, //
+    0, 0.22, 0, 0, 5,
+    0.18, 0, 0.18, 0, 14,
+    0, 0, 0, 1, 0,
+  ]);
+
+  /// 「現在地」: the nearest station, shown on the map.
+  Future<void> _goToMe() async {
+    final t = AppLocalizations.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    final fix = await Services.location.currentFix();
+    if (!mounted) return;
+    if (fix == null) {
+      messenger.showSnackBar(SnackBar(content: Text(t.locationOff)));
+      return;
+    }
+    final near = nearestStation(widget.city, fix.lat, fix.lng);
+    final stops = near == null ? const <MapStop>[] : _map!.stopsOf(near.station.id);
+    if (near == null || stops.isEmpty) {
+      messenger.showSnackBar(SnackBar(content: Text(t.nearestNone)));
+      return;
+    }
+    setState(() => _selected = near.station.id);
+    final s = math.min(math.max(_scale, 1.4), _maxScaleAt(stops.first.position));
+    _animateTo(_matrixFor(stops.first.position, s));
+    messenger.showSnackBar(
+      SnackBar(content: Text(t.nearestFound(near.station.name.of(langOf(context)), near.meters.round()))),
+    );
+  }
+
   /// Landmark notes and nearest stations, by picture name.
   Map<String, LandmarkInfo> _lmInfo = const {};
 
@@ -91,6 +135,10 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     _controller.addListener(_loadTiles);
     Services.chosenRoute.addListener(_onRoute);
     _trainTicker.start();
+    // The night map comes on by itself at dusk.
+    _minute = Timer.periodic(const Duration(minutes: 1), (_) {
+      if (mounted && _nightOverride == null) setState(() {});
+    });
     _load();
   }
 
@@ -173,6 +221,7 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     _scenery.dispose();
     Services.chosenRoute.removeListener(_onRoute);
     _trainTicker.dispose();
+    _minute?.cancel();
     _trainTick.dispose();
     _controller.dispose();
     super.dispose();
@@ -376,8 +425,9 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
       final img = _landmarkImages[lm.image];
       if (img == null) continue;
       final p = MatrixUtils.transformPoint(_controller.value, lm.position);
-      final w = img.width / lm.frames * px, h = img.height * px;
-      final r = Rect.fromLTWH(p.dx - w / 2, p.dy - h + 4 * px, w, h).deflate(w * 0.1);
+      final k = lm.ground ? 2 * _scale : px;
+      final w = img.width / lm.frames * k, h = img.height * k;
+      final r = Rect.fromLTWH(p.dx - w / 2, p.dy - h + 4 * k, w, h).deflate(w * 0.1);
       if (r.contains(screen) && p.dy > hitY) {
         hit = lm;
         hitY = p.dy;
@@ -438,10 +488,22 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
 
   // ---------------- build ----------------
 
+  /// Wraps [child] in the night colours when [night].
+  Widget _maybeNight(bool night, Widget child, {bool soft = false}) => night
+      ? ColorFiltered(
+          colorFilter: soft
+              // Landmarks and scenery: dimmed, still readable.
+              ? const ColorFilter.matrix([0.55, 0, 0, 0, 6, 0, 0.55, 0, 0, 8, 0.1, 0, 0.62, 0, 22, 0, 0, 0, 1, 0])
+              : _nightGround,
+          child: child,
+        )
+      : child;
+
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
     final lang = langOf(context);
+    final night = _night;
     final map = _map, terrain = _terrain;
     return LayoutBuilder(
       builder: (context, box) {
@@ -459,7 +521,7 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
             children: [
               Positioned.fill(
                 child: ColoredBox(
-                  color: const Color(0xFFF3F2EC),
+                  color: night ? const Color(0xFF151A30) : const Color(0xFFF3F2EC),
                   child: map == null || terrain == null
                       ? const SizedBox.shrink()
                       : GestureDetector(
@@ -479,18 +541,21 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                               child: Stack(
                                 children: [
                                   Positioned.fill(
-                                    child: RepaintBoundary(
-                                      child: CustomPaint(
-                                        painter: _TerrainPainter(
-                                          terrain,
-                                          map.size,
-                                          tiles: _tiles,
-                                          tileCount: _tiles.length,
-                                          sets: map.tileSets,
-                                          outer: _outer,
-                                          outerAt: map.outer,
-                                          origin: map.terrainOrigin,
-                                          scale: map.terrainScale,
+                                    child: _maybeNight(
+                                      night,
+                                      RepaintBoundary(
+                                        child: CustomPaint(
+                                          painter: _TerrainPainter(
+                                            terrain,
+                                            map.size,
+                                            tiles: _tiles,
+                                            tileCount: _tiles.length,
+                                            sets: map.tileSets,
+                                            outer: _outer,
+                                            outerAt: map.outer,
+                                            origin: map.terrainOrigin,
+                                            scale: map.terrainScale,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -511,16 +576,20 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
               if (map != null)
                 Positioned.fill(
                   child: IgnorePointer(
-                    child: RepaintBoundary(
-                      child: CustomPaint(
-                        painter: _MovingPainter(
-                          map: map,
-                          images: _landmarkImages,
-                          matrix: _controller,
-                          clock: _scenery,
-                          still: MediaQuery.of(context).disableAnimations,
+                    child: _maybeNight(
+                      night,
+                      RepaintBoundary(
+                        child: CustomPaint(
+                          painter: _MovingPainter(
+                            map: map,
+                            images: _landmarkImages,
+                            matrix: _controller,
+                            clock: _scenery,
+                            still: MediaQuery.of(context).disableAnimations,
+                          ),
                         ),
                       ),
+                      soft: true,
                     ),
                   ),
                 ),
@@ -539,6 +608,7 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                         selected: _selected,
                         focusLine: _focusLine,
                         route: _routeOn ? _route : null,
+                        night: night,
                         labels: false,
                       ),
                     ),
@@ -550,7 +620,13 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                   child: IgnorePointer(
                     child: RepaintBoundary(
                       child: CustomPaint(
-                        painter: TrainPainter(sim: _sim!, matrix: _controller, clock: _trainTick, visible: _trainAlpha),
+                        painter: TrainPainter(
+                          sim: _sim!,
+                          matrix: _controller,
+                          clock: _trainTick,
+                          visible: _trainAlpha,
+                          night: night,
+                        ),
                       ),
                     ),
                   ),
@@ -568,6 +644,7 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                         selected: _selected,
                         focusLine: _focusLine,
                         route: _routeOn ? _route : null,
+                        night: night,
                         labels: true,
                       ),
                     ),
@@ -595,6 +672,14 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                       _MapButton(icon: Icons.remove, label: t.mapZoomOut, onTap: () => _zoomBy(1 / 1.8)),
                       const SizedBox(height: 10),
                       _MapButton(icon: Icons.zoom_out_map_rounded, label: t.mapFitAll, onTap: _fitAll),
+                      const SizedBox(height: 10),
+                      _MapButton(
+                        icon: night ? Icons.light_mode_outlined : Icons.dark_mode_outlined,
+                        label: night ? t.mapDayView : t.mapNightView,
+                        onTap: () => setState(() => _nightOverride = !night),
+                      ),
+                      const SizedBox(height: 10),
+                      _MapButton(icon: Icons.my_location_rounded, label: t.nearestButton, onTap: _goToMe),
                     ],
                   ),
                 ),
@@ -862,7 +947,11 @@ class _MapOverlayPainter extends CustomPainter {
     required this.focusLine,
     required this.route,
     required this.labels,
+    this.night = false,
   }) : super(repaint: matrix);
+
+  /// Night map: lights round the towns, dimmed pictures, light names.
+  final bool night;
 
   /// The route set on のりば (drawn boldly, the rest faded), or null.
   final RouteOnMap? route;
@@ -912,6 +1001,44 @@ class _MapOverlayPainter extends CustomPainter {
   /// Stations in the order their names get room: the big ones first, then
   /// transfer stations (most lines first), then the rest.
   static final _labelOrder = Expando<List<String>>();
+
+  static const _nightTone = ColorFilter.matrix([
+    0.55, 0, 0, 0, 6, //
+    0, 0.55, 0, 0, 8,
+    0.1, 0, 0.62, 0, 22,
+    0, 0, 0, 1, 0,
+  ]);
+
+  /// Landmarks at night: dimmed, but lit a little warmer than the ground.
+  static ColorFilter _nightLandmark(double alpha) => ColorFilter.matrix([
+    0.7, 0, 0, 0, 10, //
+    0, 0.66, 0, 0, 8,
+    0.08, 0, 0.7, 0, 20,
+    0, 0, 0, alpha, 0,
+  ]);
+
+  /// Soft warm glows round the stations: big ones where many lines meet,
+  /// so the city centres shine and the countryside stays dark.
+  void _townLights(Canvas canvas, double s, Offset Function(Offset) sp, Rect view) {
+    for (final stops in map.stations.values) {
+      final at = stops.first.position;
+      if (!view.contains(at)) continue;
+      final lines = stops.length;
+      final radius = (26.0 + 16 * math.min(lines, 6)) * s;
+      if (radius < 3) continue;
+      final p = sp(at);
+      final strength = 0.10 + 0.035 * math.min(lines, 6);
+      canvas.drawCircle(
+        p,
+        radius,
+        Paint()
+          ..shader = ui.Gradient.radial(p, radius, [
+            Color.fromRGBO(255, 196, 120, strength),
+            const Color.fromRGBO(255, 180, 100, 0),
+          ]),
+      );
+    }
+  }
 
   /// Landmarks a little softer than the raw art so they belong to the map.
   static ColorFilter _tone(double alpha) {
@@ -980,6 +1107,9 @@ class _MapOverlayPainter extends CustomPainter {
       MatrixUtils.transformPoint(inv, Offset(size.width, size.height)),
     ).inflate(140 / s);
 
+    // ---- night: warm light round the stations (the towns light up) ----
+    if (night && !labels) _townLights(canvas, s, sp, view);
+
     // ---- scenery: little trees, houses and boats, only when zoomed in ----
     // They belong to the ground, so they grow with the map (1 picture pixel
     // = 2 map units), and fade in a little before the landmarks.
@@ -988,6 +1118,7 @@ class _MapOverlayPainter extends CustomPainter {
       final paint = Paint()
         ..filterQuality = FilterQuality.none
         ..color = Color.fromRGBO(0, 0, 0, decorAlpha * 0.92);
+      if (night) paint.colorFilter = _nightTone;
       for (final d in map.decor) {
         if (d.frames > 1 || !view.contains(d.position)) continue;
         final img = landmarks[d.image];
@@ -1021,9 +1152,10 @@ class _MapOverlayPainter extends CustomPainter {
           if (s > 0.75) lmNames.add((lm.name.of(lang), p.translate(0, 6)));
           continue;
         }
-        final w = img.width * px, h = img.height * px;
+        final k = lm.ground ? 2 * s : px;
+        final w = img.width * k, h = img.height * k;
         final src = Rect.fromLTWH(0, 0, img.width.toDouble(), img.height.toDouble());
-        final dst = Rect.fromLTWH(p.dx - w / 2, p.dy - h + 4 * px, w, h);
+        final dst = Rect.fromLTWH(p.dx - w / 2, p.dy - h + 4 * k, w, h);
         // Shadow: the picture flattened onto the ground and leaned right.
         canvas.save();
         canvas.translate(p.dx, p.dy);
@@ -1043,7 +1175,7 @@ class _MapOverlayPainter extends CustomPainter {
           dst,
           Paint()
             ..filterQuality = FilterQuality.none
-            ..colorFilter = _tone(lmAlpha),
+            ..colorFilter = night ? _nightLandmark(lmAlpha) : _tone(lmAlpha),
         );
         // Its name is drawn last, over the lines (see the end of paint).
         if (s > 0.75) lmNames.add((lm.name.of(lang), p.translate(0, 6)));
@@ -1261,6 +1393,9 @@ class _MapOverlayPainter extends CustomPainter {
     }
   }
 
+  /// Name colours at night: ink becomes a soft white, greys a light grey.
+  static Color _nightText(Color c) => c == PixelColors.ink ? const Color(0xFFF2F0E6) : const Color(0xFFC8CEDF);
+
   TextPainter _tp(String text, double size, Color color, {Paint? stroke}) {
     final key = '$text|$size|${color.toARGB32()}|${stroke?.strokeWidth}';
     final hit = _textCache[key];
@@ -1303,11 +1438,12 @@ class _MapOverlayPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = w
       ..strokeJoin = StrokeJoin.round
-      ..color = const Color(0xF2FAFAF6);
-    final front = _tp(text, size, color);
-    final subFront = sub == null ? null : _tp(sub, size * 0.6, PixelColors.muted);
+      ..color = night ? const Color(0xE6141A2E) : const Color(0xF2FAFAF6);
+    final front = _tp(text, size, night ? _nightText(color) : color);
+    final subColor = night ? const Color(0xFFB4BCD4) : PixelColors.muted;
+    final subFront = sub == null ? null : _tp(sub, size * 0.6, subColor);
     final tl = _topLeft(front, front.height + (subFront?.height ?? 0), o, anchor);
-    _tp(text, size, color, stroke: halo(4)).paint(canvas, tl);
+    _tp(text, size, night ? _nightText(color) : color, stroke: halo(4)).paint(canvas, tl);
     front.paint(canvas, tl);
     if (subFront != null) {
       final st = switch (anchor) {
@@ -1315,7 +1451,7 @@ class _MapOverlayPainter extends CustomPainter {
         _Anchor.right => Offset(tl.dx + front.width - subFront.width, tl.dy + front.height),
         _ => Offset(o.dx - subFront.width / 2, tl.dy + front.height),
       };
-      _tp(sub!, size * 0.6, PixelColors.muted, stroke: halo(3)).paint(canvas, st);
+      _tp(sub!, size * 0.6, subColor, stroke: halo(3)).paint(canvas, st);
       subFront.paint(canvas, st);
     }
   }
@@ -1328,6 +1464,7 @@ class _MapOverlayPainter extends CustomPainter {
       old.focusLine != focusLine ||
       old.route != route ||
       old.labels != labels ||
+      old.night != night ||
       old.landmarks.length != landmarks.length;
 }
 

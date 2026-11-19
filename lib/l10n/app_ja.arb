@@ -266,6 +266,8 @@
   "mapNoTips": "この駅のヒントは じゅんび中です",
   "mapSetFrom": "出発にする",
   "mapSetTo": "到着にする",
+  "mapNightView": "夜の地図",
+  "mapDayView": "昼の地図",
   "mapMyRoute": "マイルート",
   "mapRouteShow": "ルートを見る",
   "mapRouteHide": "ルートを隠す",

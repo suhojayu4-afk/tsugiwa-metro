@@ -1,5 +1,7 @@
 import 'dart:math' as math;
 
+import 'dart:ui' as ui;
+
 import 'package:material_ui/material_ui.dart';
 
 import '../../data/models/city.dart';
@@ -400,6 +402,7 @@ class TrainPainter extends CustomPainter {
     required this.matrix,
     required this.clock,
     required this.visible,
+    this.night = false,
     this.still = false,
   }) : super(repaint: Listenable.merge([matrix, clock]));
 
@@ -409,6 +412,9 @@ class TrainPainter extends CustomPainter {
 
   /// How strongly a line's trains are drawn (0 = hidden), for the focus and route.
   final double Function(String lineId) visible;
+
+  /// Night map: the headlights throw a little light ahead.
+  final bool night;
 
   /// Reduce-motion: still drawn, they only move with the clock (no tween).
   final bool still;
@@ -533,6 +539,18 @@ class TrainPainter extends CustomPainter {
         paint.color = Color.fromRGBO(170, 210, 240, 0.85 * a);
         canvas.drawRect(Rect.fromLTWH(glass.left + w * 0.06, glass.top + w * 0.06, w * 0.1, w * 0.22), paint);
       }
+      if (night) {
+        final ahead = Offset(len / 2 + w * 0.9, 0);
+        canvas.drawCircle(
+          ahead,
+          w * 1.3,
+          Paint()
+            ..shader = ui.Gradient.radial(ahead, w * 1.3, [
+              Color.fromRGBO(255, 240, 190, 0.45 * a),
+              const Color.fromRGBO(255, 240, 190, 0),
+            ]),
+        );
+      }
       final lamp = stopped ? const Color(0xFFFFF0C0) : const Color(0xFFFFFBE6);
       paint.color = lamp.withValues(alpha: a);
       for (final y in [-w * 0.3, w * 0.3]) {
@@ -549,5 +567,5 @@ class TrainPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(TrainPainter old) => old.sim != sim || old.visible != visible;
+  bool shouldRepaint(TrainPainter old) => old.sim != sim || old.visible != visible || old.night != night;
 }

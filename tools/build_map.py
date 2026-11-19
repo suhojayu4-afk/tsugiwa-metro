@@ -1001,6 +1001,12 @@ data['terrain'] = {
              'outer': {'image': 'docs/art/gen/map_full/outer.png', 'origin': [-OUTER_MARGIN, -OUTER_MARGIN],
                        'scale': OUTER_SCALE}},
 }
+# The Rainbow Bridge spans the water from Shibaura to Daiba, drawn at the
+# map's scale (tools/make_rainbow_bridge.py prints this spot).
+for lm_ in data['landmarks']:
+    if lm_['image'].endswith('/rainbow.png'):
+        lm_.update({'image': 'assets/art/landmarks/rainbow_bridge.png', 'x': 7636, 'y': 7454, 'ground': True})
+
 # Moving pictures (PixelLab animations, 8 frames side by side in assets/art/anim).
 ANIM_DECOR = ['onsen_a', 'onsen_b', 'whale_a', 'whale_b', 'surfer_a', 'surfer_b', 'steam_a', 'steam_b', 'ropeway_a', 'ropeway_b', 'cablecar_a', 'cablecar_b']
 ANIM_LANDMARKS = ['ferris', 'minatomirai', 'themepark', 'hitachi', 'kusatsu', 'enoshima']

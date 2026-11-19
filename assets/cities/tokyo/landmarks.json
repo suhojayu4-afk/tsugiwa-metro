@@ -148,17 +148,6 @@
    "tokyo.kokusai_tenjijo"
   ]
  },
- "rainbow": {
-  "about": {
-   "ja": "芝浦とお台場を結ぶ吊り橋。歩いて渡ることもできます。",
-   "ko": "시바우라와 오다이바를 잇는 현수교. 걸어서 건널 수도 있어요.",
-   "en": "The suspension bridge from Shibaura to Odaiba, with walkways."
-  },
-  "stations": [
-   "tokyo.shibaura_futo",
-   "tokyo.odaiba_kaihinkoen"
-  ]
- },
  "airport": {
   "about": {
    "ja": "都心から近い空港。国内線と国際線の両方が発着します。",
@@ -447,6 +436,17 @@
   },
   "stations": [
    "tokyo.atami"
+  ]
+ },
+ "rainbow_bridge": {
+  "about": {
+   "ja": "芝浦とお台場を結ぶ吊り橋。歩いて渡ることもできます。",
+   "ko": "시바우라와 오다이바를 잇는 현수교. 걸어서 건널 수도 있어요.",
+   "en": "The suspension bridge from Shibaura to Odaiba, with walkways."
+  },
+  "stations": [
+   "tokyo.shibaura_futo",
+   "tokyo.odaiba_kaihinkoen"
   ]
  }
 }

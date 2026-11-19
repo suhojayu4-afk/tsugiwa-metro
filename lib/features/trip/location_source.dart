@@ -7,6 +7,9 @@ abstract class LocationSource {
   /// Asks for permission if needed. true = GPS can be used.
   Future<bool> ensurePermission();
 
+  /// Whether permission is already given (never asks).
+  Future<bool> hasPermission();
+
   /// Emits fixes while listened to. Call [ensurePermission] first.
   Stream<GpsFix> watch();
 
@@ -24,6 +27,13 @@ class GeolocatorLocationSource implements LocationSource {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
     }
+    return permission == LocationPermission.whileInUse || permission == LocationPermission.always;
+  }
+
+  @override
+  Future<bool> hasPermission() async {
+    if (!await Geolocator.isLocationServiceEnabled()) return false;
+    final permission = await Geolocator.checkPermission();
     return permission == LocationPermission.whileInUse || permission == LocationPermission.always;
   }
 
@@ -58,6 +68,8 @@ class NoLocationSource implements LocationSource {
   const NoLocationSource();
   @override
   Future<bool> ensurePermission() async => false;
+  @override
+  Future<bool> hasPermission() async => false;
   @override
   Future<GpsFix?> currentFix() async => null;
   @override

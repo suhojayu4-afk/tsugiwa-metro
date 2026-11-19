@@ -343,6 +343,12 @@ class AppLocalizationsKo extends AppLocalizations {
   String get mapSetTo => '도착역으로';
 
   @override
+  String get mapNightView => '밤 지도';
+
+  @override
+  String get mapDayView => '낮 지도';
+
+  @override
   String get mapMyRoute => '내 경로';
 
   @override
@@ -483,7 +489,7 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get stampHint => '처음 간 역마다 도장. 노선을 다 모으면 한정 아이템!';
+  String get stampHint => '처음 간 역마다 도장. 역에서 5분 머물면 골드 도장★ 노선을 다 모으면 한정 아이템!';
 
   @override
   String stampReward(String item) {
