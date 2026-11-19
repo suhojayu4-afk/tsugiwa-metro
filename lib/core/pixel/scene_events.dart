@@ -531,14 +531,16 @@ class SceneEventDirector extends ChangeNotifier {
     }
   }
 
-  /// The station attendant: comes up the platform as the train pulls in,
-  /// stops behind the yellow line, points down the track at the train
-  /// (指差確認) and walks back.
+  /// The station attendant: walks out along the platform edge (the strip
+  /// between the edge and the yellow line, which is empty in every station
+  /// picture: people queue behind the line), stops on the yellow line,
+  /// points at the arriving train (指差確認) and walks back down the platform.
   void _staff(Canvas canvas, _Ground g) {
     final img = _art['staff'];
     if (img == null) return;
     final t = _time;
-    const from = Offset(404, 176), spot = Offset(308, 150);
+    // Far down the platform edge → on the yellow line nearer the camera.
+    const from = Offset(249, 103), spot = Offset(277, 140);
     Offset foot;
     int frame;
     var flip = false;
@@ -546,6 +548,7 @@ class SceneEventDirector extends ChangeNotifier {
       final u = t / 2.2;
       foot = Offset.lerp(from, spot, u < 0.85 ? u / 0.85 * 0.94 : 0.94 + 0.06 * _smooth((u - 0.85) / 0.15))!;
       frame = (t * 7.5).floor() % 6;
+      flip = true;
     } else if (t < 2.5) {
       foot = spot;
       frame = 6;
@@ -559,7 +562,6 @@ class SceneEventDirector extends ChangeNotifier {
       final u = ((t - 5.8) / 3.6).clamp(0.0, 1.0);
       foot = Offset.lerp(spot, from, u)!;
       frame = ((t - 5.8) * 7.5).floor() % 6;
-      flip = true;
     }
     final f = g.at(foot);
     _sprite(canvas, img, 8, frame, f, g.person(f.dy), flip: flip, tint: g.tint, shadowWidth: 0.3);
