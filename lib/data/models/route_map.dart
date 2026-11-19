@@ -189,6 +189,11 @@ class RouteMapData {
 
   List<MapStop> stopsOf(String stationId) => _byStation[stationId] ?? const [];
 
+  late final Map<String, MapLine> _lineById = {for (final l in lines) l.lineId: l};
+
+  /// The drawn line [lineId], if it is on the map.
+  MapLine? lineOf(String lineId) => _lineById[lineId];
+
   /// Each station once, with all its stops (in line order).
   Map<String, List<MapStop>> get stations => _byStation;
 

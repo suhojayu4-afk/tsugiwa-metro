@@ -357,6 +357,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mapSetTo => 'Set as destination';
 
   @override
+  String get mapMyRoute => 'My route';
+
+  @override
+  String get mapRouteShow => 'Show route';
+
+  @override
+  String get mapRouteHide => 'Hide route';
+
+  @override
+  String get mapTrainsNote => 'Trains are estimated from timetables';
+
+  @override
+  String get mapLmStations => 'Nearest stations';
+
+  @override
+  String get mapFrom => 'From';
+
+  @override
+  String get mapTo => 'To';
+
+  @override
   String transferWalk(int minutes) {
     return '$minutes min walk to change';
   }

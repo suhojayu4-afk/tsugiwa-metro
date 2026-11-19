@@ -266,6 +266,13 @@
   "mapNoTips": "この駅のヒントは じゅんび中です",
   "mapSetFrom": "出発にする",
   "mapSetTo": "到着にする",
+  "mapMyRoute": "マイルート",
+  "mapRouteShow": "ルートを見る",
+  "mapRouteHide": "ルートを隠す",
+  "mapTrainsNote": "列車は時刻表からの推定位置です",
+  "mapLmStations": "最寄り駅",
+  "mapFrom": "出発",
+  "mapTo": "到着",
   "transferWalk": "乗換 徒歩{minutes}分",
   "@transferWalk": {
     "placeholders": {

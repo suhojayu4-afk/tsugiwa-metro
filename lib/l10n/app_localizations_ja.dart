@@ -343,6 +343,27 @@ class AppLocalizationsJa extends AppLocalizations {
   String get mapSetTo => '到着にする';
 
   @override
+  String get mapMyRoute => 'マイルート';
+
+  @override
+  String get mapRouteShow => 'ルートを見る';
+
+  @override
+  String get mapRouteHide => 'ルートを隠す';
+
+  @override
+  String get mapTrainsNote => '列車は時刻表からの推定位置です';
+
+  @override
+  String get mapLmStations => '最寄り駅';
+
+  @override
+  String get mapFrom => '出発';
+
+  @override
+  String get mapTo => '到着';
+
+  @override
   String transferWalk(int minutes) {
     return '乗換 徒歩$minutes分';
   }

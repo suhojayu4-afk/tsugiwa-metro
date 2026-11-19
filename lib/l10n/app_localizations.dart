@@ -670,6 +670,48 @@ abstract class AppLocalizations {
   /// **'到着にする'**
   String get mapSetTo;
 
+  /// No description provided for @mapMyRoute.
+  ///
+  /// In ja, this message translates to:
+  /// **'マイルート'**
+  String get mapMyRoute;
+
+  /// No description provided for @mapRouteShow.
+  ///
+  /// In ja, this message translates to:
+  /// **'ルートを見る'**
+  String get mapRouteShow;
+
+  /// No description provided for @mapRouteHide.
+  ///
+  /// In ja, this message translates to:
+  /// **'ルートを隠す'**
+  String get mapRouteHide;
+
+  /// No description provided for @mapTrainsNote.
+  ///
+  /// In ja, this message translates to:
+  /// **'列車は時刻表からの推定位置です'**
+  String get mapTrainsNote;
+
+  /// No description provided for @mapLmStations.
+  ///
+  /// In ja, this message translates to:
+  /// **'最寄り駅'**
+  String get mapLmStations;
+
+  /// No description provided for @mapFrom.
+  ///
+  /// In ja, this message translates to:
+  /// **'出発'**
+  String get mapFrom;
+
+  /// No description provided for @mapTo.
+  ///
+  /// In ja, this message translates to:
+  /// **'到着'**
+  String get mapTo;
+
   /// No description provided for @transferWalk.
   ///
   /// In ja, this message translates to:

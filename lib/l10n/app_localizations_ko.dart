@@ -343,6 +343,27 @@ class AppLocalizationsKo extends AppLocalizations {
   String get mapSetTo => '도착역으로';
 
   @override
+  String get mapMyRoute => '내 경로';
+
+  @override
+  String get mapRouteShow => '경로 보기';
+
+  @override
+  String get mapRouteHide => '경로 숨기기';
+
+  @override
+  String get mapTrainsNote => '열차는 시간표로 추정한 위치예요';
+
+  @override
+  String get mapLmStations => '가까운 역';
+
+  @override
+  String get mapFrom => '출발';
+
+  @override
+  String get mapTo => '도착';
+
+  @override
   String transferWalk(int minutes) {
     return '환승 도보 $minutes분';
   }

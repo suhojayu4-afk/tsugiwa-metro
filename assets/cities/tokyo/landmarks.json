@@ -1,0 +1,452 @@
+{
+ "station": {
+  "about": {
+   "ja": "1914年開業の赤レンガ駅舎。丸の内側のドームは2012年に創建時の姿へ復原されました。",
+   "ko": "1914년에 문을 연 붉은 벽돌 역사. 마루노우치 쪽 돔은 2012년에 처음 모습으로 복원됐어요.",
+   "en": "The red-brick station of 1914; the Marunouchi domes were restored to their original look in 2012."
+  },
+  "stations": [
+   "tokyo.tokyo"
+  ]
+ },
+ "kaminarimon": {
+  "about": {
+   "ja": "浅草寺の総門。大きな赤い提灯の先に、仲見世のお店が続きます。",
+   "ko": "센소지의 정문. 커다란 붉은 등 너머로 나카미세 상점가가 이어져요.",
+   "en": "Sensō-ji's great gate with its giant red lantern, opening onto the Nakamise shopping street."
+  },
+  "stations": [
+   "tokyo.asakusa"
+  ]
+ },
+ "dome": {
+  "about": {
+   "ja": "屋根を空気で支えるドーム球場。プロ野球のほか、コンサートも開かれます。",
+   "ko": "공기로 지붕을 받치는 돔 구장. 프로야구와 콘서트가 열려요.",
+   "en": "An air-supported domed stadium for baseball and concerts."
+  },
+  "stations": [
+   "tokyo.suidobashi",
+   "tokyo.korakuen"
+  ]
+ },
+ "nijubashi": {
+  "about": {
+   "ja": "皇居の正門へ続く橋。お堀と石垣、松の向こうに見える景色が有名です。",
+   "ko": "고쿄 정문으로 이어지는 다리. 해자와 돌담, 소나무 너머 풍경이 유명해요.",
+   "en": "The bridges to the Imperial Palace gate, framed by the moat, stone walls and pines."
+  },
+  "stations": [
+   "tokyo.nijubashimae",
+   "tokyo.otemachi"
+  ]
+ },
+ "tower": {
+  "about": {
+   "ja": "1958年完成、高さ333mの電波塔。夜はオレンジ色にライトアップされます。",
+   "ko": "1958년에 완공된 높이 333m의 전파탑. 밤에는 주황빛 조명이 켜져요.",
+   "en": "The 333 m radio tower of 1958, lit up in warm orange at night."
+  },
+  "stations": [
+   "tokyo.akabanebashi",
+   "tokyo.kamiyacho"
+  ]
+ },
+ "skytree": {
+  "about": {
+   "ja": "高さ634mの電波塔。展望台から関東平野を見渡せます。",
+   "ko": "높이 634m의 전파탑. 전망대에서 간토 평야가 한눈에 보여요.",
+   "en": "A 634 m broadcasting tower; its decks look out over the whole Kanto plain."
+  },
+  "stations": [
+   "tokyo.tokyo_skytree",
+   "tokyo.oshiage"
+  ]
+ },
+ "kokugikan": {
+  "about": {
+   "ja": "大相撲の東京場所が開かれる国技館。1月・5月・9月が本場所です。",
+   "ko": "오즈모 도쿄 대회가 열리는 국기관. 1월·5월·9월에 본대회가 있어요.",
+   "en": "Home of the Tokyo sumo tournaments in January, May and September."
+  },
+  "stations": [
+   "tokyo.ryogoku"
+  ]
+ },
+ "akihabara": {
+  "about": {
+   "ja": "電気街として知られる街。アニメやゲームのお店も集まっています。",
+   "ko": "전자상가로 유명한 거리. 애니메이션·게임 가게도 모여 있어요.",
+   "en": "The electric town, now also packed with anime and game shops."
+  },
+  "stations": [
+   "tokyo.akihabara"
+  ]
+ },
+ "tocho": {
+  "about": {
+   "ja": "東京都の本庁舎。45階の展望室は無料で入れます。",
+   "ko": "도쿄도 본청사. 45층 전망실은 무료로 들어갈 수 있어요.",
+   "en": "Tokyo's city hall; the 45th-floor observatories are free to visit."
+  },
+  "stations": [
+   "tokyo.tochomae",
+   "tokyo.shinjuku"
+  ]
+ },
+ "sunshine": {
+  "about": {
+   "ja": "池袋の高層ビル。水族館や展望台、専門店があります。",
+   "ko": "이케부쿠로의 고층 빌딩. 수족관과 전망대, 쇼핑몰이 있어요.",
+   "en": "An Ikebukuro tower with an aquarium, an observatory and shops."
+  },
+  "stations": [
+   "tokyo.higashi_ikebukuro",
+   "tokyo.ikebukuro"
+  ]
+ },
+ "shibuya": {
+  "about": {
+   "ja": "一度に大勢が行き交う大きな交差点。ハチ公像はすぐそばです。",
+   "ko": "한 번에 많은 사람이 건너는 큰 교차로. 하치코 동상이 바로 옆이에요.",
+   "en": "The famous all-way crossing; the Hachikō statue is right beside it."
+  },
+  "stations": [
+   "tokyo.shibuya"
+  ]
+ },
+ "meiji": {
+  "about": {
+   "ja": "明治天皇と昭憲皇太后をまつる神社。都心とは思えない深い森に包まれています。",
+   "ko": "메이지 천황과 쇼켄 황태후를 모신 신사. 도심 속 깊은 숲에 둘러싸여 있어요.",
+   "en": "A shrine to Emperor Meiji and Empress Shōken, deep in a forest in the city."
+  },
+  "stations": [
+   "tokyo.harajuku",
+   "tokyo.meiji_jingumae"
+  ]
+ },
+ "ferris": {
+  "about": {
+   "ja": "海辺の街。砂浜や大型の商業施設があり、夜景もきれいです。",
+   "ko": "바닷가 거리. 모래사장과 큰 쇼핑몰이 있고 야경도 예뻐요.",
+   "en": "A waterfront district with a beach, big malls and fine night views."
+  },
+  "stations": [
+   "tokyo.odaiba_kaihinkoen",
+   "tokyo.tokyo_teleport"
+  ]
+ },
+ "bigsight": {
+  "about": {
+   "ja": "逆ピラミッドの建物が目印の展示場。大きなイベントが開かれます。",
+   "ko": "거꾸로 된 피라미드 건물이 상징인 전시장. 큰 행사가 열려요.",
+   "en": "The exhibition centre known for its upside-down pyramids."
+  },
+  "stations": [
+   "tokyo.tokyo_big_sight",
+   "tokyo.kokusai_tenjijo"
+  ]
+ },
+ "rainbow": {
+  "about": {
+   "ja": "芝浦とお台場を結ぶ吊り橋。歩いて渡ることもできます。",
+   "ko": "시바우라와 오다이바를 잇는 현수교. 걸어서 건널 수도 있어요.",
+   "en": "The suspension bridge from Shibaura to Odaiba, with walkways."
+  },
+  "stations": [
+   "tokyo.shibaura_futo",
+   "tokyo.odaiba_kaihinkoen"
+  ]
+ },
+ "airport": {
+  "about": {
+   "ja": "都心から近い空港。国内線と国際線の両方が発着します。",
+   "ko": "도심에서 가까운 공항. 국내선과 국제선이 모두 뜨고 내려요.",
+   "en": "The airport close to the city, with domestic and international flights."
+  },
+  "stations": [
+   "tokyo.haneda_airport_terminal_3",
+   "tokyo.haneda_airport_terminal_12"
+  ]
+ },
+ "narita": {
+  "about": {
+   "ja": "千葉県の国際空港。都心からはスカイライナーや成田エクスプレスで。",
+   "ko": "지바현의 국제공항. 도심에서는 스카이라이너나 나리타 익스프레스로 가요.",
+   "en": "Chiba's international airport, reached by the Skyliner or Narita Express."
+  },
+  "stations": [
+   "tokyo.narita_airport",
+   "tokyo.airport_terminal_2"
+  ]
+ },
+ "takao": {
+  "about": {
+   "ja": "都心から1時間ほどの山。ケーブルカーやリフトで中腹まで登れます。",
+   "ko": "도심에서 1시간쯤 걸리는 산. 케이블카나 리프트로 중턱까지 올라가요.",
+   "en": "A mountain an hour from the city; a cable car and chairlift go halfway up."
+  },
+  "stations": [
+   "tokyo.takaosanguchi"
+  ]
+ },
+ "ueno": {
+  "about": {
+   "ja": "博物館や美術館、動物園が集まる公園。春は桜の名所です。",
+   "ko": "박물관·미술관·동물원이 모인 공원. 봄에는 벚꽃 명소예요.",
+   "en": "A park of museums and a zoo, and a favourite cherry-blossom spot."
+  },
+  "stations": [
+   "tokyo.ueno",
+   "tokyo.keisei_ueno"
+  ]
+ },
+ "pagoda": {
+  "about": {
+   "ja": "浅草寺の五重塔。本堂の隣に立つ、東京で最も古いお寺の塔です。",
+   "ko": "센소지의 오층탑. 도쿄에서 가장 오래된 절의 본당 옆에 서 있어요.",
+   "en": "The five-storey pagoda beside the main hall of Tokyo's oldest temple."
+  },
+  "stations": [
+   "tokyo.asakusa"
+  ]
+ },
+ "wako": {
+  "about": {
+   "ja": "銀座四丁目の角に立つ時計塔。銀座の待ち合わせの目印です。",
+   "ko": "긴자 4초메 모퉁이의 시계탑. 긴자의 약속 장소로 유명해요.",
+   "en": "The clock tower on the Ginza 4-chōme corner, a classic meeting point."
+  },
+  "stations": [
+   "tokyo.ginza"
+  ]
+ },
+ "roppongi": {
+  "about": {
+   "ja": "高層ビルを中心にした街。美術館と展望台があります。",
+   "ko": "고층 빌딩을 중심으로 한 거리. 미술관과 전망대가 있어요.",
+   "en": "A district round a tower with an art museum and an observatory."
+  },
+  "stations": [
+   "tokyo.roppongi"
+  ]
+ },
+ "toyosu": {
+  "about": {
+   "ja": "築地から移った東京の中央卸売市場。見学通路からせりを見られます。",
+   "ko": "쓰키지에서 옮겨 온 도쿄 중앙도매시장. 견학 통로에서 경매를 볼 수 있어요.",
+   "en": "Tokyo's wholesale market, moved from Tsukiji; watch the auctions from the gallery."
+  },
+  "stations": [
+   "tokyo.shijo_mae"
+  ]
+ },
+ "gatebridge": {
+  "about": {
+   "ja": "恐竜が向かい合うような形のトラス橋。歩道は時間を決めて開いています。",
+   "ko": "공룡 두 마리가 마주 보는 듯한 트러스교. 보도는 정해진 시간에 열려요.",
+   "en": "A truss bridge shaped like two facing dinosaurs; its walkway opens at set hours."
+  },
+  "stations": [
+   "tokyo.shin_kiba"
+  ]
+ },
+ "fuji": {
+  "about": {
+   "ja": "日本一高い山（3,776m）。夏の登山シーズンには山頂を目指す人でにぎわいます。",
+   "ko": "일본에서 가장 높은 산(3,776m). 여름 등산 시즌에는 정상을 오르는 사람들로 붐벼요.",
+   "en": "Japan's highest mountain (3,776 m), climbed in the summer season."
+  },
+  "stations": [
+   "tokyo.kawaguchiko",
+   "tokyo.fujisan"
+  ]
+ },
+ "daibutsu": {
+  "about": {
+   "ja": "高徳院の大仏。屋外に座る高さ約11mの青銅の仏さまです。",
+   "ko": "고토쿠인의 대불. 야외에 앉은 높이 약 11m의 청동 불상이에요.",
+   "en": "Kōtoku-in's bronze Buddha, about 11 m tall, sitting in the open air."
+  },
+  "stations": [
+   "tokyo.hase"
+  ]
+ },
+ "enoshima": {
+  "about": {
+   "ja": "橋で渡れる小さな島。神社や展望灯台、岩屋があります。",
+   "ko": "다리로 건너는 작은 섬. 신사와 전망 등대, 동굴이 있어요.",
+   "en": "A small island over a bridge, with shrines, a lighthouse tower and caves."
+  },
+  "stations": [
+   "tokyo.katase_enoshima",
+   "tokyo.enoshima"
+  ]
+ },
+ "hakone": {
+  "about": {
+   "ja": "芦ノ湖のほとりに立つ箱根神社の鳥居。温泉街から登山バスや船で。",
+   "ko": "아시노코 호숫가에 선 하코네 신사의 도리이. 온천 마을에서 버스나 배로 가요.",
+   "en": "The torii of Hakone Shrine on Lake Ashi, reached by bus or boat."
+  },
+  "stations": [
+   "tokyo.hakone_yumoto"
+  ]
+ },
+ "minatomirai": {
+  "about": {
+   "ja": "横浜の港の街。大観覧車と高層ビルが並びます。",
+   "ko": "요코하마의 항구 거리. 대관람차와 고층 빌딩이 늘어서 있어요.",
+   "en": "Yokohama's harbour district of towers and a giant Ferris wheel."
+  },
+  "stations": [
+   "tokyo.minatomirai",
+   "tokyo.sakuragicho"
+  ]
+ },
+ "chinatown": {
+  "about": {
+   "ja": "日本最大級の中華街。門をくぐると中華料理のお店が並びます。",
+   "ko": "일본 최대급 차이나타운. 문을 지나면 중화요리 가게가 늘어서 있어요.",
+   "en": "One of Japan's largest Chinatowns, full of restaurants behind its gates."
+  },
+  "stations": [
+   "tokyo.motomachi_chukagai",
+   "tokyo.ishikawacho"
+  ]
+ },
+ "kawagoe": {
+  "about": {
+   "ja": "蔵造りの町並みに立つ鐘つき堂。「小江戸」と呼ばれる街です。",
+   "ko": "옛 창고 거리 한가운데 선 종루. \"작은 에도\"라 불리는 거리예요.",
+   "en": "The bell tower among old storehouse shops of \"Little Edo\"."
+  },
+  "stations": [
+   "tokyo.hon_kawagoe",
+   "tokyo.kawagoe"
+  ]
+ },
+ "naritasan": {
+  "about": {
+   "ja": "940年に開かれたお寺。駅からの参道にはうなぎ屋が並びます。",
+   "ko": "940년에 세워진 절. 역에서 이어진 참배길에 장어집이 늘어서 있어요.",
+   "en": "A temple founded in 940; the street up to it is lined with eel restaurants."
+  },
+  "stations": [
+   "tokyo.keisei_narita",
+   "tokyo.narita"
+  ]
+ },
+ "chureito": {
+  "about": {
+   "ja": "五重塔と富士山を一緒に見られる公園。春は桜も咲きます。",
+   "ko": "오층탑과 후지산을 함께 볼 수 있는 공원. 봄에는 벚꽃도 피어요.",
+   "en": "A park where a pagoda and Mt Fuji appear together, with spring cherry blossom."
+  },
+  "stations": [
+   "tokyo.shimoyoshida"
+  ]
+ },
+ "themepark": {
+  "about": {
+   "ja": "海辺のリゾート。テーマパークやホテルが集まっています。",
+   "ko": "바닷가 리조트. 테마파크와 호텔이 모여 있어요.",
+   "en": "A seaside resort of theme parks and hotels."
+  },
+  "stations": [
+   "tokyo.maihama"
+  ]
+ },
+ "nikko": {
+  "about": {
+   "ja": "徳川家康をまつる神社。豪華な彫刻の陽明門が見どころです。",
+   "ko": "도쿠가와 이에야스를 모신 신사. 화려한 조각의 요메이몬이 볼거리예요.",
+   "en": "The shrine to Tokugawa Ieyasu, famous for the carved Yōmei Gate."
+  },
+  "stations": [
+   "tokyo.tobu_nikko",
+   "tokyo.nikko"
+  ]
+ },
+ "hitachi": {
+  "about": {
+   "ja": "海辺の広い公園。春のネモフィラ、秋のコキアで丘が色づきます。",
+   "ko": "바닷가의 넓은 공원. 봄에는 네모필라, 가을에는 코키아로 언덕이 물들어요.",
+   "en": "A seaside park whose hill turns blue with nemophila in spring and red with kochia in autumn."
+  },
+  "stations": [
+   "tokyo.ajigaura"
+  ]
+ },
+ "ashikaga": {
+  "about": {
+   "ja": "大きな藤棚で有名な花の公園。冬はイルミネーションも。",
+   "ko": "커다란 등나무 시렁으로 유명한 꽃 공원. 겨울에는 일루미네이션도 있어요.",
+   "en": "A flower park famous for its huge wisteria, with winter illuminations."
+  },
+  "stations": [
+   "tokyo.ashikaga_flower_park"
+  ]
+ },
+ "tomioka": {
+  "about": {
+   "ja": "1872年に開かれた官営の製糸工場。世界遺産です。",
+   "ko": "1872년에 문을 연 관영 제사 공장. 세계유산이에요.",
+   "en": "A state silk mill opened in 1872, now a World Heritage Site."
+  },
+  "stations": [
+   "tokyo.joshu_tomioka"
+  ]
+ },
+ "oarai": {
+  "about": {
+   "ja": "海の岩の上に立つ鳥居。日の出の景色が有名です。",
+   "ko": "바다 바위 위에 선 도리이. 해돋이 풍경이 유명해요.",
+   "en": "A torii on a rock in the sea, famous at sunrise."
+  },
+  "stations": [
+   "tokyo.oarai"
+  ]
+ },
+ "kusatsu": {
+  "about": {
+   "ja": "温泉街の真ん中で湯けむりを上げる湯畑。駅からはバスで。",
+   "ko": "온천 마을 한가운데서 김이 피어오르는 유바타케. 역에서 버스로 가요.",
+   "en": "The steaming hot-spring field in the middle of the spa town, by bus from the station."
+  },
+  "stations": [
+   "tokyo.naganohara_kusatsuguchi"
+  ]
+ },
+ "karuizawa": {
+  "about": {
+   "ja": "浅間山のふもとの避暑地。森の中に教会や別荘があります。",
+   "ko": "아사마산 기슭의 피서지. 숲속에 교회와 별장이 있어요.",
+   "en": "A cool summer resort below Mt Asama, with forest chapels and villas."
+  },
+  "stations": [
+   "tokyo.karuizawa"
+  ]
+ },
+ "hachimangu": {
+  "about": {
+   "ja": "鎌倉の中心にある神社。駅から若宮大路と小町通りが続きます。",
+   "ko": "가마쿠라 중심의 신사. 역에서 와카미야오지와 고마치도리가 이어져요.",
+   "en": "Kamakura's central shrine, at the top of Wakamiya Ōji from the station."
+  },
+  "stations": [
+   "tokyo.kamakura"
+  ]
+ },
+ "atami": {
+  "about": {
+   "ja": "海辺の温泉地。夏と冬には海上花火大会が開かれます。",
+   "ko": "바닷가 온천지. 여름과 겨울에 해상 불꽃놀이가 열려요.",
+   "en": "A seaside hot-spring town with fireworks over the bay in summer and winter."
+  },
+  "stations": [
+   "tokyo.atami"
+  ]
+ }
+}

@@ -2,16 +2,21 @@ import 'dart:math' as math;
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../../app.dart';
 import '../../core/pixel/pixel_ui.dart';
+import '../../core/services.dart';
 import '../../data/models/city.dart';
 import '../../data/models/rail_line.dart';
 import '../../data/models/route_map.dart';
 import '../../l10n/app_localizations.dart';
 import '../platform/station_picker.dart';
+import '../trip/route_finder.dart';
+import 'landmark_sheet.dart';
+import 'map_trains.dart';
 
 /// Called when the user picks "出発にする" (from = true) or "到着にする".
 typedef UseStation = void Function(String stationId, {required bool from});
@@ -52,6 +57,27 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
   String? _selected;
   String? _focusLine;
 
+  /// Estimated trains on the lines (from the timetables).
+  TrainSim? _sim;
+
+  /// Ticks about 20 times a second for the trains (the ticker stops while
+  /// the tab is hidden).
+  final _trainTick = ValueNotifier<int>(0);
+  Duration _lastTrainFrame = Duration.zero;
+  late final Ticker _trainTicker = createTicker((e) {
+    if (e - _lastTrainFrame < const Duration(milliseconds: 50)) return;
+    _lastTrainFrame = e;
+    _trainTick.value++;
+  });
+
+  /// The route set on のりば, on the map; hidden by the user with the eye button.
+  RouteOnMap? _route;
+  String? _routeKey;
+  bool _routeHidden = false;
+
+  /// Landmark notes and nearest stations, by picture name.
+  Map<String, LandmarkInfo> _lmInfo = const {};
+
   static const _maxScale = 4.0;
 
   @override
@@ -63,6 +89,8 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     });
     _controller.addListener(_keepOuterZoom);
     _controller.addListener(_loadTiles);
+    Services.chosenRoute.addListener(_onRoute);
+    _trainTicker.start();
     _load();
   }
 
@@ -76,12 +104,60 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     for (final d in map.decor) {
       _landmarkImages[d.image] ??= await _image(d.image);
     }
+    final info = await loadLandmarkInfo(widget.city.id);
     if (!mounted) return;
     setState(() {
       _map = map;
       _terrain = terrain;
       _outer = outer;
+      _lmInfo = info;
+      _sim = TrainSim(map, widget.city);
     });
+    _onRoute();
+  }
+
+  // ---------------- my route ----------------
+
+  /// A new route on のりば: draw it and show all of it.
+  void _onRoute() {
+    final map = _map, r = Services.chosenRoute.value;
+    if (map == null || r?.key == _routeKey) return;
+    setState(() {
+      _routeKey = r?.key;
+      _routeHidden = false;
+      _route = r == null ? null : RouteOnMap.build(map, widget.city, r);
+    });
+    if (_route != null && _fitted && _viewport != null) _showRoute(animate: false);
+  }
+
+  bool get _routeOn => _route != null && !_routeHidden;
+
+  /// Zoom to the whole route, above the route bar.
+  void _showRoute({bool animate = true}) {
+    final route = _route, vp = _viewport;
+    if (route == null || vp == null) return;
+    final b = route.bounds.inflate(70);
+    final s = math
+        .min((vp.width - 60) / b.width, (vp.height - 280) / b.height)
+        .clamp(_fitScale() * 0.7, math.min(2.2, _maxScaleAt(b.center)))
+        .toDouble();
+    final m = _matrixFor(b.center, s, screenAt: Offset(vp.width / 2, vp.height / 2 + 10));
+    if (animate) {
+      _animateTo(m);
+    } else {
+      _controller.value = m;
+    }
+  }
+
+  /// How strongly a line's trains are drawn: the route's lines, or the
+  /// focused ones, stand out.
+  double _trainAlpha(String lineId) {
+    final route = _route;
+    if (route != null && !_routeHidden) return route.legs.any((l) => l.lineId == lineId) ? 1 : 0.28;
+    final f = _focusLine;
+    if (f == null || f == lineId) return 1;
+    if (f.startsWith('g:') && widget.city.line(lineId).group == f.substring(2)) return 1;
+    return 0.2;
   }
 
   static Future<ui.Image> _image(String asset) async {
@@ -95,6 +171,9 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     _anim.dispose();
     _twinkle.dispose();
     _scenery.dispose();
+    Services.chosenRoute.removeListener(_onRoute);
+    _trainTicker.dispose();
+    _trainTick.dispose();
     _controller.dispose();
     super.dispose();
   }
@@ -182,15 +261,24 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     for (final set in map.tileSets) {
       if (_scale < set.from) continue;
       final span = set.span;
-      for (var ty = ((view.top - set.origin.dy) / span).floor(); ty <= ((view.bottom - set.origin.dy) / span).floor(); ty++) {
-        for (var tx = ((view.left - set.origin.dx) / span).floor();
-            tx <= ((view.right - set.origin.dx) / span).floor();
-            tx++) {
+      for (
+        var ty = ((view.top - set.origin.dy) / span).floor();
+        ty <= ((view.bottom - set.origin.dy) / span).floor();
+        ty++
+      ) {
+        for (
+          var tx = ((view.left - set.origin.dx) / span).floor();
+          tx <= ((view.right - set.origin.dx) / span).floor();
+          tx++
+        ) {
           final asset = set.asset(tx, ty);
           if (asset == null) continue;
           // Under the finer Tokyo tiles a coarse tile is not needed.
           final r = Rect.fromLTWH(set.origin.dx + tx * span, set.origin.dy + ty * span, span, span);
-          if (fine != null && set != fine && _scale >= fine.from && fine.area.contains(r.topLeft) &&
+          if (fine != null &&
+              set != fine &&
+              _scale >= fine.from &&
+              fine.area.contains(r.topLeft) &&
               fine.area.contains(r.bottomRight)) {
             continue;
           }
@@ -267,9 +355,57 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
       _openStation(best.stationId);
       return;
     }
+    final lm = _landmarkAt(d.localPosition);
+    if (lm != null) {
+      _openLandmark(lm);
+      return;
+    }
     // Empty spot: zoom in there.
     final s = math.min(_maxScaleAt(world), math.max(_scale * 2.2, _fitScale() * 2.5));
     _animateTo(_matrixFor(world, s));
+  }
+
+  /// The landmark picture under [screen], if any (the front-most one).
+  MapLandmark? _landmarkAt(Offset screen) {
+    final map = _map;
+    if (map == null || _scale <= 0.45) return null;
+    final px = (_scale * 1.1).clamp(0.5, 2.2);
+    MapLandmark? hit;
+    var hitY = -double.infinity;
+    for (final lm in map.landmarks) {
+      final img = _landmarkImages[lm.image];
+      if (img == null) continue;
+      final p = MatrixUtils.transformPoint(_controller.value, lm.position);
+      final w = img.width / lm.frames * px, h = img.height * px;
+      final r = Rect.fromLTWH(p.dx - w / 2, p.dy - h + 4 * px, w, h).deflate(w * 0.1);
+      if (r.contains(screen) && p.dy > hitY) {
+        hit = lm;
+        hitY = p.dy;
+      }
+    }
+    return hit;
+  }
+
+  Future<void> _openLandmark(MapLandmark lm) async {
+    final vp = _viewport!;
+    final s = math.min(math.max(_scale, 1.2), _maxScaleAt(lm.position));
+    _animateTo(_matrixFor(lm.position, s, screenAt: Offset(vp.width / 2, vp.height * 0.3)));
+    final picked = await showModalBottomSheet<(String, bool)>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: PixelColors.card,
+      barrierColor: const Color(0x22000000),
+      showDragHandle: true,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(22))),
+      builder: (_) => LandmarkSheet(
+        city: widget.city,
+        landmark: lm,
+        image: _landmarkImages[lm.image],
+        info: _lmInfo[landmarkKey(lm)],
+      ),
+    );
+    if (!mounted || picked == null) return;
+    widget.onUseStation?.call(picked.$1, from: picked.$2);
   }
 
   Future<void> _search() async {
@@ -312,7 +448,11 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
         _viewport = box.biggest;
         if (map != null && !_fitted) {
           _fitted = true;
-          _fitCentre();
+          if (_route != null) {
+            _showRoute(animate: false);
+          } else {
+            _fitCentre();
+          }
         }
         return ClipRect(
           child: Stack(
@@ -356,7 +496,9 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                                     ),
                                   ),
                                   Positioned.fill(
-                                    child: RepaintBoundary(child: CustomPaint(painter: _GlintPainter(map.glints, _twinkle))),
+                                    child: RepaintBoundary(
+                                      child: CustomPaint(painter: _GlintPainter(map.glints, _twinkle)),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -396,6 +538,37 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                         landmarks: _landmarkImages,
                         selected: _selected,
                         focusLine: _focusLine,
+                        route: _routeOn ? _route : null,
+                        labels: false,
+                      ),
+                    ),
+                  ),
+                ),
+              // Trains between the lines and the station dots, on their own layer.
+              if (map != null && _sim != null)
+                Positioned.fill(
+                  child: IgnorePointer(
+                    child: RepaintBoundary(
+                      child: CustomPaint(
+                        painter: TrainPainter(sim: _sim!, matrix: _controller, clock: _trainTick, visible: _trainAlpha),
+                      ),
+                    ),
+                  ),
+                ),
+              if (map != null)
+                Positioned.fill(
+                  child: IgnorePointer(
+                    child: CustomPaint(
+                      painter: _MapOverlayPainter(
+                        map: map,
+                        city: widget.city,
+                        lang: lang,
+                        matrix: _controller,
+                        landmarks: _landmarkImages,
+                        selected: _selected,
+                        focusLine: _focusLine,
+                        route: _routeOn ? _route : null,
+                        labels: true,
                       ),
                     ),
                   ),
@@ -425,16 +598,32 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                     ],
                   ),
                 ),
+              if (map != null && _route != null)
+                Positioned(
+                  left: 16,
+                  right: 84,
+                  bottom: 20,
+                  child: _RouteBar(
+                    city: widget.city,
+                    route: _route!,
+                    hidden: _routeHidden,
+                    onShow: () {
+                      setState(() => _routeHidden = false);
+                      _showRoute();
+                    },
+                    onToggle: () => setState(() => _routeHidden = !_routeHidden),
+                  ),
+                ),
               // The coast, rivers, parks and expressways are traced from
               // OpenStreetMap (ODbL), which asks for this credit.
               if (map != null)
-                const Positioned(
+                Positioned(
                   left: 8,
                   bottom: 4,
                   child: IgnorePointer(
                     child: Text(
-                      '© OpenStreetMap contributors',
-                      style: TextStyle(fontSize: 9, color: Color(0x99606670)),
+                      '© OpenStreetMap contributors · ${t.mapTrainsNote}',
+                      style: const TextStyle(fontSize: 9, color: Color(0x99606670)),
                     ),
                   ),
                 ),
@@ -528,8 +717,12 @@ class _TerrainPainter extends CustomPainter {
         canvas.drawImageRect(
           img,
           Rect.fromLTWH(0, 0, img.width.toDouble(), img.height.toDouble()),
-          Rect.fromLTWH(set.origin.dx + x * set.span, set.origin.dy + y * set.span, img.width * set.scale,
-              img.height * set.scale),
+          Rect.fromLTWH(
+            set.origin.dx + x * set.span,
+            set.origin.dy + y * set.span,
+            img.width * set.scale,
+            img.height * set.scale,
+          ),
           paint,
         );
       }
@@ -667,7 +860,22 @@ class _MapOverlayPainter extends CustomPainter {
     required this.landmarks,
     required this.selected,
     required this.focusLine,
+    required this.route,
+    required this.labels,
   }) : super(repaint: matrix);
+
+  /// The route set on のりば (drawn boldly, the rest faded), or null.
+  final RouteOnMap? route;
+
+  /// false: ground layer (scenery, landmarks, lines, the route) under the
+  /// trains; true: stations and names over them.
+  final bool labels;
+
+  /// Stations the route passes (its names stay; the others make room).
+  static final _routeStations = Expando<Set<String>>();
+  Set<String> get _onRoute => _routeStations[route!] ??= {
+    for (final l in Services.chosenRoute.value?.legs ?? const <RouteLeg>[]) ...l.stationIds,
+  };
 
   final RouteMapData map;
   final CityData city;
@@ -733,6 +941,18 @@ class _MapOverlayPainter extends CustomPainter {
     ]);
   }
 
+  /// Marks on the start / destination pins.
+  String get _startMark => switch (lang) {
+    'ko' => '출',
+    'en' => 'A',
+    _ => '発',
+  };
+  String get _endMark => switch (lang) {
+    'ko' => '도',
+    'en' => 'B',
+    _ => '着',
+  };
+
   /// Names always shown, even fully zoomed out.
   static const _major = {
     'tokyo.tokyo',
@@ -764,7 +984,7 @@ class _MapOverlayPainter extends CustomPainter {
     // They belong to the ground, so they grow with the map (1 picture pixel
     // = 2 map units), and fade in a little before the landmarks.
     final decorAlpha = ((s - 0.5) / 0.25).clamp(0.0, 1.0);
-    if (decorAlpha > 0) {
+    if (decorAlpha > 0 && !labels) {
       final paint = Paint()
         ..filterQuality = FilterQuality.none
         ..color = Color.fromRGBO(0, 0, 0, decorAlpha * 0.92);
@@ -797,6 +1017,10 @@ class _MapOverlayPainter extends CustomPainter {
         final img = landmarks[lm.image];
         if (img == null) continue;
         final p = sp(lm.position);
+        if (labels) {
+          if (s > 0.75) lmNames.add((lm.name.of(lang), p.translate(0, 6)));
+          continue;
+        }
         final w = img.width * px, h = img.height * px;
         final src = Rect.fromLTWH(0, 0, img.width.toDouble(), img.height.toDouble());
         final dst = Rect.fromLTWH(p.dx - w / 2, p.dy - h + 4 * px, w, h);
@@ -830,11 +1054,20 @@ class _MapOverlayPainter extends CustomPainter {
     // Paths are built once in map units and drawn through the zoom matrix
     // (no rebuilding 160+ paths every frame while panning).
     final width = (5.5 * s).clamp(2.0, 7.0);
+    if (!labels) {
+      _lines(canvas, m, s, view, width);
+      return;
+    }
+    _stations(canvas, size, s, sp, view, lmNames);
+  }
+
+  void _lines(Canvas canvas, Matrix4 m, double s, Rect view, double width) {
+    final route = this.route;
     canvas.save();
     canvas.transform(m.storage);
     for (final line in map.lines) {
       if (!line.bounds.overlaps(view)) continue;
-      final dim = !_inFocus(line.lineId);
+      final dim = route != null || !_inFocus(line.lineId);
       canvas.drawPath(
         _pathOf(line),
         Paint()
@@ -845,8 +1078,54 @@ class _MapOverlayPainter extends CustomPainter {
           ..strokeCap = StrokeCap.round,
       );
     }
+    if (route != null) {
+      // My route: a white rim, then the line colours, bold.
+      final bold = (width * 1.7 + 2) / s;
+      for (final leg in route.legs) {
+        canvas.drawPath(
+          leg.path,
+          Paint()
+            ..color = const Color(0xFFFFFFFF)
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = bold + 5 / s
+            ..strokeJoin = StrokeJoin.round
+            ..strokeCap = StrokeCap.round,
+        );
+      }
+      for (final leg in route.legs) {
+        canvas.drawPath(
+          leg.path,
+          Paint()
+            ..color = city.line(leg.lineId).color
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = bold
+            ..strokeJoin = StrokeJoin.round
+            ..strokeCap = StrokeCap.round,
+        );
+      }
+      // Walks between two stations: dots.
+      final dot = Paint()..color = PixelColors.ink;
+      for (final (a, b) in route.walks) {
+        final d = b - a;
+        final n = math.max(2, (d.distance * s / 7).round());
+        for (var i = 0; i <= n; i++) {
+          canvas.drawCircle(a + d * (i / n), 1.8 / s, dot);
+        }
+      }
+    }
     canvas.restore();
+  }
 
+  void _stations(
+    Canvas canvas,
+    Size size,
+    double s,
+    Offset Function(Offset) sp,
+    Rect view,
+    List<(String, Offset)> lmNames,
+  ) {
+    final route = this.route;
+    final onRoute = route == null ? const <String>{} : _onRoute;
     // ---- stations ----
     final r = (6.5 * s).clamp(2.2, 8.5);
     final fill = Paint()..color = PixelColors.card;
@@ -855,7 +1134,7 @@ class _MapOverlayPainter extends CustomPainter {
       ..style = PaintingStyle.stroke;
     for (final MapEntry(key: id, value: stops) in map.stations.entries) {
       if (!view.contains(stops.first.position)) continue;
-      final onFocus = focusLine == null || stops.any((x) => _inFocus(x.lineId));
+      final onFocus = route != null ? onRoute.contains(id) : focusLine == null || stops.any((x) => _inFocus(x.lineId));
       fill.color = PixelColors.card.withValues(alpha: onFocus ? 1 : 0.5);
       outline.color = PixelColors.ink.withValues(alpha: onFocus ? 1 : 0.25);
       final pts = stops.map((x) => sp(x.position)).toList();
@@ -864,7 +1143,7 @@ class _MapOverlayPainter extends CustomPainter {
       if (s < 0.3 && pts.length == 1 && id != selected) continue;
       // All of Kanto on screen: only the big stations, or the middle is one white blob.
       if (s < 0.12 && !_major.contains(id) && id != selected) continue;
-      if (focusLine != null && !onFocus && s < 0.6) continue;
+      if ((focusLine != null || route != null) && !onFocus && s < 0.6) continue;
       if (pts.length > 1) {
         // Transfer station: one white pill round its stop on each line.
         var box = Rect.fromPoints(pts.first, pts.first);
@@ -892,8 +1171,45 @@ class _MapOverlayPainter extends CustomPainter {
       }
     }
 
-    // ---- names: minor ones only when zoomed in, never overlapping ----
+    // ---- my route: start, changes, destination ----
     final placed = _Placed();
+    final ends = <String>{};
+    if (route != null) {
+      for (final stop in route.stops) {
+        final p = sp(stop.at);
+        if (stop.kind == RouteStopKind.change) {
+          canvas.drawCircle(p, r + 4, Paint()..color = PixelColors.card);
+          canvas.drawCircle(
+            p,
+            r + 4,
+            Paint()
+              ..color = PixelColors.ink
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 3,
+          );
+          continue;
+        }
+        ends.add(stop.stationId);
+        final start = stop.kind == RouteStopKind.start;
+        final color = start ? const Color(0xFF2E9447) : const Color(0xFFE0513F);
+        // A pin standing on the station.
+        final head = p.translate(0, -24);
+        final pin = Path()
+          ..moveTo(p.dx, p.dy - 2)
+          ..lineTo(head.dx - 8, head.dy + 6)
+          ..lineTo(head.dx + 8, head.dy + 6)
+          ..close();
+        canvas.drawCircle(p, 4, Paint()..color = const Color(0x55000000));
+        canvas.drawPath(pin, Paint()..color = color);
+        canvas.drawCircle(head, 13, Paint()..color = PixelColors.card);
+        canvas.drawCircle(head, 11, Paint()..color = color);
+        final tp = _tp(start ? _startMark : _endMark, 12, PixelColors.card);
+        tp.paint(canvas, head - Offset(tp.width / 2, tp.height / 2));
+        placed.tryAdd(Rect.fromCircle(center: head, radius: 14));
+      }
+    }
+
+    // ---- names: minor ones only when zoomed in, never overlapping ----
     final font = (11 + 7 * (s - 0.4)).clamp(11.0, 19.0);
     final order = _labelOrder[map] ??= (map.stations.keys.toList()
       ..sort((a, b) {
@@ -906,12 +1222,21 @@ class _MapOverlayPainter extends CustomPainter {
     for (final id in order) {
       final all = map.stopsOf(id);
       if (!view.contains(all.first.position)) continue;
-      if (focusLine != null && !all.any((x) => _inFocus(x.lineId))) continue;
       final major = _major.contains(id);
-      if (!major && s < (all.length > 1 ? transferFrom : minorFrom)) continue;
+      if (route != null) {
+        // Only the route's names (the ends and changes at every zoom).
+        if (!onRoute.contains(id)) continue;
+        final key = ends.contains(id) || route.stops.any((x) => x.stationId == id);
+        if (!key && s < transferFrom) continue;
+      } else {
+        if (focusLine != null && !all.any((x) => _inFocus(x.lineId))) continue;
+        if (!major && s < (all.length > 1 ? transferFrom : minorFrom)) continue;
+      }
       final station = city.station(id);
       // Transfer stations take their name from the outer (loop) side.
-      final at = all.length > 1 ? all.firstWhere((x) => x.label == LabelSide.right, orElse: () => all.first) : all.first;
+      final at = all.length > 1
+          ? all.firstWhere((x) => x.label == LabelSide.right, orElse: () => all.first)
+          : all.first;
       final p = sp(at.position);
       final gap = r + (all.length > 1 ? 10 : 6);
       final (anchor, origin) = switch (at.label) {
@@ -924,7 +1249,7 @@ class _MapOverlayPainter extends CustomPainter {
       final fs = ((font * (major ? 1.15 : 1)) * 2).roundToDouble() / 2;
       final rect = _bounds(station.name.ja, sub, origin, anchor, fs);
       if (rect.right < 0 || rect.left > size.width || rect.bottom < 0 || rect.top > size.height) continue;
-      if (!placed.tryAdd(rect)) continue;
+      if (!placed.tryAdd(rect) && !ends.contains(id)) continue;
       _label(canvas, station.name.ja, origin, size: fs, color: PixelColors.ink, anchor: anchor, sub: sub);
     }
 
@@ -1001,6 +1326,8 @@ class _MapOverlayPainter extends CustomPainter {
       old.lang != lang ||
       old.selected != selected ||
       old.focusLine != focusLine ||
+      old.route != route ||
+      old.labels != labels ||
       old.landmarks.length != landmarks.length;
 }
 
@@ -1055,7 +1382,12 @@ class _TopBarState extends State<_TopBar> {
       for (final g in {for (final l in city.lines) l.group})
         if (!_groups.containsKey(g)) g,
     ];
-    final open = _group == null ? const <RailLine>[] : [for (final l in city.lines) if (l.group == _group) l];
+    final open = _group == null
+        ? const <RailLine>[]
+        : [
+            for (final l in city.lines)
+              if (l.group == _group) l,
+          ];
 
     Widget chip({required String label, required Color color, required bool on, required VoidCallback onTap}) =>
         Semantics(
@@ -1077,7 +1409,11 @@ class _TopBarState extends State<_TopBar> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Container(width: 10, height: 10, decoration: BoxDecoration(color: color, shape: BoxShape.circle)),
+                    Container(
+                      width: 10,
+                      height: 10,
+                      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+                    ),
                     const SizedBox(width: 5),
                     PixelText(label, size: 13),
                   ],
@@ -1385,4 +1721,81 @@ class _SheetButton extends StatelessWidget {
       ),
     ),
   );
+}
+
+/// Bottom bar while a route is set on のりば: from → to with the lines,
+/// a tap shows all of it; the eye hides / shows it on the map.
+class _RouteBar extends StatelessWidget {
+  const _RouteBar({
+    required this.city,
+    required this.route,
+    required this.hidden,
+    required this.onShow,
+    required this.onToggle,
+  });
+
+  final CityData city;
+  final RouteOnMap route;
+  final bool hidden;
+  final VoidCallback onShow;
+  final VoidCallback onToggle;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
+    final from = route.stops.first.stationId, to = route.stops.last.stationId;
+    return Container(
+      height: 54,
+      padding: const EdgeInsets.only(left: 12, right: 4),
+      decoration: BoxDecoration(
+        color: PixelColors.card,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: PixelColors.line),
+        boxShadow: const [BoxShadow(color: Color(0x22000000), blurRadius: 10, offset: Offset(0, 3))],
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Semantics(
+              button: true,
+              label: t.mapRouteShow,
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: onShow,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        PixelText(t.mapMyRoute, size: 11, color: PixelColors.muted),
+                        const SizedBox(width: 6),
+                        for (final leg in route.legs)
+                          Container(
+                            width: 14,
+                            height: 5,
+                            margin: const EdgeInsets.only(right: 2),
+                            decoration: BoxDecoration(
+                              color: city.line(leg.lineId).color,
+                              borderRadius: BorderRadius.circular(3),
+                            ),
+                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 3),
+                    PixelText('${city.station(from).name.ja} → ${city.station(to).name.ja}', size: 16, maxLines: 1),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          IconButton(
+            tooltip: hidden ? t.mapRouteShow : t.mapRouteHide,
+            onPressed: onToggle,
+            icon: Icon(hidden ? Icons.visibility_off_outlined : Icons.visibility_outlined, color: PixelColors.muted),
+          ),
+        ],
+      ),
+    );
+  }
 }

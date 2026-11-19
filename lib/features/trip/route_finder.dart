@@ -26,6 +26,9 @@ class RouteResult {
   int get transferCount => legs.length - 1;
   String get fromId => legs.first.stationIds.first;
   String get toId => legs.last.stationIds.last;
+
+  /// Same lines, same stations: the same route.
+  String get key => legs.map((l) => '${l.lineId}:${l.stationIds.join(',')}').join('|');
 }
 
 /// Finds the quickest route (fewest seconds, with a penalty for changing trains).

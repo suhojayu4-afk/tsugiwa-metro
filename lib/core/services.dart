@@ -10,6 +10,7 @@ import '../platform/purchases.dart';
 import '../platform/live_status_bridge.dart';
 import '../data/weather/weather_source.dart';
 import '../features/trip/location_source.dart';
+import '../features/trip/route_finder.dart';
 
 /// Swappable outside services. Tests replace these with fakes; later steps
 /// swap in ODPT for [realtime] without touching screen code.
@@ -23,6 +24,9 @@ class Services {
 
   /// The latest weather from のりば, shared with the home screen widget.
   static final weatherNow = ValueNotifier<WeatherNow?>(null);
+
+  /// The route set on のりば (from → to), drawn boldly on the route map.
+  static final chosenRoute = ValueNotifier<RouteResult?>(null);
   static Purchases purchases = const NotReadyPurchases();
   static HomeWidgetBridge homeWidget = MethodChannelHomeWidget();
   static LiveStatusBridge live = MethodChannelLiveStatusBridge();
