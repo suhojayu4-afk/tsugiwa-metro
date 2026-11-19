@@ -648,7 +648,11 @@ const _platformMs = 3600;
 /// station pictures where the floor's horizon is at row 92; other pictures
 /// shift with their horizon). In Japan people queue at the door marks, so
 /// the second one stands beside the first, a step further from the edge.
-const _door = Offset(257, 117.5), _queue1 = Offset(268, 121), _queue2 = Offset(281, 121.5);
+const _door = Offset(254, 118), _queue1 = Offset(268, 121), _queue2 = Offset(281, 121.5);
+
+/// A step inside the car: whoever gets on walks on to here, going behind
+/// the car's side as they pass the doorway.
+const _inside = Offset(238, 116.5);
 
 /// The train's arrival over the banner's arrival animation (0 … 1): it
 /// runs down the line until [_travelEnd], then settles on its springs.
@@ -1054,31 +1058,41 @@ class _ScenePainter extends CustomPainter {
       // While the train pulls in: standing in the queue, fading in with it.
       final show = arriving ? (a / 0.15).clamp(0.0, 1.0) : 1.0;
       Offset lerp(Offset p, Offset q, double u) => Offset.lerp(at(p), at(q), u)!;
+      // Getting on: up to the doorway (slowing a little for the step), then
+      // on into the car, where the car's side hides them bit by bit.
+      ({Offset foot, double alpha, bool walking}) board(double u) {
+        if (u < 0.55) {
+          final e = u / 0.55;
+          return (foot: lerp(_queue1, _door, e * (2 - e)), alpha: 1, walking: true);
+        }
+        return (foot: lerp(_door, _inside, (u - 0.55) / 0.45), alpha: u > 0.97 ? 0 : 1, walking: true);
+      }
+
       if (who == 0) {
-        final u = ((sec - 0.5) / 0.9).clamp(0.0, 1.0);
+        final u = ((sec - 0.5) / 1.3).clamp(0.0, 1.0);
         if (!boarding || u <= 0) return (foot: at(_queue1), alpha: show, walking: false);
-        // Steps in; the last part is inside the door.
-        return (foot: lerp(_queue1, _door, u), alpha: (1 - (u - 0.75) / 0.25).clamp(0.0, 1.0), walking: true);
+        return board(u);
       }
       final up = ((sec - 0.9) / 0.6).clamp(0.0, 1.0);
-      final inn = ((sec - 1.8) / 0.9).clamp(0.0, 1.0);
+      final inn = ((sec - 1.9) / 1.3).clamp(0.0, 1.0);
       if (!boarding || up <= 0) return (foot: at(_queue2), alpha: show, walking: false);
       if (inn <= 0) return (foot: lerp(_queue2, _queue1, up), alpha: 1, walking: up < 1);
-      return (foot: lerp(_queue1, _door, inn), alpha: (1 - (inn - 0.75) / 0.25).clamp(0.0, 1.0), walking: true);
+      return board(inn);
     }
 
-    // The door is behind the train's front: whoever steps in goes behind its
-    // right edge.
-    canvas.save();
-    canvas.clipRect(
-      Rect.fromLTRB(SceneArt.trainRect.right - 1, 0, SceneArt.width.toDouble(), SceneArt.height.toDouble()),
-    );
+    // The car's side runs from the train's front right edge to where the
+    // rails meet: at a person's depth, everything left of it is inside.
+    const tr = SceneArt.trainRect;
+    double sideX(double foot) => tr.right + (foot - tr.bottom) * (tr.right - vanishing.dx) / (tr.bottom - vanishing.dy);
+
     // The one further back first, so the nearer one is drawn over it.
     for (final who in const [1, 0]) {
       if (who >= walkers.length) continue;
       final w = walkers[who];
       final p = where(who);
       if (p.alpha <= 0) continue;
+      canvas.save();
+      canvas.clipRect(Rect.fromLTRB(sideX(p.foot.dy), 0, SceneArt.width.toDouble(), SceneArt.height.toDouble()));
       final h = 1.33 * (p.foot.dy - horizon);
       final img = w.away;
       final fw = img.width / w.frames;
@@ -1101,8 +1115,8 @@ class _ScenePainter extends CustomPainter {
         Rect.fromLTWH(p.foot.dx - fw * scale / 2, p.foot.dy - h, fw * scale, h),
         paint,
       );
+      canvas.restore();
     }
-    canvas.restore();
   }
 
   /// The two headlights: seen first as two bright points far down the line,
