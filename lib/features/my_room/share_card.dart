@@ -6,12 +6,14 @@ import 'package:material_ui/material_ui.dart';
 import '../../core/pixel/pixel_scene.dart';
 import '../../core/pixel/pixel_ui.dart';
 import '../../core/services.dart';
+import '../../data/achievements.dart';
 import '../../data/models/city.dart';
 import '../../data/my_stats.dart';
 import '../../data/my_store.dart';
 import '../../data/sticker_marks.dart';
 import '../../l10n/app_localizations.dart';
 import '../../platform/share_bridge.dart';
+import 'badges_sheet.dart';
 import 'share_gif.dart';
 import 'stamp_book_screen.dart';
 import 'station_plate.dart';
@@ -124,7 +126,29 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            PixelText(t.shareTitle, size: 24),
+            Row(
+              children: [
+                Expanded(child: PixelText(t.shareTitle, size: 24)),
+                // Every badge, earned or still to get.
+                GestureDetector(
+                  onTap: () => showModalBottomSheet<void>(
+                    context: context,
+                    showDragHandle: true,
+                    isScrollControlled: true,
+                    backgroundColor: PixelColors.card,
+                    builder: (_) => BadgesSheet(city: widget.city),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      BadgeMedal(badge: badges.first, earned: true, size: 24),
+                      const SizedBox(width: 4),
+                      PixelText(BadgesSheet.title.of(t.localeName), size: 14),
+                    ],
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(height: 10),
             Row(
               children: [
@@ -402,6 +426,16 @@ class _CardData {
 
   MyStore get store => Services.my;
 
+  /// Earned badges, gold first: the card shows the best few.
+  List<TripBadge> get topBadges {
+    final got = earnedBadges(city, store);
+    return [
+      for (final t in BadgeTier.values.reversed)
+        for (final b in badges)
+          if (b.tier == t && got.contains(b.id)) b,
+    ];
+  }
+
   /// The latest stamps, newest first.
   List<MapEntry<String, String>> recent(int n) =>
       (store.stamps.entries.where((e) => city.stations.containsKey(e.key)).toList()
@@ -448,6 +482,12 @@ class _LevelTitle extends StatelessWidget {
         ),
         const SizedBox(width: 7),
         Expanded(child: PixelText(d.stats.title.of(t.localeName), size: 16, color: fg, maxLines: 1)),
+        // The best badges earned, as little medals.
+        for (final b in d.topBadges.take(3))
+          Padding(
+            padding: const EdgeInsets.only(left: 3),
+            child: BadgeMedal(badge: b, earned: true, size: 24),
+          ),
       ],
     );
   }

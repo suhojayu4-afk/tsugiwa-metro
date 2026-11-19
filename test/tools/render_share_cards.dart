@@ -12,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tsugiwa_metro/core/services.dart';
 import 'package:tsugiwa_metro/data/my_catalog.dart';
 import 'package:tsugiwa_metro/data/my_store.dart';
+import 'package:tsugiwa_metro/features/my_room/badges_sheet.dart';
 import 'package:tsugiwa_metro/features/my_room/share_card.dart';
 import 'package:tsugiwa_metro/features/my_room/station_plate.dart';
 import 'package:tsugiwa_metro/l10n/app_localizations.dart';
@@ -93,5 +94,37 @@ void main() {
         });
       }
     }
+
+    // The badge sheet.
+    final sheetKey = GlobalKey();
+    await tester.pumpWidget(
+      MaterialApp(
+        locale: const Locale('ja'),
+        supportedLocales: AppLocalizations.supportedLocales,
+        localizationsDelegates: const [AppLocalizations.delegate, ...GlobalMaterialLocalizations.delegates],
+        home: Material(
+          child: Center(
+            child: RepaintBoundary(
+              key: sheetKey,
+              child: Container(
+                color: Colors.white,
+                width: 400,
+                child: BadgesSheet(city: city),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+    for (var i = 0; i < 4; i++) {
+      await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 300)));
+      await tester.pump(const Duration(milliseconds: 100));
+    }
+    await tester.runAsync(() async {
+      final b = sheetKey.currentContext!.findRenderObject()! as RenderRepaintBoundary;
+      final img = await b.toImage(pixelRatio: 2);
+      final png = await img.toByteData(format: ui.ImageByteFormat.png);
+      File('docs/captures/share_cards/badges_ja.png').writeAsBytesSync(png!.buffer.asUint8List());
+    });
   });
 }
