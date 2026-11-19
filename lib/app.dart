@@ -3,6 +3,7 @@ import 'package:material_ui/material_ui.dart';
 import 'core/pixel/pixel_ui.dart';
 import 'data/city_repository.dart';
 import 'data/models/city.dart';
+import 'features/onboarding/onboarding_screen.dart';
 import 'features/shell/main_shell.dart';
 import 'l10n/app_localizations.dart';
 
@@ -26,7 +27,8 @@ class TsugiwaApp extends StatelessWidget {
         final lang = device?.languageCode;
         return Locale(supportedLangs.contains(lang) ? lang! : 'ja');
       },
-      home: _CityLoader(repository: repository ?? CityRepository()),
+      // The first-run tour shows once, before the app.
+      home: OnboardingGate(child: _CityLoader(repository: repository ?? CityRepository())),
     );
   }
 }

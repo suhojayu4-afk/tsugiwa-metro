@@ -5,6 +5,7 @@ import 'package:tsugiwa_metro/app.dart';
 import 'package:tsugiwa_metro/core/services.dart';
 import 'package:tsugiwa_metro/data/my_catalog.dart';
 import 'package:tsugiwa_metro/features/my_room/my_room_screen.dart';
+import 'package:tsugiwa_metro/features/onboarding/onboarding_screen.dart';
 import 'package:tsugiwa_metro/data/my_store.dart';
 import 'package:tsugiwa_metro/platform/home_widget_bridge.dart';
 import 'package:tsugiwa_metro/data/route_store.dart';
@@ -20,7 +21,8 @@ class _FakeWeather implements WeatherSource {
 
 void main() {
   setUp(() {
-    SharedPreferences.setMockInitialValues({});
+    // A returning user: the first-run tour (test/onboarding_test.dart) is done.
+    SharedPreferences.setMockInitialValues({OnboardingFlag.key: true});
     Services.routes = RouteStore();
     // Each test has its own fake async zone: start with empty asset caches.
     rootBundle.clear();
