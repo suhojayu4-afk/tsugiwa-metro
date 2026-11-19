@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tsugiwa_metro/core/pixel/scene_events.dart' show yellowTrainSightings;
 import 'package:tsugiwa_metro/data/achievements.dart';
 import 'package:tsugiwa_metro/data/my_catalog.dart';
 import 'package:tsugiwa_metro/data/my_store.dart';
@@ -43,5 +44,16 @@ void main() {
     expect(got, isNot(contains('weekend'))); // only 2 weekend rides
     await s.rewardTrip(y.stations, now: DateTime(2026, 11, 23, 9), ridden: [y.id]);
     expect(earnedBadges(city, s), containsAll(['line1', 'yamanote', 'long']));
+  });
+
+  test('seeing the yellow train once gives its badge, kept after a restart', () async {
+    final s = MyStore()..lines = {for (final l in city.lines) l.id: l.stations};
+    await s.load(catalog: catalog);
+    await RareSightings.attach();
+    expect(earnedBadges(city, s), isNot(contains('yellow')));
+    yellowTrainSightings.value++;
+    await Future<void>.delayed(const Duration(milliseconds: 10));
+    expect(earnedBadges(city, s), contains('yellow'));
+    expect((await SharedPreferences.getInstance()).getBool('badges.yellowTrain'), isTrue);
   });
 }

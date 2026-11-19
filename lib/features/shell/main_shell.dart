@@ -1,3 +1,5 @@
+import '../../data/achievements.dart' show RareSightings;
+
 import 'package:material_ui/material_ui.dart';
 
 import '../../app.dart';
@@ -73,6 +75,8 @@ class _MainShellState extends State<MainShell> {
     if (!my.loaded) my.load();
     // 月間乗車レポート on the 1st; tapping it opens MY.
     MonthlyReport.attach(my, openMy: () => mounted ? _openMy(null) : null);
+    // The rare yellow train on のりば gives a badge.
+    RareSightings.attach();
     _stay = StayWatcher(city: widget.city, location: Services.location, onStay: _onStay)..start();
     // Keep the home screen widget's pictures in step with MY駅.
     _widgetSync = HomeWidgetSync(

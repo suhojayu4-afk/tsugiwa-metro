@@ -1,4 +1,7 @@
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../core/localized_text.dart';
+import '../core/pixel/scene_events.dart' show yellowTrainSightings;
 import '../features/trip/trip_estimator.dart' show distanceMeters;
 import 'models/city.dart';
 import 'my_store.dart';
@@ -135,7 +138,43 @@ const badges = [
     LocalizedText({'ja': '5路線制覇', 'ko': '5개 노선 제패', 'en': '5 Lines Complete'}),
     LocalizedText({'ja': '5路線を制覇する', 'ko': '5개 노선 제패하기', 'en': 'Complete 5 lines'}),
   ),
+  TripBadge(
+    'yellow',
+    BadgeTier.gold,
+    'assets/art/yellow_train/front_base_day.png',
+    LocalizedText({'ja': '幸運の黄色い電車', 'ko': '행운의 노란 전철', 'en': 'Lucky Yellow Train'}),
+    LocalizedText({
+      'ja': 'のりばでめったに来ない黄色い電車に会う',
+      'ko': '승강장에서 아주 가끔 오는 노란 전철 만나기',
+      'en': 'Spot the rare yellow train at the platform',
+    }),
+  ),
 ];
+
+/// Rare things seen on the platform (scene_events.dart), kept on the phone.
+class RareSightings {
+  static const _key = 'badges.yellowTrain';
+  static bool yellow = false;
+  static bool _attached = false;
+
+  /// Loads what was seen and starts listening for the yellow train.
+  static Future<void> attach() async {
+    if (_attached) return;
+    _attached = true;
+    try {
+      yellow = (await SharedPreferences.getInstance()).getBool(_key) ?? false;
+    } catch (_) {
+      // A badge is a nicety.
+    }
+    yellowTrainSightings.addListener(() async {
+      if (yellow || yellowTrainSightings.value == 0) return;
+      yellow = true;
+      try {
+        await (await SharedPreferences.getInstance()).setBool(_key, true);
+      } catch (_) {}
+    });
+  }
+}
 
 /// Which badges are earned, from the rides logged, the stamps and the lines.
 Set<String> earnedBadges(CityData city, MyStore store) {
@@ -178,6 +217,7 @@ Set<String> earnedBadges(CityData city, MyStore store) {
   if (done.isNotEmpty) got.add('line1');
   if (done.contains('tokyo.yamanote')) got.add('yamanote');
   if (done.length >= 5) got.add('line5');
+  if (RareSightings.yellow) got.add('yellow');
   return got;
 }
 
