@@ -1,3 +1,6 @@
+import '../../core/localized_text.dart';
+import '../my_room/sticker_mark_sheet.dart';
+
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -133,7 +136,13 @@ class _TripScreenState extends State<TripScreen> {
                   ),
                   const SizedBox(height: 20),
                   if (s.arrived)
-                    _ArrivedCard(stationName: cur.name.ja, reward: c.reward, city: city)
+                    _ArrivedCard(
+                      stationName: cur.name.ja,
+                      reward: c.reward,
+                      city: city,
+                      fromId: c.plan.stops.first.stationId,
+                      toId: c.plan.stops.last.stationId,
+                    )
                   else ...[
                     PixelText(t.nowLabel, size: 16, color: PixelColors.muted),
                     if (s.atStation)
@@ -324,9 +333,23 @@ class _StopRow extends StatelessWidget {
   }
 }
 
+const _stickerLabel = LocalizedText({
+  'ja': '乗った駅・降りた駅にステッカー',
+  'ko': '탄 역·내린 역에 스티커 붙이기',
+  'en': 'Sticker where you got on and off',
+});
+
 class _ArrivedCard extends StatelessWidget {
-  const _ArrivedCard({required this.stationName, required this.city, this.reward});
+  const _ArrivedCard({
+    required this.stationName,
+    required this.city,
+    required this.fromId,
+    required this.toId,
+    this.reward,
+  });
   final String stationName;
+  final String fromId;
+  final String toId;
   final CityData city;
   final TripReward? reward;
 
@@ -366,6 +389,33 @@ class _ArrivedCard extends StatelessWidget {
                   color: const Color(0xFFB7791F),
                 ),
               ),
+          const SizedBox(height: 12),
+          // Stick a sticker on where you got on and off: it shows on the route map.
+          GestureDetector(
+            onTap: () => showModalBottomSheet<void>(
+              context: context,
+              showDragHandle: true,
+              backgroundColor: PixelColors.card,
+              builder: (_) => StickerMarkSheet(city: city, stationIds: [fromId, toId]),
+            ),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+              decoration: BoxDecoration(color: PixelColors.card, borderRadius: BorderRadius.circular(12)),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(
+                    'assets/art/stickers/sakura.png',
+                    width: 22,
+                    height: 22,
+                    filterQuality: FilterQuality.none,
+                  ),
+                  const SizedBox(width: 8),
+                  PixelText(_stickerLabel.of(langOf(context)), size: 15),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

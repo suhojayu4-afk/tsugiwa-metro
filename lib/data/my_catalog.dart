@@ -7,7 +7,7 @@ import '../core/localized_text.dart';
 import '../core/pixel/pixel_scene.dart';
 
 /// Where an item goes in MY駅.
-enum MySlot { scene, plate, train, roof, platform, effect, melody }
+enum MySlot { scene, plate, train, roof, platform, effect, melody, sticker }
 
 class MyItem {
   const MyItem({
@@ -25,7 +25,11 @@ class MyItem {
     this.station,
     this.sound,
     this.art,
+    this.stickers = const [],
   });
+
+  /// Sticker packs: the stickers in it (assets/art/stickers/{name}.png).
+  final List<String> stickers;
 
   /// Train items with their own shape: folder of pictures (front_*, side_*).
   final String? art;
@@ -82,6 +86,7 @@ class MyItem {
     station: j['station'] as String?,
     sound: j['sound'] as String?,
     art: j['art'] as String?,
+    stickers: List<String>.from(j['stickers'] as List? ?? const []),
   );
 }
 

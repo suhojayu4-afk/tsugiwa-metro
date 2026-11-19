@@ -10,7 +10,9 @@ import '../../core/services.dart';
 import '../../data/models/city.dart';
 import '../../data/my_stats.dart';
 import '../../data/my_store.dart';
+import '../../data/sticker_marks.dart';
 import '../../l10n/app_localizations.dart';
+import 'share_gif.dart';
 import 'stamp_book_screen.dart';
 import 'station_plate.dart';
 
@@ -34,8 +36,65 @@ class ShareCardSheet extends StatefulWidget {
 
 class _ShareCardSheetState extends State<ShareCardSheet> {
   final _card = GlobalKey();
+  final _cardOnly = GlobalKey();
+  final _stickerLayer = GlobalKey();
+  final _scene = GlobalKey();
   bool _busy = false;
   ShareStyle _style = ShareStyle.ticket;
+  final List<_Placed> _stickers = [];
+  int? _moving;
+
+  void _addSticker(String name) => setState(() {
+    // A little to the side each time, so new ones don't hide each other.
+    final n = _stickers.length;
+    _stickers.add(_Placed(name, Offset(120.0 + (n * 37) % 150, 150.0 + (n * 53) % 160), 52));
+  });
+
+  /// The moving card: the train pulls in and the passengers get on, as a GIF.
+  Future<void> _shareGif() async {
+    final t = AppLocalizations.of(context);
+    setState(() => _busy = true);
+    try {
+      const ratio = 1.2; // 432×540: light and quick enough for a GIF
+      Future<ui.Image> grab(GlobalKey k) =>
+          (k.currentContext!.findRenderObject()! as RenderRepaintBoundary).toImage(pixelRatio: ratio);
+      final cardBox = _cardOnly.currentContext!.findRenderObject()! as RenderBox;
+      final sceneBox = _scene.currentContext!.findRenderObject()! as RenderBox;
+      final at = sceneBox.localToGlobal(Offset.zero, ancestor: cardBox);
+      final card = await grab(_cardOnly);
+      final stickers = _stickers.isEmpty ? null : await grab(_stickerLayer);
+      final store = Services.my;
+      final look = lookWithLed(store.look, widget.plate).withSign(
+        StationSign(name: widget.plate.name, sub: widget.plate.kana, band: store.look.trainColor ?? widget.lineColor),
+      );
+      final place = ShareCard.sceneOf(_style);
+      final gif = await buildShareGif(
+        card: card,
+        stickers: stickers,
+        pixelRatio: ratio,
+        scene: at & sceneBox.size,
+        aspect: place.aspect,
+        radius: place.radius,
+        look: look,
+        lineColor: widget.lineColor,
+      );
+      card.dispose();
+      stickers?.dispose();
+      await SharePlus.instance.share(
+        ShareParams(
+          text: t.shareText,
+          files: [XFile.fromData(gif, mimeType: 'image/gif', name: 'my_station.gif')],
+          fileNameOverrides: ['my_station.gif'],
+        ),
+      );
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(t.shareFailed)));
+      }
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
 
   Future<void> _share() async {
     final t = AppLocalizations.of(context);
@@ -92,11 +151,119 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
               child: FittedBox(
                 child: RepaintBoundary(
                   key: _card,
-                  child: ShareCard(city: widget.city, plate: widget.plate, lineColor: widget.lineColor, style: _style),
+                  child: SizedBox(
+                    width: ShareCard.width,
+                    height: ShareCard.height,
+                    child: Stack(
+                      children: [
+                        RepaintBoundary(
+                          key: _cardOnly,
+                          child: ShareCard(
+                            city: widget.city,
+                            plate: widget.plate,
+                            lineColor: widget.lineColor,
+                            style: _style,
+                            sceneKey: _scene,
+                          ),
+                        ),
+                        Positioned.fill(
+                          child: RepaintBoundary(
+                            key: _stickerLayer,
+                            child: Stack(
+                              children: [
+                                for (var i = 0; i < _stickers.length; i++)
+                                  Positioned(
+                                    left: _stickers[i].at.dx - _stickers[i].size / 2,
+                                    top: _stickers[i].at.dy - _stickers[i].size / 2,
+                                    width: _stickers[i].size,
+                                    height: _stickers[i].size,
+                                    child: GestureDetector(
+                                      // Drag to move, pinch to resize, double-tap to take off.
+                                      onScaleStart: (_) => _moving = i,
+                                      onScaleUpdate: (e) => setState(() {
+                                        final p = _stickers[i];
+                                        p.at = Offset(
+                                          (p.at.dx + e.focalPointDelta.dx).clamp(0, ShareCard.width),
+                                          (p.at.dy + e.focalPointDelta.dy).clamp(0, ShareCard.height),
+                                        );
+                                        if (e.pointerCount > 1) {
+                                          p.size = (p.base * e.scale).clamp(28, 140);
+                                        }
+                                      }),
+                                      onScaleEnd: (_) {
+                                        if (_moving != null && _moving! < _stickers.length) {
+                                          _stickers[_moving!].base = _stickers[_moving!].size;
+                                        }
+                                        _moving = null;
+                                      },
+                                      onDoubleTap: () => setState(() => _stickers.removeAt(i)),
+                                      child: Image.asset(
+                                        'assets/art/stickers/${_stickers[i].name}.png',
+                                        filterQuality: FilterQuality.none,
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 10),
+            // Stickers to put on the card.
+            Row(
+              children: [
+                PixelText(t.shareStickers, size: 14),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(t.shareStickersHint, style: const TextStyle(fontSize: 10, color: PixelColors.muted)),
+                ),
+              ],
+            ),
+            const SizedBox(height: 6),
+            SizedBox(
+              height: 48,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  for (final name in ownedStickers(Services.my))
+                    GestureDetector(
+                      onTap: () => _addSticker(name),
+                      child: Container(
+                        width: 48,
+                        margin: const EdgeInsets.only(right: 6),
+                        padding: const EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          color: PixelColors.card,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: PixelColors.line),
+                        ),
+                        child: Image.asset('assets/art/stickers/$name.png', filterQuality: FilterQuality.none),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 14),
+            GestureDetector(
+              onTap: _busy ? null : _shareGif,
+              child: Container(
+                height: 46,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: PixelColors.card,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: PixelColors.ink, width: 1.5),
+                ),
+                child: PixelText(_busy ? t.shareMaking : t.shareAnimated, size: 16),
+              ),
+            ),
+            const SizedBox(height: 8),
             GestureDetector(
               onTap: _busy ? null : _share,
               child: Container(
@@ -118,6 +285,33 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
       ),
     );
   }
+}
+
+/// Stickers in assets/art/stickers (tools/cut_gpt_stickers.py).
+const stickerNames = [
+  'sakura',
+  'heart',
+  'star',
+  'cat',
+  'onigiri',
+  'fuji',
+  'train',
+  'ticket',
+  'sparkle',
+  'hanko',
+  'coffee',
+  'rainbow',
+];
+
+/// A sticker on the card: where its middle is and how big (logical px).
+class _Placed {
+  _Placed(this.name, this.at, this.size) : base = size;
+  final String name;
+  Offset at;
+  double size;
+
+  /// Size when the current pinch began.
+  double base;
 }
 
 class _Chip extends StatelessWidget {
@@ -150,10 +344,21 @@ class ShareCard extends StatelessWidget {
     required this.lineColor,
     this.style = ShareStyle.ticket,
     this.now,
+    this.sceneKey,
   });
+
+  /// Put on the station picture, so the GIF knows where it is.
+  final GlobalKey? sceneKey;
 
   static const width = 360.0;
   static const height = 450.0;
+
+  /// How each look shows the station picture (also used for the GIF).
+  static ({double aspect, double radius}) sceneOf(ShareStyle style) => switch (style) {
+    ShareStyle.ticket => (aspect: 2.2, radius: 6.0),
+    ShareStyle.poster => (aspect: 1.25, radius: 0.0),
+    ShareStyle.report => (aspect: 2.4, radius: 10.0),
+  };
 
   final CityData city;
   final PlateData plate;
@@ -167,7 +372,15 @@ class ShareCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final jst = now ?? DateTime.now().toUtc().add(const Duration(hours: 9));
     final stats = MyStats.of(city, Services.my, now: jst);
-    final data = _CardData(city: city, plate: plate, lineColor: lineColor, stats: stats, now: jst);
+    final data = _CardData(
+      city: city,
+      plate: plate,
+      lineColor: lineColor,
+      stats: stats,
+      now: jst,
+      scene: sceneOf(style),
+      sceneKey: sceneKey,
+    );
     return SizedBox(
       width: width,
       height: height,
@@ -187,7 +400,11 @@ class _CardData {
     required this.lineColor,
     required this.stats,
     required this.now,
+    required this.scene,
+    this.sceneKey,
   });
+  final ({double aspect, double radius}) scene;
+  final GlobalKey? sceneKey;
   final CityData city;
   final PlateData plate;
   final Color lineColor;
@@ -209,17 +426,16 @@ class _CardData {
 
 /// The station picture, drawn for the saved size (3×), not the screen.
 class _Scene extends StatelessWidget {
-  const _Scene(this.d, {this.aspect = 1.45, this.radius = 12});
+  const _Scene(this.d);
   final _CardData d;
-  final double aspect;
-  final double radius;
 
   @override
   Widget build(BuildContext context) => ClipRRect(
-    borderRadius: BorderRadius.circular(radius),
+    key: d.sceneKey,
+    borderRadius: BorderRadius.circular(d.scene.radius),
     child: MediaQuery(
       data: MediaQuery.of(context).copyWith(devicePixelRatio: 1080 / ShareCard.width),
-      child: MyStationView(look: d.store.look, plate: d.plate, lineColor: d.lineColor, aspect: aspect),
+      child: MyStationView(look: d.store.look, plate: d.plate, lineColor: d.lineColor, aspect: d.scene.aspect),
     ),
   );
 }
@@ -403,7 +619,7 @@ class _TicketCard extends StatelessWidget {
               ),
               if (d.plate.kana.isNotEmpty) PixelText(d.plate.kana, size: 12, color: ink.withValues(alpha: 0.6)),
               const SizedBox(height: 8),
-              _Scene(d, aspect: 2.2, radius: 6),
+              _Scene(d),
               const SizedBox(height: 10),
               _LevelTitle(d),
               const SizedBox(height: 8),
@@ -528,7 +744,7 @@ class _PosterCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _Scene(d, aspect: 1.25, radius: 0),
+          _Scene(d),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 10, 16, 12),
@@ -680,7 +896,7 @@ class _ReportCard extends StatelessWidget {
           const SizedBox(height: 6),
           _LevelTitle(d),
           const SizedBox(height: 10),
-          _Scene(d, aspect: 2.4, radius: 10),
+          _Scene(d),
           const SizedBox(height: 10),
           if (m.trips == 0)
             Expanded(

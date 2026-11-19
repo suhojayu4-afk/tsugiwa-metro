@@ -1,0 +1,15 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/stickers/stickers_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at C:/dev/tsugiwa-metro/docs/art/gen/stations/tokyo_day_raw.png first for the pixel art style (soft, detailed 16-bit era pixel art, hue-shifted shading, almost no black outlines).
+
+Draw a STICKER SHEET of 12 cute kawaii pixel-art stickers for decorating a Japanese train-station photo card, in a neat grid of 4 columns x 3 rows, each sticker centred in its own equal cell with lots of empty space around it:
+row 1: a pink cherry-blossom flower; a red pixel heart with a tiny white shine; a yellow five-point star with a sparkle; a smiling round white cat wearing a little navy station-master cap.
+row 2: a rice ball (onigiri) with nori; Mount Fuji with a snowy top and a small cloud; a small cute front-view commuter train with a green stripe; a cream train ticket with a punched hole.
+row 3: a blue and white four-point sparkle cluster; a red round "hanko" stamp mark with a simple flower pattern (no letters); a hot coffee can with steam; a small rainbow with two clouds.
+- Every sticker has a thick soft WHITE sticker border (die-cut sticker look) around its shape, and a very subtle soft shadow is NOT drawn.
+- Plain flat solid MAGENTA background (#FF00FF) everywhere outside the stickers.
+- Crisp square pixels, no anti-aliased blur at the edges.
+- Landscape 1536x1024.
+- ABSOLUTELY NO text, letters, numbers or labels anywhere.

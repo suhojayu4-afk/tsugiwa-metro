@@ -81,7 +81,8 @@ class MyRoomScreenState extends State<MyRoomScreen> {
       item.sound == null ? Services.melody.stop() : Services.melody.play(item.sound!, force: true);
     }
     if (_store.owns(item.id)) {
-      await _store.equip(item.id);
+      // Sticker packs are not worn: owning them is enough.
+      if (item.slot != MySlot.sticker) await _store.equip(item.id);
       return;
     }
     await showModalBottomSheet<void>(
@@ -200,6 +201,7 @@ class MyRoomScreenState extends State<MyRoomScreen> {
       MySlot.platform: t.myTabPlatform,
       MySlot.effect: t.myTabEffect,
       MySlot.melody: t.myTabMelody,
+      MySlot.sticker: t.shareStickers,
     };
     return ListView(
       padding: const EdgeInsets.fromLTRB(20, 20, 20, 32),
@@ -490,6 +492,24 @@ class _Thumb extends StatelessWidget {
           color: PixelColors.background,
           child: Center(
             child: SideTrain(color: item.color ?? const Color(0xFF80C241), art: item.art, scale: 2),
+          ),
+        );
+      case MySlot.sticker:
+        // The pack's stickers, two by two.
+        return ColoredBox(
+          color: const Color(0xFFFFF4E6),
+          child: Padding(
+            padding: const EdgeInsets.all(6),
+            child: GridView.count(
+              crossAxisCount: 2,
+              physics: const NeverScrollableScrollPhysics(),
+              mainAxisSpacing: 2,
+              crossAxisSpacing: 2,
+              children: [
+                for (final s in item.stickers.take(4))
+                  Image.asset('assets/art/stickers/$s.png', filterQuality: FilterQuality.none),
+              ],
+            ),
           ),
         );
       default:

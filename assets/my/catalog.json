@@ -28,7 +28,8 @@
     "roof",
     "platform",
     "effect",
-    "melody"
+    "melody",
+    "sticker"
   ],
   "items": [
     {
@@ -451,6 +452,54 @@
       },
       "price": 200,
       "sound": "assets/sounds/melody_umi.wav"
+    },
+    {
+      "id": "sticker.basic",
+      "slot": "sticker",
+      "name": {
+        "ja": "きほんセット",
+        "ko": "기본 세트",
+        "en": "Basics"
+      },
+      "price": 0,
+      "stickers": [
+        "sakura",
+        "heart",
+        "star",
+        "sparkle"
+      ]
+    },
+    {
+      "id": "sticker.cat",
+      "slot": "sticker",
+      "name": {
+        "ja": "駅長ねこセット",
+        "ko": "역장 고양이 세트",
+        "en": "Station Cat set"
+      },
+      "price": 300,
+      "stickers": [
+        "cat",
+        "hanko",
+        "ticket",
+        "train"
+      ]
+    },
+    {
+      "id": "sticker.trip",
+      "slot": "sticker",
+      "name": {
+        "ja": "旅の思い出セット",
+        "ko": "여행 추억 세트",
+        "en": "Trip Memories set"
+      },
+      "price": 300,
+      "stickers": [
+        "fuji",
+        "rainbow",
+        "onigiri",
+        "coffee"
+      ]
     }
   ]
 }

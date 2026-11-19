@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 
 import '../data/realtime/realtime_provider.dart';
 import '../data/last_train_alarm.dart';
+import '../data/sticker_marks.dart';
 import '../data/my_store.dart';
 import '../data/route_store.dart';
 import '../platform/home_widget_bridge.dart';
@@ -20,6 +21,9 @@ class Services {
   static RealtimeProvider realtime = const TimetableOnlyProvider();
   static RouteStore routes = RouteStore();
   static MyStore my = MyStore();
+
+  /// Stickers stuck on route-map stations after trips.
+  static StickerMarks stickers = StickerMarks();
   static LastTrainAlarm lastTrain = LastTrainAlarm();
 
   /// The latest weather from のりば, shared with the home screen widget.
