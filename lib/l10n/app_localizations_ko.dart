@@ -470,6 +470,11 @@ class AppLocalizationsKo extends AppLocalizations {
   String get stampTitle => '역 스탬프북';
 
   @override
+  String stayStamped(String station, int coins) {
+    return '$station에 5분 머물러서 골드 스탬프! +$coins';
+  }
+
+  @override
   String get stampOpen => '스탬프북';
 
   @override
@@ -716,4 +721,109 @@ class AppLocalizationsKo extends AppLocalizations {
   String throughHere(String line) {
     return '그대로 $line 직통';
   }
+
+  @override
+  String get shareStyleTicket => '승차권';
+
+  @override
+  String get shareStylePoster => '포스터';
+
+  @override
+  String get shareStyleReport => '이번 달 리포트';
+
+  @override
+  String get shareTicketHead => '승차 기념';
+
+  @override
+  String shareTicketValid(String date) {
+    return '$date 당일 한정';
+  }
+
+  @override
+  String shareTicketNo(String n) {
+    return 'No.$n';
+  }
+
+  @override
+  String shareLevel(int n) {
+    return 'Lv.$n';
+  }
+
+  @override
+  String get shareMyTrain => '내 열차';
+
+  @override
+  String get shareLineProgress => '노선 제패';
+
+  @override
+  String get shareInvite => '초대 코드';
+
+  @override
+  String shareInviteHint(int coins) {
+    return '앱에서 입력하면 $coins코인';
+  }
+
+  @override
+  String shareReportTitle(String month) {
+    return '$month월 승차 리포트';
+  }
+
+  @override
+  String get shareReportTrips => '승차';
+
+  @override
+  String get shareReportTripUnit => '번';
+
+  @override
+  String get shareReportKm => '이동';
+
+  @override
+  String get shareReportStations => '지나간 역';
+
+  @override
+  String get shareReportTopLine => '가장 많이 탄 노선';
+
+  @override
+  String get shareReportEarliest => '가장 이른 승차';
+
+  @override
+  String get shareReportLatest => '가장 늦은 승차';
+
+  @override
+  String get shareReportNone => '이번 달은 아직 안 탔어요';
+
+  @override
+  String get shareStickers => '스티커';
+
+  @override
+  String get shareStickersHint => '탭해서 붙이고, 끌어서 옮기고, 두 번 탭하면 떼요';
+
+  @override
+  String get shareAnimated => '움직이는 카드 (GIF)';
+
+  @override
+  String get shareMaking => '만드는 중…';
+
+  @override
+  String get myInviteEnter => '친구 초대 코드';
+
+  @override
+  String get myInviteField => '6자리 코드';
+
+  @override
+  String get myInviteUse => '받기';
+
+  @override
+  String myInviteOk(int coins) {
+    return '$coins코인을 받았어요';
+  }
+
+  @override
+  String get myInviteOwn => '내 코드는 쓸 수 없어요';
+
+  @override
+  String get myInviteUsed => '초대 코드는 이미 사용했어요';
+
+  @override
+  String get myInviteInvalid => '코드가 올바르지 않아요';
 }

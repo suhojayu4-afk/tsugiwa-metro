@@ -892,6 +892,12 @@ abstract class AppLocalizations {
   /// **'駅スタンプ帳'**
   String get stampTitle;
 
+  /// No description provided for @stayStamped.
+  ///
+  /// In ja, this message translates to:
+  /// **'{station}に5分いたので ゴールドスタンプ！ +{coins}'**
+  String stayStamped(String station, int coins);
+
   /// No description provided for @stampOpen.
   ///
   /// In ja, this message translates to:
@@ -907,7 +913,7 @@ abstract class AppLocalizations {
   /// No description provided for @stampHint.
   ///
   /// In ja, this message translates to:
-  /// **'はじめて行った駅にスタンプ。路線をぜんぶ集めると 限定アイテム！'**
+  /// **'はじめて行った駅にスタンプ。駅で5分すごすと ゴールドスタンプ★ 路線をぜんぶ集めると 限定アイテム！'**
   String get stampHint;
 
   /// No description provided for @stampReward.
@@ -1287,6 +1293,192 @@ abstract class AppLocalizations {
   /// In ja, this message translates to:
   /// **'そのまま{line}へ直通'**
   String throughHere(String line);
+
+  /// No description provided for @shareStyleTicket.
+  ///
+  /// In ja, this message translates to:
+  /// **'きっぷ'**
+  String get shareStyleTicket;
+
+  /// No description provided for @shareStylePoster.
+  ///
+  /// In ja, this message translates to:
+  /// **'ポスター'**
+  String get shareStylePoster;
+
+  /// No description provided for @shareStyleReport.
+  ///
+  /// In ja, this message translates to:
+  /// **'今月のレポート'**
+  String get shareStyleReport;
+
+  /// No description provided for @shareTicketHead.
+  ///
+  /// In ja, this message translates to:
+  /// **'乗車記念'**
+  String get shareTicketHead;
+
+  /// No description provided for @shareTicketValid.
+  ///
+  /// In ja, this message translates to:
+  /// **'{date} 当日限り有効'**
+  String shareTicketValid(String date);
+
+  /// No description provided for @shareTicketNo.
+  ///
+  /// In ja, this message translates to:
+  /// **'No.{n}'**
+  String shareTicketNo(String n);
+
+  /// No description provided for @shareLevel.
+  ///
+  /// In ja, this message translates to:
+  /// **'Lv.{n}'**
+  String shareLevel(int n);
+
+  /// No description provided for @shareMyTrain.
+  ///
+  /// In ja, this message translates to:
+  /// **'MY列車'**
+  String get shareMyTrain;
+
+  /// No description provided for @shareLineProgress.
+  ///
+  /// In ja, this message translates to:
+  /// **'路線の制覇'**
+  String get shareLineProgress;
+
+  /// No description provided for @shareInvite.
+  ///
+  /// In ja, this message translates to:
+  /// **'招待コード'**
+  String get shareInvite;
+
+  /// No description provided for @shareInviteHint.
+  ///
+  /// In ja, this message translates to:
+  /// **'アプリで入力すると {coins}コイン'**
+  String shareInviteHint(int coins);
+
+  /// No description provided for @shareReportTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'{month}月の乗車レポート'**
+  String shareReportTitle(String month);
+
+  /// No description provided for @shareReportTrips.
+  ///
+  /// In ja, this message translates to:
+  /// **'乗車'**
+  String get shareReportTrips;
+
+  /// No description provided for @shareReportTripUnit.
+  ///
+  /// In ja, this message translates to:
+  /// **'回'**
+  String get shareReportTripUnit;
+
+  /// No description provided for @shareReportKm.
+  ///
+  /// In ja, this message translates to:
+  /// **'移動'**
+  String get shareReportKm;
+
+  /// No description provided for @shareReportStations.
+  ///
+  /// In ja, this message translates to:
+  /// **'通った駅'**
+  String get shareReportStations;
+
+  /// No description provided for @shareReportTopLine.
+  ///
+  /// In ja, this message translates to:
+  /// **'いちばん乗った路線'**
+  String get shareReportTopLine;
+
+  /// No description provided for @shareReportEarliest.
+  ///
+  /// In ja, this message translates to:
+  /// **'いちばん早い乗車'**
+  String get shareReportEarliest;
+
+  /// No description provided for @shareReportLatest.
+  ///
+  /// In ja, this message translates to:
+  /// **'いちばん遅い乗車'**
+  String get shareReportLatest;
+
+  /// No description provided for @shareReportNone.
+  ///
+  /// In ja, this message translates to:
+  /// **'今月はまだ乗っていません'**
+  String get shareReportNone;
+
+  /// No description provided for @shareStickers.
+  ///
+  /// In ja, this message translates to:
+  /// **'ステッカー'**
+  String get shareStickers;
+
+  /// No description provided for @shareStickersHint.
+  ///
+  /// In ja, this message translates to:
+  /// **'タップで貼る・ドラッグで動かす・ダブルタップで外す'**
+  String get shareStickersHint;
+
+  /// No description provided for @shareAnimated.
+  ///
+  /// In ja, this message translates to:
+  /// **'動くカード（GIF）'**
+  String get shareAnimated;
+
+  /// No description provided for @shareMaking.
+  ///
+  /// In ja, this message translates to:
+  /// **'作成中…'**
+  String get shareMaking;
+
+  /// No description provided for @myInviteEnter.
+  ///
+  /// In ja, this message translates to:
+  /// **'友だちの招待コード'**
+  String get myInviteEnter;
+
+  /// No description provided for @myInviteField.
+  ///
+  /// In ja, this message translates to:
+  /// **'6文字のコード'**
+  String get myInviteField;
+
+  /// No description provided for @myInviteUse.
+  ///
+  /// In ja, this message translates to:
+  /// **'もらう'**
+  String get myInviteUse;
+
+  /// No description provided for @myInviteOk.
+  ///
+  /// In ja, this message translates to:
+  /// **'{coins}コインもらいました'**
+  String myInviteOk(int coins);
+
+  /// No description provided for @myInviteOwn.
+  ///
+  /// In ja, this message translates to:
+  /// **'自分のコードは使えません'**
+  String get myInviteOwn;
+
+  /// No description provided for @myInviteUsed.
+  ///
+  /// In ja, this message translates to:
+  /// **'招待コードはもう使いました'**
+  String get myInviteUsed;
+
+  /// No description provided for @myInviteInvalid.
+  ///
+  /// In ja, this message translates to:
+  /// **'コードが正しくありません'**
+  String get myInviteInvalid;
 }
 
 class _AppLocalizationsDelegate

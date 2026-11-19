@@ -470,6 +470,11 @@ class AppLocalizationsJa extends AppLocalizations {
   String get stampTitle => '駅スタンプ帳';
 
   @override
+  String stayStamped(String station, int coins) {
+    return '$stationに5分いたので ゴールドスタンプ！ +$coins';
+  }
+
+  @override
   String get stampOpen => 'スタンプ帳';
 
   @override
@@ -478,7 +483,7 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get stampHint => 'はじめて行った駅にスタンプ。路線をぜんぶ集めると 限定アイテム！';
+  String get stampHint => 'はじめて行った駅にスタンプ。駅で5分すごすと ゴールドスタンプ★ 路線をぜんぶ集めると 限定アイテム！';
 
   @override
   String stampReward(String item) {
@@ -716,4 +721,109 @@ class AppLocalizationsJa extends AppLocalizations {
   String throughHere(String line) {
     return 'そのまま$lineへ直通';
   }
+
+  @override
+  String get shareStyleTicket => 'きっぷ';
+
+  @override
+  String get shareStylePoster => 'ポスター';
+
+  @override
+  String get shareStyleReport => '今月のレポート';
+
+  @override
+  String get shareTicketHead => '乗車記念';
+
+  @override
+  String shareTicketValid(String date) {
+    return '$date 当日限り有効';
+  }
+
+  @override
+  String shareTicketNo(String n) {
+    return 'No.$n';
+  }
+
+  @override
+  String shareLevel(int n) {
+    return 'Lv.$n';
+  }
+
+  @override
+  String get shareMyTrain => 'MY列車';
+
+  @override
+  String get shareLineProgress => '路線の制覇';
+
+  @override
+  String get shareInvite => '招待コード';
+
+  @override
+  String shareInviteHint(int coins) {
+    return 'アプリで入力すると $coinsコイン';
+  }
+
+  @override
+  String shareReportTitle(String month) {
+    return '$month月の乗車レポート';
+  }
+
+  @override
+  String get shareReportTrips => '乗車';
+
+  @override
+  String get shareReportTripUnit => '回';
+
+  @override
+  String get shareReportKm => '移動';
+
+  @override
+  String get shareReportStations => '通った駅';
+
+  @override
+  String get shareReportTopLine => 'いちばん乗った路線';
+
+  @override
+  String get shareReportEarliest => 'いちばん早い乗車';
+
+  @override
+  String get shareReportLatest => 'いちばん遅い乗車';
+
+  @override
+  String get shareReportNone => '今月はまだ乗っていません';
+
+  @override
+  String get shareStickers => 'ステッカー';
+
+  @override
+  String get shareStickersHint => 'タップで貼る・ドラッグで動かす・ダブルタップで外す';
+
+  @override
+  String get shareAnimated => '動くカード（GIF）';
+
+  @override
+  String get shareMaking => '作成中…';
+
+  @override
+  String get myInviteEnter => '友だちの招待コード';
+
+  @override
+  String get myInviteField => '6文字のコード';
+
+  @override
+  String get myInviteUse => 'もらう';
+
+  @override
+  String myInviteOk(int coins) {
+    return '$coinsコインもらいました';
+  }
+
+  @override
+  String get myInviteOwn => '自分のコードは使えません';
+
+  @override
+  String get myInviteUsed => '招待コードはもう使いました';
+
+  @override
+  String get myInviteInvalid => 'コードが正しくありません';
 }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart' show StringCharacters;
@@ -34,6 +35,32 @@ class TripReward {
 }
 
 enum BuyResult { ok, notEnoughCoins, alreadyOwned }
+
+/// One finished trip, for the monthly ride report on the share card.
+@immutable
+class TripLog {
+  const TripLog({required this.day, required this.minute, required this.stations, this.lines = const []});
+
+  factory TripLog.fromJson(Map<String, dynamic> j) => TripLog(
+    day: j['d'] as String,
+    minute: (j['m'] as num).toInt(),
+    stations: List<String>.from(j['s'] as List),
+    lines: List<String>.from(j['l'] as List? ?? const []),
+  );
+
+  /// yyyy-mm-dd and minutes after midnight, Japan time (when it ended).
+  final String day;
+  final int minute;
+
+  /// Every station passed, in order, and the lines ridden.
+  final List<String> stations;
+  final List<String> lines;
+
+  Map<String, dynamic> toJson() => {'d': day, 'm': minute, 's': stations, 'l': lines};
+}
+
+/// What a friend's invite code did.
+enum InviteResult { ok, own, used, invalid }
 
 /// The user's own station sign: name, reading, the stations either side
 /// and the colour of the band. An empty name shows the scene's name.
@@ -103,8 +130,20 @@ class MyStore extends ChangeNotifier {
   final Set<String> _owned = {};
   final Map<MySlot, String> _equipped = {};
   final Map<String, String> _visited = {};
+
+  /// Stations where the user really stayed 5 minutes (gold stamps).
+  final Set<String> _stayed = {};
   String? _lastTripDay;
   PlateText _plate = const PlateText();
+  final List<TripLog> _trips = [];
+  String _invite = '';
+  bool _inviteUsed = false;
+
+  /// Coins for entering a friend's invite code (once).
+  static const inviteCoins = 300;
+
+  /// Trips kept for the ride report.
+  static const _keepTrips = 400;
 
   /// Station ids of each line in the city, for line-complete rewards.
   Map<String, List<String>> lines = const {};
@@ -119,7 +158,54 @@ class MyStore extends ChangeNotifier {
 
   /// Stamp book: station id → first visit day (yyyy-mm-dd, Japan time).
   Map<String, String> get stamps => Map.unmodifiable(_visited);
+
+  /// Finished trips, oldest first (the latest [_keepTrips]).
+  List<TripLog> get trips => List.unmodifiable(_trips);
+
+  /// This phone's invite code for friends (6 letters and digits that cannot
+  /// be mistaken for each other).
+  String get inviteCode => _invite;
+  bool get inviteUsed => _inviteUsed;
+
+  static bool validInvite(String code) => RegExp(r'^[ACDEFGHJKLMNPQRTUVWXY3479]{6}$').hasMatch(code);
+
+  /// A friend's code: [inviteCoins] coins, once, and not your own.
+  Future<InviteResult> useInvite(String code) async {
+    final c = code.trim().toUpperCase();
+    if (!validInvite(c)) return InviteResult.invalid;
+    if (c == _invite) return InviteResult.own;
+    if (_inviteUsed) return InviteResult.used;
+    _inviteUsed = true;
+    _coins += inviteCoins;
+    await _save();
+    return InviteResult.ok;
+  }
+
   bool stamped(String stationId) => _visited.containsKey(stationId);
+
+  /// Gold stamp: the user stayed at this station (StayWatcher).
+  bool stayed(String stationId) => _stayed.contains(stationId);
+
+  /// Coins for a gold stamp.
+  static const stayCoins = 30;
+
+  /// Stayed 5 minutes at [stationId]: a gold stamp the first time (and the
+  /// usual stamp too if it is new). Returns the coins earned, 0 if it already
+  /// had its gold stamp.
+  Future<int> stampStay(String stationId, {DateTime? now}) async {
+    if (_stayed.contains(stationId)) return 0;
+    final rules = _catalog?.rules ?? const CoinRules();
+    final jst = now ?? DateTime.now().toUtc().add(const Duration(hours: 9));
+    var coins = stayCoins;
+    if (!_visited.containsKey(stationId)) {
+      _visited[stationId] = jst.toIso8601String().substring(0, 10);
+      coins += rules.firstVisit;
+    }
+    _stayed.add(stationId);
+    _coins += coins;
+    await _save();
+    return coins;
+  }
 
   Future<void> load({MyCatalog? catalog}) async {
     _catalog = catalog ?? await MyCatalog.load();
@@ -128,6 +214,9 @@ class MyStore extends ChangeNotifier {
     _owned
       ..clear()
       ..addAll(prefs.getStringList('$prefix.owned') ?? const []);
+    _stayed
+      ..clear()
+      ..addAll(prefs.getStringList('$prefix.stayed') ?? const []);
     _visited.clear();
     for (final id in prefs.getStringList('$prefix.visited') ?? const <String>[]) {
       _visited[id] = '';
@@ -141,6 +230,22 @@ class MyStore extends ChangeNotifier {
       // Dates are a nicety; the stamps themselves are kept above.
     }
     _lastTripDay = prefs.getString('$prefix.lastTripDay');
+    _trips.clear();
+    try {
+      for (final t in jsonDecode(prefs.getString('$prefix.trips') ?? '[]') as List) {
+        _trips.add(TripLog.fromJson(t as Map<String, dynamic>));
+      }
+    } catch (_) {
+      // The ride report is a nicety; start it again.
+    }
+    _inviteUsed = prefs.getBool('$prefix.inviteUsed') ?? false;
+    _invite = prefs.getString('$prefix.invite') ?? '';
+    if (!validInvite(_invite)) {
+      const letters = 'ACDEFGHJKLMNPQRTUVWXY3479';
+      final r = math.Random.secure();
+      _invite = String.fromCharCodes([for (var i = 0; i < 6; i++) letters.codeUnitAt(r.nextInt(letters.length))]);
+      await prefs.setString('$prefix.invite', _invite);
+    }
     _equipped.clear();
     try {
       final raw = jsonDecode(prefs.getString('$prefix.equipped') ?? '{}') as Map<String, dynamic>;
@@ -213,9 +318,12 @@ class MyStore extends ChangeNotifier {
   /// Coins for a finished trip: per trip, first visit to each station, and
   /// a small bonus for the first trip of the day (Japan time). New stations
   /// are stamped; finishing a line gives its reward item.
-  Future<TripReward> rewardTrip(List<String> stationIds, {DateTime? now}) async {
+  Future<TripReward> rewardTrip(List<String> stationIds, {DateTime? now, List<String> ridden = const []}) async {
     final rules = _catalog?.rules ?? const CoinRules();
-    final day = (now ?? DateTime.now().toUtc().add(const Duration(hours: 9))).toIso8601String().substring(0, 10);
+    final jst = now ?? DateTime.now().toUtc().add(const Duration(hours: 9));
+    final day = jst.toIso8601String().substring(0, 10);
+    _trips.add(TripLog(day: day, minute: jst.hour * 60 + jst.minute, stations: stationIds, lines: ridden));
+    if (_trips.length > _keepTrips) _trips.removeRange(0, _trips.length - _keepTrips);
     final fresh = [
       for (final id in stationIds.toSet())
         if (!_visited.containsKey(id)) id,
@@ -305,9 +413,12 @@ class MyStore extends ChangeNotifier {
     await prefs.setInt('$prefix.coins', _coins);
     await prefs.setStringList('$prefix.owned', _owned.toList());
     await prefs.setStringList('$prefix.visited', _visited.keys.toList());
+    await prefs.setStringList('$prefix.stayed', _stayed.toList());
     await prefs.setString('$prefix.visitedAt', jsonEncode(_visited));
     if (_lastTripDay != null) await prefs.setString('$prefix.lastTripDay', _lastTripDay!);
     await prefs.setString('$prefix.equipped', jsonEncode({for (final e in _equipped.entries) e.key.name: e.value}));
     await prefs.setString('$prefix.plate', jsonEncode(_plate.toJson()));
+    await prefs.setString('$prefix.trips', jsonEncode([for (final t in _trips) t.toJson()]));
+    await prefs.setBool('$prefix.inviteUsed', _inviteUsed);
   }
 }

@@ -179,7 +179,9 @@ class TripController extends ChangeNotifier {
   Future<void> _giveCoins() async {
     final store = Services.my;
     if (!store.loaded) await store.load();
-    reward = await store.rewardTrip([for (final s in plan.stops) s.stationId]);
+    reward = await store.rewardTrip([
+      for (final s in plan.stops) s.stationId,
+    ], ridden: {for (final s in plan.stops) s.lineId}.toList());
     notifyListeners();
   }
 

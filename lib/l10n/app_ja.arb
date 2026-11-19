@@ -365,6 +365,17 @@
   "plateKanaHint": "れい：さくら",
   "plateSave": "保存する",
   "stampTitle": "駅スタンプ帳",
+  "stayStamped": "{station}に5分いたので ゴールドスタンプ！ +{coins}",
+  "@stayStamped": {
+    "placeholders": {
+      "station": {
+        "type": "String"
+      },
+      "coins": {
+        "type": "int"
+      }
+    }
+  },
   "stampOpen": "スタンプ帳",
   "stampTotal": "{done} / {total} 駅 あつめた",
   "@stampTotal": {
@@ -377,7 +388,7 @@
       }
     }
   },
-  "stampHint": "はじめて行った駅にスタンプ。路線をぜんぶ集めると 限定アイテム！",
+  "stampHint": "はじめて行った駅にスタンプ。駅で5分すごすと ゴールドスタンプ★ 路線をぜんぶ集めると 限定アイテム！",
   "stampReward": "ぜんぶ集めると「{item}」",
   "@stampReward": {
     "placeholders": {
@@ -614,5 +625,42 @@
         "type": "String"
       }
     }
-  }
+  },
+  "shareStyleTicket": "きっぷ",
+  "shareStylePoster": "ポスター",
+  "shareStyleReport": "今月のレポート",
+  "shareTicketHead": "乗車記念",
+  "shareTicketValid": "{date} 当日限り有効",
+  "@shareTicketValid": {"placeholders": {"date": {"type": "String"}}},
+  "shareTicketNo": "No.{n}",
+  "@shareTicketNo": {"placeholders": {"n": {"type": "String"}}},
+  "shareLevel": "Lv.{n}",
+  "@shareLevel": {"placeholders": {"n": {"type": "int"}}},
+  "shareMyTrain": "MY列車",
+  "shareLineProgress": "路線の制覇",
+  "shareInvite": "招待コード",
+  "shareInviteHint": "アプリで入力すると {coins}コイン",
+  "@shareInviteHint": {"placeholders": {"coins": {"type": "int"}}},
+  "shareReportTitle": "{month}月の乗車レポート",
+  "@shareReportTitle": {"placeholders": {"month": {"type": "String"}}},
+  "shareReportTrips": "乗車",
+  "shareReportTripUnit": "回",
+  "shareReportKm": "移動",
+  "shareReportStations": "通った駅",
+  "shareReportTopLine": "いちばん乗った路線",
+  "shareReportEarliest": "いちばん早い乗車",
+  "shareReportLatest": "いちばん遅い乗車",
+  "shareReportNone": "今月はまだ乗っていません",
+  "shareStickers": "ステッカー",
+  "shareStickersHint": "タップで貼る・ドラッグで動かす・ダブルタップで外す",
+  "shareAnimated": "動くカード（GIF）",
+  "shareMaking": "作成中…",
+  "myInviteEnter": "友だちの招待コード",
+  "myInviteField": "6文字のコード",
+  "myInviteUse": "もらう",
+  "myInviteOk": "{coins}コインもらいました",
+  "@myInviteOk": {"placeholders": {"coins": {"type": "int"}}},
+  "myInviteOwn": "自分のコードは使えません",
+  "myInviteUsed": "招待コードはもう使いました",
+  "myInviteInvalid": "コードが正しくありません"
 }

@@ -484,6 +484,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get stampTitle => 'Station stamps';
 
   @override
+  String stayStamped(String station, int coins) {
+    return 'You stayed at $station for 5 minutes: gold stamp! +$coins';
+  }
+
+  @override
   String get stampOpen => 'Stamps';
 
   @override
@@ -732,4 +737,110 @@ class AppLocalizationsEn extends AppLocalizations {
   String throughHere(String line) {
     return 'Runs on as the $line (stay on)';
   }
+
+  @override
+  String get shareStyleTicket => 'Ticket';
+
+  @override
+  String get shareStylePoster => 'Poster';
+
+  @override
+  String get shareStyleReport => 'This month';
+
+  @override
+  String get shareTicketHead => 'Ride souvenir';
+
+  @override
+  String shareTicketValid(String date) {
+    return 'Valid on $date only';
+  }
+
+  @override
+  String shareTicketNo(String n) {
+    return 'No.$n';
+  }
+
+  @override
+  String shareLevel(int n) {
+    return 'Lv.$n';
+  }
+
+  @override
+  String get shareMyTrain => 'My train';
+
+  @override
+  String get shareLineProgress => 'Lines';
+
+  @override
+  String get shareInvite => 'Invite code';
+
+  @override
+  String shareInviteHint(int coins) {
+    return 'Enter it in the app: $coins coins';
+  }
+
+  @override
+  String shareReportTitle(String month) {
+    return 'My rides in $month';
+  }
+
+  @override
+  String get shareReportTrips => 'Rides';
+
+  @override
+  String get shareReportTripUnit => '';
+
+  @override
+  String get shareReportKm => 'Distance';
+
+  @override
+  String get shareReportStations => 'Stations';
+
+  @override
+  String get shareReportTopLine => 'Most ridden';
+
+  @override
+  String get shareReportEarliest => 'Earliest ride';
+
+  @override
+  String get shareReportLatest => 'Latest ride';
+
+  @override
+  String get shareReportNone => 'No rides yet this month';
+
+  @override
+  String get shareStickers => 'Stickers';
+
+  @override
+  String get shareStickersHint =>
+      'Tap to add, drag to move, double-tap to remove';
+
+  @override
+  String get shareAnimated => 'Moving card (GIF)';
+
+  @override
+  String get shareMaking => 'Making…';
+
+  @override
+  String get myInviteEnter => 'A friend\'s invite code';
+
+  @override
+  String get myInviteField => '6-letter code';
+
+  @override
+  String get myInviteUse => 'Redeem';
+
+  @override
+  String myInviteOk(int coins) {
+    return 'You got $coins coins';
+  }
+
+  @override
+  String get myInviteOwn => 'That\'s your own code';
+
+  @override
+  String get myInviteUsed => 'You already used an invite code';
+
+  @override
+  String get myInviteInvalid => 'That code isn\'t valid';
 }
