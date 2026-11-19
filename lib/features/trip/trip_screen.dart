@@ -14,6 +14,7 @@ import '../../l10n/app_localizations.dart';
 import '../common/station_name.dart';
 import 'trip_controller.dart';
 import 'widgets/progress_track.dart';
+import 'widgets/side_train_view.dart';
 import 'widgets/stamp_slam.dart';
 
 class TripScreen extends StatefulWidget {
@@ -114,6 +115,16 @@ class _TripScreenState extends State<TripScreen> {
                         ),
                       ),
                     ],
+                  ),
+                  const SizedBox(height: 16),
+                  PixelBox(
+                    color: PixelColors.ink,
+                    padding: EdgeInsets.zero,
+                    child: SideTrainView(
+                      underground: sideTrainUnderground(plan, s),
+                      moving: !s.atStation && !s.arrived,
+                      lineColor: line.color,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   Align(
