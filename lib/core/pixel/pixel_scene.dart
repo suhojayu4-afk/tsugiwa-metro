@@ -648,19 +648,6 @@ class _ScenePainter extends CustomPainter {
     _ => art,
   };
 
-  /// While the train is still small down the line it is drawn at the
-  /// screen's own resolution with smooth (mipmapped) shrinking, so it keeps
-  /// its details instead of losing pixels; at the platform it is crisp
-  /// pixel art again.
-  Paint _sharp(Paint p) {
-    if (_trainScale >= 1) return p;
-    return Paint()
-      ..color = p.color
-      ..colorFilter = p.colorFilter
-      ..blendMode = p.blendMode
-      ..filterQuality = FilterQuality.medium;
-  }
-
   /// Where the train is drawn now: it comes up the line, growing as it nears.
   Rect get _trainNow => SceneArt.trainAt(_trainScale);
 
@@ -752,7 +739,7 @@ class _ScenePainter extends CustomPainter {
       canvas.drawOval(Rect.fromLTWH(l + 1, t + 91, 69, 16), Paint()..color = const Color(0x55141018));
       canvas.drawOval(Rect.fromLTWH(l + 8, t + 93, 55, 10), Paint()..color = const Color(0x77141018));
       canvas.drawRect(Rect.fromLTWH(l + 12, t + 95, 47, 4), Paint()..color = const Color(0x99100c14));
-      final trainPaint = _sharp(_trainPaint(art));
+      final trainPaint = _trainPaint(art);
       // Wet platform: the train shows faintly in the water on the track.
       if (sky == 'rain') {
         const r = SceneArt.trainRect;
@@ -764,11 +751,9 @@ class _ScenePainter extends CustomPainter {
           trainBase,
           trainSrc,
           r,
-          _sharp(
-            Paint()
-              ..filterQuality = FilterQuality.none
-              ..colorFilter = const ColorFilter.mode(Color(0x30C0C8DC), BlendMode.modulate),
-          ),
+          Paint()
+            ..filterQuality = FilterQuality.none
+            ..colorFilter = const ColorFilter.mode(Color(0x30C0C8DC), BlendMode.modulate),
         );
         canvas.restore();
       }
@@ -780,22 +765,18 @@ class _ScenePainter extends CustomPainter {
         trainStripe,
         trainSrc,
         SceneArt.trainRect,
-        _sharp(
-          Paint()
-            ..filterQuality = FilterQuality.none
-            ..colorFilter = ColorFilter.mode(stripe, BlendMode.modulate),
-        ),
+        Paint()
+          ..filterQuality = FilterQuality.none
+          ..colorFilter = ColorFilter.mode(stripe, BlendMode.modulate),
       );
       if (trainWeather != null) {
         canvas.drawImageRect(
           trainWeather!,
           trainSrc,
           SceneArt.trainRect,
-          _sharp(
-            Paint()
-              ..filterQuality = FilterQuality.none
-              ..colorFilter = ColorFilter.mode(trainWeatherTint, BlendMode.modulate),
-          ),
+          Paint()
+            ..filterQuality = FilterQuality.none
+            ..colorFilter = ColorFilter.mode(trainWeatherTint, BlendMode.modulate),
         );
       }
     });
