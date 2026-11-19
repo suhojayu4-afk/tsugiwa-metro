@@ -236,7 +236,7 @@ class SceneEventDirector extends ChangeNotifier {
   final _art = <String, ui.Image>{};
   Future<void>? _loading;
 
-  static const _sprites = ['cat', 'pigeon', 'staff', 'blimp'];
+  static const _sprites = ['cat', 'pigeon', 'staff', 'staff_toward', 'staff_away', 'blimp'];
 
   Future<void> _ensureArt() => _loading ??= () async {
     Future<void> get(String key, String asset) async {
@@ -536,19 +536,30 @@ class SceneEventDirector extends ChangeNotifier {
   /// picture: people queue behind the line), stops on the yellow line,
   /// points at the arriving train (指差確認) and walks back down the platform.
   void _staff(Canvas canvas, _Ground g) {
+    // Side view (standing, 指差確認 towards the train), and the walk seen
+    // three-quarter from the front (coming up the platform towards us) and
+    // from behind (going back down it).
     final img = _art['staff'];
     if (img == null) return;
+    final toward = _art['staff_toward'], away = _art['staff_away'];
     final t = _time;
     // Far down the platform edge → on the yellow line nearer the camera.
     const from = Offset(249, 103), spot = Offset(277, 140);
     Offset foot;
+    var sheet = img;
+    var frames = 8;
     int frame;
     var flip = false;
     if (t < 2.2) {
       final u = t / 2.2;
       foot = Offset.lerp(from, spot, u < 0.85 ? u / 0.85 * 0.94 : 0.94 + 0.06 * _smooth((u - 0.85) / 0.15))!;
-      frame = (t * 7.5).floor() % 6;
-      flip = true;
+      if (toward != null) {
+        (sheet, frames) = (toward, 6);
+        frame = (t * 7.5).floor() % 6;
+      } else {
+        frame = (t * 7.5).floor() % 6;
+        flip = true;
+      }
     } else if (t < 2.5) {
       foot = spot;
       frame = 6;
@@ -561,10 +572,14 @@ class SceneEventDirector extends ChangeNotifier {
     } else {
       final u = ((t - 5.8) / 3.6).clamp(0.0, 1.0);
       foot = Offset.lerp(spot, from, u)!;
-      frame = ((t - 5.8) * 7.5).floor() % 6;
+      final walk = ((t - 5.8) * 7.5).floor() % 6;
+      if (away != null) {
+        (sheet, frames) = (away, 6);
+      }
+      frame = walk;
     }
     final f = g.at(foot);
-    _sprite(canvas, img, 8, frame, f, g.person(f.dy), flip: flip, tint: g.tint, shadowWidth: 0.3);
+    _sprite(canvas, sheet, frames, frame, f, g.person(f.dy), flip: flip, tint: g.tint, shadowWidth: 0.3);
   }
 
   /// Red dragonflies: hover, dart to a new spot, hover again.

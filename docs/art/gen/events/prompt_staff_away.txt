@@ -1,0 +1,14 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/events/staff_away_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at these first: C:/dev/tsugiwa-metro/docs/art/gen/events/staff_raw.png (a Japanese station attendant drawn as a side-view sprite sheet: navy uniform with gold buttons, navy cap with a gold band, white gloves, black shoes) and C:/dev/tsugiwa-metro/docs/art/gen/people_gpt/suit_man_toward_raw.png (the layout and style of a three-quarter walk-cycle sheet in this app).
+
+Draw a WALK CYCLE SPRITE SHEET of the SAME station attendant (same face, uniform, cap, white gloves, colours, same pixel size and style as in staff_raw.png):
+- He is walking AWAY from the viewer and slightly to the left (a three-quarter BACK view: we see his back, the back of the cap and head, facing up-left), like someone walking back down the platform.
+- EXACTLY 6 frames of one smooth walking loop, side by side in ONE horizontal row, evenly spaced, each frame the same size; the same height and scale in every frame, feet on the same baseline; only the legs and arms move (arms swing naturally, gloved hands relaxed).
+- The same size and pixel scale as the man in staff_raw.png.
+- Plain flat solid MAGENTA background (#FF00FF) everywhere around him, no floor, no shadow, no ground line, no other objects.
+- Crisp square pixels, no anti-aliased blur at the edges, no outline glow.
+- Landscape 1536x1024; keep generous magenta space between frames.
+- ABSOLUTELY NO text, letters, numbers, logos or badges with writing.
