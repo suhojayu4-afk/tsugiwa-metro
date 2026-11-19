@@ -24,7 +24,11 @@ class MyItem {
     this.unlock,
     this.station,
     this.sound,
+    this.art,
   });
+
+  /// Train items with their own shape: folder of pictures (front_*, side_*).
+  final String? art;
 
   final String id;
   final MySlot slot;
@@ -77,6 +81,7 @@ class MyItem {
     unlock: j['unlock'] as String?,
     station: j['station'] as String?,
     sound: j['sound'] as String?,
+    art: j['art'] as String?,
   );
 }
 

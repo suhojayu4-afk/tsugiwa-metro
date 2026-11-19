@@ -262,6 +262,7 @@ class MyStore extends ChangeNotifier {
       overlays: [for (final d in deco) ?d.overlay],
       effects: {for (final d in deco) ?d.effect},
       trainColor: cat.item(equipped(MySlot.train)).color,
+      trainArt: cat.item(equipped(MySlot.train)).art,
     );
   }
 

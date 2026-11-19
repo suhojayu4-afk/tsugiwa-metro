@@ -290,6 +290,18 @@
       "color": "#E8B33A"
     },
     {
+      "id": "train.ryusei",
+      "slot": "train",
+      "name": {
+        "ja": "流星号",
+        "ko": "류세이호",
+        "en": "Ryusei"
+      },
+      "price": 5000,
+      "color": "#2F7DE1",
+      "art": "assets/art/shinkansen"
+    },
+    {
       "id": "train.lemon",
       "slot": "train",
       "name": {

@@ -445,7 +445,9 @@ class _Thumb extends StatelessWidget {
       case MySlot.train:
         return ColoredBox(
           color: PixelColors.background,
-          child: Center(child: SideTrain(color: item.color ?? const Color(0xFF80C241), scale: 2)),
+          child: Center(
+            child: SideTrain(color: item.color ?? const Color(0xFF80C241), art: item.art, scale: 2),
+          ),
         );
       default:
         final icon = switch (item.id) {
@@ -468,21 +470,24 @@ class _Thumb extends StatelessWidget {
 
 /// The side-view pixel train with its stripe in [color].
 class SideTrain extends StatelessWidget {
-  const SideTrain({super.key, required this.color, this.scale = 2});
+  const SideTrain({super.key, required this.color, this.art, this.scale = 2});
   final Color color;
   final double scale;
 
+  /// A train with its own pictures (side_base / side_stripe in this folder).
+  final String? art;
+
   @override
   Widget build(BuildContext context) {
-    const w = 56.0, h = 20.0;
+    final (w, h) = art == null ? (56.0, 20.0) : (61.0, 18.0);
     Widget img(String a) =>
         Image.asset(a, width: w * scale, height: h * scale, fit: BoxFit.fill, filterQuality: FilterQuality.none);
     return Stack(
       children: [
-        img('assets/art/train_side_base.png'),
+        img(art == null ? 'assets/art/train_side_base.png' : '$art/side_base.png'),
         ColorFiltered(
           colorFilter: ColorFilter.mode(color, BlendMode.modulate),
-          child: img('assets/art/train_side_stripe.png'),
+          child: img(art == null ? 'assets/art/train_side_stripe.png' : '$art/side_stripe.png'),
         ),
       ],
     );

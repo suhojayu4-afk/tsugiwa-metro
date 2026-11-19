@@ -31,9 +31,22 @@ class SceneArt {
   /// Time each ambient frame stays on screen.
   static const frameTime = Duration(milliseconds: 320);
 
-  /// The same train re-lit for each time of day.
-  static String trainBase(DayPart part) => 'assets/art/train_front_base_${part.name}.png';
+  /// The same train re-lit for each time of day. [art]: another train's
+  /// folder (MY train with its own shape, e.g. 'assets/art/shinkansen'),
+  /// holding front_base_{part}, front_stripe, front_rain and front_snow.
+  static String trainBase(DayPart part, [String? art]) =>
+      art == null ? 'assets/art/train_front_base_${part.name}.png' : '$art/front_base_${part.name}.png';
+  static String trainStripeOf([String? art]) => art == null ? trainStripe : '$art/front_stripe.png';
   static const trainStripe = 'assets/art/train_front_stripe.png';
+  static String trainWeatherOf(String sky, [String? art]) =>
+      art == null ? 'assets/art/train_front_$sky.png' : '$art/front_$sky.png';
+
+  /// Headlight centres in each train picture (75×96).
+  static const lampsDefault = [Offset(14, 64.5), Offset(58.5, 64.5)];
+  static const _lamps = {
+    'assets/art/shinkansen': [Offset(14.5, 63), Offset(59.5, 63)],
+  };
+  static List<Offset> lampsOf(String? art) => _lamps[art] ?? lampsDefault;
 
   /// Crowd levels with their own pictures (tools/gen_crowd_scenes.py).
   static const crowdLevels = {'relaxed', 'normal', 'crowded', 'packed'};
@@ -239,10 +252,14 @@ class SceneLook {
     this.overlays = const [],
     this.effects = const {},
     this.trainColor,
+    this.trainArt,
     this.led = const [],
     this.ledColors = const [ledOrange],
     this.sign,
   });
+
+  /// Equipped train with its own pictures (folder), null = the usual train.
+  final String? trainArt;
 
   /// Scene picture per time of day. Empty = the built-in animated scene.
   /// A missing time of day falls back to another picture, colour-graded.
@@ -273,6 +290,7 @@ class SceneLook {
     overlays: overlays,
     effects: effects,
     trainColor: trainColor,
+    trainArt: trainArt,
     led: pages,
     ledColors: colors,
     sign: sign,
@@ -283,6 +301,7 @@ class SceneLook {
     overlays: overlays,
     effects: effects,
     trainColor: trainColor,
+    trainArt: trainArt,
     led: led,
     ledColors: ledColors,
     sign: s,
@@ -293,6 +312,7 @@ class SceneLook {
     ...overlays,
     ...effects,
     trainColor?.toARGB32() ?? '',
+    'train=${trainArt ?? ''}',
     'led=${led.join('/')}',
     'sign=${sign?.name}/${sign?.sub}/${sign?.band.toARGB32()}',
     for (final c in ledColors) c.toARGB32(),
@@ -451,6 +471,7 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
                             bg: art.bg,
                             trainBase: art.base,
                             trainStripe: art.stripe,
+                            lamps: SceneArt.lampsOf(widget.look.trainArt),
                             // At night the stripe is in shadow like the rest of the train.
                             lineColor: stripeColor(widget.look.trainColor ?? widget.lineColor, art.part),
                             weather: weather,
@@ -580,12 +601,12 @@ Future<SceneArtSet> loadSceneArt(SceneLook look, DayPart part, {String? sky}) as
     bg = SceneArt.load(bgAsset);
   }
   final wx = weathered != null && (baseSky == 'snow' || baseSky == 'rain')
-      ? 'assets/art/train_front_$baseSky.png'
+      ? SceneArt.trainWeatherOf(baseSky!, look.trainArt)
       : null;
   final images = await Future.wait([
     bg,
-    SceneArt.load(SceneArt.trainBase(part)),
-    SceneArt.load(SceneArt.trainStripe),
+    SceneArt.load(SceneArt.trainBase(part, look.trainArt)),
+    SceneArt.load(SceneArt.trainStripeOf(look.trainArt)),
     if (wx != null) SceneArt.load(wx),
     for (final o in look.overlays) SceneArt.load(o),
   ]);
@@ -671,6 +692,7 @@ Future<ui.Image> renderSceneImage({
     bg: art.bg,
     trainBase: art.base,
     trainStripe: art.stripe,
+    lamps: SceneArt.lampsOf(look.trainArt),
     lineColor: stripeColor(look.trainColor ?? lineColor, part),
     weather: weather,
     life: life,
@@ -726,6 +748,7 @@ class _ScenePainter extends CustomPainter {
     required this.bg,
     required this.trainBase,
     required this.trainStripe,
+    this.lamps = SceneArt.lampsDefault,
     required this.lineColor,
     required this.weather,
     required this.life,
@@ -859,6 +882,9 @@ class _ScenePainter extends CustomPainter {
   final ui.Image bg;
   final ui.Image trainBase;
   final ui.Image trainStripe;
+
+  /// Headlight centres in the train picture.
+  final List<Offset> lamps;
   final Color lineColor;
   final WeatherKind weather;
 
@@ -1056,8 +1082,11 @@ class _ScenePainter extends CustomPainter {
     final s = r.width / SceneArt.trainWidth;
     const warm = Color(0xFFFFF2C8);
     // Headlight centres in the train picture (75×96).
-    for (final hx in const [14.0, 58.5]) {
-      final c = Offset(r.left + hx / SceneArt.trainWidth * r.width, r.top + 64.5 / SceneArt.trainHeight * r.height);
+    for (final lamp in lamps) {
+      final c = Offset(
+        r.left + lamp.dx / SceneArt.trainWidth * r.width,
+        r.top + lamp.dy / SceneArt.trainHeight * r.height,
+      );
       // The halo stays a few pixels wide far away, so the lights read first.
       final halo = math.max(3.0, 9 * s);
       canvas.drawCircle(
