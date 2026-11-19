@@ -54,8 +54,26 @@ class SceneArt {
     return file.substring(0, file.lastIndexOf('_'));
   }
 
-  /// Where the train is when it first appears, far down the line.
-  static const trainFar = Rect.fromLTWH(trainLeft + 33, 60, 9, 11.5);
+  /// Where the rails meet far down the line (the same in every station
+  /// picture). The arriving train comes from here along the track.
+  static const vanishing = Offset(228, 93.5);
+
+  /// How big the train is when it first appears (1 = at the platform).
+  static const trainFarScale = 0.07;
+
+  /// The train at [scale] (1 = at the platform) on its track: its bottom
+  /// middle slides from [vanishing] to the platform position and it grows
+  /// with the same perspective as the rails.
+  static Rect trainAt(double scale) {
+    const foot = Offset(trainLeft + trainWidth / 2, trainTop + trainHeight);
+    final f = vanishing + (foot - vanishing) * scale;
+    return Rect.fromLTWH(
+      f.dx - trainWidth * scale / 2,
+      f.dy - trainHeight * scale,
+      trainWidth * scale,
+      trainHeight * scale,
+    );
+  }
 
   /// Where the train stands in scene pixels. Tuned so the wheels sit on the
   /// rails of the empty track.
@@ -631,24 +649,36 @@ class _ScenePainter extends CustomPainter {
   };
 
   /// Where the train is drawn now: it comes up the line, growing as it nears.
-  Rect get _trainNow {
+  Rect get _trainNow => SceneArt.trainAt(_trainScale);
+
+  /// The train's size now (1 = at the platform). It runs down the line at
+  /// a steady braking: its distance shrinks like (1 - t)², and things look
+  /// 1/distance big, so it stays small far away, then grows quickly and
+  /// eases to a stop at the platform.
+  double get _trainScale {
     final a = arrive?.value ?? 1;
-    if (a >= 1) return SceneArt.trainRect;
-    // Fast at first, braking gently into the platform.
-    final t = Curves.easeOutQuad.transform(a);
-    return Rect.lerp(SceneArt.trainFar, SceneArt.trainRect, t)!;
+    if (a >= 1) return 1;
+    const far = 1 / SceneArt.trainFarScale;
+    final distance = 1 + (far - 1) * (1 - a) * (1 - a);
+    return 1 / distance;
   }
 
   /// Draws [draw] (made for the train at its stop) where the train is now.
   void _atTrain(Canvas canvas, void Function() draw) {
     final r = _trainNow;
     if (r == SceneArt.trainRect) return draw();
+    // Far down the line it comes out of the haze.
+    final fade = ((_trainScale - SceneArt.trainFarScale) / 0.08).clamp(0.0, 1.0);
+    if (fade < 1) {
+      canvas.saveLayer(null, Paint()..color = Color.fromRGBO(0, 0, 0, fade));
+    }
     canvas.save();
     canvas.translate(r.left, r.top);
     canvas.scale(r.width / SceneArt.trainRect.width, r.height / SceneArt.trainRect.height);
     canvas.translate(-SceneArt.trainRect.left, -SceneArt.trainRect.top);
     draw();
     canvas.restore();
+    if (fade < 1) canvas.restore();
   }
 
   final List<String> led;
