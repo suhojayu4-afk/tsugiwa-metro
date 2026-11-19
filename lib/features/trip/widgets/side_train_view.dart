@@ -310,7 +310,7 @@ class SideTrainPainter extends CustomPainter {
 
   /// Where the lead car's nose is on screen.
   static const noseX = 356.0;
-  static const carGap = 3.0;
+  static const carGap = 1.0;
 
   /// Where on screen the platform centre ends up when the train has stopped.
   static const platformScreenX = 200.0;
@@ -462,7 +462,7 @@ class SideTrainPainter extends CustomPainter {
   void _masts(Canvas c, _Pal pal) {
     final wire = pal.t(const Color(0xFF3E424B));
     // At the top of the pantographs.
-    final contactY = railY + 1 - (art.car?.height ?? 44);
+    final contactY = (railY + 1 - (art.car?.height ?? 88) * carScale).floorToDouble();
     _r(c, 0, contactY, gridW, 1, wire);
     final m = art.mast;
     final o = sim.offset;
@@ -613,7 +613,17 @@ class SideTrainPainter extends CustomPainter {
 
   // ---------------------------------------------------------------- train
 
-  double get _trainTop => railY + 1 - (art.lead?.height ?? 44);
+  /// The car pictures have twice the grid's resolution (finer detail).
+  static const carScale = 0.5;
+
+  double get _trainTop => railY + 1 - (art.lead?.height ?? 88) * carScale;
+
+  /// [img] at [carScale], its top-left at grid ([x], [y]).
+  void _carImage(Canvas c, ui.Image img, double x, double y, Color tint) {
+    final src = Rect.fromLTWH(0, 0, img.width.toDouble(), img.height.toDouble());
+    final dst = Rect.fromLTWH(x.floorToDouble(), y.floorToDouble(), img.width * carScale, img.height * carScale);
+    c.drawImageRect(img, src, dst, _imagePaint(tint));
+  }
 
   void _train(Canvas c, bool litWindows, Color tint) {
     final lead = art.lead;
@@ -625,22 +635,24 @@ class SideTrainPainter extends CustomPainter {
       green: lineColor.g * tint.g,
       blue: lineColor.b * tint.b,
     );
-    var x = noseX - lead.width;
+    var x = noseX - lead.width * carScale;
     for (var car = 0; car < 4; car++) {
       final img = car == 0 ? lead : mid;
       final stripe = car == 0 ? art.leadStripe : art.carStripe;
       final glass = car == 0 ? art.leadGlass : art.carGlass;
-      if (car > 0) x -= img.width + carGap;
+      final w = img.width * carScale;
+      final h = img.height * carScale;
+      if (car > 0) x -= w + carGap;
       // A gentle clatter while running.
       final bob = sim.speed > 40 && math.sin(sim.time * 11 + car * 1.9) > 0.6 ? -1.0 : 0.0;
-      final y = railY + 1 - img.height + bob;
+      final y = railY + 1 - h + bob;
       if (car > 0) {
-        // Gangway bellows to the car in front.
-        _r(c, x + img.width - 1, y + img.height * 0.3, carGap + 2, img.height * 0.45, const Color(0xFF2A2830));
+        // Gangway between the bellows of this car and the one in front.
+        _r(c, x + w - 1, y + h * 0.35, carGap + 2, h * 0.4, const Color(0xFF2A2830));
       }
-      _image(c, img, x, y, tint: tint);
-      if (stripe != null) _image(c, stripe, x, y, tint: stripeTint);
-      if (litWindows && glass != null) _image(c, glass, x, y, tint: const Color(0xE0FFE4A6));
+      _carImage(c, img, x, y, tint);
+      if (stripe != null) _carImage(c, stripe, x, y, stripeTint);
+      if (litWindows && glass != null) _carImage(c, glass, x, y, const Color(0xE0FFE4A6));
     }
   }
 

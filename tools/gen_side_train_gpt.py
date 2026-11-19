@@ -6,6 +6,8 @@ generation (codex exec), in the style of the station pictures.
   mid_{part}     nearer buildings and trees on flat magenta (keyed out)
   tunnel         subway tunnel wall that tiles sideways
   train          a leading car (cab on the right) above a middle car, on magenta
+  train3d_a/b    the same with more depth (seen a little from above); two tries,
+                 the better one is cut (tools/cut_side_train.py)
   mast           one overhead-wire mast with its arm, on magenta
   platform       open-air platform canopy, pillars and benches, on magenta
   platform_ug    underground platform wall, a full picture
@@ -98,6 +100,22 @@ Draw TWO cars of a Tokyo Metro commuter train for a SIDE-SCROLLING game, seen EX
 - Crisp square pixels, chunky pixel art (the car about 140 big pixels long), no anti-aliased blur at the edges, no shadow or rails under the cars.
 """ + RULES
 
+# Second train (owner 2026-11-19: the flat cars looked poor): more depth,
+# seen a little from above, at the quality of the station pictures' train.
+TRAIN_3D = HEAD + STYLE + """
+Look closely at the commuter train in {ROOT}/docs/art/gen/stations/shinjuku_evening_raw.png and {ROOT}/docs/art/gen/stations/tokyo_day_raw.png: that is the quality bar (ribbed stainless-steel panels, black window frames, door windows, a line-colour band, pantograph, skirts and bogies, rich hue-shifted shading).
+
+Draw TWO cars of that kind of Tokyo commuter train (an E231/E233-style stainless steel EMU) for a SIDE-SCROLLING game, on a plain flat solid MAGENTA background (#FF00FF) everywhere around them.
+- VIEW: a side view with DEPTH: the camera is a little ABOVE the train (looking down about 15 degrees), so we see the side of the car AND a narrow strip of the ROOF TOP surface (the curved roof, the rain gutter along its edge, the boxy air-conditioning units and vents on top), and the car feels solid and three-dimensional with light from the upper left. But NO horizontal perspective: the car runs perfectly straight left to right, both car ends are vertical, the top and bottom edges are perfectly horizontal, so many cars can be lined up in a row.
+- TOP: the LEADING car, its driver's cab at the RIGHT end: a slanted, slightly rounded front with a big dark front window, a black window frame, a headlight and a tail light low on the nose, a front skirt. A flat gangway end on the left.
+- BOTTOM: a MIDDLE car of the same train, both ends flat with gangway bellows, a single-arm PANTOGRAPH on the roof.
+- Both cars EXACTLY the same height, the same roof line, floor line and wheel line, the same scale; each car about 92 percent of the picture width, one above the other with magenta space between them.
+- Body: brushed SILVER stainless steel with fine vertical ribbing on the lower panels and soft hue-shifted shading (cool blue-grey shadows, warm highlights); four pairs of sliding doors with tall narrow windows; wide passenger windows between them with BLACK frames and dark blue-grey glass with sky reflections and a few seated passengers' silhouettes; small side destination indicator left BLANK.
+- Under the floor: dark grey equipment boxes, and two BOGIES per car with clearly visible wheels, springs and axle boxes; the wheels' bottom on one straight line.
+- ONE line-colour band runs along the whole side of each car, under the windows (and around the cab front), and a thin one at the top of the side under the roof: paint BOTH bands in pure flat bright GREEN (#00FF00), no shading on them, so they can be recoloured. No other green anywhere.
+- Crisp square pixel art, the car about 170 big pixels long, no anti-aliased blur at the edges, no shadow, no rails or ground under the cars.
+""" + RULES
+
 MAST = HEAD + STYLE + """
 
 Draw ONE overhead-wire MAST of a Japanese railway (a catenary pole) for a SIDE-SCROLLING game, seen exactly from the side, on a plain flat solid MAGENTA background (#FF00FF) everywhere around it.
@@ -132,6 +150,8 @@ def prompts():
         p[f'mid_{part}'] = MID_LATER.format(ROOT=ROOT, part=part, light=light, out='{out}')
     p['tunnel'] = TUNNEL.format(ROOT=ROOT, out='{out}')
     p['train'] = TRAIN.format(ROOT=ROOT, out='{out}')
+    for v in ('a', 'b'):
+        p[f'train3d_{v}'] = TRAIN_3D.format(ROOT=ROOT, out='{out}')
     p['mast'] = MAST.format(ROOT=ROOT, out='{out}')
     p['platform'] = PLATFORM.format(ROOT=ROOT, out='{out}')
     p['platform_ug'] = PLATFORM_UG.format(ROOT=ROOT, out='{out}')

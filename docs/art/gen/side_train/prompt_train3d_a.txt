@@ -1,0 +1,18 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/side_train/train3d_a_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at these first: C:/dev/tsugiwa-metro/docs/art/gen/stations/shinjuku_evening_raw.png and C:/dev/tsugiwa-metro/docs/art/gen/stations/tokyo_day_raw.png (Tokyo station platforms in a detailed 16-bit era pixel art style: crisp square pixels, almost no black outlines, hue-shifted shading, skyscrapers with many small lit windows, soft pixel clouds, round leafy trees). Use EXACTLY that style, the same pixel size and the same palette feel.
+Look closely at the commuter train in C:/dev/tsugiwa-metro/docs/art/gen/stations/shinjuku_evening_raw.png and C:/dev/tsugiwa-metro/docs/art/gen/stations/tokyo_day_raw.png: that is the quality bar (ribbed stainless-steel panels, black window frames, door windows, a line-colour band, pantograph, skirts and bogies, rich hue-shifted shading).
+
+Draw TWO cars of that kind of Tokyo commuter train (an E231/E233-style stainless steel EMU) for a SIDE-SCROLLING game, on a plain flat solid MAGENTA background (#FF00FF) everywhere around them.
+- VIEW: a side view with DEPTH: the camera is a little ABOVE the train (looking down about 15 degrees), so we see the side of the car AND a narrow strip of the ROOF TOP surface (the curved roof, the rain gutter along its edge, the boxy air-conditioning units and vents on top), and the car feels solid and three-dimensional with light from the upper left. But NO horizontal perspective: the car runs perfectly straight left to right, both car ends are vertical, the top and bottom edges are perfectly horizontal, so many cars can be lined up in a row.
+- TOP: the LEADING car, its driver's cab at the RIGHT end: a slanted, slightly rounded front with a big dark front window, a black window frame, a headlight and a tail light low on the nose, a front skirt. A flat gangway end on the left.
+- BOTTOM: a MIDDLE car of the same train, both ends flat with gangway bellows, a single-arm PANTOGRAPH on the roof.
+- Both cars EXACTLY the same height, the same roof line, floor line and wheel line, the same scale; each car about 92 percent of the picture width, one above the other with magenta space between them.
+- Body: brushed SILVER stainless steel with fine vertical ribbing on the lower panels and soft hue-shifted shading (cool blue-grey shadows, warm highlights); four pairs of sliding doors with tall narrow windows; wide passenger windows between them with BLACK frames and dark blue-grey glass with sky reflections and a few seated passengers' silhouettes; small side destination indicator left BLANK.
+- Under the floor: dark grey equipment boxes, and two BOGIES per car with clearly visible wheels, springs and axle boxes; the wheels' bottom on one straight line.
+- ONE line-colour band runs along the whole side of each car, under the windows (and around the cab front), and a thin one at the top of the side under the roof: paint BOTH bands in pure flat bright GREEN (#00FF00), no shading on them, so they can be recoloured. No other green anywhere.
+- Crisp square pixel art, the car about 170 big pixels long, no anti-aliased blur at the edges, no shadow, no rails or ground under the cars.
+- Landscape 1536x1024.
+- ABSOLUTELY NO text, letters, numbers, logos or signboards with writing.

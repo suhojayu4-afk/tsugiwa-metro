@@ -198,10 +198,51 @@ def keyed(name, k, rows, colors=64, tile='loop', cols=None):
     save(q, name)
 
 
-def train(car_len=150):
-    a = load('train')
+def unpink(rgb):
+    """GPT's magenta background tints the silver pink: cool the greys."""
+    r, g, b = rgb[..., 0], rgb[..., 1], rgb[..., 2]
+    grey = (np.maximum(np.maximum(r, g), b) - np.minimum(np.minimum(r, g), b)) < 70
+    out = rgb.copy()
+    out[..., 0] = np.where(grey, g + (r - g) * 0.35, r)
+    out[..., 2] = np.where(grey, g + (b - g) * 0.75, b)
+    return out
+
+
+def close(m, n=2):
+    """Fills small holes (clouds reflected in the glass): grow, then shrink."""
+    def grow(x):
+        return x | np.roll(x, 1, 0) | np.roll(x, -1, 0) | np.roll(x, 1, 1) | np.roll(x, -1, 1)
+    out = m
+    for _ in range(n):
+        out = grow(out)
+    for _ in range(n):
+        out = ~grow(~out)
+    return out
+
+
+def enclosed(a, drawn):
+    """Window glass: what the silver body cannot reach without crossing a
+    dark window frame. The body is grown from plain light-grey pixels (and
+    the green bands) through everything that is not dark."""
+    r, g, b = a[..., 0], a[..., 1], a[..., 2]
+    lum = a.sum(2) / 3
+    open_ = (lum >= 75) & (b < r + 30) & drawn
+    body = open_ & (((lum > 150) & (np.abs(r - b) < 25)) | ((g > r + 50) & (g > b + 50)))
+    while True:
+        grown = body | np.roll(body, 1, 0) | np.roll(body, -1, 0) | np.roll(body, 1, 1) | np.roll(body, -1, 1)
+        grown &= open_
+        if (grown == body).all():
+            break
+        body = grown
+    return drawn & ~body
+
+
+def train(src='train3d_b', car_len=368):
+    """Both cars at one scale (from the middle car), so they line up. Drawn
+    at twice the art grid's resolution (the app shows them at half size)."""
+    a = load(src)
     m = key_mask(a)
-    rows = m.mean(1) > 0.02
+    rows = m.mean(1) > 0.003  # thin pantograph rows count too
     # The two cars: the two longest runs of rows with something in them.
     runs, start = [], None
     for y, on in enumerate(list(rows) + [False]):
@@ -211,22 +252,44 @@ def train(car_len=150):
             runs.append((start, y))
             start = None
     runs = sorted(sorted(runs, key=lambda r: r[1] - r[0])[-2:])
-    for (t, b), car in zip(runs, ('lead', 'mid')):
+
+    def span(t, b):
         cols = np.nonzero(m[t:b].mean(0) > 0.02)[0]
-        l, r = cols.min(), cols.max() + 1
+        return cols.min(), cols.max() + 1
+
+    ml, mr = span(*runs[1])
+    k = (mr - ml) / car_len
+    for (t, b), car in zip(runs, ('lead', 'mid')):
+        l, r = span(t, b)
         sub, mk = a[t:b, l:r], m[t:b, l:r]
-        k = (r - l) / car_len
-        rgb, al = shrink(sub, mk, car_len, round((b - t) / k))
+        rgb, al = shrink(sub, mk, round((r - l) / k), round((b - t) / k))
         rgb = despill(rgb, al)
         R, G, B = rgb[..., 0], rgb[..., 1], rgb[..., 2]
         # Line-colour bands: pure green in the picture.
         band = al & (G > R + 50) & (G > B + 50)
-        # Window glass: dark blue-grey, in the window rows only.
-        hh = al.shape[0]
-        yy = np.arange(hh)[:, None] / hh
+        # Window glass: dark blue-grey, only between the top band (under the
+        # roof) and the band below the windows.
+        rows = np.nonzero(band.mean(1) > 0.3)[0]
+        yy = np.arange(al.shape[0])[:, None]
         lum = (R + G + B) / 3
-        glass = al & (B > R + 40) & (yy > 0.2) & (yy < 0.62) & ~band
-        q = palette(rgb, al, 48)
+        # Windows: what the black window frames enclose, found at full size,
+        # then shrunk like the picture.
+        raw_glass = enclosed(sub, mk)
+        _, glass = shrink(np.zeros_like(sub), raw_glass, al.shape[1], al.shape[0])
+        glass &= al & (yy > rows.min() + 1) & (yy < rows.max() - 2) & ~band
+
+        # Clouds reflected in the glass: holes with glass close on all sides.
+        def near(axis, sign):
+            return np.any([np.roll(glass, sign * d, axis) for d in range(1, 5)], 0)
+
+        glass |= near(1, 1) & near(1, -1) & near(0, 1) & near(0, -1) & al & ~band
+        # Thin lines (door seams, frame tops) are not windows: open by 1 px.
+        glass = ~close(~glass, 1)
+        glass &= sum(np.roll(np.roll(glass, dy, 0), dx, 1) for dy in (-1, 0, 1) for dx in (-1, 0, 1)) >= 5
+        # Drop lone specks (bogie bolts and the like).
+        n = sum(np.roll(np.roll(glass, dy, 0), dx, 1) for dy in (-1, 0, 1) for dx in (-1, 0, 1))
+        glass &= n >= 4
+        q = palette(unpink(rgb), al, 96)
         base = q.copy()
         stripe = np.zeros_like(q)
         v = np.clip(G / max(1, np.percentile(G[band], 90)) * 255, 140, 255)
@@ -236,7 +299,7 @@ def train(car_len=150):
         base[band, :3] = (v[band, None] * 0.75).astype(np.uint8)
         # Glass mask for lit windows: bright glass, darker where passengers sit.
         gl = np.zeros_like(q)
-        gv = np.where(lum < 55, 90, 255)
+        gv = np.where(lum < 45, 175, 255)
         gl[glass, :3] = gv[glass, None].astype(np.uint8)
         gl[glass, 3] = 255
         save(base, f'car_{car}')
@@ -259,7 +322,7 @@ JOBS = {
     'platform': lambda: keyed('platform', 8, (160, 160 + 776), cols=(100, 100 + 1144)),
     'platform_ug': lambda: full('platform_ug', 8, (100, 100 + 768), cols=(40, 40 + 1384)),
     'mast': lambda: keyed('mast', 12, (0, 1024), tile=None),
-    'train': train,
+    'train3d_b': train,
 }
 
 if __name__ == '__main__':
