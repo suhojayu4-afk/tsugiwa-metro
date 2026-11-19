@@ -127,6 +127,63 @@
       "station": "tokyo.ginza"
     },
     {
+      "id": "scene.sakura",
+      "slot": "scene",
+      "name": {
+        "ja": "桜の駅",
+        "ko": "벚꽃 역",
+        "en": "Cherry Blossom Station"
+      },
+      "price": 1000,
+      "images": {
+        "day": "assets/art/scenes_season/sakura_day.png",
+        "evening": "assets/art/scenes_season/sakura_evening.png",
+        "night": "assets/art/scenes_season/sakura_night.png"
+      },
+      "season": {
+        "from": "03-15",
+        "to": "04-30"
+      }
+    },
+    {
+      "id": "scene.hanabi",
+      "slot": "scene",
+      "name": {
+        "ja": "花火の夜",
+        "ko": "불꽃놀이의 밤",
+        "en": "Fireworks Night"
+      },
+      "price": 1200,
+      "images": {
+        "day": "assets/art/scenes_season/hanabi_day.png",
+        "evening": "assets/art/scenes_season/hanabi_evening.png",
+        "night": "assets/art/scenes_season/hanabi_night.png"
+      },
+      "season": {
+        "from": "07-15",
+        "to": "08-31"
+      }
+    },
+    {
+      "id": "scene.xmas",
+      "slot": "scene",
+      "name": {
+        "ja": "クリスマスの駅",
+        "ko": "크리스마스 역",
+        "en": "Christmas Station"
+      },
+      "price": 1200,
+      "images": {
+        "day": "assets/art/scenes_season/xmas_day.png",
+        "evening": "assets/art/scenes_season/xmas_evening.png",
+        "night": "assets/art/scenes_season/xmas_night.png"
+      },
+      "season": {
+        "from": "12-01",
+        "to": "12-25"
+      }
+    },
+    {
       "id": "plate.basic",
       "slot": "plate",
       "name": {

@@ -311,6 +311,30 @@
 225.7,
 100.1
 ],
+"hanabi_day.png": [
+226.4,
+99.2
+],
+"hanabi_evening.png": [
+226.3,
+98.9
+],
+"hanabi_night.png": [
+226.4,
+99.1
+],
+"sakura_day.png": [
+226.6,
+99.2
+],
+"sakura_evening.png": [
+226.2,
+98.8
+],
+"sakura_night.png": [
+226.0,
+99.0
+],
 "shibuya_day.png": [
 226.2,
 89.4
@@ -982,5 +1006,17 @@
 "tokyo_night_winter_many.png": [
 226.1,
 98.6
+],
+"xmas_day.png": [
+226.6,
+99.1
+],
+"xmas_evening.png": [
+226.3,
+98.8
+],
+"xmas_night.png": [
+225.8,
+99.6
 ]
 }

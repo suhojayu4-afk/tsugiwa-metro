@@ -1,0 +1,15 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/season/hanabi_day_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at C:/dev/tsugiwa-metro/docs/art/gen/bg_day_raw.png first (a generic elevated Tokyo station: city buildings, trees behind a fence on the left, the track in the centre, a covered platform on the right). Make the SAME picture with ONE change. Keep EVERYTHING else exactly the same: identical composition and camera (do not move, zoom or crop), the same horizon and vanishing point, the same buildings, the fence, the EMPTY track in the centre with the rails in exactly the same place, the covered platform on the right with the yellow tactile paving, the roof, pillars and overhead wires, and the SAME people in the SAME places at the SAME sizes.
+
+The change: it is the day of a SUMMER FESTIVAL (natsu matsuri) in Tokyo, a hot bright summer day.
+- Deep blue summer sky with big white cumulus clouds; trees lush and green.
+- Along the left side, beyond the fence and in front of the buildings, a festival street is being set up: rows of festival stalls (yatai) with colourful striped awnings, and strings of red and white paper lanterns (chochin) hanging across, not lit yet.
+- Some of the people on the platform wear colourful YUKATA (summer kimono with obi sashes, flower and goldfish patterns) and carry round paper fans (uchiwa); the others wear light summer clothes. Same places, same sizes.
+- A cheerful, lively "festival tonight" mood.
+
+- Landscape 1536x1024, the same detailed 16-bit era pixel art style as the original, crisp square pixels, almost no black outlines, hue-shifted shading.
+- The track in the centre stays EMPTY and clear: no train, nothing standing on the rails.
+- ABSOLUTELY NO text, letters, numbers, logos or signboards (lanterns and stalls have no writing).

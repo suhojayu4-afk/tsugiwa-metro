@@ -26,7 +26,15 @@ class MyItem {
     this.sound,
     this.art,
     this.stickers = const [],
+    this.season,
   });
+
+  /// Limited-time items (期間限定): only sold in this window of the year.
+  final SaleSeason? season;
+
+  /// Whether the shop sells this item on [jst] (a Japan date). Items without
+  /// a season are always on sale.
+  bool onSale(DateTime jst) => season?.contains(jst) ?? true;
 
   /// Sticker packs: the stickers in it (assets/art/stickers/{name}.png).
   final List<String> stickers;
@@ -87,7 +95,31 @@ class MyItem {
     sound: j['sound'] as String?,
     art: j['art'] as String?,
     stickers: List<String>.from(j['stickers'] as List? ?? const []),
+    season: j['season'] == null ? null : SaleSeason.fromJson(j['season'] as Map<String, dynamic>),
   );
+}
+
+/// A yearly sale window, `{"from": "03-15", "to": "04-30"}` (MM-DD, both days
+/// included, Japan date). `from` after `to` wraps the year end (12-20 → 01-10).
+class SaleSeason {
+  const SaleSeason({required this.from, required this.to});
+
+  /// Month * 100 + day, e.g. 315 for 03-15.
+  final int from;
+  final int to;
+
+  static int _parse(String mmdd) {
+    final p = mmdd.split('-');
+    return int.parse(p[0]) * 100 + int.parse(p[1]);
+  }
+
+  factory SaleSeason.fromJson(Map<String, dynamic> j) =>
+      SaleSeason(from: _parse(j['from'] as String), to: _parse(j['to'] as String));
+
+  bool contains(DateTime jst) {
+    final d = jst.month * 100 + jst.day;
+    return from <= to ? d >= from && d <= to : d >= from || d <= to;
+  }
 }
 
 /// Colour of the destination LED on the train.

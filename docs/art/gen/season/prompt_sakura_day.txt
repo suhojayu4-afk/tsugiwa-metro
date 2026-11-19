@@ -1,0 +1,15 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/season/sakura_day_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at C:/dev/tsugiwa-metro/docs/art/gen/bg_day_raw.png first (a generic elevated Tokyo station: city buildings, trees behind a fence on the left, the track in the centre, a covered platform on the right). Make the SAME picture with ONE change. Keep EVERYTHING else exactly the same: identical composition and camera (do not move, zoom or crop), the same horizon and vanishing point, the same buildings, the fence, the EMPTY track in the centre with the rails in exactly the same place, the covered platform on the right with the yellow tactile paving, the roof, pillars and overhead wires, and the SAME people in the SAME places at the SAME sizes.
+
+The change: it is SPRING in Tokyo and the CHERRY TREES are in FULL BLOOM, daytime, the same bright sky as the original.
+- Every tree beside the line (the green trees behind the fence on the left) becomes a big, fluffy cherry tree covered in soft pink sakura blossoms (pale pink and white, a little deeper pink in the shade). A few more cherry trees peek out between the buildings in the distance.
+- Some pink petals lie scattered on the platform floor, along the fence and between the sleepers at the sides of the track; a few petals drift in the air (small, only a handful).
+- The people on the platform wear light spring clothes (trench coats, cardigans, pastel colours); same people, same places, same sizes.
+- A gentle, happy spring mood.
+
+- Landscape 1536x1024, the same detailed 16-bit era pixel art style as the original, crisp square pixels, almost no black outlines, hue-shifted shading.
+- The track in the centre stays EMPTY and clear: no train, nothing standing on the rails.
+- ABSOLUTELY NO text, letters, numbers, logos or signboards (lanterns and stalls have no writing).

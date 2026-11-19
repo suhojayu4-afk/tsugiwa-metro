@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../../app.dart';
+import '../../core/localized_text.dart';
 import '../../core/pixel/pixel_scene.dart';
 import '../../core/pixel/pixel_ui.dart';
 import '../../core/services.dart';
@@ -20,6 +21,16 @@ const _gold = Color(0xFFF2B33D);
 
 /// Train colour in MY when no train colour is equipped (Yamanote green).
 const myDefaultLine = Color(0xFF80C241);
+
+/// Badge on seasonal items (期間限定).
+const _limitedLabel = LocalizedText({'ja': '期間限定', 'ko': '기간 한정', 'en': 'Limited'});
+
+/// The items the shop shows: seasonal items only in their season, unless
+/// already owned. [jst] is the Japan date.
+List<MyItem> shopItems(Iterable<MyItem> items, bool Function(String id) owns, DateTime jst) => [
+  for (final i in items)
+    if (i.onSale(jst) || owns(i.id)) i,
+];
 
 /// Station name for an unlock condition like `line:tokyo.ginza`.
 String unlockLineName(CityData city, String? unlock, String lang) {
@@ -308,7 +319,11 @@ class MyRoomScreenState extends State<MyRoomScreen> {
           crossAxisSpacing: 10,
           childAspectRatio: 1.25,
           children: [
-            for (final item in cat.inSlot(_tab))
+            for (final item in shopItems(
+              cat.inSlot(_tab),
+              _store.owns,
+              DateTime.now().toUtc().add(const Duration(hours: 9)),
+            ))
               _ItemCard(
                 item: item,
                 owned: _store.owns(item.id),
@@ -435,7 +450,27 @@ class _ItemCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Expanded(child: _Thumb(item: item)),
+            Expanded(
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  _Thumb(item: item),
+                  if (item.season != null)
+                    Positioned(
+                      left: 6,
+                      top: 6,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFE5486A),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: PixelText(_limitedLabel.of(lang), size: 11, bold: true, color: PixelColors.card),
+                      ),
+                    ),
+                ],
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 6, 10, 8),
               child: Row(
