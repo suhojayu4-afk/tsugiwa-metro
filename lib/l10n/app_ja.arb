@@ -266,6 +266,20 @@
   "mapNoTips": "この駅のヒントは じゅんび中です",
   "mapSetFrom": "出発にする",
   "mapSetTo": "到着にする",
+  "boardTitle": "発車標",
+  "boardSoon": "まもなく",
+  "boardNote": "時刻は時刻表からの目安です。駅の案内も確認してね",
+  "boardPickStation": "出発駅をえらぶと、次の電車が表示されます",
+  "boardEnded": "本日の運転は終了しました",
+  "boardBound": "{station} 行",
+  "routeFoldedPick": "出発と到着をえらぶ",
+  "@boardBound": {
+    "placeholders": {
+      "station": {
+        "type": "String"
+      }
+    }
+  },
   "mapNightView": "夜の地図",
   "mapDayView": "昼の地図",
   "mapMyRoute": "マイルート",

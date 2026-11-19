@@ -343,6 +343,29 @@ class AppLocalizationsJa extends AppLocalizations {
   String get mapSetTo => '到着にする';
 
   @override
+  String get boardTitle => '発車標';
+
+  @override
+  String get boardSoon => 'まもなく';
+
+  @override
+  String get boardNote => '時刻は時刻表からの目安です。駅の案内も確認してね';
+
+  @override
+  String get boardPickStation => '出発駅をえらぶと、次の電車が表示されます';
+
+  @override
+  String get boardEnded => '本日の運転は終了しました';
+
+  @override
+  String boardBound(String station) {
+    return '$station 行';
+  }
+
+  @override
+  String get routeFoldedPick => '出発と到着をえらぶ';
+
+  @override
   String get mapNightView => '夜の地図';
 
   @override

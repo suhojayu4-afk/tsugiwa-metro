@@ -265,7 +265,7 @@ class LineRun {
   final int total;
 
   /// Spread the lines' trains apart (not all leaving on the same second).
-  late final int phase = line.id.codeUnits.fold(7, (h, c) => (h * 31 + c) & 0xFFFFF);
+  late final int phase = trainPhase(line.id);
 
   static LineRun? of(RailLine line, MapLine mapLine) {
     final geo = LineGeo.of(mapLine);
@@ -288,6 +288,17 @@ class LineRun {
     return LineRun(line, mapLine, geo, arc, arrive, depart, t);
   }
 }
+
+/// How a line's trains are spread in time (seconds), so not every line's
+/// trains leave on the same second. Shared with the departure board, so it
+/// shows the very trains the route map draws.
+int trainPhase(String lineId) => lineId.codeUnits.fold(7, (h, c) => (h * 31 + c) & 0xFFFFF);
+
+/// Extra spread for the trains running the other way.
+const reversePhase = 977;
+
+/// Seconds a train stands at the end of the line before it leaves.
+const _wait = 60.0;
 
 /// Where one train is: distance along its line, which way it is heading
 /// along the line (+1 / -1), whether it waits at a station.
@@ -328,7 +339,7 @@ class TrainSim {
       final first = tt == null ? -1e9 : (tt.firstTrainMin - 240) * 60.0;
       final last = tt == null ? 1e9 : (tt.lastTrainMin - 240) * 60.0;
       for (final forward in const [true, false]) {
-        final offset = (run.phase + (forward ? 0 : 977)) % head;
+        final offset = (run.phase + (forward ? 0 : reversePhase)) % head;
         if (run.line.loop) {
           // Trains spaced evenly round the loop.
           final n = math.max(1, (run.total / head).round());
@@ -339,8 +350,10 @@ class TrainSim {
           }
           continue;
         }
-        // A train leaves each end every [head] seconds.
-        for (var e = (sec - offset) % head; e < run.total; e += head) {
+        // A train leaves each end every [head] seconds; the next one already
+        // waits at the end of the line for up to [_wait] seconds before.
+        final e0 = (sec - offset) % head;
+        for (var e = e0 - head >= -_wait ? e0 - head : e0; e < run.total; e += head) {
           final left = sec - e;
           if (left < first || left > last) continue;
           _place(run, e, forward, out, view);

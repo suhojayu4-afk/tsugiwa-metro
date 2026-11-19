@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tsugiwa_metro/data/models/route_map.dart';
+import 'package:tsugiwa_metro/features/platform/departure_board.dart';
 import 'package:tsugiwa_metro/features/route_map/map_trains.dart';
 import 'package:tsugiwa_metro/features/trip/route_finder.dart';
 
@@ -72,6 +73,20 @@ void main() {
       for (final s in (info[key] as Map<String, dynamic>)['stations'] as List) {
         expect(city.stations.containsKey(s), isTrue, reason: '$key: $s');
       }
+    }
+  });
+
+  test('the departure board shows the trains the map draws: one stands at the station then', () {
+    final sim = TrainSim(map, city);
+    final noon = DateTime.utc(2026, 11, 18, 3);
+    for (final d in nextDepartures(city, 'tokyo.shinjuku', noon, count: 6)) {
+      // A moment before it leaves, that line's train is stopped at Shinjuku.
+      final at = noon.add(Duration(seconds: d.sec - (12 * 60 - 240) * 60 - 3));
+      final stop = map.lineOf(d.line.id)!.stops['tokyo.shinjuku']!.position;
+      final there = sim
+          .trainsIn(everything, at)
+          .where((t) => t.run.line.id == d.line.id && t.stopped && (t.run.geo.at(t.s) - stop).distance < 1);
+      expect(there, isNotEmpty, reason: '${d.line.id} ${d.clock}');
     }
   });
 }

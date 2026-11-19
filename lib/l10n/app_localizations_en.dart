@@ -357,6 +357,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mapSetTo => 'Set as destination';
 
   @override
+  String get boardTitle => 'Departures';
+
+  @override
+  String get boardSoon => 'Soon';
+
+  @override
+  String get boardNote =>
+      'Times are estimates from timetables — check the station signs too';
+
+  @override
+  String get boardPickStation => 'Pick a start station to see the next trains';
+
+  @override
+  String get boardEnded => 'No more trains today';
+
+  @override
+  String boardBound(String station) {
+    return 'for $station';
+  }
+
+  @override
+  String get routeFoldedPick => 'Pick start and destination';
+
+  @override
   String get mapNightView => 'Night map';
 
   @override

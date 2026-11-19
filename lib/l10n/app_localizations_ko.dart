@@ -343,6 +343,29 @@ class AppLocalizationsKo extends AppLocalizations {
   String get mapSetTo => '도착역으로';
 
   @override
+  String get boardTitle => '발차 안내';
+
+  @override
+  String get boardSoon => '곧 출발';
+
+  @override
+  String get boardNote => '시간표로 추정한 시각이에요. 역 안내도 확인하세요';
+
+  @override
+  String get boardPickStation => '출발역을 고르면 다음 열차가 표시돼요';
+
+  @override
+  String get boardEnded => '오늘 운행이 끝났어요';
+
+  @override
+  String boardBound(String station) {
+    return '$station행';
+  }
+
+  @override
+  String get routeFoldedPick => '출발·도착 고르기';
+
+  @override
   String get mapNightView => '밤 지도';
 
   @override

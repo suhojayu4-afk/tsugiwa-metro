@@ -22,6 +22,7 @@ import '../trip/trip_controller.dart';
 import '../trip/trip_plan.dart';
 import '../trip/trip_screen.dart';
 import 'context_card.dart';
+import 'departure_board.dart';
 import '../../data/route_store.dart';
 import 'nearest_station.dart';
 import 'station_picker.dart';
@@ -89,6 +90,7 @@ class PlatformScreenState extends State<PlatformScreen> {
   @override
   void initState() {
     super.initState();
+    _sheet.addListener(_onSheet);
     _store.addListener(_onStore);
     Services.my.addListener(_onStore);
     if (!Services.my.loaded) Services.my.load();
@@ -191,6 +193,8 @@ class PlatformScreenState extends State<PlatformScreen> {
     _store.removeListener(_onStore);
     Services.my.removeListener(_onStore);
     _alarm.removeListener(_onStore);
+    _sheet.removeListener(_onSheet);
+    _sheet.dispose();
     super.dispose();
   }
 
@@ -475,6 +479,30 @@ class PlatformScreenState extends State<PlatformScreen> {
   /// two stations, one message line and the start button.
   static const _panelHeight = 232.0;
 
+  /// The panel pulled all the way down: a slim bar (from → to and ▶).
+  static const _barHeight = 78.0;
+  final _sheet = DraggableScrollableController();
+  bool _folded = false;
+  String? _sheetKey;
+  double _openF = 0.3;
+
+  void _onSheet() {
+    if (!_sheet.isAttached) return;
+    final folded = _sheet.size < _openF - 0.02;
+    if (folded == _folded) return;
+    // The sheet reports its size while it is being laid out: change the
+    // panel's content after this frame.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted && _folded != folded) setState(() => _folded = folded);
+    });
+  }
+
+  void _unfold() {
+    if (_sheet.isAttached) {
+      _sheet.animateTo(_openF, duration: const Duration(milliseconds: 260), curve: Curves.easeOutCubic);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
@@ -490,15 +518,24 @@ class PlatformScreenState extends State<PlatformScreen> {
         ? (t.noRoute, true)
         : (_locationNote, false);
 
+    // A new route opens the panel again.
+    final sheetKey = route == null ? 'none' : '$_fromId>$_toId';
+    if (sheetKey != _sheetKey) {
+      final first = _sheetKey == null;
+      _sheetKey = sheetKey;
+      if (!first) WidgetsBinding.instance.addPostFrameCallback((_) => _unfold());
+    }
     return LayoutBuilder(
       builder: (context, box) {
         final minF = (_panelHeight / box.maxHeight).clamp(0.15, 0.7);
+        _openF = minF;
+        final barF = (_barHeight / box.maxHeight).clamp(0.05, minF - 0.01);
         // With a route the panel can be pulled up to show the details.
         final maxF = route == null ? minF : 0.86.clamp(minF, 1.0);
         return Stack(
           children: [
             ListView(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, _panelHeight + 16),
+              padding: EdgeInsets.fromLTRB(20, 20, 20, (_folded ? _barHeight : _panelHeight) + 16),
               children: [
                 Row(
                   children: [
@@ -562,51 +599,96 @@ class PlatformScreenState extends State<PlatformScreen> {
                   }),
                   onBell: route != null && lastDepartureMin(widget.city, route) != null ? _toggleAlarm : null,
                 ),
+                // 発車標: the next trains from the start station (shown in
+                // full when the panel is pulled down).
+                const SizedBox(height: 12),
+                DepartureBoard(city: widget.city, stationId: _fromId),
               ],
             ),
             DraggableScrollableSheet(
-              // A new route resets the panel to its folded size.
-              key: ValueKey(route == null ? 'none' : '$_fromId>$_toId'),
+              // One sheet for good (its controller stays attached); a new
+              // route opens it to its usual size again (see _unfold).
+              controller: _sheet,
               initialChildSize: minF,
-              minChildSize: minF,
+              minChildSize: barF,
               maxChildSize: maxF,
               snap: true,
+              snapSizes: [if (maxF > minF) minF],
               builder: (context, scroll) => _Panel(
-                child: ListView(
-                  controller: scroll,
-                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                child: Stack(
                   children: [
-                    const _Handle(),
-                    _StationsCard(
-                      city: widget.city,
-                      fromId: _fromId,
-                      toId: _toId,
-                      locating: _locating,
-                      onPickFrom: () => _pick(true),
-                      onPickTo: () => _pick(false),
-                      onLocate: _useMyLocation,
-                      onSwap: () => setState(() {
-                        final f = _fromId;
-                        _fromId = _toId;
-                        _toId = f;
-                      }),
+                    ListView(
+                      controller: scroll,
+                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                      children: [
+                        const _Handle(),
+                        _StationsCard(
+                          city: widget.city,
+                          fromId: _fromId,
+                          toId: _toId,
+                          locating: _locating,
+                          onPickFrom: () => _pick(true),
+                          onPickTo: () => _pick(false),
+                          onLocate: _useMyLocation,
+                          onSwap: () => setState(() {
+                            final f = _fromId;
+                            _fromId = _toId;
+                            _toId = f;
+                          }),
+                        ),
+                        SizedBox(
+                          height: 20,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 4, top: 2),
+                            child: message == null
+                                ? null
+                                : PixelText(
+                                    message,
+                                    size: 13,
+                                    maxLines: 1,
+                                    color: isError ? PixelColors.danger : PixelColors.muted,
+                                  ),
+                          ),
+                        ),
+                        _StartButton(label: t.startTrip, onPressed: route == null ? null : () => _start(route)),
+                        if (route != null) ...[
+                          const SizedBox(height: 16),
+                          _RoutePreview(city: widget.city, route: route),
+                        ],
+                      ],
                     ),
-                    SizedBox(
-                      height: 20,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 4, top: 2),
-                        child: message == null
-                            ? null
-                            : PixelText(
-                                message,
-                                size: 13,
-                                maxLines: 1,
-                                color: isError ? PixelColors.danger : PixelColors.muted,
-                              ),
+                    // Pulled down: a slim bar over the top of the panel (its own
+                    // content stays the same while it is dragged).
+                    Positioned(
+                      left: 0,
+                      right: 0,
+                      top: 0,
+                      child: IgnorePointer(
+                        ignoring: !_folded,
+                        child: AnimatedOpacity(
+                          opacity: _folded ? 1 : 0,
+                          duration: const Duration(milliseconds: 160),
+                          child: Container(
+                            color: PixelColors.card,
+                            padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const _Handle(),
+                                _FoldedBar(
+                                  city: widget.city,
+                                  fromId: _fromId,
+                                  toId: _toId,
+                                  hint: t.routeFoldedPick,
+                                  onOpen: _unfold,
+                                  onStart: route == null ? null : () => _start(route),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                    _StartButton(label: t.startTrip, onPressed: route == null ? null : () => _start(route)),
-                    if (route != null) ...[const SizedBox(height: 16), _RoutePreview(city: widget.city, route: route)],
                   ],
                 ),
               ),
@@ -614,6 +696,79 @@ class PlatformScreenState extends State<PlatformScreen> {
           ],
         );
       },
+    );
+  }
+}
+
+/// The route panel pulled down: from → to in one line (tap to open the
+/// panel again) and a small ▶ to start following the trip.
+class _FoldedBar extends StatelessWidget {
+  const _FoldedBar({
+    required this.city,
+    required this.fromId,
+    required this.toId,
+    required this.hint,
+    required this.onOpen,
+    required this.onStart,
+  });
+  final CityData city;
+  final String? fromId;
+  final String? toId;
+  final String hint;
+  final VoidCallback onOpen;
+  final VoidCallback? onStart;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
+    String name(String? id) => id == null ? '…' : city.station(id).name.ja;
+    final text = fromId == null && toId == null ? hint : '${name(fromId)} → ${name(toId)}';
+    return Row(
+      children: [
+        Expanded(
+          child: Semantics(
+            button: true,
+            label: text,
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: onOpen,
+              child: Container(
+                height: 44,
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                decoration: BoxDecoration(
+                  color: PixelColors.background,
+                  borderRadius: BorderRadius.circular(14),
+                  border: Border.all(color: PixelColors.line),
+                ),
+                child: Row(
+                  children: [
+                    const Icon(Icons.train_rounded, size: 18, color: PixelColors.muted),
+                    const SizedBox(width: 8),
+                    Expanded(child: PixelText(text, size: 16, maxLines: 1)),
+                    const Icon(Icons.keyboard_arrow_up_rounded, color: PixelColors.muted),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+        if (onStart != null) ...[
+          const SizedBox(width: 8),
+          Semantics(
+            button: true,
+            label: t.startTrip,
+            child: GestureDetector(
+              onTap: onStart,
+              child: Container(
+                width: 52,
+                height: 44,
+                decoration: BoxDecoration(color: PixelColors.title, borderRadius: BorderRadius.circular(14)),
+                child: const Icon(Icons.play_arrow_rounded, color: PixelColors.card, size: 28),
+              ),
+            ),
+          ),
+        ],
+      ],
     );
   }
 }

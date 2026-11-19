@@ -670,6 +670,48 @@ abstract class AppLocalizations {
   /// **'到着にする'**
   String get mapSetTo;
 
+  /// No description provided for @boardTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'発車標'**
+  String get boardTitle;
+
+  /// No description provided for @boardSoon.
+  ///
+  /// In ja, this message translates to:
+  /// **'まもなく'**
+  String get boardSoon;
+
+  /// No description provided for @boardNote.
+  ///
+  /// In ja, this message translates to:
+  /// **'時刻は時刻表からの目安です。駅の案内も確認してね'**
+  String get boardNote;
+
+  /// No description provided for @boardPickStation.
+  ///
+  /// In ja, this message translates to:
+  /// **'出発駅をえらぶと、次の電車が表示されます'**
+  String get boardPickStation;
+
+  /// No description provided for @boardEnded.
+  ///
+  /// In ja, this message translates to:
+  /// **'本日の運転は終了しました'**
+  String get boardEnded;
+
+  /// No description provided for @boardBound.
+  ///
+  /// In ja, this message translates to:
+  /// **'{station} 行'**
+  String boardBound(String station);
+
+  /// No description provided for @routeFoldedPick.
+  ///
+  /// In ja, this message translates to:
+  /// **'出発と到着をえらぶ'**
+  String get routeFoldedPick;
+
   /// No description provided for @mapNightView.
   ///
   /// In ja, this message translates to:
