@@ -1,0 +1,17 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/events/staff_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at these first: C:/dev/tsugiwa-metro/docs/art/gen/stations/tokyo_day_raw.png (a Japanese station platform drawn in a soft, detailed 16-bit era pixel art style, almost no black outlines, hue-shifted shading) and C:/dev/tsugiwa-metro/docs/art/gen/people_gpt/suit_man_wait_raw.png (a sprite sheet in exactly the wanted style and layout: frames side by side in one row on flat magenta, feet on one baseline).
+
+Draw a SPRITE SHEET of ONE Japanese railway station attendant (an ORIGINAL generic uniform, not any real company's): a dark navy uniform jacket and trousers, a navy peaked cap with a plain gold band (no badge, no logo), white gloves, black shoes, short black hair, slim realistic adult proportions about 8 heads tall like the people in the first picture.
+- Seen from the SIDE in a slight three-quarter view, facing LEFT.
+- Frames 1 to 6: one smooth walking loop to the left (6 frames).
+- Frame 7: standing still at attention, arms down.
+- Frame 8: doing "shisa kanko" (point and call): standing still, the RIGHT arm stretched straight out forward to the left at shoulder height with the index finger pointing, the left hand at his side, mouth open calling out.
+- EXACTLY 8 frames side by side in ONE horizontal row, evenly spaced on an even grid, each frame the same size.
+- The subject the SAME scale in every frame, feet on the SAME baseline, the same colours and markings in every frame; only the pose changes.
+- Plain flat solid MAGENTA background (#FF00FF) everywhere, no floor, no shadow, no ground line, no other objects.
+- Crisp square pixels, no anti-aliased blur at the edges, no outline glow, no magenta tint on the subject.
+- Landscape 1536x1024; keep generous magenta space between frames.
+- ABSOLUTELY NO text, letters, numbers, logos or frame labels.

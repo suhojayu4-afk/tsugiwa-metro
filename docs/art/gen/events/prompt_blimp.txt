@@ -1,0 +1,15 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/events/blimp_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at these first: C:/dev/tsugiwa-metro/docs/art/gen/stations/tokyo_day_raw.png (a Japanese station platform drawn in a soft, detailed 16-bit era pixel art style, almost no black outlines, hue-shifted shading) and C:/dev/tsugiwa-metro/docs/art/gen/people_gpt/suit_man_wait_raw.png (a sprite sheet in exactly the wanted style and layout: frames side by side in one row on flat magenta, feet on one baseline).
+
+Draw a SPRITE SHEET of ONE small cute airship (a blimp) seen from the SIDE, flying to the LEFT, nose on the left: a plump silver-white envelope with a single soft sky-blue band along its middle, small tail fins at the right end, a little gondola cabin underneath with tiny windows. Completely plain, no text, no logo, no advertisement.
+- Frame 1 and frame 2 are identical except the small propeller at the back of the gondola (blurred in a different position).
+- Make it fill most of each frame's width.
+- EXACTLY 2 frames side by side in ONE horizontal row, evenly spaced on an even grid, each frame the same size.
+- The subject the SAME scale in every frame, feet on the SAME baseline, the same colours and markings in every frame; only the pose changes.
+- Plain flat solid MAGENTA background (#FF00FF) everywhere, no floor, no shadow, no ground line, no other objects.
+- Crisp square pixels, no anti-aliased blur at the edges, no outline glow, no magenta tint on the subject.
+- Landscape 1536x1024; keep generous magenta space between frames.
+- ABSOLUTELY NO text, letters, numbers, logos or frame labels.

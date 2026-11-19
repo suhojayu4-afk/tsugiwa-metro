@@ -8,6 +8,7 @@ import 'package:material_ui/material_ui.dart';
 
 import '../../data/weather/weather_source.dart';
 import 'pixel_ui.dart';
+import 'scene_events.dart';
 
 enum DayPart { day, evening, night }
 
@@ -48,6 +49,7 @@ class SceneArt {
   static const lampsDefault = [Offset(14, 64.5), Offset(58.5, 64.5)];
   static const _lamps = {
     'assets/art/shinkansen': [Offset(14.5, 63), Offset(59.5, 63)],
+    yellowTrainArt: [Offset(16.5, 67.5), Offset(56.5, 67.5)],
   };
   static List<Offset> lampsOf(String? art) => _lamps[art] ?? lampsDefault;
 
@@ -429,11 +431,27 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
   /// The next train: far down the line, pulling in (quietly; the melody is
   /// only for a route the user picked).
   void _nextTrain() {
+    // Easter eggs (scene_events.dart): now and then the yellow inspection
+    // train comes instead; an attendant may come out to meet the train.
+    setState(() => _yellow = _events.trainComing(_eventConditions()));
     _platform.reset();
     _arrive.value = 0;
     _depart.value = 0;
     _arrive.forward(from: 0);
   }
+
+  /// Easter-egg events on the platform (cat, pigeons, shooting star…).
+  late final _events = SceneEventDirector(vsync: this);
+
+  /// The train now in is the yellow inspection train (see [_events]).
+  bool _yellow = false;
+
+  SceneEventConditions _eventConditions() => SceneEventConditions(
+    part: _part ?? _currentPart(),
+    weather: widget.weather ?? WeatherKind.sunny,
+    sky: widget.sky,
+    month: (widget.now ?? DateTime.now().toUtc().add(const Duration(hours: 9))).month,
+  );
 
   DayPart? _part;
   Timer? _tick;
@@ -453,6 +471,7 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
     super.initState();
     _arrive.addStatusListener((s) {
       if (s == AnimationStatus.completed && !(_art?.closed ?? false)) _platform.forward(from: 0);
+      if (s == AnimationStatus.completed && _yellow) _events.yellowTrainArrived();
     });
     // Once everyone is on board, the doors close and it leaves a bit later.
     _platform.addStatusListener((s) {
@@ -470,6 +489,7 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
       if (!TickerMode.valuesOf(context).enabled) return;
       if (_falling) _frame.value++;
       if (_ticks % 2 == 0) _life.value++;
+      if (_ticks % 2 == 0 && !MediaQuery.of(context).disableAnimations) _events.onLife(_eventConditions());
       // About once a minute: has the time of day changed?
       if (_ticks % 375 == 0 && _currentPart() != _part) _load();
     });
@@ -484,6 +504,7 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
     if (old.look != widget.look || old.sky != widget.sky) _load();
     if (widget.arrivalKey != null && old.arrivalKey != widget.arrivalKey) {
       _cycle?.cancel();
+      _yellow = false;
       _depart.value = 0;
       _platform.reset();
       _arrive.forward(from: 0);
@@ -508,6 +529,7 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
     _platform.dispose();
     _frame.dispose();
     _life.dispose();
+    _events.dispose();
     super.dispose();
   }
 
@@ -519,6 +541,7 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
       builder: (context, box) {
         final view = SceneView.fit(box.maxWidth, dpr, aspect: widget.aspect);
         final art = _art;
+        final yellow = _yellow && art != null ? _events.yellowTrain(art.part) : null;
         return ClipPath(
           clipper: const _SteppedClip(),
           child: SizedBox(
@@ -534,9 +557,9 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
                           painter: _ScenePainter(
                             view: view,
                             bg: art.bg,
-                            trainBase: art.base,
-                            trainStripe: art.stripe,
-                            lamps: SceneArt.lampsOf(widget.look.trainArt),
+                            trainBase: yellow?.base ?? art.base,
+                            trainStripe: yellow?.stripe ?? art.stripe,
+                            lamps: SceneArt.lampsOf(yellow != null ? yellowTrainArt : widget.look.trainArt),
                             // At night the stripe is in shadow like the rest of the train.
                             lineColor: stripeColor(widget.look.trainColor ?? widget.lineColor, art.part),
                             weather: weather,
@@ -548,18 +571,20 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
                             weathered: art.weathered,
                             sky: art.sky,
                             closed: art.closed,
-                            trainWeather: art.trainWeather,
+                            trainWeather: yellow != null ? null : art.trainWeather,
                             trainWeatherTint: art.trainWeatherTint,
                             graded: art.graded,
                             overlays: art.overlays,
                             effects: widget.look.effects,
-                            led: widget.look.led,
+                            // The yellow train shows its own dark display.
+                            led: yellow != null ? const [] : widget.look.led,
                             ledColors: widget.look.ledColors,
                             sign: widget.look.sign,
                             part: art.part,
                             vanishing: art.vanishing,
                             front: art.front,
                             ambience: art.ambience,
+                            events: _events,
                           ),
                         ),
                       ),
@@ -779,8 +804,10 @@ Future<ui.Image> renderSceneImage({
   double? platform,
   double? depart,
   int tick = 0,
+  SceneEventDirector? events,
 }) async {
   final art = await loadSceneArt(look, part, sky: sky);
+  await events?.prepare(art.bg);
   final view = SceneView(scale.toDouble(), Rect.fromLTWH(0, 0, SceneArt.width.toDouble(), SceneArt.height.toDouble()));
   final life = ValueNotifier<int>(tick);
   final recorder = ui.PictureRecorder();
@@ -814,6 +841,7 @@ Future<ui.Image> renderSceneImage({
     led: look.led,
     ledColors: look.ledColors,
     sign: look.sign,
+    events: events,
   ).paint(Canvas(recorder), size);
   life.dispose();
   return recorder.endRecording().toImage(size.width.toInt(), size.height.toInt());
@@ -872,7 +900,11 @@ class _ScenePainter extends CustomPainter {
     this.vanishing = SceneArt.vanishing,
     this.front,
     this.ambience,
-  }) : super(repaint: Listenable.merge([life, ?arrive, ?platform, ?depart]));
+    this.events,
+  }) : super(repaint: Listenable.merge([life, ?arrive, ?platform, ?depart, ?events]));
+
+  /// Easter-egg events (scene_events.dart), or null.
+  final SceneEventDirector? events;
 
   final StationSign? sign;
 
@@ -1052,6 +1084,8 @@ class _ScenePainter extends CustomPainter {
       bgPaint,
     );
     ambience?.paint(canvas, part, life.value, weathered: weathered);
+    // Easter eggs in the sky (shooting star, rainbow, airship), behind the train.
+    events?.paintSky(canvas, bg: bg, part: part);
     final trainSrc = Rect.fromLTWH(0, 0, trainBase.width.toDouble(), trainBase.height.toDouble());
     if (!_gone) {
       _atTrain(canvas, () {
@@ -1122,6 +1156,8 @@ class _ScenePainter extends CustomPainter {
       canvas.restore();
     }
     _passengers(canvas);
+    // Easter eggs on the platform (cat, pigeons, attendant, dragonflies).
+    events?.paintGround(canvas, part: part, vanishing: vanishing, weather: weather, sky: sky);
     _effects(canvas, life.value);
 
     _weather(canvas);
@@ -1533,6 +1569,7 @@ class _ScenePainter extends CustomPainter {
       old.trainWeather != trainWeather ||
       old.ledColors.join() != ledColors.join() ||
       old.trainBase != trainBase ||
+      old.events != events ||
       old.lineColor != lineColor ||
       old.weather != weather ||
       old.view.scale != view.scale ||

@@ -1,0 +1,18 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/events/cat_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at these first: C:/dev/tsugiwa-metro/docs/art/gen/stations/tokyo_day_raw.png (a Japanese station platform drawn in a soft, detailed 16-bit era pixel art style, almost no black outlines, hue-shifted shading) and C:/dev/tsugiwa-metro/docs/art/gen/people_gpt/suit_man_wait_raw.png (a sprite sheet in exactly the wanted style and layout: frames side by side in one row on flat magenta, feet on one baseline).
+
+Draw a SPRITE SHEET of ONE cute small orange-and-white tabby cat (a Japanese "chatora" stray cat, white chest and paws, orange tabby stripes on the back, long tail), seen exactly from the SIDE, facing LEFT.
+- Frames 1 to 4: a relaxed walking cycle to the left (4 frames, legs moving, tail held up in a gentle curve).
+- Frame 5: standing still, head turned towards the viewer.
+- Frame 6: sitting down on its haunches (side view, body upright, front paws together), tail lying on the ground behind it, head towards the viewer.
+- Frame 7: the same sitting pose, tail tip curled UP.
+- Frame 8: the same sitting pose, eyes closed happily, tail tip swept to the other side.
+- EXACTLY 8 frames side by side in ONE horizontal row, evenly spaced on an even grid, each frame the same size.
+- The subject the SAME scale in every frame, feet on the SAME baseline, the same colours and markings in every frame; only the pose changes.
+- Plain flat solid MAGENTA background (#FF00FF) everywhere, no floor, no shadow, no ground line, no other objects.
+- Crisp square pixels, no anti-aliased blur at the edges, no outline glow, no magenta tint on the subject.
+- Landscape 1536x1024; keep generous magenta space between frames.
+- ABSOLUTELY NO text, letters, numbers, logos or frame labels.

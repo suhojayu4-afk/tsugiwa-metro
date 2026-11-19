@@ -46,6 +46,8 @@ flutter:
     - assets/art/people/
     - assets/art/stickers/
     - assets/art/shinkansen/
+    - assets/art/events/
+    - assets/art/yellow_train/
     - assets/my/
     - assets/sounds/
   fonts:
