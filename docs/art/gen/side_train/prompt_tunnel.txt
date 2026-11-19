@@ -1,0 +1,12 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/side_train/tunnel_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at these first: C:/dev/tsugiwa-metro/docs/art/gen/stations/shinjuku_evening_raw.png and C:/dev/tsugiwa-metro/docs/art/gen/stations/tokyo_day_raw.png (Tokyo station platforms in a detailed 16-bit era pixel art style: crisp square pixels, almost no black outlines, hue-shifted shading, skyscrapers with many small lit windows, soft pixel clouds, round leafy trees). Use EXACTLY that style, the same pixel size and the same palette feel.
+
+Draw the WALL OF A TOKYO SUBWAY TUNNEL, seen from the window of a passing train. It is a background layer for a SIDE-SCROLLING game: a FLAT SIDE VIEW, looking straight at the scenery from a train window. NO perspective, NO vanishing point, NO road or rails going into the distance; every building is seen straight from the front.
+- The picture is filled with the tunnel wall facing the camera: dark grey concrete segment rings with vertical joints at regular intervals, bolt pockets, damp stains; along the upper part, bundles of black and dark red cables held on steel hangers, a thicker pipe; small caged wall lamps at intervals casting a warm pool of light on the concrete; a small green emergency exit lamp (just a green glowing box with a white running-man pictogram, no text); a little signal lamp. The top of the picture fades into the dark curved ceiling, the bottom into the dark track bed (no rails visible).
+- Dim, moody underground lighting: mostly dark blue-grey, with the warm lamp light.
+- It must TILE HORIZONTALLY without a seam: the picture is repeated side by side endlessly, so the LEFT edge must continue exactly into the RIGHT edge (same sky colours at the same heights at both edges, and no building cut by the left or right edge).
+- Landscape 1536x1024.
+- ABSOLUTELY NO text, letters, numbers, logos or signboards with writing.

@@ -1,0 +1,11 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/side_train/mast_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at these first: C:/dev/tsugiwa-metro/docs/art/gen/stations/shinjuku_evening_raw.png and C:/dev/tsugiwa-metro/docs/art/gen/stations/tokyo_day_raw.png (Tokyo station platforms in a detailed 16-bit era pixel art style: crisp square pixels, almost no black outlines, hue-shifted shading, skyscrapers with many small lit windows, soft pixel clouds, round leafy trees). Use EXACTLY that style, the same pixel size and the same palette feel.
+
+Draw ONE overhead-wire MAST of a Japanese railway (a catenary pole) for a SIDE-SCROLLING game, seen exactly from the side, on a plain flat solid MAGENTA background (#FF00FF) everywhere around it.
+- A tall grey steel H-beam or lattice pole standing straight up, about 85 percent of the picture height, its foot on the bottom edge, in the middle of the picture; near the top a horizontal cantilever arm reaching to the RIGHT with brown porcelain insulators and a short hanger dropping down to where the contact wire would be (the wires themselves are NOT drawn).
+- Hue-shifted shading, crisp square pixels, chunky pixel art, no anti-aliased blur at the edges, nothing else in the picture.
+- Landscape 1536x1024.
+- ABSOLUTELY NO text, letters, numbers, logos or signboards with writing.

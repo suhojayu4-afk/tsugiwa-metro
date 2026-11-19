@@ -1,0 +1,12 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/side_train/platform_ug_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at these first: C:/dev/tsugiwa-metro/docs/art/gen/stations/shinjuku_evening_raw.png and C:/dev/tsugiwa-metro/docs/art/gen/stations/tokyo_day_raw.png (Tokyo station platforms in a detailed 16-bit era pixel art style: crisp square pixels, almost no black outlines, hue-shifted shading, skyscrapers with many small lit windows, soft pixel clouds, round leafy trees). Use EXACTLY that style, the same pixel size and the same palette feel.
+
+Draw the far wall of an UNDERGROUND Tokyo subway station PLATFORM, seen from a train stopped at it, for a SIDE-SCROLLING game. It is a background layer for a SIDE-SCROLLING game: a FLAT SIDE VIEW, looking straight at the scenery from a train window. NO perspective, NO vanishing point, NO road or rails going into the distance; every building is seen straight from the front.
+- The whole picture: a clean cream-white tiled wall with a horizontal coloured band, square pillars at regular intervals clad in tiles, a bright ceiling with long fluorescent light strips along the top, framed posters on the wall showing only pictures (landscapes, a can of drink, abstract shapes; NO writing), a bench and a vending machine against the wall, a station-name board left completely BLANK (white with a coloured band, no text). The platform floor is a flat grey strip along the bottom edge (about 8 percent of the height).
+- No people. Bright, clean artificial light.
+- It must TILE HORIZONTALLY without a seam: the picture is repeated side by side endlessly, so the LEFT edge must continue exactly into the RIGHT edge (same sky colours at the same heights at both edges, and no building cut by the left or right edge).
+- Landscape 1536x1024.
+- ABSOLUTELY NO text, letters, numbers, logos or signboards with writing.

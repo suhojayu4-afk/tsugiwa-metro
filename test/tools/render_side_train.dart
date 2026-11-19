@@ -18,9 +18,8 @@ Future<ui.Image> _load(String asset) async {
 void main() {
   testWidgets('render', (tester) async {
     await tester.runAsync(() async {
-      final base = await _load('assets/art/train_side_base.png');
-      final stripe = await _load('assets/art/train_side_stripe.png');
-      const scale = 3.0;
+      final art = {for (final p in DayPart.values) p: await SideTrainArt.loadWith(p, _load)};
+      const scale = 2.0;
       const dt = 0.05;
       const size = ui.Size(SideTrainPainter.gridW * scale, SideTrainPainter.gridH * scale);
 
@@ -32,6 +31,7 @@ void main() {
         'underground': (DayPart.day, const Color(0xFFF39700), 40, (_) => (true, true)),
         'portal': (DayPart.day, const Color(0xFF009BBF), 40, (i) => (true, i >= 12)),
         'stop_day': (DayPart.day, const Color(0xFF80C241), 110, (i) => (i < 6 || i >= 80, false)),
+        'stop_evening': (DayPart.evening, const Color(0xFF9B7CB6), 110, (i) => (i < 6 || i >= 80, false)),
         'stop_underground': (DayPart.day, const Color(0xFFE60012), 110, (i) => (i < 6 || i >= 80, true)),
       };
       for (final c in cases.entries) {
@@ -46,13 +46,7 @@ void main() {
           final (moving, underground) = state(i);
           sim.step(dt, moving: moving, underground: underground);
           final rec = ui.PictureRecorder();
-          SideTrainPainter(
-            sim: sim,
-            part: part,
-            lineColor: color,
-            base: base,
-            stripe: stripe,
-          ).paint(ui.Canvas(rec), size);
+          SideTrainPainter(sim: sim, part: part, lineColor: color, art: art[part]!).paint(ui.Canvas(rec), size);
           final img = await rec.endRecording().toImage(size.width.toInt(), size.height.toInt());
           final bytes = await img.toByteData(format: ui.ImageByteFormat.png);
           File('${out.path}/${i.toString().padLeft(3, '0')}.png').writeAsBytesSync(bytes!.buffer.asUint8List());
