@@ -38,6 +38,22 @@ void main() {
           final bytes = await img.toByteData(format: ui.ImageByteFormat.png);
           File('${out.path}/${i.toString().padLeft(3, '0')}.png').writeAsBytesSync(bytes!.buffer.asUint8List());
         }
+        // Then the passengers getting off and on.
+        for (var i = 1; i <= 90; i++) {
+          final img = await renderSceneImage(
+            look: look,
+            part: c.value.$1,
+            lineColor: const Color(0xFFF15A22),
+            weather: c.value.$3,
+            sky: c.value.$2,
+            scale: 2,
+            arrive: 1,
+            platform: i / 90,
+          );
+          final bytes = await img.toByteData(format: ui.ImageByteFormat.png);
+          File('${out.path}/${(frames + i).toString().padLeft(3, '0')}.png')
+              .writeAsBytesSync(bytes!.buffer.asUint8List());
+        }
       }
     });
   });

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:math' as math;
 import 'dart:ui' as ui;
 
@@ -55,19 +56,45 @@ class SceneArt {
     return file.substring(0, file.lastIndexOf('_'));
   }
 
-  /// Where the rails meet far down the line (the same in every station
-  /// picture). The arriving train comes from here along the track.
-  static const vanishing = Offset(228, 93.5);
+  /// Where the rails meet far down the line in the built-in scene. Each
+  /// station, weather and crowd picture has its own point, measured by
+  /// tools/find_vanishing.py (assets/art/vanishing.json): some were redrawn
+  /// with a slightly lower camera.
+  static const vanishing = Offset(227.5, 93.5);
+
+  static Map<String, Offset>? _vanishing;
+
+  /// The rails' meeting point in the picture [asset].
+  static Future<Offset> vanishingFor(String asset) async {
+    _vanishing ??= await () async {
+      try {
+        final raw = jsonDecode(await rootBundle.loadString('assets/art/vanishing.json')) as Map<String, dynamic>;
+        return {
+          for (final e in raw.entries) e.key: Offset((e.value[0] as num).toDouble(), (e.value[1] as num).toDouble()),
+        };
+      } catch (_) {
+        return <String, Offset>{};
+      }
+    }();
+    final known = _vanishing![asset.split('/').last];
+    if (known != null) return known;
+    // Not measured (rails hidden under snow or water): the usual point of
+    // that kind of picture.
+    if (asset.contains('/weather/') || asset.contains('/crowd/')) return const Offset(226, 99);
+    if (asset.contains('/scenes/')) return const Offset(226, 89.5);
+    return vanishing;
+  }
 
   /// How big the train is when it first appears (1 = at the platform).
   static const trainFarScale = 0.07;
 
   /// The train at [scale] (1 = at the platform) on its track: its bottom
-  /// middle slides from [vanishing] to the platform position and it grows
+  /// middle slides from the picture's rails' meeting point [from] to the
+  /// platform position and it grows
   /// with the same perspective as the rails.
-  static Rect trainAt(double scale) {
+  static Rect trainAt(double scale, [Offset from = vanishing]) {
     const foot = Offset(trainLeft + trainWidth / 2, trainTop + trainHeight);
-    final f = vanishing + (foot - vanishing) * scale;
+    final f = from + (foot - from) * scale;
     return Rect.fromLTWH(
       f.dx - trainWidth * scale / 2,
       f.dy - trainHeight * scale,
@@ -319,7 +346,7 @@ class PixelSceneBanner extends StatefulWidget {
   State<PixelSceneBanner> createState() => _PixelSceneBannerState();
 }
 
-class _PixelSceneBannerState extends State<PixelSceneBanner> with SingleTickerProviderStateMixin {
+class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProviderStateMixin {
   SceneArtSet? _art;
 
   /// 0 = the train far away down the line, 1 = stopped at the platform.
@@ -327,6 +354,12 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with SingleTickerPr
     vsync: this,
     duration: const Duration(milliseconds: 4600),
     value: 1,
+  );
+
+  /// After the train stops: passengers get off, then others get on.
+  late final AnimationController _platform = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: _platformMs),
   );
 
   DayPart? _part;
@@ -345,6 +378,9 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with SingleTickerPr
   @override
   void initState() {
     super.initState();
+    _arrive.addStatusListener((s) {
+      if (s == AnimationStatus.completed && !(_art?.closed ?? false)) _platform.forward(from: 0);
+    });
     _load();
     _tick = Timer.periodic(const Duration(milliseconds: 160), (_) {
       if (!mounted) return;
@@ -366,6 +402,7 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with SingleTickerPr
     super.didUpdateWidget(old);
     if (old.look != widget.look || old.sky != widget.sky) _load();
     if (widget.arrivalKey != null && old.arrivalKey != widget.arrivalKey) {
+      _platform.reset();
       _arrive.forward(from: 0);
       widget.onArrive?.call();
     }
@@ -383,6 +420,7 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with SingleTickerPr
   void dispose() {
     _tick?.cancel();
     _arrive.dispose();
+    _platform.dispose();
     _frame.dispose();
     _life.dispose();
     super.dispose();
@@ -418,6 +456,8 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with SingleTickerPr
                             weather: weather,
                             life: _life,
                             arrive: _arrive,
+                            platform: _platform,
+                            walkers: art.walkers,
                             weathered: art.weathered,
                             sky: art.sky,
                             closed: art.closed,
@@ -430,6 +470,7 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with SingleTickerPr
                             ledColors: widget.look.ledColors,
                             sign: widget.look.sign,
                             part: art.part,
+                            vanishing: art.vanishing,
                           ),
                         ),
                       ),
@@ -463,7 +504,45 @@ typedef SceneArtSet = ({
   bool closed,
   ui.Image? trainWeather,
   Color trainWeatherTint,
+  // Passengers who get off and on once the train has stopped.
+  List<Walker> walkers,
+  // Where this picture's rails meet: the train comes from there.
+  Offset vanishing,
 });
+
+/// A passenger on the platform: a walk cycle toward the camera (getting
+/// off) and away from it (getting on), [frames] frames side by side, feet on
+/// the bottom row (tools/make_passengers.py).
+typedef Walker = ({ui.Image toward, ui.Image away, int frames});
+
+/// Who walks the platform under [sky]: coats in winter, umbrellas in the
+/// rain, else office clothes. Busy platforms (people queue in the lane)
+/// have none, so nobody walks through anybody.
+List<String> walkersFor(String? sky) {
+  final base = sky?.split('_').first;
+  if (base == 'closed' || base == 'crowded' || base == 'packed' || (sky?.endsWith('_many') ?? false)) {
+    return const [];
+  }
+  return switch (base) {
+    'winter' || 'snow' || 'snowsoon' => const ['coat_man', 'coat_woman'],
+    'rain' || 'umbrella' => const ['umbrella_man', 'umbrella_woman'],
+    _ => const ['suit_man', 'office_woman'],
+  };
+}
+
+Future<List<Walker>> _loadWalkers(String? sky) async {
+  final out = <Walker>[];
+  for (final id in walkersFor(sky)) {
+    try {
+      final toward = await SceneArt.load('assets/art/people/${id}_toward.png');
+      final away = await SceneArt.load('assets/art/people/${id}_away.png');
+      out.add((toward: toward, away: away, frames: 6));
+    } catch (_) {
+      // Not drawn yet: the platform just stays as it is.
+    }
+  }
+  return out;
+}
 
 /// Loads the scene for [look] at [part]. A station scene without a picture
 /// for this time of day uses another one, colour-graded.
@@ -472,6 +551,8 @@ Future<SceneArtSet> loadSceneArt(SceneLook look, DayPart part, {String? sky}) as
   Future<ui.Image> bg;
   // A weather version of this scene, when one has been drawn.
   ui.Image? weathered;
+  // The picture file in use, for its rails' meeting point.
+  var bgAsset = SceneArt.animation(part);
   // 'rain_many' / 'rain_few': the weather with more or fewer people; when
   // there is no such picture the plain one (the station's usual crowd) is used.
   final baseSky = sky?.split('_').first;
@@ -480,6 +561,7 @@ Future<SceneArtSet> loadSceneArt(SceneLook look, DayPart part, {String? sky}) as
     final asset = SceneArt.weatherScene(SceneArt.sceneId(look), s == 'closed' ? DayPart.night : part, s);
     try {
       weathered = await SceneArt.load(asset);
+      bgAsset = asset;
       break;
     } catch (_) {
       SceneArt.forget(asset);
@@ -490,10 +572,12 @@ Future<SceneArtSet> loadSceneArt(SceneLook look, DayPart part, {String? sky}) as
   } else if (look.images.isEmpty) {
     bg = SceneArt.loadScene(part);
   } else if (look.images[part] != null) {
-    bg = SceneArt.load(look.images[part]!);
+    bgAsset = look.images[part]!;
+    bg = SceneArt.load(bgAsset);
   } else {
     graded = part;
-    bg = SceneArt.load(look.images[DayPart.evening] ?? look.images.values.first);
+    bgAsset = look.images[DayPart.evening] ?? look.images.values.first;
+    bg = SceneArt.load(bgAsset);
   }
   final wx = weathered != null && (baseSky == 'snow' || baseSky == 'rain')
       ? 'assets/art/train_front_$baseSky.png'
@@ -517,6 +601,8 @@ Future<SceneArtSet> loadSceneArt(SceneLook look, DayPart part, {String? sky}) as
     sky: weathered != null ? baseSky : null,
     closed: baseSky == 'closed',
     trainWeather: wx == null ? null : images[3],
+    walkers: await _loadWalkers(sky),
+    vanishing: await SceneArt.vanishingFor(bgAsset),
     // Snow and drops take the light of the hour: bluish at night.
     trainWeatherTint: switch (part) {
       DayPart.day => const Color(0xFFFFFFFF),
@@ -525,6 +611,20 @@ Future<SceneArtSet> loadSceneArt(SceneLook look, DayPart part, {String? sky}) as
     },
   );
 }
+
+/// Passengers getting off and on after the stop (see _ScenePainter._passengers).
+const _platformMs = 7200;
+
+/// Seconds one passenger takes along the lane.
+const _walkSec = 2.8;
+
+/// The walking lane: from the train door (feet row 108) to the near end
+/// (feet row 141), between the yellow line and the people waiting. As
+/// 1/depth (z = 1 / (feet row − 92)).
+const _laneZ0 = 1 / (108 - 92), _laneZ1 = 1 / (141 - 92);
+
+/// The lane's middle at a feet row (it runs parallel to the platform edge).
+double _laneX(double foot) => 262 + (foot - 108) * (44 / 33);
 
 /// The train's arrival over the banner's arrival animation (0 … 1): it
 /// runs down the line until [_travelEnd], then settles on its springs.
@@ -559,6 +659,7 @@ Future<ui.Image> renderSceneImage({
   int scale = 2,
   String? sky,
   double? arrive,
+  double? platform,
 }) async {
   final art = await loadSceneArt(look, part, sky: sky);
   final view = SceneView(scale.toDouble(), Rect.fromLTWH(0, 0, SceneArt.width.toDouble(), SceneArt.height.toDouble()));
@@ -581,8 +682,11 @@ Future<ui.Image> renderSceneImage({
     trainWeather: art.trainWeather,
     trainWeatherTint: art.trainWeatherTint,
     part: part,
+    vanishing: art.vanishing,
     // Review renders: the train part way through its arrival.
     arrive: arrive == null ? null : AlwaysStoppedAnimation(arrive),
+    platform: platform == null ? null : AlwaysStoppedAnimation(platform),
+    walkers: art.walkers,
     effects: look.effects,
     led: look.led,
     ledColors: look.ledColors,
@@ -626,6 +730,8 @@ class _ScenePainter extends CustomPainter {
     required this.weather,
     required this.life,
     this.arrive,
+    this.platform,
+    this.walkers = const [],
     this.weathered = false,
     this.sky,
     this.closed = false,
@@ -638,15 +744,23 @@ class _ScenePainter extends CustomPainter {
     this.ledColors = const [ledOrange],
     this.sign,
     this.part = DayPart.day,
-  }) : super(repaint: arrive == null ? life : Listenable.merge([life, arrive]));
+    this.vanishing = SceneArt.vanishing,
+  }) : super(repaint: Listenable.merge([life, ?arrive, ?platform]));
 
   final StationSign? sign;
 
   /// Time of day of the picture: how bright the headlights look.
   final DayPart part;
 
+  /// Where the picture's rails meet: the arriving train comes from there.
+  final Offset vanishing;
+
   /// Train arrival, 0 far away … 1 at the platform (null = always arrived).
   final Animation<double>? arrive;
+
+  /// After the stop: passengers getting off and on (0 … 1 over [_platformMs]).
+  final Animation<double>? platform;
+  final List<Walker> walkers;
 
   /// The picture is already a rainy / snowy version: do not grey it again.
   final bool weathered;
@@ -684,7 +798,7 @@ class _ScenePainter extends CustomPainter {
     final a = arrive?.value ?? 1;
     if (a >= 1) return SceneArt.trainRect;
     final scale = _trainScale;
-    final r = SceneArt.trainAt(scale);
+    final r = SceneArt.trainAt(scale, vanishing);
     if (_travel(a) < 1) {
       // Distance down the line (1 = at the platform). Rail joints come by
       // at a fixed spacing, so the clicks slow down as the train brakes.
@@ -834,6 +948,7 @@ class _ScenePainter extends CustomPainter {
     for (final o in overlays) {
       canvas.drawImage(o, Offset.zero, art);
     }
+    _passengers(canvas);
     _effects(canvas, life.value);
 
     _weather(canvas);
@@ -861,6 +976,64 @@ class _ScenePainter extends CustomPainter {
       );
     }
     canvas.restore();
+  }
+
+  /// Passengers once the train has stopped: two get off by the train and
+  /// walk toward the camera along the lane between the yellow line and the
+  /// people waiting; then two others walk up that lane and get on. Their size
+  /// follows the platform's perspective (measured on the station pictures:
+  /// height = 1.33 × (feet row − 92)), and they walk at a steady pace on the
+  /// ground, so they slow down on screen as they go away.
+  void _passengers(Canvas canvas) {
+    final t = platform?.value ?? 0;
+    if (t <= 0 || t >= 1 || walkers.isEmpty) return;
+    final sec = t * _platformMs / 1000;
+    // The floor's horizon in this picture (people's feet meet it far away):
+    // measured 92 where the rails meet at 89.4.
+    final horizon = vanishing.dy + 2.6;
+    final dz = horizon - 92;
+    final light = switch (part) {
+      DayPart.day => null,
+      DayPart.evening => const Color(0xFFF0DCD8),
+      DayPart.night => const Color(0xFF8E96B8),
+    };
+    final wet = sky == 'rain' || weather == WeatherKind.rain;
+    final tint = wet ? Color.lerp(light ?? const Color(0xFFFFFFFF), const Color(0xFFADB5C6), 0.6) : light;
+    // (start s, walker, getting off?, sideways offset in the lane)
+    const plan = [(0.4, 0, true, 0.0), (1.2, 1, true, -5.0), (3.0, 1, false, 3.0), (3.8, 0, false, -3.0)];
+    for (final (start, who, off, side) in plan) {
+      final u = (sec - start) / _walkSec;
+      if (u <= 0 || u >= 1 || who >= walkers.length) continue;
+      final w = walkers[who];
+      // Steady pace on the ground: 1/depth changes evenly.
+      final along = off ? u : 1 - u;
+      final z = _laneZ0 + (_laneZ1 - _laneZ0) * along;
+      final foot = horizon + 1 / z;
+      final x = _laneX(foot - dz) + side * (foot - horizon) / 30;
+      final h = 1.33 * (foot - horizon);
+      final img = off ? w.toward : w.away;
+      final fw = img.width / w.frames;
+      final frame = (sec * 9).floor() % w.frames;
+      final scale = h / img.height;
+      // In and out of the train door (by the train) and of the picture's
+      // near edge: a short fade.
+      final fade = math.min(1.0, math.min(along / 0.12, (1 - along) / 0.1));
+      final paint = Paint()
+        ..filterQuality = FilterQuality.none
+        ..color = Color.fromRGBO(0, 0, 0, fade.clamp(0.0, 1.0));
+      if (tint != null) paint.colorFilter = ColorFilter.mode(tint, BlendMode.modulate);
+      // Soft shadow on the floor.
+      canvas.drawOval(
+        Rect.fromCenter(center: Offset(x, foot), width: fw * scale * 0.7, height: math.max(1.5, h * 0.06)),
+        Paint()..color = Color.fromRGBO(20, 16, 24, 0.25 * fade),
+      );
+      canvas.drawImageRect(
+        img,
+        Rect.fromLTWH(frame * fw, 0, fw, img.height.toDouble()),
+        Rect.fromLTWH(x - fw * scale / 2, foot - h, fw * scale, h),
+        paint,
+      );
+    }
   }
 
   /// The two headlights: seen first as two bright points far down the line,

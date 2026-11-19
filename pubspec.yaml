@@ -40,6 +40,7 @@ flutter:
     - assets/art/weather/
     - assets/art/widget/
     - assets/art/crowd/
+    - assets/art/people/
     - assets/my/
     - assets/sounds/
   fonts:
