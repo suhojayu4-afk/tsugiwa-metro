@@ -21,6 +21,7 @@ void main() {
         'day': (DayPart.day, null, WeatherKind.sunny),
         'evening_rain': (DayPart.evening, 'rain', WeatherKind.rain),
         'night': (DayPart.night, null, WeatherKind.sunny),
+        'winter': (DayPart.day, 'winter', WeatherKind.sunny),
       };
       const frames = 70;
       for (final c in cases.entries) {
@@ -39,7 +40,7 @@ void main() {
           File('${out.path}/${i.toString().padLeft(3, '0')}.png').writeAsBytesSync(bytes!.buffer.asUint8List());
         }
         // Then the passengers getting off and on.
-        for (var i = 1; i <= 90; i++) {
+        for (var i = 1; i <= 50; i++) {
           final img = await renderSceneImage(
             look: look,
             part: c.value.$1,
@@ -48,7 +49,7 @@ void main() {
             sky: c.value.$2,
             scale: 2,
             arrive: 1,
-            platform: i / 90,
+            platform: i / 50,
           );
           final bytes = await img.toByteData(format: ui.ImageByteFormat.png);
           File('${out.path}/${(frames + i).toString().padLeft(3, '0')}.png')

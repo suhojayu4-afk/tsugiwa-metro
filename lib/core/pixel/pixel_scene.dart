@@ -531,14 +531,15 @@ typedef SceneArtSet = ({
   Offset vanishing,
 });
 
-/// A passenger on the platform: a walk cycle toward the camera (getting
-/// off) and away from it (getting on), [frames] frames side by side, feet on
-/// the bottom row (tools/make_passengers.py).
-typedef Walker = ({ui.Image toward, ui.Image away, int frames});
+/// A passenger waiting at the train door, seen from behind: frame 0
+/// standing still in the queue, then [frames] − 1 frames of walking to the
+/// door, side by side with the feet on the bottom row (drawn by GPT,
+/// tools/gen_passengers_gpt.py and tools/cut_gpt_walk.py).
+typedef Walker = ({ui.Image away, int frames});
 
-/// Who walks the platform under [sky]: coats in winter, umbrellas in the
-/// rain, else office clothes. Busy platforms (people queue in the lane)
-/// have none, so nobody walks through anybody.
+/// Who waits at the door under [sky]: coats in winter, umbrellas in the
+/// rain, else office clothes. Busy platforms (their own queues stand at the
+/// doors) have none, so nobody stands in anybody.
 List<String> walkersFor(String? sky) {
   final base = sky?.split('_').first;
   if (base == 'closed' || base == 'crowded' || base == 'packed' || (sky?.endsWith('_many') ?? false)) {
@@ -555,9 +556,14 @@ Future<List<Walker>> _loadWalkers(String? sky) async {
   final out = <Walker>[];
   for (final id in walkersFor(sky)) {
     try {
-      final toward = await SceneArt.load('assets/art/people/${id}_toward.png');
-      final away = await SceneArt.load('assets/art/people/${id}_away.png');
-      out.add((toward: toward, away: away, frames: 6));
+      // {id}_wait.png: standing + 6 walking frames; {id}_away.png (older):
+      // the walk only.
+      try {
+        out.add((away: await SceneArt.load('assets/art/people/${id}_wait.png'), frames: 7));
+      } catch (_) {
+        SceneArt.forget('assets/art/people/${id}_wait.png');
+        out.add((away: await SceneArt.load('assets/art/people/${id}_away.png'), frames: 6));
+      }
     } catch (_) {
       // Not drawn yet: the platform just stays as it is.
     }
@@ -633,19 +639,16 @@ Future<SceneArtSet> loadSceneArt(SceneLook look, DayPart part, {String? sky}) as
   );
 }
 
-/// Passengers getting off and on after the stop (see _ScenePainter._passengers).
-const _platformMs = 7200;
+/// After the stop, the two passengers waiting at the door get on
+/// (see _ScenePainter._passengers).
+const _platformMs = 3600;
 
-/// Seconds one passenger takes along the lane.
-const _walkSec = 2.8;
-
-/// The walking lane: from the train door (feet row 108) to the near end
-/// (feet row 141), between the yellow line and the people waiting. As
-/// 1/depth (z = 1 / (feet row − 92)).
-const _laneZ0 = 1 / (108 - 92), _laneZ1 = 1 / (141 - 92);
-
-/// The lane's middle at a feet row (it runs parallel to the platform edge).
-double _laneX(double foot) => 262 + (foot - 108) * (44 / 33);
+/// The first door, just behind the driver's cab, and the two places in the
+/// queue in front of it (feet, in the
+/// station pictures where the floor's horizon is at row 92; other pictures
+/// shift with their horizon). In Japan people queue at the door marks, so
+/// the second one stands beside the first, a step further from the edge.
+const _door = Offset(257, 117.5), _queue1 = Offset(268, 121), _queue2 = Offset(281, 121.5);
 
 /// The train's arrival over the banner's arrival animation (0 … 1): it
 /// runs down the line until [_travelEnd], then settles on its springs.
@@ -781,7 +784,7 @@ class _ScenePainter extends CustomPainter {
   /// Train arrival, 0 far away … 1 at the platform (null = always arrived).
   final Animation<double>? arrive;
 
-  /// After the stop: passengers getting off and on (0 … 1 over [_platformMs]).
+  /// After the stop: the passengers at the door get on (0 … 1 over [_platformMs]).
   final Animation<double>? platform;
   final List<Walker> walkers;
 
@@ -1004,20 +1007,24 @@ class _ScenePainter extends CustomPainter {
     canvas.restore();
   }
 
-  /// Passengers once the train has stopped: two get off by the train and
-  /// walk toward the camera along the lane between the yellow line and the
-  /// people waiting; then two others walk up that lane and get on. Their size
-  /// follows the platform's perspective (measured on the station pictures:
-  /// height = 1.33 × (feet row − 92)), and they walk at a steady pace on the
-  /// ground, so they slow down on screen as they go away.
+  /// Two passengers wait in the queue at the train door while it pulls in
+  /// (they come into view with it), then get on: the first walks the few
+  /// steps into the door, the second moves up and follows. The door's warm
+  /// light spills onto the floor while it is open. Sizes follow the
+  /// platform's perspective (measured on the station pictures: height =
+  /// 1.33 × (feet row − horizon)).
   void _passengers(Canvas canvas) {
+    if (walkers.isEmpty || closed) return;
+    final a = arrive?.value ?? 1;
     final t = platform?.value ?? 0;
-    if (t <= 0 || t >= 1 || walkers.isEmpty) return;
+    final arriving = a < 1;
+    final boarding = t > 0 && t < 1;
+    if (!arriving && !boarding) return;
     final sec = t * _platformMs / 1000;
-    // The floor's horizon in this picture (people's feet meet it far away):
-    // measured 92 where the rails meet at 89.4.
+    // The floor's horizon in this picture: 92 where the rails meet at 89.4.
     final horizon = vanishing.dy + 2.6;
     final dz = horizon - 92;
+    Offset at(Offset p) => Offset(p.dx, p.dy + dz);
     final light = switch (part) {
       DayPart.day => null,
       DayPart.evening => const Color(0xFFF0DCD8),
@@ -1025,41 +1032,77 @@ class _ScenePainter extends CustomPainter {
     };
     final wet = sky == 'rain' || weather == WeatherKind.rain;
     final tint = wet ? Color.lerp(light ?? const Color(0xFFFFFFFF), const Color(0xFFADB5C6), 0.6) : light;
-    // (start s, walker, getting off?, sideways offset in the lane)
-    const plan = [(0.4, 0, true, 0.0), (1.2, 1, true, -5.0), (3.0, 1, false, 3.0), (3.8, 0, false, -3.0)];
-    for (final (start, who, off, side) in plan) {
-      final u = (sec - start) / _walkSec;
-      if (u <= 0 || u >= 1 || who >= walkers.length) continue;
+
+    // The open door's light on the floor.
+    if (boarding) {
+      final open = math.min(1.0, math.min(t / 0.08, (1 - t) / 0.12));
+      final d = at(_door);
+      final glow = (part == DayPart.day ? 0.22 : 0.4) * open;
+      final w = 1.33 * (d.dy - horizon) * 1.1;
+      canvas.drawOval(
+        Rect.fromCenter(center: d + const Offset(4, 1), width: w, height: w * 0.32),
+        Paint()
+          ..shader = ui.Gradient.radial(d + const Offset(4, 1), w / 2, [
+            const Color(0xFFFFF0C8).withValues(alpha: glow),
+            const Color(0x00FFF0C8),
+          ]),
+      );
+    }
+
+    // Where each one is now, how much of it shows, and whether it walks.
+    ({Offset foot, double alpha, bool walking}) where(int who) {
+      // While the train pulls in: standing in the queue, fading in with it.
+      final show = arriving ? (a / 0.15).clamp(0.0, 1.0) : 1.0;
+      Offset lerp(Offset p, Offset q, double u) => Offset.lerp(at(p), at(q), u)!;
+      if (who == 0) {
+        final u = ((sec - 0.5) / 0.9).clamp(0.0, 1.0);
+        if (!boarding || u <= 0) return (foot: at(_queue1), alpha: show, walking: false);
+        // Steps in; the last part is inside the door.
+        return (foot: lerp(_queue1, _door, u), alpha: (1 - (u - 0.75) / 0.25).clamp(0.0, 1.0), walking: true);
+      }
+      final up = ((sec - 0.9) / 0.6).clamp(0.0, 1.0);
+      final inn = ((sec - 1.8) / 0.9).clamp(0.0, 1.0);
+      if (!boarding || up <= 0) return (foot: at(_queue2), alpha: show, walking: false);
+      if (inn <= 0) return (foot: lerp(_queue2, _queue1, up), alpha: 1, walking: up < 1);
+      return (foot: lerp(_queue1, _door, inn), alpha: (1 - (inn - 0.75) / 0.25).clamp(0.0, 1.0), walking: true);
+    }
+
+    // The door is behind the train's front: whoever steps in goes behind its
+    // right edge.
+    canvas.save();
+    canvas.clipRect(
+      Rect.fromLTRB(SceneArt.trainRect.right - 1, 0, SceneArt.width.toDouble(), SceneArt.height.toDouble()),
+    );
+    // The one further back first, so the nearer one is drawn over it.
+    for (final who in const [1, 0]) {
+      if (who >= walkers.length) continue;
       final w = walkers[who];
-      // Steady pace on the ground: 1/depth changes evenly.
-      final along = off ? u : 1 - u;
-      final z = _laneZ0 + (_laneZ1 - _laneZ0) * along;
-      final foot = horizon + 1 / z;
-      final x = _laneX(foot - dz) + side * (foot - horizon) / 30;
-      final h = 1.33 * (foot - horizon);
-      final img = off ? w.toward : w.away;
+      final p = where(who);
+      if (p.alpha <= 0) continue;
+      final h = 1.33 * (p.foot.dy - horizon);
+      final img = w.away;
       final fw = img.width / w.frames;
-      final frame = (sec * 9).floor() % w.frames;
+      // Frame 0 stands; the walk loops over the others (the 6-frame strips
+      // have no standing frame: they stand on their first step).
+      final walk = w.frames == 7 ? 6 : w.frames;
+      final frame = p.walking ? (w.frames - walk) + ((sec * 8).floor() + who * 3) % walk : 0;
       final scale = h / img.height;
-      // In and out of the train door (by the train) and of the picture's
-      // near edge: a short fade.
-      final fade = math.min(1.0, math.min(along / 0.12, (1 - along) / 0.1));
       final paint = Paint()
         ..filterQuality = FilterQuality.none
-        ..color = Color.fromRGBO(0, 0, 0, fade.clamp(0.0, 1.0));
+        ..color = Color.fromRGBO(0, 0, 0, p.alpha);
       if (tint != null) paint.colorFilter = ColorFilter.mode(tint, BlendMode.modulate);
-      // Soft shadow on the floor.
       canvas.drawOval(
-        Rect.fromCenter(center: Offset(x, foot), width: fw * scale * 0.7, height: math.max(1.5, h * 0.06)),
-        Paint()..color = Color.fromRGBO(20, 16, 24, 0.25 * fade),
+        Rect.fromCenter(center: p.foot, width: fw * scale * 0.75, height: math.max(1.5, h * 0.07)),
+        Paint()..color = Color.fromRGBO(20, 16, 24, 0.28 * p.alpha),
       );
       canvas.drawImageRect(
         img,
         Rect.fromLTWH(frame * fw, 0, fw, img.height.toDouble()),
-        Rect.fromLTWH(x - fw * scale / 2, foot - h, fw * scale, h),
+        Rect.fromLTWH(p.foot.dx - fw * scale / 2, p.foot.dy - h, fw * scale, h),
         paint,
       );
     }
+    canvas.restore();
   }
 
   /// The two headlights: seen first as two bright points far down the line,
