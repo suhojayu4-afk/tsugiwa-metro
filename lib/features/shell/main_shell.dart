@@ -7,6 +7,7 @@ import '../../data/models/city.dart';
 import '../../data/weather/weather_source.dart';
 import '../../l10n/app_localizations.dart';
 import '../../platform/home_widget_bridge.dart';
+import '../../platform/monthly_report.dart';
 import '../my_room/my_room_screen.dart';
 import '../my_room/station_plate.dart';
 import '../platform/platform_screen.dart';
@@ -70,6 +71,8 @@ class _MainShellState extends State<MainShell> {
     final my = Services.my;
     my.lines = {for (final l in widget.city.lines) l.id: l.stations};
     if (!my.loaded) my.load();
+    // 月間乗車レポート on the 1st; tapping it opens MY.
+    MonthlyReport.attach(my, openMy: () => mounted ? _openMy(null) : null);
     _stay = StayWatcher(city: widget.city, location: Services.location, onStay: _onStay)..start();
     // Keep the home screen widget's pictures in step with MY駅.
     _widgetSync = HomeWidgetSync(

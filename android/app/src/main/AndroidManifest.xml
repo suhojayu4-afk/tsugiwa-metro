@@ -56,6 +56,15 @@
                 <action android:name="android.intent.action.TIMEZONE_CHANGED" />
             </intent-filter>
         </receiver>
+        <!-- 月間乗車レポート: the 1st of every month, 9:00 -->
+        <receiver
+            android:name=".MonthlyReportReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
         <!-- 地下鉄案内: the route and its last train, departure-board style -->
         <receiver
             android:name=".BoardWidget"

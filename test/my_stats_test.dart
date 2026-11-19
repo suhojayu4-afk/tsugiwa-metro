@@ -75,4 +75,13 @@ void main() {
     expect(st.title.ja, '${yamanote.name.ja}マスター');
     expect(st.lineProgress.first.lineId, yamanote.id);
   });
+
+  test('no rides yet this month: last month is still there to report', () async {
+    final s = await fresh();
+    await s.rewardTrip(['tokyo.tokyo', 'tokyo.kanda'], now: DateTime(2026, 11, 28, 8), ridden: ['tokyo.yamanote']);
+    final dec = MonthRides.of(city, s.trips, DateTime(2026, 12, 1, 9));
+    expect(dec.trips, 0);
+    final nov = MonthRides.of(city, s.trips, DateTime(2026, 12, 0));
+    expect((nov.month, nov.trips), (11, 1));
+  });
 }

@@ -196,11 +196,58 @@ class MainActivity : FlutterActivity() {
                 result.error("widget", e.message, null)
             }
         }
+
+        // "tsugiwa/monthly": 月間乗車レポート on the 1st of the month (see
+        // MonthlyReport). Tapping it opens the MY tab: "takeOpenMy" when the
+        // app started from it, "openMy" when it was already running.
+        val monthly = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "tsugiwa/monthly")
+        monthlyChannel = monthly
+        monthly.setMethodCallHandler { call, result ->
+            try {
+                @Suppress("UNCHECKED_CAST")
+                val args = call.arguments as? Map<String, Any?> ?: emptyMap()
+                when (call.method) {
+                    "schedule" -> {
+                        @Suppress("UNCHECKED_CAST")
+                        MonthlyReport.set(
+                            applicationContext,
+                            (args["months"] as? List<String>) ?: emptyList(),
+                            (args["titles"] as? List<String>) ?: emptyList(),
+                            args["text"] as? String ?: "",
+                            args["channel"] as? String ?: "",
+                        )
+                        result.success(null)
+                    }
+                    "cancel" -> {
+                        MonthlyReport.clear(applicationContext)
+                        result.success(null)
+                    }
+                    "takeOpenMy" -> {
+                        val open = intent?.action == MonthlyReport.ACTION_OPEN_MY
+                        if (open) intent.action = null
+                        result.success(open)
+                    }
+                    else -> result.notImplemented()
+                }
+            } catch (e: Exception) {
+                result.error("monthly", e.message, null)
+            }
+        }
+    }
+
+    private var monthlyChannel: MethodChannel? = null
+
+    private fun handleOpenMy(intent: Intent?) {
+        if (intent?.action == MonthlyReport.ACTION_OPEN_MY) {
+            intent.action = null
+            monthlyChannel?.invokeMethod("openMy", null)
+        }
     }
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         handleEnd(intent)
+        handleOpenMy(intent)
     }
 
     private fun handleEnd(intent: Intent?) {

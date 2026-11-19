@@ -906,7 +906,13 @@ class _ReportCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
-    final m = d.stats.month;
+    // Early in a month with no rides yet (e.g. from the 1st-of-the-month
+    // notice), the report is last month's.
+    var m = d.stats.month;
+    if (m.trips == 0) {
+      final last = MonthRides.of(d.city, d.store.trips, DateTime(d.now.year, d.now.month, 0));
+      if (last.trips > 0) m = last;
+    }
     final top = m.topLine == null ? null : d.city.line(m.topLine!);
     final month = t.localeName == 'en' ? _monthEn[m.month - 1] : '${m.month}';
     return Container(
