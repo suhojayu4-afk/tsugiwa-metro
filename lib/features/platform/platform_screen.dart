@@ -1007,7 +1007,9 @@ String? sceneSky(WeatherNow? w, {DateTime? now, CongestionLevel? crowd, bool clo
   // After the last train: the empty, half-lit platform; the train shows 運行終了.
   if (closed) return 'closed';
   if (sky == null && winter) sky = 'winter';
-  if (sky == null) return crowd?.name;
+  // An ordinary crowd is the scene itself (which moves); only quiet or busy
+  // platforms switch to their own pictures.
+  if (sky == null) return crowd == CongestionLevel.normal ? null : crowd?.name;
   if (crowd == null) return sky;
   return '${sky}_${crowd.index >= CongestionLevel.crowded.index ? 'many' : 'few'}';
 }

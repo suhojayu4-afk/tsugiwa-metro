@@ -397,6 +397,44 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
     duration: const Duration(milliseconds: _platformMs),
   );
 
+  /// Leaving: 0 = at the platform, then it pulls out towards us and past;
+  /// 1 = gone (the track is empty until the next train).
+  late final AnimationController _depart = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 5200),
+  );
+
+  /// The next step of the station's own rhythm: trains keep coming, stop,
+  /// people get off and on, the train leaves, the next one comes.
+  Timer? _cycle;
+  final _rnd = math.Random();
+
+  bool get _canLoop => mounted && !(_art?.closed ?? false) && !MediaQuery.of(context).disableAnimations;
+
+  void _later(Duration d, VoidCallback step) {
+    _cycle?.cancel();
+    _cycle = Timer(d, () {
+      if (_canLoop) step();
+    });
+  }
+
+  /// The train has been standing a while: it leaves, then the track is empty.
+  void _leave() {
+    _depart.forward(from: 0).whenComplete(() {
+      if (!mounted || _depart.value < 1) return;
+      _later(Duration(seconds: 10 + _rnd.nextInt(9)), _nextTrain);
+    });
+  }
+
+  /// The next train: far down the line, pulling in (quietly; the melody is
+  /// only for a route the user picked).
+  void _nextTrain() {
+    _platform.reset();
+    _arrive.value = 0;
+    _depart.value = 0;
+    _arrive.forward(from: 0);
+  }
+
   DayPart? _part;
   Timer? _tick;
   int _ticks = 0;
@@ -415,6 +453,14 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
     super.initState();
     _arrive.addStatusListener((s) {
       if (s == AnimationStatus.completed && !(_art?.closed ?? false)) _platform.forward(from: 0);
+    });
+    // Once everyone is on board, the doors close and it leaves a bit later.
+    _platform.addStatusListener((s) {
+      if (s == AnimationStatus.completed) _later(Duration(seconds: 6 + _rnd.nextInt(5)), _leave);
+    });
+    // The first train is already in when the screen opens: people board soon.
+    _later(const Duration(seconds: 4), () {
+      if (_arrive.value >= 1 && _depart.value == 0 && !_platform.isAnimating) _platform.forward(from: 0);
     });
     _load();
     _tick = Timer.periodic(const Duration(milliseconds: 160), (_) {
@@ -437,6 +483,8 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
     super.didUpdateWidget(old);
     if (old.look != widget.look || old.sky != widget.sky) _load();
     if (widget.arrivalKey != null && old.arrivalKey != widget.arrivalKey) {
+      _cycle?.cancel();
+      _depart.value = 0;
       _platform.reset();
       _arrive.forward(from: 0);
       widget.onArrive?.call();
@@ -454,6 +502,8 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
   @override
   void dispose() {
     _tick?.cancel();
+    _cycle?.cancel();
+    _depart.dispose();
     _arrive.dispose();
     _platform.dispose();
     _frame.dispose();
@@ -493,6 +543,7 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
                             life: _life,
                             arrive: _arrive,
                             platform: _platform,
+                            depart: _depart,
                             walkers: art.walkers,
                             weathered: art.weathered,
                             sky: art.sky,
@@ -508,6 +559,7 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
                             part: art.part,
                             vanishing: art.vanishing,
                             front: art.front,
+                            ambience: art.ambience,
                           ),
                         ),
                       ),
@@ -548,6 +600,8 @@ typedef SceneArtSet = ({
   // The people standing in front of the vending machine in this picture
   // (alpha = person), drawn again over it; null without one.
   ui.Image? front,
+  // Sky and lit windows found in the picture, for the drawn ambience.
+  SceneAmbience? ambience,
 });
 
 /// A passenger waiting at the train door, seen from behind: frame 0
@@ -664,6 +718,7 @@ Future<SceneArtSet> loadSceneArt(SceneLook look, DayPart part, {String? sky}) as
     walkers: await _loadWalkers(sky),
     vanishing: await SceneArt.vanishingFor(bgAsset),
     front: await _frontMask(look, bgAsset),
+    ambience: await SceneAmbience.of(await bg, bgAsset),
     // Snow and drops take the light of the hour: bluish at night.
     trainWeatherTint: switch (part) {
       DayPart.day => const Color(0xFFFFFFFF),
@@ -722,10 +777,12 @@ Future<ui.Image> renderSceneImage({
   String? sky,
   double? arrive,
   double? platform,
+  double? depart,
+  int tick = 0,
 }) async {
   final art = await loadSceneArt(look, part, sky: sky);
   final view = SceneView(scale.toDouble(), Rect.fromLTWH(0, 0, SceneArt.width.toDouble(), SceneArt.height.toDouble()));
-  final life = ValueNotifier<int>(0);
+  final life = ValueNotifier<int>(tick);
   final recorder = ui.PictureRecorder();
   final size = Size(SceneArt.width * scale.toDouble(), SceneArt.height * scale.toDouble());
   _ScenePainter(
@@ -747,9 +804,11 @@ Future<ui.Image> renderSceneImage({
     part: part,
     vanishing: art.vanishing,
     front: art.front,
+    ambience: art.ambience,
     // Review renders: the train part way through its arrival.
     arrive: arrive == null ? null : AlwaysStoppedAnimation(arrive),
     platform: platform == null ? null : AlwaysStoppedAnimation(platform),
+    depart: depart == null ? null : AlwaysStoppedAnimation(depart),
     walkers: art.walkers,
     effects: look.effects,
     led: look.led,
@@ -796,6 +855,7 @@ class _ScenePainter extends CustomPainter {
     required this.life,
     this.arrive,
     this.platform,
+    this.depart,
     this.walkers = const [],
     this.weathered = false,
     this.sky,
@@ -811,7 +871,8 @@ class _ScenePainter extends CustomPainter {
     this.part = DayPart.day,
     this.vanishing = SceneArt.vanishing,
     this.front,
-  }) : super(repaint: Listenable.merge([life, ?arrive, ?platform]));
+    this.ambience,
+  }) : super(repaint: Listenable.merge([life, ?arrive, ?platform, ?depart]));
 
   final StationSign? sign;
 
@@ -824,8 +885,17 @@ class _ScenePainter extends CustomPainter {
   /// People in front of the vending machine (alpha mask), or null.
   final ui.Image? front;
 
+  /// Sky and window lights of the picture (clouds, birds, stars, windows).
+  final SceneAmbience? ambience;
+
   /// Train arrival, 0 far away … 1 at the platform (null = always arrived).
   final Animation<double>? arrive;
+
+  /// Leaving after the stop (0 … 1 = gone); null = it stays.
+  final Animation<double>? depart;
+
+  /// The train has left and the track is empty.
+  bool get _gone => (depart?.value ?? 0) >= 1;
 
   /// After the stop: the passengers at the door get on (0 … 1 over [_platformMs]).
   final Animation<double>? platform;
@@ -865,6 +935,15 @@ class _ScenePainter extends CustomPainter {
   /// stops.
   Rect get _trainNow {
     final a = arrive?.value ?? 1;
+    final d = depart?.value ?? 0;
+    if (a >= 1 && d > 0) {
+      // Pulling out: it speeds up down the line and gets smaller, its red
+      // tail lights fading into the distance.
+      final scale = _trainScale;
+      final z = 1 / scale;
+      final roll = math.sin(z * 2.2) * 0.45 + math.sin(z * 5.3) * 0.15;
+      return SceneArt.trainAt(scale, vanishing).shift(Offset(roll * scale, 0));
+    }
     if (a >= 1) return SceneArt.trainRect;
     final scale = _trainScale;
     final r = SceneArt.trainAt(scale, vanishing);
@@ -888,6 +967,12 @@ class _ScenePainter extends CustomPainter {
   /// 1/distance big, so it stays small far away, then grows quickly and
   /// eases to a stop at the platform.
   double get _trainScale {
+    final d = depart?.value ?? 0;
+    if (d > 0) {
+      // Leaving: it starts off slowly and speeds up (distance grows like d³).
+      const far = 1 / SceneArt.trainFarScale;
+      return 1 / (1 + (far - 1) * d * d * d);
+    }
     final a = _travel(arrive?.value ?? 1);
     if (a >= 1) return 1;
     const far = 1 / SceneArt.trainFarScale;
@@ -966,55 +1051,58 @@ class _ScenePainter extends CustomPainter {
       Rect.fromLTWH(0, 0, SceneArt.width.toDouble(), SceneArt.height.toDouble()),
       bgPaint,
     );
+    ambience?.paint(canvas, part, life.value, weathered: weathered);
     final trainSrc = Rect.fromLTWH(0, 0, trainBase.width.toDouble(), trainBase.height.toDouble());
-    _atTrain(canvas, () {
-      // Contact shadow on the rails under the train, so it sits on the track
-      // instead of floating (the art's bottom edge is at train row 95).
-      const l = SceneArt.trainLeft, t = SceneArt.trainTop;
-      canvas.drawOval(Rect.fromLTWH(l + 1, t + 91, 69, 16), Paint()..color = const Color(0x55141018));
-      canvas.drawOval(Rect.fromLTWH(l + 8, t + 93, 55, 10), Paint()..color = const Color(0x77141018));
-      canvas.drawRect(Rect.fromLTWH(l + 12, t + 95, 47, 4), Paint()..color = const Color(0x99100c14));
-      final trainPaint = _trainPaint(art);
-      // Wet platform: the train shows faintly in the water on the track.
-      if (sky == 'rain') {
-        const r = SceneArt.trainRect;
-        canvas.save();
-        canvas.clipRect(Rect.fromLTWH(r.left, r.bottom - 1, r.width, 16));
-        canvas.translate(0, r.bottom * 2 - 2);
-        canvas.scale(1, -1);
+    if (!_gone) {
+      _atTrain(canvas, () {
+        // Contact shadow on the rails under the train, so it sits on the track
+        // instead of floating (the art's bottom edge is at train row 95).
+        const l = SceneArt.trainLeft, t = SceneArt.trainTop;
+        canvas.drawOval(Rect.fromLTWH(l + 1, t + 91, 69, 16), Paint()..color = const Color(0x55141018));
+        canvas.drawOval(Rect.fromLTWH(l + 8, t + 93, 55, 10), Paint()..color = const Color(0x77141018));
+        canvas.drawRect(Rect.fromLTWH(l + 12, t + 95, 47, 4), Paint()..color = const Color(0x99100c14));
+        final trainPaint = _trainPaint(art);
+        // Wet platform: the train shows faintly in the water on the track.
+        if (sky == 'rain') {
+          const r = SceneArt.trainRect;
+          canvas.save();
+          canvas.clipRect(Rect.fromLTWH(r.left, r.bottom - 1, r.width, 16));
+          canvas.translate(0, r.bottom * 2 - 2);
+          canvas.scale(1, -1);
+          canvas.drawImageRect(
+            trainBase,
+            trainSrc,
+            r,
+            Paint()
+              ..filterQuality = FilterQuality.none
+              ..colorFilter = const ColorFilter.mode(Color(0x30C0C8DC), BlendMode.modulate),
+          );
+          canvas.restore();
+        }
+        canvas.drawImageRect(trainBase, trainSrc, SceneArt.trainRect, trainPaint);
+        final stripe = sky == 'rain' || sky == 'umbrella'
+            ? Color.lerp(lineColor, const Color(0xFF4A5068), 0.22)!
+            : lineColor;
         canvas.drawImageRect(
-          trainBase,
-          trainSrc,
-          r,
-          Paint()
-            ..filterQuality = FilterQuality.none
-            ..colorFilter = const ColorFilter.mode(Color(0x30C0C8DC), BlendMode.modulate),
-        );
-        canvas.restore();
-      }
-      canvas.drawImageRect(trainBase, trainSrc, SceneArt.trainRect, trainPaint);
-      final stripe = sky == 'rain' || sky == 'umbrella'
-          ? Color.lerp(lineColor, const Color(0xFF4A5068), 0.22)!
-          : lineColor;
-      canvas.drawImageRect(
-        trainStripe,
-        trainSrc,
-        SceneArt.trainRect,
-        Paint()
-          ..filterQuality = FilterQuality.none
-          ..colorFilter = ColorFilter.mode(stripe, BlendMode.modulate),
-      );
-      if (trainWeather != null) {
-        canvas.drawImageRect(
-          trainWeather!,
+          trainStripe,
           trainSrc,
           SceneArt.trainRect,
           Paint()
             ..filterQuality = FilterQuality.none
-            ..colorFilter = ColorFilter.mode(trainWeatherTint, BlendMode.modulate),
+            ..colorFilter = ColorFilter.mode(stripe, BlendMode.modulate),
         );
-      }
-    });
+        if (trainWeather != null) {
+          canvas.drawImageRect(
+            trainWeather!,
+            trainSrc,
+            SceneArt.trainRect,
+            Paint()
+              ..filterQuality = FilterQuality.none
+              ..colorFilter = ColorFilter.mode(trainWeatherTint, BlendMode.modulate),
+          );
+        }
+      });
+    }
 
     // Decorations sit on the platform, in front of the train's back.
     for (final o in overlays) {
@@ -1038,13 +1126,15 @@ class _ScenePainter extends CustomPainter {
 
     _weather(canvas);
     // Lights glow through the grey weather veil.
-    if (!closed) _headlights(canvas);
+    if (!closed && !_gone) _headlights(canvas);
     _wind(canvas);
     // The station sign is lit too, so it reads in the rain and at night.
     if (sign != null) paintStationSign(canvas, SceneArt.signRect, sign!);
     // The LED is lit: drawn after the grey weather veil so it keeps glowing.
     // After the last train the display just says so.
-    if (closed) {
+    if (_gone) {
+      // Empty track: nothing to light.
+    } else if (closed) {
       _atTrain(canvas, () => paintLed(canvas, SceneArt.ledRect, '運行終了', ledColors.first));
     } else if (led.isNotEmpty) {
       // A page lasts about 3 seconds (life ticks every 320 ms).
@@ -1052,7 +1142,7 @@ class _ScenePainter extends CustomPainter {
       // Dark far down the line; it flickers on as the train comes close.
       final a = arrive?.value ?? 1;
       final p = _travel(a);
-      final on = p >= 0.72 || (p >= 0.56 && (a * 173).floor() % 3 != 0);
+      final on = (depart?.value ?? 0) == 0 && (p >= 0.72 || (p >= 0.56 && (a * 173).floor() % 3 != 0));
       _atTrain(
         canvas,
         () => on
@@ -1189,7 +1279,9 @@ class _ScenePainter extends CustomPainter {
     };
     final r = _trainNow;
     final s = r.width / SceneArt.trainWidth;
-    const warm = Color(0xFFFFF2C8);
+    // Leaving: what we see now is the back of the train, with red tail lights.
+    final leaving = (depart?.value ?? 0) > 0;
+    final warm = leaving ? const Color(0xFFFF5A4A) : const Color(0xFFFFF2C8);
     // Headlight centres in the train picture (75×96).
     for (final lamp in lamps) {
       final c = Offset(
@@ -1208,7 +1300,7 @@ class _ScenePainter extends CustomPainter {
       canvas.drawRect(Rect.fromCenter(center: c, width: core * 2, height: core * 1.6), Paint()..color = warm);
     }
     // Light on the rails in front of the train.
-    if (part != DayPart.day || wet) {
+    if ((part != DayPart.day || wet) && !leaving) {
       final foot = Offset(r.center.dx, r.bottom + 5 * s);
       final w = 46 * s, h = 12 * s;
       canvas.drawOval(
@@ -1539,4 +1631,119 @@ class _SteppedClip extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(_SteppedClip old) => false;
+}
+
+/// Gentle life drawn over any platform picture, so every scene (also the
+/// crowd and weather versions, which have no animation of their own) moves
+/// a little: birds crossing by day and at dusk, windows going on and off in
+/// the evening and at night, stars and a plane's blinking light at night.
+///
+/// The dark sky and the lit windows are found once per picture from its pixels.
+class SceneAmbience {
+  SceneAmbience._(this.stars, this.windows, this.seed);
+
+  /// Spots of dark night sky where a star can twinkle.
+  final List<Offset> stars;
+
+  /// Lit windows (scene pixels) on the city side.
+  final List<Offset> windows;
+  final int seed;
+
+  static final _cache = <String, SceneAmbience>{};
+
+  static Future<SceneAmbience?> of(ui.Image bg, String asset) async {
+    final hit = _cache[asset];
+    if (hit != null) return hit;
+    const w = SceneArt.width;
+    if (bg.width != w) return null;
+    final data = await bg.toByteData(format: ui.ImageByteFormat.rawRgba);
+    if (data == null) return null;
+    int at(int x, int y, int c) => data.getUint8((y * w + x) * 4 + c);
+    final rnd = math.Random(asset.hashCode);
+    final windows = <Offset>[], stars = <Offset>[];
+    for (var y = 2; y < 125; y++) {
+      for (var x = 0; x < 230; x++) {
+        final r = at(x, y, 0), g = at(x, y, 1), b = at(x, y, 2);
+        if (x < 175 && r > 205 && g > 150 && b < 175 && r >= g && rnd.nextDouble() < 0.18) {
+          windows.add(Offset(x.toDouble(), y.toDouble()));
+        }
+        // Night sky: dark blue, and the same all round (not a dark window).
+        if (y < 60 && b > r && b < 110 && r + g < 110 && rnd.nextDouble() < 0.02) {
+          var flat = true;
+          for (final (dx, dy) in const [(1, 0), (-1, 0), (0, 1), (0, -1)]) {
+            final xx = x + dx, yy = y + dy;
+            if (xx < 0 || yy < 0) continue;
+            if ((at(xx, yy, 2) - b).abs() > 14 || (at(xx, yy, 0) - r).abs() > 14) flat = false;
+          }
+          if (flat) stars.add(Offset(x.toDouble(), y.toDouble()));
+        }
+      }
+    }
+    windows.shuffle(rnd);
+    stars.shuffle(rnd);
+    return _cache[asset] = SceneAmbience._(stars.take(30).toList(), windows.take(70).toList(), asset.hashCode);
+  }
+
+  /// [tick] steps every 320 ms.
+  void paint(Canvas canvas, DayPart part, int tick, {bool weathered = false}) {
+    final p = Paint();
+    if (part == DayPart.night) {
+      if (!weathered) _stars(canvas, p, tick);
+      _plane(canvas, p, tick);
+    } else if (!weathered) {
+      _birds(canvas, p, tick, dusk: part == DayPart.evening);
+    }
+    if (part != DayPart.day) _windows(canvas, p, tick);
+  }
+
+  /// A few birds crossing now and then, wings up and down.
+  void _birds(Canvas canvas, Paint p, int tick, {bool dusk = false}) {
+    const period = 150, flight = 70;
+    final t = (tick + seed % period) % period;
+    if (t >= flight) return;
+    final f = t / flight;
+    p.color = dusk ? const Color(0xCC40304A) : const Color(0xCC3A4050);
+    for (var k = 0; k < 3; k++) {
+      final x = -10 + f * 250 + k * 7;
+      final y = 26 - f * 12 + (k == 1 ? -4 : 0) + math.sin(f * 9 + k) * 1.5;
+      final up = (tick + k) % 2 == 0;
+      canvas.drawRect(Rect.fromLTWH(x, y, 1, 1), p);
+      canvas.drawRect(Rect.fromLTWH(x - 1.5, y + (up ? -1 : 0.5), 1.5, 1), p);
+      canvas.drawRect(Rect.fromLTWH(x + 1, y + (up ? -1 : 0.5), 1.5, 1), p);
+    }
+  }
+
+  /// Stars twinkling in the dark sky.
+  void _stars(Canvas canvas, Paint p, int tick) {
+    for (var i = 0; i < stars.length; i++) {
+      final tw = 0.5 + 0.5 * math.sin(tick * 0.35 + i * 1.7);
+      p.color = Color.fromRGBO(255, 250, 225, 0.25 + 0.7 * tw);
+      canvas.drawRect(Rect.fromLTWH(stars[i].dx, stars[i].dy, 1, 1), p);
+    }
+  }
+
+  /// A plane's lights crossing high up, blinking.
+  void _plane(Canvas canvas, Paint p, int tick) {
+    const period = 260, flight = 160;
+    final t = (tick + seed % period) % period;
+    if (t >= flight) return;
+    final f = t / flight;
+    final x = 240 - f * 250, y = 10 + f * 5;
+    p.color = const Color(0xE6FFFFFF);
+    canvas.drawRect(Rect.fromLTWH(x, y, 1, 1), p);
+    if (tick % 3 == 0) {
+      p.color = const Color(0xFFFF4A4A);
+      canvas.drawRect(Rect.fromLTWH(x + 2, y, 1, 1), p);
+    }
+  }
+
+  /// Windows going dark and coming back on, a few at a time.
+  void _windows(Canvas canvas, Paint p, int tick) {
+    for (var i = 0; i < windows.length; i++) {
+      final slow = 18 + (i * 7) % 23;
+      if (((tick + i * 13) ~/ slow) % 5 != 0) continue;
+      p.color = const Color(0xB0302A40);
+      canvas.drawRect(Rect.fromLTWH(windows[i].dx, windows[i].dy, 1, 1), p);
+    }
+  }
 }
