@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 import 'dart:ui' as ui;
 
 import 'package:flutter/services.dart';
@@ -324,7 +325,7 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with SingleTickerPr
   /// 0 = the train far away down the line, 1 = stopped at the platform.
   late final AnimationController _arrive = AnimationController(
     vsync: this,
-    duration: const Duration(milliseconds: 4000),
+    duration: const Duration(milliseconds: 4600),
     value: 1,
   );
 
@@ -428,13 +429,14 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with SingleTickerPr
                             led: widget.look.led,
                             ledColors: widget.look.ledColors,
                             sign: widget.look.sign,
+                            part: art.part,
                           ),
                         ),
                       ),
                       if (_falling)
                         RepaintBoundary(
                           child: CustomPaint(
-                            painter: _FallPainter(view: view, weather: weather, frame: _frame),
+                            painter: _FallPainter(view: view, weather: weather, frame: _frame, arrive: _arrive),
                           ),
                         ),
                     ],
@@ -524,12 +526,31 @@ Future<SceneArtSet> loadSceneArt(SceneLook look, DayPart part, {String? sky}) as
   );
 }
 
+/// The train's arrival over the banner's arrival animation (0 … 1): it
+/// runs down the line until [_travelEnd], then settles on its springs.
+const _travelEnd = 0.86;
+
+/// How far along the line the train is (0 far away … 1 stopped).
+double _travel(double a) => (a / _travelEnd).clamp(0.0, 1.0);
+
+/// The wind the train pushes ahead of it (0 … 1): it builds as the train
+/// gets close and dies down soon after it stops.
+double _gust(double a) {
+  double smooth(double e0, double e1, double x) {
+    final t = ((x - e0) / (e1 - e0)).clamp(0.0, 1.0);
+    return t * t * (3 - 2 * t);
+  }
+
+  return smooth(0.5, 0.82, a) * (1 - smooth(0.9, 1.0, a));
+}
+
 /// At night the stripe is in shadow like the rest of the train.
 Color stripeColor(Color color, DayPart part) =>
     part == DayPart.night ? Color.lerp(color, const Color(0xFF1A2050), 0.3)! : color;
 
 /// The whole scene (384×192 art pixels, each [scale]×[scale]) as one still
-/// image, for the home screen widget and share cards.
+/// image, for the home screen widget and share cards. [arrive] (0 … 1)
+/// draws the train part way through its arrival (review renders).
 Future<ui.Image> renderSceneImage({
   required SceneLook look,
   required DayPart part,
@@ -537,6 +558,7 @@ Future<ui.Image> renderSceneImage({
   WeatherKind weather = WeatherKind.sunny,
   int scale = 2,
   String? sky,
+  double? arrive,
 }) async {
   final art = await loadSceneArt(look, part, sky: sky);
   final view = SceneView(scale.toDouble(), Rect.fromLTWH(0, 0, SceneArt.width.toDouble(), SceneArt.height.toDouble()));
@@ -558,6 +580,9 @@ Future<ui.Image> renderSceneImage({
     closed: art.closed,
     trainWeather: art.trainWeather,
     trainWeatherTint: art.trainWeatherTint,
+    part: part,
+    // Review renders: the train part way through its arrival.
+    arrive: arrive == null ? null : AlwaysStoppedAnimation(arrive),
     effects: look.effects,
     led: look.led,
     ledColors: look.ledColors,
@@ -612,9 +637,13 @@ class _ScenePainter extends CustomPainter {
     this.led = const [],
     this.ledColors = const [ledOrange],
     this.sign,
+    this.part = DayPart.day,
   }) : super(repaint: arrive == null ? life : Listenable.merge([life, arrive]));
 
   final StationSign? sign;
+
+  /// Time of day of the picture: how bright the headlights look.
+  final DayPart part;
 
   /// Train arrival, 0 far away … 1 at the platform (null = always arrived).
   final Animation<double>? arrive;
@@ -648,15 +677,35 @@ class _ScenePainter extends CustomPainter {
     _ => art,
   };
 
-  /// Where the train is drawn now: it comes up the line, growing as it nears.
-  Rect get _trainNow => SceneArt.trainAt(_trainScale);
+  /// Where the train is drawn now: it comes up the line, growing as it
+  /// nears, rocking a little on the rails and dipping on its springs when it
+  /// stops.
+  Rect get _trainNow {
+    final a = arrive?.value ?? 1;
+    if (a >= 1) return SceneArt.trainRect;
+    final scale = _trainScale;
+    final r = SceneArt.trainAt(scale);
+    if (_travel(a) < 1) {
+      // Distance down the line (1 = at the platform). Rail joints come by
+      // at a fixed spacing, so the clicks slow down as the train brakes.
+      final z = 1 / scale;
+      final joint = (z * 2.4) % 1;
+      final bump = joint < 0.14 ? math.sin(joint / 0.14 * math.pi) : 0.0;
+      final roll = math.sin(z * 2.2) * 0.45 + math.sin(z * 5.3) * 0.15;
+      return r.shift(Offset(roll * scale, bump * 0.7 * scale));
+    }
+    // Stopped: the nose dips on the brakes, then springs back and settles.
+    final q = (a - _travelEnd) / (1 - _travelEnd);
+    final dip = 1.3 * math.exp(-4.5 * q) * math.sin(q * math.pi * 2.6);
+    return r.shift(Offset(0, dip));
+  }
 
   /// The train's size now (1 = at the platform). It runs down the line at
   /// a steady braking: its distance shrinks like (1 - t)², and things look
   /// 1/distance big, so it stays small far away, then grows quickly and
   /// eases to a stop at the platform.
   double get _trainScale {
-    final a = arrive?.value ?? 1;
+    final a = _travel(arrive?.value ?? 1);
     if (a >= 1) return 1;
     const far = 1 / SceneArt.trainFarScale;
     final distance = 1 + (far - 1) * (1 - a) * (1 - a);
@@ -788,6 +837,9 @@ class _ScenePainter extends CustomPainter {
     _effects(canvas, life.value);
 
     _weather(canvas);
+    // Lights glow through the grey weather veil.
+    if (!closed) _headlights(canvas);
+    _wind(canvas);
     // The station sign is lit too, so it reads in the rain and at night.
     if (sign != null) paintStationSign(canvas, SceneArt.signRect, sign!);
     // The LED is lit: drawn after the grey weather veil so it keeps glowing.
@@ -797,9 +849,96 @@ class _ScenePainter extends CustomPainter {
     } else if (led.isNotEmpty) {
       // A page lasts about 3 seconds (life ticks every 320 ms).
       final page = (life.value ~/ 10) % led.length;
-      _atTrain(canvas, () => paintLed(canvas, SceneArt.ledRect, led[page], ledColors[page % ledColors.length]));
+      // Dark far down the line; it flickers on as the train comes close.
+      final a = arrive?.value ?? 1;
+      final p = _travel(a);
+      final on = p >= 0.72 || (p >= 0.56 && (a * 173).floor() % 3 != 0);
+      _atTrain(
+        canvas,
+        () => on
+            ? paintLed(canvas, SceneArt.ledRect, led[page], ledColors[page % ledColors.length])
+            : canvas.drawRect(SceneArt.ledRect, Paint()..color = const Color(0xFF0E0C14)),
+      );
     }
     canvas.restore();
+  }
+
+  /// The two headlights: seen first as two bright points far down the line,
+  /// growing as the train nears; brighter at dusk, at night and in the
+  /// rain, when they also light up the rails in front of the train.
+  void _headlights(Canvas canvas) {
+    final wet =
+        sky == 'rain' ||
+        sky == 'umbrella' ||
+        sky == 'snow' ||
+        sky == 'snowsoon' ||
+        weather == WeatherKind.rain ||
+        weather == WeatherKind.snow;
+    final strength = switch (part) {
+      DayPart.day => wet ? 0.6 : 0.4,
+      DayPart.evening => 0.85,
+      DayPart.night => 1.0,
+    };
+    final r = _trainNow;
+    final s = r.width / SceneArt.trainWidth;
+    const warm = Color(0xFFFFF2C8);
+    // Headlight centres in the train picture (75×96).
+    for (final hx in const [14.0, 58.5]) {
+      final c = Offset(r.left + hx / SceneArt.trainWidth * r.width, r.top + 64.5 / SceneArt.trainHeight * r.height);
+      // The halo stays a few pixels wide far away, so the lights read first.
+      final halo = math.max(3.0, 9 * s);
+      canvas.drawCircle(
+        c,
+        halo,
+        Paint()
+          ..shader = ui.Gradient.radial(c, halo, [warm.withValues(alpha: 0.55 * strength), warm.withValues(alpha: 0)]),
+      );
+      final core = math.max(0.7, 2.2 * s);
+      canvas.drawRect(Rect.fromCenter(center: c, width: core * 2, height: core * 1.6), Paint()..color = warm);
+    }
+    // Light on the rails in front of the train.
+    if (part != DayPart.day || wet) {
+      final foot = Offset(r.center.dx, r.bottom + 5 * s);
+      final w = 46 * s, h = 12 * s;
+      canvas.drawOval(
+        Rect.fromCenter(center: foot, width: w, height: h),
+        Paint()
+          ..shader = ui.Gradient.radial(foot, w / 2, [
+            warm.withValues(alpha: 0.28 * strength),
+            warm.withValues(alpha: 0),
+          ]),
+      );
+    }
+  }
+
+  /// The wind of the arriving train: leaves (or snow, or spray in the rain)
+  /// blow from the track over the platform.
+  void _wind(Canvas canvas) {
+    final a = arrive?.value ?? 1;
+    if (_gust(a) <= 0) return;
+    final snow = sky == 'snow' || weather == WeatherKind.snow;
+    final rain = sky == 'rain' || weather == WeatherKind.rain;
+    final colors = snow
+        ? const [Color(0xF2FFFFFF), Color(0xCCE6ECF8)]
+        : rain
+        ? const [Color(0x99C8D8EE), Color(0x77A8B8D0)]
+        : const [Color(0xFF6E8F3A), Color(0xFFA0702E), Color(0xFF8DA84A), Color(0xFFC49A4A)];
+    final p = Paint();
+    for (var i = 0; i < 26; i++) {
+      // Each one lifts off a little after the one before, from the track
+      // beside the train, and blows out over the platform.
+      final t = ((a - 0.58 - i * 0.008) / 0.32).clamp(0.0, 1.0);
+      if (t <= 0 || t >= 1) continue;
+      final ease = 1 - (1 - t) * (1 - t);
+      final x = 228 + (i * 7) % 30 + ease * (70 + (i * 13) % 80);
+      final y = 150 - (i * 5) % 34 - ease * (14 + (i * 3) % 22) + math.sin(t * 9 + i) * 3;
+      final c = colors[i % colors.length];
+      p.color = c.withValues(alpha: c.a * (1 - t * t * t));
+      // Leaves flutter: lying flat, then on their side.
+      final flat = ((t * 10 + i) % 2) < 1;
+      final big = i % 3 == 0 ? 1.0 : 0.0;
+      canvas.drawRect(Rect.fromLTWH(x, y, (flat || snow || rain ? 3 : 1) + big, (flat ? 1 : 3) + (snow ? 1 : 0)), p);
+    }
   }
 
   /// Rough day / night look for a scene that only has an evening picture.
@@ -952,7 +1091,11 @@ class _ScenePainter extends CustomPainter {
 /// each frame only moves that tile (4 image draws), which keeps the
 /// animation cheap on any phone.
 class _FallPainter extends CustomPainter {
-  _FallPainter({required this.view, required this.weather, required this.frame}) : super(repaint: frame);
+  _FallPainter({required this.view, required this.weather, required this.frame, this.arrive})
+    : super(repaint: arrive == null ? frame : Listenable.merge([frame, arrive]));
+
+  /// The arriving train's wind pushes the rain or snow aside.
+  final Animation<double>? arrive;
 
   final SceneView view;
   final WeatherKind weather;
@@ -982,7 +1125,8 @@ class _FallPainter extends CustomPainter {
     final rain = weather == WeatherKind.rain;
     // Rain falls fast and slants; snow drifts down and sways a little.
     final dy = (rain ? f * 3 : f) % h;
-    final dx = rain ? (-f) % w : (((f ~/ 4) % 3) - 1) % w;
+    final push = (_gust(arrive?.value ?? 1) * (rain ? 9 : 14)).round();
+    final dx = ((rain ? -f : ((f ~/ 4) % 3) - 1) + push) % w;
     final tile = _tile(weather);
     final paint = Paint()..filterQuality = FilterQuality.none;
     canvas.save();
