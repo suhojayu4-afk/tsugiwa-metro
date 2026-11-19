@@ -1001,6 +1001,17 @@ data['terrain'] = {
              'outer': {'image': 'docs/art/gen/map_full/outer.png', 'origin': [-OUTER_MARGIN, -OUTER_MARGIN],
                        'scale': OUTER_SCALE}},
 }
+# Moving pictures (PixelLab animations, 8 frames side by side in assets/art/anim).
+ANIM_DECOR = ['onsen_a', 'onsen_b', 'whale_a', 'whale_b', 'surfer_a', 'surfer_b', 'steam_a', 'steam_b', 'ropeway_a', 'ropeway_b', 'cablecar_a', 'cablecar_b']
+ANIM_LANDMARKS = ['ferris', 'minatomirai', 'themepark', 'hitachi', 'kusatsu', 'enoshima']
+for x_ in data['decor']:
+    n_ = x_['image'].rsplit('/', 1)[1][:-4]
+    if n_ in ANIM_DECOR:
+        x_['image'], x_['frames'] = f'assets/art/anim/{n_}.png', 8
+for lm_ in data['landmarks']:
+    n_ = lm_['image'].rsplit('/', 1)[1][:-4]
+    if n_ in ANIM_LANDMARKS:
+        lm_['image'], lm_['frames'] = f'assets/art/anim/{n_}.png', 8
 json.dump(data, open(os.path.join(CITY, 'map.json'), 'w', encoding='utf8'), ensure_ascii=False, separators=(',', ':'))
 sz = sum(os.path.getsize(os.path.join(TILE_DIR, f_)) for f_ in os.listdir(TILE_DIR))
 print(f'overview {ov.size}, {len(kanto_tiles)} Kanto tiles + {len(core_tiles)} Tokyo tiles = {sz / 1e6:.1f} MB')

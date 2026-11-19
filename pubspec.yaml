@@ -36,6 +36,7 @@ flutter:
     - assets/art/decor/
     - assets/art/map_decor/
     - assets/art/map_tiles/
+    - assets/art/anim/
     - assets/art/weather/
     - assets/art/widget/
     - assets/art/crowd/

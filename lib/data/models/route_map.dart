@@ -90,8 +90,11 @@ class MapTileSet {
 }
 
 class MapLandmark {
-  const MapLandmark({required this.image, required this.position, required this.name});
+  const MapLandmark({required this.image, required this.position, required this.name, this.frames = 1});
   final String image;
+
+  /// More than 1: [image] holds that many frames side by side (it moves).
+  final int frames;
 
   /// Where the building stands (bottom centre of the picture).
   final Offset position;
@@ -143,7 +146,7 @@ class RouteMapData {
 
   /// Small scenery (trees, houses, boats), shown only when zoomed in:
   /// picture and the spot it stands on.
-  final List<({String image, Offset position})> decor;
+  final List<({String image, Offset position, int frames})> decor;
 
   /// Spots on open water where a little light glint twinkles.
   final List<Offset> glints;
@@ -273,12 +276,14 @@ class RouteMapData {
           (
             image: ((d['seasons'] as Map<String, dynamic>?)?[season] as String?) ?? d['image'] as String,
             position: _pt(d),
+            frames: d['frames'] as int? ?? 1,
           ),
       ],
       landmarks: [
         for (final lm in (map['landmarks'] as List).cast<Map<String, dynamic>>())
           MapLandmark(
             image: lm['image'] as String,
+            frames: lm['frames'] as int? ?? 1,
             position: _pt(lm),
             name: LocalizedText.fromJson(lm['name'] as Map<String, dynamic>),
           ),

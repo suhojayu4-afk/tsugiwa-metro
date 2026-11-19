@@ -33,6 +33,12 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
   late final AnimationController _twinkle = AnimationController(vsync: this, duration: const Duration(seconds: 6))
     ..repeat();
 
+  /// Moving pictures (Ferris wheels, whales, steam): 8 frames, 140 ms each.
+  late final AnimationController _scenery = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 8 * 140),
+  )..repeat();
+
   final _controller = TransformationController();
   late final AnimationController _anim = AnimationController(vsync: this, duration: const Duration(milliseconds: 380));
   Animation<Matrix4>? _zoom;
@@ -88,6 +94,7 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
   void dispose() {
     _anim.dispose();
     _twinkle.dispose();
+    _scenery.dispose();
     _controller.dispose();
     super.dispose();
   }
@@ -358,6 +365,23 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                         ),
                 ),
               ),
+              // The moving pictures, on their own layer (only it repaints with the clock).
+              if (map != null)
+                Positioned.fill(
+                  child: IgnorePointer(
+                    child: RepaintBoundary(
+                      child: CustomPaint(
+                        painter: _MovingPainter(
+                          map: map,
+                          images: _landmarkImages,
+                          matrix: _controller,
+                          clock: _scenery,
+                          still: MediaQuery.of(context).disableAnimations,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               // Lines, stations, names and landmarks are drawn at screen size so
               // they stay readable and crisp at every zoom level.
               if (map != null)
@@ -519,6 +543,97 @@ class _TerrainPainter extends CustomPainter {
 
 enum _Anchor { left, right, top, bottom }
 
+/// Decorations and landmarks that move (frames side by side in one picture),
+/// drawn like the still ones in _MapOverlayPainter but on their own layer,
+/// so only this repaints with the clock - and only what is on screen.
+class _MovingPainter extends CustomPainter {
+  _MovingPainter({
+    required this.map,
+    required this.images,
+    required this.matrix,
+    required this.clock,
+    required this.still,
+  }) : super(repaint: Listenable.merge([matrix, clock]));
+
+  final RouteMapData map;
+  final Map<String, ui.Image> images;
+  final TransformationController matrix;
+  final Animation<double> clock;
+
+  /// Reduce-motion setting: stay on the first frame.
+  final bool still;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final m = matrix.value;
+    final s = m.storage[0];
+    Offset sp(Offset w) => MatrixUtils.transformPoint(m, w);
+    final inv = Matrix4.inverted(m);
+    final view = Rect.fromPoints(
+      MatrixUtils.transformPoint(inv, Offset.zero),
+      MatrixUtils.transformPoint(inv, Offset(size.width, size.height)),
+    ).inflate(140 / s);
+    int frameOf(int frames) => still ? 0 : (clock.value * frames).floor() % frames;
+    Rect src(ui.Image img, int frames) {
+      final fw = img.width / frames;
+      return Rect.fromLTWH(frameOf(frames) * fw, 0, fw, img.height.toDouble());
+    }
+
+    final decorAlpha = ((s - 0.5) / 0.25).clamp(0.0, 1.0);
+    if (decorAlpha > 0) {
+      final paint = Paint()
+        ..filterQuality = FilterQuality.none
+        ..color = Color.fromRGBO(0, 0, 0, decorAlpha * 0.92);
+      for (final d in map.decor) {
+        if (d.frames <= 1 || !view.contains(d.position)) continue;
+        final img = images[d.image];
+        if (img == null) continue;
+        final p = sp(d.position);
+        final fw = img.width / d.frames;
+        final w = fw * 2 * s, h = img.height * 2 * s;
+        canvas.drawImageRect(img, src(img, d.frames), Rect.fromLTWH(p.dx - w / 2, p.dy - h * 0.75, w, h), paint);
+      }
+    }
+    final lmAlpha = ((s - 0.42) / 0.2).clamp(0.0, 1.0);
+    if (lmAlpha <= 0) return;
+    final px = (s * 1.1).clamp(0.5, 2.2);
+    for (final lm in map.landmarks) {
+      if (lm.frames <= 1 || !view.contains(lm.position)) continue;
+      final img = images[lm.image];
+      if (img == null) continue;
+      final p = sp(lm.position);
+      final fw = img.width / lm.frames;
+      final w = fw * px, h = img.height * px;
+      final from = src(img, lm.frames);
+      final dst = Rect.fromLTWH(p.dx - w / 2, p.dy - h + 4 * px, w, h);
+      // Shadow leaned to the lower right, as for the still landmarks.
+      canvas.save();
+      canvas.translate(p.dx, p.dy);
+      canvas.transform(Float64List.fromList([1, 0, 0, 0, -0.9, -0.32, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]));
+      canvas.drawImageRect(
+        img,
+        from,
+        dst.shift(-p),
+        Paint()
+          ..filterQuality = FilterQuality.none
+          ..colorFilter = ColorFilter.mode(Color.fromARGB((46 * lmAlpha).round(), 40, 36, 60), BlendMode.srcIn),
+      );
+      canvas.restore();
+      canvas.drawImageRect(
+        img,
+        from,
+        dst,
+        Paint()
+          ..filterQuality = FilterQuality.none
+          ..colorFilter = _MapOverlayPainter._tone(lmAlpha),
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(_MovingPainter old) => old.map != map || old.still != still || old.images.length != images.length;
+}
+
 /// Names already drawn this frame, in 64-px buckets so a new one is checked
 /// only against its neighbours.
 class _Placed {
@@ -654,7 +769,7 @@ class _MapOverlayPainter extends CustomPainter {
         ..filterQuality = FilterQuality.none
         ..color = Color.fromRGBO(0, 0, 0, decorAlpha * 0.92);
       for (final d in map.decor) {
-        if (!view.contains(d.position)) continue;
+        if (d.frames > 1 || !view.contains(d.position)) continue;
         final img = landmarks[d.image];
         if (img == null) continue;
         final p = sp(d.position);
@@ -674,6 +789,11 @@ class _MapOverlayPainter extends CustomPainter {
       final px = (s * 1.1).clamp(0.5, 2.2);
       for (final lm in map.landmarks) {
         if (!view.contains(lm.position)) continue;
+        if (lm.frames > 1) {
+          // Drawn by _MovingPainter; only its name here.
+          if (s > 0.75) lmNames.add((lm.name.of(lang), sp(lm.position).translate(0, 6)));
+          continue;
+        }
         final img = landmarks[lm.image];
         if (img == null) continue;
         final p = sp(lm.position);
