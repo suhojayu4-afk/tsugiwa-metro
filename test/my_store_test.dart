@@ -44,6 +44,15 @@ void main() {
     expect(store.coins, r1.total + r2.total);
   });
 
+  test('test builds: unlimited coins, buying costs nothing', () async {
+    final store = MyStore(unlimited: true);
+    await store.load(catalog: catalog);
+    final item = catalog.items.firstWhere((i) => i.price > 0 && i.unlock == null);
+    expect(await store.buyWithCoins(item.id), BuyResult.ok);
+    expect(store.owns(item.id), isTrue);
+    expect(store.coins, unlimitedCoinsShown);
+  });
+
   test('buying, equipping and the look survive a restart', () async {
     final a = MyStore();
     await a.load(catalog: catalog);

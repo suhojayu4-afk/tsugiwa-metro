@@ -83,13 +83,21 @@ class PlateText {
   int get hashCode => Object.hash(name, kana, prev, next, band);
 }
 
+/// Test builds only (`--dart-define=TSUGIWA_UNLIMITED_COINS=true`, see
+/// codemagic.yaml): coins never run out. Off in normal builds.
+const unlimitedCoins = bool.fromEnvironment('TSUGIWA_UNLIMITED_COINS');
+const unlimitedCoinsShown = 999999;
+
 /// MY駅 state kept on the phone: coins, owned items, what is equipped in
 /// each slot, the station sign, and the stamp book (stations visited, with
 /// the day of the first visit).
 class MyStore extends ChangeNotifier {
-  MyStore({this.prefix = 'my'});
+  MyStore({this.prefix = 'my', this.unlimited = unlimitedCoins});
 
   final String prefix;
+
+  /// Test builds: coins never run out (buying costs nothing).
+  final bool unlimited;
   MyCatalog? _catalog;
   int _coins = 0;
   final Set<String> _owned = {};
@@ -103,7 +111,7 @@ class MyStore extends ChangeNotifier {
 
   MyCatalog? get catalog => _catalog;
   bool get loaded => _catalog != null;
-  int get coins => _coins;
+  int get coins => unlimited ? unlimitedCoinsShown : _coins;
   PlateText get plate => _plate;
   bool owns(String id) => _owned.contains(id) || (_catalog?.item(id).free ?? false);
   String equipped(MySlot slot) => _equipped[slot] ?? _catalog!.defaultFor(slot);
@@ -159,8 +167,8 @@ class MyStore extends ChangeNotifier {
   Future<BuyResult> buyWithCoins(String id) async {
     final item = _catalog!.item(id);
     if (owns(id)) return BuyResult.alreadyOwned;
-    if (item.unlock != null || _coins < item.price) return BuyResult.notEnoughCoins;
-    _coins -= item.price;
+    if (item.unlock != null || coins < item.price) return BuyResult.notEnoughCoins;
+    if (!unlimited) _coins -= item.price;
     _owned.add(id);
     await _save();
     return BuyResult.ok;

@@ -1,6 +1,7 @@
 # iPhone test build on Codemagic's cloud Mac (no Apple developer account).
 # Makes an unsigned .ipa; install it with Sideloadly on Windows, which signs
 # it with a free Apple ID (the app then runs for 7 days).
+# Test build: coins never run out (TSUGIWA_UNLIMITED_COINS).
 # Widgets, the last/first train alarms and the melodies are Android only for now.
 workflows:
   ios-unsigned:
@@ -18,7 +19,7 @@ workflows:
         script: flutter pub get
       - name: Build (no signing)
         # Also creates ios/Podfile and runs pod install.
-        script: flutter build ios --release --no-codesign
+        script: flutter build ios --release --no-codesign --dart-define=TSUGIWA_UNLIMITED_COINS=true
       - name: Pack the IPA
         script: |
           rm -rf Payload tsugiwa-metro-unsigned.ipa
