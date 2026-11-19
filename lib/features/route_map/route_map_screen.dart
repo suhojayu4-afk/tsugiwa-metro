@@ -437,15 +437,16 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
   /// The landmark picture under [screen], if any (the front-most one).
   MapLandmark? _landmarkAt(Offset screen) {
     final map = _map;
-    if (map == null || _scale <= 0.45) return null;
+    if (map == null) return null;
     final px = (_scale * 1.1).clamp(0.5, 2.2);
     MapLandmark? hit;
     var hitY = -double.infinity;
     for (final lm in map.landmarks) {
+      if (_scale <= 0.45 && !lm.giant) continue;
       final img = _landmarkImages[lm.image];
       if (img == null) continue;
       final p = MatrixUtils.transformPoint(_controller.value, lm.position);
-      final k = lm.ground ? 2 * _scale : px;
+      final k = _MapOverlayPainter.sizeOf(lm, _scale, px);
       final w = img.width / lm.frames * k, h = img.height * k;
       final r = Rect.fromLTWH(p.dx - w / 2, p.dy - h + 4 * k, w, h).deflate(w * 0.1);
       if (r.contains(screen) && p.dy > hitY) {
@@ -1068,6 +1069,15 @@ class _MapOverlayPainter extends CustomPainter {
     }
   }
 
+  /// Screen pixels per picture pixel of [lm] at zoom [s] ([px]: the usual
+  /// landmark size). Ground pictures follow the map; Mt. Fuji never gets
+  /// smaller than about 120 px across, so it is seen at a glance from afar.
+  static double sizeOf(MapLandmark lm, double s, double px) {
+    if (!lm.ground) return px;
+    final k = lm.unit * s;
+    return lm.giant ? math.max(k, 1.0) : k;
+  }
+
   /// Landmarks a little softer than the raw art so they belong to the map.
   static ColorFilter _tone(double alpha) {
     const k = 0.12; // 12 % towards grey
@@ -1162,12 +1172,15 @@ class _MapOverlayPainter extends CustomPainter {
     // Hidden in the overview (Tokyo will have many lines); they fade in as
     // you zoom, standing on the ground with a shadow cast to the lower
     // right, like the light in the pictures (from the top left).
-    final lmAlpha = ((s - 0.42) / 0.2).clamp(0.0, 1.0);
+    final lmAlphaAll = ((s - 0.42) / 0.2).clamp(0.0, 1.0);
     final lmNames = <(String, Offset)>[];
-    if (lmAlpha > 0) {
+    {
       final px = (s * 1.1).clamp(0.5, 2.2);
       for (final lm in map.landmarks) {
-        if (!view.contains(lm.position)) continue;
+        // Mt. Fuji is shown at every zoom; the others fade in when zooming.
+        final lmAlpha = lm.giant ? 1.0 : lmAlphaAll;
+        if (lmAlpha <= 0) continue;
+        if (!view.inflate(lm.giant ? 700 : 0).contains(lm.position)) continue;
         if (lm.frames > 1) {
           // Drawn by _MovingPainter; only its name here.
           if (s > 0.75) lmNames.add((lm.name.of(lang), sp(lm.position).translate(0, 6)));
@@ -1177,26 +1190,29 @@ class _MapOverlayPainter extends CustomPainter {
         if (img == null) continue;
         final p = sp(lm.position);
         if (labels) {
-          if (s > 0.75) lmNames.add((lm.name.of(lang), p.translate(0, 6)));
+          if (s > (lm.giant ? 0.06 : 0.75)) lmNames.add((lm.name.of(lang), p.translate(0, 6)));
           continue;
         }
-        final k = lm.ground ? 2 * s : px;
+        final k = _MapOverlayPainter.sizeOf(lm, s, px);
         final w = img.width * k, h = img.height * k;
         final src = Rect.fromLTWH(0, 0, img.width.toDouble(), img.height.toDouble());
         final dst = Rect.fromLTWH(p.dx - w / 2, p.dy - h + 4 * k, w, h);
-        // Shadow: the picture flattened onto the ground and leaned right.
-        canvas.save();
-        canvas.translate(p.dx, p.dy);
-        canvas.transform(Float64List.fromList([1, 0, 0, 0, -0.9, -0.32, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]));
-        canvas.drawImageRect(
-          img,
-          src,
-          dst.shift(-p),
-          Paint()
-            ..filterQuality = FilterQuality.none
-            ..colorFilter = ColorFilter.mode(Color.fromARGB((46 * lmAlpha).round(), 40, 36, 60), BlendMode.srcIn),
-        );
-        canvas.restore();
+        // Shadow: the picture flattened onto the ground and leaned right
+        // (not for Mt. Fuji, which is part of the ground itself).
+        if (!lm.giant) {
+          canvas.save();
+          canvas.translate(p.dx, p.dy);
+          canvas.transform(Float64List.fromList([1, 0, 0, 0, -0.9, -0.32, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]));
+          canvas.drawImageRect(
+            img,
+            src,
+            dst.shift(-p),
+            Paint()
+              ..filterQuality = FilterQuality.none
+              ..colorFilter = ColorFilter.mode(Color.fromARGB((46 * lmAlpha).round(), 40, 36, 60), BlendMode.srcIn),
+          );
+          canvas.restore();
+        }
         canvas.drawImageRect(
           img,
           src,
@@ -1206,7 +1222,7 @@ class _MapOverlayPainter extends CustomPainter {
             ..colorFilter = night ? _nightLandmark(lmAlpha) : _tone(lmAlpha),
         );
         // Its name is drawn last, over the lines (see the end of paint).
-        if (s > 0.75) lmNames.add((lm.name.of(lang), p.translate(0, 6)));
+        if (s > (lm.giant ? 0.06 : 0.75)) lmNames.add((lm.name.of(lang), p.translate(0, 6)));
       }
     }
 

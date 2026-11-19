@@ -95,13 +95,20 @@ class MapLandmark {
     required this.position,
     required this.name,
     this.frames = 1,
-    this.ground = false,
+    this.unit = 0,
   });
   final String image;
 
-  /// Drawn at the map's own scale (1 picture pixel = 2 map units), like the
-  /// ground, so a bridge keeps both ends on the shores at every zoom.
-  final bool ground;
+  /// Map units per picture pixel when it is drawn at the map's own scale
+  /// (0 = a landmark icon of its usual size): a bridge (2) keeps both ends on
+  /// the shores at every zoom; Mt. Fuji (big) fills its forest.
+  final double unit;
+
+  /// Drawn at the map's scale (see [unit]).
+  bool get ground => unit > 0;
+
+  /// So big that it is shown even with all of Kanto on screen (Mt. Fuji).
+  bool get giant => unit >= 4;
 
   /// More than 1: [image] holds that many frames side by side (it moves).
   final int frames;
@@ -299,7 +306,7 @@ class RouteMapData {
           MapLandmark(
             image: lm['image'] as String,
             frames: lm['frames'] as int? ?? 1,
-            ground: lm['ground'] as bool? ?? false,
+            unit: (lm['unit'] as num?)?.toDouble() ?? ((lm['ground'] as bool? ?? false) ? 2 : 0),
             position: _pt(lm),
             name: LocalizedText.fromJson(lm['name'] as Map<String, dynamic>),
           ),

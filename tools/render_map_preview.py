@@ -85,23 +85,27 @@ if LS > 0.5 and not NO3D:
 # landmarks, with the app's shadow and 12 % grey tone
 px = min(max(LS * 1.1, 0.5), 2.2) * DPR
 labels = []
-if LS > 0.42 and not NO3D:
+if not NO3D:
     for lm in sorted(d['landmarks'], key=lambda l: l['y']):
-        if not (X0 - 80 < lm['x'] < X1 + 80 and Y0 - 20 < lm['y'] < Y1 + 90):
+        if LS <= 0.42 and (lm.get('unit') or 0) < 4:
+            continue
+        if not (X0 - 700 < lm['x'] < X1 + 700 and Y0 - 20 < lm['y'] < Y1 + 700):
             continue
         im = img(lm['image'])
         if lm.get('frames', 1) > 1:
             im = im.crop((0, 0, im.width // lm['frames'], im.height))
-        k = 2 * S if lm.get('ground') else px
+        unit = lm.get('unit') or (2 if lm.get('ground') else 0)
+        k = (max(unit * S, DPR) if unit >= 4 else unit * S) if unit else px
         w, h = int(im.width * k), int(im.height * k)
         big = im.resize((w, h), Image.NEAREST)
         x, y = sp(lm['x'], lm['y'])
         left, top = int(x - w / 2), int(y - h + 4 * k)
         sh = Image.new('RGBA', canvas.size, (0, 0, 0, 0))
+        no_shadow = unit >= 4
         spx, ap = sh.load(), big.getchannel('A').load()
         for yy in range(h):
             for xx in range(w):
-                if ap[xx, yy]:
+                if ap[xx, yy] and not no_shadow:
                     ry = top + yy - y
                     sx, sy = int(left + xx - 0.9 * ry), int(y - 0.32 * ry)
                     if 0 <= sx < W and 0 <= sy < H:

@@ -241,17 +241,6 @@
    "tokyo.shin_kiba"
   ]
  },
- "fuji": {
-  "about": {
-   "ja": "日本一高い山（3,776m）。夏の登山シーズンには山頂を目指す人でにぎわいます。",
-   "ko": "일본에서 가장 높은 산(3,776m). 여름 등산 시즌에는 정상을 오르는 사람들로 붐벼요.",
-   "en": "Japan's highest mountain (3,776 m), climbed in the summer season."
-  },
-  "stations": [
-   "tokyo.kawaguchiko",
-   "tokyo.fujisan"
-  ]
- },
  "daibutsu": {
   "about": {
    "ja": "高徳院の大仏。屋外に座る高さ約11mの青銅の仏さまです。",
@@ -447,6 +436,17 @@
   "stations": [
    "tokyo.shibaura_futo",
    "tokyo.odaiba_kaihinkoen"
+  ]
+ },
+ "fuji_big": {
+  "about": {
+   "ja": "日本一高い山（3,776m）。夏の登山シーズンには山頂を目指す人でにぎわいます。",
+   "ko": "일본에서 가장 높은 산(3,776m). 여름 등산 시즌에는 정상을 오르는 사람들로 붐벼요.",
+   "en": "Japan's highest mountain (3,776 m), climbed in the summer season."
+  },
+  "stations": [
+   "tokyo.kawaguchiko",
+   "tokyo.fujisan"
   ]
  }
 }

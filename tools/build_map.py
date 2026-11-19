@@ -1007,6 +1007,12 @@ for lm_ in data['landmarks']:
     if lm_['image'].endswith('/rainbow.png'):
         lm_.update({'image': 'assets/art/landmarks/rainbow_bridge.png', 'x': 7636, 'y': 7454, 'ground': True})
 
+# Mt. Fuji: a big snow-capped cone at the map's scale (6 units a pixel),
+# centred on the real summit and shown at every zoom.
+for lm_ in data['landmarks']:
+    if lm_['image'].endswith('/fuji.png'):
+        lm_.update({'image': 'assets/art/landmarks/fuji_big.png', 'x': 2616, 'y': 9237, 'unit': 6})
+
 # Moving pictures (PixelLab animations, 8 frames side by side in assets/art/anim).
 ANIM_DECOR = ['onsen_a', 'onsen_b', 'whale_a', 'whale_b', 'surfer_a', 'surfer_b', 'steam_a', 'steam_b', 'ropeway_a', 'ropeway_b', 'cablecar_a', 'cablecar_b']
 ANIM_LANDMARKS = ['ferris', 'minatomirai', 'themepark', 'hitachi', 'kusatsu', 'enoshima']
