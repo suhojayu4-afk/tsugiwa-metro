@@ -7,7 +7,7 @@ snapped to pixel art (tools/pixelize.py, 384x192, 64 colours).
   parts:    day, evening, night
 
 Outputs: docs/art/gen/weather/{scene}_{part}_{weather}_raw.png (GPT) and
-assets/art/weather/{scene}_{part}_{weather}.png (pixel art for the app).
+assets/art/weather/{scene}_{part}_{weather}.webp (pixel art for the app).
 Existing pictures are skipped, so the script can be re-run after a stop.
 
   python tools/gen_weather_scenes.py [--jobs 3] [--only tokyo_day_rain ...]
@@ -105,7 +105,7 @@ def source(scene, part):
 
 def job(name, scene, part, weather):
     raw = f'{OUT_RAW}/{name}_raw.png'
-    out = f'{OUT}/{name}.png'
+    out = f'{OUT}/{name}.webp'
     if not os.path.exists(raw):
         prompt = PROMPT.format(out=raw, src=source(scene, part), desc=SCENES[scene],
                                change='\n'.join([WEATHER[weather].format(light=LIGHT[part])] +

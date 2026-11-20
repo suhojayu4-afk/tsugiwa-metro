@@ -248,7 +248,7 @@ class SceneEventDirector extends ChangeNotifier {
     }
 
     await Future.wait([
-      for (final s in _sprites) get(s, 'assets/art/events/$s.png'),
+      for (final s in _sprites) get(s, 'assets/art/events/$s.webp'),
       for (final p in DayPart.values) get('yellow_${p.name}', SceneArt.trainBase(p, yellowTrainArt)),
       get('yellow_stripe', SceneArt.trainStripeOf(yellowTrainArt)),
     ]);

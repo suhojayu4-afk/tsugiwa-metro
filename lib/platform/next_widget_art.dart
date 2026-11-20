@@ -51,7 +51,7 @@ class NextWidgetData {
   final bool alarm;
 
   /// clear, cloudy, rainsoon, rain, snowsoon or snow: picks the background
-  /// (`assets/art/widget/bg_<part>_<sky>.png`) and the weather icon.
+  /// (`assets/art/widget/bg_<part>_<sky>.webp`) and the weather icon.
   final String sky;
 
   /// 「13°」, 「10%」 (or 「傘」).
@@ -77,7 +77,7 @@ String widgetIcon(String sky, DayPart part) {
 
 /// Draws the widget at [part] with [led] on the LED panel.
 Future<Uint8List> renderNextWidget(NextWidgetData d, String led, DayPart part) async {
-  Future<ui.Image> img(String n) => SceneArt.load('$_a$n.png');
+  Future<ui.Image> img(String n) => SceneArt.load('$_a$n.webp');
   final bg = await img('bg_${part.name}_${d.sky}');
   final signBase = await img('sign_base'), signBand = await img('sign_band');
   final trainBase = await img('train_base'), trainBand = await img('train_band');
@@ -178,7 +178,7 @@ Future<Uint8List> renderNextWidget(NextWidgetData d, String led, DayPart part) a
 /// the ride time and the weather. 192×96 art pixels, drawn 4×; one picture
 /// per time of day.
 Future<Uint8List> renderBoardWidget(NextWidgetData d, DayPart part) async {
-  Future<ui.Image> img(String n) => SceneArt.load('$_a$n.png');
+  Future<ui.Image> img(String n) => SceneArt.load('$_a$n.webp');
   final bg = await img('board_${part.name}_${d.sky}');
   final signBase = await img('sign_base'), signBand = await img('sign_band');
   final trainBase = await img('train_base'), trainBand = await img('train_band');
@@ -282,7 +282,7 @@ Future<Uint8List> renderBoardWidget(NextWidgetData d, DayPart part) async {
 /// the widget writes it itself in the same dot font so it stays right
 /// between app launches (MyStationWidget.kt).
 Future<Uint8List> renderMyBand(NextWidgetData d, String route, String rainText, DayPart part) async {
-  Future<ui.Image> img(String n) => SceneArt.load('$_a$n.png');
+  Future<ui.Image> img(String n) => SceneArt.load('$_a$n.webp');
   final ledFrame = await img('led');
   final bell = d.alarm ? await img('icon_bell') : null;
   final icon = await img('icon_${widgetIcon(d.sky, part)}');

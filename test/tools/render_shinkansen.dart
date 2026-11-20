@@ -16,7 +16,7 @@ void main() {
       await font.load();
       final look =
           SceneLook(
-                images: {for (final p in DayPart.values) p: 'assets/art/scenes/tokyo_${p.name}.png'},
+                images: {for (final p in DayPart.values) p: 'assets/art/scenes/tokyo_${p.name}.webp'},
                 trainColor: const Color(0xFF2F7DE1),
                 trainArt: 'assets/art/shinkansen',
               )

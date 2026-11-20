@@ -10,7 +10,7 @@ grown upwards through pixels unlike the wall behind the machine.
 
   python tools/make_vending_masks.py [--check OUT.png]
 
-Writes assets/art/decor/vending_front/<picture name>.png (384x192, alpha =
+Writes assets/art/decor/vending_front/<picture name>.webp (384x192, alpha =
 person) for every platform picture the app can show.
 """
 import glob
@@ -18,9 +18,10 @@ import os
 import sys
 
 from PIL import Image, ImageFilter
+from art_io import save_art  # noqa: E402  (lossless WebP)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-VEND = Image.open(os.path.join(ROOT, 'assets/art/decor/vending.png')).convert('RGBA')
+VEND = Image.open(os.path.join(ROOT, 'assets/art/decor/vending.webp')).convert('RGBA')
 BOX = VEND.getbbox()                 # (314, 62, 335, 120)
 X0, Y0, X1, FOOT = BOX[0] - 2, BOX[1] - 2, BOX[2] + 2, BOX[3]
 OUT = os.path.join(ROOT, 'assets/art/decor/vending_front')
@@ -36,11 +37,11 @@ def dist(a, b):
 
 def _ref_for(path):
     """The emptiest picture of the same platform and hour (crowd 'relaxed')."""
-    name = os.path.basename(path)[:-4]
+    name = os.path.splitext(os.path.basename(path))[0]
     if name.startswith('scene_'):
         name = 'standard_' + name[6:]
     parts = name.split('_')
-    ref = os.path.join(ROOT, 'assets/art/crowd', f'{parts[0]}_{parts[1]}_relaxed.png')
+    ref = os.path.join(ROOT, 'assets/art/crowd', f'{parts[0]}_{parts[1]}_relaxed.webp')
     return Image.open(ref).convert('RGB') if os.path.exists(ref) else None
 
 
@@ -101,10 +102,10 @@ def mask_for(img, path):
 
 
 def pictures():
-    pics = glob.glob(os.path.join(ROOT, 'assets/art/scene_*.png'))
-    pics = [p for p in pics if not p.endswith('_anim.png')]
+    pics = glob.glob(os.path.join(ROOT, 'assets/art/scene_*.webp'))
+    pics = [p for p in pics if not p.endswith('_anim.webp')]
     for d in ('scenes', 'crowd', 'weather'):
-        pics += glob.glob(os.path.join(ROOT, f'assets/art/{d}/*.png'))
+        pics += glob.glob(os.path.join(ROOT, f'assets/art/{d}/*.webp'))
     return sorted(p for p in pics if Image.open(p).size == (384, 192))
 
 
@@ -124,7 +125,7 @@ def main():
         else:
             out = Image.new('RGBA', img.size, (0, 0, 0, 0))
             out.putalpha(m.point(lambda v: 255 if v > 127 else 0))
-            out.save(target, optimize=True)
+            save_art(out, target)
         if check and (hash(name) % 11 == 0 or 'relaxed' in name and 'tokyo' in name) and len(rows) < 24:
             a = img.convert('RGBA')
             b = a.copy()

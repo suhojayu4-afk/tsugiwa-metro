@@ -258,7 +258,7 @@ class EkiInArt {
     final font = FontLoader(brush)..addFont(rootBundle.load('$_dir/yuji_boku_eki.ttf'));
     await font.load();
     Future<ui.Image> image(String name) async {
-      final data = await rootBundle.load('$_dir/$name.png');
+      final data = await rootBundle.load('$_dir/$name.webp');
       final codec = await ui.instantiateImageCodec(data.buffer.asUint8List());
       return (await codec.getNextFrame()).image;
     }

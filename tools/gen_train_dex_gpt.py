@@ -10,7 +10,7 @@ logo or livery is copied (no text or emblems at all).
   python tools/gen_train_dex_gpt.py --cut [--only ...]                     cut
 
 Raw pictures: docs/art/gen/train_dex/{id}_raw.png (existing ones are kept,
-delete one to redraw it). Cut: assets/art/train_dex/{id}.png and a 4x
+delete one to redraw it). Cut: assets/art/train_dex/{id}.webp and a 4x
 preview docs/art/gen/train_dex/{id}_preview.png.
 """
 import argparse
@@ -18,6 +18,7 @@ import os
 import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor
+from art_io import save_art  # noqa: E402  (lossless WebP)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))).replace('\\', '/')
 RAW = f'{ROOT}/docs/art/gen/train_dex'
@@ -115,9 +116,9 @@ def cut(tid):
     q = q[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
     os.makedirs(OUT, exist_ok=True)
     im = Image.fromarray(q, 'RGBA')
-    im.save(f'{OUT}/{tid}.png')
+    save_art(im, f'{OUT}/{tid}.webp')
     im.resize((im.width * 4, im.height * 4), Image.NEAREST).save(f'{RAW}/{tid}_preview.png')
-    print(f'{tid}.png {im.size}')
+    print(f'{tid}.webp {im.size}')
 
 
 def main():

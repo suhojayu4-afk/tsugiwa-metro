@@ -131,10 +131,10 @@ def main():
 
     # Review GIF: the app's picture, the train standing, the attendant frames
     # (each held a while, as the app would show them).
-    pic = Image.open(os.path.join(ROOT, 'assets', 'art', 'scenes', f'{a.scene}_{a.part}.png')).convert('RGBA') \
-        if a.scene != 'standard' else Image.open(os.path.join(ROOT, 'assets', 'art', f'scene_{a.part}.png')).convert('RGBA').crop((0, 0, 384, 192))
-    train = Image.open(os.path.join(ROOT, 'assets', 'art', f'train_front_base_{a.part}.png')).convert('RGBA')
-    stripe = Image.open(os.path.join(ROOT, 'assets', 'art', 'train_front_stripe.png')).convert('RGBA')
+    pic = Image.open(os.path.join(ROOT, 'assets', 'art', 'scenes', f'{a.scene}_{a.part}.webp')).convert('RGBA') \
+        if a.scene != 'standard' else Image.open(os.path.join(ROOT, 'assets', 'art', f'scene_{a.part}.webp')).convert('RGBA').crop((0, 0, 384, 192))
+    train = Image.open(os.path.join(ROOT, 'assets', 'art', f'train_front_base_{a.part}.webp')).convert('RGBA')
+    stripe = Image.open(os.path.join(ROOT, 'assets', 'art', 'train_front_stripe.webp')).convert('RGBA')
     sp = stripe.load()
     for y in range(stripe.height):
         for x in range(stripe.width):

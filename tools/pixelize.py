@@ -5,13 +5,16 @@ blurred. This snaps the picture to a true pixel grid and limits the colours,
 which removes most of the "AI look".
 
 Usage:
-  python tools/pixelize.py IN.png OUT.png [--width 384] [--aspect 2.0] [--colors 48]
+  python tools/pixelize.py IN.png OUT.webp [--width 384] [--aspect 2.0] [--colors 48]
 
-Writes OUT.png at art resolution (e.g. 384x192) plus OUT_preview.png at 4x.
+Writes OUT (.webp: lossless) at art resolution (e.g. 384x192) plus
+OUT_preview.png at 4x.
 """
 import argparse
+import os
 
 from PIL import Image
+from art_io import save_art  # noqa: E402  (lossless WebP)
 
 
 def main() -> None:
@@ -39,9 +42,9 @@ def main() -> None:
     # One shared palette for the whole picture; no dithering (clean clusters).
     small = small.quantize(colors=a.colors, method=Image.Quantize.MEDIANCUT,
                            dither=Image.Dither.NONE).convert("RGB")
-    small.save(a.dst)
+    save_art(small, a.dst)
     small.resize((out_w * 4, out_h * 4), Image.Resampling.NEAREST).save(
-        a.dst.replace(".png", "_preview.png"))
+        os.path.splitext(a.dst)[0] + "_preview.png")
     print(f"{a.dst}: {out_w}x{out_h}, {a.colors} colours")
 
 

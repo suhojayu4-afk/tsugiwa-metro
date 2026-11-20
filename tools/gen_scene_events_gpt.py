@@ -3,10 +3,10 @@ drawn by GPT image generation (codex exec) in the station pictures' style:
 sprite sheets on flat magenta, N frames in one row, same size and baseline.
 
   docs/art/gen/events/{id}_raw.png   (GPT)
-  ->  assets/art/events/{id}.png     (strip: frames side by side, feet on the
+  ->  assets/art/events/{id}.webp    (strip: frames side by side, feet on the
                                       bottom row, shrunk to the scene's pixels)
-  yellow_train_raw.png -> assets/art/yellow_train/front_base_{day,evening,night}.png,
-                          front_stripe.png (empty: the blue stripe is painted on),
+  yellow_train_raw.png -> assets/art/yellow_train/front_base_{day,evening,night}.webp,
+                          front_stripe.webp (empty: the blue stripe is painted on),
                           front_rain.png / front_snow.png (copies of the usual ones)
 
   python tools/gen_scene_events_gpt.py [--only cat pigeon ...] [--jobs 3] [--cut-only]
@@ -22,6 +22,7 @@ from PIL import Image
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from gen_weather_scenes import MODEL, ROOT  # noqa: E402
+from art_io import save_art  # noqa: E402  (lossless WebP)
 
 RAW = f'{ROOT}/docs/art/gen/events'
 OUT = f'{ROOT}/assets/art/events'
@@ -182,7 +183,7 @@ def cut_sheet(sid):
                 sp[x, y] = (c[0], c[1], c[2], 255) if c[3] >= 140 else (0, 0, 0, 0)
         strip.paste(small, (i * out_w + 1, 0))
     os.makedirs(OUT, exist_ok=True)
-    strip.save(f'{OUT}/{sid}.png')
+    save_art(strip, f'{OUT}/{sid}.webp')
     return f'{sid}: {strip.size} frames={n} ({len(runs_of(im))} found)'
 
 
@@ -238,8 +239,8 @@ def cut_train():
                 lum = (r * 299 + gg * 587 + b * 114) / 1000
                 gp[x, y] = tuple(max(0, min(255, round(((1 - amount) * c + amount * lum * t / 255) * gain)))
                                  for c, t in zip((r, gg, b), tint)) + (al,)
-        g.save(f'{TRAIN}/front_base_{part}.png')
-    Image.new('RGBA', (75, 96)).save(f'{TRAIN}/front_stripe.png')
+        save_art(g, f'{TRAIN}/front_base_{part}.webp')
+    save_art(Image.new('RGBA', (75, 96)), f'{TRAIN}/front_stripe.webp')
     for w in ('rain', 'snow'):
         shutil.copy(f'{ROOT}/assets/art/train_front_{w}.png', f'{TRAIN}/front_{w}.png')
     return f'yellow_train: {out.size}'

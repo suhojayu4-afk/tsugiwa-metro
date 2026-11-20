@@ -1,7 +1,7 @@
 """駅印帳 (station seal book) art, for lib/features/my_room/eki_in_book.dart.
 
   python tools/gen_eki_in_gpt.py motifs   # GPT draws 16 seal emblems (one sheet)
-  python tools/gen_eki_in_gpt.py cut      # sheet -> assets/art/eki_in/motif_<name>.png (white alpha masks)
+  python tools/gen_eki_in_gpt.py cut      # sheet -> assets/art/eki_in/motif_<name>.webp (white alpha masks)
   python tools/gen_eki_in_gpt.py paper    # washi + gold-leaf tiles (procedural, numpy)
   python tools/gen_eki_in_gpt.py font     # Yuji Boku (OFL brush font) subset to every station name
   python tools/gen_eki_in_gpt.py all
@@ -22,6 +22,7 @@ from PIL import Image, ImageFilter
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from gen_weather_scenes import MODEL, ROOT  # noqa: E402
+from art_io import save_art  # noqa: E402  (lossless WebP)
 
 RAW = f'{ROOT}/docs/art/gen/eki_in'
 OUT = f'{ROOT}/assets/art/eki_in'
@@ -91,7 +92,7 @@ def cut(size=192):
         sq[oy:oy + crop.shape[0], ox:ox + crop.shape[1]] = crop
         a = Image.fromarray((sq * 255).astype(np.uint8)).resize((size, size), Image.LANCZOS)
         rgba = Image.merge('RGBA', [Image.new('L', a.size, 255)] * 3 + [a])
-        rgba.save(f'{OUT}/motif_{name}.png', optimize=True)
+        save_art(rgba, f'{OUT}/motif_{name}.webp')
     print('cut', len(MOTIFS))
 
 
@@ -139,7 +140,7 @@ def paper(n=512):
     # alpha in Dart (multiply). Light paper with soft clouds and fibres.
     v = 0.93 + (base - 0.5) * 0.07 - f * 0.10
     rgb = np.stack([v * 0.985, v * 0.955, v * 0.89], -1)  # warm kinari
-    Image.fromarray((np.clip(rgb, 0, 1) * 255).astype(np.uint8)).save(f'{OUT}/washi.png', optimize=True)
+    save_art(Image.fromarray((np.clip(rgb, 0, 1) * 255).astype(np.uint8)), f'{OUT}/washi.webp')
 
     # Gold leaf (kinpaku): square leaves ~ n/4 with seams, each a slightly
     # different tone, with crinkles.
@@ -166,7 +167,7 @@ def paper(n=512):
         for gx in range(4):
             x = (gx * leaf + ox) % n
             gold[gy * leaf:(gy + 1) * leaf, x:x + 2] *= 0.84
-    Image.fromarray((np.clip(gold, 0, 1) * 255).astype(np.uint8)).save(f'{OUT}/gold_leaf.png', optimize=True)
+    save_art(Image.fromarray((np.clip(gold, 0, 1) * 255).astype(np.uint8)), f'{OUT}/gold_leaf.webp')
     print('paper ok')
 
 

@@ -544,7 +544,7 @@ class _Thumb extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (item.slot) {
       case MySlot.scene:
-        final path = item.images[DayPart.evening] ?? 'assets/art/scene_evening.png';
+        final path = item.images[DayPart.evening] ?? 'assets/art/scene_evening.webp';
         return Image.asset(path, fit: BoxFit.cover, filterQuality: FilterQuality.none);
       case MySlot.plate:
         return ColoredBox(
@@ -617,10 +617,10 @@ class SideTrain extends StatelessWidget {
         Image.asset(a, width: w * scale, height: h * scale, fit: BoxFit.fill, filterQuality: FilterQuality.none);
     return Stack(
       children: [
-        img(art == null ? 'assets/art/train_side_base.png' : '$art/side_base.png'),
+        img(art == null ? 'assets/art/train_side_base.webp' : '$art/side_base.webp'),
         ColorFiltered(
           colorFilter: ColorFilter.mode(color, BlendMode.modulate),
-          child: img(art == null ? 'assets/art/train_side_stripe.png' : '$art/side_stripe.png'),
+          child: img(art == null ? 'assets/art/train_side_stripe.webp' : '$art/side_stripe.webp'),
         ),
       ],
     );

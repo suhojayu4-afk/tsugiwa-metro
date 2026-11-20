@@ -23,7 +23,7 @@ void main() {
       for (final s in seasons.entries) {
         final (name, en, color, led, weather) = s.value;
         final look = SceneLook(
-          images: {for (final p in DayPart.values) p: 'assets/art/scenes_season/${s.key}_${p.name}.png'},
+          images: {for (final p in DayPart.values) p: 'assets/art/scenes_season/${s.key}_${p.name}.webp'},
         ).withLed([led], const [ledOrange]).withSign(StationSign(name: name, sub: en, band: color));
         for (final part in DayPart.values) {
           final img = await renderSceneImage(look: look, part: part, lineColor: color, weather: weather, scale: 2);

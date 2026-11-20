@@ -8,7 +8,7 @@ the passengers and the vanishing point work unchanged.
   parts:   day, evening, night
 
 Outputs: docs/art/gen/season/{season}_{part}_raw.png (GPT) and
-assets/art/scenes_season/{season}_{part}.png (pixel art for the app).
+assets/art/scenes_season/{season}_{part}.webp (pixel art for the app).
 Existing pictures are skipped, so the script can be re-run after a stop
 (delete a picture to draw it again).
 
@@ -98,7 +98,7 @@ def change(season, part):
 def job(season, part):
     name = f'{season}_{part}'
     raw = f'{OUT_RAW}/{name}_raw.png'
-    out = f'{OUT}/{name}.png'
+    out = f'{OUT}/{name}.webp'
     if not os.path.exists(raw):
         prompt = PROMPT.format(out=raw, src=f'{GEN}/{SRC[part]}', change=change(season, part))
         open(f'{OUT_RAW}/prompt_{name}.txt', 'w', encoding='utf8').write(prompt)

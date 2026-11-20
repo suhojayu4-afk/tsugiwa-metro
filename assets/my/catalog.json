@@ -52,9 +52,9 @@
       },
       "price": 0,
       "images": {
-        "day": "assets/art/scenes/shibuya_day.png",
-        "evening": "assets/art/scenes/shibuya_evening.png",
-        "night": "assets/art/scenes/shibuya_night.png"
+        "day": "assets/art/scenes/shibuya_day.webp",
+        "evening": "assets/art/scenes/shibuya_evening.webp",
+        "night": "assets/art/scenes/shibuya_night.webp"
       },
       "station": "tokyo.shibuya"
     },
@@ -69,9 +69,9 @@
       "price": 1000,
       "priceYen": 250,
       "images": {
-        "day": "assets/art/scenes/tokyo_day.png",
-        "evening": "assets/art/scenes/tokyo_evening.png",
-        "night": "assets/art/scenes/tokyo_night.png"
+        "day": "assets/art/scenes/tokyo_day.webp",
+        "evening": "assets/art/scenes/tokyo_evening.webp",
+        "night": "assets/art/scenes/tokyo_night.webp"
       },
       "station": "tokyo.tokyo"
     },
@@ -86,9 +86,9 @@
       "price": 1000,
       "priceYen": 250,
       "images": {
-        "day": "assets/art/scenes/shinjuku_day.png",
-        "evening": "assets/art/scenes/shinjuku_evening.png",
-        "night": "assets/art/scenes/shinjuku_night.png"
+        "day": "assets/art/scenes/shinjuku_day.webp",
+        "evening": "assets/art/scenes/shinjuku_evening.webp",
+        "night": "assets/art/scenes/shinjuku_night.webp"
       },
       "station": "tokyo.shinjuku"
     },
@@ -103,9 +103,9 @@
       "price": 1000,
       "priceYen": 250,
       "images": {
-        "day": "assets/art/scenes/asakusa_day.png",
-        "evening": "assets/art/scenes/asakusa_evening.png",
-        "night": "assets/art/scenes/asakusa_night.png"
+        "day": "assets/art/scenes/asakusa_day.webp",
+        "evening": "assets/art/scenes/asakusa_evening.webp",
+        "night": "assets/art/scenes/asakusa_night.webp"
       },
       "station": "tokyo.asakusa"
     },
@@ -120,9 +120,9 @@
       "price": 1000,
       "priceYen": 250,
       "images": {
-        "day": "assets/art/scenes/ginza_day.png",
-        "evening": "assets/art/scenes/ginza_evening.png",
-        "night": "assets/art/scenes/ginza_night.png"
+        "day": "assets/art/scenes/ginza_day.webp",
+        "evening": "assets/art/scenes/ginza_evening.webp",
+        "night": "assets/art/scenes/ginza_night.webp"
       },
       "station": "tokyo.ginza"
     },
@@ -136,9 +136,9 @@
       },
       "price": 1000,
       "images": {
-        "day": "assets/art/scenes_season/sakura_day.png",
-        "evening": "assets/art/scenes_season/sakura_evening.png",
-        "night": "assets/art/scenes_season/sakura_night.png"
+        "day": "assets/art/scenes_season/sakura_day.webp",
+        "evening": "assets/art/scenes_season/sakura_evening.webp",
+        "night": "assets/art/scenes_season/sakura_night.webp"
       },
       "season": {
         "from": "03-15",
@@ -155,9 +155,9 @@
       },
       "price": 1200,
       "images": {
-        "day": "assets/art/scenes_season/hanabi_day.png",
-        "evening": "assets/art/scenes_season/hanabi_evening.png",
-        "night": "assets/art/scenes_season/hanabi_night.png"
+        "day": "assets/art/scenes_season/hanabi_day.webp",
+        "evening": "assets/art/scenes_season/hanabi_evening.webp",
+        "night": "assets/art/scenes_season/hanabi_night.webp"
       },
       "season": {
         "from": "07-15",
@@ -174,9 +174,9 @@
       },
       "price": 1200,
       "images": {
-        "day": "assets/art/scenes_season/xmas_day.png",
-        "evening": "assets/art/scenes_season/xmas_evening.png",
-        "night": "assets/art/scenes_season/xmas_night.png"
+        "day": "assets/art/scenes_season/xmas_day.webp",
+        "evening": "assets/art/scenes_season/xmas_evening.webp",
+        "night": "assets/art/scenes_season/xmas_night.webp"
       },
       "season": {
         "from": "12-01",
@@ -390,7 +390,7 @@
         "en": "Lanterns"
       },
       "price": 150,
-      "overlay": "assets/art/decor/lanterns.png"
+      "overlay": "assets/art/decor/lanterns.webp"
     },
     {
       "id": "roof.garland",
@@ -422,7 +422,7 @@
         "en": "Vending machine"
       },
       "price": 80,
-      "overlay": "assets/art/decor/vending.png"
+      "overlay": "assets/art/decor/vending.webp"
     },
     {
       "id": "effect.none",

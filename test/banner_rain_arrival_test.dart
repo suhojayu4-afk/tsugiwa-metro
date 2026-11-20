@@ -13,12 +13,12 @@ void main() {
 
   test('weather pictures are found by scene, time of day and sky', () {
     expect(SceneArt.sceneId(const SceneLook()), 'standard');
-    final tokyo = SceneLook(images: {for (final p in DayPart.values) p: 'assets/art/scenes/tokyo_${p.name}.png'});
+    final tokyo = SceneLook(images: {for (final p in DayPart.values) p: 'assets/art/scenes/tokyo_${p.name}.webp'});
     expect(SceneArt.sceneId(tokyo), 'tokyo');
-    expect(SceneArt.weatherScene('tokyo', DayPart.day, 'rain'), 'assets/art/weather/tokyo_day_rain.png');
-    expect(File('assets/art/weather/tokyo_day_rain.png').existsSync(), isTrue);
-    expect(SceneArt.weatherScene('tokyo', DayPart.night, 'packed'), 'assets/art/crowd/tokyo_night_packed.png');
-    expect(SceneArt.weatherScene('ginza', DayPart.day, 'winter'), 'assets/art/weather/ginza_day_winter.png');
+    expect(SceneArt.weatherScene('tokyo', DayPart.day, 'rain'), 'assets/art/weather/tokyo_day_rain.webp');
+    expect(File('assets/art/weather/tokyo_day_rain.webp').existsSync(), isTrue);
+    expect(SceneArt.weatherScene('tokyo', DayPart.night, 'packed'), 'assets/art/crowd/tokyo_night_packed.webp');
+    expect(SceneArt.weatherScene('ginza', DayPart.day, 'winter'), 'assets/art/weather/ginza_day_winter.webp');
     for (final f in ['train_front_snow', 'train_front_rain']) {
       expect(File('assets/art/$f.png').existsSync(), isTrue, reason: f);
     }

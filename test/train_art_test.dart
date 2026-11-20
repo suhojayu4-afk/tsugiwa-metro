@@ -24,8 +24,8 @@ void main() {
         SceneArt.trainStripeOf(art),
         SceneArt.trainWeatherOf('rain', art),
         SceneArt.trainWeatherOf('snow', art),
-        '$art/side_base.png',
-        '$art/side_stripe.png',
+        '$art/side_base.webp',
+        '$art/side_stripe.webp',
       ]) {
         expect(File(f).existsSync(), isTrue, reason: f);
       }

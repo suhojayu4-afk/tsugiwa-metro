@@ -57,14 +57,14 @@ const badges = [
   TripBadge(
     'early',
     BadgeTier.silver,
-    '${_w}icon_sun.png',
+    '${_w}icon_sun.webp',
     LocalizedText({'ja': '始発の達人', 'ko': '첫차의 달인', 'en': 'Early Bird'}),
     LocalizedText({'ja': '朝5:30までに乗る', 'ko': '아침 5:30 전에 타기', 'en': 'Ride before 5:30 am'}),
   ),
   TripBadge(
     'lastTrain',
     BadgeTier.silver,
-    '${_w}icon_moon.png',
+    '${_w}icon_moon.webp',
     LocalizedText({'ja': '終電サバイバー', 'ko': '막차 생존자', 'en': 'Last-Train Survivor'}),
     LocalizedText({'ja': '深夜0時を過ぎて乗る', 'ko': '자정이 지나서 타기', 'en': 'Ride after midnight'}),
   ),
@@ -141,7 +141,7 @@ const badges = [
   TripBadge(
     'yellow',
     BadgeTier.gold,
-    'assets/art/yellow_train/front_base_day.png',
+    'assets/art/yellow_train/front_base_day.webp',
     LocalizedText({'ja': '幸運の黄色い電車', 'ko': '행운의 노란 전철', 'en': 'Lucky Yellow Train'}),
     LocalizedText({
       'ja': 'のりばでめったに来ない黄色い電車に会う',

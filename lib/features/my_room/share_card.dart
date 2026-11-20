@@ -1036,7 +1036,7 @@ class _Time extends StatelessWidget {
     child: Row(
       children: [
         // The widget's pixel weather icons.
-        Image.asset('assets/art/widget/icon_$icon.png', width: 24, height: 24, filterQuality: FilterQuality.none),
+        Image.asset('assets/art/widget/icon_$icon.webp', width: 24, height: 24, filterQuality: FilterQuality.none),
         const SizedBox(width: 6),
         Expanded(
           child: Column(

@@ -31,7 +31,7 @@ class TrainType {
   /// The colour the picture is painted in (card background tint).
   final Color color;
 
-  String get art => 'assets/art/train_dex/$id.png';
+  String get art => 'assets/art/train_dex/$id.webp';
 
   /// The rare yellow inspection train is found at the platform, not by riding.
   bool get bySighting => id == yellowTypeId;

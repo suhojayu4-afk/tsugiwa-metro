@@ -51,7 +51,7 @@ void main() {
         final (name, en, color, led) = sc.value;
         var look = sc.key == 'standard'
             ? const SceneLook()
-            : SceneLook(images: {for (final p in DayPart.values) p: 'assets/art/scenes/${sc.key}_${p.name}.png'});
+            : SceneLook(images: {for (final p in DayPart.values) p: 'assets/art/scenes/${sc.key}_${p.name}.webp'});
         look = look.withLed([led], const [ledOrange]).withSign(StationSign(name: name, sub: en, band: color));
         for (final part in DayPart.values) {
           for (final sky in skies.entries) {

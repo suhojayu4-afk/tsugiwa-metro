@@ -1,5 +1,5 @@
 """Train front v3: clean PixelLab art (docs/art/gen/train_v3/c0.png, 75x96)
-→ assets/art/train_front_base_{day,evening,night}.png + train_front_stripe.png
+→ assets/art/train_front_base_{day,evening,night}.webp + train_front_stripe.webp
 
 The band under the windshield was drawn in flat magenta so it can be cut out
 exactly; the app multiplies the stripe by the line colour.
@@ -9,6 +9,7 @@ exactly; the app multiplies the stripe by the line colour.
 import os
 
 from PIL import Image
+from art_io import save_art  # noqa: E402  (lossless WebP)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'docs', 'art', 'gen', 'train_v3', 'c0.png')
@@ -62,8 +63,8 @@ def main():
                     max(0, min(255, round(((1 - amount) * c + amount * lum * t / 255) * gain)))
                     for c, t in zip((r, g, b), tint)
                 ) + (al,)
-        graded.save(os.path.join(OUT, f'train_front_base_{part}.png'))
-    stripe.save(os.path.join(OUT, 'train_front_stripe.png'))
+        save_art(graded, os.path.join(OUT, f'train_front_base_{part}.webp'))
+    save_art(stripe, os.path.join(OUT, 'train_front_stripe.webp'))
     print('train v3 written:', w, 'x', h)
 
 

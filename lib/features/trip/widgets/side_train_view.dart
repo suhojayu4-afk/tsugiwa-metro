@@ -60,18 +60,18 @@ class SideTrainArt {
   final ui.Image? leadGlass;
   final ui.Image? carGlass;
 
-  static String farAsset(DayPart p) => 'assets/art/side_far_${p.name}.png';
-  static String midAsset(DayPart p) => 'assets/art/side_mid_${p.name}.png';
-  static const tunnelAsset = 'assets/art/side_tunnel.png';
-  static const platformAsset = 'assets/art/side_platform.png';
-  static const platformUndergroundAsset = 'assets/art/side_platform_ug.png';
-  static const mastAsset = 'assets/art/side_mast.png';
-  static const leadAsset = 'assets/art/side_car_lead.png';
-  static const leadStripeAsset = 'assets/art/side_car_lead_stripe.png';
-  static const carAsset = 'assets/art/side_car_mid.png';
-  static const carStripeAsset = 'assets/art/side_car_mid_stripe.png';
-  static const leadGlassAsset = 'assets/art/side_car_lead_glass.png';
-  static const carGlassAsset = 'assets/art/side_car_mid_glass.png';
+  static String farAsset(DayPart p) => 'assets/art/side_far_${p.name}.webp';
+  static String midAsset(DayPart p) => 'assets/art/side_mid_${p.name}.webp';
+  static const tunnelAsset = 'assets/art/side_tunnel.webp';
+  static const platformAsset = 'assets/art/side_platform.webp';
+  static const platformUndergroundAsset = 'assets/art/side_platform_ug.webp';
+  static const mastAsset = 'assets/art/side_mast.webp';
+  static const leadAsset = 'assets/art/side_car_lead.webp';
+  static const leadStripeAsset = 'assets/art/side_car_lead_stripe.webp';
+  static const carAsset = 'assets/art/side_car_mid.webp';
+  static const carStripeAsset = 'assets/art/side_car_mid_stripe.webp';
+  static const leadGlassAsset = 'assets/art/side_car_lead_glass.webp';
+  static const carGlassAsset = 'assets/art/side_car_mid_glass.webp';
 
   /// Loads everything for [part] with [load] (an asset path → image).
   static Future<SideTrainArt> loadWith(DayPart part, Future<ui.Image> Function(String) load) async {

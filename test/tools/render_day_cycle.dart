@@ -16,7 +16,7 @@ void main() {
       await font.load();
       final scene = Platform.environment['SCENE'] ?? 'tokyo';
       final look = SceneLook(
-        images: {for (final p in DayPart.values) p: 'assets/art/scenes/${scene}_${p.name}.png'},
+        images: {for (final p in DayPart.values) p: 'assets/art/scenes/${scene}_${p.name}.webp'},
         trainColor: const Color(0xFF2F7DE1),
         trainArt: 'assets/art/shinkansen',
       ).withLed(['流星号 新大阪'], const [ledOrange]).withSign(

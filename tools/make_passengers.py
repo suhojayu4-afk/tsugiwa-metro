@@ -10,7 +10,7 @@ Each walk becomes one strip of 6 frames, cropped to the figure (the same box
 for every frame) with the feet on the bottom row, so the app can size the
 figure by the platform's perspective:
 
-  assets/art/people/{id}_toward.png, {id}_away.png
+  assets/art/people/{id}_toward.webp, {id}_away.webp
 
   python tools/make_passengers.py
 """
@@ -21,6 +21,7 @@ import urllib.request
 import zipfile
 
 from PIL import Image
+from art_io import save_art  # noqa: E402  (lossless WebP)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'assets', 'art', 'people')
@@ -86,8 +87,8 @@ def main():
             strip = Image.new('RGBA', (w * len(fs), h))
             for i, f in enumerate(fs):
                 strip.paste(f.crop((l, t, r, b)), (i * w, 0))
-            path = os.path.join(OUT, f'{app_id}_{name}.png')
-            strip.save(path)
+            path = os.path.join(OUT, f'{app_id}_{name}.webp')
+            save_art(strip, path)
             print(path, strip.size)
     json.dumps(CHARACTERS)
 

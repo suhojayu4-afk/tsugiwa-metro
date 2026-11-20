@@ -127,7 +127,7 @@ class _Mini extends StatelessWidget {
   );
 }
 
-/// 32×32 pixel-art weather icon (assets/art/weather_*.png), scaled so every
+/// 32×32 pixel-art weather icon (assets/art/weather_*.webp), scaled so every
 /// art pixel is a whole number of device pixels.
 class WeatherIcon extends StatelessWidget {
   const WeatherIcon({super.key, required this.name, this.approxSize = 56});
@@ -140,7 +140,7 @@ class WeatherIcon extends StatelessWidget {
     final perArt = (approxSize / 32 * dpr).round().clamp(1, 32);
     final size = 32 * perArt / dpr;
     return Image.asset(
-      'assets/art/weather_$name.png',
+      'assets/art/weather_$name.webp',
       width: size,
       height: size,
       // Without an explicit fit, small images are never scaled up.

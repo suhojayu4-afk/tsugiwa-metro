@@ -1,17 +1,18 @@
 """Cuts a GPT-drawn walk-cycle sheet (6 frames in a row on flat magenta,
 docs/art/gen/people_gpt/*_raw.png) into the strip the app uses
-(assets/art/people/{id}_{toward|away}.png, see tools/make_passengers.py):
+(assets/art/people/{id}_{toward|away}.webp, see tools/make_passengers.py):
 magenta keyed out, frames found by the empty columns between them, every
 frame in one shared box with the feet on the bottom row, then shrunk to the
 pixel size of the station pictures' people (the sheet is drawn with big
 pixels, so it is shrunk by sampling the middle of each big pixel). Frame 0
 is the one with the feet closest together (someone standing and waiting).
 
-  python tools/cut_gpt_walk.py <raw.png> <out.png> [--height 72]
+  python tools/cut_gpt_walk.py <raw.png> <out.webp> [--height 72]
 """
 import argparse
 
 from PIL import Image
+from art_io import save_art  # noqa: E402  (lossless WebP)
 
 
 def is_key(c):
@@ -91,7 +92,7 @@ def main():
                 c = sp[x, y]
                 sp[x, y] = (c[0], c[1], c[2], 255) if c[3] >= 128 else (0, 0, 0, 0)
         strip.paste(small, (i * out_w + 1, 0))
-    strip.save(a.out)
+    save_art(strip, a.out)
     print(a.out, strip.size)
 
 

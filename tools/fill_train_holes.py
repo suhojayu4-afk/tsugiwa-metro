@@ -1,9 +1,9 @@
 """Fills the see-through holes inside the front train art
-(assets/art/train_front_base_*.png): between the headlights, the lower
+(assets/art/train_front_base_*.webp): between the headlights, the lower
 front panel and the right side. Every hole pixel inside the train's outline
 (per row, between its leftmost and rightmost solid pixel) takes the most
 common solid colour around it, so the fill stays in the art's own palette
-(no blur). The stripe band (train_front_stripe.png) is left as it is.
+(no blur). The stripe band (train_front_stripe.webp) is left as it is.
 
   python tools/fill_train_holes.py
 
@@ -15,6 +15,7 @@ import collections
 import os
 
 from PIL import Image
+from art_io import save_art  # noqa: E402  (lossless WebP)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ART = os.path.join(ROOT, 'assets', 'art')
@@ -49,12 +50,12 @@ def fill(path, stripe):
         for (x, y), c in done.items():
             px[x, y] = (*c, 255)
         holes -= done.keys()
-    im.save(path)
+    save_art(im, path)
     return len(done)
 
 
-stripe = Image.open(os.path.join(ART, 'train_front_stripe.png')).convert('RGBA')
+stripe = Image.open(os.path.join(ART, 'train_front_stripe.webp')).convert('RGBA')
 for part in ('day', 'evening', 'night'):
-    p = os.path.join(ART, f'train_front_base_{part}.png')
+    p = os.path.join(ART, f'train_front_base_{part}.webp')
     fill(p, stripe)
     print('filled', os.path.basename(p))

@@ -14,7 +14,7 @@ void main() {
     await tester.runAsync(() async {
       final font = FontLoader('DotGothic16')..addFont(rootBundle.load('assets/fonts/DotGothic16-Regular.ttf'));
       await font.load();
-      final look = SceneLook(images: {for (final p in DayPart.values) p: 'assets/art/scenes/tokyo_${p.name}.png'})
+      final look = SceneLook(images: {for (final p in DayPart.values) p: 'assets/art/scenes/tokyo_${p.name}.webp'})
           .withLed(['快速 高尾'], const [ledOrange])
           .withSign(const StationSign(name: '東京', sub: 'TOKYO', band: Color(0xFFF15A22)));
       final cases = {

@@ -68,8 +68,8 @@ void main() {
     final b = MyStore();
     await b.load(catalog: catalog);
     expect(b.equipped(MySlot.scene), 'scene.tokyo');
-    expect(b.look.overlays, ['assets/art/decor/lanterns.png']);
-    expect(b.look.images[DayPart.night], 'assets/art/scenes/tokyo_night.png');
+    expect(b.look.overlays, ['assets/art/decor/lanterns.webp']);
+    expect(b.look.images[DayPart.night], 'assets/art/scenes/tokyo_night.webp');
     expect(b.coins, a.coins);
   });
 

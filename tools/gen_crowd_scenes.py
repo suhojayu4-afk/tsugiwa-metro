@@ -7,7 +7,7 @@ The app picks one by the crowding estimate (EstimateCongestionSource).
   parts:  day, evening, night
 
 Outputs: docs/art/gen/crowd/{scene}_{part}_{level}_raw.png (GPT) and
-assets/art/crowd/{scene}_{part}_{level}.png. Existing pictures are skipped.
+assets/art/crowd/{scene}_{part}_{level}.webp. Existing pictures are skipped.
 
   python tools/gen_crowd_scenes.py [--jobs 3] [--only tokyo_day_packed ...]
 """
@@ -55,7 +55,7 @@ Look at {src} first ({desc}). Make the SAME picture with ONE change: the NUMBER 
 
 def job(name, scene, part, level):
     raw = f'{OUT_RAW}/{name}_raw.png'
-    out = f'{OUT}/{name}.png'
+    out = f'{OUT}/{name}.webp'
     if not os.path.exists(raw):
         prompt = PROMPT.format(out=raw, src=source(scene, part), desc=SCENES[scene],
                                change=CROWD[level].format(light=LIGHT[part]))

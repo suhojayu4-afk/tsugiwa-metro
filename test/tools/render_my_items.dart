@@ -19,8 +19,8 @@ void main() {
           final look = SceneLook(
             images: scene == 'standard'
                 ? const {}
-                : {for (final p in DayPart.values) p: 'assets/art/scenes/${scene}_${p.name}.png'},
-            overlays: [if (deco.contains('vending')) 'assets/art/decor/vending.png'],
+                : {for (final p in DayPart.values) p: 'assets/art/scenes/${scene}_${p.name}.webp'},
+            overlays: [if (deco.contains('vending')) 'assets/art/decor/vending.webp'],
             effects: {if (deco.contains('garland')) 'garland'},
           );
           final img = await renderSceneImage(look: look, part: part, lineColor: const Color(0xFF80C241), scale: 2);

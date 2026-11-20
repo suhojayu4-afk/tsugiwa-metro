@@ -4,8 +4,8 @@ Usage:
   python tools/train_cutout.py RAW.png OUT_DIR [--factor 4] [--colors 48]
 
 Writes to OUT_DIR:
-  train_front_base.png    the train without its stripe (RGBA, pixel grid)
-  train_front_stripe.png  the stripe only, as grey shading (RGBA); the app
+  train_front_base.webp   the train without its stripe (RGBA, pixel grid)
+  train_front_stripe.webp the stripe only, as grey shading (RGBA); the app
                           multiplies it by the line colour
   train_front_preview.png base + green stripe at 4x, for checking
 """
@@ -14,6 +14,7 @@ import colorsys
 import os
 
 from PIL import Image
+from art_io import save_art  # noqa: E402  (lossless WebP)
 
 
 def is_magenta(r, g, b):
@@ -102,7 +103,7 @@ def main() -> None:
                 bp[x, y] = (r, g, b, 255)
 
     os.makedirs(a.out_dir, exist_ok=True)
-    base.save(os.path.join(a.out_dir, "train_front_base.png"))
+    save_art(base, os.path.join(a.out_dir, "train_front_base.webp"))
     # The source is lit by the sunset; re-light it for the other scenes.
     # Lights (very bright pixels) keep their colour.
     for part, (tint, amount, gain) in {
@@ -122,8 +123,8 @@ def main() -> None:
                     max(0, min(255, round(((1 - amount) * c + amount * lum * t / 255) * gain)))
                     for c, t in zip((r, g, b), tint)
                 ) + (al,)
-        graded.save(os.path.join(a.out_dir, f"train_front_base_{part}.png"))
-    stripe.save(os.path.join(a.out_dir, "train_front_stripe.png"))
+        save_art(graded, os.path.join(a.out_dir, f"train_front_base_{part}.webp"))
+    save_art(stripe, os.path.join(a.out_dir, "train_front_stripe.webp"))
 
     # Yamanote green (#80C241) on the stripe, like the app does.
     tinted = Image.composite(

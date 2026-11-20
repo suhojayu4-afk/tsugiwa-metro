@@ -80,10 +80,10 @@ def main():
             print(os.path.basename(p), find(p))
         return
     out = {}
-    pics = [os.path.join(ROOT, 'assets', 'art', f'scene_{part}{a}.png') for part in ('day', 'evening', 'night')
+    pics = [os.path.join(ROOT, 'assets', 'art', f'scene_{part}{a}.webp') for part in ('day', 'evening', 'night')
             for a in ('', '_anim')]
     for d in ('scenes', 'scenes_season', 'weather', 'crowd'):
-        pics += sorted(glob.glob(os.path.join(ROOT, 'assets', 'art', d, '*.png')))
+        pics += sorted(glob.glob(os.path.join(ROOT, 'assets', 'art', d, '*.webp')))
     for p in [q for q in pics if os.path.exists(q)]:
         x, y, n = find(p)
         name = os.path.basename(p)

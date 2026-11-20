@@ -19,7 +19,7 @@ void main() {
         ('shinjuku', DayPart.evening, 'relaxed'),
         ('ginza', DayPart.night, 'packed'),
       ]) {
-        final look = SceneLook(images: {for (final p in DayPart.values) p: 'assets/art/scenes/${scene}_${p.name}.png'});
+        final look = SceneLook(images: {for (final p in DayPart.values) p: 'assets/art/scenes/${scene}_${p.name}.webp'});
         for (final tick in [0, 20, 40]) {
           final img = await renderSceneImage(
             look: look,

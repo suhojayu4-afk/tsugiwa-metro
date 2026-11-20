@@ -5,11 +5,12 @@ side-view train, LED frame and small icons.
 Magenta areas (the colour band of the sign and the stripe of the train) are
 split into a *_band.png mask the app tints with the line colour.
 
-  python tools/make_widget_art.py  →  assets/art/widget/*.png
+  python tools/make_widget_art.py  →  assets/art/widget/*.webp
 """
 import os
 
 from PIL import Image, ImageDraw
+from art_io import save_art  # noqa: E402  (lossless WebP)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'docs', 'art', 'gen', 'widget')
@@ -46,22 +47,22 @@ def main():
     # time of day × sky (bg/{day,evening,night}_{clear,cloudy,rainsoon,rain,
     # snowsoon,snow}.png, 320×112), at the widget's 192×58.
     for f in sorted(os.listdir(os.path.join(SRC, 'bg'))):
-        src(os.path.join('bg', f)).crop((0, 6, 320, 103)).resize((192, 58), Image.BOX).save(
-            os.path.join(OUT, f'bg_{f}'))
+        save_art(src(os.path.join('bg', f)).crop((0, 6, 320, 103)).resize((192, 58), Image.BOX),
+                 os.path.join(OUT, f'bg_{os.path.splitext(f)[0]}.webp'))
 
     # The bigger 地下鉄案内 widget (4x2): the same backgrounds at 192×96,
     # scaled to the height and cropped to the middle.
     for f in sorted(os.listdir(os.path.join(SRC, 'bg'))):
         im = src(os.path.join('bg', f)).resize((274, 96), Image.BOX)
-        im.crop((41, 0, 233, 96)).save(os.path.join(OUT, f'board_{f}'))
+        save_art(im.crop((41, 0, 233, 96)), os.path.join(OUT, f'board_{os.path.splitext(f)[0]}.webp'))
 
     sign = src(PICK['sign']).crop((1, 0, 45, 28))
     ImageDraw.Draw(sign).line([(1, 27), (43, 27)], fill=(60, 62, 72, 255))  # bottom of the frame
     for name, im in zip(('sign', 'train'), (sign, src(PICK['train']).crop((3, 7, 62, 24)))):
         base, band = split(im)
-        base.save(os.path.join(OUT, f'{name}_base.png'))
-        band.save(os.path.join(OUT, f'{name}_band.png'))
-    src(PICK['led']).crop((7, 0, 89, 20)).save(os.path.join(OUT, 'led.png'))
+        save_art(base, os.path.join(OUT, f'{name}_base.webp'))
+        save_art(band, os.path.join(OUT, f'{name}_band.webp'))
+    save_art(src(PICK['led']).crop((7, 0, 89, 20)), os.path.join(OUT, 'led.webp'))
     # Icons: trimmed, and small ones doubled (whole pixels) to about 20 px.
     for icon in ('sun', 'suncloud', 'cloud2', 'raincloud', 'umbrella', 'snowcloud', 'snow', 'moon', 'mooncloud', 'bell'):
         im = src(f'icon_{icon}.png')
@@ -70,7 +71,7 @@ def main():
         im = im.resize((im.width * k, im.height * k), Image.NEAREST)
         out = Image.new('RGBA', (24, 24))
         out.paste(im, ((24 - im.width) // 2, (24 - im.height) // 2))
-        out.save(os.path.join(OUT, f'icon_{icon}.png'))
+        save_art(out, os.path.join(OUT, f'icon_{icon}.webp'))
     print('widget art written to', OUT)
 
 

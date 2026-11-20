@@ -11,7 +11,7 @@ weather picture, which is that station's usual crowd.
 
 Source: docs/art/gen/weather/{scene}_{part}_{sky}_raw.png (from
 tools/gen_weather_scenes.py). Output: docs/art/gen/weather/{name}_raw.png and
-assets/art/weather/{name}.png. Existing pictures are skipped.
+assets/art/weather/{name}.webp. Existing pictures are skipped.
 
   python tools/gen_weather_crowd.py [--jobs 3] [--only tokyo_day_rain_many ...]
 """
@@ -60,7 +60,7 @@ WEATHER_WORDS = {
 
 def job(name, src, scene, part, sky, grade):
     raw = f'{OUT_RAW}/{name}_raw.png'
-    out = f'{OUT}/{name}.png'
+    out = f'{OUT}/{name}.webp'
     if not os.path.exists(src):
         return f'NO SOURCE {name}'
     if not os.path.exists(raw):

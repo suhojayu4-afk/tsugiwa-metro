@@ -56,10 +56,10 @@ class _TrainFront extends StatelessWidget {
   Widget build(BuildContext context) => Stack(
     fit: StackFit.expand,
     children: [
-      _pixelImage('assets/art/train_front_base_$part.png', fit: BoxFit.fill),
+      _pixelImage('assets/art/train_front_base_$part.webp', fit: BoxFit.fill),
       ColorFiltered(
         colorFilter: ColorFilter.mode(line, BlendMode.modulate),
-        child: _pixelImage('assets/art/train_front_stripe.png', fit: BoxFit.fill),
+        child: _pixelImage('assets/art/train_front_stripe.webp', fit: BoxFit.fill),
       ),
     ],
   );
@@ -134,7 +134,7 @@ class RoutesArt extends StatelessWidget {
         const Positioned(
           left: 0,
           top: 0,
-          child: _Scene(asset: 'assets/art/scenes/tokyo_day.png', part: 'day'),
+          child: _Scene(asset: 'assets/art/scenes/tokyo_day.webp', part: 'day'),
         ),
         Positioned(
           left: 22,
@@ -196,7 +196,7 @@ class AlarmArt extends StatelessWidget {
             height: 26,
             decoration: BoxDecoration(color: const Color(0xFFFDE8E8), borderRadius: BorderRadius.circular(6)),
             alignment: Alignment.center,
-            child: _pixelImage('assets/art/widget/icon_bell.png', width: 20, height: 20, fit: BoxFit.contain),
+            child: _pixelImage('assets/art/widget/icon_bell.webp', width: 20, height: 20, fit: BoxFit.contain),
           ),
           const SizedBox(width: 8),
           Expanded(
@@ -291,14 +291,14 @@ class AlarmArt extends StatelessWidget {
         const Positioned(
           left: 0,
           top: 0,
-          child: _Scene(asset: 'assets/art/scenes/shinjuku_night.png', part: 'night'),
+          child: _Scene(asset: 'assets/art/scenes/shinjuku_night.webp', part: 'night'),
         ),
         Positioned(left: 30, right: 30, top: 12, child: notice),
         Positioned(left: 22, right: 22, top: 136, child: card),
         Positioned(
           right: -10,
           top: -18,
-          child: _pixelImage('assets/art/widget/icon_moon.png', width: 48, height: 48, fit: BoxFit.contain),
+          child: _pixelImage('assets/art/widget/icon_moon.webp', width: 48, height: 48, fit: BoxFit.contain),
         ),
         const Positioned(left: -4, top: 110, child: _Sticker('onigiri', size: 34, turn: -0.18)),
       ],
@@ -324,7 +324,7 @@ class WidgetShareArt extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            _pixelImage('assets/art/scenes/asakusa_evening.png'),
+            _pixelImage('assets/art/scenes/asakusa_evening.webp'),
             Positioned(
               left: 88,
               top: 22,
@@ -359,7 +359,7 @@ class WidgetShareArt extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            _pixelImage('assets/art/widget/board_night_clear.png'),
+            _pixelImage('assets/art/widget/board_night_clear.webp'),
             Positioned(
               left: 8,
               top: 10,
@@ -387,7 +387,7 @@ class WidgetShareArt extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      _pixelImage('assets/art/widget/icon_bell.png', width: 12, height: 12, fit: BoxFit.contain),
+                      _pixelImage('assets/art/widget/icon_bell.webp', width: 12, height: 12, fit: BoxFit.contain),
                       const SizedBox(width: 2),
                       Text(
                         const LocalizedText({'ja': '始発', 'ko': '첫차', 'en': 'First'}).of(lang),
@@ -428,7 +428,7 @@ class WidgetShareArt extends StatelessWidget {
                   right: 0,
                   bottom: 0,
                   height: 120,
-                  child: _pixelImage('assets/art/side_far_night.png', fit: BoxFit.cover),
+                  child: _pixelImage('assets/art/side_far_night.webp', fit: BoxFit.cover),
                 ),
               ],
             ),
@@ -559,7 +559,7 @@ class _ShareTicket extends StatelessWidget {
                   child: Stack(
                     fit: StackFit.expand,
                     children: [
-                      _pixelImage('assets/art/scenes/tokyo_day.png'),
+                      _pixelImage('assets/art/scenes/tokyo_day.webp'),
                       const Positioned(
                         left: 48,
                         top: 10,

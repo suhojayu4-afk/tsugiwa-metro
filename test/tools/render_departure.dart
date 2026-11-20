@@ -15,7 +15,7 @@ void main() {
       await font.load();
       final out = Directory('docs/captures/departure')..createSync(recursive: true);
       final look = SceneLook(
-        images: {for (final p in DayPart.values) p: 'assets/art/scenes/tokyo_${p.name}.png'},
+        images: {for (final p in DayPart.values) p: 'assets/art/scenes/tokyo_${p.name}.webp'},
       ).withLed(['快速 高尾'], const [ledOrange]);
       for (var i = 0; i <= 24; i++) {
         final img = await renderSceneImage(

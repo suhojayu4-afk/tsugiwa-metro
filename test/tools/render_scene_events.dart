@@ -153,7 +153,7 @@ void main() {
         final look = s.station == 'standard'
             ? SceneLook(trainArt: s.yellow ? yellowTrainArt : null)
             : SceneLook(
-                images: {for (final p in DayPart.values) p: 'assets/art/scenes/${s.station}_${p.name}.png'},
+                images: {for (final p in DayPart.values) p: 'assets/art/scenes/${s.station}_${p.name}.webp'},
                 trainArt: s.yellow ? yellowTrainArt : null,
               ).withLed(s.yellow ? const [] : const ['快速 東京'], const [ledOrange]);
         final n = (s.seconds * s.fps).round();

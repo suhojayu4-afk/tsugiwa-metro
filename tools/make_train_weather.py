@@ -11,6 +11,7 @@ import os
 import random
 
 from PIL import Image
+from art_io import save_art  # noqa: E402  (lossless WebP)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ART = os.path.join(ROOT, 'assets', 'art')
@@ -20,7 +21,7 @@ SNOW_SHADE = (206, 214, 232, 255)
 
 
 def main():
-    base = Image.open(os.path.join(ART, 'train_front_base_day.png')).convert('RGBA')
+    base = Image.open(os.path.join(ART, 'train_front_base_day.webp')).convert('RGBA')
     w, h = base.size
     alpha = base.split()[3].load()
     solid = lambda x, y: 0 <= x < w and 0 <= y < h and alpha[x, y] > 40
@@ -70,7 +71,8 @@ def main():
         x, y = rnd.randrange(6, 68), rnd.randrange(16, 92)
         if solid(x, y):
             s[x, y] = (236, 241, 250, 210)
-    snow.save(os.path.join(ART, 'train_front_snow.png'))
+    # PNG on purpose: WebP decodes the half-transparent edges a shade differently.
+    save_art(snow, os.path.join(ART, 'train_front_snow.png'))
 
     # ---- rain ----
     rain = Image.new('RGBA', (w, h))
@@ -91,7 +93,7 @@ def main():
         x, y = rnd.randrange(4, 70), rnd.randrange(57, 76)
         if solid(x, y):
             r[x, y] = (226, 234, 246, 150)
-    rain.save(os.path.join(ART, 'train_front_rain.png'))
+    save_art(rain, os.path.join(ART, 'train_front_rain.png'))
     print('train weather overlays written')
 
 

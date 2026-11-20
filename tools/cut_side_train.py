@@ -1,6 +1,6 @@
 """Turns the GPT pictures of tools/gen_side_train_gpt.py
 (docs/art/gen/side_train/*_raw.png) into the pixel art the side-view train
-uses (assets/art/side_*.png, art grid 384x112, see side_train_view.dart):
+uses (assets/art/side_*.webp, art grid 384x112, see side_train_view.dart):
 
 - snapped to a real pixel grid (box filter per art pixel, then a limited
   shared palette, no dithering), like tools/pixelize.py;
@@ -10,7 +10,7 @@ uses (assets/art/side_*.png, art grid 384x112, see side_train_view.dart):
   near the ends are found, the picture is cut there and a short cross-fade
   closes the last small step;
 - the train: the leading and middle cars cut apart, the pure green line-colour
-  bands turned into a white stripe mask (side_car_*_stripe.png) the app tints.
+  bands turned into a white stripe mask (side_car_*_stripe.webp) the app tints.
 
   python tools/cut_side_train.py [names ...]
 Writes docs/art/gen/side_train/{name}_preview.png (4x) for review.
@@ -20,6 +20,7 @@ import sys
 
 import numpy as np
 from PIL import Image
+from art_io import save_art  # noqa: E402  (lossless WebP)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))).replace('\\', '/')
 RAW = f'{ROOT}/docs/art/gen/side_train'
@@ -116,9 +117,9 @@ def loop(rgba, search=0.18, block=10, fade=3, cut=None):
 
 def save(rgba, name):
     im = Image.fromarray(rgba, 'RGBA')
-    im.save(f'{OUT}/side_{name}.png')
+    save_art(im, f'{OUT}/side_{name}.webp')
     im.resize((im.width * 4, im.height * 4), Image.NEAREST).save(f'{RAW}/{name}_preview.png')
-    print(f'side_{name}.png {im.size}')
+    print(f'side_{name}.webp {im.size}')
 
 
 def crop(a, rows, cols, k):

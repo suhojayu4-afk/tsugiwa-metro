@@ -5,7 +5,7 @@ magenta: frame 1 standing still in the queue, frames 2-7 a walking loop.
 (The first round, {id}_away_raw.png, walk only, is the reference.)
 
   docs/art/gen/people_gpt/{id}_wait_raw.png  ->  tools/cut_gpt_walk.py
-  ->  assets/art/people/{id}_wait.png
+  ->  assets/art/people/{id}_wait.webp
 
   python tools/gen_passengers_gpt.py [--only coat_man ...] [--jobs 2]
 """
@@ -70,7 +70,7 @@ def job(pid):
                 break
     if not os.path.exists(raw):
         return f'FAILED {pid}'
-    r = subprocess.run([sys.executable, f'{ROOT}/tools/cut_gpt_walk.py', raw, f'{OUT}/{pid}_wait.png', '--frames', '7'],
+    r = subprocess.run([sys.executable, f'{ROOT}/tools/cut_gpt_walk.py', raw, f'{OUT}/{pid}_wait.webp', '--frames', '7'],
                        capture_output=True, text=True)
     return f'{pid}: {r.stdout.strip() or r.stderr.strip()[-200:]}'
 
