@@ -37,7 +37,12 @@ class CarGuide {
     final line = _lines[lineId];
     final dir = line?.directions[forward];
     if (line == null || dir == null) return null;
-    return CarLayout(cars: line.cars, frontCar: dir.frontCar, door1AtFront: dir.door1AtFront);
+    return CarLayout(
+      cars: line.cars,
+      frontCar: dir.frontCar,
+      door1AtFront: dir.door1AtFront,
+      doorsPerCar: line.doorsPerCar,
+    );
   }
 
   List<CarSpot> _spots(String lineId, bool forward, String stationId) =>
@@ -161,12 +166,13 @@ class CarAdvice {
 }
 
 class _LineCars {
-  _LineCars({required this.cars, required this.directions});
+  _LineCars({required this.cars, this.doorsPerCar = 4, required this.directions});
 
   factory _LineCars.fromJson(Map<String, dynamic> json) {
     final dirs = json['directions'] as Map<String, dynamic>;
     return _LineCars(
       cars: json['cars'] as int,
+      doorsPerCar: json['doorsPerCar'] as int? ?? 4,
       directions: {
         for (final e in dirs.entries)
           if (e.key == 'forward' || e.key == 'reverse')
@@ -176,6 +182,9 @@ class _LineCars {
   }
 
   final int cars;
+
+  /// Doors on each side of a car (Ginza/Marunouchi: 3).
+  final int doorsPerCar;
   final Map<bool, _DirCars> directions;
 }
 

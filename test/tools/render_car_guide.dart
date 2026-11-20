@@ -75,6 +75,36 @@ void main() {
       'ginza_shibuya': const RouteResult([
         RouteLeg(lineId: 'tokyo.ginza', forward: false, stationIds: ['tokyo.omotesando', 'tokyo.shibuya']),
       ]),
+      // Ginza Line 浅草方面 新橋 → 上野: arrival gate (3-door cars, 6号車 in front).
+      'ginza_ueno': const RouteResult([
+        RouteLeg(
+          lineId: 'tokyo.ginza',
+          forward: true,
+          stationIds: ['tokyo.kanda', 'tokyo.suehirocho', 'tokyo.ueno_hirokoji', 'tokyo.ueno'],
+        ),
+      ]),
+      // Marunouchi 荻窪方面 東京 → 霞ケ関, change to Hibiya.
+      'marunouchi_kasumigaseki': const RouteResult([
+        RouteLeg(
+          lineId: 'tokyo.marunouchi',
+          forward: false,
+          stationIds: ['tokyo.tokyo', 'tokyo.ginza', 'tokyo.kasumigaseki'],
+        ),
+        RouteLeg(lineId: 'tokyo.hibiya', forward: false, stationIds: ['tokyo.kasumigaseki', 'tokyo.toranomon_hills']),
+      ]),
+      // Chuo Rapid 東京方面 新宿 → 神田 (12 cars), then Keihin-Tohoku 大宮方面 to 上野.
+      'chuo_kanda_keihin': const RouteResult([
+        RouteLeg(
+          lineId: 'tokyo.chuo_rapid',
+          forward: false,
+          stationIds: ['tokyo.shinjuku', 'tokyo.yotsuya', 'tokyo.ochanomizu', 'tokyo.kanda'],
+        ),
+        RouteLeg(
+          lineId: 'tokyo.keihin_tohoku',
+          forward: true,
+          stationIds: ['tokyo.kanda', 'tokyo.akihabara', 'tokyo.okachimachi', 'tokyo.ueno'],
+        ),
+      ]),
     };
     final out = Directory('docs/captures/car_guide')..createSync(recursive: true);
     for (final lang in ['ja', 'ko', 'en']) {

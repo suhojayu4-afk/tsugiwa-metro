@@ -3,10 +3,15 @@
   "乗換便利号車 (目安). Every entry must come from a public source recorded in \"source\".",
   "Directions use the app's lines.json order: forward = stations[0] -> stations[1].",
   "tokyo.yamanote: forward = 内回り (東京->神田->上野), reverse = 外回り. 11 cars, 1号車 is the 外回り front.",
+  "tokyo.ginza / tokyo.marunouchi: 6 cars, 3 doors (doorsPerCar). 1号車 is the 渋谷 / 荻窪 end, so forward (浅草方面 / 池袋方面) has 6号車 in front; door 1 is the end of each car nearest 1号車.",
+  "tokyo.chuo_rapid: 12 cars, 1号車 is the 東京 end (forward 高尾方面 has 12号車 in front). 4・5号車 are Green cars with only 2 doors; their door numbers are as printed (1-2).",
+  "tokyo.keihin_tohoku: 10 cars, 1号車 is the 大船・横浜 end (forward 大宮方面 has 10号車 in front).",
   "Door numbers are as printed on the platform (Yamanote: door 1 is the end of each car nearest 1号車).",
   "frontCar = car number at the front of the train in that direction; door1AtFront = door 1 is the front door of each car in that direction.",
   "to = transfer line id (optional toForward = direction of the next line), or \"exit:<gate name>\". First exit listed = shown by default.",
-  "Never guess: leave a station out if no source states the car/door for that line and direction."
+  "door is omitted when the source's door number contradicts its own position text (e.g. 『前方』 vs 『1番ドア』).",
+  "Never guess: leave a station out if no source states the car/door for that line and direction.",
+  "Checked 2026-11-21 against the live source pages. wadattsu261.com is the main source; Yamanote entries citing yamanote-line-transfer.info were re-checked against it."
  ],
  "lines": {
   "tokyo.yamanote": {
@@ -28,28 +33,28 @@
        },
        {
         "to": "tokyo.toei_oedo",
-        "car": 5,
-        "door": 2,
+        "car": 11,
+        "door": 4,
         "note": {
-         "ja": "14番線・B1 東改札・西改札方面の下り階段・下りエスカレーター"
+         "ja": "14番線・2F 東南改札・南改札方面の上り階段・エレベーター（埼京線・湘南新宿ライン・都営新宿線・大江戸線 新宿駅へはこちらが便利）"
         },
         "source": "https://wadattsu261.com/content/shinjuku-yamanote-chuoslowhome-info/"
        },
        {
         "to": "tokyo.keio",
-        "car": 9,
+        "car": 7,
         "door": 4,
         "note": {
-         "ja": "14番線・B1 中央東/中央西改札・小田急線のりかえ口・京王線連絡口方面の下り階段"
+         "ja": "14番線・B1 京王線連絡口方面のエスカレーター（7号車4番・8号車1番ドア付近）"
         },
-        "source": "https://wadattsu261.com/content/shinjuku-yamanote-chuoslowhome-info/"
+        "source": "https://yamanote-line-transfer.info/yamanote-line/jy17_shinjuku/jy17_g1301_12/"
        },
        {
         "to": "tokyo.odakyu",
-        "car": 9,
+        "car": 10,
         "door": 4,
         "note": {
-         "ja": "14番線・B1 中央東/中央西改札・小田急線のりかえ口・京王線連絡口方面の下り階段"
+         "ja": "14番線・2F 小田急線のりかえ口・東南改札方面の上り階段・上りエスカレーター（小田急線へはこちらが便利）"
         },
         "source": "https://wadattsu261.com/content/shinjuku-yamanote-chuoslowhome-info/"
        },
@@ -59,6 +64,33 @@
         "door": 4,
         "note": {
          "ja": "14番線・2F 東南改札・南改札方面の上り階段・上りエスカレーター（中央線）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-yamanote-chuoslowhome-info/"
+       },
+       {
+        "to": "tokyo.saikyo",
+        "car": 11,
+        "door": 4,
+        "note": {
+         "ja": "14番線・2F 東南改札・南改札方面の上り階段・エレベーター（埼京線・湘南新宿ライン・都営新宿線・大江戸線 新宿駅へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-yamanote-chuoslowhome-info/"
+       },
+       {
+        "to": "tokyo.shonan_shinjuku",
+        "car": 11,
+        "door": 4,
+        "note": {
+         "ja": "14番線・2F 東南改札・南改札方面の上り階段・エレベーター（埼京線・湘南新宿ライン・都営新宿線・大江戸線 新宿駅へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-yamanote-chuoslowhome-info/"
+       },
+       {
+        "to": "tokyo.toei_shinjuku",
+        "car": 11,
+        "door": 4,
+        "note": {
+         "ja": "14番線・2F 東南改札・南改札方面の上り階段・エレベーター（埼京線・湘南新宿ライン・都営新宿線・大江戸線 新宿駅へはこちらが便利）"
         },
         "source": "https://wadattsu261.com/content/shinjuku-yamanote-chuoslowhome-info/"
        },
@@ -902,10 +934,10 @@
        },
        {
         "to": "tokyo.toei_oedo",
-        "car": 3,
-        "door": 1,
+        "car": 11,
+        "door": 4,
         "note": {
-         "ja": "15番線・B1 東改札・西改札方面の下り階段"
+         "ja": "15番線・2F 東南改札・南改札方面の上り階段（埼京線・都営新宿線・大江戸線 新宿駅へはこちらが便利）"
         },
         "source": "https://wadattsu261.com/content/shinjuku-yamanote-chuoslowhome-info/"
        },
@@ -1791,7 +1823,344 @@
   },
   "tokyo.ginza": {
    "cars": 6,
+   "doorsPerCar": 3,
    "directions": {
+    "forward": {
+     "frontCar": 6,
+     "door1AtFront": false,
+     "stations": {
+      "tokyo.omotesando": [
+       {
+        "to": "tokyo.chiyoda",
+        "car": 1,
+        "note": {
+         "ja": "5番線・B2F 改札階への下り階段（1号車前寄り。千代田線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/omotesando-metroginza-hanzomonhome-info/"
+       }
+      ],
+      "tokyo.akasaka_mitsuke": [
+       {
+        "to": "exit:山王下方面改札",
+        "car": 5,
+        "door": 3,
+        "note": {
+         "ja": "3番線・B3F 山王下方面改札への下り階段"
+        },
+        "source": "https://wadattsu261.com/content/akasakamitsuke-metroginza-marunouchihome-info/"
+       },
+       {
+        "to": "exit:赤坂見附方面改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "3番線・降りて進行方向反対側へ。B1F 赤坂見附方面改札への上り階段・上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/akasakamitsuke-metroginza-marunouchihome-info/"
+       }
+      ],
+      "tokyo.ginza": [
+       {
+        "to": "tokyo.marunouchi",
+        "car": 3,
+        "door": 1,
+        "note": {
+         "ja": "2番線・B1F 銀座四丁目交差点改札への上り階段（丸ノ内線・日比谷線へ）"
+        },
+        "source": "https://wadattsu261.com/content/ginza-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.hibiya",
+        "car": 4,
+        "door": 1,
+        "note": {
+         "ja": "2番線・B1F 銀座四丁目交差点改札への上り階段（日比谷線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ginza-metroginzahome-info/"
+       },
+       {
+        "to": "exit:銀座四丁目交差点改札",
+        "car": 3,
+        "door": 1,
+        "note": {
+         "ja": "2番線・B1F 銀座四丁目交差点改札への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/ginza-metroginzahome-info/"
+       },
+       {
+        "to": "exit:松屋方面改札",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F 松屋方面改札への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/ginza-metroginzahome-info/"
+       }
+      ],
+      "tokyo.nihombashi": [
+       {
+        "to": "tokyo.tozai",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F 日本橋交差点方面改札への上り階段（東西線へ）"
+        },
+        "source": "https://wadattsu261.com/content/nihonbashi-metroginzahome-info/"
+       },
+       {
+        "to": "exit:日本橋交差点方面改札",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F 日本橋交差点方面改札への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/nihonbashi-metroginzahome-info/"
+       },
+       {
+        "to": "exit:高島屋方面改札",
+        "car": 1,
+        "door": 2,
+        "note": {
+         "ja": "2番線・B1F 高島屋方面改札への上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/nihonbashi-metroginzahome-info/"
+       }
+      ],
+      "tokyo.kanda": [
+       {
+        "to": "tokyo.yamanote",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "2番線・B2F 内神田方面改札（JR線へはこちらから）"
+        },
+        "source": "https://wadattsu261.com/content/kanda-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.keihin_tohoku",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "2番線・B2F 内神田方面改札（JR線へはこちらから）"
+        },
+        "source": "https://wadattsu261.com/content/kanda-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.chuo_rapid",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "2番線・B2F 内神田方面改札（JR線へはこちらから）"
+        },
+        "source": "https://wadattsu261.com/content/kanda-metroginzahome-info/"
+       },
+       {
+        "to": "exit:内神田方面改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "2番線・B2F 内神田方面改札"
+        },
+        "source": "https://wadattsu261.com/content/kanda-metroginzahome-info/"
+       },
+       {
+        "to": "exit:須田町方面改札",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F 須田町方面改札への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/kanda-metroginzahome-info/"
+       }
+      ],
+      "tokyo.ueno": [
+       {
+        "to": "tokyo.yamanote",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F JR上野駅方面改札への上り階段（日比谷線・JR各線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.keihin_tohoku",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F JR上野駅方面改札への上り階段（日比谷線・JR各線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.utsunomiya",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F JR上野駅方面改札への上り階段（日比谷線・JR各線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.takasaki",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F JR上野駅方面改札への上り階段（日比谷線・JR各線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.joban_rapid",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F JR上野駅方面改札への上り階段（日比谷線・JR各線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.hibiya",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F JR上野駅方面改札への上り階段（日比谷線・JR各線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-metroginzahome-info/"
+       },
+       {
+        "to": "exit:JR上野駅方面改札",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F JR上野駅方面改札への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/ueno-metroginzahome-info/"
+       },
+       {
+        "to": "exit:上野公園方面改札",
+        "car": 3,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F 上野公園方面改札への上り階段（京成上野駅方面）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-metroginzahome-info/"
+       }
+      ],
+      "tokyo.shimbashi": [
+       {
+        "to": "tokyo.yamanote",
+        "car": 2,
+        "door": 1,
+        "note": {
+         "ja": "2番線・B1F 新橋交差点・JR新橋駅方面改札への上り階段（JR線・浅草線・ゆりかもめへはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinbashi-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.keihin_tohoku",
+        "car": 2,
+        "door": 1,
+        "note": {
+         "ja": "2番線・B1F 新橋交差点・JR新橋駅方面改札への上り階段（JR線・浅草線・ゆりかもめへはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinbashi-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.tokaido",
+        "car": 2,
+        "door": 1,
+        "note": {
+         "ja": "2番線・B1F 新橋交差点・JR新橋駅方面改札への上り階段（JR線・浅草線・ゆりかもめへはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinbashi-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.yokosuka_sobu",
+        "car": 2,
+        "door": 1,
+        "note": {
+         "ja": "2番線・B1F 新橋交差点・JR新橋駅方面改札への上り階段（JR線・浅草線・ゆりかもめへはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinbashi-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.joban_rapid",
+        "car": 2,
+        "door": 1,
+        "note": {
+         "ja": "2番線・B1F 新橋交差点・JR新橋駅方面改札への上り階段（JR線・浅草線・ゆりかもめへはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinbashi-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.toei_asakusa",
+        "car": 2,
+        "door": 1,
+        "note": {
+         "ja": "2番線・B1F 新橋交差点・JR新橋駅方面改札への上り階段（JR線・浅草線・ゆりかもめへはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinbashi-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.yurikamome",
+        "car": 2,
+        "door": 1,
+        "note": {
+         "ja": "2番線・B1F 新橋交差点・JR新橋駅方面改札への上り階段（JR線・浅草線・ゆりかもめへはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinbashi-metroginzahome-info/"
+       },
+       {
+        "to": "exit:新橋交差点・JR新橋駅方面改札",
+        "car": 2,
+        "door": 1,
+        "note": {
+         "ja": "2番線・B1F 新橋交差点・JR新橋駅方面改札への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/shinbashi-metroginzahome-info/"
+       }
+      ],
+      "tokyo.asakusa": [
+       {
+        "to": "tokyo.tobu_skytree",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "B1F 松屋・隅田公園方面改札（東武線へはこちらから）。降りて進行方向側の端部の階段"
+        },
+        "source": "https://wadattsu261.com/content/asakusa-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.toei_asakusa",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "1番線到着時・B3F 駒形橋方面改札（浅草線へ）。降りて進行方向反対側の通路奥の下り階段"
+        },
+        "source": "https://wadattsu261.com/content/asakusa-metroginzahome-info/"
+       },
+       {
+        "to": "exit:雷門方面改札",
+        "car": 5,
+        "door": 1,
+        "note": {
+         "ja": "B2F 雷門方面改札（2番線ホーム上）方面"
+        },
+        "source": "https://wadattsu261.com/content/asakusa-metroginzahome-info/"
+       },
+       {
+        "to": "exit:松屋・隅田公園方面改札",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "B1F 松屋・隅田公園方面改札。進行方向側の端部の階段"
+        },
+        "source": "https://wadattsu261.com/content/asakusa-metroginzahome-info/"
+       }
+      ]
+     }
+    },
     "reverse": {
      "frontCar": 1,
      "door1AtFront": true,
@@ -1850,6 +2219,2616 @@
          "ja": "1・2番線・1F 明治通り方面改札直結の下りエスカレーター"
         },
         "source": "https://wadattsu261.com/content/shibuya-metroginzahome-info/"
+       }
+      ],
+      "tokyo.ueno": [
+       {
+        "to": "tokyo.yamanote",
+        "car": 6,
+        "door": 2,
+        "note": {
+         "ja": "1番線・B1F JR上野駅方面改札への上り階段（日比谷線・JR各線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.keihin_tohoku",
+        "car": 6,
+        "door": 2,
+        "note": {
+         "ja": "1番線・B1F JR上野駅方面改札への上り階段（日比谷線・JR各線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.utsunomiya",
+        "car": 6,
+        "door": 2,
+        "note": {
+         "ja": "1番線・B1F JR上野駅方面改札への上り階段（日比谷線・JR各線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.takasaki",
+        "car": 6,
+        "door": 2,
+        "note": {
+         "ja": "1番線・B1F JR上野駅方面改札への上り階段（日比谷線・JR各線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.joban_rapid",
+        "car": 6,
+        "door": 2,
+        "note": {
+         "ja": "1番線・B1F JR上野駅方面改札への上り階段（日比谷線・JR各線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.hibiya",
+        "car": 6,
+        "door": 2,
+        "note": {
+         "ja": "1番線・B1F JR上野駅方面改札への上り階段（日比谷線・JR各線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-metroginzahome-info/"
+       },
+       {
+        "to": "exit:JR上野駅方面改札",
+        "car": 6,
+        "door": 2,
+        "note": {
+         "ja": "1番線・B1F JR上野駅方面改札への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/ueno-metroginzahome-info/"
+       },
+       {
+        "to": "exit:上野公園方面改札",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "1番線・B1F 上野公園方面改札への上り階段（京成上野駅方面）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-metroginzahome-info/"
+       }
+      ],
+      "tokyo.kanda": [
+       {
+        "to": "tokyo.yamanote",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "1番線・B2F 内神田方面改札（JR線へはこちらから）"
+        },
+        "source": "https://wadattsu261.com/content/kanda-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.keihin_tohoku",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "1番線・B2F 内神田方面改札（JR線へはこちらから）"
+        },
+        "source": "https://wadattsu261.com/content/kanda-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.chuo_rapid",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "1番線・B2F 内神田方面改札（JR線へはこちらから）"
+        },
+        "source": "https://wadattsu261.com/content/kanda-metroginzahome-info/"
+       },
+       {
+        "to": "exit:内神田方面改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "1番線・B2F 内神田方面改札"
+        },
+        "source": "https://wadattsu261.com/content/kanda-metroginzahome-info/"
+       },
+       {
+        "to": "exit:須田町方面改札",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "1番線・B1F 須田町方面改札への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/kanda-metroginzahome-info/"
+       }
+      ],
+      "tokyo.nihombashi": [
+       {
+        "to": "tokyo.tozai",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "1番線・降りて通路を直進。東西線方面の下り階段・改札方面の上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/nihonbashi-metroginzahome-info/"
+       },
+       {
+        "to": "exit:日本橋交差点方面改札",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "1番線・B1F 日本橋交差点方面改札への上りエスカレーター・エレベーター"
+        },
+        "source": "https://wadattsu261.com/content/nihonbashi-metroginzahome-info/"
+       },
+       {
+        "to": "exit:高島屋方面改札",
+        "car": 1,
+        "door": 2,
+        "note": {
+         "ja": "1番線・B1F 高島屋方面改札への上り階段・上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/nihonbashi-metroginzahome-info/"
+       }
+      ],
+      "tokyo.ginza": [
+       {
+        "to": "tokyo.marunouchi",
+        "car": 3,
+        "door": 1,
+        "note": {
+         "ja": "1番線・B1F 銀座四丁目交差点改札への上り階段（丸ノ内線・日比谷線へ）"
+        },
+        "source": "https://wadattsu261.com/content/ginza-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.hibiya",
+        "car": 4,
+        "door": 1,
+        "note": {
+         "ja": "1番線・B1F 銀座四丁目交差点改札への上り階段（日比谷線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ginza-metroginzahome-info/"
+       },
+       {
+        "to": "exit:銀座四丁目交差点改札",
+        "car": 3,
+        "door": 1,
+        "note": {
+         "ja": "1番線・B1F 銀座四丁目交差点改札への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/ginza-metroginzahome-info/"
+       },
+       {
+        "to": "exit:松屋方面改札",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "1番線・B1F 松屋方面改札への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/ginza-metroginzahome-info/"
+       }
+      ],
+      "tokyo.shimbashi": [
+       {
+        "to": "tokyo.yamanote",
+        "car": 3,
+        "door": 1,
+        "note": {
+         "ja": "1番線・B1F 新橋交差点・JR新橋駅方面改札への上り階段（JR線・浅草線・ゆりかもめへはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinbashi-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.keihin_tohoku",
+        "car": 3,
+        "door": 1,
+        "note": {
+         "ja": "1番線・B1F 新橋交差点・JR新橋駅方面改札への上り階段（JR線・浅草線・ゆりかもめへはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinbashi-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.tokaido",
+        "car": 3,
+        "door": 1,
+        "note": {
+         "ja": "1番線・B1F 新橋交差点・JR新橋駅方面改札への上り階段（JR線・浅草線・ゆりかもめへはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinbashi-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.yokosuka_sobu",
+        "car": 3,
+        "door": 1,
+        "note": {
+         "ja": "1番線・B1F 新橋交差点・JR新橋駅方面改札への上り階段（JR線・浅草線・ゆりかもめへはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinbashi-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.joban_rapid",
+        "car": 3,
+        "door": 1,
+        "note": {
+         "ja": "1番線・B1F 新橋交差点・JR新橋駅方面改札への上り階段（JR線・浅草線・ゆりかもめへはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinbashi-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.toei_asakusa",
+        "car": 3,
+        "door": 1,
+        "note": {
+         "ja": "1番線・B1F 新橋交差点・JR新橋駅方面改札への上り階段（JR線・浅草線・ゆりかもめへはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinbashi-metroginzahome-info/"
+       },
+       {
+        "to": "tokyo.yurikamome",
+        "car": 3,
+        "door": 1,
+        "note": {
+         "ja": "1番線・B1F 新橋交差点・JR新橋駅方面改札への上り階段（JR線・浅草線・ゆりかもめへはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinbashi-metroginzahome-info/"
+       },
+       {
+        "to": "exit:新橋交差点・JR新橋駅方面改札",
+        "car": 3,
+        "door": 1,
+        "note": {
+         "ja": "1番線・B1F 新橋交差点・JR新橋駅方面改札への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/shinbashi-metroginzahome-info/"
+       },
+       {
+        "to": "exit:西新橋方面改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "1番線・B1F 西新橋方面改札（1番線専用）への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/shinbashi-metroginzahome-info/"
+       }
+      ],
+      "tokyo.akasaka_mitsuke": [
+       {
+        "to": "exit:赤坂見附方面改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "1番線・同じB1Fの赤坂見附方面改札。降りて進行方向へ直進"
+        },
+        "source": "https://wadattsu261.com/content/akasakamitsuke-metroginza-marunouchihome-info/"
+       },
+       {
+        "to": "exit:山王下方面改札",
+        "car": 3,
+        "door": 3,
+        "note": {
+         "ja": "1番線・B3F 山王下方面改札への下り階段"
+        },
+        "source": "https://wadattsu261.com/content/akasakamitsuke-metroginza-marunouchihome-info/"
+       }
+      ],
+      "tokyo.omotesando": [
+       {
+        "to": "tokyo.chiyoda",
+        "car": 1,
+        "door": 3,
+        "note": {
+         "ja": "4番線・B2F 改札階への下り階段（千代田線のりばへはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/omotesando-metroginza-hanzomonhome-info/"
+       }
+      ]
+     }
+    }
+   }
+  },
+  "tokyo.marunouchi": {
+   "cars": 6,
+   "doorsPerCar": 3,
+   "directions": {
+    "forward": {
+     "frontCar": 6,
+     "door1AtFront": false,
+     "stations": {
+      "tokyo.shinjuku": [
+       {
+        "to": "tokyo.keio",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "2番線・B1F 西改札方面の上り階段（京王線・小田急線・都営新宿線方面）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.odakyu",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "2番線・B1F 西改札方面の上り階段（京王線・小田急線・都営新宿線方面）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.toei_shinjuku",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "2番線・B1F 西改札方面の上り階段（京王線・小田急線・都営新宿線方面）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:西改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "2番線・B1F 西改札方面の上り階段"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:東改札",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F 東改札方面の上り階段・上りエスカレーター（バスタ新宿方面）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-metromarunouchihome-info/"
+       }
+      ],
+      "tokyo.yotsuya": [
+       {
+        "to": "tokyo.chuo_rapid",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "2番線・降りて進行方向反対側へ。手前がJR四ツ谷駅方面改札（JR線へ）、奥の上り階段が赤坂方面改札・南北線方面"
+        },
+        "source": "https://wadattsu261.com/content/yotsuya-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.chuo_sobu",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "2番線・降りて進行方向反対側へ。手前がJR四ツ谷駅方面改札（JR線へ）、奥の上り階段が赤坂方面改札・南北線方面"
+        },
+        "source": "https://wadattsu261.com/content/yotsuya-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.namboku",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "2番線・降りて進行方向反対側へ。手前がJR四ツ谷駅方面改札（JR線へ）、奥の上り階段が赤坂方面改札・南北線方面"
+        },
+        "source": "https://wadattsu261.com/content/yotsuya-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:JR四ツ谷駅方面改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "2番線・ホーム上のJR四ツ谷駅方面改札"
+        },
+        "source": "https://wadattsu261.com/content/yotsuya-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:赤坂方面改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "2番線・降りて進行方向反対側の上り階段"
+        },
+        "source": "https://wadattsu261.com/content/yotsuya-metromarunouchihome-info/"
+       }
+      ],
+      "tokyo.akasaka_mitsuke": [
+       {
+        "to": "exit:赤坂見附方面改札",
+        "car": 3,
+        "door": 1,
+        "note": {
+         "ja": "4番線・B1F 赤坂見附方面改札への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/akasakamitsuke-metroginza-marunouchihome-info/"
+       },
+       {
+        "to": "exit:山王下方面改札",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "4番線・B3F 山王下方面改札への下り階段"
+        },
+        "source": "https://wadattsu261.com/content/akasakamitsuke-metroginza-marunouchihome-info/"
+       }
+      ],
+      "tokyo.kasumigaseki": [
+       {
+        "to": "tokyo.hibiya",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "2番線・降りて進行方向反対側の通路へ（日比谷線・千代田線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/kasumigaseki-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.chiyoda",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "2番線・降りて進行方向反対側の通路へ（日比谷線・千代田線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/kasumigaseki-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:桜田通り方面改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "2番線・通路手前の上り階段（桜田通り方面改札）"
+        },
+        "source": "https://wadattsu261.com/content/kasumigaseki-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:日比谷公園方面改札",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "2番線・進行方向側の突き当りの上り階段"
+        },
+        "source": "https://wadattsu261.com/content/kasumigaseki-metromarunouchihome-info/"
+       }
+      ],
+      "tokyo.ginza": [
+       {
+        "to": "tokyo.ginza",
+        "car": 2,
+        "door": 1,
+        "note": {
+         "ja": "4番線・B1F 数寄屋橋交差点改札への上り階段・上りエスカレーター（銀座線・日比谷線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ginza-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.hibiya",
+        "car": 2,
+        "door": 1,
+        "note": {
+         "ja": "4番線・B1F 数寄屋橋交差点改札への上り階段・上りエスカレーター（銀座線・日比谷線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ginza-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:数寄屋橋交差点改札",
+        "car": 2,
+        "door": 1,
+        "note": {
+         "ja": "4番線・B1F 数寄屋橋交差点改札への上り階段・上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/ginza-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:日比谷方面改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "4番線・霞ケ関方面の端部の上り階段・上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/ginza-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:有楽町方面改札",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "4番線・B1F 有楽町方面改札への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/ginza-metromarunouchihome-info/"
+       }
+      ],
+      "tokyo.tokyo": [
+       {
+        "to": "tokyo.yamanote",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F 中央改札への上り階段・上りエスカレーター（JR線へはこちらが便利。改札階で右側の改札へ）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.keihin_tohoku",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F 中央改札への上り階段・上りエスカレーター（JR線へはこちらが便利。改札階で右側の改札へ）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.chuo_rapid",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F 中央改札への上り階段・上りエスカレーター（JR線へはこちらが便利。改札階で右側の改札へ）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.tokaido",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F 中央改札への上り階段・上りエスカレーター（JR線へはこちらが便利。改札階で右側の改札へ）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.yokosuka_sobu",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F 中央改札への上り階段・上りエスカレーター（JR線へはこちらが便利。改札階で右側の改札へ）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.utsunomiya",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F 中央改札への上り階段・上りエスカレーター（JR線へはこちらが便利。改札階で右側の改札へ）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.takasaki",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F 中央改札への上り階段・上りエスカレーター（JR線へはこちらが便利。改札階で右側の改札へ）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.joban_rapid",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F 中央改札への上り階段・上りエスカレーター（JR線へはこちらが便利。改札階で右側の改札へ）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:中央改札",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F 中央改札への上り階段・上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:北改札",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "2番線・B1F 北改札への上り階段（高速バスのりば方面）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-metromarunouchihome-info/"
+       }
+      ],
+      "tokyo.otemachi": [
+       {
+        "to": "tokyo.hanzomon",
+        "car": 2,
+        "note": {
+         "ja": "2番線・2号車付近の通路からサンケイ前交差点方面へ。半蔵門線・千代田線・三田線方面の下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/otemachi-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.chiyoda",
+        "car": 2,
+        "note": {
+         "ja": "2番線・2号車付近の通路からサンケイ前交差点方面へ。半蔵門線・千代田線・三田線方面の下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/otemachi-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.toei_mita",
+        "car": 2,
+        "note": {
+         "ja": "2番線・2号車付近の通路からサンケイ前交差点方面へ。半蔵門線・千代田線・三田線方面の下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/otemachi-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.tozai",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "2番線・大手町二丁目方面改札への上り階段・上りエスカレーター（東西線はのりかえ専用改札経由）"
+        },
+        "source": "https://wadattsu261.com/content/otemachi-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:大手町二丁目方面改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "2番線・上り階段・上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/otemachi-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:鎌倉橋方面改札",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "2番線・上り階段"
+        },
+        "source": "https://wadattsu261.com/content/otemachi-metromarunouchihome-info/"
+       }
+      ],
+      "tokyo.ikebukuro": [
+       {
+        "to": "tokyo.yamanote",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "B1F 中央通路西改札への上り階段（JR線・東武東上線へはこちらから）"
+        },
+        "source": "https://wadattsu261.com/content/ikebukuro-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.saikyo",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "B1F 中央通路西改札への上り階段（JR線・東武東上線へはこちらから）"
+        },
+        "source": "https://wadattsu261.com/content/ikebukuro-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.shonan_shinjuku",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "B1F 中央通路西改札への上り階段（JR線・東武東上線へはこちらから）"
+        },
+        "source": "https://wadattsu261.com/content/ikebukuro-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.tobu_tojo",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "B1F 中央通路西改札への上り階段（JR線・東武東上線へはこちらから）"
+        },
+        "source": "https://wadattsu261.com/content/ikebukuro-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.fukutoshin",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "降りて中央通路西改札方面階段の左どなりの通路へ（副都心線のりかえ方面）"
+        },
+        "source": "https://wadattsu261.com/content/ikebukuro-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.yurakucho",
+        "car": 4,
+        "door": 2,
+        "note": {
+         "ja": "B1F 中央通路中央改札への上り階段（有楽町線・西武線へはこちらから）"
+        },
+        "source": "https://wadattsu261.com/content/ikebukuro-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.seibu_ikebukuro",
+        "car": 4,
+        "door": 2,
+        "note": {
+         "ja": "B1F 中央通路中央改札への上り階段（有楽町線・西武線へはこちらから）"
+        },
+        "source": "https://wadattsu261.com/content/ikebukuro-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:中央通路西改札",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "B1F 中央通路西改札への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/ikebukuro-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:中央通路中央改札",
+        "car": 4,
+        "door": 2,
+        "note": {
+         "ja": "B1F 中央通路中央改札への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/ikebukuro-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:中央通路東改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "B1F 中央通路東改札への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/ikebukuro-metromarunouchihome-info/"
+       }
+      ]
+     }
+    },
+    "reverse": {
+     "frontCar": 1,
+     "door1AtFront": true,
+     "stations": {
+      "tokyo.otemachi": [
+       {
+        "to": "tokyo.hanzomon",
+        "car": 2,
+        "door": 1,
+        "note": {
+         "ja": "1番線・下り階段・下りエスカレーター（半蔵門線・千代田線・三田線方面）"
+        },
+        "source": "https://wadattsu261.com/content/otemachi-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.chiyoda",
+        "car": 2,
+        "door": 1,
+        "note": {
+         "ja": "1番線・下り階段・下りエスカレーター（半蔵門線・千代田線・三田線方面）"
+        },
+        "source": "https://wadattsu261.com/content/otemachi-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.toei_mita",
+        "car": 2,
+        "door": 1,
+        "note": {
+         "ja": "1番線・下り階段・下りエスカレーター（半蔵門線・千代田線・三田線方面）"
+        },
+        "source": "https://wadattsu261.com/content/otemachi-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.tozai",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "1番線・大手町二丁目方面改札への上り階段・上りエスカレーター（東西線はのりかえ専用改札経由）"
+        },
+        "source": "https://wadattsu261.com/content/otemachi-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:大手町二丁目方面改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "1番線・上り階段・上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/otemachi-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:鎌倉橋方面改札",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "1番線・上り階段"
+        },
+        "source": "https://wadattsu261.com/content/otemachi-metromarunouchihome-info/"
+       }
+      ],
+      "tokyo.tokyo": [
+       {
+        "to": "tokyo.yamanote",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "1番線・B1F 中央改札への上り階段・上りエスカレーター（JR線へはこちらが便利。改札階で右側の改札へ）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.keihin_tohoku",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "1番線・B1F 中央改札への上り階段・上りエスカレーター（JR線へはこちらが便利。改札階で右側の改札へ）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.chuo_rapid",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "1番線・B1F 中央改札への上り階段・上りエスカレーター（JR線へはこちらが便利。改札階で右側の改札へ）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.tokaido",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "1番線・B1F 中央改札への上り階段・上りエスカレーター（JR線へはこちらが便利。改札階で右側の改札へ）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.yokosuka_sobu",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "1番線・B1F 中央改札への上り階段・上りエスカレーター（JR線へはこちらが便利。改札階で右側の改札へ）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.utsunomiya",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "1番線・B1F 中央改札への上り階段・上りエスカレーター（JR線へはこちらが便利。改札階で右側の改札へ）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.takasaki",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "1番線・B1F 中央改札への上り階段・上りエスカレーター（JR線へはこちらが便利。改札階で右側の改札へ）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.joban_rapid",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "1番線・B1F 中央改札への上り階段・上りエスカレーター（JR線へはこちらが便利。改札階で右側の改札へ）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:中央改札",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "1番線・B1F 中央改札への上り階段・上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:北改札",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "1番線・B1F 北改札への上り階段（高速バスのりば方面）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-metromarunouchihome-info/"
+       }
+      ],
+      "tokyo.ginza": [
+       {
+        "to": "tokyo.ginza",
+        "car": 2,
+        "door": 1,
+        "note": {
+         "ja": "3番線・B1F 数寄屋橋交差点改札への上り階段・上りエスカレーター（銀座線・日比谷線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ginza-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.hibiya",
+        "car": 2,
+        "door": 1,
+        "note": {
+         "ja": "3番線・B1F 数寄屋橋交差点改札への上り階段・上りエスカレーター（銀座線・日比谷線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ginza-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:数寄屋橋交差点改札",
+        "car": 2,
+        "door": 1,
+        "note": {
+         "ja": "3番線・B1F 数寄屋橋交差点改札への上り階段・上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/ginza-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:日比谷方面改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "3番線・霞ケ関方面の端部の上り階段・上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/ginza-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:有楽町方面改札",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "3番線・B1F 有楽町方面改札への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/ginza-metromarunouchihome-info/"
+       }
+      ],
+      "tokyo.kasumigaseki": [
+       {
+        "to": "tokyo.hibiya",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "1番線・上り階段（日比谷線・千代田線へ乗り換えはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/kasumigaseki-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.chiyoda",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "1番線・上り階段（日比谷線・千代田線へ乗り換えはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/kasumigaseki-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:桜田通り方面改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "1番線・上り階段"
+        },
+        "source": "https://wadattsu261.com/content/kasumigaseki-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:日比谷公園方面改札",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "1番線・進行方向反対側の突き当りの上り階段・上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/kasumigaseki-metromarunouchihome-info/"
+       }
+      ],
+      "tokyo.akasaka_mitsuke": [
+       {
+        "to": "exit:赤坂見附方面改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "2番線・同じB1Fの赤坂見附方面改札。降りて進行方向へ直進"
+        },
+        "source": "https://wadattsu261.com/content/akasakamitsuke-metroginza-marunouchihome-info/"
+       },
+       {
+        "to": "exit:山王下方面改札",
+        "car": 5,
+        "door": 1,
+        "note": {
+         "ja": "2番線・B3F 山王下方面改札への下り階段"
+        },
+        "source": "https://wadattsu261.com/content/akasakamitsuke-metroginza-marunouchihome-info/"
+       }
+      ],
+      "tokyo.yotsuya": [
+       {
+        "to": "tokyo.chuo_rapid",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "1番線・降りて進行方向へ。エスカレーター・階段（JR線へは2番線ホーム上のJR四ツ谷駅方面改札、南北線へは1番線側奥の下りエスカレーター）"
+        },
+        "source": "https://wadattsu261.com/content/yotsuya-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.chuo_sobu",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "1番線・降りて進行方向へ。エスカレーター・階段（JR線へは2番線ホーム上のJR四ツ谷駅方面改札、南北線へは1番線側奥の下りエスカレーター）"
+        },
+        "source": "https://wadattsu261.com/content/yotsuya-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.namboku",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "1番線・降りて進行方向へ。エスカレーター・階段（JR線へは2番線ホーム上のJR四ツ谷駅方面改札、南北線へは1番線側奥の下りエスカレーター）"
+        },
+        "source": "https://wadattsu261.com/content/yotsuya-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:赤坂方面改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "1番線・降りて進行方向へ。エスカレーター・階段・エレベーター"
+        },
+        "source": "https://wadattsu261.com/content/yotsuya-metromarunouchihome-info/"
+       }
+      ],
+      "tokyo.shinjuku": [
+       {
+        "to": "tokyo.keio",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "1番線・B1F 西改札方面の上り階段（京王線・小田急線・都営新宿線方面）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.odakyu",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "1番線・B1F 西改札方面の上り階段（京王線・小田急線・都営新宿線方面）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-metromarunouchihome-info/"
+       },
+       {
+        "to": "tokyo.toei_shinjuku",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "1番線・B1F 西改札方面の上り階段（京王線・小田急線・都営新宿線方面）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:西改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "1番線・B1F 西改札方面の上り階段"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-metromarunouchihome-info/"
+       },
+       {
+        "to": "exit:東改札",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "1番線・B1F 東改札方面の上り階段・上りエスカレーター（バスタ新宿方面）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-metromarunouchihome-info/"
+       }
+      ]
+     }
+    }
+   }
+  },
+  "tokyo.chuo_rapid": {
+   "cars": 12,
+   "directions": {
+    "forward": {
+     "frontCar": 12,
+     "door1AtFront": false,
+     "stations": {
+      "tokyo.kanda": [
+       {
+        "to": "tokyo.ginza",
+        "car": 8,
+        "door": 3,
+        "note": {
+         "ja": "6番線・1F 東口・北口方面の下りエスカレーター（出口方面・銀座線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/kanda-yamanote-keihin-chuorapidhome-info/"
+       },
+       {
+        "to": "exit:北改札",
+        "car": 8,
+        "door": 3,
+        "note": {
+         "ja": "6番線・1F 東口・北口方面の下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/kanda-yamanote-keihin-chuorapidhome-info/"
+       },
+       {
+        "to": "exit:南改札",
+        "car": 3,
+        "door": 2,
+        "note": {
+         "ja": "6番線・1F 西口・南口方面の下り階段"
+        },
+        "source": "https://wadattsu261.com/content/kanda-yamanote-keihin-chuorapidhome-info/"
+       }
+      ],
+      "tokyo.ochanomizu": [
+       {
+        "to": "tokyo.marunouchi",
+        "car": 11,
+        "door": 2,
+        "note": {
+         "ja": "1番線・1F お茶の水橋口改札方面の上り階段（丸ノ内線乗り換えなど）"
+        },
+        "source": "https://wadattsu261.com/content/ochanomizu-chuorapid-chuoslowhome-info/"
+       },
+       {
+        "to": "exit:御茶ノ水橋口改札",
+        "car": 11,
+        "door": 2,
+        "note": {
+         "ja": "1番線・1F お茶の水橋口改札方面の上り階段"
+        },
+        "source": "https://wadattsu261.com/content/ochanomizu-chuorapid-chuoslowhome-info/"
+       },
+       {
+        "to": "exit:聖橋口改札",
+        "car": 6,
+        "door": 3,
+        "note": {
+         "ja": "1番線・1F 聖橋口改札方面の上り階段（千代田線：新御茶ノ水駅方面）"
+        },
+        "source": "https://wadattsu261.com/content/ochanomizu-chuorapid-chuoslowhome-info/"
+       }
+      ],
+      "tokyo.yotsuya": [
+       {
+        "to": "tokyo.marunouchi",
+        "car": 12,
+        "door": 4,
+        "note": {
+         "ja": "2番線・1F 赤坂口方面（丸ノ内線・南北線へ）。降りて進行方向側の端部の上り階段"
+        },
+        "source": "https://wadattsu261.com/content/yotsuya-chuorapid-chuoslowhome-info/"
+       },
+       {
+        "to": "tokyo.namboku",
+        "car": 6,
+        "door": 2,
+        "note": {
+         "ja": "2番線・1F 四ツ谷口・麹町口方面の上り階段（南北線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/yotsuya-chuorapid-chuoslowhome-info/"
+       },
+       {
+        "to": "exit:赤坂口",
+        "car": 12,
+        "door": 4,
+        "note": {
+         "ja": "2番線・進行方向側の端部の上り階段"
+        },
+        "source": "https://wadattsu261.com/content/yotsuya-chuorapid-chuoslowhome-info/"
+       },
+       {
+        "to": "exit:四ツ谷口",
+        "car": 9,
+        "door": 3,
+        "note": {
+         "ja": "2番線・1F 四ツ谷口・麹町口方面の上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/yotsuya-chuorapid-chuoslowhome-info/"
+       }
+      ],
+      "tokyo.shinjuku": [
+       {
+        "to": "tokyo.marunouchi",
+        "car": 11,
+        "door": 2,
+        "note": {
+         "ja": "11・12番線・B1F 東改札・西改札方面の下り階段（丸ノ内線は東・西改札どちらからでも）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "tokyo.keio",
+        "car": 10,
+        "door": 4,
+        "note": {
+         "ja": "11・12番線・B1F 中央東・中央西改札方面の下り階段（改札・京王線・小田急線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "tokyo.odakyu",
+        "car": 7,
+        "door": 1,
+        "note": {
+         "ja": "11・12番線・2F 東南改札・南改札・小田急線のりかえ口方面の上りエスカレーター（山手線・小田急線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "tokyo.yamanote",
+        "car": 7,
+        "door": 1,
+        "note": {
+         "ja": "11・12番線・2F 東南改札・南改札方面の上りエスカレーター（山手線・小田急線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "tokyo.saikyo",
+        "car": 5,
+        "door": 1,
+        "note": {
+         "ja": "11・12番線・2F 東南改札・南改札方面の上り階段（グリーン車のドア付近。埼京線・湘南新宿ライン・都営新宿線・大江戸線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "tokyo.shonan_shinjuku",
+        "car": 5,
+        "door": 1,
+        "note": {
+         "ja": "11・12番線・2F 東南改札・南改札方面の上り階段（グリーン車のドア付近。埼京線・湘南新宿ライン・都営新宿線・大江戸線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "tokyo.toei_shinjuku",
+        "car": 5,
+        "door": 1,
+        "note": {
+         "ja": "11・12番線・2F 東南改札・南改札方面の上り階段（グリーン車のドア付近。埼京線・湘南新宿ライン・都営新宿線・大江戸線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "tokyo.toei_oedo",
+        "car": 5,
+        "door": 1,
+        "note": {
+         "ja": "11・12番線・2F 東南改札・南改札方面の上り階段（グリーン車のドア付近。埼京線・湘南新宿ライン・都営新宿線・大江戸線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "exit:東改札",
+        "car": 11,
+        "door": 2,
+        "note": {
+         "ja": "11・12番線・B1F 東改札・西改札方面の下り階段"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "exit:中央東改札",
+        "car": 10,
+        "door": 4,
+        "note": {
+         "ja": "11・12番線・B1F 中央東・中央西改札方面の下り階段"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "exit:南改札",
+        "car": 7,
+        "door": 1,
+        "note": {
+         "ja": "11・12番線・2F 東南改札・南改札方面の上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "exit:甲州街道改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "11・12番線・降りて進行方向反対側（代々木方面）突き当りの上りエスカレーター（甲州街道・新南・ミライナタワー改札）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       }
+      ],
+      "tokyo.nakano": [
+       {
+        "to": "tokyo.tozai",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "6番線・降りて進行方向反対側の突き当り。中央・総武線・東西線への乗り換え専用の連絡階段"
+        },
+        "source": "https://wadattsu261.com/content/nakano-jrchuorapid-chuoslow-metrotozaihome-info/"
+       },
+       {
+        "to": "tokyo.chuo_sobu",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "6番線・降りて進行方向反対側の突き当り。中央・総武線・東西線への乗り換え専用の連絡階段"
+        },
+        "source": "https://wadattsu261.com/content/nakano-jrchuorapid-chuoslow-metrotozaihome-info/"
+       },
+       {
+        "to": "exit:北口・南口",
+        "car": 3,
+        "door": 4,
+        "note": {
+         "ja": "6番線・1F 改札口（北口・南口）方面の下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/nakano-jrchuorapid-chuoslow-metrotozaihome-info/"
+       }
+      ]
+     }
+    },
+    "reverse": {
+     "frontCar": 1,
+     "door1AtFront": true,
+     "stations": {
+      "tokyo.nakano": [
+       {
+        "to": "tokyo.tozai",
+        "car": 3,
+        "door": 4,
+        "note": {
+         "ja": "7・8番線・1F 改札方面の下りエスカレーター（改札・中央・総武線・東西線への乗り換えはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/nakano-jrchuorapid-chuoslow-metrotozaihome-info/"
+       },
+       {
+        "to": "tokyo.chuo_sobu",
+        "car": 3,
+        "door": 4,
+        "note": {
+         "ja": "7・8番線・1F 改札方面の下りエスカレーター（改札・中央・総武線・東西線への乗り換えはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/nakano-jrchuorapid-chuoslow-metrotozaihome-info/"
+       },
+       {
+        "to": "exit:北口・南口",
+        "car": 3,
+        "door": 4,
+        "note": {
+         "ja": "7・8番線・1F 改札口（北口・南口）方面の下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/nakano-jrchuorapid-chuoslow-metrotozaihome-info/"
+       }
+      ],
+      "tokyo.shinjuku": [
+       {
+        "to": "tokyo.yamanote",
+        "car": 6,
+        "door": 4,
+        "note": {
+         "ja": "7・8番線・2F 東南改札・南改札方面の上り階段・上りエスカレーター（山手線・小田急線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "tokyo.odakyu",
+        "car": 6,
+        "door": 4,
+        "note": {
+         "ja": "7・8番線・2F 東南改札・南改札・小田急線のりかえ口方面の上り階段・上りエスカレーター（山手線・小田急線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "tokyo.keio",
+        "car": 7,
+        "door": 3,
+        "note": {
+         "ja": "7・8番線・B1F 中央東・中央西改札方面の下りエスカレーター（改札・京王線・小田急線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "tokyo.marunouchi",
+        "car": 11,
+        "door": 1,
+        "note": {
+         "ja": "7・8番線・B1F 東改札・西改札方面の下りエスカレーター（8番線到着時は11号車2番ドア）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "tokyo.saikyo",
+        "car": 5,
+        "door": 1,
+        "note": {
+         "ja": "7・8番線・2F 東南改札・南改札方面の上りエスカレーター（グリーン車のドア付近。埼京線・湘南新宿ライン・都営新宿線・大江戸線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "tokyo.shonan_shinjuku",
+        "car": 5,
+        "door": 1,
+        "note": {
+         "ja": "7・8番線・2F 東南改札・南改札方面の上りエスカレーター（グリーン車のドア付近。埼京線・湘南新宿ライン・都営新宿線・大江戸線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "tokyo.toei_shinjuku",
+        "car": 5,
+        "door": 1,
+        "note": {
+         "ja": "7・8番線・2F 東南改札・南改札方面の上りエスカレーター（グリーン車のドア付近。埼京線・湘南新宿ライン・都営新宿線・大江戸線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "tokyo.toei_oedo",
+        "car": 5,
+        "door": 1,
+        "note": {
+         "ja": "7・8番線・2F 東南改札・南改札方面の上りエスカレーター（グリーン車のドア付近。埼京線・湘南新宿ライン・都営新宿線・大江戸線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "exit:東改札",
+        "car": 11,
+        "door": 1,
+        "note": {
+         "ja": "7・8番線・B1F 東改札・西改札方面の下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "exit:中央東改札",
+        "car": 7,
+        "door": 3,
+        "note": {
+         "ja": "7・8番線・B1F 中央東・中央西改札方面の下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "exit:南改札",
+        "car": 6,
+        "door": 4,
+        "note": {
+         "ja": "7・8番線・2F 東南改札・南改札方面の上り階段・上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       },
+       {
+        "to": "exit:甲州街道改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "7・8番線・降りて進行方向側（代々木方面）端部まで1分程度。甲州街道・新南・ミライナタワー改札への上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/shinjuku-chuohome-info/"
+       }
+      ],
+      "tokyo.yotsuya": [
+       {
+        "to": "tokyo.marunouchi",
+        "car": 12,
+        "door": 4,
+        "note": {
+         "ja": "1番線・1F 赤坂口方面（丸ノ内線・南北線へ）。降りて進行方向反対側の端部の上り階段"
+        },
+        "source": "https://wadattsu261.com/content/yotsuya-chuorapid-chuoslowhome-info/"
+       },
+       {
+        "to": "tokyo.namboku",
+        "car": 7,
+        "door": 1,
+        "note": {
+         "ja": "1番線・1F 四ツ谷口・麹町口方面の上り階段（南北線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/yotsuya-chuorapid-chuoslowhome-info/"
+       },
+       {
+        "to": "exit:赤坂口",
+        "car": 12,
+        "door": 4,
+        "note": {
+         "ja": "1番線・進行方向反対側の端部の上り階段"
+        },
+        "source": "https://wadattsu261.com/content/yotsuya-chuorapid-chuoslowhome-info/"
+       },
+       {
+        "to": "exit:四ツ谷口",
+        "car": 10,
+        "door": 2,
+        "note": {
+         "ja": "1番線・1F 四ツ谷口・麹町口方面の上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/yotsuya-chuorapid-chuoslowhome-info/"
+       }
+      ],
+      "tokyo.ochanomizu": [
+       {
+        "to": "tokyo.marunouchi",
+        "car": 10,
+        "door": 4,
+        "note": {
+         "ja": "4番線・1F お茶の水橋口改札方面の上り階段（丸ノ内線へ）"
+        },
+        "source": "https://wadattsu261.com/content/ochanomizu-chuorapid-chuoslowhome-info/"
+       },
+       {
+        "to": "exit:御茶ノ水橋口改札",
+        "car": 10,
+        "door": 4,
+        "note": {
+         "ja": "4番線・1F お茶の水橋口改札方面の上り階段"
+        },
+        "source": "https://wadattsu261.com/content/ochanomizu-chuorapid-chuoslowhome-info/"
+       },
+       {
+        "to": "exit:聖橋口改札",
+        "car": 7,
+        "door": 2,
+        "note": {
+         "ja": "4番線・1F 聖橋口改札方面の上りエスカレーター（千代田線：新御茶ノ水駅方面）"
+        },
+        "source": "https://wadattsu261.com/content/ochanomizu-chuorapid-chuoslowhome-info/"
+       }
+      ],
+      "tokyo.kanda": [
+       {
+        "to": "tokyo.ginza",
+        "car": 7,
+        "door": 4,
+        "note": {
+         "ja": "5番線・1F 東口・北口方面の下りエスカレーター（出口方面・銀座線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/kanda-yamanote-keihin-chuorapidhome-info/"
+       },
+       {
+        "to": "exit:北改札",
+        "car": 7,
+        "door": 4,
+        "note": {
+         "ja": "5番線・1F 東口・北口方面の下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/kanda-yamanote-keihin-chuorapidhome-info/"
+       },
+       {
+        "to": "exit:南改札",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "5番線・1F 西口・南口方面の下り階段"
+        },
+        "source": "https://wadattsu261.com/content/kanda-yamanote-keihin-chuorapidhome-info/"
+       }
+      ],
+      "tokyo.tokyo": [
+       {
+        "to": "tokyo.keiyo",
+        "car": 3,
+        "door": 3,
+        "note": {
+         "ja": "1・2番線・1F 八重洲南口・丸の内南口方面の下りエスカレーター（東海道新幹線・京葉線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-chuorapidhome-no1-2-info/"
+       },
+       {
+        "to": "exit:南口",
+        "car": 3,
+        "door": 3,
+        "note": {
+         "ja": "1・2番線・1F 八重洲南口・丸の内南口方面の下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-chuorapidhome-no1-2-info/"
+       },
+       {
+        "to": "exit:北口",
+        "car": 9,
+        "door": 1,
+        "note": {
+         "ja": "1・2番線・1F 八重洲北口・丸の内北口方面の下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-chuorapidhome-no1-2-info/"
+       }
+      ]
+     }
+    }
+   }
+  },
+  "tokyo.keihin_tohoku": {
+   "cars": 10,
+   "directions": {
+    "forward": {
+     "frontCar": 10,
+     "door1AtFront": false,
+     "stations": {
+      "tokyo.yokohama": [
+       {
+        "to": "tokyo.tokyu_toyoko",
+        "car": 3,
+        "door": 3,
+        "note": {
+         "ja": "4番線・B1F 中央南改札方面の下り階段（東急東横線・みなとみらい線方面）"
+        },
+        "source": "https://wadattsu261.com/content/yokohama-keihin-negishihome-info/"
+       },
+       {
+        "to": "tokyo.minatomirai",
+        "car": 3,
+        "door": 3,
+        "note": {
+         "ja": "4番線・B1F 中央南改札方面の下り階段（東急東横線・みなとみらい線方面）"
+        },
+        "source": "https://wadattsu261.com/content/yokohama-keihin-negishihome-info/"
+       },
+       {
+        "to": "tokyo.keikyu",
+        "car": 6,
+        "door": 4,
+        "note": {
+         "ja": "4番線・B1F 中央北改札・京急のりかえ口方面の下り階段・下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/yokohama-keihin-negishihome-info/"
+       },
+       {
+        "to": "tokyo.yokohama_blue",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "4番線・B1F 南改札方面の下り階段（ブルーラインは南改札方面）"
+        },
+        "source": "https://wadattsu261.com/content/yokohama-keihin-negishihome-info/"
+       },
+       {
+        "to": "exit:中央南改札",
+        "car": 3,
+        "door": 3,
+        "note": {
+         "ja": "4番線・B1F 中央南改札方面の下り階段"
+        },
+        "source": "https://wadattsu261.com/content/yokohama-keihin-negishihome-info/"
+       },
+       {
+        "to": "exit:中央北改札",
+        "car": 6,
+        "door": 4,
+        "note": {
+         "ja": "4番線・B1F 中央北改札方面の下り階段・下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/yokohama-keihin-negishihome-info/"
+       },
+       {
+        "to": "exit:南改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "4番線・B1F 南改札方面の下り階段"
+        },
+        "source": "https://wadattsu261.com/content/yokohama-keihin-negishihome-info/"
+       },
+       {
+        "to": "exit:北改札",
+        "car": 10,
+        "door": 4,
+        "note": {
+         "ja": "4番線・B1F 北改札方面の下り階段（ホーム端部まで進む）"
+        },
+        "source": "https://wadattsu261.com/content/yokohama-keihin-negishihome-info/"
+       }
+      ],
+      "tokyo.kawasaki": [
+       {
+        "to": "tokyo.tokaido",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "4番線・東海道線・南武線への乗り換え専用階段（改札方面ではありません）"
+        },
+        "source": "https://wadattsu261.com/content/kawasaki-tokaido-keihin-nambuhome-info/"
+       },
+       {
+        "to": "tokyo.nambu",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "4番線・東海道線・南武線への乗り換え専用階段（改札方面ではありません）"
+        },
+        "source": "https://wadattsu261.com/content/kawasaki-tokaido-keihin-nambuhome-info/"
+       },
+       {
+        "to": "exit:中央南改札",
+        "car": 5,
+        "door": 2,
+        "note": {
+         "ja": "4番線・3F 中央南改札への上り階段（改札口に一番近い。京急川崎駅へもこちらから）"
+        },
+        "source": "https://wadattsu261.com/content/kawasaki-tokaido-keihin-nambuhome-info/"
+       },
+       {
+        "to": "exit:北改札",
+        "car": 9,
+        "door": 4,
+        "note": {
+         "ja": "4番線・3F 北改札・アトレ改札方面の上り階段・上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/kawasaki-tokaido-keihin-nambuhome-info/"
+       }
+      ],
+      "tokyo.shinagawa": [
+       {
+        "to": "tokyo.keikyu",
+        "car": 7,
+        "door": 2,
+        "note": {
+         "ja": "4番線・2F 中央改札方面の上り階段（東海道新幹線・京浜急行線への乗り換えはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinagawa-keihinhome-info/"
+       },
+       {
+        "to": "exit:中央改札",
+        "car": 7,
+        "door": 2,
+        "note": {
+         "ja": "4番線・2F 中央改札方面の上り階段"
+        },
+        "source": "https://wadattsu261.com/content/shinagawa-keihinhome-info/"
+       },
+       {
+        "to": "exit:北改札",
+        "car": 9,
+        "door": 4,
+        "note": {
+         "ja": "4番線・2F 北改札方面の上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/shinagawa-keihinhome-info/"
+       }
+      ],
+      "tokyo.hamamatsucho": [
+       {
+        "to": "tokyo.tokyo_monorail",
+        "car": 10,
+        "door": 2,
+        "note": {
+         "ja": "1番線・3F 南口・モノレールのりかえ口方面のエスカレーター（東京モノレールへはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/hamamatsucho-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "exit:南口",
+        "car": 10,
+        "door": 2,
+        "note": {
+         "ja": "1番線・3F 南口・モノレールのりかえ口方面のエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/hamamatsucho-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "exit:北口",
+        "car": 10,
+        "door": 4,
+        "note": {
+         "ja": "1番線・1F 北口方面の階段。降りて進行方向側へ少々歩く（大門駅方面）"
+        },
+        "source": "https://wadattsu261.com/content/hamamatsucho-yamanote-keihinhome-info/"
+       }
+      ],
+      "tokyo.tokyo": [
+       {
+        "to": "tokyo.marunouchi",
+        "car": 8,
+        "door": 4,
+        "note": {
+         "ja": "3番線・下り階段・下りエスカレーター（出口改札・新幹線・JR各在来線・丸ノ内線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.chuo_rapid",
+        "car": 8,
+        "door": 4,
+        "note": {
+         "ja": "3番線・下り階段・下りエスカレーター（出口改札・新幹線・JR各在来線・丸ノ内線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.tokaido",
+        "car": 8,
+        "door": 4,
+        "note": {
+         "ja": "3番線・下り階段・下りエスカレーター（出口改札・新幹線・JR各在来線・丸ノ内線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.yokosuka_sobu",
+        "car": 8,
+        "door": 4,
+        "note": {
+         "ja": "3番線・下り階段・下りエスカレーター（出口改札・新幹線・JR各在来線・丸ノ内線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.utsunomiya",
+        "car": 8,
+        "door": 4,
+        "note": {
+         "ja": "3番線・下り階段・下りエスカレーター（出口改札・新幹線・JR各在来線・丸ノ内線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.takasaki",
+        "car": 8,
+        "door": 4,
+        "note": {
+         "ja": "3番線・下り階段・下りエスカレーター（出口改札・新幹線・JR各在来線・丸ノ内線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.joban_rapid",
+        "car": 8,
+        "door": 4,
+        "note": {
+         "ja": "3番線・下り階段・下りエスカレーター（出口改札・新幹線・JR各在来線・丸ノ内線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.keiyo",
+        "car": 3,
+        "door": 4,
+        "note": {
+         "ja": "3番線・1F 八重洲南口・丸の内南口方面の下り階段・下りエスカレーター（京葉線乗り換え方面）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "exit:中央口",
+        "car": 8,
+        "door": 4,
+        "note": {
+         "ja": "3番線・八重洲中央口・丸の内中央口・地下改札方面の下り階段・下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "exit:南口",
+        "car": 3,
+        "door": 4,
+        "note": {
+         "ja": "3番線・1F 八重洲南口・丸の内南口方面の下り階段"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "exit:北口",
+        "car": 10,
+        "door": 3,
+        "note": {
+         "ja": "3番線・1F 八重洲北口・丸の内北口方面の下り階段"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       }
+      ],
+      "tokyo.akihabara": [
+       {
+        "to": "tokyo.hibiya",
+        "car": 3,
+        "door": 1,
+        "note": {
+         "ja": "1番線・1F 昭和通り改札方面の下りエスカレーター（日比谷線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/akihabara-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.tsukuba_express",
+        "car": 6,
+        "door": 1,
+        "note": {
+         "ja": "1番線・1F 中央改札・電気街改札方面の下りエスカレーター（つくばエクスプレスは中央改札から）"
+        },
+        "source": "https://wadattsu261.com/content/akihabara-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.chuo_sobu",
+        "car": 4,
+        "door": 4,
+        "toForward": true,
+        "note": {
+         "ja": "1番線・3F 中央・総武線6番線（千葉方面）への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/akihabara-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.chuo_sobu",
+        "car": 4,
+        "door": 2,
+        "toForward": false,
+        "note": {
+         "ja": "1番線・3F 中央・総武線5番線（新宿方面）への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/akihabara-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "exit:電気街改札",
+        "car": 6,
+        "door": 1,
+        "note": {
+         "ja": "1番線・1F 中央改札・電気街改札方面の下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/akihabara-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "exit:昭和通り改札",
+        "car": 3,
+        "door": 1,
+        "note": {
+         "ja": "1番線・1F 昭和通り改札方面の下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/akihabara-yamanote-keihinhome-info/"
+       }
+      ],
+      "tokyo.ueno": [
+       {
+        "to": "tokyo.ginza",
+        "car": 5,
+        "door": 3,
+        "note": {
+         "ja": "1番線・下りエスカレーター（中央改札・新幹線・各在来線・銀座線・日比谷線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.hibiya",
+        "car": 5,
+        "door": 3,
+        "note": {
+         "ja": "1番線・下りエスカレーター（中央改札・新幹線・各在来線・銀座線・日比谷線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.utsunomiya",
+        "car": 5,
+        "door": 3,
+        "note": {
+         "ja": "1番線・下りエスカレーター（中央改札・新幹線・各在来線・銀座線・日比谷線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.takasaki",
+        "car": 5,
+        "door": 3,
+        "note": {
+         "ja": "1番線・下りエスカレーター（中央改札・新幹線・各在来線・銀座線・日比谷線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.joban_rapid",
+        "car": 5,
+        "door": 3,
+        "note": {
+         "ja": "1番線・下りエスカレーター（中央改札・新幹線・各在来線・銀座線・日比谷線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "exit:中央改札",
+        "car": 5,
+        "door": 3,
+        "note": {
+         "ja": "1番線・下りエスカレーター（中央改札方面）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "exit:不忍改札",
+        "car": 2,
+        "door": 2,
+        "note": {
+         "ja": "1番線・M2F 不忍改札への下り階段（京成上野駅方面）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "exit:公園改札",
+        "car": 10,
+        "door": 4,
+        "note": {
+         "ja": "1番線・3F 公園改札・入谷改札方面の上り階段（上野動物園方面）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-yamanote-keihinhome-info/"
+       }
+      ],
+      "tokyo.omiya": [
+       {
+        "to": "tokyo.utsunomiya",
+        "car": 4,
+        "door": 2,
+        "note": {
+         "ja": "1・2番線・2F 中央改札（北）方面の上り階段・上りエスカレーター（新幹線・在来線各ホームへはこちらが便利。南側なら3号車1番ドアのエスカレーター）"
+        },
+        "source": "https://wadattsu261.com/content/omiya-keihinhome-no1-2-info/"
+       },
+       {
+        "to": "tokyo.takasaki",
+        "car": 4,
+        "door": 2,
+        "note": {
+         "ja": "1・2番線・2F 中央改札（北）方面の上り階段・上りエスカレーター（新幹線・在来線各ホームへはこちらが便利。南側なら3号車1番ドアのエスカレーター）"
+        },
+        "source": "https://wadattsu261.com/content/omiya-keihinhome-no1-2-info/"
+       },
+       {
+        "to": "tokyo.saikyo",
+        "car": 4,
+        "door": 2,
+        "note": {
+         "ja": "1・2番線・2F 中央改札（北）方面の上り階段・上りエスカレーター（新幹線・在来線各ホームへはこちらが便利。南側なら3号車1番ドアのエスカレーター）"
+        },
+        "source": "https://wadattsu261.com/content/omiya-keihinhome-no1-2-info/"
+       },
+       {
+        "to": "tokyo.kawagoe",
+        "car": 4,
+        "door": 2,
+        "note": {
+         "ja": "1・2番線・2F 中央改札（北）方面の上り階段・上りエスカレーター（新幹線・在来線各ホームへはこちらが便利。南側なら3号車1番ドアのエスカレーター）"
+        },
+        "source": "https://wadattsu261.com/content/omiya-keihinhome-no1-2-info/"
+       },
+       {
+        "to": "tokyo.shonan_shinjuku",
+        "car": 4,
+        "door": 2,
+        "note": {
+         "ja": "1・2番線・2F 中央改札（北）方面の上り階段・上りエスカレーター（新幹線・在来線各ホームへはこちらが便利。南側なら3号車1番ドアのエスカレーター）"
+        },
+        "source": "https://wadattsu261.com/content/omiya-keihinhome-no1-2-info/"
+       },
+       {
+        "to": "exit:中央改札（北）",
+        "car": 4,
+        "door": 2,
+        "note": {
+         "ja": "1・2番線・2F 中央改札（北）・北改札方面の上り階段・上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/omiya-keihinhome-no1-2-info/"
+       },
+       {
+        "to": "exit:中央改札（南）",
+        "car": 3,
+        "door": 1,
+        "note": {
+         "ja": "1・2番線・2F 中央改札（南）・南改札方面の上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/omiya-keihinhome-no1-2-info/"
+       }
+      ],
+      "tokyo.akabane": [
+       {
+        "to": "tokyo.utsunomiya",
+        "car": 6,
+        "door": 2,
+        "note": {
+         "ja": "2番線・1F 北改札方面の下り階段・下りエスカレーター（宇都宮・高崎線、埼京線への乗り換えはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/akabane-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.takasaki",
+        "car": 6,
+        "door": 2,
+        "note": {
+         "ja": "2番線・1F 北改札方面の下り階段・下りエスカレーター（宇都宮・高崎線、埼京線への乗り換えはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/akabane-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.saikyo",
+        "car": 6,
+        "door": 2,
+        "note": {
+         "ja": "2番線・1F 北改札方面の下り階段・下りエスカレーター（宇都宮・高崎線、埼京線への乗り換えはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/akabane-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.shonan_shinjuku",
+        "car": 6,
+        "door": 2,
+        "note": {
+         "ja": "2番線・1F 北改札方面の下り階段・下りエスカレーター（宇都宮・高崎線、埼京線への乗り換えはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/akabane-keihinhome-info/"
+       },
+       {
+        "to": "exit:北改札",
+        "car": 6,
+        "door": 2,
+        "note": {
+         "ja": "2番線・1F 北改札方面の下り階段・下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/akabane-keihinhome-info/"
+       },
+       {
+        "to": "exit:南改札",
+        "car": 2,
+        "door": 2,
+        "note": {
+         "ja": "2番線・1F 南改札方面の下り階段"
+        },
+        "source": "https://wadattsu261.com/content/akabane-keihinhome-info/"
+       }
+      ]
+     }
+    },
+    "reverse": {
+     "frontCar": 1,
+     "door1AtFront": true,
+     "stations": {
+      "tokyo.yokohama": [
+       {
+        "to": "tokyo.tokyu_toyoko",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "3番線・B1F 中央南改札方面の下り階段（東急東横線・みなとみらい線方面）"
+        },
+        "source": "https://wadattsu261.com/content/yokohama-keihin-negishihome-info/"
+       },
+       {
+        "to": "tokyo.minatomirai",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "3番線・B1F 中央南改札方面の下り階段（東急東横線・みなとみらい線方面）"
+        },
+        "source": "https://wadattsu261.com/content/yokohama-keihin-negishihome-info/"
+       },
+       {
+        "to": "tokyo.keikyu",
+        "car": 5,
+        "door": 4,
+        "note": {
+         "ja": "3番線・B1F 中央北改札・京急のりかえ口方面の下り階段・下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/yokohama-keihin-negishihome-info/"
+       },
+       {
+        "to": "tokyo.yokohama_blue",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "3番線・B1F 南改札方面の下り階段（ブルーラインは南改札方面）"
+        },
+        "source": "https://wadattsu261.com/content/yokohama-keihin-negishihome-info/"
+       },
+       {
+        "to": "exit:中央南改札",
+        "car": 2,
+        "door": 3,
+        "note": {
+         "ja": "3番線・B1F 中央南改札方面の下り階段"
+        },
+        "source": "https://wadattsu261.com/content/yokohama-keihin-negishihome-info/"
+       },
+       {
+        "to": "exit:中央北改札",
+        "car": 5,
+        "door": 4,
+        "note": {
+         "ja": "3番線・B1F 中央北改札方面の下り階段・下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/yokohama-keihin-negishihome-info/"
+       },
+       {
+        "to": "exit:南改札",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "3番線・B1F 南改札方面の下り階段"
+        },
+        "source": "https://wadattsu261.com/content/yokohama-keihin-negishihome-info/"
+       },
+       {
+        "to": "exit:北改札",
+        "car": 10,
+        "door": 4,
+        "note": {
+         "ja": "3番線・B1F 北改札方面の下り階段（ホーム端部まで進む）"
+        },
+        "source": "https://wadattsu261.com/content/yokohama-keihin-negishihome-info/"
+       }
+      ],
+      "tokyo.kawasaki": [
+       {
+        "to": "tokyo.tokaido",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "3番線・東海道線・南武線への乗り換え専用階段（改札方面ではありません）"
+        },
+        "source": "https://wadattsu261.com/content/kawasaki-tokaido-keihin-nambuhome-info/"
+       },
+       {
+        "to": "tokyo.nambu",
+        "car": 1,
+        "door": 1,
+        "note": {
+         "ja": "3番線・東海道線・南武線への乗り換え専用階段（改札方面ではありません）"
+        },
+        "source": "https://wadattsu261.com/content/kawasaki-tokaido-keihin-nambuhome-info/"
+       },
+       {
+        "to": "exit:中央南改札",
+        "car": 5,
+        "door": 2,
+        "note": {
+         "ja": "3番線・3F 中央南改札への上り階段（改札口に一番近い。京急川崎駅へもこちらから）"
+        },
+        "source": "https://wadattsu261.com/content/kawasaki-tokaido-keihin-nambuhome-info/"
+       },
+       {
+        "to": "exit:北改札",
+        "car": 9,
+        "door": 4,
+        "note": {
+         "ja": "3番線・3F 北改札・アトレ改札方面の上り階段・上りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/kawasaki-tokaido-keihin-nambuhome-info/"
+       }
+      ],
+      "tokyo.shinagawa": [
+       {
+        "to": "tokyo.keikyu",
+        "car": 7,
+        "door": 2,
+        "note": {
+         "ja": "5番線・2F 中央改札方面の上り階段（東海道新幹線・京浜急行線への乗り換えはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/shinagawa-keihinhome-info/"
+       },
+       {
+        "to": "exit:中央改札",
+        "car": 7,
+        "door": 2,
+        "note": {
+         "ja": "5番線・2F 中央改札方面の上り階段"
+        },
+        "source": "https://wadattsu261.com/content/shinagawa-keihinhome-info/"
+       },
+       {
+        "to": "exit:北改札",
+        "car": 9,
+        "door": 4,
+        "note": {
+         "ja": "5番線・2F 北改札方面の上り階段"
+        },
+        "source": "https://wadattsu261.com/content/shinagawa-keihinhome-info/"
+       }
+      ],
+      "tokyo.hamamatsucho": [
+       {
+        "to": "tokyo.tokyo_monorail",
+        "car": 10,
+        "door": 1,
+        "note": {
+         "ja": "4番線・3F 南口・モノレールのりかえ口方面の上りエスカレーター（東京モノレールへはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/hamamatsucho-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "exit:南口",
+        "car": 10,
+        "door": 1,
+        "note": {
+         "ja": "4番線・3F 南口・モノレールのりかえ口方面のエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/hamamatsucho-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "exit:北口",
+        "car": 10,
+        "door": 4,
+        "note": {
+         "ja": "4番線・1F 北口方面の階段。降りて進行方向反対側へ（大門駅方面）"
+        },
+        "source": "https://wadattsu261.com/content/hamamatsucho-yamanote-keihinhome-info/"
+       }
+      ],
+      "tokyo.tokyo": [
+       {
+        "to": "tokyo.marunouchi",
+        "car": 8,
+        "door": 1,
+        "note": {
+         "ja": "6番線・下り階段・下りエスカレーター（出口改札・新幹線・JR各在来線・丸ノ内線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.chuo_rapid",
+        "car": 8,
+        "door": 1,
+        "note": {
+         "ja": "6番線・下り階段・下りエスカレーター（出口改札・新幹線・JR各在来線・丸ノ内線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.tokaido",
+        "car": 8,
+        "door": 1,
+        "note": {
+         "ja": "6番線・下り階段・下りエスカレーター（出口改札・新幹線・JR各在来線・丸ノ内線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.yokosuka_sobu",
+        "car": 8,
+        "door": 1,
+        "note": {
+         "ja": "6番線・下り階段・下りエスカレーター（出口改札・新幹線・JR各在来線・丸ノ内線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.utsunomiya",
+        "car": 8,
+        "door": 1,
+        "note": {
+         "ja": "6番線・下り階段・下りエスカレーター（出口改札・新幹線・JR各在来線・丸ノ内線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.takasaki",
+        "car": 8,
+        "door": 1,
+        "note": {
+         "ja": "6番線・下り階段・下りエスカレーター（出口改札・新幹線・JR各在来線・丸ノ内線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.joban_rapid",
+        "car": 8,
+        "door": 1,
+        "note": {
+         "ja": "6番線・下り階段・下りエスカレーター（出口改札・新幹線・JR各在来線・丸ノ内線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.keiyo",
+        "car": 3,
+        "door": 1,
+        "note": {
+         "ja": "6番線・1F 八重洲南口・丸の内南口方面の下り階段（京葉線乗り換え方面）"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "exit:中央口",
+        "car": 8,
+        "door": 1,
+        "note": {
+         "ja": "6番線・八重洲中央口・丸の内中央口・地下改札方面の下り階段・下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "exit:南口",
+        "car": 3,
+        "door": 1,
+        "note": {
+         "ja": "6番線・1F 八重洲南口・丸の内南口方面の下り階段"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "exit:北口",
+        "car": 9,
+        "door": 3,
+        "note": {
+         "ja": "6番線・1F 八重洲北口・丸の内北口方面の下り階段・下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/tokyo-yamanote-keihinhome-info/"
+       }
+      ],
+      "tokyo.akihabara": [
+       {
+        "to": "tokyo.hibiya",
+        "car": 4,
+        "door": 4,
+        "note": {
+         "ja": "4番線・1F 昭和通り改札方面の下りエスカレーター（日比谷線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/akihabara-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.tsukuba_express",
+        "car": 8,
+        "door": 1,
+        "note": {
+         "ja": "4番線・1F 中央改札・電気街改札方面の下りエスカレーター（つくばエクスプレスは中央改札から）"
+        },
+        "source": "https://wadattsu261.com/content/akihabara-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.chuo_sobu",
+        "car": 6,
+        "door": 4,
+        "toForward": true,
+        "note": {
+         "ja": "4番線・3F 中央・総武線6番線（千葉方面）への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/akihabara-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.chuo_sobu",
+        "car": 6,
+        "door": 1,
+        "toForward": false,
+        "note": {
+         "ja": "4番線・3F 中央・総武線5番線（新宿方面）への上り階段"
+        },
+        "source": "https://wadattsu261.com/content/akihabara-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "exit:電気街改札",
+        "car": 8,
+        "door": 1,
+        "note": {
+         "ja": "4番線・1F 中央改札・電気街改札方面の下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/akihabara-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "exit:昭和通り改札",
+        "car": 4,
+        "door": 4,
+        "note": {
+         "ja": "4番線・1F 昭和通り改札方面の下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/akihabara-yamanote-keihinhome-info/"
+       }
+      ],
+      "tokyo.ueno": [
+       {
+        "to": "tokyo.ginza",
+        "car": 2,
+        "door": 4,
+        "note": {
+         "ja": "4番線・下りエスカレーター（中央改札・新幹線・各在来線・銀座線・日比谷線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.hibiya",
+        "car": 2,
+        "door": 4,
+        "note": {
+         "ja": "4番線・下りエスカレーター（中央改札・新幹線・各在来線・銀座線・日比谷線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.utsunomiya",
+        "car": 2,
+        "door": 4,
+        "note": {
+         "ja": "4番線・下りエスカレーター（中央改札・新幹線・各在来線・銀座線・日比谷線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.takasaki",
+        "car": 2,
+        "door": 4,
+        "note": {
+         "ja": "4番線・下りエスカレーター（中央改札・新幹線・各在来線・銀座線・日比谷線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.joban_rapid",
+        "car": 2,
+        "door": 4,
+        "note": {
+         "ja": "4番線・下りエスカレーター（中央改札・新幹線・各在来線・銀座線・日比谷線へはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "exit:中央改札",
+        "car": 2,
+        "door": 4,
+        "note": {
+         "ja": "4番線・下りエスカレーター（中央改札方面）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "exit:不忍改札",
+        "car": 2,
+        "door": 1,
+        "note": {
+         "ja": "4番線・M2F 不忍改札への下り階段（京成上野駅方面）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-yamanote-keihinhome-info/"
+       },
+       {
+        "to": "exit:公園改札",
+        "car": 10,
+        "door": 4,
+        "note": {
+         "ja": "4番線・降りて進行方向反対側の端部の上り階段（3F 公園改札方面・上野動物園方面）"
+        },
+        "source": "https://wadattsu261.com/content/ueno-yamanote-keihinhome-info/"
+       }
+      ],
+      "tokyo.akabane": [
+       {
+        "to": "tokyo.utsunomiya",
+        "car": 6,
+        "door": 2,
+        "note": {
+         "ja": "1番線・1F 北改札方面の下り階段・下りエスカレーター（宇都宮・高崎線、埼京線への乗り換えはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/akabane-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.takasaki",
+        "car": 6,
+        "door": 2,
+        "note": {
+         "ja": "1番線・1F 北改札方面の下り階段・下りエスカレーター（宇都宮・高崎線、埼京線への乗り換えはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/akabane-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.saikyo",
+        "car": 6,
+        "door": 2,
+        "note": {
+         "ja": "1番線・1F 北改札方面の下り階段・下りエスカレーター（宇都宮・高崎線、埼京線への乗り換えはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/akabane-keihinhome-info/"
+       },
+       {
+        "to": "tokyo.shonan_shinjuku",
+        "car": 6,
+        "door": 2,
+        "note": {
+         "ja": "1番線・1F 北改札方面の下り階段・下りエスカレーター（宇都宮・高崎線、埼京線への乗り換えはこちらが便利）"
+        },
+        "source": "https://wadattsu261.com/content/akabane-keihinhome-info/"
+       },
+       {
+        "to": "exit:北改札",
+        "car": 6,
+        "door": 2,
+        "note": {
+         "ja": "1番線・1F 北改札方面の下り階段・下りエスカレーター"
+        },
+        "source": "https://wadattsu261.com/content/akabane-keihinhome-info/"
+       },
+       {
+        "to": "exit:南改札",
+        "car": 2,
+        "door": 2,
+        "note": {
+         "ja": "1番線・1F 南改札方面の下り階段"
+        },
+        "source": "https://wadattsu261.com/content/akabane-keihinhome-info/"
        }
       ]
      }
