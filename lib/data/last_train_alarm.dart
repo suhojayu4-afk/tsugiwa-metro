@@ -71,7 +71,8 @@ typedef LastTrainTexts = ({String title, String body, String channel});
 
 /// 終電アラーム: one saved route; every night, [leadMin] minutes before its
 /// last departure, the phone shows a notification, even when the app is
-/// closed (android/.../LastTrainAlarm.kt keeps the daily alarm).
+/// closed (android/.../LastTrainAlarm.kt keeps the daily alarm; iPhone: a
+/// local notification from ios/Runner/AppDelegate.swift).
 class LastTrainAlarm extends ChangeNotifier {
   static const leadMin = 30;
   static const _key = 'lastTrainAlarm';

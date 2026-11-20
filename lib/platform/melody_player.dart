@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 
-/// Departure melodies, played natively (android/.../MelodyPlayer.kt).
+/// Departure melodies, played natively (android/.../MelodyPlayer.kt; iPhone:
+/// ios/Runner/AppDelegate.swift).
 /// Nothing plays on silent / vibrate unless [force] (a preview the user asked
 /// for in MY).
 class MelodyPlayer {

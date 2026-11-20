@@ -2,7 +2,8 @@
 # Makes an unsigned .ipa; install it with Sideloadly on Windows, which signs
 # it with a free Apple ID (the app then runs for 7 days).
 # Test build: coins never run out (TSUGIWA_UNLIMITED_COINS).
-# Widgets, the last/first train alarms and the melodies are Android only for now.
+# Home-screen widgets and the lock-screen trip view are Android only for now;
+# the last/first train alarms, melodies and monthly report also work on iPhone.
 workflows:
   ios-unsigned:
     name: iPhone test (unsigned IPA)

@@ -259,6 +259,11 @@ class MyRoomScreenState extends State<MyRoomScreen> {
                 icon: Icons.widgets_rounded,
                 label: t.widgetAdd,
                 onTap: () async {
+                  // Home-screen widgets are Android only for now (iPhone needs WidgetKit).
+                  if (!kIsWeb && defaultTargetPlatform == TargetPlatform.iOS) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(_widgetSoon.of(lang))));
+                    return;
+                  }
                   final kind = await _chooseWidget(t);
                   if (kind == null || !context.mounted) return;
                   if (await Services.homeWidget.requestPin(kind: kind) || !context.mounted) return;
@@ -793,5 +798,12 @@ class _BigButton extends StatelessWidget {
     ),
   );
 }
+
+/// iPhone: the home-screen widgets are not there yet.
+const _widgetSoon = LocalizedText({
+  'ja': 'iPhone のホーム画面ウィジェットは準備中です。もう少しお待ちください 🚃',
+  'ko': 'iPhone 홈 화면 위젯은 준비 중이에요. 조금만 기다려 주세요 🚃',
+  'en': 'Home screen widgets for iPhone are coming soon 🚃',
+});
 
 const _ekiInTitle = LocalizedText({'ja': '駅印帳', 'ko': '역 도장첩', 'en': 'Station Seal Book'});

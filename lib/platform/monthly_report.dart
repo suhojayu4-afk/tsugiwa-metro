@@ -6,9 +6,10 @@ import '../data/my_store.dart';
 
 /// 月間乗車レポート: on the 1st of every month at 9:00 Japan time the phone
 /// says "last month's ride report is ready", only when the user rode at
-/// least once that month (Android only; elsewhere this does nothing).
+/// least once that month (Android and iPhone; elsewhere this does nothing).
 ///
-/// The alarm itself lives in android/.../MonthlyReport.kt, so it rings while
+/// The alarm itself lives in android/.../MonthlyReport.kt (iPhone:
+/// ios/Runner/AppDelegate.swift, a local notification), so it rings while
 /// the app is closed. This side tells it which months had rides and the
 /// texts in the app's language, again whenever the trip log changes.
 /// Tapping the notification opens the MY tab.
@@ -100,7 +101,7 @@ class MonthlyReport {
 
     store.addListener(sync);
     sync();
-    if (!_isAndroid) return;
+    if (!_isPhone) return;
     _channel.setMethodCallHandler((call) async {
       if (call.method == 'openMy') openMy();
     });
@@ -112,10 +113,11 @@ class MonthlyReport {
         .catchError((Object _) {});
   }
 
-  static bool get _isAndroid => !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
+  static bool get _isPhone =>
+      !kIsWeb && (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS);
 
   static Future<void> _call(String method, Object? args) async {
-    if (!_isAndroid) return;
+    if (!_isPhone) return;
     try {
       await _channel.invokeMethod<void>(method, args);
     } on MissingPluginException {
