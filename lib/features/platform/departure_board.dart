@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'package:material_ui/material_ui.dart';
 
 import '../../app.dart';
+import '../../core/services.dart';
 import '../../core/pixel/pixel_ui.dart';
 import '../../data/models/city.dart';
 import '../../data/models/rail_line.dart';
@@ -113,14 +114,20 @@ class _DepartureBoardState extends State<DepartureBoard> {
   @override
   void initState() {
     super.initState();
+    Services.status.addListener(_onStatus);
     // Twice a second: the clock, the blinking 「まもなく」 and the ticker.
     _timer = Timer.periodic(const Duration(milliseconds: 500), (_) {
       if (mounted && TickerMode.valuesOf(context).enabled) setState(() => _tick++);
     });
   }
 
+  void _onStatus() {
+    if (mounted) setState(() {});
+  }
+
   @override
   void dispose() {
+    Services.status.removeListener(_onStatus);
     _timer?.cancel();
     super.dispose();
   }
@@ -141,7 +148,29 @@ class _DepartureBoardState extends State<DepartureBoard> {
         '${jst.hour.toString().padLeft(2, '0')}${_tick.isEven ? ':' : ' '}${jst.minute.toString().padLeft(2, '0')}';
     final rows = id == null ? const <Departure>[] : nextDepartures(city, id, now);
     final nowSec = (LineTimetable.serviceMinute(jst) - 240) * 60 + jst.second;
-    final note = id == null ? t.boardPickStation : (rows.isEmpty ? t.boardEnded : t.boardNote);
+    // Live 運行情報 for the station's lines: trouble first, in the ticker.
+    final status = Services.status;
+    final trouble = [
+      if (id != null)
+        for (final l in city.station(id).lines)
+          if (status.of(l) case final s? when !s.normal) s,
+    ];
+    final live = id != null && city.station(id).lines.any((l) => status.of(l) != null);
+    final String note;
+    if (id == null) {
+      note = t.boardPickStation;
+    } else if (trouble.isNotEmpty) {
+      note = [
+        for (final s in trouble) '${city.line(s.lineId).name.of(lang)}：${s.text.of(lang)}',
+        t.boardSource,
+      ].join('　　');
+    } else if (rows.isEmpty) {
+      note = t.boardEnded;
+    } else if (live) {
+      note = '${t.boardAllNormal}　　${t.boardNote}　　${t.boardSource}';
+    } else {
+      note = t.boardNote;
+    }
     return Semantics(
       label: id == null ? note : '${city.station(id).name.of(lang)} ${t.boardTitle}',
       child: Container(
@@ -178,7 +207,7 @@ class _DepartureBoardState extends State<DepartureBoard> {
             const SizedBox(height: 4),
             SizedBox(
               height: 16,
-              child: _Ticker(text: note, step: _tick, color: _led),
+              child: _Ticker(text: note, step: _tick, color: trouble.isEmpty ? _led : const Color(0xFFFF6A5A)),
             ),
           ],
         ),
@@ -203,7 +232,14 @@ class _DepartureBoardState extends State<DepartureBoard> {
           ),
           const SizedBox(width: 8),
           Expanded(child: PixelText(to, size: 15, color: _led, maxLines: 1)),
-          if (soon)
+          if (Services.status.of(d.line.id) case final s? when !s.normal)
+            Container(
+              margin: const EdgeInsets.only(left: 4),
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+              decoration: BoxDecoration(color: const Color(0xFFD64545), borderRadius: BorderRadius.circular(3)),
+              child: PixelText(s.status?.of(lang) ?? t.boardDelay, size: 11, color: PixelColors.card, maxLines: 1),
+            )
+          else if (soon)
             Opacity(
               opacity: _tick.isEven ? 1 : 0.25,
               child: PixelText(t.boardSoon, size: 12, color: const Color(0xFFFFE066)),

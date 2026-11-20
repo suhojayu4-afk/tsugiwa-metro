@@ -670,6 +670,90 @@ abstract class AppLocalizations {
   /// **'到着にする'**
   String get mapSetTo;
 
+  /// No description provided for @mapCourses.
+  ///
+  /// In ja, this message translates to:
+  /// **'おでかけコース'**
+  String get mapCourses;
+
+  /// No description provided for @courseHint.
+  ///
+  /// In ja, this message translates to:
+  /// **'駅に行くとスタンプ。ぜんぶ集めると制覇！'**
+  String get courseHint;
+
+  /// No description provided for @courseDone.
+  ///
+  /// In ja, this message translates to:
+  /// **'制覇！'**
+  String get courseDone;
+
+  /// No description provided for @courseGo.
+  ///
+  /// In ja, this message translates to:
+  /// **'次の駅へ'**
+  String get courseGo;
+
+  /// No description provided for @courseProgress.
+  ///
+  /// In ja, this message translates to:
+  /// **'スタンプ {done}/{total}'**
+  String courseProgress(int done, int total);
+
+  /// No description provided for @courseHours.
+  ///
+  /// In ja, this message translates to:
+  /// **'約{hours}時間'**
+  String courseHours(int hours);
+
+  /// No description provided for @courseDay.
+  ///
+  /// In ja, this message translates to:
+  /// **'1日'**
+  String get courseDay;
+
+  /// No description provided for @exitGuide.
+  ///
+  /// In ja, this message translates to:
+  /// **'出口ガイド'**
+  String get exitGuide;
+
+  /// No description provided for @mapStampMode.
+  ///
+  /// In ja, this message translates to:
+  /// **'スタンプ地図'**
+  String get mapStampMode;
+
+  /// No description provided for @mapStampSummary.
+  ///
+  /// In ja, this message translates to:
+  /// **'{visited}/{total}駅・制覇{lines}路線・★{gold}'**
+  String mapStampSummary(int visited, int total, int lines, int gold);
+
+  /// No description provided for @mapNamesSwap.
+  ///
+  /// In ja, this message translates to:
+  /// **'駅名の言語'**
+  String get mapNamesSwap;
+
+  /// No description provided for @boardSource.
+  ///
+  /// In ja, this message translates to:
+  /// **'運行情報：公共交通オープンデータセンター'**
+  String get boardSource;
+
+  /// No description provided for @boardAllNormal.
+  ///
+  /// In ja, this message translates to:
+  /// **'現在、平常どおり運転しています'**
+  String get boardAllNormal;
+
+  /// No description provided for @boardDelay.
+  ///
+  /// In ja, this message translates to:
+  /// **'遅延'**
+  String get boardDelay;
+
   /// No description provided for @boardTitle.
   ///
   /// In ja, this message translates to:

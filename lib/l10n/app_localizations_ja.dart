@@ -343,6 +343,54 @@ class AppLocalizationsJa extends AppLocalizations {
   String get mapSetTo => '到着にする';
 
   @override
+  String get mapCourses => 'おでかけコース';
+
+  @override
+  String get courseHint => '駅に行くとスタンプ。ぜんぶ集めると制覇！';
+
+  @override
+  String get courseDone => '制覇！';
+
+  @override
+  String get courseGo => '次の駅へ';
+
+  @override
+  String courseProgress(int done, int total) {
+    return 'スタンプ $done/$total';
+  }
+
+  @override
+  String courseHours(int hours) {
+    return '約$hours時間';
+  }
+
+  @override
+  String get courseDay => '1日';
+
+  @override
+  String get exitGuide => '出口ガイド';
+
+  @override
+  String get mapStampMode => 'スタンプ地図';
+
+  @override
+  String mapStampSummary(int visited, int total, int lines, int gold) {
+    return '$visited/$total駅・制覇$lines路線・★$gold';
+  }
+
+  @override
+  String get mapNamesSwap => '駅名の言語';
+
+  @override
+  String get boardSource => '運行情報：公共交通オープンデータセンター';
+
+  @override
+  String get boardAllNormal => '現在、平常どおり運転しています';
+
+  @override
+  String get boardDelay => '遅延';
+
+  @override
   String get boardTitle => '発車標';
 
   @override

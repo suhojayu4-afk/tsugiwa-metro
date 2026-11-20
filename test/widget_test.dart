@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart' show Scrollable;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tsugiwa_metro/app.dart';
@@ -55,8 +56,14 @@ void main() {
     expect(find.text('Platform'), findsOneWidget);
     expect(find.text('Map'), findsOneWidget);
     expect(find.text('MY'), findsOneWidget);
-    // No saved routes yet: the card explains how to add one.
-    expect(find.text('Pick a route and tap ☆ to save it here'), findsOneWidget);
+    // The station attendant's tip sits under the picture.
+    expect(find.textContaining('Going out?'), findsOneWidget);
+    // No saved routes yet: the card explains how to add one (further down).
+    final hint = find.text('Pick a route and tap ☆ to save it here');
+    await tester.scrollUntilVisible(hint, 120, scrollable: find.byType(Scrollable).first);
+    expect(hint, findsOneWidget);
+    await tester.drag(find.byType(Scrollable).first, const Offset(0, 2000));
+    await tester.pump();
 
     // Location refused → a friendly message instead of a crash.
     // The route panel sits at the bottom: pin button, then the start button.

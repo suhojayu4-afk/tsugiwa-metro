@@ -343,6 +343,54 @@ class AppLocalizationsKo extends AppLocalizations {
   String get mapSetTo => '도착역으로';
 
   @override
+  String get mapCourses => '나들이 코스';
+
+  @override
+  String get courseHint => '역에 가면 스탬프. 다 모으면 완주!';
+
+  @override
+  String get courseDone => '완주!';
+
+  @override
+  String get courseGo => '다음 역으로';
+
+  @override
+  String courseProgress(int done, int total) {
+    return '스탬프 $done/$total';
+  }
+
+  @override
+  String courseHours(int hours) {
+    return '약 $hours시간';
+  }
+
+  @override
+  String get courseDay => '하루';
+
+  @override
+  String get exitGuide => '출구 안내';
+
+  @override
+  String get mapStampMode => '스탬프 지도';
+
+  @override
+  String mapStampSummary(int visited, int total, int lines, int gold) {
+    return '$visited/$total역 · 완주 $lines · ★$gold';
+  }
+
+  @override
+  String get mapNamesSwap => '역 이름 언어 바꾸기';
+
+  @override
+  String get boardSource => '운행 정보: 공공교통 오픈데이터센터';
+
+  @override
+  String get boardAllNormal => '지금은 평소대로 운행 중이에요';
+
+  @override
+  String get boardDelay => '지연';
+
+  @override
   String get boardTitle => '발차 안내';
 
   @override

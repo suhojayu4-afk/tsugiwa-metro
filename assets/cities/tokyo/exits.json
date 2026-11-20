@@ -1,0 +1,396 @@
+{
+ "tokyo.tokyo": [
+  {
+   "name": {
+    "ja": "丸の内口",
+    "ko": "마루노우치 출구",
+    "en": "Marunouchi side"
+   },
+   "near": {
+    "ja": "赤レンガの駅舎・皇居・丸の内",
+    "ko": "붉은 벽돌 역사·고쿄·마루노우치",
+    "en": "Red-brick station building, Imperial Palace, Marunouchi"
+   },
+   "landmarks": [
+    "station",
+    "nijubashi"
+   ]
+  },
+  {
+   "name": {
+    "ja": "八重洲口",
+    "ko": "야에스 출구",
+    "en": "Yaesu side"
+   },
+   "near": {
+    "ja": "高速バスのりば・八重洲地下街・東京駅一番街",
+    "ko": "고속버스 승강장·야에스 지하상가·도쿄역 이치방가이",
+    "en": "Highway buses, Yaesu underground mall, Tokyo Station Ichibangai"
+   },
+   "landmarks": []
+  }
+ ],
+ "tokyo.shinjuku": [
+  {
+   "name": {
+    "ja": "東口",
+    "ko": "동쪽 출구",
+    "en": "East Exit"
+   },
+   "near": {
+    "ja": "歌舞伎町・新宿三丁目・百貨店",
+    "ko": "가부키초·신주쿠산초메·백화점",
+    "en": "Kabukicho, Shinjuku-sanchome, department stores"
+   },
+   "landmarks": []
+  },
+  {
+   "name": {
+    "ja": "西口",
+    "ko": "서쪽 출구",
+    "en": "West Exit"
+   },
+   "near": {
+    "ja": "東京都庁・高層ビル街",
+    "ko": "도쿄도청·고층 빌딩가",
+    "en": "Tokyo Metropolitan Government Building, skyscrapers"
+   },
+   "landmarks": [
+    "tocho"
+   ]
+  },
+  {
+   "name": {
+    "ja": "南口",
+    "ko": "남쪽 출구",
+    "en": "South Exit"
+   },
+   "near": {
+    "ja": "新宿御苑方面・高速バスターミナル",
+    "ko": "신주쿠교엔 방면·고속버스 터미널",
+    "en": "Towards Shinjuku Gyoen, highway bus terminal"
+   },
+   "landmarks": []
+  }
+ ],
+ "tokyo.shibuya": [
+  {
+   "name": {
+    "ja": "ハチ公口",
+    "ko": "하치코 출구",
+    "en": "Hachiko Exit"
+   },
+   "near": {
+    "ja": "スクランブル交差点・ハチ公像",
+    "ko": "스크램블 교차로·하치코 동상",
+    "en": "Scramble Crossing, Hachiko statue"
+   },
+   "landmarks": [
+    "shibuya"
+   ]
+  },
+  {
+   "name": {
+    "ja": "東口",
+    "ko": "동쪽 출구",
+    "en": "East Exit"
+   },
+   "near": {
+    "ja": "渋谷ヒカリエ・宮益坂",
+    "ko": "시부야 히카리에·미야마스자카",
+    "en": "Shibuya Hikarie, Miyamasuzaka"
+   },
+   "landmarks": []
+  }
+ ],
+ "tokyo.ikebukuro": [
+  {
+   "name": {
+    "ja": "東口",
+    "ko": "동쪽 출구",
+    "en": "East Exit"
+   },
+   "near": {
+    "ja": "サンシャインシティ・サンシャイン60通り",
+    "ko": "선샤인 시티·선샤인 60거리",
+    "en": "Sunshine City, Sunshine 60 Street"
+   },
+   "landmarks": [
+    "sunshine"
+   ]
+  },
+  {
+   "name": {
+    "ja": "西口",
+    "ko": "서쪽 출구",
+    "en": "West Exit"
+   },
+   "near": {
+    "ja": "東京芸術劇場・池袋西口公園",
+    "ko": "도쿄 예술극장·이케부쿠로 니시구치 공원",
+    "en": "Tokyo Metropolitan Theatre, West Gate Park"
+   },
+   "landmarks": []
+  }
+ ],
+ "tokyo.ueno": [
+  {
+   "name": {
+    "ja": "公園口",
+    "ko": "공원 출구",
+    "en": "Park Exit"
+   },
+   "near": {
+    "ja": "上野公園・美術館・博物館・動物園",
+    "ko": "우에노 공원·미술관·박물관·동물원",
+    "en": "Ueno Park, museums, the zoo"
+   },
+   "landmarks": [
+    "ueno"
+   ]
+  },
+  {
+   "name": {
+    "ja": "不忍口",
+    "ko": "시노바즈 출구",
+    "en": "Shinobazu Exit"
+   },
+   "near": {
+    "ja": "アメ横・不忍池",
+    "ko": "아메요코·시노바즈 연못",
+    "en": "Ameyoko market, Shinobazu Pond"
+   },
+   "landmarks": []
+  }
+ ],
+ "tokyo.asakusa": [
+  {
+   "name": {
+    "ja": "雷門方面の出口",
+    "ko": "가미나리몬 방면 출구",
+    "en": "Exits towards Kaminarimon"
+   },
+   "near": {
+    "ja": "雷門・仲見世・浅草寺",
+    "ko": "가미나리몬·나카미세·센소지",
+    "en": "Kaminarimon, Nakamise, Senso-ji"
+   },
+   "landmarks": [
+    "kaminarimon",
+    "pagoda"
+   ]
+  },
+  {
+   "name": {
+    "ja": "吾妻橋方面の出口",
+    "ko": "아즈마바시 방면 출구",
+    "en": "Exits towards Azumabashi"
+   },
+   "near": {
+    "ja": "隅田川・水上バス・スカイツリーの眺め",
+    "ko": "스미다강·수상버스·스카이트리 전망",
+    "en": "Sumida River, water buses, Skytree view"
+   },
+   "landmarks": []
+  }
+ ],
+ "tokyo.akihabara": [
+  {
+   "name": {
+    "ja": "電気街口",
+    "ko": "전자상가 출구",
+    "en": "Electric Town Exit"
+   },
+   "near": {
+    "ja": "電気街・アニメやゲームのお店",
+    "ko": "전자상가·애니메이션·게임 가게",
+    "en": "Electric Town, anime and game shops"
+   },
+   "landmarks": [
+    "akihabara"
+   ]
+  },
+  {
+   "name": {
+    "ja": "昭和通り口",
+    "ko": "쇼와도리 출구",
+    "en": "Showa-dori Exit"
+   },
+   "near": {
+    "ja": "日比谷線・つくばエクスプレス方面",
+    "ko": "히비야선·쓰쿠바 익스프레스 방면",
+    "en": "Towards the Hibiya Line and Tsukuba Express"
+   },
+   "landmarks": []
+  }
+ ],
+ "tokyo.harajuku": [
+  {
+   "name": {
+    "ja": "竹下口",
+    "ko": "다케시타 출구",
+    "en": "Takeshita Exit"
+   },
+   "near": {
+    "ja": "竹下通り",
+    "ko": "다케시타 거리",
+    "en": "Takeshita Street"
+   },
+   "landmarks": []
+  },
+  {
+   "name": {
+    "ja": "表参道口",
+    "ko": "오모테산도 출구",
+    "en": "Omotesando Exit"
+   },
+   "near": {
+    "ja": "表参道・明治神宮前駅",
+    "ko": "오모테산도·메이지진구마에역",
+    "en": "Omotesando, Meiji-jingumae station"
+   },
+   "landmarks": []
+  },
+  {
+   "name": {
+    "ja": "西口",
+    "ko": "서쪽 출구",
+    "en": "West Exit"
+   },
+   "near": {
+    "ja": "明治神宮",
+    "ko": "메이지 신궁",
+    "en": "Meiji Shrine"
+   },
+   "landmarks": [
+    "meiji"
+   ]
+  }
+ ],
+ "tokyo.shinagawa": [
+  {
+   "name": {
+    "ja": "高輪口",
+    "ko": "다카나와 출구",
+    "en": "Takanawa Exit"
+   },
+   "near": {
+    "ja": "ホテル・水族館",
+    "ko": "호텔·수족관",
+    "en": "Hotels, aquarium"
+   },
+   "landmarks": []
+  },
+  {
+   "name": {
+    "ja": "港南口",
+    "ko": "고난 출구",
+    "en": "Konan Exit"
+   },
+   "near": {
+    "ja": "オフィス街",
+    "ko": "오피스가",
+    "en": "Office district"
+   },
+   "landmarks": []
+  }
+ ],
+ "tokyo.maihama": [
+  {
+   "name": {
+    "ja": "南口",
+    "ko": "남쪽 출구",
+    "en": "South Exit"
+   },
+   "near": {
+    "ja": "舞浜リゾート・モノレールのりば",
+    "ko": "마이하마 리조트·모노레일 승강장",
+    "en": "Maihama resort, monorail"
+   },
+   "landmarks": [
+    "themepark"
+   ]
+  }
+ ],
+ "tokyo.kamakura": [
+  {
+   "name": {
+    "ja": "東口",
+    "ko": "동쪽 출구",
+    "en": "East Exit"
+   },
+   "near": {
+    "ja": "鶴岡八幡宮・小町通り",
+    "ko": "쓰루가오카 하치만구·고마치도리",
+    "en": "Tsurugaoka Hachimangu, Komachi-dori"
+   },
+   "landmarks": [
+    "hachimangu"
+   ]
+  },
+  {
+   "name": {
+    "ja": "西口",
+    "ko": "서쪽 출구",
+    "en": "West Exit"
+   },
+   "near": {
+    "ja": "江ノ電のりかえ・御成通り",
+    "ko": "에노덴 환승·오나리도리",
+    "en": "Enoden transfer, Onari-dori"
+   },
+   "landmarks": []
+  }
+ ],
+ "tokyo.sakuragicho": [
+  {
+   "name": {
+    "ja": "東口",
+    "ko": "동쪽 출구",
+    "en": "East Exit"
+   },
+   "near": {
+    "ja": "みなとみらい・汽車道・ランドマークタワー",
+    "ko": "미나토미라이·기샤미치·랜드마크 타워",
+    "en": "Minato Mirai, Kishamichi promenade, Landmark Tower"
+   },
+   "landmarks": [
+    "minatomirai"
+   ]
+  }
+ ],
+ "tokyo.ginza": [
+  {
+   "name": {
+    "ja": "A出口（地下通路）",
+    "ko": "A 출구 (지하도)",
+    "en": "A exits (underpass)"
+   },
+   "near": {
+    "ja": "銀座四丁目交差点・和光の時計塔",
+    "ko": "긴자 4초메 교차로·와코 시계탑",
+    "en": "Ginza 4-chome crossing, Wako clock tower"
+   },
+   "landmarks": [
+    "wako"
+   ]
+  }
+ ],
+ "tokyo.roppongi": [
+  {
+   "name": {
+    "ja": "1C出口",
+    "ko": "1C 출구",
+    "en": "Exit 1C"
+   },
+   "near": {
+    "ja": "六本木ヒルズ（コンコースから直結）",
+    "ko": "롯폰기힐스 (지하 통로로 바로 연결)",
+    "en": "Roppongi Hills (direct from the concourse)"
+   },
+   "landmarks": [
+    "roppongi"
+   ]
+  }
+ ]
+}

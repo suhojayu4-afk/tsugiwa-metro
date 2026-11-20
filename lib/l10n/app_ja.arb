@@ -266,6 +266,39 @@
   "mapNoTips": "この駅のヒントは じゅんび中です",
   "mapSetFrom": "出発にする",
   "mapSetTo": "到着にする",
+  "mapCourses": "おでかけコース",
+  "courseHint": "駅に行くとスタンプ。ぜんぶ集めると制覇！",
+  "courseDone": "制覇！",
+  "courseGo": "次の駅へ",
+  "courseProgress": "スタンプ {done}/{total}",
+  "courseHours": "約{hours}時間",
+  "courseDay": "1日",
+  "exitGuide": "出口ガイド",
+  "@courseProgress": {
+    "placeholders": {
+      "done": {"type": "int"},
+      "total": {"type": "int"}
+    }
+  },
+  "@courseHours": {
+    "placeholders": {
+      "hours": {"type": "int"}
+    }
+  },
+  "mapStampMode": "スタンプ地図",
+  "mapStampSummary": "{visited}/{total}駅・制覇{lines}路線・★{gold}",
+  "mapNamesSwap": "駅名の言語",
+  "@mapStampSummary": {
+    "placeholders": {
+      "visited": {"type": "int"},
+      "total": {"type": "int"},
+      "lines": {"type": "int"},
+      "gold": {"type": "int"}
+    }
+  },
+  "boardSource": "運行情報：公共交通オープンデータセンター",
+  "boardAllNormal": "現在、平常どおり運転しています",
+  "boardDelay": "遅延",
   "boardTitle": "発車標",
   "boardSoon": "まもなく",
   "boardNote": "時刻は時刻表からの目安です。駅の案内も確認してね",

@@ -357,6 +357,54 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mapSetTo => 'Set as destination';
 
   @override
+  String get mapCourses => 'Day-out courses';
+
+  @override
+  String get courseHint => 'Get a stamp at each station. Collect them all!';
+
+  @override
+  String get courseDone => 'Completed!';
+
+  @override
+  String get courseGo => 'To the next stop';
+
+  @override
+  String courseProgress(int done, int total) {
+    return 'Stamps $done/$total';
+  }
+
+  @override
+  String courseHours(int hours) {
+    return 'about $hours h';
+  }
+
+  @override
+  String get courseDay => 'a day';
+
+  @override
+  String get exitGuide => 'Exits';
+
+  @override
+  String get mapStampMode => 'Stamp map';
+
+  @override
+  String mapStampSummary(int visited, int total, int lines, int gold) {
+    return '$visited/$total · $lines lines done · ★$gold';
+  }
+
+  @override
+  String get mapNamesSwap => 'Switch station-name language';
+
+  @override
+  String get boardSource => 'Service info: ODPT Center';
+
+  @override
+  String get boardAllNormal => 'All lines running normally';
+
+  @override
+  String get boardDelay => 'Delay';
+
+  @override
   String get boardTitle => 'Departures';
 
   @override

@@ -17,6 +17,7 @@ import '../../l10n/app_localizations.dart';
 import '../platform/nearest_station.dart';
 import '../platform/station_picker.dart';
 import '../trip/route_finder.dart';
+import '../guide/guide_data.dart';
 import 'landmark_sheet.dart';
 import 'map_trains.dart';
 
@@ -135,10 +136,15 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
       if (z != null) _controller.value = z.value;
     });
     _controller.addListener(_keepOuterZoom);
+    _controller.addListener(_keepInside);
     _controller.addListener(_loadTiles);
     Services.chosenRoute.addListener(_onRoute);
     Services.stickers.addListener(_onStickers);
     _onStickers();
+    Services.my.addListener(_onStamps);
+    GuideData.load(widget.city.id).then((g) {
+      if (mounted) setState(() => _guide = g);
+    });
     _trainTicker.start();
     // The night map comes on by itself at dusk.
     _minute = Timer.periodic(const Duration(minutes: 1), (_) {
@@ -192,7 +198,7 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     final b = route.bounds.inflate(70);
     final s = math
         .min((vp.width - 60) / b.width, (vp.height - 280) / b.height)
-        .clamp(_fitScale() * 0.7, math.min(2.2, _maxScaleAt(b.center)))
+        .clamp(_minScaleIn(), math.max(_minScaleIn(), math.min(2.2, _maxScaleAt(b.center))))
         .toDouble();
     final m = _matrixFor(b.center, s, screenAt: Offset(vp.width / 2, vp.height / 2 + 10));
     if (animate) {
@@ -220,6 +226,74 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
   }
 
   /// Loads the pictures of the stickers stuck on stations, then redraws.
+  // ---------------- sightseeing courses ----------------
+
+  GuideData _guide = const GuideData();
+
+  /// The course shown on the map (numbered stops), or null.
+  GuideCourse? _course;
+
+  Future<void> _openCourses() async {
+    final picked = await showModalBottomSheet<GuideCourse>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: PixelColors.card,
+      showDragHandle: true,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(22))),
+      builder: (_) => _CourseSheet(city: widget.city, courses: _guide.courses),
+    );
+    if (picked == null || !mounted) return;
+    setState(() {
+      _course = picked;
+      _stampMode = false;
+    });
+    _showCourse();
+  }
+
+  /// Zoom to the whole course.
+  void _showCourse() {
+    final c = _course, map = _map, vp = _viewport;
+    if (c == null || map == null || vp == null) return;
+    Rect? box;
+    for (final st in c.stops) {
+      final p = map.stopsOf(st.station).firstOrNull?.position;
+      if (p == null) continue;
+      final r = Rect.fromCircle(center: p, radius: 1);
+      box = box == null ? r : box.expandToInclude(r);
+    }
+    if (box == null) return;
+    final b = box.inflate(120);
+    final s = math
+        .min((vp.width - 60) / b.width, (vp.height - 280) / b.height)
+        .clamp(_minScaleIn(), math.max(_minScaleIn(), math.min(2.0, _maxScaleAt(b.center))))
+        .toDouble();
+    _animateTo(_matrixFor(b.center, s, screenAt: Offset(vp.width / 2, vp.height / 2 + 10)));
+  }
+
+  // ---------------- stamp map ----------------
+
+  /// Stamp map: visited stations in gold, ★ where the user stayed, finished
+  /// lines glowing; the rest faded.
+  bool _stampMode = false;
+
+  /// Lines with every station stamped.
+  Set<String> _doneLines = const {};
+
+  /// Station names: Japanese first (signs in Japan) or the app's language
+  /// first. Null = by the language (Japanese for ja, else the language).
+  bool? _namesJa;
+
+  void _onStamps() {
+    if (!mounted) return;
+    final my = Services.my;
+    setState(
+      () => _doneLines = {
+        for (final l in widget.city.lines)
+          if (my.lineComplete(l.id)) l.id,
+      },
+    );
+  }
+
   Future<void> _onStickers() async {
     await Services.stickers.load();
     for (final name in Services.stickers.marks.values.toSet()) {
@@ -240,6 +314,7 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     _scenery.dispose();
     Services.chosenRoute.removeListener(_onRoute);
     Services.stickers.removeListener(_onStickers);
+    Services.my.removeListener(_onStamps);
     _trainTicker.dispose();
     _minute?.cancel();
     _trainTick.dispose();
@@ -261,8 +336,56 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     final w = b.max.dx - b.min.dx + 50, h = b.max.dy - b.min.dy + 60;
     // A phone held upright: fill the height (all of Kanto top to bottom) and
     // let the sides be panned, instead of a thin band in the middle.
-    if (vp.height > vp.width) return (vp.height - 190) / h;
-    return math.min((vp.width - 130) / w, (vp.height - 190) / h);
+    final fit = vp.height > vp.width ? (vp.height - 190) / h : math.min((vp.width - 130) / w, (vp.height - 190) / h);
+    return math.max(fit, _minScaleIn());
+  }
+
+  /// The part of the map that may be shown: the lines and landmarks with a
+  /// little room round them. Beyond it there is no route map, only pale
+  /// ground, so the map does not pan or zoom out past it.
+  Rect get _allowed {
+    final b = _map!.contentBounds;
+    return Rect.fromLTRB(b.min.dx, b.min.dy, b.max.dx, b.max.dy).inflate(350);
+  }
+
+  /// Least zoom: the allowed area still fills the whole screen.
+  double _minScaleIn() {
+    final a = _allowed, vp = _viewport!;
+    return math.max(vp.width / a.width, vp.height / a.height);
+  }
+
+  /// [m] pulled back inside the allowed area (zoom no less than
+  /// [_minScaleIn], no empty space at any edge).
+  Matrix4 _inside(Matrix4 m) {
+    final vp = _viewport!, a = _allowed;
+    var s = m.storage[0];
+    var tx = m.storage[12], ty = m.storage[13];
+    final min = _minScaleIn();
+    if (s < min) {
+      // Keep the middle of the screen where it was.
+      final cx = (vp.width / 2 - tx) / s, cy = (vp.height / 2 - ty) / s;
+      s = min;
+      tx = vp.width / 2 - cx * s;
+      ty = vp.height / 2 - cy * s;
+    }
+    tx = tx.clamp(vp.width - a.right * s, -a.left * s);
+    ty = ty.clamp(vp.height - a.bottom * s, -a.top * s);
+    if (s == m.storage[0] && tx == m.storage[12] && ty == m.storage[13]) return m;
+    return Matrix4.identity()
+      ..translateByDouble(tx, ty, 0, 1)
+      ..scaleByDouble(s, s, 1, 1);
+  }
+
+  bool _keeping = false;
+
+  /// Pinch and drag too: never past the edge of the route map.
+  void _keepInside() {
+    if (_keeping || _map == null || _viewport == null) return;
+    final m = _controller.value, n = _inside(m);
+    if (identical(m, n)) return;
+    _keeping = true;
+    _controller.value = n;
+    _keeping = false;
   }
 
   /// Matrix that shows world point [center] at [screenAt] (default: middle) at [scale].
@@ -277,7 +400,7 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
   void _animateTo(Matrix4 target) {
     _zoom = Matrix4Tween(
       begin: _controller.value.clone(),
-      end: target,
+      end: _inside(target),
     ).animate(CurvedAnimation(parent: _anim, curve: Curves.easeOutCubic));
     _anim.forward(from: 0);
   }
@@ -401,7 +524,7 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
   void _zoomBy(double factor) {
     final vp = _viewport!;
     final centre = _toWorld(Offset(vp.width / 2, vp.height / 2));
-    final s = (_scale * factor).clamp(_fitScale() * 0.7, _maxScaleAt(centre));
+    final s = (_scale * factor).clamp(_minScaleIn(), math.max(_minScaleIn(), _maxScaleAt(centre))).toDouble();
     _animateTo(_matrixFor(centre, s));
   }
 
@@ -500,7 +623,7 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
       barrierColor: const Color(0x22000000),
       showDragHandle: true,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(22))),
-      builder: (_) => _StationSheet(city: widget.city, map: _map!, stationId: id),
+      builder: (_) => _StationSheet(city: widget.city, map: _map!, stationId: id, exits: _guide.exits[id] ?? const []),
     );
     if (!mounted) return;
     setState(() => _selected = null);
@@ -525,7 +648,27 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     final t = AppLocalizations.of(context);
     final lang = langOf(context);
     final night = _night;
+    final my = Services.my;
+    final stamp = _StampLook(
+      on: _stampMode,
+      visited: my.loaded ? my.stamps.keys.toSet() : const {},
+      stayed: my.loaded
+          ? {
+              for (final id in my.stamps.keys)
+                if (my.stayed(id)) id,
+            }
+          : const {},
+      doneLines: _doneLines,
+      namesJa: _namesJa ?? lang == 'ja',
+    );
     final map = _map, terrain = _terrain;
+    final List<({Offset at, bool done})>? course = _course == null || map == null
+        ? null
+        : [
+            for (final st in _course!.stops)
+              if (map.stopsOf(st.station).firstOrNull case final p?)
+                (at: p.position, done: my.loaded && my.stamped(st.station)),
+          ];
     return LayoutBuilder(
       builder: (context, box) {
         _viewport = box.biggest;
@@ -628,8 +771,10 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                         landmarks: _landmarkImages,
                         selected: _selected,
                         focusLine: _focusLine,
-                        route: _routeOn ? _route : null,
+                        route: _routeOn && !_stampMode && _course == null ? _route : null,
                         night: night,
+                        stamp: stamp,
+                        course: course,
                         labels: false,
                       ),
                     ),
@@ -664,8 +809,10 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                         landmarks: _landmarkImages,
                         selected: _selected,
                         focusLine: _focusLine,
-                        route: _routeOn ? _route : null,
+                        route: _routeOn && !_stampMode && _course == null ? _route : null,
                         night: night,
+                        stamp: stamp,
+                        course: course,
                         labels: true,
                         stickers: Services.stickers.marks,
                         stickerImages: _stickerImages,
@@ -703,10 +850,65 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                       ),
                       const SizedBox(height: 10),
                       _MapButton(icon: Icons.my_location_rounded, label: t.nearestButton, onTap: _goToMe),
+                      const SizedBox(height: 10),
+                      _MapButton(icon: Icons.tour_rounded, label: t.mapCourses, onTap: _openCourses),
+                      const SizedBox(height: 10),
+                      _MapButton(
+                        icon: _stampMode ? Icons.close_rounded : Icons.approval_rounded,
+                        label: t.mapStampMode,
+                        onTap: () {
+                          if (!_stampMode) _onStamps();
+                          setState(() {
+                            _stampMode = !_stampMode;
+                            if (_stampMode) _course = null;
+                          });
+                        },
+                      ),
+                      if (lang != 'ja') ...[
+                        const SizedBox(height: 10),
+                        _MapButton(
+                          icon: Icons.translate_rounded,
+                          label: t.mapNamesSwap,
+                          onTap: () => setState(() => _namesJa = !(_namesJa ?? false)),
+                        ),
+                      ],
                     ],
                   ),
                 ),
-              if (map != null && _route != null)
+              if (map != null && _course != null)
+                Positioned(
+                  left: 16,
+                  right: 84,
+                  bottom: 20,
+                  child: _CourseBar(
+                    course: _course!,
+                    done: _course!.done(Services.my.loaded ? Services.my.stamped : (_) => false),
+                    onShow: _showCourse,
+                    onGo: () {
+                      // The first stop without a stamp yet.
+                      final next = _course!.stops.firstWhere(
+                        (st) => !(Services.my.loaded && Services.my.stamped(st.station)),
+                        orElse: () => _course!.stops.first,
+                      );
+                      widget.onUseStation?.call(next.station, from: false);
+                    },
+                    onClose: () => setState(() => _course = null),
+                  ),
+                ),
+              if (map != null && _stampMode)
+                Positioned(
+                  left: 16,
+                  right: 84,
+                  bottom: 20,
+                  child: _StampBar(
+                    visited: stamp.visited.length,
+                    total: widget.city.stations.length,
+                    lines: _doneLines.length,
+                    gold: stamp.stayed.length,
+                    onClose: () => setState(() => _stampMode = false),
+                  ),
+                ),
+              if (map != null && _route != null && !_stampMode && _course == null)
                 Positioned(
                   left: 16,
                   right: 84,
@@ -971,6 +1173,8 @@ class _MapOverlayPainter extends CustomPainter {
     required this.route,
     required this.labels,
     this.night = false,
+    this.stamp = const _StampLook(),
+    this.course,
     this.stickers = const {},
     this.stickerImages = const {},
   }) : super(repaint: matrix);
@@ -981,6 +1185,12 @@ class _MapOverlayPainter extends CustomPainter {
 
   /// Night map: lights round the towns, dimmed pictures, light names.
   final bool night;
+
+  /// Stamps (and the stamp map) and the language of the station names.
+  final _StampLook stamp;
+
+  /// A sightseeing course on the map: its stops in order, stamped or not.
+  final List<({Offset at, bool done})>? course;
 
   /// The route set on のりば (drawn boldly, the rest faded), or null.
   final RouteOnMap? route;
@@ -1241,13 +1451,28 @@ class _MapOverlayPainter extends CustomPainter {
     final route = this.route;
     canvas.save();
     canvas.transform(m.storage);
+    final course = this.course;
     for (final line in map.lines) {
       if (!line.bounds.overlaps(view)) continue;
-      final dim = route != null || !_inFocus(line.lineId);
+      final done = stamp.on && stamp.doneLines.contains(line.lineId);
+      final dim = route != null || !_inFocus(line.lineId) || (stamp.on && !done);
+      if (done) {
+        // A finished line glows gold under its colour.
+        canvas.drawPath(
+          _pathOf(line),
+          Paint()
+            ..color = const Color(0x99F2C14E)
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = (width + 7) / s
+            ..strokeJoin = StrokeJoin.round
+            ..strokeCap = StrokeCap.round
+            ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 2),
+        );
+      }
       canvas.drawPath(
         _pathOf(line),
         Paint()
-          ..color = city.line(line.lineId).color.withValues(alpha: dim ? 0.22 : 1)
+          ..color = city.line(line.lineId).color.withValues(alpha: dim ? (stamp.on ? 0.35 : 0.22) : 1)
           ..style = PaintingStyle.stroke
           ..strokeWidth = width / s
           ..strokeJoin = StrokeJoin.round
@@ -1289,6 +1514,21 @@ class _MapOverlayPainter extends CustomPainter {
         }
       }
     }
+    if (course != null && course.length > 1) {
+      // The course: a dashed gold line from stop to stop.
+      final dash = Paint()
+        ..color = const Color(0xFFE0A21C)
+        ..strokeWidth = 4 / s
+        ..strokeCap = StrokeCap.round;
+      for (var k = 1; k < course.length; k++) {
+        final a = course[k - 1].at, b = course[k].at;
+        final d = b - a;
+        final n = math.max(1, (d.distance * s / 12).round());
+        for (var i = 0; i < n; i += 2) {
+          canvas.drawLine(a + d * (i / n), a + d * ((i + 1) / n), dash);
+        }
+      }
+    }
     canvas.restore();
   }
 
@@ -1313,6 +1553,11 @@ class _MapOverlayPainter extends CustomPainter {
       final onFocus = route != null ? onRoute.contains(id) : focusLine == null || stops.any((x) => _inFocus(x.lineId));
       fill.color = PixelColors.card.withValues(alpha: onFocus ? 1 : 0.5);
       outline.color = PixelColors.ink.withValues(alpha: onFocus ? 1 : 0.25);
+      final got = stamp.on && stamp.visited.contains(id);
+      if (stamp.on) {
+        fill.color = got ? const Color(0xFFFFE7A0) : const Color(0xCCECEBE6);
+        outline.color = got ? const Color(0xFFB98516) : const Color(0x66808590);
+      }
       final pts = stops.map((x) => sp(x.position)).toList();
       // Zoomed far out the whole network is on screen: only transfer
       // stations get a dot, so the lines stay readable.
@@ -1333,6 +1578,7 @@ class _MapOverlayPainter extends CustomPainter {
         canvas.drawCircle(pts.first, r, fill);
         canvas.drawCircle(pts.first, r, outline..strokeWidth = r < 3 ? 1.0 : (r < 5 ? 1.6 : 2.4));
       }
+      if (got && stamp.stayed.contains(id)) _star(canvas, pts.first.translate(r + 3, -r - 3), math.max(4, r * 0.9));
       if (id == selected) {
         for (final (rad, a) in [(r + 18.0, 0x33), (r + 10.0, 0x77)]) {
           canvas.drawCircle(
@@ -1367,6 +1613,18 @@ class _MapOverlayPainter extends CustomPainter {
         Paint()..filterQuality = FilterQuality.none,
       );
       canvas.restore();
+    }
+
+    // ---- a sightseeing course: numbered stops (gold once stamped) ----
+    if (course != null) {
+      for (final (k, stop) in course!.indexed) {
+        final p = sp(stop.at).translate(0, -22);
+        canvas.drawCircle(p.translate(0, 22), 5, Paint()..color = const Color(0x55000000));
+        canvas.drawCircle(p, 14, Paint()..color = PixelColors.card);
+        canvas.drawCircle(p, 12, Paint()..color = stop.done ? const Color(0xFFE0A21C) : const Color(0xFF3A7BD5));
+        final tp = _tp(stop.done ? '✓' : '${k + 1}', 13, PixelColors.card);
+        tp.paint(canvas, p - Offset(tp.width / 2, tp.height / 2));
+      }
     }
 
     // ---- my route: start, changes, destination ----
@@ -1443,12 +1701,17 @@ class _MapOverlayPainter extends CustomPainter {
         LabelSide.top => (_Anchor.bottom, p.translate(0, -gap)),
         LabelSide.bottom => (_Anchor.top, p.translate(0, gap)),
       };
-      final sub = s > 1.3 ? (lang == 'ja' ? station.kana : station.name.of(lang)) : null;
+      // Japanese first (as on the signs) or the app's language first; the
+      // other one small underneath when zoomed in.
+      final main = stamp.namesJa ? station.name.ja : station.name.of(lang);
+      final sub = stamp.namesJa
+          ? (s > 1.3 ? (lang == 'ja' ? station.kana : station.name.of(lang)) : null)
+          : (s > 0.9 ? station.name.ja : null);
       final fs = ((font * (major ? 1.15 : 1)) * 2).roundToDouble() / 2;
-      final rect = _bounds(station.name.ja, sub, origin, anchor, fs);
+      final rect = _bounds(main, sub, origin, anchor, fs);
       if (rect.right < 0 || rect.left > size.width || rect.bottom < 0 || rect.top > size.height) continue;
       if (!placed.tryAdd(rect) && !ends.contains(id)) continue;
-      _label(canvas, station.name.ja, origin, size: fs, color: PixelColors.ink, anchor: anchor, sub: sub);
+      _label(canvas, main, origin, size: fs, color: PixelColors.ink, anchor: anchor, sub: sub);
     }
 
     // ---- landmark names: on top of the lines, where no station name is ----
@@ -1457,6 +1720,26 @@ class _MapOverlayPainter extends CustomPainter {
       if (!placed.tryAdd(rect)) continue;
       _label(canvas, name, at, size: 12, color: const Color(0xFF60666F), anchor: _Anchor.top);
     }
+  }
+
+  /// A small gold star (a gold stamp: the user stayed at the station).
+  static void _star(Canvas canvas, Offset c, double r) {
+    final p = Path();
+    for (var i = 0; i < 10; i++) {
+      final a = -math.pi / 2 + i * math.pi / 5;
+      final rr = i.isEven ? r : r * 0.45;
+      final q = c + Offset(rr * math.cos(a), rr * math.sin(a));
+      i == 0 ? p.moveTo(q.dx, q.dy) : p.lineTo(q.dx, q.dy);
+    }
+    p.close();
+    canvas.drawPath(
+      p,
+      Paint()
+        ..color = const Color(0xFFFFFFFF)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2.5,
+    );
+    canvas.drawPath(p, Paint()..color = const Color(0xFFE8B33A));
   }
 
   /// Name colours at night: ink becomes a soft white, greys a light grey.
@@ -1531,6 +1814,8 @@ class _MapOverlayPainter extends CustomPainter {
       old.route != route ||
       old.labels != labels ||
       old.night != night ||
+      old.stamp != stamp ||
+      old.course?.length != course?.length ||
       old.stickers != stickers ||
       old.stickerImages.length != stickerImages.length ||
       old.landmarks.length != landmarks.length;
@@ -1732,10 +2017,13 @@ class _MapButton extends StatelessWidget {
 /// Station card: name, transfer lines, tips, set as start / destination.
 /// Pops true for "start", false for "destination".
 class _StationSheet extends StatelessWidget {
-  const _StationSheet({required this.city, required this.map, required this.stationId});
+  const _StationSheet({required this.city, required this.map, required this.stationId, this.exits = const []});
   final CityData city;
   final RouteMapData map;
   final String stationId;
+
+  /// The station's exits and what is near them (出口ガイド).
+  final List<StationExit> exits;
 
   @override
   Widget build(BuildContext context) {
@@ -1775,6 +2063,30 @@ class _StationSheet extends StatelessWidget {
                   Expanded(child: PixelText(area, size: 13, color: PixelColors.muted, maxLines: 1)),
                 ],
               ),
+            ],
+            if (exits.isNotEmpty) ...[
+              const SizedBox(height: 14),
+              PixelText(t.exitGuide, size: 13, color: PixelColors.muted),
+              const SizedBox(height: 6),
+              for (final e in exits)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 6),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFFFD43B),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: PixelText(e.name.of(lang), size: 13),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(child: PixelText(e.near.of(lang), size: 14)),
+                    ],
+                  ),
+                ),
             ],
             const SizedBox(height: 14),
             PixelText(t.mapTransfers, size: 13, color: PixelColors.muted),
@@ -1998,6 +2310,255 @@ class _RouteBar extends StatelessWidget {
             tooltip: hidden ? t.mapRouteShow : t.mapRouteHide,
             onPressed: onToggle,
             icon: Icon(hidden ? Icons.visibility_off_outlined : Icons.visibility_outlined, color: PixelColors.muted),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// What the station marks show: the stamp map (and the stamps), and which
+/// language the station names come first in.
+@immutable
+class _StampLook {
+  const _StampLook({
+    this.on = false,
+    this.visited = const {},
+    this.stayed = const {},
+    this.doneLines = const {},
+    this.namesJa = true,
+  });
+
+  final bool on;
+  final Set<String> visited;
+  final Set<String> stayed;
+  final Set<String> doneLines;
+  final bool namesJa;
+
+  @override
+  bool operator ==(Object other) =>
+      other is _StampLook &&
+      other.on == on &&
+      other.namesJa == namesJa &&
+      other.visited.length == visited.length &&
+      other.stayed.length == stayed.length &&
+      other.doneLines.length == doneLines.length;
+
+  @override
+  int get hashCode => Object.hash(on, namesJa, visited.length, stayed.length, doneLines.length);
+}
+
+/// Bottom bar of the stamp map: stations stamped, lines finished, gold stamps.
+class _StampBar extends StatelessWidget {
+  const _StampBar({
+    required this.visited,
+    required this.total,
+    required this.lines,
+    required this.gold,
+    required this.onClose,
+  });
+  final int visited;
+  final int total;
+  final int lines;
+  final int gold;
+  final VoidCallback onClose;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
+    return Container(
+      height: 54,
+      padding: const EdgeInsets.only(left: 12, right: 4),
+      decoration: BoxDecoration(
+        color: const Color(0xFFFFF8E2),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: const Color(0xFFE8C66A)),
+        boxShadow: const [BoxShadow(color: Color(0x22000000), blurRadius: 10, offset: Offset(0, 3))],
+      ),
+      child: Row(
+        children: [
+          const Icon(Icons.approval_rounded, color: Color(0xFFB98516), size: 22),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                PixelText(t.mapStampMode, size: 11, color: PixelColors.muted),
+                const SizedBox(height: 2),
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerLeft,
+                  child: PixelText(t.mapStampSummary(visited, total, lines, gold), size: 15, maxLines: 1),
+                ),
+              ],
+            ),
+          ),
+          IconButton(
+            tooltip: t.mapStampMode,
+            onPressed: onClose,
+            icon: const Icon(Icons.close_rounded, color: PixelColors.muted),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+String _courseTime(AppLocalizations t, String time) =>
+    time.endsWith('d') ? t.courseDay : t.courseHours(int.tryParse(time.replaceAll('h', '')) ?? 3);
+
+/// The sightseeing courses, each with its stamp rally progress.
+class _CourseSheet extends StatelessWidget {
+  const _CourseSheet({required this.city, required this.courses});
+  final CityData city;
+  final List<GuideCourse> courses;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
+    final lang = langOf(context);
+    final my = Services.my;
+    bool stamped(String id) => my.loaded && my.stamped(id);
+    return SafeArea(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(maxHeight: MediaQuery.sizeOf(context).height * 0.75),
+        child: ListView(
+          shrinkWrap: true,
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+          children: [
+            PixelText(t.mapCourses, size: 22),
+            const SizedBox(height: 4),
+            PixelText(t.courseHint, size: 13, color: PixelColors.muted),
+            const SizedBox(height: 12),
+            for (final c in courses)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Semantics(
+                  button: true,
+                  child: GestureDetector(
+                    onTap: () => Navigator.pop(context, c),
+                    child: Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: c.finished(stamped) ? const Color(0xFFFFF8E2) : PixelColors.background,
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: c.finished(stamped) ? const Color(0xFFE8C66A) : PixelColors.line),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(child: PixelText(c.name.of(lang), size: 17, maxLines: 1)),
+                              PixelText(_courseTime(t, c.time), size: 12, color: PixelColors.muted),
+                            ],
+                          ),
+                          const SizedBox(height: 4),
+                          PixelText(c.about.of(lang), size: 13, color: PixelColors.muted, maxLines: 2),
+                          const SizedBox(height: 8),
+                          Row(
+                            children: [
+                              for (final st in c.stops) ...[
+                                Icon(
+                                  stamped(st.station) ? Icons.approval_rounded : Icons.radio_button_unchecked_rounded,
+                                  size: 16,
+                                  color: stamped(st.station) ? const Color(0xFFB98516) : PixelColors.muted,
+                                ),
+                                const SizedBox(width: 2),
+                                Flexible(
+                                  child: PixelText(
+                                    city.station(st.station).name.of(lang),
+                                    size: 12,
+                                    maxLines: 1,
+                                    color: stamped(st.station) ? PixelColors.ink : PixelColors.muted,
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                              ],
+                              if (c.finished(stamped))
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFFE8B33A),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: PixelText(t.courseDone, size: 12, color: PixelColors.card),
+                                ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Bottom bar while a course is shown: its name, stamps so far, go and close.
+class _CourseBar extends StatelessWidget {
+  const _CourseBar({
+    required this.course,
+    required this.done,
+    required this.onShow,
+    required this.onGo,
+    required this.onClose,
+  });
+  final GuideCourse course;
+  final int done;
+  final VoidCallback onShow;
+  final VoidCallback onGo;
+  final VoidCallback onClose;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
+    final lang = langOf(context);
+    final finished = done == course.stops.length;
+    return Container(
+      height: 58,
+      padding: const EdgeInsets.only(left: 12, right: 4),
+      decoration: BoxDecoration(
+        color: PixelColors.card,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: finished ? const Color(0xFFE8C66A) : PixelColors.line),
+        boxShadow: const [BoxShadow(color: Color(0x22000000), blurRadius: 10, offset: Offset(0, 3))],
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: onShow,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  PixelText(
+                    finished ? t.courseDone : t.courseProgress(done, course.stops.length),
+                    size: 11,
+                    color: finished ? const Color(0xFFB98516) : PixelColors.muted,
+                  ),
+                  const SizedBox(height: 2),
+                  PixelText(course.name.of(lang), size: 15, maxLines: 1),
+                ],
+              ),
+            ),
+          ),
+          if (!finished)
+            TextButton(
+              onPressed: onGo,
+              child: PixelText(t.courseGo, size: 13, color: PixelColors.title),
+            ),
+          IconButton(
+            tooltip: MaterialLocalizations.of(context).closeButtonLabel,
+            onPressed: onClose,
+            icon: const Icon(Icons.close_rounded, color: PixelColors.muted),
           ),
         ],
       ),

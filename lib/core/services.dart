@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 import '../data/realtime/realtime_provider.dart';
+import '../data/realtime/train_status.dart';
 import '../data/last_train_alarm.dart';
 import '../data/sticker_marks.dart';
 import '../data/my_store.dart';
@@ -19,6 +20,9 @@ class Services {
   static LocationSource location = const GeolocatorLocationSource();
   static WeatherSource weather = JmaWeatherSource();
   static RealtimeProvider realtime = const TimetableOnlyProvider();
+
+  /// Live 運行情報 (ODPT); quiet without an access key.
+  static TrainStatusSource status = TrainStatusSource();
   static RouteStore routes = RouteStore();
   static MyStore my = MyStore();
 

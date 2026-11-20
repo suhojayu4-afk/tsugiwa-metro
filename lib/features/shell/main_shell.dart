@@ -78,6 +78,7 @@ class _MainShellState extends State<MainShell> {
     // The rare yellow train on のりば gives a badge.
     RareSightings.attach();
     _stay = StayWatcher(city: widget.city, location: Services.location, onStay: _onStay)..start();
+    Services.status.start();
     // Keep the home screen widget's pictures in step with MY駅.
     _widgetSync = HomeWidgetSync(
       bridge: Services.homeWidget,
@@ -113,6 +114,7 @@ class _MainShellState extends State<MainShell> {
   void dispose() {
     _widgetSync?.dispose();
     _stay?.stop();
+    Services.status.stop();
     super.dispose();
   }
 

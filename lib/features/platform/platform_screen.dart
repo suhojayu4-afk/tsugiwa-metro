@@ -26,6 +26,9 @@ import '../trip/trip_plan.dart';
 import '../trip/trip_screen.dart';
 import 'context_card.dart';
 import 'departure_board.dart';
+import '../guide/guide_card.dart';
+import '../guide/guide_data.dart';
+import '../guide/guide_tips.dart';
 import '../../data/route_store.dart';
 import 'nearest_station.dart';
 import 'station_picker.dart';
@@ -77,6 +80,9 @@ class PlatformScreenState extends State<PlatformScreen> {
   String? _fromId;
   String? _toId;
 
+  /// Exits and courses for the attendant's tips.
+  GuideData _guide = const GuideData();
+
   /// Lines to avoid for this from → to, set by 「このルートにする」 after a
   /// last train has gone.
   Set<String> _avoid = const {};
@@ -97,6 +103,9 @@ class PlatformScreenState extends State<PlatformScreen> {
   void initState() {
     super.initState();
     _sheet.addListener(_onSheet);
+    GuideData.load(widget.city.id).then((g) {
+      if (mounted) setState(() => _guide = g);
+    });
     _store.addListener(_onStore);
     Services.my.addListener(_onStore);
     if (!Services.my.loaded) Services.my.load();
@@ -465,6 +474,13 @@ class PlatformScreenState extends State<PlatformScreen> {
     setState(() => isFrom ? _fromId = id : _toId = id);
   }
 
+  /// Expected crowding on the first line now (for the attendant's tips).
+  CongestionLevel? _crowdNow(RouteResult? route) {
+    final lineId = route?.legs.first.lineId ?? (_fromId == null ? null : widget.city.station(_fromId!).lines.first);
+    if (lineId == null) return null;
+    return EstimateCongestionSource.levelAt(lineId, DateTime.now().toUtc().add(const Duration(hours: 9)));
+  }
+
   /// Share the route with the route map (drawn boldly there).
   void _publishRoute(RouteResult? route) {
     if (Services.chosenRoute.value?.key == route?.key) return;
@@ -570,6 +586,22 @@ class PlatformScreenState extends State<PlatformScreen> {
                   weather: _weather,
                   aspect: _sceneAspect,
                   onOpenMy: widget.onOpenMy,
+                ),
+                // 「つぎはさん」: the station attendant's tip for now.
+                GuideCard(
+                  tips: guideTips(
+                    city: widget.city,
+                    data: _guide,
+                    now: DateTime.now(),
+                    lang: langOf(context),
+                    route: route,
+                    fromId: _fromId,
+                    toId: _toId,
+                    weather: _weather,
+                    crowd: _crowdNow(route),
+                    stamped: Services.my.loaded ? Services.my.stamped : null,
+                    stayed: Services.my.loaded ? Services.my.stayed : null,
+                  ),
                 ),
                 const SizedBox(height: 12),
                 if (widget.city.weather != null)

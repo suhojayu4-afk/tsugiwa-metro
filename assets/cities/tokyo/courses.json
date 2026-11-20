@@ -1,0 +1,198 @@
+[
+ {
+  "id": "asakusa",
+  "name": {
+   "ja": "浅草・スカイツリー 半日",
+   "ko": "아사쿠사·스카이트리 반나절",
+   "en": "Asakusa & Skytree, half a day"
+  },
+  "time": "3h",
+  "about": {
+   "ja": "上野公園から雷門へ、最後はスカイツリーで東京を一望。",
+   "ko": "우에노 공원에서 가미나리몬으로, 마지막은 스카이트리에서 도쿄 한눈에.",
+   "en": "Ueno Park, then Kaminarimon, and Tokyo from the Skytree to finish."
+  },
+  "stops": [
+   {
+    "station": "tokyo.ueno",
+    "landmark": "ueno"
+   },
+   {
+    "station": "tokyo.asakusa",
+    "landmark": "kaminarimon"
+   },
+   {
+    "station": "tokyo.tokyo_skytree",
+    "landmark": "skytree"
+   }
+  ]
+ },
+ {
+  "id": "marunouchi",
+  "name": {
+   "ja": "東京駅・皇居・銀座 さんぽ",
+   "ko": "도쿄역·고쿄·긴자 산책",
+   "en": "Tokyo Station, Imperial Palace & Ginza walk"
+  },
+  "time": "3h",
+  "about": {
+   "ja": "赤レンガの駅舎から皇居の二重橋、銀座の時計塔まで。",
+   "ko": "붉은 벽돌 역사에서 고쿄 니주바시, 긴자 시계탑까지.",
+   "en": "From the red-brick station to the palace bridges and the Ginza clock tower."
+  },
+  "stops": [
+   {
+    "station": "tokyo.tokyo",
+    "landmark": "station"
+   },
+   {
+    "station": "tokyo.nijubashimae",
+    "landmark": "nijubashi"
+   },
+   {
+    "station": "tokyo.ginza",
+    "landmark": "wako"
+   }
+  ]
+ },
+ {
+  "id": "shibuya",
+  "name": {
+   "ja": "渋谷・原宿・新宿 にぎわいコース",
+   "ko": "시부야·하라주쿠·신주쿠 번화가 코스",
+   "en": "Shibuya, Harajuku & Shinjuku"
+  },
+  "time": "4h",
+  "about": {
+   "ja": "スクランブル交差点から明治神宮の森、都庁の展望室へ。",
+   "ko": "스크램블 교차로에서 메이지 신궁 숲, 도청 전망실로.",
+   "en": "The Scramble Crossing, the Meiji Shrine forest, then the city hall observatory."
+  },
+  "stops": [
+   {
+    "station": "tokyo.shibuya",
+    "landmark": "shibuya"
+   },
+   {
+    "station": "tokyo.harajuku",
+    "landmark": "meiji"
+   },
+   {
+    "station": "tokyo.tochomae",
+    "landmark": "tocho"
+   }
+  ]
+ },
+ {
+  "id": "odaiba",
+  "name": {
+   "ja": "お台場ベイエリア",
+   "ko": "오다이바 베이 에어리어",
+   "en": "Odaiba bay area"
+  },
+  "time": "4h",
+  "about": {
+   "ja": "ゆりかもめでレインボーブリッジを渡り、海辺の街と市場へ。",
+   "ko": "유리카모메로 레인보우 브리지를 건너 바닷가 거리와 시장으로.",
+   "en": "Over the Rainbow Bridge on the Yurikamome to the waterfront and the market."
+  },
+  "stops": [
+   {
+    "station": "tokyo.shibaura_futo",
+    "landmark": "rainbow_bridge"
+   },
+   {
+    "station": "tokyo.odaiba_kaihinkoen",
+    "landmark": "ferris"
+   },
+   {
+    "station": "tokyo.tokyo_big_sight",
+    "landmark": "bigsight"
+   },
+   {
+    "station": "tokyo.shijo_mae",
+    "landmark": "toyosu"
+   }
+  ]
+ },
+ {
+  "id": "kamakura",
+  "name": {
+   "ja": "鎌倉・江の島 1日",
+   "ko": "가마쿠라·에노시마 하루",
+   "en": "Kamakura & Enoshima, a day"
+  },
+  "time": "1d",
+  "about": {
+   "ja": "鶴岡八幡宮から江ノ電で大仏へ、海を眺めて江の島まで。",
+   "ko": "쓰루가오카 하치만구에서 에노덴으로 대불, 바다 보며 에노시마까지.",
+   "en": "Tsurugaoka Hachimangu, the Enoden to the Great Buddha, and on to Enoshima by the sea."
+  },
+  "stops": [
+   {
+    "station": "tokyo.kamakura",
+    "landmark": "hachimangu"
+   },
+   {
+    "station": "tokyo.hase",
+    "landmark": "daibutsu"
+   },
+   {
+    "station": "tokyo.enoshima",
+    "landmark": "enoshima"
+   }
+  ]
+ },
+ {
+  "id": "yokohama",
+  "name": {
+   "ja": "横浜みなとさんぽ",
+   "ko": "요코하마 항구 산책",
+   "en": "Yokohama harbour walk"
+  },
+  "time": "3h",
+  "about": {
+   "ja": "観覧車のみなとみらいから、中華街で食べ歩き。",
+   "ko": "관람차가 있는 미나토미라이에서 차이나타운 먹거리 산책까지.",
+   "en": "From Minato Mirai and its Ferris wheel to snacks in Chinatown."
+  },
+  "stops": [
+   {
+    "station": "tokyo.sakuragicho",
+    "landmark": "minatomirai"
+   },
+   {
+    "station": "tokyo.minatomirai",
+    "landmark": "minatomirai"
+   },
+   {
+    "station": "tokyo.motomachi_chukagai",
+    "landmark": "chinatown"
+   }
+  ]
+ },
+ {
+  "id": "akiba",
+  "name": {
+   "ja": "秋葉原・東京ドーム",
+   "ko": "아키하바라·도쿄돔",
+   "en": "Akihabara & Tokyo Dome"
+  },
+  "time": "3h",
+  "about": {
+   "ja": "電気街を歩いて、ドームの周りで遊ぶ。",
+   "ko": "전자상가를 걷고 돔 주변에서 놀기.",
+   "en": "Walk Electric Town, then play round the Dome."
+  },
+  "stops": [
+   {
+    "station": "tokyo.akihabara",
+    "landmark": "akihabara"
+   },
+   {
+    "station": "tokyo.suidobashi",
+    "landmark": "dome"
+   }
+  ]
+ }
+]
