@@ -15,6 +15,7 @@ import 'plate_editor.dart';
 import 'share_card.dart';
 import 'stamp_book_screen.dart';
 import 'station_plate.dart';
+import 'train_dex_screen.dart';
 
 const _green = Color(0xFF2E9447);
 const _gold = Color(0xFFF2B33D);
@@ -264,6 +265,13 @@ class MyRoomScreenState extends State<MyRoomScreen> {
               ),
             ),
           ],
+        ),
+        const SizedBox(height: 8),
+        _ActionChip(
+          icon: Icons.train_rounded,
+          label: trainDexTitle.of(lang),
+          onTap: () =>
+              Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => TrainDexScreen(city: widget.city))),
         ),
         const SizedBox(height: 10),
         PixelText(

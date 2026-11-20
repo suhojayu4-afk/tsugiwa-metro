@@ -1,0 +1,15 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/train_dex/resort_liner_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at these first: C:/dev/tsugiwa-metro/docs/art/gen/side_train/train3d_a_raw.png (a commuter train car for a side-scrolling game: detailed 16-bit era pixel art, crisp square pixels, almost no black outlines, rich hue-shifted shading, seen from the side with a little depth) and C:/dev/tsugiwa-metro/docs/art/gen/stations/tokyo_day_raw.png (the same art style in a station picture). Use EXACTLY that style, pixel size and palette feel.
+
+Draw ONE single railway vehicle for a collectible card in a train encyclopedia game: a seaside RESORT TRAIN car: a big panoramic cab where the front window wraps up over the driver into the roof (passengers can look out of the front), huge side windows with seats facing the window, a white body with an OCEAN-BLUE and turquoise wave-like band, a pantograph, a cheerful holiday feel.
+
+- It is an ORIGINAL fantasy design made for this game: do NOT copy any real train model, series or company livery. Keep it believable and charming.
+- VIEW: a side view with a little depth (camera slightly above, so a thin strip of the roof top shows), the vehicle runs perfectly straight left to right, the driver's cab / front at the RIGHT end, facing right. No horizontal perspective.
+- The vehicle fills about 86 percent of the picture width, centred, with magenta space around it.
+- Plain flat solid MAGENTA background (#FF00FF) everywhere around it. No ground, no rails, no sky, no shadow on the magenta (except what the description asks for, like a beam or a cable).
+- Crisp edges against the magenta: no glow, no anti-aliased fringe.
+- Landscape 1536x1024.
+- ABSOLUTELY NO text, letters, numbers, logos, emblems or symbols anywhere on the vehicle.
