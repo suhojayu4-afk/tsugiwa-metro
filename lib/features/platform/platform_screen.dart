@@ -1,3 +1,6 @@
+import '../../data/car_guide.dart';
+import 'car_guide_card.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -56,6 +59,9 @@ String _weatherText(AppLocalizations t, WeatherNow w) {
 }
 
 class PlatformScreenState extends State<PlatformScreen> {
+  /// 乗換便利号車 data for this city (`assets/cities/<id>/cars.json`).
+  late final Future<CarGuide> _cars = CarGuide.load(cityId: widget.city.id);
+
   /// From the route map: use [stationId] as the start or the destination.
   void setStation(String stationId, {required bool from}) {
     setState(() {
@@ -654,6 +660,14 @@ class PlatformScreenState extends State<PlatformScreen> {
                         if (route != null) ...[
                           const SizedBox(height: 16),
                           _RoutePreview(city: widget.city, route: route),
+                          // Which car is handy for the change or the exit (目安).
+                          const SizedBox(height: 12),
+                          FutureBuilder<CarGuide>(
+                            future: _cars,
+                            builder: (context, snap) => snap.hasData
+                                ? CarGuideCard(city: widget.city, advice: snap.data!.forRoute(route))
+                                : const SizedBox.shrink(),
+                          ),
                         ],
                       ],
                     ),
