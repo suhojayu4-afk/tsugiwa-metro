@@ -1,3 +1,5 @@
+import 'eki_in_book.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -267,11 +269,31 @@ class MyRoomScreenState extends State<MyRoomScreen> {
           ],
         ),
         const SizedBox(height: 8),
-        _ActionChip(
-          icon: Icons.train_rounded,
-          label: trainDexTitle.of(lang),
-          onTap: () =>
-              Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => TrainDexScreen(city: widget.city))),
+        Row(
+          children: [
+            Expanded(
+              child: _ActionChip(
+                icon: Icons.train_rounded,
+                label: trainDexTitle.of(lang),
+                onTap: () =>
+                    Navigator.of(context)
+                        .push(MaterialPageRoute<void>(builder: (_) => TrainDexScreen(city: widget.city))),
+              ),
+            ),
+            const SizedBox(width: 8),
+            // 駅印帳: the stamps as a 御朱印帳-style book.
+            Expanded(
+              child: _ActionChip(
+                icon: Icons.menu_book_rounded,
+                label: _ekiInTitle.of(lang),
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => EkiInBookScreen(city: widget.city, stamps: _store.stamps),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
         const SizedBox(height: 10),
         PixelText(
@@ -771,3 +793,5 @@ class _BigButton extends StatelessWidget {
     ),
   );
 }
+
+const _ekiInTitle = LocalizedText({'ja': '駅印帳', 'ko': '역 도장첩', 'en': 'Station Seal Book'});
