@@ -13,6 +13,7 @@ import '../../data/my_catalog.dart';
 import '../../data/my_store.dart';
 import '../../l10n/app_localizations.dart';
 import '../../platform/purchases.dart';
+import '../settings/settings_screen.dart';
 import 'plate_editor.dart';
 import 'share_card.dart';
 import 'stamp_book_screen.dart';
@@ -223,6 +224,8 @@ class MyRoomScreenState extends State<MyRoomScreen> {
         Row(
           children: [
             Expanded(child: PixelText(t.myTitle, size: 30)),
+            const SettingsGearButton(),
+            const SizedBox(width: 4),
             _CoinChip(coins: _store.coins, onTap: _openCoinShop),
           ],
         ),

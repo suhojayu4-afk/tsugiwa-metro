@@ -53,6 +53,7 @@ flutter:
     - assets/art/train_dex/
     - assets/my/
     - assets/sounds/
+    - assets/fonts/licenses/
   fonts:
     # Pixel fonts, both SIL Open Font License (see assets/fonts/*OFL*).
     - family: DotGothic16

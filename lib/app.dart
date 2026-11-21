@@ -4,6 +4,7 @@ import 'core/pixel/pixel_ui.dart';
 import 'data/city_repository.dart';
 import 'data/models/city.dart';
 import 'features/onboarding/onboarding_screen.dart';
+import 'features/settings/app_language.dart';
 import 'features/shell/main_shell.dart';
 import 'l10n/app_localizations.dart';
 
@@ -16,19 +17,26 @@ class TsugiwaApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
-      debugShowCheckedModeBanner: false,
-      theme: buildTheme(),
-      localizationsDelegates: const [AppLocalizations.delegate, ...GlobalMaterialLocalizations.delegates],
-      supportedLocales: [for (final l in supportedLangs) Locale(l)],
-      // Main users are Japanese: anything not ko/en falls back to Japanese.
-      localeResolutionCallback: (device, supported) {
-        final lang = device?.languageCode;
-        return Locale(supportedLangs.contains(lang) ? lang! : 'ja');
-      },
-      // The first-run tour shows once, before the app.
-      home: OnboardingGate(child: _CityLoader(repository: repository ?? CityRepository())),
+    // Kept outside the builder so a language change does not restart the app.
+    final home = OnboardingGate(child: _CityLoader(repository: repository ?? CityRepository()));
+    return ValueListenableBuilder<String?>(
+      valueListenable: AppLanguage.override,
+      builder: (context, picked, _) => MaterialApp(
+        onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
+        debugShowCheckedModeBanner: false,
+        theme: buildTheme(),
+        // The language picked in 設定; null follows the phone.
+        locale: picked == null ? null : Locale(picked),
+        localizationsDelegates: const [AppLocalizations.delegate, ...GlobalMaterialLocalizations.delegates],
+        supportedLocales: [for (final l in supportedLangs) Locale(l)],
+        // Main users are Japanese: anything not ko/en falls back to Japanese.
+        localeResolutionCallback: (device, supported) {
+          final lang = device?.languageCode;
+          return Locale(supportedLangs.contains(lang) ? lang! : 'ja');
+        },
+        // The first-run tour shows once, before the app.
+        home: home,
+      ),
     );
   }
 }
