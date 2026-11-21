@@ -1,0 +1,586 @@
+{
+ "about": "Seasonal decorations on the route map (lib/features/route_map/map_seasons.dart). from/to are month-day in Japan, both days included. lat/lng go through the map projection of tools/build_map.py (origin = its min_x, min_y, taken off); \"landmark\" = gather round that landmark picture of map.json (assets/art/landmarks/<name>.png) instead.",
+ "projection": {
+  "center": [
+   35.686,
+   139.76
+  ],
+  "kmLng": 90.9,
+  "kmLat": 111.0,
+  "units": 150,
+  "power": 0.75,
+  "far": 30.0,
+  "soft": 0.15,
+  "origin": [
+   -7575.606,
+   -6899.726
+  ]
+ },
+ "seasons": [
+  {
+   "id": "hatsumode",
+   "from": "01-01",
+   "to": "01-07",
+   "name": {
+    "ja": "初詣",
+    "ko": "하쓰모데 (새해 참배)",
+    "en": "New Year shrine visits"
+   }
+  },
+  {
+   "id": "sakura",
+   "from": "03-20",
+   "to": "04-10",
+   "name": {
+    "ja": "お花見",
+    "ko": "벚꽃 구경",
+    "en": "Cherry blossoms"
+   }
+  },
+  {
+   "id": "hanabi",
+   "from": "07-15",
+   "to": "08-31",
+   "name": {
+    "ja": "花火大会",
+    "ko": "불꽃놀이",
+    "en": "Fireworks festivals"
+   }
+  },
+  {
+   "id": "koyo",
+   "from": "11-01",
+   "to": "12-10",
+   "name": {
+    "ja": "紅葉狩り",
+    "ko": "단풍 구경",
+    "en": "Autumn leaves"
+   }
+  },
+  {
+   "id": "illumination",
+   "from": "11-20",
+   "to": "12-25",
+   "name": {
+    "ja": "イルミネーション",
+    "ko": "일루미네이션",
+    "en": "Winter illuminations"
+   }
+  }
+ ],
+ "spots": [
+  {
+   "season": "hatsumode",
+   "kind": "shrine",
+   "name": {
+    "ja": "明治神宮",
+    "ko": "메이지 신궁",
+    "en": "Meiji Jingu"
+   },
+   "lat": 35.6764,
+   "lng": 139.6993,
+   "landmark": "meiji"
+  },
+  {
+   "season": "hatsumode",
+   "kind": "temple",
+   "name": {
+    "ja": "浅草寺",
+    "ko": "센소지",
+    "en": "Sensō-ji"
+   },
+   "lat": 35.7148,
+   "lng": 139.7967,
+   "landmark": "pagoda"
+  },
+  {
+   "season": "hatsumode",
+   "kind": "temple",
+   "name": {
+    "ja": "川崎大師",
+    "ko": "가와사키 다이시",
+    "en": "Kawasaki Daishi"
+   },
+   "lat": 35.5346,
+   "lng": 139.7273
+  },
+  {
+   "season": "hatsumode",
+   "kind": "temple",
+   "name": {
+    "ja": "成田山新勝寺",
+    "ko": "나리타산 신쇼지",
+    "en": "Naritasan Shinshō-ji"
+   },
+   "lat": 35.7859,
+   "lng": 140.3181,
+   "landmark": "naritasan"
+  },
+  {
+   "season": "hatsumode",
+   "kind": "shrine",
+   "name": {
+    "ja": "鶴岡八幡宮",
+    "ko": "쓰루가오카 하치만구",
+    "en": "Tsurugaoka Hachimangū"
+   },
+   "lat": 35.3259,
+   "lng": 139.5565,
+   "landmark": "hachimangu"
+  },
+  {
+   "season": "hatsumode",
+   "kind": "shrine",
+   "name": {
+    "ja": "武蔵一宮 氷川神社",
+    "ko": "무사시이치노미야 히카와 신사",
+    "en": "Hikawa Shrine, Ōmiya"
+   },
+   "lat": 35.9161,
+   "lng": 139.6296
+  },
+  {
+   "season": "hatsumode",
+   "kind": "shrine",
+   "name": {
+    "ja": "神田明神",
+    "ko": "간다묘진",
+    "en": "Kanda Myōjin"
+   },
+   "lat": 35.702,
+   "lng": 139.7679
+  },
+  {
+   "season": "sakura",
+   "kind": "sakura",
+   "name": {
+    "ja": "上野恩賜公園",
+    "ko": "우에노 온시 공원",
+    "en": "Ueno Park"
+   },
+   "lat": 35.7148,
+   "lng": 139.7731,
+   "landmark": "ueno",
+   "count": 6
+  },
+  {
+   "season": "sakura",
+   "kind": "sakura",
+   "name": {
+    "ja": "千鳥ヶ淵",
+    "ko": "지도리가후치",
+    "en": "Chidorigafuchi"
+   },
+   "lat": 35.6899,
+   "lng": 139.7454,
+   "count": 5
+  },
+  {
+   "season": "sakura",
+   "kind": "sakura",
+   "name": {
+    "ja": "目黒川",
+    "ko": "메구로강",
+    "en": "Meguro River"
+   },
+   "lat": 35.644,
+   "lng": 139.699,
+   "count": 5
+  },
+  {
+   "season": "sakura",
+   "kind": "sakura",
+   "name": {
+    "ja": "隅田公園",
+    "ko": "스미다 공원",
+    "en": "Sumida Park"
+   },
+   "lat": 35.713,
+   "lng": 139.803,
+   "count": 5
+  },
+  {
+   "season": "sakura",
+   "kind": "sakura",
+   "name": {
+    "ja": "新宿御苑",
+    "ko": "신주쿠 교엔",
+    "en": "Shinjuku Gyoen"
+   },
+   "lat": 35.6852,
+   "lng": 139.7101,
+   "count": 6
+  },
+  {
+   "season": "sakura",
+   "kind": "sakura",
+   "name": {
+    "ja": "井の頭恩賜公園",
+    "ko": "이노카시라 온시 공원",
+    "en": "Inokashira Park"
+   },
+   "lat": 35.6999,
+   "lng": 139.573,
+   "count": 5
+  },
+  {
+   "season": "sakura",
+   "kind": "sakura",
+   "name": {
+    "ja": "飛鳥山公園",
+    "ko": "아스카야마 공원",
+    "en": "Asukayama Park"
+   },
+   "lat": 35.752,
+   "lng": 139.739,
+   "count": 4
+  },
+  {
+   "season": "sakura",
+   "kind": "sakura",
+   "name": {
+    "ja": "国営昭和記念公園",
+    "ko": "쇼와 기념공원",
+    "en": "Shōwa Kinen Park"
+   },
+   "lat": 35.7037,
+   "lng": 139.3966,
+   "count": 5
+  },
+  {
+   "season": "sakura",
+   "kind": "sakura",
+   "name": {
+    "ja": "大岡川",
+    "ko": "오오카강",
+    "en": "Ōoka River"
+   },
+   "lat": 35.444,
+   "lng": 139.629,
+   "count": 4
+  },
+  {
+   "season": "sakura",
+   "kind": "sakura",
+   "name": {
+    "ja": "新倉山浅間公園",
+    "ko": "아라쿠라야마 센겐 공원",
+    "en": "Arakurayama Sengen Park"
+   },
+   "lat": 35.5011,
+   "lng": 138.8016,
+   "landmark": "chureito",
+   "count": 4
+  },
+  {
+   "season": "hanabi",
+   "kind": "hanabi",
+   "name": {
+    "ja": "隅田川花火大会",
+    "ko": "스미다강 불꽃놀이",
+    "en": "Sumida River Fireworks"
+   },
+   "lat": 35.715,
+   "lng": 139.807
+  },
+  {
+   "season": "hanabi",
+   "kind": "hanabi",
+   "name": {
+    "ja": "江戸川区花火大会",
+    "ko": "에도가와구 불꽃놀이",
+    "en": "Edogawa Fireworks"
+   },
+   "lat": 35.701,
+   "lng": 139.902
+  },
+  {
+   "season": "hanabi",
+   "kind": "hanabi",
+   "name": {
+    "ja": "神宮外苑花火大会",
+    "ko": "진구가이엔 불꽃놀이",
+    "en": "Jingu Gaien Fireworks"
+   },
+   "lat": 35.676,
+   "lng": 139.717
+  },
+  {
+   "season": "hanabi",
+   "kind": "hanabi",
+   "name": {
+    "ja": "足立の花火",
+    "ko": "아다치 불꽃놀이",
+    "en": "Adachi Fireworks"
+   },
+   "lat": 35.77,
+   "lng": 139.809
+  },
+  {
+   "season": "hanabi",
+   "kind": "hanabi",
+   "name": {
+    "ja": "いたばし花火大会",
+    "ko": "이타바시 불꽃놀이",
+    "en": "Itabashi Fireworks"
+   },
+   "lat": 35.796,
+   "lng": 139.674
+  },
+  {
+   "season": "hanabi",
+   "kind": "hanabi",
+   "name": {
+    "ja": "調布花火",
+    "ko": "조후 불꽃놀이",
+    "en": "Chōfu Fireworks"
+   },
+   "lat": 35.642,
+   "lng": 139.532
+  },
+  {
+   "season": "hanabi",
+   "kind": "hanabi",
+   "name": {
+    "ja": "みなとみらいの花火",
+    "ko": "미나토미라이 불꽃놀이",
+    "en": "Minato Mirai Fireworks"
+   },
+   "lat": 35.452,
+   "lng": 139.649
+  },
+  {
+   "season": "hanabi",
+   "kind": "hanabi",
+   "name": {
+    "ja": "鎌倉花火大会",
+    "ko": "가마쿠라 불꽃놀이",
+    "en": "Kamakura Fireworks"
+   },
+   "lat": 35.308,
+   "lng": 139.544
+  },
+  {
+   "season": "hanabi",
+   "kind": "hanabi",
+   "name": {
+    "ja": "熱海海上花火大会",
+    "ko": "아타미 해상 불꽃놀이",
+    "en": "Atami Fireworks over the sea"
+   },
+   "lat": 35.093,
+   "lng": 139.095
+  },
+  {
+   "season": "koyo",
+   "kind": "momiji",
+   "name": {
+    "ja": "高尾山",
+    "ko": "다카오산",
+    "en": "Mt. Takao"
+   },
+   "lat": 35.6251,
+   "lng": 139.2437,
+   "landmark": "takao",
+   "count": 6
+  },
+  {
+   "season": "koyo",
+   "kind": "momiji",
+   "name": {
+    "ja": "六義園",
+    "ko": "리쿠기엔",
+    "en": "Rikugien"
+   },
+   "lat": 35.733,
+   "lng": 139.7465,
+   "count": 4
+  },
+  {
+   "season": "koyo",
+   "kind": "icho",
+   "name": {
+    "ja": "神宮外苑いちょう並木",
+    "ko": "진구가이엔 은행나무길",
+    "en": "Jingu Gaien Ginkgo Avenue"
+   },
+   "lat": 35.6745,
+   "lng": 139.718,
+   "count": 6
+  },
+  {
+   "season": "koyo",
+   "kind": "mixed",
+   "name": {
+    "ja": "国営昭和記念公園",
+    "ko": "쇼와 기념공원",
+    "en": "Shōwa Kinen Park"
+   },
+   "lat": 35.7037,
+   "lng": 139.3966,
+   "count": 5
+  },
+  {
+   "season": "koyo",
+   "kind": "momiji",
+   "name": {
+    "ja": "箱根",
+    "ko": "하코네",
+    "en": "Hakone"
+   },
+   "lat": 35.2047,
+   "lng": 139.0254,
+   "landmark": "hakone",
+   "count": 5
+  },
+  {
+   "season": "koyo",
+   "kind": "momiji",
+   "name": {
+    "ja": "日光",
+    "ko": "닛코",
+    "en": "Nikkō"
+   },
+   "lat": 36.758,
+   "lng": 139.6,
+   "landmark": "nikko",
+   "count": 6
+  },
+  {
+   "season": "koyo",
+   "kind": "mixed",
+   "name": {
+    "ja": "小石川後楽園",
+    "ko": "고이시카와 고라쿠엔",
+    "en": "Koishikawa Kōrakuen"
+   },
+   "lat": 35.706,
+   "lng": 139.7435,
+   "count": 3
+  },
+  {
+   "season": "koyo",
+   "kind": "icho",
+   "name": {
+    "ja": "東京大学 本郷キャンパス",
+    "ko": "도쿄대학 혼고 캠퍼스",
+    "en": "University of Tokyo, Hongō"
+   },
+   "lat": 35.7135,
+   "lng": 139.76,
+   "count": 3
+  },
+  {
+   "season": "koyo",
+   "kind": "momiji",
+   "name": {
+    "ja": "新宿御苑",
+    "ko": "신주쿠 교엔",
+    "en": "Shinjuku Gyoen"
+   },
+   "lat": 35.6852,
+   "lng": 139.7101,
+   "count": 4
+  },
+  {
+   "season": "illumination",
+   "kind": "lights",
+   "name": {
+    "ja": "丸の内イルミネーション",
+    "ko": "마루노우치 일루미네이션",
+    "en": "Marunouchi Illumination"
+   },
+   "lat": 35.676,
+   "lng": 139.7625
+  },
+  {
+   "season": "illumination",
+   "kind": "lights",
+   "name": {
+    "ja": "六本木 東京ミッドタウン",
+    "ko": "롯폰기 도쿄 미드타운",
+    "en": "Tokyo Midtown, Roppongi"
+   },
+   "lat": 35.666,
+   "lng": 139.7312
+  },
+  {
+   "season": "illumination",
+   "kind": "lights",
+   "name": {
+    "ja": "表参道イルミネーション",
+    "ko": "오모테산도 일루미네이션",
+    "en": "Omotesandō Illumination"
+   },
+   "lat": 35.667,
+   "lng": 139.708
+  },
+  {
+   "season": "illumination",
+   "kind": "lights",
+   "name": {
+    "ja": "恵比寿ガーデンプレイス",
+    "ko": "에비스 가든 플레이스",
+    "en": "Yebisu Garden Place"
+   },
+   "lat": 35.642,
+   "lng": 139.7135
+  },
+  {
+   "season": "illumination",
+   "kind": "lights",
+   "name": {
+    "ja": "東京ドームシティ",
+    "ko": "도쿄돔 시티",
+    "en": "Tokyo Dome City"
+   },
+   "lat": 35.7055,
+   "lng": 139.752
+  },
+  {
+   "season": "illumination",
+   "kind": "lights",
+   "name": {
+    "ja": "横浜 みなとみらい",
+    "ko": "요코하마 미나토미라이",
+    "en": "Yokohama Minato Mirai"
+   },
+   "lat": 35.456,
+   "lng": 139.633
+  },
+  {
+   "season": "illumination",
+   "kind": "lights",
+   "name": {
+    "ja": "よみうりランド ジュエルミネーション",
+    "ko": "요미우리랜드 주얼미네이션",
+    "en": "Yomiuriland Jewellumination"
+   },
+   "lat": 35.625,
+   "lng": 139.518
+  },
+  {
+   "season": "illumination",
+   "kind": "lights",
+   "name": {
+    "ja": "さがみ湖イルミリオン",
+    "ko": "사가미호 일루미리온",
+    "en": "Sagamiko Illumillion"
+   },
+   "lat": 35.615,
+   "lng": 139.188
+  },
+  {
+   "season": "illumination",
+   "kind": "lights",
+   "name": {
+    "ja": "あしかがフラワーパーク",
+    "ko": "아시카가 플라워 파크",
+    "en": "Ashikaga Flower Park"
+   },
+   "lat": 36.314,
+   "lng": 139.52,
+   "landmark": "ashikaga"
+  }
+ ]
+}

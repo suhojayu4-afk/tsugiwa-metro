@@ -38,6 +38,7 @@ flutter:
     - assets/art/decor/
     - assets/art/decor/vending_front/
     - assets/art/map_decor/
+    - assets/art/map_seasons/
     - assets/art/map_tiles/
     - assets/art/anim/
     - assets/art/weather/

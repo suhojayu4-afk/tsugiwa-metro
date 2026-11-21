@@ -19,6 +19,7 @@ import '../platform/station_picker.dart';
 import '../trip/route_finder.dart';
 import '../guide/guide_data.dart';
 import 'landmark_sheet.dart';
+import 'map_seasons.dart';
 import 'map_trains.dart';
 
 /// Called when the user picks "出発にする" (from = true) or "到着にする".
@@ -126,6 +127,9 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
   /// Landmark notes and nearest stations, by picture name.
   Map<String, LandmarkInfo> _lmInfo = const {};
 
+  /// Seasonal decorations (初詣, 桜, 花火, 紅葉, イルミネーション; map_seasons.dart).
+  MapSeasons _seasons = MapSeasons.empty;
+
   static const _maxScale = 4.0;
 
   @override
@@ -164,8 +168,14 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
       _landmarkImages[d.image] ??= await _image(d.image);
     }
     final info = await loadLandmarkInfo(widget.city.id);
+    // Seasonal decorations and their few small pictures.
+    final seasons = await MapSeasons.load(widget.city.id, map);
+    for (final p in MapSeasons.images) {
+      _landmarkImages[p] ??= await _image(p);
+    }
     if (!mounted) return;
     setState(() {
+      _seasons = seasons;
       _map = map;
       _terrain = terrain;
       _outer = outer;
@@ -552,6 +562,14 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
       _openLandmark(lm);
       return;
     }
+    // A seasonal spot (お花見, 花火 ...): its name in a snackbar.
+    final spot = seasonSpotAt(_seasons.spotsAt(MapSeasons.now()), _controller.value, d.localPosition);
+    if (spot != null) {
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text(spot.label(langOf(context)))));
+      return;
+    }
     // Empty spot: zoom in there.
     final s = math.min(_maxScaleAt(world), math.max(_scale * 2.2, _fitScale() * 2.5));
     _animateTo(_matrixFor(world, s));
@@ -662,6 +680,9 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
       namesJa: _namesJa ?? lang == 'ja',
     );
     final map = _map, terrain = _terrain;
+    // Seasonal spots shown today (Japan time), and reduce-motion.
+    final seasonal = _seasons.spotsAt(MapSeasons.now());
+    final still = MediaQuery.of(context).disableAnimations;
     final List<({Offset at, bool done})>? course = _course == null || map == null
         ? null
         : [
@@ -757,6 +778,24 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                     ),
                   ),
                 ),
+              // Seasonal decorations on the ground (under the lines and landmarks).
+              if (map != null && seasonal.isNotEmpty)
+                Positioned.fill(
+                  child: IgnorePointer(
+                    child: RepaintBoundary(
+                      child: CustomPaint(
+                        painter: SeasonPainter(
+                          spots: seasonal,
+                          images: _landmarkImages,
+                          matrix: _controller,
+                          clock: _twinkle,
+                          night: night,
+                          still: still,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               // Lines, stations, names and landmarks are drawn at screen size so
               // they stay readable and crisp at every zoom level.
               if (map != null)
@@ -792,6 +831,25 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                           clock: _trainTick,
                           visible: _trainAlpha,
                           night: night,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              // Seasonal fireworks and petals, in the air above the lines.
+              if (map != null && SeasonPainter.hasSky(seasonal))
+                Positioned.fill(
+                  child: IgnorePointer(
+                    child: RepaintBoundary(
+                      child: CustomPaint(
+                        painter: SeasonPainter(
+                          spots: seasonal,
+                          images: _landmarkImages,
+                          matrix: _controller,
+                          clock: _twinkle,
+                          night: night,
+                          still: still,
+                          sky: true,
                         ),
                       ),
                     ),
