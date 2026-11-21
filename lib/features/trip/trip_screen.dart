@@ -62,7 +62,7 @@ class _TripScreenState extends State<TripScreen> {
       return;
     }
     final t = AppLocalizations.of(context);
-    final dest = c.city.station(c.plan.stops.last.stationId).name.ja;
+    final dest = c.city.station(c.plan.stops.last.stationId).name.of(langOf(context));
     _buzz();
     if (event == TripEvent.approaching) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -137,7 +137,7 @@ class _TripScreenState extends State<TripScreen> {
                   const SizedBox(height: 20),
                   if (s.arrived)
                     _ArrivedCard(
-                      stationName: cur.name.ja,
+                      stationName: cur.name.of(langOf(context)),
                       reward: c.reward,
                       city: city,
                       fromId: c.plan.stops.first.stationId,

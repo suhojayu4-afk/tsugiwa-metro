@@ -206,6 +206,12 @@ KO_FIX = {'町田': '마치다', '荒川遊園地前': '아라카와유엔치마
           '鬼怒川公園': '기누가와코엔', '新藤原': '신후지와라', '日光': '닛코', '茂木': '모테기'}
 
 
+# Readings / English names the sources lack.
+KANA_FIX = {'川角': 'かわかど', '荒川遊園地前': 'あらかわゆうえんちまえ', '東池袋四丁目': 'ひがしいけぶくろよんちょうめ', '志久': 'しく', '伊奈中央': 'いなちゅうおう', '原': 'はら', '静': 'しず', '旭': 'あさひ', '岳南江尾': 'がくなんえのお', '神谷': 'かみや', '岳南富士岡': 'がくなんふじおか', '比奈': 'ひな', '岳南原田': 'がくなんはらだ', '吉原本町': 'よしわらほんちょう', '県': 'あがた', '滝': 'たき'}
+KANA_FIX.update({'鬼怒川公園': 'きぬがわこうえん', '新藤原': 'しんふじわら'})
+EN_FIX = {'鬼怒川公園': 'Kinugawa-Koen', '新藤原': 'Shin-Fujiwara'}
+
+
 def wd_near(key, lat, lng):
     c = [s for s in WD.get(key, []) if km((s['lat'], s['lng']), (lat, lng)) < 2.0]
     return c[0] if c else {}
@@ -254,7 +260,8 @@ def station_for(name, lat, lng, tags, line_key):
     while sid in ids:
         sid, n = f'{sid}_{n}', n + 1
     ids.add(sid)
-    rec = {'id': sid, 'name': {'ja': display(name), 'ko': ko, 'en': en}, 'kana': kana,
+    rec = {'id': sid, 'name': {'ja': display(name), 'ko': ko, 'en': en or EN_FIX.get(key, '')},
+           'kana': kana or KANA_FIX.get(key, ''),
            'geo': {'lat': round(lat, 5), 'lng': round(lng, 5)}, 'lines': [], 'underground': []}
     stations.append(rec)
     by_key.setdefault(key, []).append(rec)

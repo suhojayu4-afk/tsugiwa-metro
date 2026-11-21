@@ -399,6 +399,7 @@ class MyStore extends ChangeNotifier {
       overlays: base.overlays,
       effects: base.effects,
       trainColor: base.trainColor,
+      trainArt: base.trainArt,
       led: base.led,
       ledColors: base.ledColors,
     );

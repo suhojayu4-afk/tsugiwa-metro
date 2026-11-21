@@ -154,7 +154,11 @@ class LastTrainAlarm extends ChangeNotifier {
     required LastTrainTexts texts,
     DateTime? now,
   }) async {
-    final at = (now ?? DateTime.now()).add(Duration(minutes: minutesAway - leadMin));
+    final clock = now ?? DateTime.now();
+    var at = clock.add(Duration(minutes: minutesAway - leadMin));
+    // Too close to the first train: the phone sets it for the same time
+    // tomorrow, so the bell stays on until then.
+    if (!at.isAfter(clock)) at = at.add(const Duration(days: 1));
     _firstFrom = from;
     _firstTo = to;
     _firstAt = at.millisecondsSinceEpoch;
