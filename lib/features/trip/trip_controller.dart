@@ -8,6 +8,7 @@ import '../../core/services.dart';
 import '../../data/models/city.dart';
 import '../../data/my_store.dart';
 import '../../platform/live_status_bridge.dart';
+import '../album/postcard_book.dart';
 import 'location_source.dart';
 import 'trip_estimator.dart';
 import 'trip_plan.dart';
@@ -182,6 +183,14 @@ class TripController extends ChangeNotifier {
     reward = await store.rewardTrip([
       for (final s in plan.stops) s.stationId,
     ], ridden: {for (final s in plan.stops) s.lineId}.toList());
+    // A picture postcard from where the user got off (旅のアルバム).
+    await PostcardBook.instance.add(
+      my: store,
+      station: plan.stops.last.stationId,
+      from: plan.stops.first.stationId,
+      line: plan.stops.last.lineId,
+      weather: Services.weatherNow.value?.kind,
+    );
     notifyListeners();
   }
 

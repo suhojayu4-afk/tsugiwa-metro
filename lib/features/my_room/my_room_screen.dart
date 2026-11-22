@@ -13,6 +13,7 @@ import '../../data/my_catalog.dart';
 import '../../data/my_store.dart';
 import '../../l10n/app_localizations.dart';
 import '../../platform/purchases.dart';
+import '../album/album_screen.dart';
 import '../settings/settings_screen.dart';
 import 'plate_editor.dart';
 import 'share_card.dart';
@@ -299,6 +300,16 @@ class MyRoomScreenState extends State<MyRoomScreen> {
                     builder: (_) => EkiInBookScreen(city: widget.city, stamps: _store.stamps),
                   ),
                 ),
+              ),
+            ),
+            const SizedBox(width: 8),
+            // 旅のアルバム: a picture postcard from every station got off at.
+            Expanded(
+              child: _ActionChip(
+                icon: Icons.local_post_office_rounded,
+                label: albumTitle.of(lang),
+                onTap: () =>
+                    Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => AlbumScreen(city: widget.city))),
               ),
             ),
           ],

@@ -2,6 +2,8 @@
 # Makes an unsigned .ipa; install it with Sideloadly on Windows, which signs
 # it with a free Apple ID (the app then runs for 7 days).
 # Test build: coins never run out (TSUGIWA_UNLIMITED_COINS).
+# Live train status: add ODPT_KEY in a variable group on Codemagic and list the
+# group under environment.groups (without it the departure board just shows no badges).
 # Home-screen widgets and the lock-screen trip view are Android only for now;
 # the last/first train alarms, melodies and monthly report also work on iPhone.
 workflows:
@@ -13,14 +15,20 @@ workflows:
       flutter: 3.50.0
       xcode: latest
       cocoapods: default
+    # Runs by hand from the Codemagic page, or by itself when a tag starting
+    # with "ios-" is pushed:  git tag ios-1 && git push origin ios-1
     triggering:
-      events: []   # run by hand from the Codemagic page
+      events:
+        - tag
+      tag_patterns:
+        - pattern: 'ios-*'
+          include: true
     scripts:
       - name: Packages
         script: flutter pub get
       - name: Build (no signing)
         # Also creates ios/Podfile and runs pod install.
-        script: flutter build ios --release --no-codesign --dart-define=TSUGIWA_UNLIMITED_COINS=true
+        script: flutter build ios --release --no-codesign --dart-define=TSUGIWA_UNLIMITED_COINS=true --dart-define=ODPT_KEY="${ODPT_KEY:-}"
       - name: Pack the IPA
         script: |
           rm -rf Payload tsugiwa-metro-unsigned.ipa

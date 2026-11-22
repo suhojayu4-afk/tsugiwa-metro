@@ -10,6 +10,7 @@ import '../../data/weather/weather_source.dart';
 import '../../l10n/app_localizations.dart';
 import '../../platform/home_widget_bridge.dart';
 import '../../platform/monthly_report.dart';
+import '../album/postcard_book.dart';
 import '../my_room/my_room_screen.dart';
 import '../my_room/station_plate.dart';
 import '../platform/platform_screen.dart';
@@ -54,6 +55,9 @@ class _MainShellState extends State<MainShell> {
     final my = Services.my;
     if (!my.loaded || my.stayed(stationId)) return;
     final coins = await my.stampStay(stationId);
+    if (coins > 0) {
+      await PostcardBook.instance.add(my: my, station: stationId, weather: Services.weatherNow.value?.kind, gold: true);
+    }
     if (coins == 0 || !mounted) return;
     final t = AppLocalizations.of(context);
     ScaffoldMessenger.of(context).showSnackBar(
