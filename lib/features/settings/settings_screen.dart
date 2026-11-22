@@ -5,6 +5,8 @@ import '../../app.dart';
 import '../../core/app_info.dart';
 import '../../core/localized_text.dart';
 import '../../core/pixel/pixel_ui.dart';
+import '../guide/first_ride_data.dart' show firstRideTitle;
+import '../guide/first_ride_screen.dart';
 import 'app_city.dart';
 import 'app_language.dart';
 import 'font_licenses.dart';
@@ -106,6 +108,12 @@ class SettingsScreen extends StatelessWidget {
                     sub: picked == null ? _followDevice.of(lang) : _languageNames[picked],
                     onTap: () => _pickLanguage(context),
                   ),
+                ),
+                _Row(
+                  key: const ValueKey('settings.firstRide'),
+                  icon: Icons.school_rounded,
+                  label: firstRideTitle.of(lang),
+                  onTap: () => _push(context, FirstRideGuideScreen(cityId: AppCity.current.value)),
                 ),
                 ValueListenableBuilder<String>(
                   valueListenable: AppCity.current,

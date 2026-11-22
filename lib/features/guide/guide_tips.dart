@@ -6,9 +6,13 @@ import '../../data/last_train_alarm.dart' show minutesToLast;
 import '../../data/models/city.dart';
 import '../../data/weather/weather_source.dart';
 import '../trip/route_finder.dart';
+import 'first_ride_screen.dart' show FirstRideProgress;
 import 'guide_data.dart';
 
 export 'guide_data.dart' show GuideTip, TipKind;
+
+/// The tip that opens the first-ride guide when tapped.
+const firstRideTipId = 'firstRide';
 
 LocalizedText _t(String ja, String ko, String en) => LocalizedText({'ja': ja, 'ko': ko, 'en': en});
 
@@ -94,6 +98,7 @@ List<GuideTip> guideTips({
     crowd,
     fromId == null ? null : stamped?.call(fromId),
     fromId == null ? null : stayed?.call(fromId),
+    FirstRideProgress.done.value,
   );
   if (key == _memoKey) return _memo;
 
@@ -199,6 +204,21 @@ List<GuideTip> guideTips({
           '지금은 붐빌 것 같아요. 한 대 보내는 것도 방법이에요',
           'It looks crowded now. Letting one train go can help',
         ),
+      ),
+    );
+  }
+
+  // New to trains here: the first-ride guide (tap the bubble to open it).
+  if (!FirstRideProgress.done.value) {
+    tips.add(
+      GuideTip(
+        TipKind.help,
+        _t(
+          '電車がはじめての方へ。ここをタップで「日本の電車はじめて」',
+          '전철이 처음이라면, 여기를 눌러 「일본 전철 첫걸음」',
+          'New to Japanese trains? Tap here for the first-ride guide',
+        ),
+        id: firstRideTipId,
       ),
     );
   }

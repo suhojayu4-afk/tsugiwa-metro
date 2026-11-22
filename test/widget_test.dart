@@ -56,8 +56,9 @@ void main() {
     expect(find.text('Platform'), findsOneWidget);
     expect(find.text('Map'), findsOneWidget);
     expect(find.text('MY'), findsOneWidget);
-    // The station attendant's tip sits under the picture.
-    expect(find.textContaining('Going out?'), findsOneWidget);
+    // The station attendant's tip sits under the picture: first, the
+    // first-ride guide for someone new.
+    expect(find.textContaining('New to Japanese trains?'), findsOneWidget);
     // No saved routes yet: the card explains how to add one (further down).
     final hint = find.text('Pick a route and tap ☆ to save it here');
     await tester.scrollUntilVisible(hint, 120, scrollable: find.byType(Scrollable).first);

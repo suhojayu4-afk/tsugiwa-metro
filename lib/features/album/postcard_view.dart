@@ -121,12 +121,21 @@ class PostcardPictures {
     if (cat == null) return base;
     final scene = cat.items.where((i) => i.id == c.scene).firstOrNull;
     final train = cat.items.where((i) => i.id == c.train).firstOrNull;
+    // A Tottori postcard: the country station (unless the scene bought is
+    // one of Tottori's stations) and the diesel railcar (unless the train
+    // has pictures of its own), as on that day's platform.
+    final tottori = c.station.startsWith('tottori.');
+    final own = scene != null && (scene.station?.startsWith('tottori.') ?? false);
+    final images = tottori && !own
+        ? {for (final p in DayPart.values) p: 'assets/art/tottori/rural_${p.name}.webp'}
+        : (scene?.images ?? base.images);
+    final art = train?.art ?? (tottori ? tottoriDieselArt : (train == null ? base.trainArt : null));
     return SceneLook(
-      images: scene?.images ?? base.images,
+      images: images,
       overlays: base.overlays,
       effects: base.effects,
       trainColor: train == null ? base.trainColor : train.color,
-      trainArt: train == null ? base.trainArt : train.art,
+      trainArt: art,
       headMark: base.headMark,
       skyArt: base.skyArt,
     );

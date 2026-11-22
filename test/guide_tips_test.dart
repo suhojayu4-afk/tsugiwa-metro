@@ -430,10 +430,16 @@ void main() {
   });
 
   test('without the pool (not loaded yet) there is still a greeting', () {
+    // (The first-ride guide's invitation comes first until it is read.)
     final bare = guideTips(city: city, data: const GuideData(), now: jst(2026, 11, 18, 8), lang: 'ja');
-    expect(bare.single.text.ja, contains('おはよう'));
+    expect(bare.where((t) => t.id != firstRideTipId).single.text.ja, contains('おはよう'));
     expect(
-      guideTips(city: city, data: const GuideData(), now: jst(2026, 11, 18, 21), lang: 'ja').single.text.ja,
+      guideTips(
+        city: city,
+        data: const GuideData(),
+        now: jst(2026, 11, 18, 21),
+        lang: 'ja',
+      ).where((t) => t.id != firstRideTipId).single.text.ja,
       contains('おつかれさま'),
     );
   });

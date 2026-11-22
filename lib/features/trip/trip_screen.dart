@@ -18,6 +18,7 @@ import '../common/station_name.dart';
 import 'trip_controller.dart';
 import 'widgets/progress_track.dart';
 import 'widgets/side_train_view.dart';
+import 'widgets/first_visit_welcome.dart';
 import 'widgets/stamp_slam.dart';
 
 class TripScreen extends StatefulWidget {
@@ -33,15 +34,34 @@ class _TripScreenState extends State<TripScreen> {
 
   TripController get c => widget.controller;
 
+  /// The first-visit welcome has been shown (once a trip).
+  bool _welcomed = false;
+
   @override
   void initState() {
     super.initState();
     _sub = c.events.listen(_onEvent);
+    c.addListener(_maybeWelcome);
     c.start();
+  }
+
+  /// Arrived at a station never reached before: its welcome, once the coins
+  /// and stamps (and the postcard) are in.
+  void _maybeWelcome() {
+    final reward = c.reward;
+    if (_welcomed || reward == null || !mounted) return;
+    final dest = c.plan.stops.last.stationId;
+    if (!reward.stamped.contains(dest)) return;
+    _welcomed = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      showFirstVisitWelcome(context, city: c.city, stationId: dest, lineId: c.plan.stops.last.lineId);
+    });
   }
 
   @override
   void dispose() {
+    c.removeListener(_maybeWelcome);
     _sub?.cancel();
     c.cancel();
     c.dispose();

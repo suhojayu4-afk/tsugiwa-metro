@@ -6,6 +6,8 @@ import 'package:material_ui/material_ui.dart';
 
 import '../../app.dart';
 import '../../core/pixel/pixel_ui.dart';
+import '../settings/app_city.dart';
+import 'first_ride_screen.dart';
 import 'guide_tips.dart';
 
 /// 「つぎはさん」: the station attendant giving one tip at a time in a speech
@@ -99,7 +101,14 @@ class _GuideCardState extends State<GuideCard> {
       label: tip.text.of(lang),
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
-        onTap: () => setState(() => _i++),
+        onTap: () {
+          if (tip.id == firstRideTipId) {
+            Navigator.of(context)
+                .push(MaterialPageRoute<void>(builder: (_) => FirstRideGuideScreen(cityId: AppCity.current.value)));
+            return;
+          }
+          setState(() => _i++);
+        },
         child: Padding(
           padding: const EdgeInsets.only(top: 12),
           child: Row(
@@ -222,4 +231,33 @@ class _StaffPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_StaffPainter old) => old.frame != frame || old.image != image;
+}
+
+/// 「つぎはさん」 on his own (the first-ride guide, the first-visit welcome):
+/// [pointing] = 指差確認, otherwise standing.
+class AttendantFigure extends StatefulWidget {
+  const AttendantFigure({super.key, this.pointing = false, this.height = 60});
+  final bool pointing;
+  final double height;
+
+  @override
+  State<AttendantFigure> createState() => _AttendantFigureState();
+}
+
+class _AttendantFigureState extends State<AttendantFigure> {
+  @override
+  void initState() {
+    super.initState();
+    if (_GuideCardState._staff == null) _GuideCardState._load().then((_) => mounted ? setState(() {}) : null);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final img = _GuideCardState._staff;
+    return SizedBox(
+      width: widget.height * 46 / 60,
+      height: widget.height,
+      child: img == null ? null : CustomPaint(painter: _StaffPainter(img, widget.pointing ? 7 : 6)),
+    );
+  }
 }
