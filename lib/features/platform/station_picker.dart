@@ -1,10 +1,12 @@
 import 'package:material_ui/material_ui.dart';
 
+import '../../app.dart';
 import '../../core/pixel/pixel_ui.dart';
 import '../../data/models/city.dart';
 import '../../data/models/station.dart';
 import '../../l10n/app_localizations.dart';
 import '../common/station_name.dart';
+import 'platform_texts.dart';
 
 /// Bottom sheet listing every station, searchable in ja / kana / ko / en.
 Future<String?> pickStation(BuildContext context, CityData city) {
@@ -59,6 +61,7 @@ class _StationPickerState extends State<_StationPicker> {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
+    final lang = langOf(context);
     final stations = _stations;
     return Column(
       children: [
@@ -80,37 +83,59 @@ class _StationPickerState extends State<_StationPicker> {
             ),
           ),
         ),
-        Expanded(
-          child: ListView.builder(
-            padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
-            itemCount: stations.length,
-            itemBuilder: (context, i) {
-              final s = stations[i];
-              return GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: () => Navigator.pop(context, s.id),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(color: PixelColors.soft, width: pu),
+        if (stations.isEmpty)
+          // Nothing matches: say so, with a way on.
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(24, 36, 24, 24),
+              child: Column(
+                children: [
+                  const Icon(Icons.search_off_rounded, size: 40, color: PixelColors.muted),
+                  const SizedBox(height: 10),
+                  PixelText(
+                    searchNoMatch.of(lang),
+                    key: const ValueKey('searchNoMatch'),
+                    size: 18,
+                    align: TextAlign.center,
+                  ),
+                  const SizedBox(height: 6),
+                  PixelText(searchNoMatchHint.of(lang), size: 14, color: PixelColors.muted, align: TextAlign.center),
+                ],
+              ),
+            ),
+          )
+        else
+          Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
+              itemCount: stations.length,
+              itemBuilder: (context, i) {
+                final s = stations[i];
+                return GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () => Navigator.pop(context, s.id),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(color: PixelColors.soft, width: pu),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(child: StationName(station: s, size: 22)),
+                        for (final lineId in s.lines)
+                          Padding(
+                            padding: const EdgeInsets.only(left: 6),
+                            child: PixelSquare(color: widget.city.line(lineId).color, size: 15),
+                          ),
+                      ],
                     ),
                   ),
-                  child: Row(
-                    children: [
-                      Expanded(child: StationName(station: s, size: 22)),
-                      for (final lineId in s.lines)
-                        Padding(
-                          padding: const EdgeInsets.only(left: 6),
-                          child: PixelSquare(color: widget.city.line(lineId).color, size: 15),
-                        ),
-                    ],
-                  ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
-        ),
       ],
     );
   }

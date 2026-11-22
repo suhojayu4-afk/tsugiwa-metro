@@ -64,6 +64,32 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
     duration: const Duration(milliseconds: 5200),
   );
 
+  /// The next passengers walk in to the door's queue while the track is
+  /// empty (1 = standing there, as when the screen opens).
+  late final AnimationController _gather = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: _gatherMs),
+    value: 1,
+  );
+
+  /// A train is coming: whoever is still on the way to the queue (or has to
+  /// come at all, [fromStart]) hurries, to be there before it stops.
+  void _hurry({bool fromStart = false}) {
+    if (fromStart) _gather.value = 0;
+    if (_gather.value >= 1) return;
+    _gather.animateTo(1, duration: Duration(milliseconds: (4200 * (1 - _gather.value)).round()));
+  }
+
+  /// The picture shown before the current one, fading out under it
+  /// ([_swap]) so a change of picture (weather, crowd, time of day) or the
+  /// first picture does not pop in.
+  SceneArtSet? _oldArt;
+  late final AnimationController _swap = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 400),
+    value: 1,
+  );
+
   /// The next step of the station's own rhythm: trains keep coming, stop,
   /// people get off and on, the train leaves, the next one comes.
   Timer? _cycle;
@@ -82,6 +108,10 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
   void _leave() {
     _depart.forward(from: 0).whenComplete(() {
       if (!mounted || _depart.value < 1) return;
+      // The track is empty: the next passengers walk in to the queue.
+      _gather.value = 0;
+      _platform.reset();
+      _gather.forward();
       _later(Duration(seconds: 10 + _rnd.nextInt(9)), _nextTrain);
     });
   }
@@ -93,6 +123,7 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
     // train comes instead; an attendant may come out to meet the train.
     setState(() => _yellow = _events.trainComing(_eventConditions()));
     _platform.reset();
+    _hurry();
     _arrive.value = 0;
     _depart.value = 0;
     _arrive.forward(from: 0);
@@ -108,6 +139,7 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
     part: _part ?? _currentPart(),
     weather: widget.weather ?? WeatherKind.sunny,
     sky: widget.sky,
+    underground: _art?.underground ?? widget.look.showsUnderground,
     month: (widget.now ?? DateTime.now().toUtc().add(const Duration(hours: 9))).month,
   );
 
@@ -122,7 +154,8 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
   /// picture's repaint; nothing is rebuilt.
   final _life = ValueNotifier<int>(0);
 
-  bool get _falling => widget.weather == WeatherKind.rain || widget.weather == WeatherKind.snow;
+  bool get _falling =>
+      !(_art?.underground ?? false) && (widget.weather == WeatherKind.rain || widget.weather == WeatherKind.snow);
 
   @override
   void initState() {
@@ -164,6 +197,8 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
       _cycle?.cancel();
       _yellow = false;
       _depart.value = 0;
+      // Those who got on the last train are gone: new ones hurry in.
+      _hurry(fromStart: _platform.value > 0);
       _platform.reset();
       _arrive.forward(from: 0);
       widget.onArrive?.call();
@@ -175,7 +210,19 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
     _part = part;
     final art = await loadSceneArt(widget.look, part, sky: widget.sky);
     if (!mounted) return;
-    setState(() => _art = art);
+    final old = _art;
+    if (old != null && identical(old.bg, art.bg)) {
+      setState(() => _art = art);
+      return;
+    }
+    // Another picture (or the first): it fades in over the one before.
+    setState(() {
+      _oldArt = old;
+      _art = art;
+    });
+    _swap.forward(from: 0).whenComplete(() {
+      if (mounted && _swap.value >= 1) setState(() => _oldArt = null);
+    });
   }
 
   @override
@@ -185,11 +232,51 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
     _depart.dispose();
     _arrive.dispose();
     _platform.dispose();
+    _gather.dispose();
+    _swap.dispose();
     _frame.dispose();
     _life.dispose();
     _events.dispose();
     super.dispose();
   }
+
+  _ScenePainter _painter(SceneArtSet art, SceneView view, ({ui.Image base, ui.Image stripe})? yellow) => _ScenePainter(
+    view: view,
+    bg: art.bg,
+    trainBase: yellow?.base ?? art.base,
+    trainStripe: yellow?.stripe ?? art.stripe,
+    lamps: SceneArt.lampsOf(yellow != null ? yellowTrainArt : widget.look.trainArt),
+    // At night the stripe is in shadow like the rest of the train.
+    lineColor: stripeColor(widget.look.trainColor ?? widget.lineColor, art.part),
+    weather: widget.weather ?? WeatherKind.sunny,
+    life: _life,
+    arrive: _arrive,
+    platform: _platform,
+    depart: _depart,
+    gather: _gather,
+    underground: art.underground,
+    walkIn: art.walkIn,
+    walkers: art.walkers,
+    weathered: art.weathered,
+    sky: art.sky,
+    closed: art.closed,
+    trainWeather: yellow != null ? null : art.trainWeather,
+    trainWeatherTint: art.trainWeatherTint,
+    graded: art.graded,
+    overlays: art.overlays,
+    effects: widget.look.effects,
+    // The yellow train shows its own dark display.
+    led: yellow != null ? const [] : widget.look.led,
+    ledColors: widget.look.ledColors,
+    sign: widget.look.sign,
+    part: art.part,
+    vanishing: art.vanishing,
+    front: art.front,
+    decorShift: art.decorShift,
+    overlayLights: art.overlayLights,
+    ambience: art.ambience,
+    events: _events,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -210,43 +297,11 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
                 : Stack(
                     fit: StackFit.expand,
                     children: [
-                      RepaintBoundary(
-                        child: CustomPaint(
-                          painter: _ScenePainter(
-                            view: view,
-                            bg: art.bg,
-                            trainBase: yellow?.base ?? art.base,
-                            trainStripe: yellow?.stripe ?? art.stripe,
-                            lamps: SceneArt.lampsOf(yellow != null ? yellowTrainArt : widget.look.trainArt),
-                            // At night the stripe is in shadow like the rest of the train.
-                            lineColor: stripeColor(widget.look.trainColor ?? widget.lineColor, art.part),
-                            weather: weather,
-                            life: _life,
-                            arrive: _arrive,
-                            platform: _platform,
-                            depart: _depart,
-                            walkers: art.walkers,
-                            weathered: art.weathered,
-                            sky: art.sky,
-                            closed: art.closed,
-                            trainWeather: yellow != null ? null : art.trainWeather,
-                            trainWeatherTint: art.trainWeatherTint,
-                            graded: art.graded,
-                            overlays: art.overlays,
-                            effects: widget.look.effects,
-                            // The yellow train shows its own dark display.
-                            led: yellow != null ? const [] : widget.look.led,
-                            ledColors: widget.look.ledColors,
-                            sign: widget.look.sign,
-                            part: art.part,
-                            vanishing: art.vanishing,
-                            front: art.front,
-                            decorShift: art.decorShift,
-                            overlayLights: art.overlayLights,
-                            ambience: art.ambience,
-                            events: _events,
-                          ),
-                        ),
+                      if (_oldArt == null && _swap.value < 1) const ColoredBox(color: PixelColors.soft),
+                      if (_oldArt != null) RepaintBoundary(child: CustomPaint(painter: _painter(_oldArt!, view, null))),
+                      FadeTransition(
+                        opacity: _swap,
+                        child: RepaintBoundary(child: CustomPaint(painter: _painter(art, view, yellow))),
                       ),
                       if (_falling)
                         RepaintBoundary(

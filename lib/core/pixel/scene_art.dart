@@ -7,6 +7,13 @@ class SceneArt {
 
   static String background(DayPart part) => 'assets/art/scene_${part.name}.webp';
 
+  /// The subway platform: the built-in scene when the departure line is
+  /// underground at the station ([SceneLook.showsUnderground]). One picture
+  /// for every hour and weather (tools/gen_underground_scene.py), drawn
+  /// from the standard scene so the train, the queue and the decorations
+  /// line up.
+  static const underground = 'assets/art/scene_underground.webp';
+
   /// Optional ambient animation: the scene's frames stacked vertically
   /// (frame i at y = height * i). Falls back to the still picture.
   static String animation(DayPart part) => 'assets/art/scene_${part.name}_anim.webp';
@@ -37,6 +44,14 @@ class SceneArt {
 
   /// Crowd levels with their own pictures (tools/gen_crowd_scenes.py).
   static const crowdLevels = {'relaxed', 'normal', 'crowded', 'packed'};
+
+  /// Station scenes whose platform is full of people in every picture:
+  /// nobody can walk in along it without going through them.
+  static const busyScenes = {'shinjuku', 'shibuya'};
+
+  /// The pillar in the foreground at the right edge of every platform
+  /// picture starts at this column: who walks in comes out from behind it.
+  static const frontPillarLeft = 378.0;
 
   /// Weather pictures that already show grey skies (no extra greying).
   static const wetSkies = {'umbrella', 'rain', 'snow', 'snowsoon'};
@@ -207,6 +222,11 @@ typedef SceneArtSet = ({
   List<ui.Image?> overlayLights,
   // Sky and lit windows found in the picture, for the drawn ambience.
   SceneAmbience? ambience,
+  // The subway platform: no sky, no weather, the lights always on.
+  bool underground,
+  // The way along the platform to the door's queue is free: the next
+  // passengers walk in (else they come into view where they queue).
+  bool walkIn,
 });
 
 /// A passenger waiting at the train door, seen from behind: frame 0
@@ -218,11 +238,11 @@ typedef Walker = ({ui.Image away, int frames});
 /// Who waits at the door under [sky]: coats in winter, umbrellas in the
 /// rain, else office clothes. Busy platforms (their own queues stand at the
 /// doors) have none, so nobody stands in anybody.
-List<String> walkersFor(String? sky) {
+List<String> walkersFor(String? sky, {bool underground = false}) {
   final base = sky?.split('_').first;
-  if (base == 'closed' || base == 'crowded' || base == 'packed' || (sky?.endsWith('_many') ?? false)) {
-    return const [];
-  }
+  // The subway platform has no crowd pictures: the queue is always drawn.
+  final busy = base == 'crowded' || base == 'packed' || (sky?.endsWith('_many') ?? false);
+  if (base == 'closed' || (busy && !underground)) return const [];
   return switch (base) {
     'winter' || 'snow' || 'snowsoon' => const ['coat_man', 'coat_woman'],
     'rain' || 'umbrella' => const ['umbrella_man', 'umbrella_woman'],
@@ -230,9 +250,9 @@ List<String> walkersFor(String? sky) {
   };
 }
 
-Future<List<Walker>> _loadWalkers(String? sky) async {
+Future<List<Walker>> _loadWalkers(String? sky, {bool underground = false}) async {
   final out = <Walker>[];
-  for (final id in walkersFor(sky)) {
+  for (final id in walkersFor(sky, underground: underground)) {
     try {
       // {id}_wait.webp: standing + 6 walking frames; {id}_away.webp (older):
       // the walk only.
@@ -324,6 +344,14 @@ Future<ui.Image?> _loadOrNull(String? asset) async {
 /// Loads the scene for [look] at [part]. A station scene without a picture
 /// for this time of day uses another one, colour-graded.
 Future<SceneArtSet> loadSceneArt(SceneLook look, DayPart part, {String? sky}) async {
+  if (look.showsUnderground) {
+    try {
+      return await _loadUnderground(look, sky);
+    } catch (_) {
+      // No subway picture: the usual scene.
+      SceneArt.forget(SceneArt.underground);
+    }
+  }
   DayPart? graded;
   Future<ui.Image> bg;
   // A weather version of this scene, when one has been drawn.
@@ -389,11 +417,52 @@ Future<SceneArtSet> loadSceneArt(SceneLook look, DayPart part, {String? sky}) as
     decorShift: decor.shiftFor(bgAsset, vanishing),
     overlayLights: [for (final o in look.overlays) part == DayPart.day ? null : await _loadOrNull(decor.lightsFor(o))],
     ambience: await SceneAmbience.of(await bg, bgAsset),
+    underground: false,
+    walkIn: !SceneArt.busyScenes.contains(SceneArt.sceneId(look)),
     // Snow and drops take the light of the hour: bluish at night.
     trainWeatherTint: switch (part) {
       DayPart.day => const Color(0xFFFFFFFF),
       DayPart.evening => const Color(0xFFF2DCE2),
       DayPart.night => const Color(0xFF98A2C8),
     },
+  );
+}
+
+/// The subway platform: the same at every hour and in any weather, lit like
+/// a station at midday (the train in its daytime colours, its lamps on).
+Future<SceneArtSet> _loadUnderground(SceneLook look, String? sky) async {
+  const part = DayPart.day;
+  const bgAsset = SceneArt.underground;
+  final images = await Future.wait([
+    SceneArt.load(bgAsset),
+    SceneArt.load(SceneArt.trainBase(part, look.trainArt)),
+    SceneArt.load(SceneArt.trainStripeOf(look.trainArt)),
+    for (final o in look.overlays) SceneArt.load(o),
+  ]);
+  final decor = look.overlays.isEmpty && !look.effects.contains('garland')
+      ? const DecorIndex()
+      : await DecorIndex.load();
+  final vanishing = await SceneArt.vanishingFor(bgAsset);
+  return (
+    bg: images[0],
+    base: images[1],
+    stripe: images[2],
+    part: part,
+    graded: null,
+    overlays: images.sublist(3),
+    weathered: false,
+    sky: null,
+    closed: sky?.split('_').first == 'closed',
+    trainWeather: null,
+    trainWeatherTint: const Color(0xFFFFFFFF),
+    walkers: await _loadWalkers(sky, underground: true),
+    vanishing: vanishing,
+    front: look.overlays.isEmpty ? null : await _loadOrNull(decor.maskFor(bgAsset)),
+    decorShift: decor.shiftFor(bgAsset, vanishing),
+    // The decorations' lamps are lit, as everything down here.
+    overlayLights: [for (final o in look.overlays) await _loadOrNull(decor.lightsFor(o))],
+    ambience: null,
+    underground: true,
+    walkIn: true,
   );
 }

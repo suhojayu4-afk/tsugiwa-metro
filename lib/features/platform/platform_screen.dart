@@ -1,10 +1,13 @@
 import '../../data/car_guide.dart';
 import 'car_guide_card.dart';
 
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../../app.dart';
+import '../../core/japan_time.dart';
 import '../../core/pixel/pixel_scene.dart' show DayPart, StationSign, dayPartOf;
 import '../../core/pixel/pixel_ui.dart';
 import '../../core/services.dart';
@@ -31,6 +34,7 @@ import '../guide/guide_data.dart';
 import '../guide/guide_tips.dart';
 import '../../data/route_store.dart';
 import 'nearest_station.dart';
+import 'platform_texts.dart';
 import 'station_picker.dart';
 import 'weather_card.dart';
 
@@ -109,9 +113,17 @@ class PlatformScreenState extends State<PlatformScreen> {
     _store.addListener(_onStore);
     Services.my.addListener(_onStore);
     if (!Services.my.loaded) Services.my.load();
-    if (!_store.loaded) _store.load();
+    // The stations chosen last time come back at launch.
+    if (_store.loaded) {
+      _restoreLast();
+    } else {
+      _store.load().then((_) {
+        if (mounted) setState(_restoreLast);
+      });
+    }
     _alarm.addListener(_onStore);
     // Set the alarm again with today's texts (the language may have changed).
+    // Never asks for the notification permission here: only the bell does.
     (_alarm.loaded ? Future<void>.value() : _alarm.load()).then((_) {
       if (mounted) _alarm.refresh(widget.city, _alarmTexts);
     });
@@ -119,6 +131,21 @@ class PlatformScreenState extends State<PlatformScreen> {
   }
 
   LastTrainAlarm get _alarm => Services.lastTrain;
+
+  /// Whether the last choice has been put back (from then on every change
+  /// is remembered; see [build]).
+  bool _restored = false;
+
+  void _restoreLast() {
+    if (_restored) return;
+    _restored = true;
+    // Already chosen (from the route map): keep that.
+    if (_fromId != null || _toId != null) return;
+    final stations = widget.city.stations;
+    final from = _store.lastFromId, to = _store.lastToId;
+    if (from != null && stations.containsKey(from)) _fromId = from;
+    if (to != null && stations.containsKey(to)) _toId = to;
+  }
 
   LastTrainTexts _alarmTexts(int lastDep) {
     final t = AppLocalizations.of(context);
@@ -138,7 +165,7 @@ class PlatformScreenState extends State<PlatformScreen> {
     final route = _route;
     if (from == null || to == null || route == null) return;
     final tt = widget.city.timetables[route.legs.first.lineId];
-    final jst = DateTime.now().toUtc().add(const Duration(hours: 9));
+    final jst = japanNow();
     final away = tt?.minutesToFirstTrain(jst);
     if (tt == null || away == null) return;
     final t = AppLocalizations.of(context);
@@ -146,11 +173,14 @@ class PlatformScreenState extends State<PlatformScreen> {
     final messenger = ScaffoldMessenger.of(context);
     final first = LineTimetable.clock(tt.firstTrainMin);
     String text;
+    var seconds = 3;
     if (_alarm.firstOnFor(from, to)) {
       await _alarm.turnOffFirst();
       text = t.firstTrainAlarmOff;
     } else {
-      await _alarm.turnOnFirst(
+      // Waits for the answer to the notification question, so the message
+      // comes after it and says what really happened.
+      final notice = await _alarm.turnOnFirst(
         from: from,
         to: to,
         firstMin: tt.firstTrainMin,
@@ -165,11 +195,22 @@ class PlatformScreenState extends State<PlatformScreen> {
           channel: t.lastTrainAlarm,
         ),
       );
-      text = t.firstTrainAlarmSet(LineTimetable.clock(tt.firstTrainMin - LastTrainAlarm.leadMin), first);
+      final at = LineTimetable.clock(tt.firstTrainMin - LastTrainAlarm.leadMin);
+      text = switch (notice) {
+        AlarmNotice.on => t.firstTrainAlarmSet(at, first),
+        AlarmNotice.off => fill(firstAlarmNotificationsOff, lang, {'alarm': at, 'time': first}),
+        AlarmNotice.unsure => '${t.firstTrainAlarmSet(at, first)}\n${alarmNeedsNotifications.of(lang)}',
+      };
+      if (notice != AlarmNotice.on) seconds = 6;
     }
     messenger
       ..hideCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text(text), duration: const Duration(seconds: 3)));
+      ..showSnackBar(
+        SnackBar(
+          content: Text(text),
+          duration: Duration(seconds: seconds),
+        ),
+      );
   }
 
   /// 🔔 on the next-train card: remind me every night before the last train.
@@ -179,12 +220,15 @@ class PlatformScreenState extends State<PlatformScreen> {
     final t = AppLocalizations.of(context);
     final messenger = ScaffoldMessenger.of(context);
     String text;
+    var seconds = 3;
     if (_alarm.isOnFor(from, to)) {
       await _alarm.turnOff();
       text = t.lastTrainAlarmOff;
     } else {
       final lang = langOf(context);
-      final dep = await _alarm.turnOn(widget.city, from, to, (d) {
+      // Waits for the answer to the notification question: the message comes
+      // after it, and never says "set" when notifications are off.
+      final set = await _alarm.turnOn(widget.city, from, to, (d) {
         return (
           title: t.lastTrainWarn(LastTrainAlarm.leadMin),
           body: t.lastTrainAlarmBody(
@@ -195,12 +239,23 @@ class PlatformScreenState extends State<PlatformScreen> {
           channel: t.lastTrainAlarm,
         );
       });
-      if (dep == null) return;
-      text = t.lastTrainAlarmSet(LastTrainAlarm.clock(dep - LastTrainAlarm.leadMin), LastTrainAlarm.clock(dep));
+      if (set == null) return;
+      final at = LastTrainAlarm.clock(set.lastDep - LastTrainAlarm.leadMin), last = LastTrainAlarm.clock(set.lastDep);
+      text = switch (set.notice) {
+        AlarmNotice.on => t.lastTrainAlarmSet(at, last),
+        AlarmNotice.off => fill(alarmNotificationsOff, lang, {'alarm': at, 'time': last}),
+        AlarmNotice.unsure => '${t.lastTrainAlarmSet(at, last)}\n${alarmNeedsNotifications.of(lang)}',
+      };
+      if (set.notice != AlarmNotice.on) seconds = 6;
     }
     messenger
       ..hideCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text(text), duration: const Duration(seconds: 3)));
+      ..showSnackBar(
+        SnackBar(
+          content: Text(text),
+          duration: Duration(seconds: seconds),
+        ),
+      );
   }
 
   @override
@@ -208,6 +263,7 @@ class PlatformScreenState extends State<PlatformScreen> {
     _store.removeListener(_onStore);
     Services.my.removeListener(_onStore);
     _alarm.removeListener(_onStore);
+    _noteTimer?.cancel();
     _sheet.removeListener(_onSheet);
     _sheet.dispose();
     super.dispose();
@@ -224,8 +280,8 @@ class PlatformScreenState extends State<PlatformScreen> {
 
   /// [hour]:30 today in Japan (as a plain DateTime, like the timetables use).
   static DateTime _jstToday(int hour) {
-    final j = DateTime.now().toUtc().add(const Duration(hours: 9));
-    return DateTime(j.year, j.month, j.day, hour, 30);
+    final j = japanNow();
+    return DateTime.utc(j.year, j.month, j.day, hour, 30);
   }
 
   /// Both home screen widgets show today's information: the weather and the
@@ -270,7 +326,9 @@ class PlatformScreenState extends State<PlatformScreen> {
         // (the widget picks the hour itself).
         'tripText': t.widgetTrip(
           city.station(saved.toId).name.of(lang),
-          (TripPlan.build(city, route, DateTime.now()).totalSec / 60).ceil(),
+          (TripPlan.build(city, route, japanNow()).totalSec / 60).ceil() +
+              route.headWalkMin(city) +
+              route.tailWalkMin(city),
         ),
         'everyFormat': t.widgetEvery(999).replaceAll('999', '%d'),
         'endedText': tt == null ? '' : t.widgetEnded(LineTimetable.clock(tt.firstTrainMin)),
@@ -286,7 +344,7 @@ class PlatformScreenState extends State<PlatformScreen> {
     if (route != null) {
       final leg = route.legs.first;
       // The widget's sky: what is falling now, what is coming, else the clouds.
-      final month = DateTime.now().toUtc().add(const Duration(hours: 9)).month;
+      final month = japanNow().month;
       final winter = month == 12 || month <= 2;
       final sky = w == null
           ? 'clear'
@@ -417,9 +475,10 @@ class PlatformScreenState extends State<PlatformScreen> {
   /// Long-press a favourite: confirm, then remove it.
   Future<void> _confirmRemove(SavedRoute f) async {
     final t = AppLocalizations.of(context);
+    final lang = langOf(context);
     final name =
-        '${widget.city.station(f.fromId).name.ja} → '
-        '${widget.city.station(f.toId).name.ja}';
+        '${widget.city.station(f.fromId).name.of(lang)} → '
+        '${widget.city.station(f.toId).name.of(lang)}';
     final ok = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
@@ -443,12 +502,20 @@ class PlatformScreenState extends State<PlatformScreen> {
   bool _locating = false;
   String? _locationNote;
 
+  /// The departure the note was written for: once another one is chosen the
+  /// note ("nearest station: …") is no longer true and goes away.
+  String? _locationNoteFrom;
+  Timer? _noteTimer;
+
   /// 現在地から: put the nearest station into the departure field.
   Future<void> _useMyLocation() async {
     final t = AppLocalizations.of(context);
+    final lang = langOf(context);
+    _noteTimer?.cancel();
     setState(() {
       _locating = true;
       _locationNote = t.locating;
+      _locationNoteFrom = _fromId;
     });
     final location = Services.location;
     final allowed = await location.ensurePermission();
@@ -463,14 +530,19 @@ class PlatformScreenState extends State<PlatformScreen> {
         _locationNote = t.nearestNone;
       } else {
         _fromId = near.station.id;
-        _locationNote = t.nearestFound(near.station.name.ja, near.meters.round());
+        _locationNote = t.nearestFound(near.station.name.of(lang), near.meters.round());
       }
+      _locationNoteFrom = _fromId;
+    });
+    // The distance is only true for a moment (you walk on): a short note.
+    _noteTimer = Timer(const Duration(seconds: 12), () {
+      if (mounted) setState(() => _locationNote = null);
     });
   }
 
   Future<void> _pick(bool isFrom) async {
     final id = await pickStation(context, widget.city);
-    if (id == null) return;
+    if (id == null || !mounted) return;
     setState(() => isFrom ? _fromId = id : _toId = id);
   }
 
@@ -478,7 +550,7 @@ class PlatformScreenState extends State<PlatformScreen> {
   CongestionLevel? _crowdNow(RouteResult? route) {
     final lineId = route?.legs.first.lineId ?? (_fromId == null ? null : widget.city.station(_fromId!).lines.first);
     if (lineId == null) return null;
-    return EstimateCongestionSource.levelAt(lineId, DateTime.now().toUtc().add(const Duration(hours: 9)));
+    return EstimateCongestionSource.levelAt(lineId, japanNow());
   }
 
   /// Share the route with the route map (drawn boldly there).
@@ -492,7 +564,7 @@ class PlatformScreenState extends State<PlatformScreen> {
   void _start(RouteResult route) {
     final from = _fromId, to = _toId;
     if (from != null && to != null) _store.addRecent(from, to);
-    final plan = TripPlan.build(widget.city, route, DateTime.now());
+    final plan = TripPlan.build(widget.city, route, japanNow());
     final controller = TripController(city: widget.city, plan: plan, lang: langOf(context));
     Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => TripScreen(controller: controller)));
   }
@@ -530,6 +602,8 @@ class PlatformScreenState extends State<PlatformScreen> {
     final t = AppLocalizations.of(context);
     final route = _route;
     _publishRoute(route);
+    // Remember the choice for the next launch (only once the last one is back).
+    if (_restored) _store.setLast(_fromId, _toId);
     final sameStation = _fromId != null && _fromId == _toId;
     final trainColor = route == null ? widget.city.lines.first.color : widget.city.line(route.legs.first.lineId).color;
 
@@ -538,7 +612,8 @@ class PlatformScreenState extends State<PlatformScreen> {
         ? (t.sameStation, true)
         : (_fromId != null && _toId != null && route == null)
         ? (t.noRoute, true)
-        : (_locationNote, false);
+        // Location news belongs to the departure it was written for.
+        : (_locationNoteFrom == _fromId ? _locationNote : null, false);
 
     // A new route opens the panel again.
     final sheetKey = route == null ? 'none' : '$_fromId>$_toId';
@@ -569,6 +644,8 @@ class PlatformScreenState extends State<PlatformScreen> {
                         child: AppTitle(text: t.appTitle),
                       ),
                     ),
+                    // The title shrinks; it never touches the coins.
+                    const SizedBox(width: 10),
                     _CoinChip(coins: Services.my.coins, onTap: () => widget.onOpenMy?.call(PlatformScreen.coinShop)),
                     const SizedBox(width: 8),
                     PixelBox(
@@ -592,7 +669,8 @@ class PlatformScreenState extends State<PlatformScreen> {
                   tips: guideTips(
                     city: widget.city,
                     data: _guide,
-                    now: DateTime.now(),
+                    // The instant; the tips turn it into Japan time.
+                    now: japanClock(),
                     lang: langOf(context),
                     route: route,
                     fromId: _fromId,
@@ -674,19 +752,38 @@ class PlatformScreenState extends State<PlatformScreen> {
                             _toId = f;
                           }),
                         ),
+                        // One line with air above and below: errors, or
+                        // news from 現在地から.
                         SizedBox(
-                          height: 20,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 4, top: 2),
-                            child: message == null
-                                ? null
-                                : PixelText(
-                                    message,
-                                    size: 13,
-                                    maxLines: 1,
-                                    color: isError ? PixelColors.danger : PixelColors.muted,
+                          height: 28,
+                          child: message == null
+                              ? null
+                              : Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 6),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        isError ? Icons.error_outline_rounded : Icons.my_location,
+                                        size: 14,
+                                        color: isError ? PixelColors.danger : PixelColors.muted,
+                                      ),
+                                      const SizedBox(width: 5),
+                                      Expanded(
+                                        child: FittedBox(
+                                          fit: BoxFit.scaleDown,
+                                          alignment: Alignment.centerLeft,
+                                          child: PixelText(
+                                            message,
+                                            key: const ValueKey('routeMessage'),
+                                            size: 13,
+                                            maxLines: 1,
+                                            color: isError ? PixelColors.danger : PixelColors.muted,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                          ),
+                                ),
                         ),
                         _StartButton(label: t.startTrip, onPressed: route == null ? null : () => _start(route)),
                         if (route != null) ...[
@@ -767,7 +864,8 @@ class _FoldedBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
-    String name(String? id) => id == null ? '…' : city.station(id).name.ja;
+    final lang = langOf(context);
+    String name(String? id) => id == null ? '…' : city.station(id).name.of(lang);
     final text = fromId == null && toId == null ? hint : '${name(fromId)} → ${name(toId)}';
     return Row(
       children: [
@@ -1141,19 +1239,47 @@ class _RoutePreview extends StatelessWidget {
   final CityData city;
   final RouteResult route;
 
+  /// 「明治神宮前まで歩く　約3分」: the line does not stop where you are.
+  Widget _walk(String lang, String toStation, int minutes) => Padding(
+    padding: const EdgeInsets.only(top: 6),
+    child: Row(
+      children: [
+        const Icon(Icons.directions_walk_rounded, size: 17, color: PixelColors.muted),
+        const SizedBox(width: 8),
+        Expanded(
+          child: PixelText(
+            fill(walkToStation, lang, {'station': city.station(toStation).name.of(lang)}),
+            size: 16,
+            maxLines: 1,
+          ),
+        ),
+        PixelText(fill(walkAboutMinutes, lang, {'min': minutes}), size: 16, color: PixelColors.muted),
+      ],
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
     final lang = langOf(context);
-    final plan = TripPlan.build(city, route, DateTime.now());
-    final minutes = (plan.totalSec / 60).ceil();
+    final plan = TripPlan.build(city, route, japanNow());
+    final headWalk = route.headWalkMin(city), tailWalk = route.tailWalkMin(city);
+    final minutes = (plan.totalSec / 60).ceil() + headWalk + tailWalk;
     return PixelBox(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           PixelText(t.routeSummary(minutes, route.stopCount, route.transferCount), size: 18),
           const SizedBox(height: 10),
-          for (final leg in route.legs)
+          if (route.walkFromId != null) _walk(lang, route.fromId, headWalk),
+          for (final (i, leg) in route.legs.indexed) ...[
+            // A change at a station with another name: on foot.
+            if (i > 0 && route.legs[i - 1].stationIds.last != leg.stationIds.first)
+              _walk(
+                lang,
+                leg.stationIds.first,
+                city.walkMin(route.legs[i - 1].stationIds.last, leg.stationIds.first) ?? 5,
+              ),
             Padding(
               padding: const EdgeInsets.only(top: 6),
               child: Row(
@@ -1171,6 +1297,8 @@ class _RoutePreview extends StatelessWidget {
                 ],
               ),
             ),
+          ],
+          if (route.walkToId != null) _walk(lang, route.walkToId!, tailWalk),
         ],
       ),
     );
@@ -1261,7 +1389,14 @@ class _Banner extends StatelessWidget {
       aspect: aspect,
       lineColor: trainColor,
       weather: weather?.kind,
-      look: my.lookFor(fromId),
+      // The line you ride (else the station's first) runs underground here:
+      // the built-in scene becomes the subway platform.
+      look: my
+          .lookFor(fromId)
+          .withUnderground(
+            fromId != null &&
+                city.station(fromId!).isUndergroundOn(route?.legs.first.lineId ?? city.station(fromId!).lines.first),
+          ),
       // A new route: the train pulls in. Rain: umbrellas.
       arrivalKey: route == null ? null : '${route!.fromId}>${route!.toId}',
       sign: fromId == null

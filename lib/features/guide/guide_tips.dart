@@ -2,6 +2,7 @@ import 'dart:math';
 
 import '../../core/localized_text.dart';
 import '../../data/congestion/congestion_source.dart';
+import '../../data/last_train_alarm.dart' show minutesToLast;
 import '../../data/models/city.dart';
 import '../../data/weather/weather_source.dart';
 import '../trip/route_finder.dart';
@@ -70,7 +71,9 @@ List<GuideTip> guideTips({
   final jst = now.toUtc().add(const Duration(hours: 9));
   // Last train: from an hour before.
   final lineId = route?.legs.first.lineId ?? (fromId == null ? null : city.station(fromId).lines.first);
-  final left = lineId == null ? null : city.timetables[lineId]?.minutesToLastTrain(jst);
+  // The same last train as the next-train card, the alarm and the widget:
+  // with a route, the last departure that still makes every connection.
+  final left = minutesToLast(city, jst, route: route, lineId: lineId);
   final toLast = left != null && left <= 60 ? left : null;
   final temp = weather?.tempC;
   final key = (

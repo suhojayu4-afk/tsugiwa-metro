@@ -47,6 +47,29 @@ class RouteStore extends ChangeNotifier {
 
   String get _favKey => '$prefix.favourites';
   String get _recentKey => '$prefix.recents';
+  String get _lastKey => '$prefix.last';
+
+  String? _lastFromId;
+  String? _lastToId;
+
+  /// The stations that were chosen on のりば when the app was last used
+  /// (either may be null), put back at the next launch.
+  String? get lastFromId => _lastFromId;
+  String? get lastToId => _lastToId;
+
+  /// Remembers the chosen stations. Does not notify: it is called while the
+  /// screen that shows them builds.
+  Future<void> setLast(String? from, String? to) async {
+    if (from == _lastFromId && to == _lastToId) return;
+    _lastFromId = from;
+    _lastToId = to;
+    final prefs = await SharedPreferences.getInstance();
+    if (from == null && to == null) {
+      await prefs.remove(_lastKey);
+    } else {
+      await prefs.setString(_lastKey, jsonEncode({'from': from, 'to': to}));
+    }
+  }
 
   Future<void> load() async {
     final prefs = await SharedPreferences.getInstance();
@@ -56,12 +79,22 @@ class RouteStore extends ChangeNotifier {
     _recents
       ..clear()
       ..addAll(_decode(prefs.getString(_recentKey)));
+    _lastFromId = null;
+    _lastToId = null;
+    try {
+      final last = jsonDecode(prefs.getString(_lastKey) ?? 'null');
+      if (last is Map) {
+        _lastFromId = last['from'] is String ? last['from'] as String : null;
+        _lastToId = last['to'] is String ? last['to'] as String : null;
+      }
+    } catch (_) {
+      // Unreadable: start with nothing chosen.
+    }
     _loaded = true;
     notifyListeners();
   }
 
-  SavedRoute? favouriteFor(String from, String to) =>
-      _favourites.where((f) => f.sameStations(from, to)).firstOrNull;
+  SavedRoute? favouriteFor(String from, String to) => _favourites.where((f) => f.sameStations(from, to)).firstOrNull;
 
   Future<void> addFavourite(SavedRoute route) async {
     _favourites.removeWhere((f) => f.sameStations(route.fromId, route.toId));

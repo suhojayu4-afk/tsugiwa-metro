@@ -1,0 +1,23 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/underground/scene_underground_v1_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at C:/dev/tsugiwa-metro/docs/art/gen/bg_day_raw.png first (an open-air elevated Tokyo station platform seen along the track). Redraw the SAME view as an UNDERGROUND SUBWAY station (a Tokyo Metro style station), keeping the composition and the camera EXACTLY the same (do not move, zoom, tilt or crop): this picture replaces the original in an app where a train, people and furniture are drawn on top at fixed pixel positions.
+
+Keep IDENTICAL, in exactly the same place and at the same size and angle:
+- the EMPTY railway track in the centre: both shiny steel rails, the sleepers and the track bed, running to the same vanishing point;
+- the platform on the right: its edge along the track, the yellow tactile paving strip, the light grey floor tiles, and the row of square platform pillars at the same positions;
+- the horizon / eye level and the vanishing point.
+
+Change everything else into an indoor underground station:
+- NO sky anywhere, no clouds, no sun, no buildings, no trees, no fence, no overhead wire masts or gantries.
+- Where the sky and the city were far down the line: the dark round TUNNEL MOUTH that the track runs into, black inside with a couple of small dim tunnel lamps.
+- On the left of the track (where the fence, trees and buildings were): the station's side wall across the track, covered with clean white and cream ceramic tiles with one coloured tile band, running in perspective to the tunnel mouth; a few blank framed poster panels (no text).
+- Above everything: a low concrete ceiling with beams, pipes and cable trays, and long rows of bright white FLUORESCENT tube lights running in perspective towards the tunnel mouth, instead of the platform roof and the sky. A rigid overhead conductor rail may hang from the ceiling above the track.
+- On the right behind the pillars (where the windows were): a tiled station wall with the same tile style, no windows to outside.
+- Bright, even, slightly cool indoor lighting; the floor a little glossy with soft reflections of the lights. The rails stay clearly brighter than the track bed.
+- NO people at all: the platform is empty.
+
+- Landscape 1536x1024, the same detailed 16-bit era pixel art style as the original, crisp square pixels, almost no black outlines, hue-shifted shading.
+- The track stays EMPTY: no train.
+- ABSOLUTELY NO text, letters, numbers, logos or signboards.

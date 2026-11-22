@@ -1,8 +1,10 @@
 import 'package:material_ui/material_ui.dart';
 
 import '../../app.dart';
+import '../../core/japan_time.dart';
 import '../../core/pixel/pixel_ui.dart';
 import '../../core/services.dart';
+import '../../data/last_train_alarm.dart';
 import '../../data/models/city.dart';
 import '../../data/models/timetable.dart';
 import '../../l10n/app_localizations.dart';
@@ -23,7 +25,9 @@ class PlatformInfoCard extends StatelessWidget {
     final leg = route.legs.first;
     final line = city.line(leg.lineId);
     final tt = city.timetables[leg.lineId];
-    final now = DateTime.now();
+    // Japan time, also on a phone set to another time zone.
+    final now = japanNow();
+    final lastDep = lastDepartureMin(city, route);
 
     return FutureBuilder<int?>(
       future: Services.realtime.nextTrainMinutes(
@@ -41,9 +45,7 @@ class PlatformInfoCard extends StatelessWidget {
           main = t.outOfService(LineTimetable.clock(tt.firstTrainMin));
         } else {
           main = t.trainsEvery(tt?.headwayMinAt(now) ?? 5);
-          if (tt != null) {
-            sub = t.lastTrainAbout(LineTimetable.clock(tt.lastTrainMin));
-          }
+          if (lastDep != null) sub = t.lastTrainAbout(LineTimetable.clock(lastDep));
         }
         return PixelBox(
           child: Column(

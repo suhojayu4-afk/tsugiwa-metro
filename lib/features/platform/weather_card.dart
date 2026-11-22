@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:material_ui/material_ui.dart';
 
+import '../../core/japan_time.dart';
+import '../../core/pixel/pixel_scene.dart' show DayPart, dayPartOf;
 import '../../core/pixel/pixel_ui.dart';
 import '../../core/services.dart';
 import '../../data/weather/weather_source.dart';
@@ -10,8 +12,12 @@ import '../../l10n/app_localizations.dart';
 /// Today's weather for the city: pixel icon, temperature, humidity, rain chance.
 /// Refreshes every 10 minutes while visible.
 class WeatherCard extends StatefulWidget {
-  const WeatherCard({super.key, required this.area, this.onWeather});
+  const WeatherCard({super.key, required this.area, this.onWeather, this.now});
   final WeatherArea area;
+
+  /// Japan time, for the night icons; the clock when left out (previews
+  /// and tests set it).
+  final DateTime? now;
 
   /// Lets the screen react to the weather (e.g. rainy sky in the scene).
   final ValueChanged<WeatherNow>? onWeather;
@@ -66,6 +72,8 @@ class _WeatherCardState extends State<WeatherCard> {
       WeatherKind.snow => ('snow', t.weatherSnow),
       WeatherKind.unknown => ('cloudy', t.weatherUnknown),
     };
+    // After dark in Japan a clear sky is a moon, not a sun.
+    final night = dayPartOf(widget.now ?? japanNow()) == DayPart.night;
     return PixelBox(
       padding: const EdgeInsets.fromLTRB(12, 10, 12, 8),
       child: Column(
@@ -73,20 +81,50 @@ class _WeatherCardState extends State<WeatherCard> {
         children: [
           Row(
             children: [
-              WeatherIcon(name: icon),
+              WeatherIcon(name: icon, night: night),
               const SizedBox(width: 12),
+              // The temperature and the two small numbers share the row
+              // (4 : 6); each side shrinks to fit instead of pushing the other.
               Expanded(
+                flex: 4,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PixelText(label, size: 16, color: PixelColors.muted),
-                    PixelText(w.tempC == null ? '―' : '${w.tempC!.toStringAsFixed(1)}℃', size: 34, bold: true),
+                    // One line each, shrunk on narrow screens or with large text.
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.centerLeft,
+                      child: PixelText(label, size: 16, color: PixelColors.muted, maxLines: 1),
+                    ),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.centerLeft,
+                      child: PixelText(
+                        w.tempC == null ? '―' : '${w.tempC!.toStringAsFixed(1)}℃',
+                        size: 34,
+                        bold: true,
+                        maxLines: 1,
+                      ),
+                    ),
                   ],
                 ),
               ),
-              _Mini(label: t.humidityLabel, value: w.humidity == null ? '―' : '${w.humidity}%'),
-              const SizedBox(width: 14),
-              _Mini(label: t.rainChanceLabel, value: w.rainChance == null ? '―' : '${w.rainChance}%'),
+              const SizedBox(width: 8),
+              Expanded(
+                flex: 6,
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerRight,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      _Mini(label: t.humidityLabel, value: w.humidity == null ? '―' : '${w.humidity}%'),
+                      const SizedBox(width: 14),
+                      _Mini(label: t.rainChanceLabel, value: w.rainChance == null ? '―' : '${w.rainChance}%'),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
           if (w.kind == WeatherKind.rain || w.kind == WeatherKind.snow || w.wetLater) ...[
@@ -128,19 +166,29 @@ class _Mini extends StatelessWidget {
 }
 
 /// 32×32 pixel-art weather icon (assets/art/weather_*.webp), scaled so every
-/// art pixel is a whole number of device pixels.
+/// art pixel is a whole number of device pixels. At [night] a clear or
+/// cloudy sky shows the moon (the 24×24 icons of the home screen widget).
 class WeatherIcon extends StatelessWidget {
-  const WeatherIcon({super.key, required this.name, this.approxSize = 56});
+  const WeatherIcon({super.key, required this.name, this.approxSize = 56, this.night = false});
   final String name;
   final double approxSize;
+  final bool night;
+
+  /// The picture and the size of its art, in art pixels.
+  static (String, int) assetFor(String name, {required bool night}) => switch (name) {
+    'sunny' when night => ('assets/art/widget/icon_moon.webp', 24),
+    'cloudy' when night => ('assets/art/widget/icon_mooncloud.webp', 24),
+    _ => ('assets/art/weather_$name.webp', 32),
+  };
 
   @override
   Widget build(BuildContext context) {
     final dpr = MediaQuery.devicePixelRatioOf(context);
-    final perArt = (approxSize / 32 * dpr).round().clamp(1, 32);
-    final size = 32 * perArt / dpr;
+    final (asset, art) = assetFor(name, night: night);
+    final perArt = (approxSize / art * dpr).round().clamp(1, 32);
+    final size = art * perArt / dpr;
     return Image.asset(
-      'assets/art/weather_$name.webp',
+      asset,
       width: size,
       height: size,
       // Without an explicit fit, small images are never scaled up.

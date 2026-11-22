@@ -27,6 +27,9 @@ class _GuideCardState extends State<GuideCard> {
   int _i = 0;
   Timer? _turn;
 
+  /// Old tip out, then new tip in.
+  static const switchTime = Duration(milliseconds: 420);
+
   /// Frames of the attendant sheet (8 side by side): 6 = standing, 7 = pointing.
   static Future<ui.Image?> _load() => _loading ??= () async {
     for (final a in const ['assets/art/events/staff.webp', 'assets/art/events/staff.png']) {
@@ -79,6 +82,18 @@ class _GuideCardState extends State<GuideCard> {
     final lang = langOf(context);
     final tip = widget.tips[_i % widget.tips.length];
     final warn = tip.kind == TipKind.warn;
+    // Reduce motion: the next tip simply replaces the old one.
+    final still = MediaQuery.disableAnimationsOf(context);
+    final text = SizedBox(
+      key: ValueKey('${tip.key}|$lang'),
+      width: double.infinity,
+      child: PixelText(
+        tip.text.of(lang),
+        size: 14,
+        color: warn ? const Color(0xFFB33A2A) : PixelColors.ink,
+        maxLines: 3,
+      ),
+    );
     return Semantics(
       liveRegion: true,
       label: tip.text.of(lang),
@@ -101,22 +116,41 @@ class _GuideCardState extends State<GuideCard> {
                   clipBehavior: Clip.none,
                   children: [
                     Container(
+                      key: const ValueKey('guideBubble'),
+                      width: double.infinity,
                       padding: const EdgeInsets.fromLTRB(12, 10, 30, 10),
                       decoration: BoxDecoration(
                         color: warn ? const Color(0xFFFFF1EC) : PixelColors.card,
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(color: warn ? const Color(0xFFF2B5A6) : PixelColors.line),
                       ),
-                      child: AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 220),
-                        child: PixelText(
-                          tip.text.of(lang),
-                          key: ValueKey(tip.key),
-                          size: 14,
-                          color: warn ? const Color(0xFFB33A2A) : PixelColors.ink,
-                          maxLines: 3,
-                        ),
-                      ),
+                      // One text at a time: the old tip fades out completely
+                      // in the first half, the new one fades in in the second,
+                      // while the bubble grows or shrinks to the new text.
+                      child: still
+                          ? text
+                          : ClipRect(
+                              child: AnimatedSize(
+                                duration: switchTime,
+                                curve: Curves.easeInOut,
+                                alignment: Alignment.topLeft,
+                                child: AnimatedSwitcher(
+                                  duration: switchTime,
+                                  switchInCurve: const Interval(0.55, 1, curve: Curves.easeOut),
+                                  switchOutCurve: const Interval(0.55, 1, curve: Curves.easeOut),
+                                  // The bubble takes the new text's size; the old
+                                  // one only fades over it, without holding space.
+                                  layoutBuilder: (current, previous) => Stack(
+                                    clipBehavior: Clip.none,
+                                    children: [
+                                      for (final p in previous) Positioned(left: 0, right: 0, top: 0, child: p),
+                                      ?current,
+                                    ],
+                                  ),
+                                  child: text,
+                                ),
+                              ),
+                            ),
                     ),
                     // Tail of the bubble towards the attendant.
                     Positioned(

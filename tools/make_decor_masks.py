@@ -182,6 +182,11 @@ def main():
         name = os.path.basename(path).replace('_anim.webp', '.webp')
         if only and only not in name:
             continue
+        if name == 'scene_underground.webp':
+            # The subway platform (tools/gen_underground_scene.py): drawn
+            # from the same original as the empty pictures, with nobody on it.
+            shifts[name] = REF_SHIFT
+            continue
         img = np.asarray(Image.open(path).convert('RGB'))
         ref = np.asarray(Image.open(ref_path(path)).convert('RGB'))
         masks = []

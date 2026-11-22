@@ -4,7 +4,7 @@ part of 'pixel_scene.dart';
 extension _SceneTrain on _ScenePainter {
   /// The train under the same sky as the picture: darker and cooler under
   /// rain clouds, a little cooler in the snow.
-  Paint _trainPaint(Paint art) => switch (sky) {
+  Paint _trainPaint(Paint art) => switch (underground ? null : sky) {
     'rain' =>
       Paint()
         ..filterQuality = FilterQuality.none
@@ -93,6 +93,7 @@ extension _SceneTrain on _ScenePainter {
   /// rain, when they also light up the rails in front of the train.
   void _headlights(Canvas canvas) {
     final wet =
+        underground ||
         sky == 'rain' ||
         sky == 'umbrella' ||
         sky == 'snow' ||
@@ -100,6 +101,8 @@ extension _SceneTrain on _ScenePainter {
         weather == WeatherKind.rain ||
         weather == WeatherKind.snow;
     final strength = switch (part) {
+      // In the tunnel the lamps show as they do at night.
+      DayPart.day when underground => 1.0,
       DayPart.day => wet ? 0.6 : 0.4,
       DayPart.evening => 0.85,
       DayPart.night => 1.0,

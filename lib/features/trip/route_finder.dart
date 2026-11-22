@@ -1,3 +1,4 @@
+import '../../core/japan_time.dart';
 import '../../data/models/city.dart';
 
 /// One ride on a single line without changing trains.
@@ -19,11 +20,27 @@ class RouteLeg {
 }
 
 class RouteResult {
-  const RouteResult(this.legs);
+  const RouteResult(this.legs, {this.walkFromId, this.walkToId});
   final List<RouteLeg> legs;
+
+  /// The chosen start when the trip begins on foot to another station
+  /// (原宿 → 明治神宮前 for the 千代田線); null when you board where you start.
+  final String? walkFromId;
+
+  /// The chosen destination when the trip ends on foot from [toId].
+  final String? walkToId;
+
+  /// Minutes on foot before the first train (0 without a walk).
+  int headWalkMin(CityData city) => walkFromId == null ? 0 : city.walkMin(walkFromId!, fromId) ?? 5;
+
+  /// Minutes on foot after the last train (0 without a walk).
+  int tailWalkMin(CityData city) => walkToId == null ? 0 : city.walkMin(toId, walkToId!) ?? 5;
 
   int get stopCount => legs.fold(0, (sum, l) => sum + l.stopCount);
   int get transferCount => legs.length - 1;
+
+  /// Where the first train is boarded and the last one left (see
+  /// [walkFromId] / [walkToId] for a walk before or after).
   String get fromId => legs.first.stationIds.first;
   String get toId => legs.last.stationIds.last;
 
@@ -38,10 +55,11 @@ class RouteFinder {
   final CityData city;
   final int transferPenaltySec;
 
-  /// [avoid]: lines not to ride (e.g. those whose last train has gone).
+  /// [at]: Japan time (waits follow the timetable of that hour); now when
+  /// left out. [avoid]: lines not to ride (e.g. those whose last train has gone).
   RouteResult? find(String fromId, String toId, {DateTime? at, Set<String> avoid = const {}}) {
     if (fromId == toId) return null;
-    final time = at ?? DateTime.now();
+    final time = at ?? japanNow();
     final edges = _buildEdges(time, avoid);
 
     final dist = <String, int>{};
@@ -102,7 +120,10 @@ class RouteFinder {
       }
       viaThrough = false;
     }
-    return legs.isEmpty ? null : RouteResult(legs);
+    if (legs.isEmpty) return null;
+    // A walk to or from a nearby station at either end is not a leg: keep it.
+    final boardAt = legs.first.stationIds.first, leaveAt = legs.last.stationIds.last;
+    return RouteResult(legs, walkFromId: boardAt == fromId ? null : fromId, walkToId: leaveAt == toId ? null : toId);
   }
 
   Map<String, List<_Edge>> _buildEdges(DateTime time, Set<String> avoid) {

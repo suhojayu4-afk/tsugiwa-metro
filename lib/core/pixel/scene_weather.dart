@@ -7,12 +7,15 @@ extension _SceneWeather on _ScenePainter {
   void _wind(Canvas canvas) {
     final a = arrive?.value ?? 1;
     if (_gust(a) <= 0) return;
-    final snow = sky == 'snow' || weather == WeatherKind.snow;
-    final rain = sky == 'rain' || weather == WeatherKind.rain;
+    final snow = !underground && (sky == 'snow' || weather == WeatherKind.snow);
+    final rain = !underground && (sky == 'rain' || weather == WeatherKind.rain);
     final colors = snow
         ? const [Color(0xF2FFFFFF), Color(0xCCE6ECF8)]
         : rain
         ? const [Color(0x99C8D8EE), Color(0x77A8B8D0)]
+        // Down in the subway the tunnel wind only lifts a little dust.
+        : underground
+        ? const [Color(0x66E8E8F0), Color(0x55C8CCD8)]
         : const [Color(0xFF6E8F3A), Color(0xFFA0702E), Color(0xFF8DA84A), Color(0xFFC49A4A)];
     final p = Paint();
     for (var i = 0; i < 26; i++) {
@@ -28,12 +31,18 @@ extension _SceneWeather on _ScenePainter {
       // Leaves flutter: lying flat, then on their side.
       final flat = ((t * 10 + i) % 2) < 1;
       final big = i % 3 == 0 ? 1.0 : 0.0;
+      if (underground) {
+        // Dust: single specks.
+        if (i.isEven) canvas.drawRect(Rect.fromLTWH(x, y, 1 + big, 1), p);
+        continue;
+      }
       canvas.drawRect(Rect.fromLTWH(x, y, (flat || snow || rain ? 3 : 1) + big, (flat ? 1 : 3) + (snow ? 1 : 0)), p);
     }
   }
 
   /// Grey veil on cloudy, rainy and snowy days.
   void _weather(Canvas canvas) {
+    if (underground) return;
     final veil = switch (weather) {
       WeatherKind.cloudy => const Color(0x2E7A7F8C),
       WeatherKind.rain => const Color(0x40535A6B),

@@ -82,6 +82,8 @@ class MainActivity : FlutterActivity() {
                         LastTrainAlarm.clear(applicationContext, args?.get("slot") as? String ?: "last")
                         result.success(null)
                     }
+                    // Read after the permission prompt closed: are notifications on?
+                    "notificationsAllowed" -> result.success(notificationManager().areNotificationsEnabled())
                     "ensureNotificationPermission" -> {
                         if (Build.VERSION.SDK_INT >= 33 &&
                             checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) !=

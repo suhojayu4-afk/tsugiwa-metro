@@ -39,6 +39,8 @@ class TripStop {
 class TripPlan {
   TripPlan._(this.route, this.stops);
 
+  /// [boardingTime]: Japan time (see `japanNow`); waits at changes follow the
+  /// timetable of that hour.
   factory TripPlan.build(CityData city, RouteResult route, DateTime boardingTime) {
     final stops = <TripStop>[];
     var t = 0;

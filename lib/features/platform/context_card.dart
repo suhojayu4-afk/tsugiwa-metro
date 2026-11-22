@@ -5,6 +5,7 @@ import '../../data/congestion/congestion_source.dart';
 import '../../data/congestion/estimate_congestion.dart';
 
 import '../../app.dart';
+import '../../core/japan_time.dart';
 import '../../core/pixel/pixel_ui.dart';
 import '../../core/services.dart';
 import '../../data/models/city.dart';
@@ -129,7 +130,10 @@ class _QuickRoutes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
-    String name(String id) => city.station(id).name.ja;
+    // Station names in the app's language (and again when it changes).
+    final lang = langOf(context);
+    String name(String id) => city.stations[id]?.name.of(lang) ?? '?';
+    String pair(SavedRoute r) => '${name(r.fromId)} → ${name(r.toId)}';
     return Container(
       decoration: _cardDecoration(),
       padding: const EdgeInsets.fromLTRB(14, 10, 14, 10),
@@ -169,7 +173,7 @@ class _QuickRoutes extends StatelessWidget {
                         child: _FavouriteChip(
                           icon: favouriteIcon(f.kind),
                           label: favouriteLabel(t, f.kind),
-                          detail: '${name(f.fromId)} → ${name(f.toId)}',
+                          detail: pair(f),
                           onTap: () => onPick(f),
                           onLongPress: () => onRemove(f),
                         ),
@@ -203,7 +207,7 @@ class _QuickRoutes extends StatelessWidget {
                                   color: PixelColors.background,
                                   borderRadius: BorderRadius.circular(20),
                                 ),
-                                child: PixelText('${name(r.fromId)} → ${name(r.toId)}', size: 13),
+                                child: PixelText(pair(r), size: 13),
                               ),
                             ),
                           ),
@@ -422,9 +426,14 @@ class _NextTrain extends StatelessWidget {
     final leg = route.legs.first;
     final line = city.line(leg.lineId);
     final tt = city.timetables[leg.lineId];
-    final now = DateTime.now();
-    final plan = TripPlan.build(city, route, now);
-    final minutes = (plan.totalSec / 60).ceil();
+    // Japan time: timetables, last trains and rush hours are Tokyo's, also
+    // on a phone that is set to another time zone.
+    final jst = japanNow();
+    final plan = TripPlan.build(city, route, jst);
+    final minutes = (plan.totalSec / 60).ceil() + route.headWalkMin(city) + route.tailWalkMin(city);
+    // The one last train of this route: the last departure that still makes
+    // every connection (the same time the alarm and the widget show).
+    final lastDep = lastDepartureMin(city, route);
 
     return FutureBuilder<int?>(
       future: Services.realtime.nextTrainMinutes(
@@ -436,9 +445,7 @@ class _NextTrain extends StatelessWidget {
         final live = snap.data;
         final String main;
         final extra = <String>[];
-        // Japan time: last trains and rush hours are Tokyo's.
-        final jst = now.toUtc().add(const Duration(hours: 9));
-        final toLast = tt?.minutesToLastTrain(jst);
+        final toLast = minutesToLast(city, jst, route: route);
         // Every last train on the way, not just the first line's.
         final nowMin = LineTimetable.serviceMinute(jst);
         final missed = missedLines(city, route, nowMin);
@@ -451,10 +458,8 @@ class _NextTrain extends StatelessWidget {
               ? t.serviceEndedShort
               : t.outOfService(LineTimetable.clock(tt.firstTrainMin));
         } else {
-          main = t.trainsEvery(tt?.headwayMinAt(now) ?? 5);
-          if (tt != null) {
-            extra.add(t.lastTrainAbout(LineTimetable.clock(tt.lastTrainMin)));
-          }
+          main = t.trainsEvery(tt?.headwayMinAt(jst) ?? 5);
+          if (lastDep != null) extra.add(t.lastTrainAbout(LineTimetable.clock(lastDep)));
         }
         extra.add(t.routeSummary(minutes, route.stopCount, route.transferCount));
 

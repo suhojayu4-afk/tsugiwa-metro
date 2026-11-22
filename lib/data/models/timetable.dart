@@ -1,3 +1,5 @@
+import '../../core/japan_time.dart';
+
 /// Simplified timetable: first/last train and how often trains come per time band.
 /// Exact minute-by-minute timetables can come later from a RealtimeProvider (ODPT).
 class LineTimetable {
@@ -21,10 +23,16 @@ class LineTimetable {
   final List<HeadwayBand> weekday;
   final List<HeadwayBand> holiday;
 
-  /// Minutes between trains at [time]. Service days start at 04:00.
+  /// Whether the service day of [time] (Japan time; it starts at 04:00, so
+  /// 00:30 on a Saturday still belongs to Friday) runs the 土休日 timetable:
+  /// weekends, public holidays and the New Year days.
+  static bool isHolidayService(DateTime time) => isHolidayTimetableDay(
+    DateTime.utc(time.year, time.month, time.day, time.hour).subtract(const Duration(hours: 4)),
+  );
+
+  /// Minutes between trains at [time] (Japan time). Service days start at 04:00.
   int headwayMinAt(DateTime time) {
-    final isHoliday = time.weekday == DateTime.saturday || time.weekday == DateTime.sunday;
-    final bands = isHoliday ? holiday : weekday;
+    final bands = isHolidayService(time) ? holiday : weekday;
     final minute = serviceMinute(time);
     for (final b in bands) {
       if (minute >= b.fromMin && minute < b.toMin) return b.everyMin;

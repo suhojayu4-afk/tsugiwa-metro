@@ -13,7 +13,13 @@ class SceneLook {
     this.led = const [],
     this.ledColors = const [ledOrange],
     this.sign,
+    this.underground = false,
   });
+
+  /// The departure line is underground at this station: the built-in scene
+  /// becomes the subway platform (no sky, no weather, lights always on). A
+  /// station scene the user chose ([images]) stays as it is.
+  final bool underground;
 
   /// Equipped train with its own pictures (folder), null = the usual train.
   final String? trainArt;
@@ -51,6 +57,7 @@ class SceneLook {
     led: pages,
     ledColors: colors,
     sign: sign,
+    underground: underground,
   );
 
   SceneLook withSign(StationSign? s) => SceneLook(
@@ -62,7 +69,25 @@ class SceneLook {
     led: led,
     ledColors: ledColors,
     sign: s,
+    underground: underground,
   );
+
+  SceneLook withUnderground(bool value) => value == underground
+      ? this
+      : SceneLook(
+          images: images,
+          overlays: overlays,
+          effects: effects,
+          trainColor: trainColor,
+          trainArt: trainArt,
+          led: led,
+          ledColors: ledColors,
+          sign: sign,
+          underground: value,
+        );
+
+  /// The subway platform is shown (see [underground]).
+  bool get showsUnderground => underground && images.isEmpty;
 
   String get key => [
     for (final e in images.entries) '${e.key.name}=${e.value}',
@@ -73,6 +98,7 @@ class SceneLook {
     'led=${led.join('/')}',
     'sign=${sign?.name}/${sign?.sub}/${sign?.band.toARGB32()}',
     for (final c in ledColors) c.toARGB32(),
+    if (underground) 'underground',
   ].join('|');
 
   @override

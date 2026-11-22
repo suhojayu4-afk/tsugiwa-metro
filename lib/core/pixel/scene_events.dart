@@ -62,7 +62,17 @@ final yellowTrainSightings = ValueNotifier<int>(0);
 /// What the platform looks like now: which events can happen.
 @immutable
 class SceneEventConditions {
-  const SceneEventConditions({required this.part, this.weather = WeatherKind.sunny, this.sky, this.month = 6});
+  const SceneEventConditions({
+    required this.part,
+    this.weather = WeatherKind.sunny,
+    this.sky,
+    this.month = 6,
+    this.underground = false,
+  });
+
+  /// The subway platform ([SceneLook.showsUnderground]): no sky and no
+  /// animals, only the attendant comes out.
+  final bool underground;
 
   final DayPart part;
   final WeatherKind weather;
@@ -86,16 +96,18 @@ class SceneEventConditions {
   bool get autumn => month >= 9 && month <= 11;
 
   /// How likely each event is now (0 = cannot happen).
-  Map<SceneEventKind, int> get weights => {
-    if (part != DayPart.night && !wet && groundFree) SceneEventKind.cat: 3,
-    if (part == DayPart.day && !wet && groundFree) SceneEventKind.pigeons: 3,
-    if (groundFree) SceneEventKind.staff: 2,
-    if (part == DayPart.night && !grey) SceneEventKind.shootingStar: 4,
-    if (part == DayPart.day && !wet && _base != 'umbrella' && _base != 'snowsoon')
-      SceneEventKind.rainbow: weather == WeatherKind.cloudy ? 3 : 1,
-    if (part != DayPart.night && !wet) SceneEventKind.blimp: 2,
-    if (part != DayPart.night && !wet && autumn) SceneEventKind.dragonflies: 3,
-  };
+  Map<SceneEventKind, int> get weights => underground
+      ? {if (_base != 'closed') SceneEventKind.staff: 2}
+      : {
+          if (part != DayPart.night && !wet && groundFree) SceneEventKind.cat: 3,
+          if (part == DayPart.day && !wet && groundFree) SceneEventKind.pigeons: 3,
+          if (groundFree) SceneEventKind.staff: 2,
+          if (part == DayPart.night && !grey) SceneEventKind.shootingStar: 4,
+          if (part == DayPart.day && !wet && _base != 'umbrella' && _base != 'snowsoon')
+            SceneEventKind.rainbow: weather == WeatherKind.cloudy ? 3 : 1,
+          if (part != DayPart.night && !wet) SceneEventKind.blimp: 2,
+          if (part != DayPart.night && !wet && autumn) SceneEventKind.dragonflies: 3,
+        };
 }
 
 /// Picks the events: plain logic on a clock in seconds (only running while

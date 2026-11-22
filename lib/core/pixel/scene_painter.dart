@@ -35,6 +35,7 @@ Future<ui.Image> renderSceneImage({
   double? arrive,
   double? platform,
   double? depart,
+  double? gather,
   int tick = 0,
   SceneEventDirector? events,
 }) async {
@@ -50,7 +51,7 @@ Future<ui.Image> renderSceneImage({
     trainBase: art.base,
     trainStripe: art.stripe,
     lamps: SceneArt.lampsOf(look.trainArt),
-    lineColor: stripeColor(look.trainColor ?? lineColor, part),
+    lineColor: stripeColor(look.trainColor ?? lineColor, art.part),
     weather: weather,
     life: life,
     graded: art.graded,
@@ -60,7 +61,7 @@ Future<ui.Image> renderSceneImage({
     closed: art.closed,
     trainWeather: art.trainWeather,
     trainWeatherTint: art.trainWeatherTint,
-    part: part,
+    part: art.part,
     vanishing: art.vanishing,
     front: art.front,
     decorShift: art.decorShift,
@@ -70,6 +71,9 @@ Future<ui.Image> renderSceneImage({
     arrive: arrive == null ? null : AlwaysStoppedAnimation(arrive),
     platform: platform == null ? null : AlwaysStoppedAnimation(platform),
     depart: depart == null ? null : AlwaysStoppedAnimation(depart),
+    gather: gather == null ? null : AlwaysStoppedAnimation(gather),
+    underground: art.underground,
+    walkIn: art.walkIn,
     walkers: art.walkers,
     effects: look.effects,
     led: look.led,
@@ -118,6 +122,9 @@ class _ScenePainter extends CustomPainter {
     this.arrive,
     this.platform,
     this.depart,
+    this.gather,
+    this.underground = false,
+    this.walkIn = true,
     this.walkers = const [],
     this.weathered = false,
     this.sky,
@@ -137,7 +144,7 @@ class _ScenePainter extends CustomPainter {
     this.overlayLights = const [],
     this.ambience,
     this.events,
-  }) : super(repaint: Listenable.merge([life, ?arrive, ?platform, ?depart, ?events]));
+  }) : super(repaint: Listenable.merge([life, ?arrive, ?platform, ?depart, ?gather, ?events]));
 
   /// Easter-egg events (scene_events.dart), or null.
   final SceneEventDirector? events;
@@ -169,6 +176,18 @@ class _ScenePainter extends CustomPainter {
 
   /// Leaving after the stop (0 … 1 = gone); null = it stays.
   final Animation<double>? depart;
+
+  /// The next passengers walk in along the platform to the door's queue
+  /// (0 … 1 over [_gatherMs]); null = they stand there already.
+  final Animation<double>? gather;
+
+  /// The next passengers can walk in along the platform (see [gather]);
+  /// false = it is full of people: they come into view in the queue.
+  final bool walkIn;
+
+  /// The subway platform: no sky and no weather, lit like a station at
+  /// midday with the lamps on as at night.
+  final bool underground;
 
   /// The train has left and the track is empty.
   bool get _gone => (depart?.value ?? 0) >= 1;
@@ -221,6 +240,7 @@ class _ScenePainter extends CustomPainter {
     // Grey days: take most of the colour out of the picture and the train
     // (blue sky → overcast); the stripe keeps its line colour.
     final overcast =
+        !underground &&
         !(weathered && SceneArt.wetSkies.contains(sky)) &&
         (weather == WeatherKind.cloudy || weather == WeatherKind.rain || weather == WeatherKind.snow);
     final art = overcast
@@ -243,7 +263,7 @@ class _ScenePainter extends CustomPainter {
     );
     ambience?.paint(canvas, part, life.value, weathered: weathered);
     // Easter eggs in the sky (shooting star, rainbow, airship), behind the train.
-    events?.paintSky(canvas, bg: bg, part: part);
+    if (!underground) events?.paintSky(canvas, bg: bg, part: part);
     final trainSrc = Rect.fromLTWH(0, 0, trainBase.width.toDouble(), trainBase.height.toDouble());
     if (!_gone) {
       _atTrain(canvas, () {
@@ -299,10 +319,23 @@ class _ScenePainter extends CustomPainter {
     _decorations(canvas, f, bgPaint);
     _passengers(canvas);
     // Easter eggs on the platform (cat, pigeons, attendant, dragonflies).
-    events?.paintGround(canvas, part: part, vanishing: vanishing, weather: weather, sky: sky);
+    events?.paintGround(
+      canvas,
+      part: part,
+      vanishing: vanishing,
+      weather: underground ? WeatherKind.sunny : weather,
+      sky: sky,
+    );
     _effects(canvas, life.value);
 
     _weather(canvas);
+    // After the last train the subway platform is half lit.
+    if (underground && closed) {
+      canvas.drawRect(
+        Rect.fromLTWH(0, 0, SceneArt.width.toDouble(), SceneArt.height.toDouble()),
+        Paint()..color = const Color(0x7A10142A),
+      );
+    }
     // Lights glow through the grey weather veil.
     if (!closed && !_gone) _headlights(canvas);
     _wind(canvas);
@@ -340,10 +373,11 @@ class _ScenePainter extends CustomPainter {
       DayPart.night => const Color(0xFF8E96BC),
     };
     final grey =
-        SceneArt.wetSkies.contains(sky) ||
-        weather == WeatherKind.cloudy ||
-        weather == WeatherKind.rain ||
-        weather == WeatherKind.snow;
+        !underground &&
+        (SceneArt.wetSkies.contains(sky) ||
+            weather == WeatherKind.cloudy ||
+            weather == WeatherKind.rain ||
+            weather == WeatherKind.snow);
     return grey ? Color.lerp(light ?? const Color(0xFFFFFFFF), const Color(0xFFB4BAC8), 0.5) : light;
   }
 
@@ -356,11 +390,13 @@ class _ScenePainter extends CustomPainter {
     final light = _decorLight;
     final paint = Paint()..filterQuality = FilterQuality.none;
     if (light != null) paint.colorFilter = ColorFilter.mode(light, BlendMode.modulate);
-    final glow = switch (part) {
-      DayPart.day => 0.0,
-      DayPart.evening => 0.75,
-      DayPart.night => 1.0,
-    };
+    final glow = underground
+        ? 1.0
+        : switch (part) {
+            DayPart.day => 0.0,
+            DayPart.evening => 0.75,
+            DayPart.night => 1.0,
+          };
     for (var i = 0; i < overlays.length; i++) {
       canvas.drawImage(overlays[i], at, paint);
       final lit = i < overlayLights.length ? overlayLights[i] : null;
@@ -489,6 +525,8 @@ class _ScenePainter extends CustomPainter {
       old.events != events ||
       old.lineColor != lineColor ||
       old.weather != weather ||
+      old.underground != underground ||
+      old.walkers != walkers ||
       old.view.scale != view.scale ||
       old.view.src != view.src;
 }
