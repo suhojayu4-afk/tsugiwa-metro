@@ -122,7 +122,8 @@ class SceneAmbience {
 }
 
 /// Decorations bought in MY: petals, fireflies, snow, autumn leaves, soap
-/// bubbles, the garland.
+/// bubbles, confetti, dandelion fluff, paper planes, shooting stars,
+/// dragonflies, butterflies, sky lanterns, the garland.
 extension _SceneEffects on _ScenePainter {
   /// Small drawn decorations: falling petals, fireflies, a fairy-light garland.
   void _effects(Canvas canvas, int f) {
@@ -190,6 +191,148 @@ extension _SceneEffects on _ScenePainter {
         canvas.drawCircle(c, r, p);
         p.color = const Color(0xF0FFFFFF);
         canvas.drawRect(Rect.fromLTWH(c.dx - r * 0.5, c.dy - r * 0.6, 1, 1), p);
+      }
+    }
+    if (effects.contains('confetti')) {
+      // Paper confetti tumbling down, each piece turning.
+      const colors = [Color(0xF0FF6B8B), Color(0xF0FFD54A), Color(0xF05BC8F5), Color(0xF07BDC8A), Color(0xF0FFFFFF)];
+      for (var i = 0; i < 64; i++) {
+        final x = (i * 59 + (i % 6) * 11 + ((f + i) % 4) - 1) % SceneArt.width;
+        final y = (i * 31 + f * (2 + i % 3) + i * i * 5) % SceneArt.height;
+        final flat = (f + i) % 3 == 0;
+        p.color = colors[i % colors.length];
+        canvas.drawRect(Rect.fromLTWH(x.toDouble(), y.toDouble(), flat ? 4 : 2, flat ? 2 : 3), p);
+      }
+    }
+    if (effects.contains('dandelion')) {
+      // Dandelion fluff carried up and along on the breeze.
+      for (var i = 0; i < 40; i++) {
+        final x = (i * 73 + f * 2 + (i % 5) * 9) % (SceneArt.width + 10) - 5.0;
+        final rise = (i * 47 + f + i * i * 3) % SceneArt.height;
+        final y = (SceneArt.height - 1 - rise + math.sin((f + i * 5) * 0.4) * 2).roundToDouble();
+        p.color = const Color(0xF0FFFFFF);
+        canvas.drawRect(Rect.fromLTWH(x - 2, y, 5, 1), p);
+        canvas.drawRect(Rect.fromLTWH(x - 1, y - 1, 3, 1), p);
+        p.color = const Color(0xC0C8B890);
+        canvas.drawRect(Rect.fromLTWH(x, y + 1, 1, 2), p);
+      }
+    }
+    if (effects.contains('planes')) {
+      // Paper planes gliding across, dipping and lifting.
+      for (var i = 0; i < 5; i++) {
+        const period = 150;
+        final t = (f * (2 + i % 2) + i * 67) % period;
+        final c = Offset(
+          (-12.0 + t * (SceneArt.width + 24) / period).roundToDouble(),
+          (18.0 + i * 13 + math.sin(t * 0.14 + i) * 6).roundToDouble(),
+        );
+        p.color = const Color(0xFFFFFFFF);
+        canvas.drawPath(
+          Path()
+            ..moveTo(c.dx + 9, c.dy)
+            ..lineTo(c.dx - 8, c.dy - 5)
+            ..lineTo(c.dx - 3, c.dy)
+            ..close(),
+          p,
+        );
+        p.color = const Color(0xFFC2CEE6);
+        canvas.drawPath(
+          Path()
+            ..moveTo(c.dx + 9, c.dy)
+            ..lineTo(c.dx - 8, c.dy + 3)
+            ..lineTo(c.dx - 3, c.dy)
+            ..close(),
+          p,
+        );
+      }
+    }
+    if (effects.contains('meteors') && !underground) {
+      // A shower of shooting stars across the sky; faint by day.
+      final strength = switch (part) {
+        DayPart.day => 0.4,
+        DayPart.evening => 0.8,
+        DayPart.night => 1.0,
+      };
+      for (var i = 0; i < 11; i++) {
+        final period = 22 + i * 4;
+        final t = (f + i * 11) % period;
+        if (t > 7) continue;
+        final round = (f + i * 11) ~/ period;
+        final head = Offset(40.0 + (i * 97 + round * 53) % 220 - t * 7, 4.0 + (i * 13) % 34 + t * 3.2);
+        for (var k = 0; k < 12; k++) {
+          p.color = Color.fromRGBO(255, 250, 220, strength * (1 - k / 12));
+          final s = k == 0 ? 2.0 : 1.0;
+          canvas.drawRect(Rect.fromLTWH((head.dx + k * 2.2).roundToDouble(), (head.dy - k).roundToDouble(), s, s), p);
+        }
+      }
+    }
+    if (effects.contains('dragonflies')) {
+      // Red dragonflies: they hover, then dart to another spot.
+      for (var i = 0; i < 9; i++) {
+        final hop = (f + i * 5) ~/ 9;
+        final x = 10.0 + (i * 83 + hop * 57) % 230 + ((f + i) % 3) - 1;
+        final y = 40.0 + (i * 29 + hop * 31) % 90 + ((f ~/ 2 + i) % 2);
+        p.color = Color(f.isEven ? 0xB0FFFFFF : 0x70FFFFFF);
+        canvas.drawRect(Rect.fromLTWH(x + 3, y - 3, 4, 3), p);
+        canvas.drawRect(Rect.fromLTWH(x + 3, y + 2, 4, 2), p);
+        p.color = const Color(0xFFD8432C);
+        canvas.drawRect(Rect.fromLTWH(x, y, 8, 2), p);
+        p.color = const Color(0xFF7A1E14);
+        canvas.drawRect(Rect.fromLTWH(x + 8, y, 2, 2), p);
+      }
+    }
+    if (effects.contains('butterflies')) {
+      // Butterflies wandering by, wings opening and closing.
+      const colors = [Color(0xFFFFF0A0), Color(0xFFFFFFFF), Color(0xFFB9D8FF), Color(0xFFFFC2DA)];
+      for (var i = 0; i < 10; i++) {
+        final sway = (math.sin((f + i * 3) * 0.5) * 5).round();
+        final x = (i * 71 + f * 2 + sway) % (SceneArt.width + 8) - 4.0;
+        final y = (50.0 + (i * 37) % 110 + math.sin((f + i * 7) * 0.33) * 7).roundToDouble();
+        p.color = colors[i % colors.length];
+        if ((f + i).isEven) {
+          canvas.drawRect(Rect.fromLTWH(x - 4, y - 3, 4, 3), p);
+          canvas.drawRect(Rect.fromLTWH(x + 1, y - 3, 4, 3), p);
+          canvas.drawRect(Rect.fromLTWH(x - 3, y, 3, 2), p);
+          canvas.drawRect(Rect.fromLTWH(x + 1, y, 3, 2), p);
+        } else {
+          canvas.drawRect(Rect.fromLTWH(x - 2, y - 4, 2, 6), p);
+          canvas.drawRect(Rect.fromLTWH(x + 1, y - 4, 2, 6), p);
+        }
+        p.color = const Color(0xFF4A3A30);
+        canvas.drawRect(Rect.fromLTWH(x, y - 2, 1, 4), p);
+      }
+    }
+    if (effects.contains('skylanterns')) {
+      // Paper lanterns let go into the sky, glowing at dusk and at night.
+      final glow = switch (part) {
+        DayPart.day => 0.0,
+        DayPart.evening => 0.6,
+        DayPart.night => 1.0,
+      };
+      for (var i = 0; i < 14; i++) {
+        final life = (f * (1 + i % 2) + i * 41) % 260;
+        final big = i % 3 == 0;
+        final c = Offset(
+          ((20 + i * 67) % SceneArt.width + math.sin((f + i * 4) * 0.2) * 3).roundToDouble(),
+          (196.0 - life * 0.85).roundToDouble(),
+        );
+        if (c.dy < -6) continue;
+        final w = big ? 7.0 : 5.0, h = big ? 9.0 : 6.0;
+        if (glow > 0) {
+          canvas.drawCircle(
+            c,
+            w * 2.4,
+            Paint()
+              ..shader = ui.Gradient.radial(c, w * 2.4, [
+                const Color(0xFFFFB45A).withValues(alpha: 0.45 * glow),
+                const Color(0x00FFB45A),
+              ]),
+          );
+        }
+        p.color = const Color(0xFFFF9A48);
+        canvas.drawRect(Rect.fromCenter(center: c, width: w, height: h), p);
+        p.color = const Color(0xFFFFE2A0);
+        canvas.drawRect(Rect.fromCenter(center: c.translate(0, 1), width: w - 2, height: h - 2), p);
       }
     }
     if (effects.contains('garland')) {

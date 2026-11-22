@@ -39,6 +39,9 @@ flutter:
     - assets/art/decor/
     - assets/art/marks/
     - assets/art/sky/
+    - assets/art/trains/oni/
+    - assets/art/trains/yako/
+    - assets/art/trains/tenbo/
     - assets/art/decor/vending_front/
     - assets/art/map_decor/
     - assets/art/map_seasons/

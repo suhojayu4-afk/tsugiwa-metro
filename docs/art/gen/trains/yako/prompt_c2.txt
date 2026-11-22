@@ -1,0 +1,18 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/trains/yako/c2_raw.png
+(copy it there from wherever the tool stores it). Do not write or change any other files. Reply with the saved path only.
+
+Look at this first:
+- C:/dev/tsugiwa-metro/docs/art/gen/train_front_raw.png : a commuter train seen HEAD-ON on pure magenta. Copy EXACTLY its camera angle, image size, the train's position and size in the frame (same width, same height, its wheels on the same bottom line), its pixel-art style and its evening rim light. Also keep the SAME LAYOUT OF PARTS: a dark amber dot-matrix destination display band across the top of the windshield, ONE bright pure green stripe running straight across the face at the same height, the two round headlights at the same height and the same left/right positions just below the stripe, the skirt at the bottom.
+
+What to draw instead: an ORIGINAL classic Japanese NIGHT SLEEPER express locomotive-style car ("blue train" feeling), seen head-on, NOT any real train model.
+- Body: deep midnight navy blue with two thin GOLD lines; a tall, rounded, dignified classic face.
+- Front: two large upright front windows with silver frames, the destination display band along the top, a small round plate holder (empty, plain silver) in the middle of the face below the stripe.
+- Headlights: two round warm lamps just below the stripe, as in the reference; red tail-light lenses beside them.
+- Roof: a pantograph and a row of ventilators.
+- Below: a heavy dark grey skirt with a coupler and air hoses.
+- The stripe across the face must be one single bright pure green (#33CC33) band, and the ONLY green anywhere on the train.
+- Same detailed 16-bit era pixel art style, crisp square pixels, warm evening rim light.
+- Background: one flat solid pure magenta colour (#FF00FF) everywhere around the train - no ground, no rails, no sky, no platform, no shadows on the background.
+- ABSOLUTELY NO text, letters, numbers, logos or company marks anywhere.
+Variation 2: flat upright face with a centre gangway door

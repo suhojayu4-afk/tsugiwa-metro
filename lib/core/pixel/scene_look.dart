@@ -40,7 +40,8 @@ class SceneLook {
   /// Decoration layers, same size as the scene (transparent elsewhere).
   final List<String> overlays;
 
-  /// Drawn effects: 'petals', 'fireflies', 'snow', 'leaves', 'bubbles', 'garland'.
+  /// Drawn effects: 'petals', 'fireflies', 'snow', 'leaves', 'bubbles', 'garland'
+  /// and the later ones in scene_ambience.dart ('confetti', 'planes', …).
   final Set<String> effects;
 
   /// Equipped train colour; null = the colour of the line being used.

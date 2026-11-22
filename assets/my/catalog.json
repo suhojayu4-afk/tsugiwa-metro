@@ -481,6 +481,42 @@
       "art": "assets/art/shinkansen"
     },
     {
+      "id": "train.yako",
+      "slot": "train",
+      "name": {
+        "ja": "夜行号",
+        "ko": "야행호",
+        "en": "Night Sleeper"
+      },
+      "price": 3500,
+      "art": "assets/art/trains/yako",
+      "color": "#E8B93C"
+    },
+    {
+      "id": "train.tenbo",
+      "slot": "train",
+      "name": {
+        "ja": "展望号",
+        "ko": "전망호",
+        "en": "Panorama Express"
+      },
+      "price": 3500,
+      "art": "assets/art/trains/tenbo",
+      "color": "#F2C230"
+    },
+    {
+      "id": "train.oni",
+      "slot": "train",
+      "name": {
+        "ja": "鬼号",
+        "ko": "도깨비호",
+        "en": "Oni Express"
+      },
+      "price": 6000,
+      "art": "assets/art/trains/oni",
+      "color": "#F5B92E"
+    },
+    {
       "id": "train.lemon",
       "slot": "train",
       "name": {
@@ -981,6 +1017,83 @@
       "effect": "snow"
     },
     {
+      "id": "effect.confetti",
+      "slot": "effect",
+      "name": {
+        "ja": "紙ふぶき",
+        "ko": "종이 꽃가루",
+        "en": "Confetti"
+      },
+      "price": 120,
+      "effect": "confetti"
+    },
+    {
+      "id": "effect.dandelion",
+      "slot": "effect",
+      "name": {
+        "ja": "たんぽぽの綿毛",
+        "ko": "민들레 홀씨",
+        "en": "Dandelion fluff"
+      },
+      "price": 120,
+      "effect": "dandelion"
+    },
+    {
+      "id": "effect.butterflies",
+      "slot": "effect",
+      "name": {
+        "ja": "ちょうちょ",
+        "ko": "나비",
+        "en": "Butterflies"
+      },
+      "price": 140,
+      "effect": "butterflies"
+    },
+    {
+      "id": "effect.dragonflies",
+      "slot": "effect",
+      "name": {
+        "ja": "赤とんぼ",
+        "ko": "고추잠자리",
+        "en": "Red dragonflies"
+      },
+      "price": 140,
+      "effect": "dragonflies"
+    },
+    {
+      "id": "effect.planes",
+      "slot": "effect",
+      "name": {
+        "ja": "紙ひこうき",
+        "ko": "종이비행기",
+        "en": "Paper planes"
+      },
+      "price": 150,
+      "effect": "planes"
+    },
+    {
+      "id": "effect.meteors",
+      "slot": "effect",
+      "name": {
+        "ja": "流れ星",
+        "ko": "별똥별",
+        "en": "Shooting stars"
+      },
+      "price": 180,
+      "effect": "meteors"
+    },
+    {
+      "id": "effect.skylanterns",
+      "slot": "effect",
+      "name": {
+        "ja": "空のランタン",
+        "ko": "하늘 등불",
+        "en": "Sky lanterns"
+      },
+      "price": 200,
+      "effect": "skylanterns"
+    },
+    {
       "id": "melody.sakura",
       "slot": "melody",
       "name": {
@@ -1035,6 +1148,72 @@
       "sound": "assets/sounds/melody_umi.wav"
     },
     {
+      "id": "melody.orgel",
+      "slot": "melody",
+      "name": {
+        "ja": "オルゴール",
+        "ko": "오르골",
+        "en": "Music box"
+      },
+      "price": 180,
+      "sound": "assets/sounds/melody_orgel.wav"
+    },
+    {
+      "id": "melody.koto",
+      "slot": "melody",
+      "name": {
+        "ja": "こと",
+        "ko": "고토",
+        "en": "Koto"
+      },
+      "price": 200,
+      "sound": "assets/sounds/melody_koto.wav"
+    },
+    {
+      "id": "melody.matsuri",
+      "slot": "melody",
+      "name": {
+        "ja": "まつり",
+        "ko": "마쓰리",
+        "en": "Festival"
+      },
+      "price": 200,
+      "sound": "assets/sounds/melody_matsuri.wav"
+    },
+    {
+      "id": "melody.yoru",
+      "slot": "melody",
+      "name": {
+        "ja": "よる",
+        "ko": "밤",
+        "en": "Night"
+      },
+      "price": 150,
+      "sound": "assets/sounds/melody_yoru.wav"
+    },
+    {
+      "id": "melody.pico",
+      "slot": "melody",
+      "name": {
+        "ja": "ピコピコ",
+        "ko": "피코피코",
+        "en": "8-bit"
+      },
+      "price": 180,
+      "sound": "assets/sounds/melody_pico.wav"
+    },
+    {
+      "id": "melody.oni",
+      "slot": "melody",
+      "name": {
+        "ja": "おに",
+        "ko": "도깨비",
+        "en": "Oni"
+      },
+      "price": 250,
+      "sound": "assets/sounds/melody_oni.wav"
+    },
+    {
       "id": "sticker.basic",
       "slot": "sticker",
       "name": {
@@ -1080,6 +1259,78 @@
         "rainbow",
         "onigiri",
         "coffee"
+      ]
+    },
+    {
+      "id": "sticker.ekiben",
+      "slot": "sticker",
+      "name": {
+        "ja": "駅弁セット",
+        "ko": "에키벤 세트",
+        "en": "Ekiben set"
+      },
+      "price": 500,
+      "stickers": [
+        "ekiben",
+        "tea",
+        "mikan",
+        "dango",
+        "senbei",
+        "icecream"
+      ]
+    },
+    {
+      "id": "sticker.matsuri",
+      "slot": "sticker",
+      "name": {
+        "ja": "お祭りセット",
+        "ko": "마쓰리 세트",
+        "en": "Festival set"
+      },
+      "price": 500,
+      "stickers": [
+        "oni",
+        "kitsune",
+        "chochin",
+        "taiko",
+        "hanabi",
+        "uchiwa"
+      ]
+    },
+    {
+      "id": "sticker.sanin",
+      "slot": "sticker",
+      "name": {
+        "ja": "山陰セット",
+        "ko": "산인 세트",
+        "en": "San-in set"
+      },
+      "price": 500,
+      "stickers": [
+        "camel",
+        "nashi",
+        "kani",
+        "daisen",
+        "lighthouse",
+        "onsen"
+      ]
+    },
+    {
+      "id": "sticker.tetsudo",
+      "slot": "sticker",
+      "name": {
+        "ja": "鉄道セット",
+        "ko": "철도 세트",
+        "en": "Railway set"
+      },
+      "price": 500,
+      "stickers": [
+        "cap",
+        "signal",
+        "gate",
+        "lantern",
+        "crossing",
+        "whistle"
       ]
     }
   ]

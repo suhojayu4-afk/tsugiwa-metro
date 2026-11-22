@@ -1,0 +1,19 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/trains/oni/c2_raw.png
+(copy it there from wherever the tool stores it). Do not write or change any other files. Reply with the saved path only.
+
+Look at this first:
+- C:/dev/tsugiwa-metro/docs/art/gen/train_front_raw.png : a commuter train seen HEAD-ON on pure magenta. Copy EXACTLY its camera angle, image size, the train's position and size in the frame (same width, same height, its wheels on the same bottom line), its pixel-art style and its evening rim light. Also keep the SAME LAYOUT OF PARTS: a dark amber dot-matrix destination display band across the top of the windshield, ONE bright pure green stripe running straight across the face at the same height, the two round headlights at the same height and the same left/right positions just below the stripe, the skirt at the bottom.
+
+What to draw instead: an ORIGINAL fantasy "ONI" train from Japanese folklore (a friendly-fierce red ogre), seen head-on, NOT any real train and NOT any existing character.
+- Body: deep crimson red lacquer with darker red shading, like a festival oni mask.
+- Roof: two short curved GOLDEN HORNS standing up at the left and right roof corners, and a pantograph between them.
+- Face: the windshield is one wide dark glass shaped like two fierce slanted eyes under heavy black angled brows (the brows are part of the body paint); the destination display band sits along the top of the windshield.
+- Below the stripe: two round glowing yellow headlights like eyes, and between them a wide grinning mouth painted in black with two white upward FANGS.
+- Skirt: dark iron grey with a yellow-and-black tiger-skin pattern (bold wavy black stripes on yellow), like an oni's loincloth, a coupler in the middle.
+- Small twisted shimenawa rope with white paper zigzag strips hanging under the roof edge.
+- The stripe across the face must be one single bright pure green (#33CC33) band, and the ONLY green anywhere on the train.
+- Same detailed 16-bit era pixel art style, crisp square pixels, warm evening rim light.
+- Background: one flat solid pure magenta colour (#FF00FF) everywhere around the train - no ground, no rails, no sky, no platform, no shadows on the background.
+- ABSOLUTELY NO text, letters, numbers, logos or company marks anywhere.
+Variation 2: sharper, fiercer face with bigger horns

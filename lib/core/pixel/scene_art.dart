@@ -24,7 +24,9 @@ class SceneArt {
   /// Time each ambient frame stays on screen.
   static const frameTime = Duration(milliseconds: 320);
 
-  /// The same train re-lit for each time of day. [art]: another train's
+  /// The same train re-lit for each time of day (75 wide, 96 tall; a taller
+  /// picture stands on the same rails with its extra rows above the frame).
+  /// [art]: another train's
   /// folder (MY train with its own shape, e.g. 'assets/art/shinkansen'),
   /// holding front_base_{part}, front_stripe, front_rain and front_snow.
   static String trainBase(DayPart part, [String? art]) =>
@@ -45,6 +47,9 @@ class SceneArt {
     // The steam locomotive: its big headlamp on the smokebox and two small lamps.
     'assets/art/tottori/sl': [Offset(37.5, 27), Offset(18, 71), Offset(55, 71)],
     yellowTrainArt: [Offset(16.5, 67.5), Offset(56.5, 67.5)],
+    'assets/art/trains/oni': [Offset(17, 65), Offset(56, 65)],
+    'assets/art/trains/yako': [Offset(14.5, 65), Offset(57, 65)],
+    'assets/art/trains/tenbo': [Offset(12, 64.5), Offset(58, 64.5)],
   };
   static List<Offset> lampsOf(String? art) => _lamps[art] ?? lampsDefault;
 
@@ -55,6 +60,10 @@ class SceneArt {
     'assets/art/shinkansen': Offset(37.5, 72),
     tottoriDieselArt: Offset(37.5, 66),
     'assets/art/tottori/sl': Offset(37.5, 46),
+    // The oni: under its nose, between the fangs. The night train: on its plate holder.
+    'assets/art/trains/oni': Offset(37.5, 74),
+    'assets/art/trains/yako': Offset(37.5, 65),
+    'assets/art/trains/tenbo': Offset(37.5, 73),
   };
   static Offset markOf(String? art) => _marks[art] ?? markDefault;
 

@@ -284,6 +284,15 @@ class _ScenePainter extends CustomPainter {
     if (!underground) events?.paintSky(canvas, bg: bg, part: part);
     _skyThings(canvas);
     final trainSrc = Rect.fromLTWH(0, 0, trainBase.width.toDouble(), trainBase.height.toDouble());
+    // A picture taller than the usual frame (horns, a tall pantograph) stands
+    // on the same rails: its extra rows go above the frame.
+    final over = (trainBase.height - SceneArt.trainHeight).clamp(0.0, 64.0);
+    final trainDst = Rect.fromLTRB(
+      SceneArt.trainLeft,
+      SceneArt.trainTop - over,
+      SceneArt.trainRect.right,
+      SceneArt.trainRect.bottom,
+    );
     if (!_gone) {
       _atTrain(canvas, () {
         // Contact shadow on the rails under the train, so it sits on the track
@@ -295,7 +304,7 @@ class _ScenePainter extends CustomPainter {
         final trainPaint = _trainPaint(art);
         // Wet platform: the train shows faintly in the water on the track.
         if (sky == 'rain') {
-          const r = SceneArt.trainRect;
+          final r = trainDst;
           canvas.save();
           canvas.clipRect(Rect.fromLTWH(r.left, r.bottom - 1, r.width, 16));
           canvas.translate(0, r.bottom * 2 - 2);
@@ -310,14 +319,14 @@ class _ScenePainter extends CustomPainter {
           );
           canvas.restore();
         }
-        canvas.drawImageRect(trainBase, trainSrc, SceneArt.trainRect, trainPaint);
+        canvas.drawImageRect(trainBase, trainSrc, trainDst, trainPaint);
         final stripe = sky == 'rain' || sky == 'umbrella'
             ? Color.lerp(lineColor, const Color(0xFF4A5068), 0.22)!
             : lineColor;
         canvas.drawImageRect(
           trainStripe,
           trainSrc,
-          SceneArt.trainRect,
+          trainDst,
           Paint()
             ..filterQuality = FilterQuality.none
             ..colorFilter = ColorFilter.mode(stripe, BlendMode.modulate),
@@ -327,7 +336,7 @@ class _ScenePainter extends CustomPainter {
           canvas.drawImageRect(
             trainWeather!,
             trainSrc,
-            SceneArt.trainRect,
+            trainDst,
             Paint()
               ..filterQuality = FilterQuality.none
               ..colorFilter = ColorFilter.mode(trainWeatherTint, BlendMode.modulate),
