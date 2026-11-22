@@ -235,6 +235,17 @@ TrainType trainType(String id) => _typeById[id]!;
 
 /// Lines whose train is not the default kind for their company.
 const _lineType = <String, String>{
+  // Tottori–Yonago: diesel railcars on the country lines, the little Wakasa
+  // Railway, and the limited expresses along the sea.
+  'tottori.sanin': 'local_diesel',
+  'tottori.sakai': 'local_diesel',
+  'tottori.inbi': 'local_diesel',
+  'tottori.hakubi': 'local_diesel',
+  'tottori.chizukyu': 'local_diesel',
+  'tottori.wakasa': 'retro_local',
+  'tottori.matsukaze': 'resort_liner',
+  'tottori.hakuto': 'resort_liner',
+  'tottori.yakumo': 'jr_regional',
   // JR medium distance (double-deck green cars).
   'tokyo.tokaido': 'jr_rapid',
   'tokyo.utsunomiya': 'jr_rapid',

@@ -1,0 +1,227 @@
+{
+ "daisen_big": {
+  "about": {
+   "ja": "中国地方でいちばん高い山（1,729m）。西から見ると富士山のような形で「伯耆富士」とよばれます。",
+   "ko": "주고쿠 지방에서 가장 높은 산(1,729m). 서쪽에서 보면 후지산을 닮아 「호키 후지」라고 불려요.",
+   "en": "The highest peak in the Chugoku region (1,729 m). From the west it looks like Mt. Fuji: \"Hoki-Fuji\"."
+  },
+  "stations": [
+   "tottori.hoki_daisen",
+   "tottori.daisenguchi",
+   "tottori.yonago"
+  ]
+ },
+ "sakyu": {
+  "about": {
+   "ja": "東西およそ16kmの大きな砂丘。風がつくる砂の模様「風紋」や、らくだに乗る体験もあります。",
+   "ko": "동서로 약 16km 이어진 커다란 사구. 바람이 만드는 모래 무늬 「풍문」과 낙타 타기 체험도 있어요.",
+   "en": "Dunes stretching about 16 km along the coast, with wind ripples in the sand and camel rides."
+  },
+  "stations": [
+   "tottori.tottori"
+  ]
+ },
+ "jinpukaku": {
+  "about": {
+   "ja": "1907年に建てられた白い洋館。鳥取城跡の石垣のふもとに建ち、国の重要文化財です。",
+   "ko": "1907년에 지어진 하얀 서양식 저택. 돗토리성 터의 돌담 아래에 있고 국가 중요문화재예요.",
+   "en": "A white Western-style mansion of 1907 below the stone walls of Tottori Castle, an Important Cultural Property."
+  },
+  "stations": [
+   "tottori.tottori"
+  ]
+ },
+ "hakuto": {
+  "about": {
+   "ja": "神話「因幡の白うさぎ」の舞台。海岸のそばに白兎神社があります。",
+   "ko": "신화 「이나바의 흰 토끼」의 무대. 해안 가까이에 하쿠토 신사가 있어요.",
+   "en": "The setting of the myth of the White Hare of Inaba, with Hakuto Shrine by the shore."
+  },
+  "stations": [
+   "tottori.suetsune",
+   "tottori.tottori_daigakumae"
+  ]
+ },
+ "uradome": {
+  "about": {
+   "ja": "白い岩の小島と松が、エメラルド色の海にうかぶ海岸。遊覧船で洞門めぐりもできます。",
+   "ko": "하얀 바위섬과 소나무가 에메랄드빛 바다에 떠 있는 해안. 유람선으로 동굴문을 돌아볼 수도 있어요.",
+   "en": "Pale rock islets topped with pines in an emerald sea; sightseeing boats go round the sea caves."
+  },
+  "stations": [
+   "tottori.iwami"
+  ]
+ },
+ "kurayoshi": {
+  "about": {
+   "ja": "白い漆喰の壁と赤い石州瓦の土蔵が、玉川沿いに並ぶ町なみ。駅からバスで約15分。",
+   "ko": "하얀 회벽과 붉은 세키슈 기와의 창고가 다마가와 강을 따라 늘어선 거리. 역에서 버스로 약 15분.",
+   "en": "White plaster storehouses with red-brown roofs along the Tamagawa canal, 15 minutes by bus from the station."
+  },
+  "stations": [
+   "tottori.kurayoshi"
+  ]
+ },
+ "nageiredo": {
+  "about": {
+   "ja": "断崖のくぼみに建つお堂。どうやって建てたのか今もなぞで、「日本一危ない国宝」ともよばれます。",
+   "ko": "절벽의 움푹한 곳에 지어진 법당. 어떻게 지었는지 지금도 수수께끼라 「일본에서 가장 위험한 국보」라고도 불려요.",
+   "en": "A temple hall built into a hollow of a sheer cliff; nobody knows how. Called the most dangerous National Treasure."
+  },
+  "stations": [
+   "tottori.kurayoshi"
+  ]
+ },
+ "sakaiminato": {
+  "about": {
+   "ja": "松葉がにやマグロで知られる漁港の町。境線の駅には妖怪の愛称がついています。",
+   "ko": "대게와 참치로 유명한 항구 도시. 사카이선 역에는 요괴 애칭이 붙어 있어요.",
+   "en": "A fishing port known for snow crab and tuna. The Sakai Line stations have yokai nicknames."
+  },
+  "stations": [
+   "tottori.sakaiminato"
+  ]
+ },
+ "yonago_castle": {
+  "about": {
+   "ja": "海をのぞむ山の上に、りっぱな石垣が残る城あと。天守台からは大山と中海、米子の町が一度に見わたせます。",
+   "ko": "바다가 내려다보이는 산 위에 멋진 돌담이 남은 성터. 천수대에서 다이센과 나카우미, 요나고 시내가 한눈에 보여요.",
+   "en": "Castle ruins with fine stone walls on a hill by the sea. From the top you see Mt. Daisen, Lake Nakaumi and the town at once."
+  },
+  "stations": [
+   "tottori.yonago"
+  ]
+ },
+ "kaike": {
+  "about": {
+   "ja": "海辺にわく温泉の町。砂浜のすぐそばに宿がならび、日本のトライアスロン発祥の地としても知られます。",
+   "ko": "바닷가에서 솟는 온천 마을. 모래사장 바로 옆에 숙소가 늘어서 있고, 일본 트라이애슬론 발상지로도 알려져 있어요.",
+   "en": "A hot spring resort right on the beach, also known as the birthplace of triathlon in Japan."
+  },
+  "stations": [
+   "tottori.yonago"
+  ]
+ },
+ "misasa": {
+  "about": {
+   "ja": "850年以上の歴史がある山あいの温泉。川原に露天風呂「河原風呂」があり、ラジウムをふくむ湯で知られます。",
+   "ko": "850년이 넘는 역사를 가진 산골 온천. 강변에 노천탕 「가와라부로」가 있고, 라듐이 든 온천수로 알려져 있어요.",
+   "en": "A mountain hot spring over 850 years old, known for its radium waters and the open-air bath on the river bank."
+  },
+  "stations": [
+   "tottori.kurayoshi"
+  ]
+ },
+ "wakasa_sl": {
+  "about": {
+   "ja": "若桜鉄道の終点。昭和のはじめの木造駅舎、蒸気機関車C12、手で回す転車台が残っています。",
+   "ko": "와카사 철도의 종점. 쇼와 초기의 목조 역사와 증기기관차 C12, 손으로 돌리는 전차대가 남아 있어요.",
+   "en": "The end of the Wakasa Railway: a 1930 wooden station, a C12 steam locomotive and a hand-turned turntable."
+  },
+  "stations": [
+   "tottori.wakasa"
+  ]
+ },
+ "koi_yamagata": {
+  "about": {
+   "ja": "駅じゅうがピンク色の「恋がかなう駅」。ハートの絵馬やハート形のモニュメントがあります。",
+   "ko": "역 전체가 분홍색인 「사랑이 이루어지는 역」. 하트 에마와 하트 모양 조형물이 있어요.",
+   "en": "The all-pink \"station where love comes true\", with heart-shaped votive plaques and a heart monument."
+  },
+  "stations": [
+   "tottori.koi_yamagata"
+  ]
+ },
+ "chizu": {
+  "about": {
+   "ja": "杉の町・智頭の宿場町。部屋が40以上ある大きなお屋敷「石谷家住宅」は国の重要文化財です。",
+   "ko": "삼나무의 고장 지즈의 옛 역참 마을. 방이 40개가 넘는 큰 저택 「이시타니가 주택」은 국가 중요문화재예요.",
+   "en": "An old post town in cedar country. The Ishitani Residence, a mansion of over 40 rooms, is an Important Cultural Property."
+  },
+  "stations": [
+   "tottori.chizu"
+  ]
+ },
+ "koyamaike": {
+  "about": {
+   "ja": "「池」と名のつくものでは日本一の広さ。小さな島がうかび、夕日がきれいです。",
+   "ko": "「연못(이케)」이라는 이름이 붙은 것 중 일본에서 가장 넓어요. 작은 섬이 떠 있고 노을이 아름다워요.",
+   "en": "The largest body of water in Japan that is called a \"pond\", dotted with small islands and lovely at sunset."
+  },
+  "stations": [
+   "tottori.koyama",
+   "tottori.tottori_daigakumae"
+  ]
+ },
+ "togo": {
+  "about": {
+   "ja": "湖の底から温泉がわく東郷池。岸には東郷温泉とはわい温泉、中国風の庭園「燕趙園」があります。",
+   "ko": "호수 바닥에서 온천이 솟는 도고 호수. 호숫가에 도고 온천과 하와이 온천, 중국식 정원 「엔초엔」이 있어요.",
+   "en": "Lake Togo, with hot springs rising from the lake bed; Togo and Hawai Onsen and a Chinese garden, Encho-en, on its shores."
+  },
+  "stations": [
+   "tottori.matsuzaki"
+  ]
+ },
+ "mukibanda": {
+  "about": {
+   "ja": "日本でも最大級の弥生時代のむらのあと。丘の上に竪穴住居や高床倉庫が復元され、海と弓ヶ浜が見わたせます。",
+   "ko": "일본 최대급의 야요이 시대 마을 유적. 언덕 위에 움집과 고상 창고가 복원되어 있고 바다와 유미가하마가 보여요.",
+   "en": "One of the largest Yayoi-period village sites in Japan, with rebuilt pit houses on a hill overlooking the sea."
+  },
+  "stations": [
+   "tottori.yodoe"
+  ]
+ },
+ "eshima": {
+  "about": {
+   "ja": "境港と島根県の江島をむすぶ橋。船が下を通れるようにとても高く、急な坂に見えるので「ベタ踏み坂」とよばれます。",
+   "ko": "사카이미나토와 시마네현 에시마를 잇는 다리. 배가 지나가도록 아주 높게 지어, 가파른 언덕처럼 보여요.",
+   "en": "The bridge from Sakaiminato to Eshima in Shimane, built so high for ships that it looks like a wall of a slope."
+  },
+  "stations": [
+   "tottori.sakaiminato"
+  ]
+ },
+ "hanakairo": {
+  "about": {
+   "ja": "大山をのぞむ日本最大級のフラワーパーク。大きなガラスのドームと屋根つきの回廊があり、雨でも歩けます。",
+   "ko": "다이센이 보이는 일본 최대급의 플라워 파크. 커다란 유리 돔과 지붕 있는 회랑이 있어 비가 와도 걸을 수 있어요.",
+   "en": "One of Japan's largest flower parks, facing Mt. Daisen, with a glass dome and a covered walkway for rainy days."
+  },
+  "stations": [
+   "tottori.yonago"
+  ]
+ },
+ "nagashibina": {
+  "about": {
+   "ja": "旧暦の3月3日、紙のひな人形をわらの舟にのせて千代川に流し、健康をねがう「流しびな」の町。",
+   "ko": "음력 3월 3일, 종이 히나 인형을 짚배에 태워 센다이 강에 띄우며 건강을 비는 「나가시비나」의 마을.",
+   "en": "The town of Nagashi-bina: on the old calendar's 3 March, paper dolls on straw boats are floated down the river for good health."
+  },
+  "stations": [
+   "tottori.mochigase"
+  ]
+ },
+ "hokuei_wind": {
+  "about": {
+   "ja": "北条砂丘の海ぞいに、9基の白い風車がならびます。まわりは砂丘の畑で、ながいもやぶどうが育ちます。",
+   "ko": "호조 사구의 바닷가에 하얀 풍차 9기가 늘어서 있어요. 주변은 사구 밭으로 참마와 포도가 자라요.",
+   "en": "Nine white wind turbines in a row along the Hojo dunes, among sandy fields of yam and grapes."
+  },
+  "stations": [
+   "tottori.yura",
+   "tottori.shimo_hojo"
+  ]
+ },
+ "hayabusa": {
+  "about": {
+   "ja": "同じ名前のバイク「隼」のライダーが全国から集まる駅。昭和のはじめの木造駅舎が残っています。",
+   "ko": "같은 이름의 바이크 「하야부사」 라이더들이 전국에서 모이는 역. 쇼와 초기의 목조 역사가 남아 있어요.",
+   "en": "Riders of the Hayabusa motorbike gather here from all over Japan, at a wooden station from 1930."
+  },
+  "stations": [
+   "tottori.hayabusa"
+  ]
+ }
+}

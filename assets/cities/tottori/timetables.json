@@ -1,0 +1,344 @@
+{
+ "tottori.sanin": {
+  "firstTrain": "05:28",
+  "lastTrain": "22:48",
+  "weekday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 60
+   },
+   {
+    "from": "07:00",
+    "to": "09:00",
+    "everyMin": 30
+   },
+   {
+    "from": "09:00",
+    "to": "16:00",
+    "everyMin": 60
+   },
+   {
+    "from": "16:00",
+    "to": "19:30",
+    "everyMin": 40
+   },
+   {
+    "from": "19:30",
+    "to": "23:30",
+    "everyMin": 60
+   }
+  ],
+  "holiday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 60
+   },
+   {
+    "from": "07:00",
+    "to": "09:00",
+    "everyMin": 60
+   },
+   {
+    "from": "09:00",
+    "to": "16:00",
+    "everyMin": 60
+   },
+   {
+    "from": "16:00",
+    "to": "19:30",
+    "everyMin": 40
+   },
+   {
+    "from": "19:30",
+    "to": "23:30",
+    "everyMin": 60
+   }
+  ]
+ },
+ "tottori.sakai": {
+  "firstTrain": "05:40",
+  "lastTrain": "23:12",
+  "weekday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 40
+   },
+   {
+    "from": "07:00",
+    "to": "09:00",
+    "everyMin": 20
+   },
+   {
+    "from": "09:00",
+    "to": "17:00",
+    "everyMin": 30
+   },
+   {
+    "from": "17:00",
+    "to": "19:30",
+    "everyMin": 25
+   },
+   {
+    "from": "19:30",
+    "to": "23:30",
+    "everyMin": 40
+   }
+  ],
+  "holiday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 40
+   },
+   {
+    "from": "07:00",
+    "to": "09:00",
+    "everyMin": 60
+   },
+   {
+    "from": "09:00",
+    "to": "17:00",
+    "everyMin": 30
+   },
+   {
+    "from": "17:00",
+    "to": "19:30",
+    "everyMin": 25
+   },
+   {
+    "from": "19:30",
+    "to": "23:30",
+    "everyMin": 40
+   }
+  ]
+ },
+ "tottori.inbi": {
+  "firstTrain": "05:35",
+  "lastTrain": "22:20",
+  "weekday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 60
+   },
+   {
+    "from": "07:00",
+    "to": "09:00",
+    "everyMin": 40
+   },
+   {
+    "from": "09:00",
+    "to": "16:00",
+    "everyMin": 70
+   },
+   {
+    "from": "16:00",
+    "to": "19:30",
+    "everyMin": 50
+   },
+   {
+    "from": "19:30",
+    "to": "23:30",
+    "everyMin": 70
+   }
+  ],
+  "holiday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 60
+   },
+   {
+    "from": "07:00",
+    "to": "09:00",
+    "everyMin": 60
+   },
+   {
+    "from": "09:00",
+    "to": "16:00",
+    "everyMin": 70
+   },
+   {
+    "from": "16:00",
+    "to": "19:30",
+    "everyMin": 50
+   },
+   {
+    "from": "19:30",
+    "to": "23:30",
+    "everyMin": 70
+   }
+  ]
+ },
+ "tottori.wakasa": {
+  "firstTrain": "06:02",
+  "lastTrain": "21:40",
+  "weekday": [
+   {
+    "from": "05:30",
+    "to": "09:00",
+    "everyMin": 60
+   },
+   {
+    "from": "09:00",
+    "to": "16:00",
+    "everyMin": 90
+   },
+   {
+    "from": "16:00",
+    "to": "20:00",
+    "everyMin": 60
+   },
+   {
+    "from": "20:00",
+    "to": "22:30",
+    "everyMin": 90
+   }
+  ],
+  "holiday": [
+   {
+    "from": "05:30",
+    "to": "09:00",
+    "everyMin": 60
+   },
+   {
+    "from": "09:00",
+    "to": "16:00",
+    "everyMin": 90
+   },
+   {
+    "from": "16:00",
+    "to": "20:00",
+    "everyMin": 60
+   },
+   {
+    "from": "20:00",
+    "to": "22:30",
+    "everyMin": 90
+   }
+  ]
+ },
+ "tottori.chizukyu": {
+  "firstTrain": "06:10",
+  "lastTrain": "21:15",
+  "weekday": [
+   {
+    "from": "05:30",
+    "to": "22:30",
+    "everyMin": 120
+   }
+  ],
+  "holiday": [
+   {
+    "from": "05:30",
+    "to": "22:30",
+    "everyMin": 120
+   }
+  ]
+ },
+ "tottori.hakubi": {
+  "firstTrain": "05:30",
+  "lastTrain": "22:10",
+  "weekday": [
+   {
+    "from": "05:00",
+    "to": "09:00",
+    "everyMin": 60
+   },
+   {
+    "from": "09:00",
+    "to": "16:00",
+    "everyMin": 120
+   },
+   {
+    "from": "16:00",
+    "to": "20:00",
+    "everyMin": 80
+   },
+   {
+    "from": "20:00",
+    "to": "23:00",
+    "everyMin": 120
+   }
+  ],
+  "holiday": [
+   {
+    "from": "05:00",
+    "to": "09:00",
+    "everyMin": 60
+   },
+   {
+    "from": "09:00",
+    "to": "16:00",
+    "everyMin": 120
+   },
+   {
+    "from": "16:00",
+    "to": "20:00",
+    "everyMin": 80
+   },
+   {
+    "from": "20:00",
+    "to": "23:00",
+    "everyMin": 120
+   }
+  ]
+ },
+ "tottori.matsukaze": {
+  "firstTrain": "06:40",
+  "lastTrain": "21:30",
+  "weekday": [
+   {
+    "from": "06:00",
+    "to": "22:00",
+    "everyMin": 90
+   }
+  ],
+  "holiday": [
+   {
+    "from": "06:00",
+    "to": "22:00",
+    "everyMin": 90
+   }
+  ]
+ },
+ "tottori.hakuto": {
+  "firstTrain": "06:30",
+  "lastTrain": "21:00",
+  "weekday": [
+   {
+    "from": "06:00",
+    "to": "21:30",
+    "everyMin": 75
+   }
+  ],
+  "holiday": [
+   {
+    "from": "06:00",
+    "to": "21:30",
+    "everyMin": 75
+   }
+  ]
+ },
+ "tottori.yakumo": {
+  "firstTrain": "06:15",
+  "lastTrain": "21:20",
+  "weekday": [
+   {
+    "from": "06:00",
+    "to": "21:30",
+    "everyMin": 60
+   }
+  ],
+  "holiday": [
+   {
+    "from": "06:00",
+    "to": "21:30",
+    "everyMin": 60
+   }
+  ]
+ }
+}

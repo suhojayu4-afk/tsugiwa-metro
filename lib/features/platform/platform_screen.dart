@@ -21,6 +21,7 @@ import '../../data/weather/weather_source.dart';
 import '../../l10n/app_localizations.dart';
 import '../my_room/my_room_screen.dart' show CoinIcon;
 import '../my_room/station_plate.dart';
+import '../settings/settings_screen.dart' show openCities;
 import 'led_destination.dart';
 import '../../data/models/station.dart';
 import '../trip/route_finder.dart';
@@ -648,9 +649,18 @@ class PlatformScreenState extends State<PlatformScreen> {
                     const SizedBox(width: 10),
                     _CoinChip(coins: Services.my.coins, onTap: () => widget.onOpenMy?.call(PlatformScreen.coinShop)),
                     const SizedBox(width: 8),
-                    PixelBox(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                      child: PixelText(widget.city.name.of(langOf(context)), size: 16),
+                    // The city: tap to see the cities in 設定.
+                    Semantics(
+                      button: true,
+                      child: GestureDetector(
+                        key: const ValueKey('platform.city'),
+                        behavior: HitTestBehavior.opaque,
+                        onTap: () => openCities(context),
+                        child: PixelBox(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                          child: PixelText(widget.city.name.of(langOf(context)), size: 16),
+                        ),
+                      ),
                     ),
                   ],
                 ),

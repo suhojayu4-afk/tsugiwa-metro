@@ -207,6 +207,11 @@ const mapMajorStations = {
   'tokyo.ginza',
   'tokyo.shimbashi',
   'tokyo.kanda',
+  'tottori.tottori',
+  'tottori.yonago',
+  'tottori.kurayoshi',
+  'tottori.sakaiminato',
+  'tottori.chizu',
 };
 
 class _ObStation {

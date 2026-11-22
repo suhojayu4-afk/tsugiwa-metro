@@ -1,0 +1,487 @@
+{
+ "tottori.tottori": [
+  {
+   "ja": "砂丘へは北口からバスで約20分",
+   "ko": "사구는 북쪽 출구에서 버스로 약 20분이에요",
+   "en": "The dunes: about 20 min by bus from the North Exit"
+  },
+  {
+   "ja": "京都・大阪へは特急スーパーはくと",
+   "ko": "교토·오사카는 특급 슈퍼 하쿠토로",
+   "en": "For Kyoto and Osaka, take the Super Hakuto"
+  },
+  {
+   "ja": "鳥取城跡や仁風閣へは 循環バス「くる梨」が便利",
+   "ko": "돗토리성 터와 진푸카쿠는 순환 버스 「구루리」가 편해요",
+   "en": "The Kururi loop bus is handy for the castle ruins and Jinpukaku"
+  },
+  {
+   "ja": "駅から歩いて行ける温泉があります",
+   "ko": "역에서 걸어갈 수 있는 온천이 있어요",
+   "en": "There are hot spring baths within walking distance"
+  },
+  {
+   "ja": "砂の美術館は 砂丘のすぐとなり",
+   "ko": "모래 미술관은 사구 바로 옆이에요",
+   "en": "The Sand Museum is right beside the dunes"
+  },
+  {
+   "ja": "若桜鉄道へは 因美線で郡家まで",
+   "ko": "와카사 철도는 인비선으로 고게까지",
+   "en": "For the Wakasa Railway, take the Inbi Line to Koge"
+  }
+ ],
+ "tottori.yonago": [
+  {
+   "ja": "境線は 0番のりばから出ます",
+   "ko": "사카이선은 0번 승강장에서 출발해요",
+   "en": "Sakai Line trains leave from platform 0"
+  },
+  {
+   "ja": "岡山へは特急やくも",
+   "ko": "오카야마는 특급 야쿠모로",
+   "en": "For Okayama, take the limited express Yakumo"
+  },
+  {
+   "ja": "境線では「ねずみ男駅」の愛称",
+   "ko": "사카이선에서는 「네즈미오토코역」이라는 애칭이 있어요",
+   "en": "On the Sakai Line it is nicknamed \"Nezumi-otoko Station\""
+  },
+  {
+   "ja": "皆生温泉へは バスで約20分",
+   "ko": "가이케 온천은 버스로 약 20분",
+   "en": "Kaike Onsen: about 20 min by bus"
+  },
+  {
+   "ja": "大山寺へは 駅前からバス",
+   "ko": "다이센지는 역 앞에서 버스로",
+   "en": "Buses to Daisen-ji leave from the station"
+  },
+  {
+   "ja": "米子城跡へは 歩いて約20分",
+   "ko": "요나고성 터는 걸어서 약 20분",
+   "en": "Yonago Castle ruins: about 20 min on foot"
+  }
+ ],
+ "tottori.sakaiminato": [
+  {
+   "ja": "駅から港まで歩いてすぐ",
+   "ko": "역에서 항구까지 걸어서 금방이에요",
+   "en": "The harbour is a short walk from the station"
+  },
+  {
+   "ja": "境線での愛称は「鬼太郎駅」",
+   "ko": "사카이선 애칭은 「기타로역」",
+   "en": "Its Sakai Line nickname is \"Kitaro Station\""
+  },
+  {
+   "ja": "妖怪の像がならぶ道が 駅前から続きます",
+   "ko": "요괴 동상이 늘어선 길이 역 앞에서 이어져요",
+   "en": "A street lined with yokai statues starts at the station"
+  },
+  {
+   "ja": "江島大橋へは 車で約10分",
+   "ko": "에시마 대교는 차로 약 10분",
+   "en": "The Eshima Bridge is about 10 min by car"
+  }
+ ],
+ "tottori.kurayoshi": [
+  {
+   "ja": "白壁土蔵群へは北口からバス",
+   "ko": "시라카베 창고군은 북쪽 출구에서 버스로",
+   "en": "Buses to the old storehouses leave from the North Exit"
+  },
+  {
+   "ja": "三朝温泉へは バスで約25分",
+   "ko": "미사사 온천은 버스로 약 25분",
+   "en": "Misasa Onsen: about 25 min by bus"
+  },
+  {
+   "ja": "特急スーパーはくとは ここが終点",
+   "ko": "특급 슈퍼 하쿠토는 여기가 종점이에요",
+   "en": "The Super Hakuto ends its run here"
+  },
+  {
+   "ja": "町の中心は 駅から少しはなれています",
+   "ko": "시내 중심은 역에서 조금 떨어져 있어요",
+   "en": "The town centre is some way from the station"
+  }
+ ],
+ "tottori.koi_yamagata": [
+  {
+   "ja": "駅じゅうがピンク色の「恋がかなう駅」",
+   "ko": "역 전체가 분홍색인 「사랑이 이루어지는 역」",
+   "en": "The all-pink \"station where love comes true\""
+  },
+  {
+   "ja": "ハートの絵馬を かけられます",
+   "ko": "하트 에마를 걸 수 있어요",
+   "en": "You can hang a heart-shaped votive plaque"
+  }
+ ],
+ "tottori.wakasa": [
+  {
+   "ja": "昔ながらの駅舎と 転車台が残っています",
+   "ko": "옛날 그대로의 역사와 전차대가 남아 있어요",
+   "en": "The old station building and turntable still stand"
+  },
+  {
+   "ja": "SLの見学は 駅の窓口で入構券を",
+   "ko": "SL을 보려면 역 창구에서 입장권을 사요",
+   "en": "To see the steam engine, get an entry ticket at the station"
+  }
+ ],
+ "tottori.yonago_kuko": [
+  {
+   "ja": "空港ターミナルまで歩いてすぐ",
+   "ko": "공항 터미널까지 걸어서 금방이에요",
+   "en": "A short walk to the airport terminal"
+  },
+  {
+   "ja": "愛称は「べとべとさん駅」",
+   "ko": "애칭은 「베토베토상역」",
+   "en": "Nicknamed \"Betobeto-san Station\""
+  }
+ ],
+ "tottori.hoki_daisen": [
+  {
+   "ja": "伯備線と山陰本線が分かれる駅",
+   "ko": "하쿠비선과 산인 본선이 갈라지는 역",
+   "en": "Where the Hakubi Line leaves the San'in Line"
+  },
+  {
+   "ja": "岡山方面の伯備線は ここから分かれます",
+   "ko": "오카야마 방면 하쿠비선은 여기서 갈라져요",
+   "en": "The Hakubi Line for Okayama branches off here"
+  }
+ ],
+ "tottori.iwami": [
+  {
+   "ja": "浦富海岸へは 駅前からバス",
+   "ko": "우라도메 해안은 역 앞에서 버스로",
+   "en": "Buses to the Uradome Coast leave from the station"
+  },
+  {
+   "ja": "駅のとなりに 観光案内所があります",
+   "ko": "역 옆에 관광 안내소가 있어요",
+   "en": "The tourist office is next to the station"
+  }
+ ],
+ "tottori.higashihama": [
+  {
+   "ja": "海水浴場まで 歩いてすぐ",
+   "ko": "해수욕장까지 걸어서 금방이에요",
+   "en": "The beach is a short walk away"
+  },
+  {
+   "ja": "豪華列車「瑞風」が立ち寄る駅",
+   "ko": "호화 열차 「미즈카제」가 들르는 역",
+   "en": "The Mizukaze luxury train calls here"
+  }
+ ],
+ "tottori.fukube": [
+  {
+   "ja": "砂丘らっきょうの産地。秋に むらさきの花がさきます",
+   "ko": "사구 락교의 산지. 가을에 보라색 꽃이 피어요",
+   "en": "Home of dune-grown rakkyo; the fields bloom purple in autumn"
+  }
+ ],
+ "tottori.koyama": [
+  {
+   "ja": "湖山池は「池」では日本一の広さ",
+   "ko": "고야마이케는 「연못」 중 일본에서 가장 넓어요",
+   "en": "Koyama-ike is the largest \"pond\" in Japan"
+  }
+ ],
+ "tottori.tottori_daigakumae": [
+  {
+   "ja": "鳥取大学の正門が 目の前",
+   "ko": "돗토리 대학 정문이 바로 앞이에요",
+   "en": "Tottori University's main gate is right in front"
+  }
+ ],
+ "tottori.suetsune": [
+  {
+   "ja": "白兎海岸へは 歩くと少し遠め。鳥取駅からのバスも便利",
+   "ko": "하쿠토 해안은 걷기엔 조금 멀어요. 돗토리역에서 버스도 편해요",
+   "en": "Hakuto Coast is a longish walk; the bus from Tottori Station is handy too"
+  }
+ ],
+ "tottori.hamamura": [
+  {
+   "ja": "駅前に 足湯があります",
+   "ko": "역 앞에 족욕탕이 있어요",
+   "en": "There is a foot bath in front of the station"
+  },
+  {
+   "ja": "民謡「貝がら節」のふるさと",
+   "ko": "민요 「가이가라부시」의 고향",
+   "en": "Home of the folk song Kaigara-bushi"
+  }
+ ],
+ "tottori.aoya": [
+  {
+   "ja": "因州和紙の里。弥生時代の遺跡も近くに",
+   "ko": "인슈 화지의 고장. 야요이 시대 유적도 가까워요",
+   "en": "A town of Inshu washi paper, with a Yayoi-period site nearby"
+  }
+ ],
+ "tottori.tomari": [
+  {
+   "ja": "グラウンド・ゴルフ発祥の地",
+   "ko": "그라운드 골프의 발상지",
+   "en": "The birthplace of ground golf"
+  }
+ ],
+ "tottori.matsuzaki": [
+  {
+   "ja": "東郷温泉は 駅から歩いてすぐ",
+   "ko": "도고 온천은 역에서 걸어서 금방이에요",
+   "en": "Togo Onsen is a short walk from the station"
+  },
+  {
+   "ja": "はわい温泉は 東郷池の向こう岸",
+   "ko": "하와이 온천은 도고 호수 건너편이에요",
+   "en": "Hawai Onsen is across Lake Togo"
+  }
+ ],
+ "tottori.yura": [
+  {
+   "ja": "愛称は「コナン駅」。作者のふるさとの町です",
+   "ko": "애칭은 「코난역」. 작가의 고향 마을이에요",
+   "en": "Nicknamed \"Conan Station\": the author's home town"
+  }
+ ],
+ "tottori.urayasu": [
+  {
+   "ja": "琴浦町の中心の駅",
+   "ko": "고토우라초의 중심 역",
+   "en": "The main station of Kotoura town"
+  }
+ ],
+ "tottori.akasaki": [
+  {
+   "ja": "鳴り石の浜は 波で石がカラコロ鳴ります",
+   "ko": "나리이시 해변은 파도에 돌이 달그락 소리를 내요",
+   "en": "At Nariishi beach the stones rattle in the waves"
+  }
+ ],
+ "tottori.mikuriya": [
+  {
+   "ja": "山陰でいちばん古い駅舎が残っています",
+   "ko": "산인에서 가장 오래된 역사가 남아 있어요",
+   "en": "The oldest station building in San'in still stands here"
+  }
+ ],
+ "tottori.nawa": [
+  {
+   "ja": "名和神社は 桜の名所",
+   "ko": "나와 신사는 벚꽃 명소예요",
+   "en": "Nawa Shrine is known for cherry blossoms"
+  }
+ ],
+ "tottori.yodoe": [
+  {
+   "ja": "妻木晩田遺跡は 日本最大級の弥生のむら",
+   "ko": "무키반다 유적은 일본 최대급의 야요이 마을",
+   "en": "Mukibanda is one of Japan's largest Yayoi village sites"
+  },
+  {
+   "ja": "名水「天の真名井」の里",
+   "ko": "명수 「아메노마나이」의 고장",
+   "en": "Home of the famous spring Ame-no-manai"
+  }
+ ],
+ "tottori.higashiyama_koen": [
+  {
+   "ja": "野球場や陸上競技場のある公園の駅",
+   "ko": "야구장과 육상 경기장이 있는 공원 역",
+   "en": "The station for the park with the ballpark and stadium"
+  }
+ ],
+ "tottori.koge": [
+  {
+   "ja": "若桜鉄道は ここで乗り換え",
+   "ko": "와카사 철도는 여기서 갈아타요",
+   "en": "Change here for the Wakasa Railway"
+  }
+ ],
+ "tottori.mochigase": [
+  {
+   "ja": "春の「流しびな」で知られる町",
+   "ko": "봄의 「나가시비나」로 알려진 마을",
+   "en": "Known for Nagashi-bina, floating dolls in spring"
+  }
+ ],
+ "tottori.chizu": [
+  {
+   "ja": "智頭急行は ここで乗り換え",
+   "ko": "지즈 급행은 여기서 갈아타요",
+   "en": "Change here for the Chizu Express"
+  },
+  {
+   "ja": "石谷家住宅へは 歩いて約15分",
+   "ko": "이시타니가 주택은 걸어서 약 15분",
+   "en": "The Ishitani Residence is about 15 min on foot"
+  }
+ ],
+ "tottori.nagi": [
+  {
+   "ja": "古い木造駅舎。ホームへは階段をのぼります",
+   "ko": "오래된 목조 역사. 승강장은 계단을 올라가요",
+   "en": "An old wooden station; the platform is up a flight of steps"
+  }
+ ],
+ "tottori.hayabusa": [
+  {
+   "ja": "バイク「隼」のライダーが集まる駅",
+   "ko": "바이크 「하야부사」 라이더들이 모이는 역",
+   "en": "Hayabusa motorbike riders gather at this station"
+  }
+ ],
+ "tottori.abe": [
+  {
+   "ja": "映画「男はつらいよ」に出てきた駅",
+   "ko": "영화 「남자는 괴로워」에 나온 역",
+   "en": "This station appeared in the film series Otoko wa Tsurai yo"
+  }
+ ],
+ "tottori.kishimoto": [
+  {
+   "ja": "植田正治写真美術館へは 車で約10分",
+   "ko": "우에다 쇼지 사진미술관은 차로 약 10분",
+   "en": "The Shoji Ueda Museum of Photography is about 10 min by car"
+  }
+ ],
+ "tottori.hoki_mizoguchi": [
+  {
+   "ja": "日本最古といわれる 鬼伝説の町",
+   "ko": "일본에서 가장 오래됐다는 도깨비 전설의 마을",
+   "en": "A town with what is said to be Japan's oldest oni legend"
+  }
+ ],
+ "tottori.ebi": [
+  {
+   "ja": "8月17日は お祭り「江尾十七夜」",
+   "ko": "8월 17일은 축제 「에비 주시치야」",
+   "en": "17 August is the Ebi Jushichiya festival"
+  }
+ ],
+ "tottori.neu": [
+  {
+   "ja": "特急やくもが止まります",
+   "ko": "특급 야쿠모가 서요",
+   "en": "The limited express Yakumo stops here"
+  },
+  {
+   "ja": "金運の神さま 金持神社へは 車で約10分",
+   "ko": "금전운의 신 가모치 신사는 차로 약 10분",
+   "en": "Kamochi Shrine, for luck with money, is about 10 min by car"
+  }
+ ],
+ "tottori.shoyama": [
+  {
+   "ja": "特急やくもが止まる 日南町の玄関口",
+   "ko": "특급 야쿠모가 서는 니치난초의 관문",
+   "en": "The Yakumo stops here, the gateway to Nichinan town"
+  }
+ ],
+ "tottori.kami_iwami": [
+  {
+   "ja": "この先は 岡山県です",
+   "ko": "이 다음은 오카야마현이에요",
+   "en": "Beyond here is Okayama Prefecture"
+  }
+ ],
+ "tottori.bakuromachi": [
+  {
+   "ja": "愛称は「コロポックル駅」",
+   "ko": "애칭은 「코로폿쿠루역」",
+   "en": "Nicknamed \"Koropokkuru Station\""
+  }
+ ],
+ "tottori.fujimicho": [
+  {
+   "ja": "愛称は「ざしきわらし駅」",
+   "ko": "애칭은 「자시키와라시역」",
+   "en": "Nicknamed \"Zashiki-warashi Station\""
+  }
+ ],
+ "tottori.goto": [
+  {
+   "ja": "愛称は「どろたぼう駅」",
+   "ko": "애칭은 「도로타보역」",
+   "en": "Nicknamed \"Dorotabo Station\""
+  }
+ ],
+ "tottori.sambommatsuguchi": [
+  {
+   "ja": "愛称は「そでひき小僧駅」",
+   "ko": "애칭은 「소데히키코조역」",
+   "en": "Nicknamed \"Sodehiki-kozo Station\""
+  }
+ ],
+ "tottori.kawasakiguchi": [
+  {
+   "ja": "愛称は「傘化け駅」",
+   "ko": "애칭은 「가사바케역」",
+   "en": "Nicknamed \"Kasabake Station\""
+  }
+ ],
+ "tottori.yumigahama": [
+  {
+   "ja": "愛称は「あずきあらい駅」",
+   "ko": "애칭은 「아즈키아라이역」",
+   "en": "Nicknamed \"Azuki-arai Station\""
+  }
+ ],
+ "tottori.wadahama": [
+  {
+   "ja": "愛称は「つちころび駅」",
+   "ko": "애칭은 「쓰치코로비역」",
+   "en": "Nicknamed \"Tsuchikorobi Station\""
+  }
+ ],
+ "tottori.oshinozucho": [
+  {
+   "ja": "愛称は「砂かけばばあ駅」",
+   "ko": "애칭은 「스나카케바바역」",
+   "en": "Nicknamed \"Sunakake-babaa Station\""
+  }
+ ],
+ "tottori.nakahama": [
+  {
+   "ja": "愛称は「牛鬼駅」",
+   "ko": "애칭은 「규키역」",
+   "en": "Nicknamed \"Gyuki Station\""
+  }
+ ],
+ "tottori.takamatsucho": [
+  {
+   "ja": "愛称は「すねこすり駅」",
+   "ko": "애칭은 「스네코스리역」",
+   "en": "Nicknamed \"Sunekosuri Station\""
+  }
+ ],
+ "tottori.amariko": [
+  {
+   "ja": "愛称は「こなきじじい駅」",
+   "ko": "애칭은 「고나키지지역」",
+   "en": "Nicknamed \"Konaki-jijii Station\""
+  }
+ ],
+ "tottori.agarimichi": [
+  {
+   "ja": "愛称は「一反木綿駅」",
+   "ko": "애칭은 「잇탄모멘역」",
+   "en": "Nicknamed \"Ittan-momen Station\""
+  }
+ ],
+ "tottori.babasakicho": [
+  {
+   "ja": "愛称は「キジムナー駅」",
+   "ko": "애칭은 「기지무나역」",
+   "en": "Nicknamed \"Kijimuna Station\""
+  }
+ ]
+}

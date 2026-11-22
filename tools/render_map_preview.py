@@ -18,6 +18,7 @@ import sys
 from PIL import Image, ImageDraw
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CITY = os.environ.get('MAP_CITY', 'tokyo')   # MAP_CITY=tottori previews the second city
 out = sys.argv[1]
 X0, Y0, X1, Y1 = [int(v) for v in sys.argv[2].split(',')]
 S = float(sys.argv[3])
@@ -28,8 +29,8 @@ LS, S = S, S * DPR                      # logical zoom (for the app's thresholds
 NO3D = '--no-3d' in sys.argv or '--pins' in sys.argv or '--plain' in sys.argv
 PINS, PLAIN, NAMES = '--pins' in sys.argv, '--plain' in sys.argv, '--names' in sys.argv
 
-d = json.load(open(os.path.join(ROOT, 'assets/cities/tokyo/map.json'), encoding='utf8'))
-colors = {l['id']: l['color'] for l in json.load(open(os.path.join(ROOT, 'assets/cities/tokyo/lines.json'), encoding='utf8'))}
+d = json.load(open(os.path.join(ROOT, f'assets/cities/{CITY}/map.json'), encoding='utf8'))
+colors = {l['id']: l['color'] for l in json.load(open(os.path.join(ROOT, f'assets/cities/{CITY}/lines.json'), encoding='utf8'))}
 W, H = int((X1 - X0) * S), int((Y1 - Y0) * S)
 
 
@@ -165,7 +166,7 @@ if PINS and LS > 0.42:
         dr.ellipse([x - rr / 3, y - rr / 3, x + rr / 3, y + rr / 3], fill=(255, 255, 255, 255))
         labels.append((x, y + rr + 3 * DPR, lm['name']['ja']))
 if NAMES and draw_lines:
-    names = {s_['id']: s_['name']['ja'] for s_ in json.load(open(os.path.join(ROOT, 'assets/cities/tokyo/stations.json'),
+    names = {s_['id']: s_['name']['ja'] for s_ in json.load(open(os.path.join(ROOT, f'assets/cities/{CITY}/stations.json'),
                                                                    encoding='utf8'))}
     done = set()
     for l in d['lines']:

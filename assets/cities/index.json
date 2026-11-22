@@ -1,6 +1,7 @@
 {
   "cities": [
     { "id": "tokyo",  "status": "available",  "name": { "ja": "東京", "ko": "도쿄", "en": "Tokyo" } },
+    { "id": "tottori", "status": "available", "name": { "ja": "鳥取・米子", "ko": "돗토리·요나고", "en": "Tottori & Yonago" } },
     { "id": "osaka",  "status": "comingSoon", "name": { "ja": "大阪", "ko": "오사카", "en": "Osaka" } },
     { "id": "sendai", "status": "comingSoon", "name": { "ja": "仙台", "ko": "센다이", "en": "Sendai" } }
   ]

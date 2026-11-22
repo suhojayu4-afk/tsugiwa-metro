@@ -1,0 +1,95 @@
+"""The country station of San'in (Tottori–Yonago city) for のりば, drawn by
+GPT image generation (codex exec) from the standard station's original
+pictures and snapped to pixel art (tools/pixelize.py, 384x192, 64 colours).
+The composition stays the standard one, so the train, the passengers, the
+station sign and the vanishing point work unchanged.
+
+Outputs: docs/art/gen/tottori/rural_{part}_raw.png (GPT) and
+assets/art/tottori/scene_{part}.webp. Existing pictures are skipped
+(delete one to draw it again).
+
+  python tools/tottori/gen_rural_scene.py [--jobs 3] [--only day ...]
+"""
+import argparse
+import os
+import subprocess
+import sys
+from concurrent.futures import ThreadPoolExecutor
+
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))).replace(os.sep, '/')
+GEN = f'{ROOT}/docs/art/gen'
+OUT_RAW = f'{GEN}/tottori'
+OUT = f'{ROOT}/assets/art/tottori'
+MODEL = 'gpt-6.2-sol'
+
+SRC = {'day': 'bg_day_raw.png', 'evening': 'bg_evening2_raw.png', 'night': 'bg_night_raw.png'}
+
+LIGHT = {
+    'day': 'a clear early-summer day: deep blue sky with soft white clouds, bright fresh greens',
+    'evening': 'evening, keeping the warm orange-pink sunset colours of the original, long soft shadows',
+    'night': ('night, keeping the night lighting of the original: dark navy sky full of stars (much darker '
+              'and starrier than a city), a few warm lit windows in the village, the platform lamps glowing'),
+}
+
+CHANGE = """The change: this is no longer Tokyo. It is a small, quiet COUNTRY STATION on the San'in coast of Japan (Tottori Prefecture), {light}.
+- LEFT SIDE, beyond the fence (where the city buildings were): open countryside. Green RICE PADDIES in the foreground and middle distance, a small village of traditional Japanese houses with glossy RED-BROWN glazed clay tile roofs (sekishu-gawara, the reddish roofs typical of San'in), a few persimmon trees, wooden utility poles along a narrow country road. Behind the village, gentle FORESTED MOUNTAINS, and far away one big, graceful volcano-shaped mountain with a little snow near its top. A big open sky. NO tall buildings, NO city.
+- The trees just behind the fence stay (same places), as ordinary green country trees.
+- NO overhead wires, NO catenary masts or gantries anywhere: this is a non-electrified diesel line. The sky above the track is open.
+- The fence on the left stays in the same place, but it is an old, simple, slightly weathered fence.
+- RIGHT SIDE: the same platform in the same place, but a rural one: older concrete platform edge with the yellow tactile line, and the roof is now an old-fashioned WOODEN platform canopy (cream-painted wooden pillars and beams, a dark grey corrugated roof) at the same height and position as the original roof. A simple wooden bench against the back wall and a potted plant. The back wall is a plain old wooden station wall with a couple of windows.
+- People: much FEWER people, rural. Keep only TWO of the original people, at their same places and sizes: a high-school student in a school uniform with a sports bag, and an elderly woman with a small cloth bag. Remove the others.
+- A calm, nostalgic, gentle mood (natsukashii)."""
+
+PROMPT = """Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+{out}
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at {src} first (a generic elevated Tokyo station: city buildings, trees behind a fence on the left, the track in the centre, a covered platform on the right). Make the SAME picture with the changes below. Keep the composition exactly the same: identical camera (do not move, zoom or crop), the same horizon and vanishing point, the fence line, the EMPTY track in the centre with the rails in exactly the same place, the platform on the right with its edge in the same place, the platform roof at the same height.
+
+{change}
+
+- Landscape 1536x1024, the same detailed 16-bit era pixel art style as the original, crisp square pixels, almost no black outlines, hue-shifted shading.
+- The track in the centre stays EMPTY and clear: no train, nothing standing on the rails.
+- ABSOLUTELY NO text, letters, numbers, logos or signboards.
+"""
+
+
+def job(part):
+    name = f'rural_{part}'
+    raw = f'{OUT_RAW}/{name}_raw.png'
+    out = f'{OUT}/scene_{part}.webp'
+    if not os.path.exists(raw):
+        prompt = PROMPT.format(out=raw, src=f'{GEN}/{SRC[part]}', change=CHANGE.format(light=LIGHT[part]))
+        open(f'{OUT_RAW}/prompt_{name}.txt', 'w', encoding='utf8').write(prompt)
+        for _ in range(2):
+            subprocess.run(['codex', 'exec', '-m', MODEL, '-c', 'model_reasoning_effort=low', '-s', 'workspace-write',
+                            '--skip-git-repo-check', '-'], input=prompt.encode('utf8'),
+                           cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                           timeout=900, shell=sys.platform == 'win32')
+            if os.path.exists(raw):
+                break
+    if not os.path.exists(raw):
+        return f'FAILED {name}'
+    if not os.path.exists(out):
+        subprocess.run([sys.executable, f'{ROOT}/tools/pixelize.py', raw, out,
+                        '--width', '384', '--aspect', '2.0', '--colors', '64'],
+                       stdout=subprocess.DEVNULL, check=True)
+        os.replace(f'{OUT}/scene_{part}_preview.png', f'{OUT_RAW}/{name}_preview.png')
+    return f'ok {name}'
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--jobs', type=int, default=3)
+    ap.add_argument('--only', nargs='*')
+    a = ap.parse_args()
+    os.makedirs(OUT_RAW, exist_ok=True)
+    os.makedirs(OUT, exist_ok=True)
+    todo = [p for p in LIGHT if not a.only or p in a.only]
+    with ThreadPoolExecutor(a.jobs) as pool:
+        for result in pool.map(job, todo):
+            print(result, flush=True)
+
+
+if __name__ == '__main__':
+    main()

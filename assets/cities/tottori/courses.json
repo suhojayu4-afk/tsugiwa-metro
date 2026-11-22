@@ -1,0 +1,206 @@
+[
+ {
+  "id": "coast",
+  "name": {
+   "ja": "鳥取砂丘と山陰海岸 1日",
+   "ko": "돗토리 사구와 산인 해안 하루",
+   "en": "Sand Dunes & San'in Coast, a day"
+  },
+  "time": "1d",
+  "about": {
+   "ja": "砂丘を歩いて、白兎海岸の神話にふれ、浦富海岸のエメラルドの海へ。",
+   "ko": "사구를 걷고, 하쿠토 해안의 신화를 만나고, 우라도메 해안의 에메랄드빛 바다로.",
+   "en": "Walk the dunes, visit the coast of the White Hare myth, then the emerald sea of Uradome."
+  },
+  "stops": [
+   {
+    "station": "tottori.tottori",
+    "landmark": "sakyu"
+   },
+   {
+    "station": "tottori.suetsune",
+    "landmark": "hakuto"
+   },
+   {
+    "station": "tottori.iwami",
+    "landmark": "uradome"
+   }
+  ]
+ },
+ {
+  "id": "yonago",
+  "name": {
+   "ja": "米子・境港 みなとさんぽ",
+   "ko": "요나고·사카이미나토 항구 산책",
+   "en": "Yonago & Sakaiminato harbour walk"
+  },
+  "time": "4h",
+  "about": {
+   "ja": "米子から境線でのんびり。港の町で海の幸、帰りは大山をながめて。",
+   "ko": "요나고에서 사카이선으로 느긋하게. 항구 마을에서 해산물을 먹고, 돌아오는 길엔 다이센을 바라보며.",
+   "en": "An easy ride on the Sakai Line to the port for seafood, with Mt. Daisen on the way back."
+  },
+  "stops": [
+   {
+    "station": "tottori.yonago",
+    "landmark": "daisen_big"
+   },
+   {
+    "station": "tottori.sakaiminato",
+    "landmark": "sakaiminato"
+   }
+  ]
+ },
+ {
+  "id": "kurayoshi",
+  "name": {
+   "ja": "倉吉 白壁と三徳山",
+   "ko": "구라요시 시라카베와 미토쿠산",
+   "en": "Kurayoshi storehouses & Mt. Mitoku"
+  },
+  "time": "1d",
+  "about": {
+   "ja": "白壁土蔵の町なみを歩いて、三徳山の投入堂をながめに。三朝温泉で一泊も。",
+   "ko": "시라카베 창고 거리를 걷고 미토쿠산의 나게이레도를 보러. 미사사 온천에서 하룻밤도 좋아요.",
+   "en": "Stroll the white-walled storehouses, then see the Nageiredo of Mt. Mitoku. Stay at Misasa Onsen if you like."
+  },
+  "stops": [
+   {
+    "station": "tottori.kurayoshi",
+    "landmark": "kurayoshi"
+   },
+   {
+    "station": "tottori.kurayoshi",
+    "landmark": "nageiredo"
+   }
+  ]
+ },
+ {
+  "id": "tottori_town",
+  "name": {
+   "ja": "鳥取のまち 半日",
+   "ko": "돗토리 시내 반나절",
+   "en": "Tottori town, half a day"
+  },
+  "time": "3h",
+  "about": {
+   "ja": "鳥取城跡と仁風閣から、バスで砂丘へ。夕日の砂丘は特にきれい。",
+   "ko": "돗토리성 터와 진푸카쿠에서 버스로 사구까지. 노을 지는 사구는 특히 아름다워요.",
+   "en": "From the castle ruins and Jinpukaku, then the bus to the dunes. Sunset on the dunes is lovely."
+  },
+  "stops": [
+   {
+    "station": "tottori.tottori",
+    "landmark": "jinpukaku"
+   },
+   {
+    "station": "tottori.tottori",
+    "landmark": "sakyu"
+   }
+  ]
+ },
+ {
+  "id": "wakasa",
+  "name": {
+   "ja": "若桜鉄道 のんびり旅",
+   "ko": "와카사 철도 느긋한 여행",
+   "en": "A slow day on the Wakasa Railway"
+  },
+  "time": "5h",
+  "about": {
+   "ja": "郡家から若桜鉄道へ。ライダーの集まる隼駅でひと休みして、終点の若桜でSLと転車台を。",
+   "ko": "고게에서 와카사 철도로. 라이더들이 모이는 하야부사역에서 쉬었다가, 종점 와카사에서 SL과 전차대를.",
+   "en": "From Koge onto the Wakasa Railway: a stop at Hayabusa, then the steam engine and turntable at Wakasa."
+  },
+  "stops": [
+   {
+    "station": "tottori.hayabusa",
+    "landmark": "hayabusa"
+   },
+   {
+    "station": "tottori.wakasa",
+    "landmark": "wakasa_sl"
+   }
+  ]
+ },
+ {
+  "id": "chizu",
+  "name": {
+   "ja": "智頭 杉の町とピンクの駅",
+   "ko": "지즈 삼나무 마을과 분홍 역",
+   "en": "Chizu: cedar town & the pink station"
+  },
+  "time": "5h",
+  "about": {
+   "ja": "流しびなの用瀬から、杉の宿場町・智頭へ。智頭急行でひと駅、ピンクの恋山形駅まで。",
+   "ko": "나가시비나의 모치가세에서 삼나무 역참 마을 지즈로. 지즈 급행으로 한 정거장, 분홍빛 고이야마가타역까지.",
+   "en": "From Mochigase of the floating dolls to the cedar post town of Chizu, then one stop to pink Koi-Yamagata."
+  },
+  "stops": [
+   {
+    "station": "tottori.mochigase",
+    "landmark": "nagashibina"
+   },
+   {
+    "station": "tottori.chizu",
+    "landmark": "chizu"
+   },
+   {
+    "station": "tottori.koi_yamagata",
+    "landmark": "koi_yamagata"
+   }
+  ]
+ },
+ {
+  "id": "west",
+  "name": {
+   "ja": "米子 城あとと海の温泉",
+   "ko": "요나고 성터와 바다 온천",
+   "en": "Yonago: castle ruins & seaside onsen"
+  },
+  "time": "1d",
+  "about": {
+   "ja": "弥生のむら・妻木晩田遺跡から米子へ。城あとから大山をながめて、夜は皆生温泉へ。",
+   "ko": "야요이 마을 무키반다 유적에서 요나고로. 성터에서 다이센을 바라보고, 밤에는 가이케 온천으로.",
+   "en": "From the Yayoi village of Mukibanda to Yonago: Mt. Daisen from the castle ruins, then Kaike Onsen for the night."
+  },
+  "stops": [
+   {
+    "station": "tottori.yodoe",
+    "landmark": "mukibanda"
+   },
+   {
+    "station": "tottori.yonago",
+    "landmark": "yonago_castle"
+   },
+   {
+    "station": "tottori.yonago",
+    "landmark": "kaike"
+   }
+  ]
+ },
+ {
+  "id": "lake",
+  "name": {
+   "ja": "東郷池と風車の海",
+   "ko": "도고 호수와 풍차의 바다",
+   "en": "Lake Togo & the windmill coast"
+  },
+  "time": "4h",
+  "about": {
+   "ja": "松崎で東郷池の温泉と庭園を歩いて、由良へ。北条砂丘の海ぞいに白い風車がならびます。",
+   "ko": "마쓰자키에서 도고 호수의 온천과 정원을 걷고 유라로. 호조 사구 바닷가에 하얀 풍차가 늘어서 있어요.",
+   "en": "Walk the springs and garden of Lake Togo at Matsuzaki, then on to Yura for the white windmills by the sea."
+  },
+  "stops": [
+   {
+    "station": "tottori.matsuzaki",
+    "landmark": "togo"
+   },
+   {
+    "station": "tottori.yura",
+    "landmark": "hokuei_wind"
+   }
+  ]
+ }
+]

@@ -148,6 +148,11 @@ class MyStore extends ChangeNotifier {
   /// Station ids of each line in the city, for line-complete rewards.
   Map<String, List<String>> lines = const {};
 
+  /// The city's own station picture per time of day (Tottori: the country
+  /// station). The station scenes in the shop are Tokyo's, so outside Tokyo
+  /// this picture is shown whatever scene is equipped. Empty = Tokyo.
+  Map<DayPart, String> cityScene = const {};
+
   MyCatalog? get catalog => _catalog;
   bool get loaded => _catalog != null;
   int get coins => unlimited ? unlimitedCoinsShown : _coins;
@@ -366,7 +371,7 @@ class MyStore extends ChangeNotifier {
       cat.item(equipped(MySlot.effect)),
     ];
     return SceneLook(
-      images: scene.images,
+      images: cityScene.isNotEmpty ? cityScene : scene.images,
       overlays: [for (final d in deco) ?d.overlay],
       effects: {for (final d in deco) ?d.effect},
       trainColor: cat.item(equipped(MySlot.train)).color,

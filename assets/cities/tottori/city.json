@@ -1,0 +1,30 @@
+{
+ "id": "tottori",
+ "name": {
+  "ja": "鳥取・米子",
+  "ko": "돗토리·요나고",
+  "en": "Tottori & Yonago"
+ },
+ "timezone": "Asia/Tokyo",
+ "center": {
+  "lat": 35.47,
+  "lng": 133.75
+ },
+ "lines": [
+  "tottori.sanin",
+  "tottori.sakai",
+  "tottori.inbi",
+  "tottori.wakasa",
+  "tottori.chizukyu",
+  "tottori.hakubi",
+  "tottori.matsukaze",
+  "tottori.hakuto",
+  "tottori.yakumo"
+ ],
+ "weather": {
+  "forecastOffice": "310000",
+  "forecastArea": "310010",
+  "amedas": "69122"
+ },
+ "dataNote": "Stations and lines: OpenStreetMap contributors (ODbL). Run times and headways are approximate estimates (rural lines run about once an hour). Replace with licensed timetable data later."
+}

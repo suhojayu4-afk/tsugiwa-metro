@@ -31,6 +31,7 @@ flutter:
   assets:
     - assets/cities/
     - assets/cities/tokyo/
+    - assets/cities/tottori/
     - assets/art/
     - assets/art/landmarks/
     - assets/art/scenes/
@@ -51,6 +52,9 @@ flutter:
     - assets/art/yellow_train/
     - assets/art/eki_in/
     - assets/art/train_dex/
+    - assets/art/tottori/
+    - assets/art/tottori/landmarks/
+    - assets/art/tottori/map_tiles/
     - assets/my/
     - assets/sounds/
     - assets/fonts/licenses/

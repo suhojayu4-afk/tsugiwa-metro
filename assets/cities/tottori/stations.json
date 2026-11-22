@@ -1,0 +1,1188 @@
+[
+ {
+  "id": "tottori.higashihama",
+  "name": {
+   "ja": "東浜",
+   "ko": "히가시하마",
+   "en": "Higashihama"
+  },
+  "kana": "ひがしはま",
+  "geo": {
+   "lat": 35.599652,
+   "lng": 134.362671
+  },
+  "lines": [
+   "tottori.sanin"
+  ]
+ },
+ {
+  "id": "tottori.iwami",
+  "name": {
+   "ja": "岩美",
+   "ko": "이와미",
+   "en": "Iwami"
+  },
+  "kana": "いわみ",
+  "geo": {
+   "lat": 35.574347,
+   "lng": 134.335614
+  },
+  "lines": [
+   "tottori.sanin"
+  ]
+ },
+ {
+  "id": "tottori.oiwa",
+  "name": {
+   "ja": "大岩",
+   "ko": "오이와",
+   "en": "Oiwa"
+  },
+  "kana": "おおいわ",
+  "geo": {
+   "lat": 35.566923,
+   "lng": 134.308483
+  },
+  "lines": [
+   "tottori.sanin"
+  ]
+ },
+ {
+  "id": "tottori.fukube",
+  "name": {
+   "ja": "福部",
+   "ko": "후쿠베",
+   "en": "Fukube"
+  },
+  "kana": "ふくべ",
+  "geo": {
+   "lat": 35.545367,
+   "lng": 134.287561
+  },
+  "lines": [
+   "tottori.sanin"
+  ]
+ },
+ {
+  "id": "tottori.tottori",
+  "name": {
+   "ja": "鳥取",
+   "ko": "돗토리",
+   "en": "Tottori"
+  },
+  "kana": "とっとり",
+  "geo": {
+   "lat": 35.493997,
+   "lng": 134.22594
+  },
+  "lines": [
+   "tottori.sanin",
+   "tottori.inbi",
+   "tottori.matsukaze",
+   "tottori.hakuto"
+  ]
+ },
+ {
+  "id": "tottori.koyama",
+  "name": {
+   "ja": "湖山",
+   "ko": "고야마",
+   "en": "Koyama"
+  },
+  "kana": "こやま",
+  "geo": {
+   "lat": 35.513579,
+   "lng": 134.186145
+  },
+  "lines": [
+   "tottori.sanin"
+  ]
+ },
+ {
+  "id": "tottori.tottori_daigakumae",
+  "name": {
+   "ja": "鳥取大学前",
+   "ko": "돗토리다이가쿠마에",
+   "en": "Tottori-Daigakumae"
+  },
+  "kana": "とっとりだいがくまえ",
+  "geo": {
+   "lat": 35.518117,
+   "lng": 134.174291
+  },
+  "lines": [
+   "tottori.sanin",
+   "tottori.matsukaze"
+  ]
+ },
+ {
+  "id": "tottori.suetsune",
+  "name": {
+   "ja": "末恒",
+   "ko": "스에쓰네",
+   "en": "Suetsune"
+  },
+  "kana": "すえつね",
+  "geo": {
+   "lat": 35.52409,
+   "lng": 134.136102
+  },
+  "lines": [
+   "tottori.sanin"
+  ]
+ },
+ {
+  "id": "tottori.hogi",
+  "name": {
+   "ja": "宝木",
+   "ko": "호기",
+   "en": "Hogi"
+  },
+  "kana": "ほうぎ",
+  "geo": {
+   "lat": 35.514042,
+   "lng": 134.082281
+  },
+  "lines": [
+   "tottori.sanin"
+  ]
+ },
+ {
+  "id": "tottori.hamamura",
+  "name": {
+   "ja": "浜村",
+   "ko": "하마무라",
+   "en": "Hamamura"
+  },
+  "kana": "はまむら",
+  "geo": {
+   "lat": 35.509449,
+   "lng": 134.050771
+  },
+  "lines": [
+   "tottori.sanin",
+   "tottori.matsukaze"
+  ]
+ },
+ {
+  "id": "tottori.aoya",
+  "name": {
+   "ja": "青谷",
+   "ko": "아오야",
+   "en": "Aoya"
+  },
+  "kana": "あおや",
+  "geo": {
+   "lat": 35.516085,
+   "lng": 133.995757
+  },
+  "lines": [
+   "tottori.sanin"
+  ]
+ },
+ {
+  "id": "tottori.tomari",
+  "name": {
+   "ja": "泊",
+   "ko": "도마리",
+   "en": "Tomari"
+  },
+  "kana": "とまり",
+  "geo": {
+   "lat": 35.50933,
+   "lng": 133.936415
+  },
+  "lines": [
+   "tottori.sanin"
+  ]
+ },
+ {
+  "id": "tottori.matsuzaki",
+  "name": {
+   "ja": "松崎",
+   "ko": "마쓰자키",
+   "en": "Matsuzaki"
+  },
+  "kana": "まつざき",
+  "geo": {
+   "lat": 35.468723,
+   "lng": 133.902057
+  },
+  "lines": [
+   "tottori.sanin"
+  ]
+ },
+ {
+  "id": "tottori.kurayoshi",
+  "name": {
+   "ja": "倉吉",
+   "ko": "구라요시",
+   "en": "Kurayoshi"
+  },
+  "kana": "くらよし",
+  "geo": {
+   "lat": 35.454791,
+   "lng": 133.849401
+  },
+  "lines": [
+   "tottori.sanin",
+   "tottori.matsukaze",
+   "tottori.hakuto"
+  ]
+ },
+ {
+  "id": "tottori.shimo_hojo",
+  "name": {
+   "ja": "下北条",
+   "ko": "시모호조",
+   "en": "Shimo-Hojo"
+  },
+  "kana": "しもほうじょう",
+  "geo": {
+   "lat": 35.482027,
+   "lng": 133.808703
+  },
+  "lines": [
+   "tottori.sanin"
+  ]
+ },
+ {
+  "id": "tottori.yura",
+  "name": {
+   "ja": "由良",
+   "ko": "유라",
+   "en": "Yura"
+  },
+  "kana": "ゆら",
+  "geo": {
+   "lat": 35.490244,
+   "lng": 133.754484
+  },
+  "lines": [
+   "tottori.sanin"
+  ]
+ },
+ {
+  "id": "tottori.urayasu",
+  "name": {
+   "ja": "浦安",
+   "ko": "우라야스",
+   "en": "Urayasu"
+  },
+  "kana": "うらやす",
+  "geo": {
+   "lat": 35.499686,
+   "lng": 133.693381
+  },
+  "lines": [
+   "tottori.sanin",
+   "tottori.matsukaze"
+  ]
+ },
+ {
+  "id": "tottori.yabase",
+  "name": {
+   "ja": "八橋",
+   "ko": "야바세",
+   "en": "Yabase"
+  },
+  "kana": "やばせ",
+  "geo": {
+   "lat": 35.503146,
+   "lng": 133.673452
+  },
+  "lines": [
+   "tottori.sanin"
+  ]
+ },
+ {
+  "id": "tottori.akasaki",
+  "name": {
+   "ja": "赤碕",
+   "ko": "아카사키",
+   "en": "Akasaki"
+  },
+  "kana": "あかさき",
+  "geo": {
+   "lat": 35.512367,
+   "lng": 133.634604
+  },
+  "lines": [
+   "tottori.sanin"
+  ]
+ },
+ {
+  "id": "tottori.nakayamaguchi",
+  "name": {
+   "ja": "中山口",
+   "ko": "나카야마구치",
+   "en": "Nakayamaguchi"
+  },
+  "kana": "なかやまぐち",
+  "geo": {
+   "lat": 35.520706,
+   "lng": 133.590234
+  },
+  "lines": [
+   "tottori.sanin"
+  ]
+ },
+ {
+  "id": "tottori.shimoichi",
+  "name": {
+   "ja": "下市",
+   "ko": "시모이치",
+   "en": "Shimoichi"
+  },
+  "kana": "しもいち",
+  "geo": {
+   "lat": 35.518749,
+   "lng": 133.56629
+  },
+  "lines": [
+   "tottori.sanin"
+  ]
+ },
+ {
+  "id": "tottori.mikuriya",
+  "name": {
+   "ja": "御来屋",
+   "ko": "미쿠리야",
+   "en": "Mikuriya"
+  },
+  "kana": "みくりや",
+  "geo": {
+   "lat": 35.512175,
+   "lng": 133.502982
+  },
+  "lines": [
+   "tottori.sanin"
+  ]
+ },
+ {
+  "id": "tottori.nawa",
+  "name": {
+   "ja": "名和",
+   "ko": "나와",
+   "en": "Nawa"
+  },
+  "kana": "なわ",
+  "geo": {
+   "lat": 35.507426,
+   "lng": 133.491897
+  },
+  "lines": [
+   "tottori.sanin"
+  ]
+ },
+ {
+  "id": "tottori.daisenguchi",
+  "name": {
+   "ja": "大山口",
+   "ko": "다이센구치",
+   "en": "Daisenguchi"
+  },
+  "kana": "だいせんぐち",
+  "geo": {
+   "lat": 35.484997,
+   "lng": 133.456768
+  },
+  "lines": [
+   "tottori.sanin"
+  ]
+ },
+ {
+  "id": "tottori.yodoe",
+  "name": {
+   "ja": "淀江",
+   "ko": "요도에",
+   "en": "Yodoe"
+  },
+  "kana": "よどえ",
+  "geo": {
+   "lat": 35.456957,
+   "lng": 133.429746
+  },
+  "lines": [
+   "tottori.sanin"
+  ]
+ },
+ {
+  "id": "tottori.hoki_daisen",
+  "name": {
+   "ja": "伯耆大山",
+   "ko": "호키다이센",
+   "en": "Hoki-Daisen"
+  },
+  "kana": "ほうきだいせん",
+  "geo": {
+   "lat": 35.429718,
+   "lng": 133.383551
+  },
+  "lines": [
+   "tottori.sanin",
+   "tottori.hakubi"
+  ]
+ },
+ {
+  "id": "tottori.higashiyama_koen",
+  "name": {
+   "ja": "東山公園",
+   "ko": "히가시야마코엔",
+   "en": "Higashiyama-Koen"
+  },
+  "kana": "ひがしやまこうえん",
+  "geo": {
+   "lat": 35.43083,
+   "lng": 133.351609
+  },
+  "lines": [
+   "tottori.sanin"
+  ]
+ },
+ {
+  "id": "tottori.yonago",
+  "name": {
+   "ja": "米子",
+   "ko": "요나고",
+   "en": "Yonago"
+  },
+  "kana": "よなご",
+  "geo": {
+   "lat": 35.423304,
+   "lng": 133.336783
+  },
+  "lines": [
+   "tottori.sanin",
+   "tottori.sakai",
+   "tottori.matsukaze",
+   "tottori.yakumo"
+  ]
+ },
+ {
+  "id": "tottori.bakuromachi",
+  "name": {
+   "ja": "博労町",
+   "ko": "바쿠로마치",
+   "en": "Bakuromachi"
+  },
+  "kana": "ばくろうまち",
+  "geo": {
+   "lat": 35.431058,
+   "lng": 133.340162
+  },
+  "lines": [
+   "tottori.sakai"
+  ]
+ },
+ {
+  "id": "tottori.fujimicho",
+  "name": {
+   "ja": "富士見町",
+   "ko": "후지미초",
+   "en": "Fujimicho"
+  },
+  "kana": "ふじみちょう",
+  "geo": {
+   "lat": 35.434829,
+   "lng": 133.336395
+  },
+  "lines": [
+   "tottori.sakai"
+  ]
+ },
+ {
+  "id": "tottori.goto",
+  "name": {
+   "ja": "後藤",
+   "ko": "고토",
+   "en": "Goto"
+  },
+  "kana": "ごとう",
+  "geo": {
+   "lat": 35.439556,
+   "lng": 133.331547
+  },
+  "lines": [
+   "tottori.sakai"
+  ]
+ },
+ {
+  "id": "tottori.sambommatsuguchi",
+  "name": {
+   "ja": "三本松口",
+   "ko": "산본마쓰구치",
+   "en": "Sambommatsuguchi"
+  },
+  "kana": "さんぼんまつぐち",
+  "geo": {
+   "lat": 35.44626,
+   "lng": 133.322835
+  },
+  "lines": [
+   "tottori.sakai"
+  ]
+ },
+ {
+  "id": "tottori.kawasakiguchi",
+  "name": {
+   "ja": "河崎口",
+   "ko": "가와사키구치",
+   "en": "Kawasakiguchi"
+  },
+  "kana": "かわさきぐち",
+  "geo": {
+   "lat": 35.456749,
+   "lng": 133.305488
+  },
+  "lines": [
+   "tottori.sakai"
+  ]
+ },
+ {
+  "id": "tottori.yumigahama",
+  "name": {
+   "ja": "弓ヶ浜",
+   "ko": "유미가하마",
+   "en": "Yumigahama"
+  },
+  "kana": "ゆみがはま",
+  "geo": {
+   "lat": 35.467008,
+   "lng": 133.288383
+  },
+  "lines": [
+   "tottori.sakai"
+  ]
+ },
+ {
+  "id": "tottori.wadahama",
+  "name": {
+   "ja": "和田浜",
+   "ko": "와다하마",
+   "en": "Wadahama"
+  },
+  "kana": "わだはま",
+  "geo": {
+   "lat": 35.480707,
+   "lng": 133.265665
+  },
+  "lines": [
+   "tottori.sakai"
+  ]
+ },
+ {
+  "id": "tottori.oshinozucho",
+  "name": {
+   "ja": "大篠津町",
+   "ko": "오시노즈초",
+   "en": "Oshinozucho"
+  },
+  "kana": "おおしのづちょう",
+  "geo": {
+   "lat": 35.489524,
+   "lng": 133.255672
+  },
+  "lines": [
+   "tottori.sakai"
+  ]
+ },
+ {
+  "id": "tottori.yonago_kuko",
+  "name": {
+   "ja": "米子空港",
+   "ko": "요나고공항",
+   "en": "Yonago-Kuko"
+  },
+  "kana": "よなごくうこう",
+  "geo": {
+   "lat": 35.50193,
+   "lng": 133.247819
+  },
+  "lines": [
+   "tottori.sakai"
+  ]
+ },
+ {
+  "id": "tottori.nakahama",
+  "name": {
+   "ja": "中浜",
+   "ko": "나카하마",
+   "en": "Nakahama"
+  },
+  "kana": "なかはま",
+  "geo": {
+   "lat": 35.506891,
+   "lng": 133.244712
+  },
+  "lines": [
+   "tottori.sakai"
+  ]
+ },
+ {
+  "id": "tottori.takamatsucho",
+  "name": {
+   "ja": "高松町",
+   "ko": "다카마쓰초",
+   "en": "Takamatsucho"
+  },
+  "kana": "たかまつちょう",
+  "geo": {
+   "lat": 35.515042,
+   "lng": 133.240062
+  },
+  "lines": [
+   "tottori.sakai"
+  ]
+ },
+ {
+  "id": "tottori.amariko",
+  "name": {
+   "ja": "余子",
+   "ko": "아마리코",
+   "en": "Amariko"
+  },
+  "kana": "あまりこ",
+  "geo": {
+   "lat": 35.521094,
+   "lng": 133.236618
+  },
+  "lines": [
+   "tottori.sakai"
+  ]
+ },
+ {
+  "id": "tottori.agarimichi",
+  "name": {
+   "ja": "上道",
+   "ko": "아가리미치",
+   "en": "Agarimichi"
+  },
+  "kana": "あがりみち",
+  "geo": {
+   "lat": 35.531469,
+   "lng": 133.230589
+  },
+  "lines": [
+   "tottori.sakai"
+  ]
+ },
+ {
+  "id": "tottori.babasakicho",
+  "name": {
+   "ja": "馬場崎町",
+   "ko": "바바사키초",
+   "en": "Babasakicho"
+  },
+  "kana": "ばばさきちょう",
+  "geo": {
+   "lat": 35.538554,
+   "lng": 133.226495
+  },
+  "lines": [
+   "tottori.sakai"
+  ]
+ },
+ {
+  "id": "tottori.sakaiminato",
+  "name": {
+   "ja": "境港",
+   "ko": "사카이미나토",
+   "en": "Sakaiminato"
+  },
+  "kana": "さかいみなと",
+  "geo": {
+   "lat": 35.54515,
+   "lng": 133.222681
+  },
+  "lines": [
+   "tottori.sakai"
+  ]
+ },
+ {
+  "id": "tottori.tsunoi",
+  "name": {
+   "ja": "津ノ井",
+   "ko": "쓰노이",
+   "en": "Tsunoi"
+  },
+  "kana": "つのい",
+  "geo": {
+   "lat": 35.461275,
+   "lng": 134.248641
+  },
+  "lines": [
+   "tottori.inbi"
+  ]
+ },
+ {
+  "id": "tottori.higashi_koge",
+  "name": {
+   "ja": "東郡家",
+   "ko": "히가시코게",
+   "en": "Higashi-Koge"
+  },
+  "kana": "ひがしこおげ",
+  "geo": {
+   "lat": 35.428834,
+   "lng": 134.260012
+  },
+  "lines": [
+   "tottori.inbi"
+  ]
+ },
+ {
+  "id": "tottori.koge",
+  "name": {
+   "ja": "郡家",
+   "ko": "고게",
+   "en": "Koge"
+  },
+  "kana": "こおげ",
+  "geo": {
+   "lat": 35.413241,
+   "lng": 134.251114
+  },
+  "lines": [
+   "tottori.inbi",
+   "tottori.wakasa",
+   "tottori.hakuto"
+  ]
+ },
+ {
+  "id": "tottori.kawahara",
+  "name": {
+   "ja": "河原",
+   "ko": "가와하라",
+   "en": "Kawahara"
+  },
+  "kana": "かわはら",
+  "geo": {
+   "lat": 35.397595,
+   "lng": 134.223018
+  },
+  "lines": [
+   "tottori.inbi"
+  ]
+ },
+ {
+  "id": "tottori.kunifusa",
+  "name": {
+   "ja": "国英",
+   "ko": "구니후사",
+   "en": "Kunifusa"
+  },
+  "kana": "くにふさ",
+  "geo": {
+   "lat": 35.373012,
+   "lng": 134.217782
+  },
+  "lines": [
+   "tottori.inbi"
+  ]
+ },
+ {
+  "id": "tottori.takagari",
+  "name": {
+   "ja": "鷹狩",
+   "ko": "다카가리",
+   "en": "Takagari"
+  },
+  "kana": "たかがり",
+  "geo": {
+   "lat": 35.354242,
+   "lng": 134.206226
+  },
+  "lines": [
+   "tottori.inbi"
+  ]
+ },
+ {
+  "id": "tottori.mochigase",
+  "name": {
+   "ja": "用瀬",
+   "ko": "모치가세",
+   "en": "Mochigase"
+  },
+  "kana": "もちがせ",
+  "geo": {
+   "lat": 35.343483,
+   "lng": 134.204898
+  },
+  "lines": [
+   "tottori.inbi"
+  ]
+ },
+ {
+  "id": "tottori.inaba_yashiro",
+  "name": {
+   "ja": "因幡社",
+   "ko": "이나바야시로",
+   "en": "Inaba-Yashiro"
+  },
+  "kana": "いなばやしろ",
+  "geo": {
+   "lat": 35.312465,
+   "lng": 134.196612
+  },
+  "lines": [
+   "tottori.inbi"
+  ]
+ },
+ {
+  "id": "tottori.chizu",
+  "name": {
+   "ja": "智頭",
+   "ko": "지즈",
+   "en": "Chizu"
+  },
+  "kana": "ちづ",
+  "geo": {
+   "lat": 35.265095,
+   "lng": 134.225583
+  },
+  "lines": [
+   "tottori.inbi",
+   "tottori.chizukyu",
+   "tottori.hakuto"
+  ]
+ },
+ {
+  "id": "tottori.haji",
+  "name": {
+   "ja": "土師",
+   "ko": "하지",
+   "en": "Haji"
+  },
+  "kana": "はじ",
+  "geo": {
+   "lat": 35.232813,
+   "lng": 134.225789
+  },
+  "lines": [
+   "tottori.inbi"
+  ]
+ },
+ {
+  "id": "tottori.nagi",
+  "name": {
+   "ja": "那岐",
+   "ko": "나기",
+   "en": "Nagi"
+  },
+  "kana": "なぎ",
+  "geo": {
+   "lat": 35.213822,
+   "lng": 134.210388
+  },
+  "lines": [
+   "tottori.inbi"
+  ]
+ },
+ {
+  "id": "tottori.yazu_koko_mae",
+  "name": {
+   "ja": "八頭高校前",
+   "ko": "야즈코코마에",
+   "en": "Yazu-Koko-mae"
+  },
+  "kana": "やずこうこうまえ",
+  "geo": {
+   "lat": 35.405486,
+   "lng": 134.246315
+  },
+  "lines": [
+   "tottori.wakasa"
+  ]
+ },
+ {
+  "id": "tottori.inaba_funaoka",
+  "name": {
+   "ja": "因幡船岡",
+   "ko": "이나바후나오카",
+   "en": "Inaba-Funaoka"
+  },
+  "kana": "いなばふなおか",
+  "geo": {
+   "lat": 35.395103,
+   "lng": 134.249327
+  },
+  "lines": [
+   "tottori.wakasa"
+  ]
+ },
+ {
+  "id": "tottori.hayabusa",
+  "name": {
+   "ja": "隼",
+   "ko": "하야부사",
+   "en": "Hayabusa"
+  },
+  "kana": "はやぶさ",
+  "geo": {
+   "lat": 35.388749,
+   "lng": 134.269934
+  },
+  "lines": [
+   "tottori.wakasa"
+  ]
+ },
+ {
+  "id": "tottori.abe",
+  "name": {
+   "ja": "安部",
+   "ko": "아베",
+   "en": "Abe"
+  },
+  "kana": "あべ",
+  "geo": {
+   "lat": 35.3747,
+   "lng": 134.291346
+  },
+  "lines": [
+   "tottori.wakasa"
+  ]
+ },
+ {
+  "id": "tottori.hatto",
+  "name": {
+   "ja": "八東",
+   "ko": "핫토",
+   "en": "Hatto"
+  },
+  "kana": "はっとう",
+  "geo": {
+   "lat": 35.36363,
+   "lng": 134.31715
+  },
+  "lines": [
+   "tottori.wakasa"
+  ]
+ },
+ {
+  "id": "tottori.tokumaru",
+  "name": {
+   "ja": "徳丸",
+   "ko": "도쿠마루",
+   "en": "Tokumaru"
+  },
+  "kana": "とくまる",
+  "geo": {
+   "lat": 35.364515,
+   "lng": 134.335482
+  },
+  "lines": [
+   "tottori.wakasa"
+  ]
+ },
+ {
+  "id": "tottori.tampi",
+  "name": {
+   "ja": "丹比",
+   "ko": "단피",
+   "en": "Tampi"
+  },
+  "kana": "たんぴ",
+  "geo": {
+   "lat": 35.360828,
+   "lng": 134.356214
+  },
+  "lines": [
+   "tottori.wakasa"
+  ]
+ },
+ {
+  "id": "tottori.wakasa",
+  "name": {
+   "ja": "若桜",
+   "ko": "와카사",
+   "en": "Wakasa"
+  },
+  "kana": "わかさ",
+  "geo": {
+   "lat": 35.345186,
+   "lng": 134.398414
+  },
+  "lines": [
+   "tottori.wakasa"
+  ]
+ },
+ {
+  "id": "tottori.koi_yamagata",
+  "name": {
+   "ja": "恋山形",
+   "ko": "고이야마가타",
+   "en": "Koi-Yamagata"
+  },
+  "kana": "こいやまがた",
+  "geo": {
+   "lat": 35.256,
+   "lng": 134.27898
+  },
+  "lines": [
+   "tottori.chizukyu"
+  ]
+ },
+ {
+  "id": "tottori.yamasato",
+  "name": {
+   "ja": "山郷",
+   "ko": "야마사토",
+   "en": "Yamasato"
+  },
+  "kana": "やまさと",
+  "geo": {
+   "lat": 35.232341,
+   "lng": 134.289172
+  },
+  "lines": [
+   "tottori.chizukyu"
+  ]
+ },
+ {
+  "id": "tottori.kishimoto",
+  "name": {
+   "ja": "岸本",
+   "ko": "기시모토",
+   "en": "Kishimoto"
+  },
+  "kana": "きしもと",
+  "geo": {
+   "lat": 35.387463,
+   "lng": 133.409664
+  },
+  "lines": [
+   "tottori.hakubi"
+  ]
+ },
+ {
+  "id": "tottori.hoki_mizoguchi",
+  "name": {
+   "ja": "伯耆溝口",
+   "ko": "호키미조구치",
+   "en": "Hoki-Mizoguchi"
+  },
+  "kana": "ほうきみぞぐち",
+  "geo": {
+   "lat": 35.348202,
+   "lng": 133.435423
+  },
+  "lines": [
+   "tottori.hakubi"
+  ]
+ },
+ {
+  "id": "tottori.ebi",
+  "name": {
+   "ja": "江尾",
+   "ko": "에비",
+   "en": "Ebi"
+  },
+  "kana": "えび",
+  "geo": {
+   "lat": 35.283299,
+   "lng": 133.484921
+  },
+  "lines": [
+   "tottori.hakubi"
+  ]
+ },
+ {
+  "id": "tottori.muko",
+  "name": {
+   "ja": "武庫",
+   "ko": "무코",
+   "en": "Muko"
+  },
+  "kana": "むこ",
+  "geo": {
+   "lat": 35.267501,
+   "lng": 133.47649
+  },
+  "lines": [
+   "tottori.hakubi"
+  ]
+ },
+ {
+  "id": "tottori.neu",
+  "name": {
+   "ja": "根雨",
+   "ko": "네우",
+   "en": "Neu"
+  },
+  "kana": "ねう",
+  "geo": {
+   "lat": 35.24162,
+   "lng": 133.442032
+  },
+  "lines": [
+   "tottori.hakubi",
+   "tottori.yakumo"
+  ]
+ },
+ {
+  "id": "tottori.kurosaka",
+  "name": {
+   "ja": "黒坂",
+   "ko": "구로사카",
+   "en": "Kurosaka"
+  },
+  "kana": "くろさか",
+  "geo": {
+   "lat": 35.206996,
+   "lng": 133.383702
+  },
+  "lines": [
+   "tottori.hakubi"
+  ]
+ },
+ {
+  "id": "tottori.kamisuge",
+  "name": {
+   "ja": "上菅",
+   "ko": "가미스게",
+   "en": "Kamisuge"
+  },
+  "kana": "かみすげ",
+  "geo": {
+   "lat": 35.193783,
+   "lng": 133.341574
+  },
+  "lines": [
+   "tottori.hakubi"
+  ]
+ },
+ {
+  "id": "tottori.shoyama",
+  "name": {
+   "ja": "生山",
+   "ko": "쇼야마",
+   "en": "Shoyama"
+  },
+  "kana": "しょうやま",
+  "geo": {
+   "lat": 35.171073,
+   "lng": 133.322038
+  },
+  "lines": [
+   "tottori.hakubi",
+   "tottori.yakumo"
+  ]
+ },
+ {
+  "id": "tottori.kami_iwami",
+  "name": {
+   "ja": "上石見",
+   "ko": "가미이와미",
+   "en": "Kami-Iwami"
+  },
+  "kana": "かみいわみ",
+  "geo": {
+   "lat": 35.112547,
+   "lng": 133.351238
+  },
+  "lines": [
+   "tottori.hakubi"
+  ]
+ }
+]

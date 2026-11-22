@@ -387,7 +387,9 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     final w = b.max.dx - b.min.dx + 50, h = b.max.dy - b.min.dy + 60;
     // A phone held upright: fill the height (all of Kanto top to bottom) and
     // let the sides be panned, instead of a thin band in the middle.
-    final fit = vp.height > vp.width ? (vp.height - 190) / h : math.min((vp.width - 130) / w, (vp.height - 190) / h);
+    // Tottori, long and thin, fits across instead.
+    final across = math.min((vp.width - 130) / w, (vp.height - 190) / h);
+    final fit = vp.height > vp.width && widget.city.id == 'tokyo' ? (vp.height - 190) / h : across;
     return math.max(fit, _minScaleIn());
   }
 
@@ -395,8 +397,18 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
   /// little room round them. Beyond it there is no route map, only pale
   /// ground, so the map does not pan or zoom out past it.
   Rect get _allowed {
-    final b = _map!.contentBounds;
-    return Rect.fromLTRB(b.min.dx, b.min.dy, b.max.dx, b.max.dy).inflate(350);
+    final map = _map!, vp = _viewport, b = map.contentBounds;
+    final a = Rect.fromLTRB(b.min.dx, b.min.dy, b.max.dx, b.max.dy).inflate(350);
+    // Tottori is long and thin: on a tall screen, let the view reach into
+    // the ground drawn round the map (the outer picture) so the whole
+    // prefecture fits across. Tokyo keeps its limits.
+    final o = map.outer;
+    if (widget.city.id == 'tokyo' || o == null || vp == null || vp.width <= 0) return a;
+    final room = Rect.fromLTRB(o.origin.dx, o.origin.dy, map.size.width - o.origin.dx, map.size.height - o.origin.dy);
+    final h = a.width * vp.height / vp.width;
+    if (h <= a.height) return a;
+    final grow = math.min((h - a.height) / 2, math.max(0.0, math.min(a.top - room.top, room.bottom - a.bottom)));
+    return Rect.fromLTRB(a.left, a.top - grow, a.right, a.bottom + grow);
   }
 
   /// Least zoom: the allowed area still fills the whole screen.
@@ -1954,6 +1966,8 @@ const _groups = <String, ({String ja, String ko, String en})>{
   'keikyu': (ja: '京急', ko: '게이큐', en: 'Keikyu'),
   'sotetsu': (ja: '相鉄', ko: '소테쓰', en: 'Sotetsu'),
   'yokohama': (ja: '横浜', ko: '요코하마', en: 'Yokohama'),
+  'wakasa': (ja: '若桜鉄道', ko: '와카사 철도', en: 'Wakasa Railway'),
+  'chizukyu': (ja: '智頭急行', ko: '지즈 급행', en: 'Chizu Express'),
   'other': (ja: 'その他', ko: '기타', en: 'Others'),
 };
 

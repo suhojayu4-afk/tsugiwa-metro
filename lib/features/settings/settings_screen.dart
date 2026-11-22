@@ -5,6 +5,7 @@ import '../../app.dart';
 import '../../core/app_info.dart';
 import '../../core/localized_text.dart';
 import '../../core/pixel/pixel_ui.dart';
+import 'app_city.dart';
 import 'app_language.dart';
 import 'font_licenses.dart';
 import 'legal_texts.dart';
@@ -16,6 +17,12 @@ const _languageNote = LocalizedText({
   'ja': 'ホーム画面のウィジェットはスマホの言語で表示されます。',
   'ko': '홈 화면 위젯은 휴대폰의 언어로 표시돼요.',
   'en': 'Home screen widgets stay in the phone\'s language.',
+});
+const _city = LocalizedText({'ja': '都市', 'ko': '도시', 'en': 'City'});
+const _cityNote = LocalizedText({
+  'ja': 'コインとMYのアイテムはどの都市でも同じです。スタンプは都市ごとに集まります。',
+  'ko': '코인과 MY 아이템은 어느 도시에서나 같아요. 스탬프는 도시마다 모여요.',
+  'en': 'Coins and MY items are shared; each city has its own stamps.',
 });
 const _languageNames = {'ja': '日本語', 'ko': '한국어', 'en': 'English'};
 const _groupApp = LocalizedText({'ja': 'アプリ', 'ko': '앱', 'en': 'App'});
@@ -100,6 +107,16 @@ class SettingsScreen extends StatelessWidget {
                     onTap: () => _pickLanguage(context),
                   ),
                 ),
+                ValueListenableBuilder<String>(
+                  valueListenable: AppCity.current,
+                  builder: (context, city, _) => _Row(
+                    key: const ValueKey('settings.city'),
+                    icon: Icons.map_rounded,
+                    label: _city.of(lang),
+                    sub: AppCity.names[city]!.of(lang),
+                    onTap: () => openCities(context),
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 18),
@@ -144,6 +161,134 @@ class SettingsScreen extends StatelessWidget {
             PixelText(_footer.of(lang), size: 12, align: TextAlign.center, color: PixelColors.muted),
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// 設定 → 都市 (also opened by the city chip on のりば).
+void openCities(BuildContext context) => _push(context, const CitiesPage());
+
+const _received = LocalizedText({'ja': '受け取り済み', 'ko': '받음', 'en': 'Received'});
+const _receive = LocalizedText({'ja': '受け取る', 'ko': '받기', 'en': 'Get'});
+const _preparing = LocalizedText({'ja': '準備中…', 'ko': '준비 중…', 'en': 'Getting ready…'});
+const _use = LocalizedText({'ja': 'この都市にする', 'ko': '이 도시로 바꾸기', 'en': 'Use this city'});
+const _inUse = LocalizedText({'ja': '使用中', 'ko': '사용 중', 'en': 'In use'});
+const _citiesLead = LocalizedText({
+  'ja': '路線図を受け取ると、その都市ののりば・路線図・ガイドが使えます。',
+  'ko': '노선도를 받으면 그 도시의 승강장·노선도·가이드를 쓸 수 있어요.',
+  'en': 'Get a city to use its platform, route map and guide.',
+});
+const _cityAbout = {
+  'tokyo': LocalizedText({'ja': '関東の169路線', 'ko': '간토의 169개 노선', 'en': '169 lines round Kanto'}),
+  'tottori': LocalizedText({
+    'ja': '山陰本線・境線・因美線・若桜鉄道・智頭急行・伯備線と特急。いなかの駅と大山の路線図',
+    'ko': '산인 본선·사카이선·인비선·와카사 철도·지즈 급행·하쿠비선과 특급. 시골 역과 다이센의 노선도',
+    'en': "San'in, Sakai, Inbi, Wakasa, Chizu and Hakubi lines and limited expresses; country stations and Mt. Daisen",
+  }),
+};
+
+/// The cities: Tokyo comes with the app; other route maps are received
+/// here first, then can be switched to. (All cities will be one map later.)
+class CitiesPage extends StatefulWidget {
+  const CitiesPage({super.key});
+
+  @override
+  State<CitiesPage> createState() => _CitiesPageState();
+}
+
+class _CitiesPageState extends State<CitiesPage> {
+  String? _busy;
+
+  Future<void> _get(String code) async {
+    setState(() => _busy = code);
+    await AppCity.receive(code);
+    if (mounted) setState(() => _busy = null);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final lang = langOf(context);
+    return Scaffold(
+      backgroundColor: PixelColors.background,
+      appBar: _bar(_city.of(lang)),
+      body: ValueListenableBuilder<Set<String>>(
+        valueListenable: AppCity.received,
+        builder: (context, have, _) => ListView(
+          padding: const EdgeInsets.fromLTRB(16, 4, 16, 32),
+          children: [
+            PixelText(_citiesLead.of(lang), size: 13, color: PixelColors.muted),
+            const SizedBox(height: 12),
+            for (final code in AppCity.choices) ...[
+              _cityCard(context, code, have.contains(code), lang),
+              const SizedBox(height: 10),
+            ],
+            PixelText(_cityNote.of(lang), size: 12, color: PixelColors.muted),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _cityCard(BuildContext context, String code, bool got, String lang) {
+    final current = AppCity.current.value == code;
+    final Widget action;
+    if (current) {
+      action = PixelText(_inUse.of(lang), size: 14, color: PixelColors.title);
+    } else if (_busy == code) {
+      action = Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox.square(dimension: 16, child: CircularProgressIndicator(strokeWidth: 2)),
+          const SizedBox(width: 8),
+          PixelText(_preparing.of(lang), size: 14, color: PixelColors.muted),
+        ],
+      );
+    } else if (!got) {
+      action = FilledButton.icon(
+        key: ValueKey('settings.city.get.$code'),
+        onPressed: _busy == null ? () => _get(code) : null,
+        icon: const Icon(Icons.download_rounded, size: 18),
+        label: Text(_receive.of(lang)),
+      );
+    } else {
+      action = FilledButton(
+        key: ValueKey('settings.city.use.$code'),
+        onPressed: () {
+          // Back to the tabs, which then show the new city.
+          Navigator.of(context).popUntil((r) => r.isFirst);
+          AppCity.set(code);
+        },
+        child: Text(_use.of(lang)),
+      );
+    }
+    return PixelBox(
+      key: ValueKey('settings.city.$code'),
+      borderColor: current ? PixelColors.ink : null,
+      padding: const EdgeInsets.fromLTRB(14, 12, 12, 12),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    PixelText(AppCity.names[code]!.of(lang), size: 18),
+                    if (got && !current) ...[
+                      const SizedBox(width: 6),
+                      PixelText(_received.of(lang), size: 11, color: PixelColors.muted),
+                    ],
+                  ],
+                ),
+                const SizedBox(height: 4),
+                PixelText(_cityAbout[code]!.of(lang), size: 12, color: PixelColors.muted, maxLines: 3),
+              ],
+            ),
+          ),
+          const SizedBox(width: 10),
+          action,
+        ],
       ),
     );
   }

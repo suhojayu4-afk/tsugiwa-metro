@@ -1,0 +1,190 @@
+{
+ "tottori.tottori": [
+  {
+   "name": {
+    "ja": "北口",
+    "ko": "북쪽 출구",
+    "en": "North Exit"
+   },
+   "near": {
+    "ja": "砂丘ゆきバス・鳥取城跡・県庁",
+    "ko": "사구행 버스·돗토리성 터·현청",
+    "en": "Buses to the dunes, Tottori Castle ruins, prefectural office"
+   },
+   "landmarks": [
+    "sakyu",
+    "jinpukaku"
+   ]
+  },
+  {
+   "name": {
+    "ja": "南口",
+    "ko": "남쪽 출구",
+    "en": "South Exit"
+   },
+   "near": {
+    "ja": "ホテル・住宅街",
+    "ko": "호텔·주택가",
+    "en": "Hotels, homes"
+   },
+   "landmarks": []
+  }
+ ],
+ "tottori.yonago": [
+  {
+   "name": {
+    "ja": "東口（表口）",
+    "ko": "동쪽 출구",
+    "en": "East Exit"
+   },
+   "near": {
+    "ja": "米子の中心街・皆生温泉ゆきバス",
+    "ko": "요나고 중심가·가이케 온천행 버스",
+    "en": "Yonago town centre, buses to Kaike Onsen"
+   },
+   "landmarks": [
+    "daisen_big",
+    "yonago_castle",
+    "kaike",
+    "hanakairo"
+   ]
+  },
+  {
+   "name": {
+    "ja": "境線ホーム",
+    "ko": "사카이선 승강장",
+    "en": "Sakai Line platform"
+   },
+   "near": {
+    "ja": "0番のりば。境港ゆき",
+    "ko": "0번 승강장. 사카이미나토행",
+    "en": "Platform 0, for Sakaiminato"
+   },
+   "landmarks": [
+    "sakaiminato"
+   ]
+  }
+ ],
+ "tottori.kurayoshi": [
+  {
+   "name": {
+    "ja": "北口",
+    "ko": "북쪽 출구",
+    "en": "North Exit"
+   },
+   "near": {
+    "ja": "白壁土蔵群・三朝温泉ゆきバス",
+    "ko": "시라카베 창고군·미사사 온천행 버스",
+    "en": "Buses to the storehouses and Misasa Onsen"
+   },
+   "landmarks": [
+    "kurayoshi",
+    "nageiredo",
+    "misasa"
+   ]
+  }
+ ],
+ "tottori.sakaiminato": [
+  {
+   "name": {
+    "ja": "駅前",
+    "ko": "역 앞",
+    "en": "Station square"
+   },
+   "near": {
+    "ja": "港・水産物直売センター・美保関へのバス",
+    "ko": "항구·수산물 직판 센터·미호노세키행 버스",
+    "en": "The port, the fish market, buses to Mihonoseki"
+   },
+   "landmarks": [
+    "sakaiminato",
+    "eshima"
+   ]
+  }
+ ],
+ "tottori.iwami": [
+  {
+   "name": {
+    "ja": "駅前",
+    "ko": "역 앞",
+    "en": "Station square"
+   },
+   "near": {
+    "ja": "浦富海岸ゆきバス",
+    "ko": "우라도메 해안행 버스",
+    "en": "Buses to the Uradome Coast"
+   },
+   "landmarks": [
+    "uradome"
+   ]
+  }
+ ],
+ "tottori.chizu": [
+  {
+   "name": {
+    "ja": "駅前",
+    "ko": "역 앞",
+    "en": "Station square"
+   },
+   "near": {
+    "ja": "智頭宿・石谷家住宅",
+    "ko": "지즈 역참 마을·이시타니가 주택",
+    "en": "Chizu post town, Ishitani Residence"
+   },
+   "landmarks": [
+    "chizu"
+   ]
+  }
+ ],
+ "tottori.wakasa": [
+  {
+   "name": {
+    "ja": "駅前",
+    "ko": "역 앞",
+    "en": "Station square"
+   },
+   "near": {
+    "ja": "SLと転車台・若桜の宿場町",
+    "ko": "SL과 전차대·와카사 역참 마을",
+    "en": "Steam engine and turntable, Wakasa post town"
+   },
+   "landmarks": [
+    "wakasa_sl"
+   ]
+  }
+ ],
+ "tottori.matsuzaki": [
+  {
+   "name": {
+    "ja": "駅前",
+    "ko": "역 앞",
+    "en": "Station square"
+   },
+   "near": {
+    "ja": "東郷温泉・東郷池",
+    "ko": "도고 온천·도고 호수",
+    "en": "Togo Onsen, Lake Togo"
+   },
+   "landmarks": [
+    "togo"
+   ]
+  }
+ ],
+ "tottori.yodoe": [
+  {
+   "name": {
+    "ja": "駅前",
+    "ko": "역 앞",
+    "en": "Station square"
+   },
+   "near": {
+    "ja": "妻木晩田遺跡へは車で約10分",
+    "ko": "무키반다 유적은 차로 약 10분",
+    "en": "Mukibanda site, about 10 min by car"
+   },
+   "landmarks": [
+    "mukibanda"
+   ]
+  }
+ ]
+}

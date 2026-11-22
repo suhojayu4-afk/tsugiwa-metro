@@ -20,7 +20,8 @@ class EstimateCongestionSource implements CongestionSource {
 
   /// Level for [lineId] at [at] (Japan time).
   static CongestionLevel levelAt(String lineId, DateTime at) {
-    final tier = _veryBusy.contains(lineId) ? 2 : (_light.contains(lineId) ? 0 : 1);
+    // Country lines (Tottori–Yonago) are never packed.
+    final tier = _veryBusy.contains(lineId) ? 2 : (_light.contains(lineId) || lineId.startsWith('tottori.') ? 0 : 1);
     final m = at.hour * 60 + at.minute;
     final weekend = at.weekday == DateTime.saturday || at.weekday == DateTime.sunday;
     // Base crowding by time of day: 0 relaxed … 3 packed (for a normal line).

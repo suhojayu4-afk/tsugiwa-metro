@@ -3,7 +3,10 @@ import 'package:material_ui/material_ui.dart';
 import 'core/pixel/pixel_ui.dart';
 import 'data/city_repository.dart';
 import 'data/models/city.dart';
+import 'core/services.dart';
+import 'data/route_store.dart';
 import 'features/onboarding/onboarding_screen.dart';
+import 'features/settings/app_city.dart';
 import 'features/settings/app_language.dart';
 import 'features/shell/main_shell.dart';
 import 'l10n/app_localizations.dart';
@@ -76,8 +79,35 @@ class _CityLoader extends StatefulWidget {
 }
 
 class _CityLoaderState extends State<_CityLoader> {
-  // The city selection screen arrives with the route map step; Tokyo for now.
-  late final Future<CityData> _city = widget.repository.loadCity('tokyo');
+  late String _id = AppCity.current.value;
+  late Future<CityData> _city = _load(_id);
+
+  /// The city picked in 設定 (Tokyo by default). Saved routes belong to a
+  /// city: Tokyo keeps its old store, other cities get their own.
+  Future<CityData> _load(String id) {
+    Services.routes = RouteStore(prefix: id == 'tokyo' ? 'routes' : 'routes.$id');
+    return widget.repository.loadCity(id);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    AppCity.current.addListener(_onCity);
+  }
+
+  @override
+  void dispose() {
+    AppCity.current.removeListener(_onCity);
+    super.dispose();
+  }
+
+  void _onCity() {
+    if (AppCity.current.value == _id) return;
+    setState(() {
+      _id = AppCity.current.value;
+      _city = _load(_id);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,10 +117,11 @@ class _CityLoaderState extends State<_CityLoader> {
         if (snap.hasError) {
           return Scaffold(body: Center(child: PixelText('${snap.error}')));
         }
-        if (!snap.hasData) {
+        if (!snap.hasData || snap.data!.id != _id) {
           return Scaffold(body: Center(child: PixelText(AppLocalizations.of(context).loading)));
         }
-        return MainShell(city: snap.data!);
+        // A new city starts the tabs afresh.
+        return MainShell(key: ValueKey(_id), city: snap.data!);
       },
     );
   }

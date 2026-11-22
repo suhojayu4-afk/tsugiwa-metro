@@ -1,0 +1,427 @@
+[
+ {
+  "id": "tottori.sanin",
+  "name": {
+   "ja": "山陰本線",
+   "ko": "산인 본선",
+   "en": "San'in Main Line"
+  },
+  "color": "#1E73BE",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "米子方面",
+    "ko": "요나고 방면",
+    "en": "for Yonago"
+   },
+   "reverse": {
+    "ja": "鳥取方面",
+    "ko": "돗토리 방면",
+    "en": "for Tottori"
+   }
+  },
+  "stations": [
+   "tottori.higashihama",
+   "tottori.iwami",
+   "tottori.oiwa",
+   "tottori.fukube",
+   "tottori.tottori",
+   "tottori.koyama",
+   "tottori.tottori_daigakumae",
+   "tottori.suetsune",
+   "tottori.hogi",
+   "tottori.hamamura",
+   "tottori.aoya",
+   "tottori.tomari",
+   "tottori.matsuzaki",
+   "tottori.kurayoshi",
+   "tottori.shimo_hojo",
+   "tottori.yura",
+   "tottori.urayasu",
+   "tottori.yabase",
+   "tottori.akasaki",
+   "tottori.nakayamaguchi",
+   "tottori.shimoichi",
+   "tottori.mikuriya",
+   "tottori.nawa",
+   "tottori.daisenguchi",
+   "tottori.yodoe",
+   "tottori.hoki_daisen",
+   "tottori.higashiyama_koen",
+   "tottori.yonago"
+  ],
+  "runSec": [
+   340,
+   250,
+   280,
+   680,
+   380,
+   130,
+   320,
+   440,
+   270,
+   440,
+   470,
+   480,
+   440,
+   420,
+   440,
+   490,
+   190,
+   330,
+   370,
+   210,
+   500,
+   130,
+   360,
+   360,
+   450,
+   270,
+   170
+  ]
+ },
+ {
+  "id": "tottori.sakai",
+  "name": {
+   "ja": "境線",
+   "ko": "사카이선",
+   "en": "Sakai Line"
+  },
+  "color": "#8A5CB8",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "境港方面",
+    "ko": "사카이미나토 방면",
+    "en": "for Sakaiminato"
+   },
+   "reverse": {
+    "ja": "米子方面",
+    "ko": "요나고 방면",
+    "en": "for Yonago"
+   }
+  },
+  "stations": [
+   "tottori.yonago",
+   "tottori.bakuromachi",
+   "tottori.fujimicho",
+   "tottori.goto",
+   "tottori.sambommatsuguchi",
+   "tottori.kawasakiguchi",
+   "tottori.yumigahama",
+   "tottori.wadahama",
+   "tottori.oshinozucho",
+   "tottori.yonago_kuko",
+   "tottori.nakahama",
+   "tottori.takamatsucho",
+   "tottori.amariko",
+   "tottori.agarimichi",
+   "tottori.babasakicho",
+   "tottori.sakaiminato"
+  ],
+  "runSec": [
+   110,
+   80,
+   90,
+   130,
+   200,
+   190,
+   240,
+   150,
+   160,
+   90,
+   120,
+   100,
+   140,
+   110,
+   100
+  ]
+ },
+ {
+  "id": "tottori.inbi",
+  "name": {
+   "ja": "因美線",
+   "ko": "인비선",
+   "en": "Inbi Line"
+  },
+  "color": "#E8892B",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "智頭方面",
+    "ko": "지즈 방면",
+    "en": "for Chizu"
+   },
+   "reverse": {
+    "ja": "鳥取方面",
+    "ko": "돗토리 방면",
+    "en": "for Tottori"
+   }
+  },
+  "stations": [
+   "tottori.tottori",
+   "tottori.tsunoi",
+   "tottori.higashi_koge",
+   "tottori.koge",
+   "tottori.kawahara",
+   "tottori.kunifusa",
+   "tottori.takagari",
+   "tottori.mochigase",
+   "tottori.inaba_yashiro",
+   "tottori.chizu",
+   "tottori.haji",
+   "tottori.nagi"
+  ],
+  "runSec": [
+   370,
+   340,
+   190,
+   290,
+   260,
+   230,
+   140,
+   320,
+   510,
+   330,
+   240
+  ]
+ },
+ {
+  "id": "tottori.wakasa",
+  "name": {
+   "ja": "若桜鉄道",
+   "ko": "와카사 철도",
+   "en": "Wakasa Railway"
+  },
+  "color": "#2E9E5B",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "wakasa",
+  "directions": {
+   "forward": {
+    "ja": "若桜方面",
+    "ko": "와카사 방면",
+    "en": "for Wakasa"
+   },
+   "reverse": {
+    "ja": "郡家方面",
+    "ko": "고게 방면",
+    "en": "for Koge"
+   }
+  },
+  "stations": [
+   "tottori.koge",
+   "tottori.yazu_koko_mae",
+   "tottori.inaba_funaoka",
+   "tottori.hayabusa",
+   "tottori.abe",
+   "tottori.hatto",
+   "tottori.tokumaru",
+   "tottori.tampi",
+   "tottori.wakasa"
+  ],
+  "runSec": [
+   130,
+   150,
+   220,
+   270,
+   280,
+   190,
+   220,
+   430
+  ]
+ },
+ {
+  "id": "tottori.chizukyu",
+  "name": {
+   "ja": "智頭急行",
+   "ko": "지즈 급행",
+   "en": "Chizu Express"
+  },
+  "color": "#D23F57",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "chizukyu",
+  "directions": {
+   "forward": {
+    "ja": "大原方面",
+    "ko": "오하라 방면",
+    "en": "for Ohara"
+   },
+   "reverse": {
+    "ja": "智頭方面",
+    "ko": "지즈 방면",
+    "en": "for Chizu"
+   }
+  },
+  "stations": [
+   "tottori.chizu",
+   "tottori.koi_yamagata",
+   "tottori.yamasato"
+  ],
+  "runSec": [
+   500,
+   300
+  ]
+ },
+ {
+  "id": "tottori.hakubi",
+  "name": {
+   "ja": "伯備線",
+   "ko": "하쿠비선",
+   "en": "Hakubi Line"
+  },
+  "color": "#12998A",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "新見方面",
+    "ko": "니이미 방면",
+    "en": "for Niimi"
+   },
+   "reverse": {
+    "ja": "米子方面",
+    "ko": "요나고 방면",
+    "en": "for Yonago"
+   }
+  },
+  "stations": [
+   "tottori.hoki_daisen",
+   "tottori.kishimoto",
+   "tottori.hoki_mizoguchi",
+   "tottori.ebi",
+   "tottori.muko",
+   "tottori.neu",
+   "tottori.kurosaka",
+   "tottori.kamisuge",
+   "tottori.shoyama",
+   "tottori.kami_iwami"
+  ],
+  "runSec": [
+   460,
+   430,
+   720,
+   190,
+   380,
+   560,
+   370,
+   290,
+   600
+  ]
+ },
+ {
+  "id": "tottori.matsukaze",
+  "name": {
+   "ja": "特急スーパーまつかぜ",
+   "ko": "특급 슈퍼 마쓰카제",
+   "en": "Ltd. Exp. Super Matsukaze"
+  },
+  "color": "#C8372D",
+  "loop": false,
+  "dwellSec": 60,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "米子方面",
+    "ko": "요나고 방면",
+    "en": "for Yonago"
+   },
+   "reverse": {
+    "ja": "鳥取方面",
+    "ko": "돗토리 방면",
+    "en": "for Tottori"
+   }
+  },
+  "stations": [
+   "tottori.tottori",
+   "tottori.tottori_daigakumae",
+   "tottori.hamamura",
+   "tottori.kurayoshi",
+   "tottori.urayasu",
+   "tottori.yonago"
+  ],
+  "runSec": [
+   320,
+   610,
+   1000,
+   790,
+   1690
+  ]
+ },
+ {
+  "id": "tottori.hakuto",
+  "name": {
+   "ja": "特急スーパーはくと・いなば",
+   "ko": "특급 슈퍼 하쿠토·이나바",
+   "en": "Ltd. Exp. Super Hakuto / Inaba"
+  },
+  "color": "#F2A500",
+  "loop": false,
+  "dwellSec": 60,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "京都・岡山方面",
+    "ko": "교토·오카야마 방면",
+    "en": "for Kyoto / Okayama"
+   },
+   "reverse": {
+    "ja": "鳥取方面",
+    "ko": "돗토리 방면",
+    "en": "for Tottori"
+   }
+  },
+  "stations": [
+   "tottori.kurayoshi",
+   "tottori.tottori",
+   "tottori.koge",
+   "tottori.chizu"
+  ],
+  "runSec": [
+   1740,
+   510,
+   870
+  ]
+ },
+ {
+  "id": "tottori.yakumo",
+  "name": {
+   "ja": "特急やくも",
+   "ko": "특급 야쿠모",
+   "en": "Ltd. Exp. Yakumo"
+  },
+  "color": "#E0607E",
+  "loop": false,
+  "dwellSec": 60,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "岡山方面",
+    "ko": "오카야마 방면",
+    "en": "for Okayama"
+   },
+   "reverse": {
+    "ja": "米子方面",
+    "ko": "요나고 방면",
+    "en": "for Yonago"
+   }
+  },
+  "stations": [
+   "tottori.yonago",
+   "tottori.neu",
+   "tottori.shoyama"
+  ],
+  "runSec": [
+   1150,
+   710
+  ]
+ }
+]

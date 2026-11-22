@@ -1,0 +1,1725 @@
+[
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   4,
+   7
+  ],
+  "ja": "おはようございます。早起きですね、いってらっしゃい",
+  "ko": "좋은 아침이에요. 일찍 나오셨네요, 잘 다녀오세요",
+  "en": "Good morning, early bird! Have a great day"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   4,
+   7
+  ],
+  "ja": "朝いちばんの電車は 空いていて気持ちいいですよ",
+  "ko": "아침 첫 열차는 한산해서 기분이 좋아요",
+  "en": "The earliest trains are quiet and pleasant"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   4,
+   7
+  ],
+  "ja": "まだ外は静か。今日もいい一日になりますように",
+  "ko": "아직 바깥은 조용하네요. 오늘도 좋은 하루 되세요",
+  "en": "It's still quiet out there. Have a wonderful day"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   5,
+   10
+  ],
+  "day": "wd",
+  "ja": "おはようございます。今日もいってらっしゃい！",
+  "ko": "좋은 아침이에요. 오늘도 잘 다녀오세요!",
+  "en": "Good morning! Have a nice day!"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   7,
+   9
+  ],
+  "day": "wd",
+  "ja": "通勤・通学おつかれさまです。無理せずいきましょう",
+  "ko": "출근·등교 수고 많아요. 무리하지 말고 가요",
+  "en": "Off to work or school? Take it easy out there"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   6,
+   11
+  ],
+  "day": "we",
+  "ja": "おはようございます。休日のおでかけ、楽しんでね",
+  "ko": "좋은 아침이에요. 휴일 나들이 즐겁게 다녀오세요",
+  "en": "Good morning! Enjoy your day out"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   6,
+   11
+  ],
+  "day": "we",
+  "ja": "休日の朝は 電車もゆったり。いい一日を",
+  "ko": "휴일 아침은 열차도 여유로워요. 좋은 하루 보내세요",
+  "en": "Weekend mornings are relaxed on the trains. Have a good one"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   4,
+   11
+  ],
+  "ja": "おはようございます。つぎの電車をご案内します",
+  "ko": "좋은 아침이에요. 다음 열차를 안내해 드릴게요",
+  "en": "Good morning! Let me show you the next train"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   5,
+   11
+  ],
+  "day": "1",
+  "ja": "月曜の朝です。今週もゆっくりいきましょう",
+  "ko": "월요일 아침이에요. 이번 주도 천천히 가요",
+  "en": "Monday morning. Let's ease into the week"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   11,
+   17
+  ],
+  "ja": "こんにちは。つぎの電車もご案内します",
+  "ko": "안녕하세요. 다음 열차도 안내해 드릴게요",
+  "en": "Hello! I'll guide you to the next train"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   11,
+   14
+  ],
+  "ja": "お昼どきですね。おなかは空いていませんか？",
+  "ko": "점심시간이네요. 배고프지 않으세요?",
+  "en": "It's lunchtime. Getting hungry?"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   10,
+   16
+  ],
+  "day": "wd",
+  "ja": "昼間は電車が空いていて おでかけ日和です",
+  "ko": "낮에는 열차가 한산해서 나들이하기 좋아요",
+  "en": "Midday trains are quiet. A good time to travel"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   10,
+   17
+  ],
+  "ja": "こんにちは。今日はどちらまで？",
+  "ko": "안녕하세요. 오늘은 어디까지 가세요?",
+  "en": "Hello! Where are you headed today?"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   14,
+   17
+  ],
+  "ja": "午後もおつかれさまです。ひと休みも大事ですよ",
+  "ko": "오후에도 수고 많아요. 잠깐 쉬어 가는 것도 중요해요",
+  "en": "Good afternoon! Remember to take a little break"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   11,
+   17
+  ],
+  "day": "we",
+  "ja": "休日のおでかけ日和。帰りの時間もお忘れなく",
+  "ko": "나들이하기 좋은 휴일이에요. 돌아갈 시간도 잊지 마세요",
+  "en": "A fine day off for an outing. Mind the time for getting back"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   17,
+   23
+  ],
+  "ja": "おつかれさまでした。気をつけて帰ってね",
+  "ko": "수고 많으셨어요. 조심히 들어가세요",
+  "en": "Good work today. Get home safe"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   17,
+   22
+  ],
+  "ja": "今日も一日おつかれさまでした",
+  "ko": "오늘 하루도 수고 많으셨어요",
+  "en": "Well done getting through another day"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   18,
+   23
+  ],
+  "ja": "こんばんは。帰り道もご案内します",
+  "ko": "안녕하세요. 돌아가는 길도 안내해 드릴게요",
+  "en": "Good evening! I'll see you home"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   17,
+   24
+  ],
+  "day": "5",
+  "ja": "金曜の夜ですね。一週間おつかれさまでした",
+  "ko": "금요일 밤이네요. 한 주 동안 수고 많으셨어요",
+  "en": "It's Friday night. Well done this week!"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   20,
+   23
+  ],
+  "ja": "夜のおでかけですか？ 帰りの時間も気にしてね",
+  "ko": "밤 나들이 가세요? 돌아올 시간도 챙기세요",
+  "en": "Heading out tonight? Keep an eye on the time for getting back"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   20,
+   24
+  ],
+  "ja": "夜の電車は うとうとしがち。乗りすごしに注意",
+  "ko": "밤 열차에서는 졸기 쉬워요. 내릴 역을 지나치지 않게 주의",
+  "en": "It's easy to doze off at night. Don't miss your stop"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   20,
+   24
+  ],
+  "ja": "遅くまでおつかれさまです。足元に気をつけて",
+  "ko": "늦게까지 수고 많아요. 발밑 조심하세요",
+  "en": "Long day? Watch your step on the way home"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   23,
+   1
+  ],
+  "ja": "そろそろ終電の時間です。行き先をもう一度確認",
+  "ko": "슬슬 막차 시간이에요. 행선지를 다시 한번 확인하세요",
+  "en": "Last trains are near. Double-check where yours is going"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   23,
+   4
+  ],
+  "ja": "夜おそくまでおつかれさまです。気をつけて帰ってね",
+  "ko": "밤늦게까지 수고 많아요. 조심히 들어가세요",
+  "en": "You're out late. Get home safe"
+ },
+ {
+  "c": "greet",
+  "k": "help",
+  "h": [
+   22,
+   1
+  ],
+  "ja": "終電近くは 途中の駅どまりの電車に注意",
+  "ko": "막차 무렵에는 중간 역까지만 가는 열차에 주의하세요",
+  "en": "Near last-train time, watch for trains that stop short"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   1,
+   4
+  ],
+  "ja": "電車が終わった時間です。始発までゆっくり休んで",
+  "ko": "열차 운행이 끝난 시간이에요. 첫차까지 푹 쉬세요",
+  "en": "Trains have stopped for the night. Rest up until the first one"
+ },
+ {
+  "c": "greet",
+  "k": "fun",
+  "h": [
+   1,
+   4
+  ],
+  "ja": "深夜ですね。始発は だいたい朝5時ごろからです",
+  "ko": "한밤중이네요. 첫차는 대체로 아침 5시쯤부터예요",
+  "en": "It's the middle of the night. First trains run from around 5 am"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "降りる人が先、乗るのはそのあとで",
+  "ko": "내리는 사람이 먼저, 타는 건 그다음이에요",
+  "en": "Let people off first, then board"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "混んだ車内では リュックは前に抱えるか足元へ",
+  "ko": "붐비는 열차 안에서는 배낭을 앞으로 메거나 발밑에 두세요",
+  "en": "On crowded trains, wear your backpack in front or set it down"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "優先席は 必要な方にゆずりましょう",
+  "ko": "노약자석은 필요한 분께 양보해요",
+  "en": "Please offer priority seats to those who need them"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "車内での通話はひかえめに。マナーモードでどうぞ",
+  "ko": "열차 안에서 통화는 삼가고 매너 모드로 해 주세요",
+  "en": "Keep your phone on silent and avoid calls on the train"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "エスカレーターは歩かず 立ち止まって乗りましょう",
+  "ko": "에스컬레이터에서는 걷지 말고 멈춰 서서 타요",
+  "en": "Stand still on escalators rather than walking"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "ホームでは 足元の印に合わせて並びましょう",
+  "ko": "승강장에서는 바닥 표시에 맞춰 줄을 서요",
+  "en": "Queue at the markings on the platform floor"
+ },
+ {
+  "c": "manners",
+  "k": "warn",
+  "ja": "かけこみ乗車はあぶないので やめましょう",
+  "ko": "뛰어들어 타는 건 위험하니 하지 말아요",
+  "en": "Don't dash for closing doors. It's dangerous"
+ },
+ {
+  "c": "manners",
+  "k": "warn",
+  "ja": "歩きスマホはあぶないです。ホームでは特に注意",
+  "ko": "걸으면서 스마트폰을 보면 위험해요. 승강장에서는 특히 주의",
+  "en": "Don't walk while looking at your phone, least of all on platforms"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "黄色い点字ブロックの内側で 電車を待ちましょう",
+  "ko": "노란 점자 블록 안쪽에서 열차를 기다려요",
+  "en": "Wait for the train behind the yellow tactile strip"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "座るときは 少しつめて 一人でも多く",
+  "ko": "앉을 때는 조금씩 좁혀서 한 사람이라도 더 앉아요",
+  "en": "Scoot over when seated so one more person can sit"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "足を組んだり投げ出したりせず すっきり座ろう",
+  "ko": "다리를 꼬거나 뻗지 말고 단정하게 앉아요",
+  "en": "Keep your legs tucked in rather than crossed or stretched out"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "イヤホンの音もれに気をつけて",
+  "ko": "이어폰 소리가 새지 않게 주의하세요",
+  "en": "Mind the sound leaking from your earphones"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "ドアの前に立ったら 駅で一度おりて道をあけよう",
+  "ko": "문 앞에 서 있다면 역에서 잠깐 내려 길을 비켜 줘요",
+  "en": "Standing by the door? Step off briefly to let others out"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "大きな荷物は 混む時間をさけると安心です",
+  "ko": "큰 짐이 있을 때는 붐비는 시간을 피하면 편해요",
+  "en": "With big luggage, travel outside the busy hours"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "スーツケースは 手をはなさず 自分の前に",
+  "ko": "여행 가방은 손에서 놓지 말고 자기 앞에 두세요",
+  "en": "Keep hold of your suitcase and keep it in front of you"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "香水や食べ物のにおいにも ちょっと気くばりを",
+  "ko": "향수나 음식 냄새도 조금만 배려해 주세요",
+  "en": "Be mindful of strong scents like perfume or food"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "車内では 会話の声は少しひかえめに",
+  "ko": "열차 안에서는 대화 소리를 조금 낮춰 주세요",
+  "en": "Keep conversations quiet on the train"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "ベビーカーはたたまずに乗れます。まわりも見守って",
+  "ko": "유모차는 접지 않고 탈 수 있어요. 주변에서도 배려해 주세요",
+  "en": "Strollers can board unfolded. Please give them room"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "具合が悪い人を見かけたら 駅員や非常ボタンへ",
+  "ko": "몸이 안 좋은 사람을 보면 역무원이나 비상 버튼으로 알려요",
+  "en": "If someone looks unwell, tell staff or use the emergency button"
+ },
+ {
+  "c": "manners",
+  "k": "warn",
+  "ja": "線路に物を落としたら 自分で拾わず駅員へ",
+  "ko": "선로에 물건을 떨어뜨리면 직접 줍지 말고 역무원에게",
+  "en": "Dropped something on the tracks? Never climb down. Ask the staff"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "階段やエスカレーターの前で 立ち止まらないでね",
+  "ko": "계단이나 에스컬레이터 앞에서는 멈춰 서지 마세요",
+  "en": "Please don't stop right at the top of stairs or escalators"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "ごみは持ち帰るか 駅のごみ箱へ",
+  "ko": "쓰레기는 가져가거나 역 쓰레기통에 버려요",
+  "en": "Take your rubbish with you or use the station bins"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "マタニティマークやヘルプマークの方に 席をゆずろう",
+  "ko": "임산부 배지나 헬프 마크를 단 분께 자리를 양보해요",
+  "en": "Offer your seat to people wearing maternity or help-mark badges"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "車いすやベビーカーの方に エレベーターをゆずろう",
+  "ko": "휠체어나 유모차 이용자에게 엘리베이터를 양보해요",
+  "en": "Give wheelchair and stroller users priority for the elevators"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "ぬれた手すりや床に注意。あわてず歩きましょう",
+  "ko": "젖은 손잡이와 바닥에 주의. 서두르지 말고 걸어요",
+  "en": "Watch for wet handrails and floors. No need to rush"
+ },
+ {
+  "c": "manners",
+  "k": "help",
+  "ja": "座席に荷物を置かず ひざの上か棚へ",
+  "ko": "좌석에 짐을 두지 말고 무릎 위나 선반에 올려요",
+  "en": "Keep bags on your lap or the rack, not on the seat"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "ICカードの残高は 改札を通るときに表示されます",
+  "ko": "IC카드 잔액은 개찰구를 지날 때 표시돼요",
+  "en": "Your IC card balance shows each time you pass a gate"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "残高が足りないときは 改札内の精算機でチャージ",
+  "ko": "잔액이 모자라면 개찰구 안 정산기에서 충전해요",
+  "en": "Short on balance? Top up at a fare machine inside the gates"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "忘れ物に気づいたら まず近くの駅員へ",
+  "ko": "물건을 두고 내렸다면 먼저 가까운 역무원에게 알려요",
+  "en": "Left something behind? Tell the nearest station staff first"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "忘れ物は 乗った時刻と何号車かを伝えると早いです",
+  "ko": "분실물은 탄 시각과 몇 호차인지 알려 주면 찾기 쉬워요",
+  "en": "For lost items, knowing the time and car number helps a lot"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "乗りこしたら 精算機か改札の窓口で精算できます",
+  "ko": "더 멀리 왔다면 정산기나 개찰구 창구에서 정산할 수 있어요",
+  "en": "Travelled past your ticket? Settle up at a fare adjustment machine"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "終電の時刻は 路線や行き先でちがいます。早めに確認",
+  "ko": "막차 시각은 노선과 행선지에 따라 달라요. 미리 확인하세요",
+  "en": "Last-train times differ by line and destination. Check early"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "始発は だいたい朝5時ごろから動きます",
+  "ko": "첫차는 대체로 아침 5시쯤부터 다녀요",
+  "en": "First trains start running at around 5 in the morning"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "遅れたときは 改札で「遅延証明書」をもらえます",
+  "ko": "열차가 지연되면 개찰구에서 「지연 증명서」를 받을 수 있어요",
+  "en": "If trains are delayed, you can get a delay certificate at the gate"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "運転見合わせのときは「振替輸送」の案内を確認",
+  "ko": "운행이 중단되면 「대체 수송」 안내를 확인하세요",
+  "en": "When service stops, look for notices about alternative routes"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "コインロッカーは 大きな駅ほど早く埋まります",
+  "ko": "코인 로커는 큰 역일수록 빨리 차요",
+  "en": "Coin lockers fill up fastest at the biggest stations"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "コインロッカーは ICカードで払えるものも多いです",
+  "ko": "코인 로커는 IC카드로 결제할 수 있는 곳도 많아요",
+  "en": "Many coin lockers accept IC card payment"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "車いす・ベビーカーのスペースは 車両の端にあります",
+  "ko": "휠체어·유모차 공간은 차량 끝에 있어요",
+  "en": "Wheelchair and stroller spaces are at the ends of the cars"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "迷ったら 改札の駅員にたずねるのが近道",
+  "ko": "헷갈리면 개찰구 역무원에게 묻는 게 지름길이에요",
+  "en": "Lost? Asking the staff at the gate is the quickest fix"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "特急やグリーン車は 乗車券のほかに別料金が必要",
+  "ko": "특급이나 그린샤(특실)는 승차권 외에 추가 요금이 필요해요",
+  "en": "Limited expresses and Green Cars need an extra ticket"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "新幹線の改札は 在来線とは別。時間に余裕を",
+  "ko": "신칸센 개찰구는 일반 노선과 따로 있어요. 시간을 넉넉히",
+  "en": "Shinkansen gates are separate from local lines. Allow extra time"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "同じホームでも 行き先のちがう電車が来ます。表示を確認",
+  "ko": "같은 승강장에도 행선지가 다른 열차가 와요. 표시를 확인하세요",
+  "en": "Trains for different places share a platform. Check the display"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "乗り換えの少ないルートは 少し遠回りでも楽です",
+  "ko": "환승이 적은 경로는 조금 돌아가도 편해요",
+  "en": "A route with fewer changes can be easier, even if longer"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "「回送」と出ている電車には 乗れません",
+  "ko": "「회송」이라고 표시된 열차는 탈 수 없어요",
+  "en": "Trains marked \"Not in service\" (回送) can't be boarded"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "「当駅どまり」は ここが終点。そのまま乗らないでね",
+  "ko": "「당역 종착」은 여기가 종점이에요. 계속 타고 있지 마세요",
+  "en": "\"Terminates here\" means the last stop. Everyone gets off"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "改札でエラーが出たら あわてず駅員のいる窓口へ",
+  "ko": "개찰구에서 오류가 나면 당황하지 말고 역무원 창구로 가요",
+  "en": "Gate beeped at you? No worries, just go to the staffed window"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "電車が来るときの風は 思ったより強いです。帽子に注意",
+  "ko": "열차가 들어올 때 바람은 생각보다 세요. 모자 조심하세요",
+  "en": "Arriving trains kick up a strong gust. Hold on to your hat"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "おりる駅が近づいたら 早めにドアのほうへ",
+  "ko": "내릴 역이 가까워지면 미리 문 쪽으로 이동해요",
+  "en": "As your stop nears, start moving towards the door early"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "発車メロディは 駅ごとにちがいます。耳をすませてみて",
+  "ko": "발차 멜로디는 역마다 달라요. 귀 기울여 들어 보세요",
+  "en": "Each station has its own departure jingle. Listen for it"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "ご当地の曲を 発車メロディに使う駅もあります",
+  "ko": "그 지역과 인연 있는 노래를 발차 멜로디로 쓰는 역도 있어요",
+  "en": "Some stations use a tune with a local connection as their jingle"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "日本初の鉄道は 1872年に新橋〜横浜で開業しました",
+  "ko": "일본 최초의 철도는 1872년 신바시~요코하마에서 개업했어요",
+  "en": "Japan's first railway opened in 1872, Shimbashi to Yokohama"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "駅員の「指差し確認」は 安全のための大事な動作",
+  "ko": "역무원의 「지적 확인」은 안전을 위한 중요한 동작이에요",
+  "en": "Staff point and call out checks. It's a proven safety habit"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "電車のドア横の席は 人気の特等席",
+  "ko": "열차 문 옆자리는 인기 있는 명당이에요",
+  "en": "The seat right beside the door is everyone's favourite"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "駅の「0キロポスト」は 路線の起点のしるし",
+  "ko": "역의 「0km 표지」는 노선의 기점을 나타내요",
+  "en": "A \"0 km post\" in a station marks where a line begins"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "つり革には 丸い形と三角の形があります。さがしてみて",
+  "ko": "열차 손잡이는 동그란 것과 세모난 것이 있어요. 찾아보세요",
+  "en": "Hand straps come in round and triangular shapes. Spot both!"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "JRの「モハ」「クハ」は 車両の役割を表す記号",
+  "ko": "JR의 「모하」「쿠하」는 차량의 역할을 나타내는 기호예요",
+  "en": "Codes like モハ and クハ on JR cars tell what each car does"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "駅のホームの番号は「番線」とよびます",
+  "ko": "역 승강장 번호는 「번선(番線)」이라고 불러요",
+  "en": "Platform numbers are called \"bansen\" (番線) in Japanese"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "車掌さんがいる電車では いちばん後ろに乗っています",
+  "ko": "차장이 있는 열차에서는 맨 뒤 칸에 타고 있어요",
+  "en": "On trains with a conductor, they ride in the very last car"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "東海道新幹線は 1964年開業。世界初の高速鉄道です",
+  "ko": "도카이도 신칸센은 1964년 개업. 세계 최초의 고속철도예요",
+  "en": "The Tokaido Shinkansen (1964) was the world's first high-speed rail"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "日本の電車は 左側通行。道路の車と同じです",
+  "ko": "일본 열차는 좌측통행. 도로의 자동차와 같아요",
+  "en": "Trains in Japan keep left, just like cars on the road"
+ },
+ {
+  "c": "season",
+  "k": "help",
+  "m": [
+   "03-20",
+   "04-10"
+  ],
+  "ja": "車窓から桜が見える季節です。外をながめてみて",
+  "ko": "차창 밖으로 벚꽃이 보이는 계절이에요. 밖을 내다보세요",
+  "en": "You can spot cherry blossoms from the train window now"
+ },
+ {
+  "c": "season",
+  "k": "help",
+  "m": [
+   "04-20",
+   "05-31"
+  ],
+  "ja": "風が気持ちいい季節。ひと駅歩いてみるのもいいですね",
+  "ko": "바람이 기분 좋은 계절. 한 정거장 걸어 보는 것도 좋아요",
+  "en": "Lovely weather for walking. Why not stroll one stop?"
+ },
+ {
+  "c": "season",
+  "k": "help",
+  "m": [
+   "06-07",
+   "07-15"
+  ],
+  "ja": "梅雨の季節。折りたたみ傘があると安心です",
+  "ko": "장마철이에요. 접는 우산이 있으면 든든해요",
+  "en": "It's the rainy season. A folding umbrella is handy"
+ },
+ {
+  "c": "season",
+  "k": "help",
+  "m": [
+   "06-07",
+   "07-15"
+  ],
+  "ja": "雨の日が多い季節。駅の床や階段はすべりやすいです",
+  "ko": "비 오는 날이 많은 계절. 역 바닥과 계단이 미끄러워요",
+  "en": "Lots of rain this season. Station floors and stairs get slippery"
+ },
+ {
+  "c": "season",
+  "k": "help",
+  "m": [
+   "07-01",
+   "09-15"
+  ],
+  "ja": "暑い季節。ホームで待つあいだも水分補給を",
+  "ko": "더운 계절이에요. 승강장에서 기다릴 때도 물을 마셔요",
+  "en": "It's hot out. Keep drinking water, even while you wait"
+ },
+ {
+  "c": "season",
+  "k": "help",
+  "m": [
+   "07-01",
+   "09-15"
+  ],
+  "ja": "車内は冷房がきいています。はおるものがあると安心",
+  "ko": "열차 안은 냉방이 강해요. 걸칠 옷이 있으면 좋아요",
+  "en": "Trains are well air-conditioned. A light layer helps"
+ },
+ {
+  "c": "season",
+  "k": "help",
+  "m": [
+   "07-15",
+   "08-31"
+  ],
+  "ja": "浴衣のときは 階段とホームのすき間に気をつけて",
+  "ko": "유카타 차림일 때는 계단과 승강장 틈을 조심하세요",
+  "en": "In a yukata? Take care on stairs and at the platform gap"
+ },
+ {
+  "c": "season",
+  "k": "help",
+  "m": [
+   "07-20",
+   "08-31"
+  ],
+  "ja": "夏休みの時期。昼間も家族連れでにぎやかです",
+  "ko": "여름방학이에요. 낮에도 가족 나들이객으로 북적여요",
+  "en": "Summer holidays: daytime trains are lively with families"
+ },
+ {
+  "c": "season",
+  "k": "warn",
+  "m": [
+   "08-15",
+   "10-10"
+  ],
+  "ja": "台風の季節。計画運休が出ることも。情報を確認",
+  "ko": "태풍철이에요. 계획 운휴가 있을 수 있어요. 정보를 확인하세요",
+  "en": "Typhoon season: planned suspensions can happen. Check for updates"
+ },
+ {
+  "c": "season",
+  "k": "help",
+  "m": [
+   "08-15",
+   "10-10"
+  ],
+  "ja": "強い風や大雨の日は 電車が遅れやすくなります",
+  "ko": "바람이 세거나 비가 많이 오는 날은 열차가 늦어지기 쉬워요",
+  "en": "Trains tend to run late on days of strong wind or heavy rain"
+ },
+ {
+  "c": "season",
+  "k": "help",
+  "m": [
+   "10-01",
+   "11-10"
+  ],
+  "ja": "秋晴れの季節。おでかけコースを歩くのにぴったり",
+  "ko": "맑은 가을날이에요. 나들이 코스를 걷기에 딱 좋아요",
+  "en": "Clear autumn days are perfect for trying a day-out course"
+ },
+ {
+  "c": "season",
+  "k": "help",
+  "m": [
+   "11-20",
+   "12-25"
+  ],
+  "ja": "イルミネーションの季節。夜のおでかけは あたたかく",
+  "ko": "일루미네이션 계절이에요. 밤 나들이는 따뜻하게 입고 가요",
+  "en": "Illumination season! Wrap up warm for evening outings"
+ },
+ {
+  "c": "season",
+  "k": "help",
+  "m": [
+   "12-01",
+   "02-28"
+  ],
+  "ja": "車内はあたたかいので 上着で調節できると快適です",
+  "ko": "열차 안은 따뜻해요. 겉옷으로 조절하면 편해요",
+  "en": "Trains are heated, so layers you can take off help"
+ },
+ {
+  "c": "season",
+  "k": "help",
+  "m": [
+   "11-15",
+   "03-15"
+  ],
+  "ja": "冬の座席があたたかいのは 座席の下のヒーターのおかげ",
+  "ko": "겨울에 좌석이 따뜻한 건 좌석 아래 히터 덕분이에요",
+  "en": "Warm seat in winter? Thank the heater under the bench"
+ },
+ {
+  "c": "season",
+  "k": "help",
+  "m": [
+   "12-01",
+   "02-28"
+  ],
+  "ja": "空気が乾く季節。せきエチケットにも気くばりを",
+  "ko": "공기가 건조한 계절이에요. 기침 예절도 챙겨 주세요",
+  "en": "Dry winter air: please cover coughs and sneezes"
+ },
+ {
+  "c": "season",
+  "k": "help",
+  "m": [
+   "12-20",
+   "12-25"
+  ],
+  "ja": "クリスマスの時期。夜の街と駅はにぎわいます",
+  "ko": "크리스마스 무렵이에요. 밤거리와 역이 북적여요",
+  "en": "It's Christmas time. Evenings in town and stations are lively"
+ },
+ {
+  "c": "season",
+  "k": "help",
+  "m": [
+   "12-30",
+   "01-03"
+  ],
+  "ja": "年末年始は 休日ダイヤの路線が多いです。時刻に注意",
+  "ko": "연말연시에는 휴일 시간표로 다니는 노선이 많아요. 시각에 주의",
+  "en": "Many lines run holiday timetables over New Year. Check times"
+ },
+ {
+  "c": "season",
+  "k": "help",
+  "m": [
+   "01-01",
+   "01-03"
+  ],
+  "ja": "あけましておめでとうございます。今年もよろしくね",
+  "ko": "새해 복 많이 받으세요. 올해도 잘 부탁해요",
+  "en": "Happy New Year! Here's to another year of rides together"
+ },
+ {
+  "c": "season",
+  "k": "help",
+  "m": [
+   "01-10",
+   "02-25"
+  ],
+  "ja": "受験シーズン。受験生のみなさん、応援しています",
+  "ko": "입시철이에요. 수험생 여러분, 응원할게요",
+  "en": "Exam season. Good luck to all the students out there!"
+ },
+ {
+  "c": "season",
+  "k": "help",
+  "m": [
+   "02-15",
+   "04-20"
+  ],
+  "ja": "花粉の季節。マスクやめがねがあると楽です",
+  "ko": "꽃가루 철이에요. 마스크나 안경이 있으면 편해요",
+  "en": "Pollen season: a mask or glasses can make the ride easier"
+ },
+ {
+  "c": "season",
+  "k": "help",
+  "m": [
+   "02-15",
+   "04-20"
+  ],
+  "ja": "乗る前に服をはらうと 花粉を車内に持ちこみにくい",
+  "ko": "타기 전에 옷을 털면 꽃가루를 열차 안에 덜 들여와요",
+  "en": "Brush off your coat before boarding to keep pollen out"
+ },
+ {
+  "c": "weather",
+  "k": "help",
+  "wx": "rain",
+  "ja": "傘の水滴は 乗る前に軽くはらってね",
+  "ko": "우산의 물기는 타기 전에 가볍게 털어 주세요",
+  "en": "Shake the drops off your umbrella before you board"
+ },
+ {
+  "c": "weather",
+  "k": "help",
+  "wx": "wet",
+  "ja": "ぬれた傘は たたんで 人に当たらないように",
+  "ko": "젖은 우산은 접어서 다른 사람에게 닿지 않게 해요",
+  "en": "Fold wet umbrellas and keep them away from others"
+ },
+ {
+  "c": "weather",
+  "k": "help",
+  "wx": "rain",
+  "ja": "雨の日は 傘の忘れ物が多い日。おりるとき確認",
+  "ko": "비 오는 날은 우산을 많이 두고 내려요. 내릴 때 확인하세요",
+  "en": "Umbrellas are the top lost item on rainy days. Check as you leave"
+ },
+ {
+  "c": "weather",
+  "k": "warn",
+  "wx": "wet",
+  "ja": "階段がぬれています。手すりを使うと安心です",
+  "ko": "계단이 젖어 있어요. 손잡이를 잡으면 안전해요",
+  "en": "The stairs are wet. Use the handrail to be safe"
+ },
+ {
+  "c": "weather",
+  "k": "help",
+  "wx": "rain",
+  "ja": "ホームのはしは 雨がふきこみます。屋根の下で待とう",
+  "ko": "승강장 끝은 비가 들이쳐요. 지붕 아래에서 기다려요",
+  "en": "Rain blows in at the platform ends. Wait under the roof"
+ },
+ {
+  "c": "weather",
+  "k": "warn",
+  "wx": "snow",
+  "ja": "雪の日は 電車が遅れたり本数が減ったりします",
+  "ko": "눈 오는 날은 열차가 늦거나 운행이 줄어들어요",
+  "en": "Snow can delay trains or cut the number running"
+ },
+ {
+  "c": "weather",
+  "k": "warn",
+  "wx": "snow",
+  "ja": "雪でホームや階段がすべります。小またでゆっくり",
+  "ko": "눈 때문에 승강장과 계단이 미끄러워요. 종종걸음으로 천천히",
+  "en": "Platforms and stairs are icy. Take small, slow steps"
+ },
+ {
+  "c": "weather",
+  "k": "help",
+  "wx": "snow",
+  "ja": "雪の日は 早めの帰宅が安心です",
+  "ko": "눈 오는 날은 일찍 귀가하는 게 안심이에요",
+  "en": "On snowy days, heading home early is the safe bet"
+ },
+ {
+  "c": "weather",
+  "k": "help",
+  "wx": "later",
+  "ja": "このあと天気がくずれそう。折りたたみ傘をかばんに",
+  "ko": "이따가 날씨가 나빠질 것 같아요. 접는 우산을 가방에 넣어요",
+  "en": "The weather may turn later. Pop a folding umbrella in your bag"
+ },
+ {
+  "c": "weather",
+  "k": "help",
+  "wx": "later",
+  "ja": "雨の前に 用事をすませると楽ですよ",
+  "ko": "비가 오기 전에 볼일을 마치면 편해요",
+  "en": "Getting errands done before the rain makes life easier"
+ },
+ {
+  "c": "weather",
+  "k": "help",
+  "wx": "hot",
+  "ja": "今日は暑いです。こまめに水分をとってね",
+  "ko": "오늘은 더워요. 물을 자주 마셔요",
+  "en": "It's hot today. Keep sipping water"
+ },
+ {
+  "c": "weather",
+  "k": "help",
+  "wx": "hot",
+  "ja": "ホームは熱がこもります。日かげで待ちましょう",
+  "ko": "승강장은 열기가 차요. 그늘에서 기다려요",
+  "en": "Platforms trap the heat. Wait in the shade"
+ },
+ {
+  "c": "weather",
+  "k": "help",
+  "wx": "hot",
+  "ja": "暑い日は 駅の待合室や涼しい場所でひと休み",
+  "ko": "더운 날에는 역 대합실이나 시원한 곳에서 잠깐 쉬어요",
+  "en": "On hot days, rest in a waiting room or somewhere cool"
+ },
+ {
+  "c": "weather",
+  "k": "warn",
+  "wx": "hot",
+  "ja": "気分が悪くなったら がまんせず駅員に声をかけて",
+  "ko": "몸이 안 좋아지면 참지 말고 역무원에게 말해요",
+  "en": "Feeling unwell in the heat? Don't push on. Tell the staff"
+ },
+ {
+  "c": "weather",
+  "k": "help",
+  "wx": "cold",
+  "ja": "今日は冷えます。ホームで待つときは あたたかくして",
+  "ko": "오늘은 추워요. 승강장에서 기다릴 때 따뜻하게 하세요",
+  "en": "It's cold today. Bundle up while you wait on the platform"
+ },
+ {
+  "c": "weather",
+  "k": "help",
+  "wx": "cold",
+  "ja": "寒い日は 待合室のある駅なら中で待つと楽です",
+  "ko": "추운 날에는 대합실이 있는 역이면 안에서 기다려요",
+  "en": "On cold days, use the waiting room if the station has one"
+ },
+ {
+  "c": "weather",
+  "k": "help",
+  "wx": "cold",
+  "h": [
+   4,
+   10
+  ],
+  "ja": "朝は路面がこおることも。駅までの道も気をつけて",
+  "ko": "아침에는 길이 얼기도 해요. 역까지 가는 길도 조심하세요",
+  "en": "Roads can be icy in the morning. Take care on the way too"
+ },
+ {
+  "c": "weather",
+  "k": "help",
+  "wx": "sunny",
+  "h": [
+   8,
+   17
+  ],
+  "ja": "いい天気ですね。ひと駅ぶん歩くのもおすすめ",
+  "ko": "날씨가 좋네요. 한 정거장쯤 걸어 보는 것도 좋아요",
+  "en": "Lovely weather! Walking one stop is a nice idea"
+ },
+ {
+  "c": "weather",
+  "k": "help",
+  "wx": "cloudy",
+  "ja": "くもり空。念のため 折りたたみ傘があると安心",
+  "ko": "흐린 하늘이에요. 혹시 모르니 접는 우산이 있으면 든든해요",
+  "en": "Cloudy skies. A folding umbrella is good insurance"
+ },
+ {
+  "c": "crowd",
+  "k": "help",
+  "crowd": "busy",
+  "ja": "混んだ電車では リュックは前に、荷物は足元か棚へ",
+  "ko": "붐비는 열차에서는 배낭은 앞으로, 짐은 발밑이나 선반에",
+  "en": "On a packed train, bag in front; luggage on the rack or floor"
+ },
+ {
+  "c": "crowd",
+  "k": "help",
+  "crowd": "busy",
+  "ja": "ドア付近で立ち止まらず 奥へどうぞ",
+  "ko": "문 근처에 멈춰 서지 말고 안쪽으로 들어가요",
+  "en": "Please move inside, away from the doors"
+ },
+ {
+  "c": "crowd",
+  "k": "help",
+  "crowd": "calm",
+  "ja": "いまはすいています。ゆったり座れそうですよ",
+  "ko": "지금은 한산해요. 편하게 앉을 수 있겠어요",
+  "en": "It's quiet right now. You should get a seat easily"
+ },
+ {
+  "c": "crowd",
+  "k": "help",
+  "crowd": "calm",
+  "ja": "すいている時間です。車窓の景色を楽しんでね",
+  "ko": "한산한 시간이에요. 차창 풍경을 즐겨 보세요",
+  "en": "A calm time to ride. Enjoy the view from the window"
+ },
+ {
+  "c": "crowd",
+  "k": "help",
+  "crowd": "calm",
+  "ja": "すいているいまは 大きな荷物での移動にぴったり",
+  "ko": "한산한 지금은 큰 짐을 들고 이동하기 딱 좋아요",
+  "en": "Quiet trains like now are ideal for travelling with luggage"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "ja": "乗った駅は スタンプ帳に記録されます。MYからどうぞ",
+  "ko": "탄 역은 스탬프북에 기록돼요. MY에서 확인하세요",
+  "en": "Stations you ride to are saved in your stamp book under MY"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "ja": "「駅印帳」には 集めた駅のはんこが並びます",
+  "ko": "「역 도장첩」에는 모은 역 도장이 차곡차곡 쌓여요",
+  "en": "Your Station Seal Book fills up with the seals you collect"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "ja": "「車両図鑑」で 乗った電車をコレクションしよう",
+  "ko": "「차량 도감」에서 타 본 열차를 모아 봐요",
+  "en": "Collect the trains you ride in the Train Dex"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "ja": "めずらしい車両は のりばで見つかることも",
+  "ko": "희귀한 차량은 승강장에서 발견되기도 해요",
+  "en": "Rare trains sometimes turn up right here at the platform"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "ja": "ステッカーで お気に入りの駅を路線図にマークできます",
+  "ko": "스티커로 좋아하는 역을 노선도에 표시할 수 있어요",
+  "en": "Mark your favourite stations on the map with stickers"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "need": "route",
+  "ja": "ベルのボタンで「終電アラーム」をセットできます",
+  "ko": "종 버튼으로 「막차 알림」을 설정할 수 있어요",
+  "en": "Tap the bell to set a last-train alert"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "need": "route",
+  "ja": "朝が早い日は「始発アラーム」が便利です",
+  "ko": "아침 일찍 나서는 날에는 「첫차 알림」이 편해요",
+  "en": "Early start? The first-train alert has you covered"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "ja": "路線図の「おでかけコース」で 観光ルートをさがせます",
+  "ko": "노선도의 「나들이 코스」에서 관광 코스를 찾을 수 있어요",
+  "en": "Find sightseeing routes under Day-out courses on the route map"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "ja": "「シェアカード」で 集めたスタンプを友だちに見せよう",
+  "ko": "「공유 카드」로 모은 스탬프를 친구에게 보여 줘요",
+  "en": "Show off your stamps to friends with a share card"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "ja": "路線図の駅をタップすると 駅のヒントが見られます",
+  "ko": "노선도에서 역을 누르면 역 힌트를 볼 수 있어요",
+  "en": "Tap a station on the route map to see hints for it"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "ja": "「スタンプ地図」で 行った駅をひと目で確認",
+  "ko": "「스탬프 지도」에서 다녀온 역을 한눈에 확인해요",
+  "en": "The Stamp map shows every station you've visited at a glance"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "ja": "路線図は「夜の地図」にも切りかえられます",
+  "ko": "노선도는 「밤 지도」로도 바꿀 수 있어요",
+  "en": "You can switch the route map to a Night map"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "ja": "ホーム画面のウィジェットで つぎの電車がすぐわかります",
+  "ko": "홈 화면 위젯으로 다음 열차를 바로 알 수 있어요",
+  "en": "Add the home-screen widget to see your next train at a glance"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "ja": "MYでは 電車や屋根、発車メロディを着せかえできます",
+  "ko": "MY에서는 열차와 지붕, 발차 멜로디를 바꿀 수 있어요",
+  "en": "In MY you can restyle the train, roof and departure melody"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "ja": "移動するたびにコインがたまります。MYのアイテムに",
+  "ko": "이동할 때마다 코인이 쌓여요. MY 아이템에 써 보세요",
+  "en": "You earn coins on every trip. Spend them on MY items"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "ja": "路線の駅をぜんぶ集めると 限定アイテムがもらえます",
+  "ko": "노선의 역을 모두 모으면 한정 아이템을 받아요",
+  "en": "Collect every station on a line to earn a limited item"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "ja": "シェアカードの「今月のレポート」で ひと月をふり返ろう",
+  "ko": "공유 카드의 「이번 달 리포트」로 한 달을 돌아봐요",
+  "en": "Look back on your month with the share card's monthly report"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "ja": "よく使うルートは お気に入りに入れると すぐ呼び出せます",
+  "ko": "자주 쓰는 경로는 즐겨찾기에 넣으면 바로 불러올 수 있어요",
+  "en": "Save routes you use often as favourites for one-tap access"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "ja": "路線図のランドマークをタップすると 名所の紹介が見られます",
+  "ko": "노선도의 랜드마크를 누르면 명소 소개를 볼 수 있어요",
+  "en": "Tap a landmark on the route map to read about the sight"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "ja": "ふきだしをタップすると つぎのヒントが見られます",
+  "ko": "말풍선을 누르면 다음 힌트를 볼 수 있어요",
+  "en": "Tap my speech bubble to see the next tip"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "ja": "行先LEDに 好きな駅名を出せます。MYでためしてね",
+  "ko": "행선 LED에 좋아하는 역 이름을 띄울 수 있어요. MY에서 해 봐요",
+  "en": "Put any station name on the destination LED in MY"
+ },
+ {
+  "c": "app",
+  "k": "fun",
+  "ja": "はじめて行った駅では スタンプがもらえます",
+  "ko": "처음 간 역에서는 스탬프를 받을 수 있어요",
+  "en": "You get a stamp the first time you reach a station"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "ワンマン列車は うしろのドアから乗って 整理券をとることがあります",
+  "ko": "원맨 열차는 뒷문으로 타서 정리권을 뽑는 경우가 있어요",
+  "en": "On one-man trains you may board at the back and take a numbered ticket"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "無人駅でおりるときは 運転士さんの横で運賃を払います",
+  "ko": "무인역에서 내릴 때는 기관사 옆에서 요금을 내요",
+  "en": "At unstaffed stations, pay your fare by the driver as you get off"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "ドアは ボタンを押して開ける車両があります",
+  "ko": "버튼을 눌러 문을 여는 차량이 있어요",
+  "en": "On some trains you press a button to open the door"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "本数が少ない路線です。帰りの時刻は先に確認してね",
+  "ko": "운행 편수가 적은 노선이에요. 돌아오는 시각은 미리 확인하세요",
+  "en": "Trains are few here. Check your return time first"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "1本のがすと 1時間待つことも。時間に余裕をもって",
+  "ko": "한 대를 놓치면 1시간을 기다릴 수도 있어요. 여유 있게",
+  "en": "Miss one and the next may be an hour away. Leave time to spare"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "特急は 乗車券のほかに特急券が必要です",
+  "ko": "특급은 승차권 외에 특급권이 필요해요",
+  "en": "Limited expresses need a limited express ticket too"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "鳥取県は 日本でいちばん人口が少ない県です",
+  "ko": "돗토리현은 일본에서 인구가 가장 적은 현이에요",
+  "en": "Tottori is the least populated prefecture in Japan"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "山陰本線は 日本でいちばん長い在来線です",
+  "ko": "산인 본선은 일본에서 가장 긴 재래선이에요",
+  "en": "The San'in Main Line is the longest conventional line in Japan"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "大山は 中国地方でいちばん高い山。「伯耆富士」ともよばれます",
+  "ko": "다이센은 주고쿠 지방에서 가장 높은 산. 「호키 후지」라고도 불려요",
+  "en": "Mt. Daisen is the highest in Chugoku, \"Hoki-Fuji\""
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "境線の駅には 妖怪の愛称がついています",
+  "ko": "사카이선 역에는 요괴 애칭이 붙어 있어요",
+  "en": "Every Sakai Line station has a yokai nickname"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "恋山形駅は 駅じゅうがピンク色です",
+  "ko": "고이야마가타역은 역 전체가 분홍색이에요",
+  "en": "Koi-Yamagata station is pink all over"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "若桜鉄道の駅舎や鉄橋は 登録有形文化財です",
+  "ko": "와카사 철도의 역사와 철교는 등록 유형문화재예요",
+  "en": "Wakasa Railway's stations and bridges are registered cultural properties"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "鳥取砂丘は 東西およそ16km。歩くと足がしずみます",
+  "ko": "돗토리 사구는 동서로 약 16km. 걸으면 발이 푹푹 빠져요",
+  "en": "The Tottori Dunes run about 16 km. Your feet sink as you walk"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "米子は「山陰の商都」とよばれる商いの町です",
+  "ko": "요나고는 「산인의 상업 도시」라고 불리는 장사의 도시예요",
+  "en": "Yonago is known as the merchant town of San'in"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "二十世紀梨は 鳥取の名産。夏の終わりが食べごろ",
+  "ko": "니짓세이키 배는 돗토리의 명산물. 늦여름이 제철이에요",
+  "en": "Nijisseiki pears are Tottori's pride, best at the end of summer"
+ },
+ {
+  "c": "season",
+  "k": "fun",
+  "ja": "冬は松葉がにの季節。境港があつくなります",
+  "ko": "겨울은 대게의 계절. 사카이미나토가 북적여요",
+  "en": "Winter is snow crab season. Sakaiminato comes alive",
+  "m": [
+   11,
+   12,
+   1,
+   2,
+   3
+  ]
+ },
+ {
+  "c": "season",
+  "k": "warn",
+  "ja": "冬の山陰は 雪や強い風で 列車が遅れることがあります",
+  "ko": "겨울 산인은 눈이나 강풍으로 열차가 늦어질 수 있어요",
+  "en": "In winter, snow and strong winds can delay trains in San'in",
+  "m": [
+   12,
+   1,
+   2
+  ]
+ },
+ {
+  "c": "season",
+  "k": "fun",
+  "ja": "大山の紅葉が見ごろの季節です",
+  "ko": "다이센 단풍이 한창인 계절이에요",
+  "en": "The autumn leaves on Mt. Daisen are at their best",
+  "m": [
+   10,
+   11
+  ]
+ },
+ {
+  "c": "season",
+  "k": "fun",
+  "ja": "夏の砂丘は 砂がとても熱くなります。くつで歩いてね",
+  "ko": "여름 사구는 모래가 아주 뜨거워요. 신발을 신고 걸어요",
+  "en": "The dune sand gets very hot in summer. Keep your shoes on",
+  "m": [
+   7,
+   8
+  ]
+ },
+ {
+  "c": "weather",
+  "k": "fun",
+  "ja": "晴れた日は 車窓から大山がきれいに見えます",
+  "ko": "맑은 날에는 차창으로 다이센이 잘 보여요",
+  "en": "On clear days Mt. Daisen shows beautifully from the window"
+ },
+ {
+  "c": "weather",
+  "k": "fun",
+  "ja": "晴れた夕方は 日本海に沈む夕日がきれいです",
+  "ko": "맑은 저녁에는 동해로 지는 노을이 아름다워요",
+  "en": "On a clear evening the sun sets beautifully over the Sea of Japan",
+  "h": [
+   16,
+   19
+  ]
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "単線の区間では すれちがいのために 駅で少し止まります",
+  "ko": "단선 구간에서는 마주 오는 열차를 기다리느라 역에 잠시 서요",
+  "en": "On single track, trains wait at stations to pass each other"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "ICカードが使えない駅もあります。きっぷがあると安心",
+  "ko": "IC 카드를 쓸 수 없는 역도 있어요. 승차권이 있으면 안심이에요",
+  "en": "Some stations do not take IC cards. A paper ticket is safest"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "短い列車は ホームのまん中あたりに止まります",
+  "ko": "짧은 열차는 승강장 가운데쯤에 서요",
+  "en": "Short trains stop near the middle of the platform"
+ },
+ {
+  "c": "howto",
+  "k": "help",
+  "ja": "駅に売店がないことも。飲みものは先に買っておくと安心",
+  "ko": "역에 매점이 없을 수도 있어요. 마실 것은 미리 사 두세요",
+  "en": "Many stations have no shop. Buy your drink beforehand"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "この地方の列車の多くは ディーゼルカー。エンジンの音がします",
+  "ko": "이 지방 열차는 대부분 디젤차예요. 엔진 소리가 나요",
+  "en": "Most trains here are diesel. Listen for the engine"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "特急スーパーはくとは 車体をかたむけて カーブを速く走ります",
+  "ko": "특급 슈퍼 하쿠토는 차체를 기울여 커브를 빠르게 달려요",
+  "en": "The Super Hakuto tilts its body to take curves fast"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "特急やくもの新しい車両は ブロンズ色です",
+  "ko": "특급 야쿠모의 새 차량은 청동색이에요",
+  "en": "The new Yakumo trains are bronze-coloured"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "智頭急行は トンネルと高架でまっすぐ。特急が速く走れます",
+  "ko": "지즈 급행은 터널과 고가로 곧게 뻗어 특급이 빨리 달려요",
+  "en": "The Chizu Express runs straight through tunnels and viaducts, so expresses fly"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "若桜駅には 蒸気機関車C12と 手回しの転車台があります",
+  "ko": "와카사역에는 증기기관차 C12와 손으로 돌리는 전차대가 있어요",
+  "en": "Wakasa Station keeps a C12 steam engine and a hand-turned turntable"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "鳥取砂丘は 国の天然記念物です",
+  "ko": "돗토리 사구는 국가 천연기념물이에요",
+  "en": "The Tottori Dunes are a Natural Monument of Japan"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "山陰海岸は ユネスコ世界ジオパークです",
+  "ko": "산인 해안은 유네스코 세계 지오파크예요",
+  "en": "The San'in coast is a UNESCO Global Geopark"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "鳥取は星がきれいで「星取県」ともよばれます",
+  "ko": "돗토리는 별이 아름다워 「호시토리현」이라고도 불려요",
+  "en": "Tottori's skies are so starry it calls itself \"Hoshitori\", the star-catching prefecture"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "鳥取の空港は 2つとも まんがにちなんだ名前です",
+  "ko": "돗토리의 공항은 두 곳 모두 만화에서 딴 이름이에요",
+  "en": "Both of Tottori's airports are named after manga"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "鳥取は カレーが大好きな町として知られます",
+  "ko": "돗토리는 카레를 아주 좋아하는 도시로 알려져 있어요",
+  "en": "Tottori is known as a town that loves curry"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "牛骨ラーメンは 鳥取の中部・西部の名物",
+  "ko": "소뼈 라멘은 돗토리 중부·서부의 명물이에요",
+  "en": "Beef-bone ramen is the local bowl of central and western Tottori"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "「因幡の白うさぎ」は 鳥取の海岸が舞台の神話です",
+  "ko": "「이나바의 흰 토끼」는 돗토리 해안이 무대인 신화예요",
+  "en": "The myth of the White Hare of Inaba is set on the Tottori coast"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "湖山池は「池」とつく中で 日本一の広さです",
+  "ko": "고야마이케는 「연못」이라는 이름 중 일본에서 가장 넓어요",
+  "en": "Koyama-ike is the largest \"pond\" in Japan"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "三朝温泉は 850年以上の歴史がある温泉です",
+  "ko": "미사사 온천은 850년이 넘는 역사를 가진 온천이에요",
+  "en": "Misasa Onsen has more than 850 years of history"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "皆生温泉は 日本のトライアスロン発祥の地",
+  "ko": "가이케 온천은 일본 트라이애슬론의 발상지예요",
+  "en": "Kaike Onsen is where triathlon began in Japan"
+ },
+ {
+  "c": "trivia",
+  "k": "fun",
+  "ja": "隼駅には 同じ名前のバイクのライダーが集まります",
+  "ko": "하야부사역에는 같은 이름의 바이크 라이더들이 모여요",
+  "en": "Riders of the Hayabusa motorbike gather at Hayabusa Station"
+ },
+ {
+  "c": "season",
+  "k": "fun",
+  "ja": "春は 梨の白い花がさく季節です",
+  "ko": "봄은 하얀 배꽃이 피는 계절이에요",
+  "en": "Spring brings white pear blossom",
+  "m": [
+   4
+  ]
+ },
+ {
+  "c": "season",
+  "k": "fun",
+  "ja": "用瀬の「流しびな」は 春の行事です",
+  "ko": "모치가세의 「나가시비나」는 봄 행사예요",
+  "en": "Mochigase's floating dolls are a spring custom",
+  "m": [
+   3,
+   4
+  ]
+ },
+ {
+  "c": "season",
+  "k": "fun",
+  "ja": "初夏は すいかの季節。北栄町の大栄すいかが有名",
+  "ko": "초여름은 수박의 계절. 호쿠에이초의 다이에이 수박이 유명해요",
+  "en": "Early summer is watermelon season; Daiei watermelons are famous",
+  "m": [
+   6,
+   7
+  ]
+ },
+ {
+  "c": "season",
+  "k": "fun",
+  "ja": "夏は 岩がきの季節です",
+  "ko": "여름은 바위굴의 계절이에요",
+  "en": "Summer is rock oyster season",
+  "m": [
+   6,
+   7,
+   8
+  ]
+ },
+ {
+  "c": "season",
+  "k": "fun",
+  "ja": "8月の鳥取は 傘をもって踊る「しゃんしゃん祭」",
+  "ko": "8월의 돗토리는 우산을 들고 춤추는 「샨샨 축제」",
+  "en": "August in Tottori means the Shan-shan umbrella dance festival",
+  "m": [
+   8
+  ]
+ },
+ {
+  "c": "season",
+  "k": "fun",
+  "ja": "秋は 砂丘の畑に らっきょうの花がさきます",
+  "ko": "가을에는 사구 밭에 락교 꽃이 피어요",
+  "en": "In autumn the dune fields bloom with rakkyo flowers",
+  "m": [
+   10,
+   11
+  ]
+ },
+ {
+  "c": "season",
+  "k": "fun",
+  "ja": "冬の大山は スキー場になります",
+  "ko": "겨울의 다이센은 스키장이 돼요",
+  "en": "In winter Mt. Daisen becomes a ski resort",
+  "m": [
+   12,
+   1,
+   2
+  ]
+ },
+ {
+  "c": "season",
+  "k": "warn",
+  "ja": "雪の日は ホームがすべりやすくなります。足もとに気をつけて",
+  "ko": "눈 오는 날은 승강장이 미끄러워요. 발밑 조심하세요",
+  "en": "Platforms get slippery in snow. Watch your step",
+  "m": [
+   12,
+   1,
+   2
+  ]
+ },
+ {
+  "c": "weather",
+  "k": "fun",
+  "ja": "晴れた夜は 星がよく見えます",
+  "ko": "맑은 밤에는 별이 잘 보여요",
+  "en": "On clear nights the stars come out",
+  "h": [
+   19,
+   23
+  ]
+ }
+]
