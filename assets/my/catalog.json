@@ -404,6 +404,47 @@
       "effect": "garland"
     },
     {
+      "id": "roof.tsurushi",
+      "slot": "roof",
+      "name": {
+        "ja": "つるし飾り",
+        "ko": "쓰루시 장식",
+        "en": "Hanging Charms"
+      },
+      "price": 200,
+      "overlay": "assets/art/decor/tsurushi.webp"
+    },
+    {
+      "id": "roof.furin",
+      "slot": "roof",
+      "name": {
+        "ja": "風鈴",
+        "ko": "풍경",
+        "en": "Wind Chimes"
+      },
+      "price": 180,
+      "overlay": "assets/art/decor/furin.webp",
+      "season": {
+        "from": "06-15",
+        "to": "08-31"
+      }
+    },
+    {
+      "id": "roof.fuji",
+      "slot": "roof",
+      "name": {
+        "ja": "藤の花",
+        "ko": "등나무꽃",
+        "en": "Wisteria"
+      },
+      "price": 200,
+      "overlay": "assets/art/decor/fuji.webp",
+      "season": {
+        "from": "04-15",
+        "to": "05-15"
+      }
+    },
+    {
       "id": "platform.none",
       "slot": "platform",
       "name": {
@@ -423,6 +464,191 @@
       },
       "price": 80,
       "overlay": "assets/art/decor/vending.webp"
+    },
+    {
+      "id": "platform.bench",
+      "slot": "platform",
+      "name": {
+        "ja": "ベンチ",
+        "ko": "벤치",
+        "en": "Bench"
+      },
+      "price": 60,
+      "overlay": "assets/art/decor/bench.webp"
+    },
+    {
+      "id": "platform.bins",
+      "slot": "platform",
+      "name": {
+        "ja": "ゴミ箱",
+        "ko": "쓰레기통",
+        "en": "Recycling Bins"
+      },
+      "price": 50,
+      "overlay": "assets/art/decor/bins.webp"
+    },
+    {
+      "id": "platform.umbrella",
+      "slot": "platform",
+      "name": {
+        "ja": "傘立て",
+        "ko": "우산꽂이",
+        "en": "Umbrella Stand"
+      },
+      "price": 60,
+      "overlay": "assets/art/decor/umbrella.webp"
+    },
+    {
+      "id": "platform.planter",
+      "slot": "platform",
+      "name": {
+        "ja": "花壇",
+        "ko": "화단",
+        "en": "Flower Planter"
+      },
+      "price": 100,
+      "overlay": "assets/art/decor/planter.webp"
+    },
+    {
+      "id": "platform.phone",
+      "slot": "platform",
+      "name": {
+        "ja": "公衆電話",
+        "ko": "공중전화",
+        "en": "Public Phone"
+      },
+      "price": 120,
+      "overlay": "assets/art/decor/phone.webp"
+    },
+    {
+      "id": "platform.board",
+      "slot": "platform",
+      "name": {
+        "ja": "伝言板",
+        "ko": "전언판",
+        "en": "Message Board"
+      },
+      "price": 120,
+      "overlay": "assets/art/decor/board.webp"
+    },
+    {
+      "id": "platform.clock",
+      "slot": "platform",
+      "name": {
+        "ja": "駅の時計",
+        "ko": "역 시계",
+        "en": "Station Clock"
+      },
+      "price": 150,
+      "overlay": "assets/art/decor/clock.webp"
+    },
+    {
+      "id": "platform.catbed",
+      "slot": "platform",
+      "name": {
+        "ja": "駅ねこの寝床",
+        "ko": "역 고양이 잠자리",
+        "en": "Station Cat Bed"
+      },
+      "price": 250,
+      "overlay": "assets/art/decor/catbed.webp"
+    },
+    {
+      "id": "platform.kiosk",
+      "slot": "platform",
+      "name": {
+        "ja": "売店",
+        "ko": "매점",
+        "en": "Kiosk"
+      },
+      "price": 280,
+      "overlay": "assets/art/decor/kiosk.webp"
+    },
+    {
+      "id": "platform.soba",
+      "slot": "platform",
+      "name": {
+        "ja": "立ち食いそば",
+        "ko": "서서 먹는 소바집",
+        "en": "Soba Stand"
+      },
+      "price": 300,
+      "overlay": "assets/art/decor/soba.webp"
+    },
+    {
+      "id": "platform.kadomatsu",
+      "slot": "platform",
+      "name": {
+        "ja": "門松",
+        "ko": "가도마쓰",
+        "en": "Kadomatsu"
+      },
+      "price": 200,
+      "overlay": "assets/art/decor/kadomatsu.webp",
+      "season": {
+        "from": "12-26",
+        "to": "01-15"
+      }
+    },
+    {
+      "id": "platform.koinobori",
+      "slot": "platform",
+      "name": {
+        "ja": "こいのぼり",
+        "ko": "고이노보리",
+        "en": "Carp Streamers"
+      },
+      "price": 200,
+      "overlay": "assets/art/decor/koinobori.webp",
+      "season": {
+        "from": "04-20",
+        "to": "05-10"
+      }
+    },
+    {
+      "id": "platform.tanabata",
+      "slot": "platform",
+      "name": {
+        "ja": "七夕の笹",
+        "ko": "칠석 대나무",
+        "en": "Tanabata Bamboo"
+      },
+      "price": 200,
+      "overlay": "assets/art/decor/tanabata.webp",
+      "season": {
+        "from": "06-20",
+        "to": "07-07"
+      }
+    },
+    {
+      "id": "platform.pumpkin",
+      "slot": "platform",
+      "name": {
+        "ja": "かぼちゃ飾り",
+        "ko": "호박 장식",
+        "en": "Pumpkin Display"
+      },
+      "price": 200,
+      "overlay": "assets/art/decor/pumpkin.webp",
+      "season": {
+        "from": "10-01",
+        "to": "10-31"
+      }
+    },
+    {
+      "id": "platform.xmastree",
+      "slot": "platform",
+      "name": {
+        "ja": "クリスマスツリー",
+        "ko": "크리스마스트리",
+        "en": "Christmas Tree"
+      },
+      "price": 250,
+      "overlay": "assets/art/decor/xmastree.webp",
+      "season": {
+        "from": "11-15",
+        "to": "12-25"
+      }
     },
     {
       "id": "effect.none",
@@ -455,6 +681,39 @@
       },
       "price": 160,
       "effect": "fireflies"
+    },
+    {
+      "id": "effect.bubbles",
+      "slot": "effect",
+      "name": {
+        "ja": "しゃぼん玉",
+        "ko": "비눗방울",
+        "en": "Soap Bubbles"
+      },
+      "price": 120,
+      "effect": "bubbles"
+    },
+    {
+      "id": "effect.leaves",
+      "slot": "effect",
+      "name": {
+        "ja": "紅葉",
+        "ko": "단풍",
+        "en": "Autumn Leaves"
+      },
+      "price": 140,
+      "effect": "leaves"
+    },
+    {
+      "id": "effect.snow",
+      "slot": "effect",
+      "name": {
+        "ja": "雪",
+        "ko": "눈",
+        "en": "Snow"
+      },
+      "price": 150,
+      "effect": "snow"
     },
     {
       "id": "melody.sakura",

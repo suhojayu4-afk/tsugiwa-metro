@@ -241,6 +241,8 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
                             part: art.part,
                             vanishing: art.vanishing,
                             front: art.front,
+                            decorShift: art.decorShift,
+                            overlayLights: art.overlayLights,
                             ambience: art.ambience,
                             events: _events,
                           ),

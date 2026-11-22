@@ -22,8 +22,6 @@ class SceneArt {
   static String trainStripeOf([String? art]) => art == null ? trainStripe : '$art/front_stripe.webp';
   static const trainStripe = 'assets/art/train_front_stripe.webp';
 
-  /// The vending machine decoration (stands behind the people, see _frontMask).
-  static const vending = 'assets/art/decor/vending.webp';
   /// Snow / raindrops over the train. These stay PNG: their soft
   /// (half-transparent) edges decode a shade differently from WebP.
   static String trainWeatherOf(String sky, [String? art]) =>
@@ -198,9 +196,15 @@ typedef SceneArtSet = ({
   List<Walker> walkers,
   // Where this picture's rails meet: the train comes from there.
   Offset vanishing,
-  // The people standing in front of the vending machine in this picture
-  // (alpha = person), drawn again over it; null without one.
+  // The people standing where platform decorations go in this picture
+  // (alpha = person; one mask per animation frame, stacked), drawn again
+  // over the decorations; null when nobody stands there.
   ui.Image? front,
+  // Rows this picture's platform is below the built-in scene's: the
+  // decorations move down with it.
+  int decorShift,
+  // Per overlay: its lights (lit windows, lamps) for dusk and night, or null.
+  List<ui.Image?> overlayLights,
   // Sky and lit windows found in the picture, for the drawn ambience.
   SceneAmbience? ambience,
 });
@@ -245,14 +249,70 @@ Future<List<Walker>> _loadWalkers(String? sky) async {
   return out;
 }
 
-/// Loads the scene for [look] at [part]. A station scene without a picture
-/// for this time of day uses another one, colour-graded.
-/// Mask of the people in front of the vending machine in picture [bgAsset]
-/// (tools/make_vending_masks.py), when the machine is set up.
-Future<ui.Image?> _frontMask(SceneLook look, String bgAsset) async {
-  if (!look.overlays.contains(SceneArt.vending)) return null;
-  final name = bgAsset.split('/').last.replaceFirst('_anim.webp', '.webp');
-  final asset = 'assets/art/decor/vending_front/$name';
+/// What tools/make_decor_masks.py and tools/place_decor.py know about the
+/// MY decorations (assets/art/decor/index.json).
+class DecorIndex {
+  const DecorIndex({this.masks = const {}, this.shifts = const {}, this.lights = const {}});
+
+  /// Platform pictures (file names) with a mask of the people standing
+  /// where decorations go, in [maskFolder]. A picture not listed here has
+  /// nobody there: the decoration is drawn as it is.
+  final Set<String> masks;
+
+  /// Rows each platform picture is below the built-in scene's (the weather
+  /// and crowd pictures were drawn with the camera tilted a little: 10).
+  final Map<String, int> shifts;
+
+  /// Overlays (assets) with a second picture of their lights,
+  /// `{name}_lit.webp`, drawn at full brightness at dusk and at night.
+  final Set<String> lights;
+
+  static const maskFolder = 'assets/art/decor/vending_front';
+
+  /// The file name the index knows the picture [bgAsset] by (an animated
+  /// picture is listed as its still one).
+  static String pictureName(String bgAsset) => bgAsset.split('/').last.replaceFirst('_anim.webp', '.webp');
+
+  /// The mask of the people in [bgAsset], or null when it has none.
+  String? maskFor(String bgAsset) {
+    final name = pictureName(bgAsset);
+    return masks.contains(name) ? '$maskFolder/$name' : null;
+  }
+
+  /// Rows to move decorations down in [bgAsset]. A picture the tool has not
+  /// seen: from where its rails meet ([vanishing]; the built-in scene's
+  /// floor horizon is at row 92).
+  int shiftFor(String bgAsset, Offset vanishing) =>
+      shifts[pictureName(bgAsset)] ?? (vanishing.dy + 2.6 - 92).round().clamp(-4, 14);
+
+  String? lightsFor(String overlay) =>
+      lights.contains(overlay) ? overlay.replaceFirst(RegExp(r'\.webp$'), '_lit.webp') : null;
+
+  factory DecorIndex.fromJson(Map<String, dynamic> j) => DecorIndex(
+    masks: {...(j['masks'] as List? ?? const []).cast<String>()},
+    shifts: {for (final e in (j['shifts'] as Map<String, dynamic>? ?? const {}).entries) e.key: e.value as int},
+    lights: {...(j['lights'] as List? ?? const []).cast<String>()},
+  );
+
+  static Future<DecorIndex>? _cache;
+
+  /// Tests: forget the loaded index (each test has its own asset bundle).
+  @visibleForTesting
+  static void resetCache() => _cache = null;
+
+  static Future<DecorIndex> load() => _cache ??= () async {
+    try {
+      return DecorIndex.fromJson(
+        jsonDecode(await rootBundle.loadString('assets/art/decor/index.json')) as Map<String, dynamic>,
+      );
+    } catch (_) {
+      return const DecorIndex();
+    }
+  }();
+}
+
+Future<ui.Image?> _loadOrNull(String? asset) async {
+  if (asset == null) return null;
   try {
     return await SceneArt.load(asset);
   } catch (_) {
@@ -261,6 +321,8 @@ Future<ui.Image?> _frontMask(SceneLook look, String bgAsset) async {
   }
 }
 
+/// Loads the scene for [look] at [part]. A station scene without a picture
+/// for this time of day uses another one, colour-graded.
 Future<SceneArtSet> loadSceneArt(SceneLook look, DayPart part, {String? sky}) async {
   DayPart? graded;
   Future<ui.Image> bg;
@@ -305,6 +367,10 @@ Future<SceneArtSet> loadSceneArt(SceneLook look, DayPart part, {String? sky}) as
     for (final o in look.overlays) SceneArt.load(o),
   ]);
   final first = wx == null ? 3 : 4;
+  final decor = look.overlays.isEmpty && !look.effects.contains('garland')
+      ? const DecorIndex()
+      : await DecorIndex.load();
+  final vanishing = await SceneArt.vanishingFor(bgAsset);
   return (
     bg: images[0],
     base: images[1],
@@ -317,8 +383,11 @@ Future<SceneArtSet> loadSceneArt(SceneLook look, DayPart part, {String? sky}) as
     closed: baseSky == 'closed',
     trainWeather: wx == null ? null : images[3],
     walkers: await _loadWalkers(sky),
-    vanishing: await SceneArt.vanishingFor(bgAsset),
-    front: await _frontMask(look, bgAsset),
+    vanishing: vanishing,
+    // Decorations stand behind the people who are there in this picture.
+    front: look.overlays.isEmpty ? null : await _loadOrNull(decor.maskFor(bgAsset)),
+    decorShift: decor.shiftFor(bgAsset, vanishing),
+    overlayLights: [for (final o in look.overlays) part == DayPart.day ? null : await _loadOrNull(decor.lightsFor(o))],
     ambience: await SceneAmbience.of(await bg, bgAsset),
     // Snow and drops take the light of the hour: bluish at night.
     trainWeatherTint: switch (part) {

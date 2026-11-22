@@ -121,7 +121,8 @@ class SceneAmbience {
   }
 }
 
-/// Decorations bought in MY: petals, fireflies, the garland.
+/// Decorations bought in MY: petals, fireflies, snow, autumn leaves, soap
+/// bubbles, the garland.
 extension _SceneEffects on _ScenePainter {
   /// Small drawn decorations: falling petals, fireflies, a fairy-light garland.
   void _effects(Canvas canvas, int f) {
@@ -146,7 +147,58 @@ extension _SceneEffects on _ScenePainter {
         canvas.drawRect(Rect.fromLTWH(x.toDouble(), y.toDouble(), 1, 1), p);
       }
     }
-    if (effects.contains('garland')) _garland(canvas, f);
+    if (effects.contains('snow')) {
+      // Soft flakes drifting down, the near ones bigger; they sway a little.
+      for (var i = 0; i < 120; i++) {
+        final big = i % 3 == 0;
+        final sway = ((f ~/ 2 + i) % 4) - 1.5;
+        final x = (i * 61 + (i % 7) * 13 + sway) % SceneArt.width;
+        final y = (i * 43 + f * (big ? 3 : 2) + i * i * 7) % SceneArt.height;
+        p.color = big ? const Color(0xFFFFFFFF) : const Color(0xE0F0F4FF);
+        canvas.drawRect(Rect.fromLTWH(x.toDouble(), y.toDouble(), big ? 2 : 1, big ? 2 : 1), p);
+      }
+    }
+    if (effects.contains('leaves')) {
+      // Autumn leaves blown across: red, orange and gold, turning as they fall.
+      const colors = [Color(0xF0D8402C), Color(0xF0EE8A2A), Color(0xF0F2C23C), Color(0xF0B8301E)];
+      for (var i = 0; i < 48; i++) {
+        final x = (i * 67 + f * 3 + (i % 4) * 9) % (SceneArt.width + 8) - 4;
+        final y = (i * 41 + f * 2 + i * i * 3 + ((f + i) % 6 < 3 ? 1 : 0)) % SceneArt.height;
+        final flat = (f + i) % 4 < 2;
+        p.color = colors[i % colors.length];
+        canvas.drawRect(Rect.fromLTWH(x.toDouble(), y.toDouble(), flat ? 4 : 2, flat ? 2 : 4), p);
+        // The leaf's point.
+        canvas.drawRect(Rect.fromLTWH(x + (flat ? 4.0 : 0.0), y + (flat ? 0.0 : 4.0), 1, 1), p);
+      }
+    }
+    if (effects.contains('bubbles')) {
+      // Soap bubbles rising and drifting, a glint on each.
+      final ring = Paint()..style = PaintingStyle.stroke;
+      for (var i = 0; i < 22; i++) {
+        final r = 2.0 + (i % 4);
+        final life = (f * (1 + i % 3) + i * 37) % 230;
+        final x = (30 + i * 71) % SceneArt.width + math.sin((f + i * 4) * 0.35) * 4;
+        final y = 190.0 - life;
+        // They pop near the top.
+        if (y < 14 + (i % 5) * 9) continue;
+        final c = Offset(x.roundToDouble(), y.roundToDouble());
+        ring
+          ..strokeWidth = 1
+          ..color = const [Color(0xCCBFEFFF), Color(0xCCFFD0F0), Color(0xCCD8FFD8)][i % 3];
+        canvas.drawCircle(c, r, ring);
+        p.color = const Color(0x30FFFFFF);
+        canvas.drawCircle(c, r, p);
+        p.color = const Color(0xF0FFFFFF);
+        canvas.drawRect(Rect.fromLTWH(c.dx - r * 0.5, c.dy - r * 0.6, 1, 1), p);
+      }
+    }
+    if (effects.contains('garland')) {
+      // The roof it hangs from is lower in some pictures.
+      canvas.save();
+      canvas.translate(0, decorShift.toDouble());
+      _garland(canvas, f);
+      canvas.restore();
+    }
   }
 
   /// Warm festoon lights hanging in swags between the platform pillars,

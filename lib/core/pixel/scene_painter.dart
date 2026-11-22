@@ -63,6 +63,8 @@ Future<ui.Image> renderSceneImage({
     part: part,
     vanishing: art.vanishing,
     front: art.front,
+    decorShift: art.decorShift,
+    overlayLights: art.overlayLights,
     ambience: art.ambience,
     // Review renders: the train part way through its arrival.
     arrive: arrive == null ? null : AlwaysStoppedAnimation(arrive),
@@ -131,6 +133,8 @@ class _ScenePainter extends CustomPainter {
     this.part = DayPart.day,
     this.vanishing = SceneArt.vanishing,
     this.front,
+    this.decorShift = 0,
+    this.overlayLights = const [],
     this.ambience,
     this.events,
   }) : super(repaint: Listenable.merge([life, ?arrive, ?platform, ?depart, ?events]));
@@ -146,8 +150,16 @@ class _ScenePainter extends CustomPainter {
   /// Where the picture's rails meet: the arriving train comes from there.
   final Offset vanishing;
 
-  /// People in front of the vending machine (alpha mask), or null.
+  /// People standing where the platform decorations go (alpha mask, one
+  /// per animation frame of the picture, stacked), or null.
   final ui.Image? front;
+
+  /// Rows the decorations are moved down: this picture's platform is that
+  /// much lower than the built-in scene's.
+  final int decorShift;
+
+  /// Per overlay: its lights for dusk and night, or null.
+  final List<ui.Image?> overlayLights;
 
   /// Sky and window lights of the picture (clouds, birds, stars, windows).
   final SceneAmbience? ambience;
@@ -284,23 +296,7 @@ class _ScenePainter extends CustomPainter {
       });
     }
 
-    // Decorations sit on the platform, in front of the train's back.
-    for (final o in overlays) {
-      canvas.drawImage(o, Offset.zero, art);
-    }
-    // People standing closer than the vending machine are drawn again over it.
-    if (front != null) {
-      const full = Rect.fromLTWH(0, 0, SceneArt.width * 1.0, SceneArt.height * 1.0);
-      canvas.saveLayer(full, Paint());
-      canvas.drawImageRect(
-        bg,
-        Rect.fromLTWH(0, f * SceneArt.height.toDouble(), SceneArt.width.toDouble(), SceneArt.height.toDouble()),
-        full,
-        bgPaint,
-      );
-      canvas.drawImage(front!, Offset.zero, Paint()..blendMode = BlendMode.dstIn);
-      canvas.restore();
-    }
+    _decorations(canvas, f, bgPaint);
     _passengers(canvas);
     // Easter eggs on the platform (cat, pigeons, attendant, dragonflies).
     events?.paintGround(canvas, part: part, vanishing: vanishing, weather: weather, sky: sky);
@@ -332,6 +328,68 @@ class _ScenePainter extends CustomPainter {
             : canvas.drawRect(SceneArt.ledRect, Paint()..color = const Color(0xFF0E0C14)),
       );
     }
+    canvas.restore();
+  }
+
+  /// The light of the hour and the weather on the decorations (they are
+  /// drawn in daylight colours), as on the waiting passengers.
+  Color? get _decorLight {
+    final light = switch (part) {
+      DayPart.day => null,
+      DayPart.evening => const Color(0xFFF2DCD4),
+      DayPart.night => const Color(0xFF8E96BC),
+    };
+    final grey =
+        SceneArt.wetSkies.contains(sky) ||
+        weather == WeatherKind.cloudy ||
+        weather == WeatherKind.rain ||
+        weather == WeatherKind.snow;
+    return grey ? Color.lerp(light ?? const Color(0xFFFFFFFF), const Color(0xFFB4BAC8), 0.5) : light;
+  }
+
+  /// MY decorations: they stand on this picture's platform ([decorShift]),
+  /// in the light of the hour, their lamps lit at dusk and at night, behind
+  /// the people of the picture ([front]).
+  void _decorations(Canvas canvas, int frame, Paint bgPaint) {
+    if (overlays.isEmpty) return;
+    final at = Offset(0, decorShift.toDouble());
+    final light = _decorLight;
+    final paint = Paint()..filterQuality = FilterQuality.none;
+    if (light != null) paint.colorFilter = ColorFilter.mode(light, BlendMode.modulate);
+    final glow = switch (part) {
+      DayPart.day => 0.0,
+      DayPart.evening => 0.75,
+      DayPart.night => 1.0,
+    };
+    for (var i = 0; i < overlays.length; i++) {
+      canvas.drawImage(overlays[i], at, paint);
+      final lit = i < overlayLights.length ? overlayLights[i] : null;
+      if (lit != null && glow > 0 && !closed) {
+        canvas.drawImage(
+          lit,
+          at,
+          Paint()
+            ..filterQuality = FilterQuality.none
+            ..color = Color.fromRGBO(0, 0, 0, glow),
+        );
+      }
+    }
+    // The people standing there are drawn again over the decorations.
+    final mask = front;
+    if (mask == null) return;
+    const w = SceneArt.width * 1.0, h = SceneArt.height * 1.0;
+    const full = Rect.fromLTWH(0, 0, w, h);
+    final maskFrames = (mask.height ~/ SceneArt.height).clamp(1, 64);
+    canvas.saveLayer(full, Paint());
+    canvas.drawImageRect(bg, Rect.fromLTWH(0, frame * h, w, h), full, bgPaint);
+    canvas.drawImageRect(
+      mask,
+      Rect.fromLTWH(0, (frame % maskFrames) * h, w, h),
+      full,
+      Paint()
+        ..filterQuality = FilterQuality.none
+        ..blendMode = BlendMode.dstIn,
+    );
     canvas.restore();
   }
 
@@ -417,6 +475,8 @@ class _ScenePainter extends CustomPainter {
       old.bg != bg ||
       old.graded != graded ||
       old.overlays != overlays ||
+      old.front != front ||
+      old.decorShift != decorShift ||
       old.effects != effects ||
       old.led.join() != led.join() ||
       old.sign != sign ||

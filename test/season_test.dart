@@ -12,7 +12,8 @@ void main() {
   );
   final seasonal = [
     for (final i in catalog.items)
-      if (i.season != null) i,
+      // (Decorations have seasons too: test/my_decor_test.dart.)
+      if (i.season != null && i.slot == MySlot.scene) i,
   ];
 
   test('seasonal scenes: three of them, with every picture and its vanishing point', () {

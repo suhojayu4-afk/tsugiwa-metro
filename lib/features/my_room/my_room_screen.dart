@@ -173,22 +173,22 @@ class MyRoomScreenState extends State<MyRoomScreen> {
   }
 
   Future<void> _enterInvite(AppLocalizations t) async {
-    final field = TextEditingController();
+    // No controller: one disposed here would still be in use while the dialog fades out.
+    var typed = '';
     final code = await showDialog<String>(
       context: context,
       builder: (context) => AlertDialog(
         title: Text(t.myInviteEnter),
         content: TextField(
-          controller: field,
+          onChanged: (v) => typed = v,
           autofocus: true,
           maxLength: 6,
           textCapitalization: TextCapitalization.characters,
           decoration: InputDecoration(hintText: t.myInviteField),
         ),
-        actions: [TextButton(onPressed: () => Navigator.pop(context, field.text), child: Text(t.myInviteUse))],
+        actions: [TextButton(onPressed: () => Navigator.pop(context, typed), child: Text(t.myInviteUse))],
       ),
     );
-    field.dispose();
     if (code == null || code.trim().isEmpty || !mounted) return;
     final result = await _store.useInvite(code);
     if (!mounted) return;
@@ -589,9 +589,30 @@ class _Thumb extends StatelessWidget {
         final icon = switch (item.id) {
           'roof.lanterns' => Icons.light_rounded,
           'roof.garland' => Icons.auto_awesome_rounded,
+          'roof.tsurushi' => Icons.style_rounded,
+          'roof.furin' => Icons.notifications_none_rounded,
+          'roof.fuji' => Icons.local_florist_rounded,
           'platform.vending' => Icons.local_drink_rounded,
+          'platform.bench' => Icons.chair_alt_rounded,
+          'platform.bins' => Icons.delete_outline_rounded,
+          'platform.umbrella' => Icons.umbrella_rounded,
+          'platform.planter' => Icons.yard_rounded,
+          'platform.phone' => Icons.phone_in_talk_rounded,
+          'platform.board' => Icons.sticky_note_2_rounded,
+          'platform.clock' => Icons.schedule_rounded,
+          'platform.catbed' => Icons.pets_rounded,
+          'platform.kiosk' => Icons.storefront_rounded,
+          'platform.soba' => Icons.ramen_dining_rounded,
+          'platform.kadomatsu' => Icons.grass_rounded,
+          'platform.koinobori' => Icons.set_meal_rounded,
+          'platform.tanabata' => Icons.star_rounded,
+          'platform.pumpkin' => Icons.emoji_nature_rounded,
+          'platform.xmastree' => Icons.park_rounded,
           'effect.petals' => Icons.filter_vintage_rounded,
           'effect.fireflies' => Icons.flare_rounded,
+          'effect.bubbles' => Icons.bubble_chart_rounded,
+          'effect.leaves' => Icons.eco_rounded,
+          'effect.snow' => Icons.ac_unit_rounded,
           'melody.off' => Icons.music_off_rounded,
           _ when item.slot == MySlot.melody => Icons.music_note_rounded,
           _ => Icons.block_rounded,

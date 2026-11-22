@@ -25,7 +25,7 @@ class SceneLook {
   /// Decoration layers, same size as the scene (transparent elsewhere).
   final List<String> overlays;
 
-  /// Drawn effects: 'petals', 'fireflies', 'garland'.
+  /// Drawn effects: 'petals', 'fireflies', 'snow', 'leaves', 'bubbles', 'garland'.
   final Set<String> effects;
 
   /// Equipped train colour; null = the colour of the line being used.
