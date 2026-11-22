@@ -17,7 +17,9 @@ import math
 import os
 import random
 
+import numpy as np
 from PIL import Image, ImageDraw
+from scipy import ndimage
 
 from tokyo_geo import DISTRICTS, SUBURB_KM
 
@@ -63,10 +65,11 @@ class Geo:
         return pts
 
 
-def build_kinds(to_map, scale, w, h, center, fallback):
+def build_kinds(to_map, scale, w, h, center, fallback, seeds=()):
     """Return (kind, land_class, park_class) as 'L' images of w x h.
 
-    [fallback] is the old hand-drawn kind image, used outside the OSM area."""
+    [fallback] is the kind image used outside the OSM area. [seeds]: more
+    pixels in open sea to flood from (a picture of a part, or the Pacific side)."""
     g = Geo(to_map, scale, w, h, center)
     osm = {n: _load(n) for n in ('coastline', 'water', 'waterways', 'parks', 'landuse',
                                   'coastline_wide', 'water_wide', 'parks_wide', 'forest_kanto')}
@@ -108,6 +111,11 @@ def build_kinds(to_map, scale, w, h, center, fallback):
         x, y = g.tp(seed)
         if 0 <= x < w and 0 <= y < h and sea.getpixel((int(x), int(y))) == 0:
             ImageDraw.floodfill(sea, (int(x), int(y)), 1)
+    if seeds:
+        off = ndimage.distance_transform_edt(np.asarray(sea) != 2) * scale
+        for x, y in seeds:
+            if off[y, x] >= 45 and sea.getpixel((x, y)) == 0:
+                ImageDraw.floodfill(sea, (x, y), 1)
 
     osm_kind = Image.new('L', (w, h), LAND)
     dk = ImageDraw.Draw(osm_kind)
@@ -189,6 +197,8 @@ def build_kinds(to_map, scale, w, h, center, fallback):
 ROAD, ARTERIAL = (245, 243, 236), (249, 248, 243)
 SHORE_LAND, BANK = (214, 211, 204), (146, 194, 224)
 WATER_C, DEEP_C, WAVE_C = (174, 213, 237), (165, 207, 234), (198, 229, 245)
+DEEP2_C, DEEP3_C = (157, 201, 231), (150, 196, 228)       # the open sea, further out
+DEEP2_AT, DEEP3_AT = 130, 340                             # map units from the shore
 LAWN_C, LAWN_DOT, LAWN_RIM = (192, 222, 158), (182, 214, 148), (160, 198, 134)
 TREE = [(56, 104, 70), (84, 142, 84), (126, 182, 102), (168, 210, 128)]   # dark, mid, light, highlight
 UNDERWOOD = (92, 146, 92)
@@ -277,7 +287,9 @@ def _dist_to_land(kp, w, h, cap=12):
     return d
 
 
-def paint(kind, cls, park_cls, to_map, scale, seed=7):
+def paint(kind, cls, park_cls, to_map, scale, seed=7, origin=(0, 0)):
+    """The pixel picture of the ground. [origin]: the picture's top-left in map units
+    (so what is laid out in map units agrees between pictures)."""
     w, h = kind.size
     kp, clsp, pcp = kind.load(), cls.load(), park_cls.load()
     rnd = random.Random(seed)
@@ -375,6 +387,14 @@ def paint(kind, cls, park_cls, to_map, scale, seed=7):
 
     # ---- water ----
     dist = _dist_to_land(kp, w, h)
+    # Map units to the shore (for the open sea's deeper steps); the wobble
+    # keeps the steps from being perfect copies of the coast.
+    wat = np.asarray(kind) == WATER
+    far = ndimage.distance_transform_edt(wat) * scale if wat.any() else np.zeros((h, w))
+    yy, xx = np.mgrid[0:h, 0:w]
+    mx, my = xx * scale + origin[0], yy * scale + origin[1]
+    far = far + 14 * np.sin(mx / 83.0 + np.cos(my / 131.0) * 2.0) + 10 * np.sin(my / 61.0)
+    del yy, xx, mx, my
     for y in range(h):
         drow = dist[y]
         for x in range(w):
@@ -384,7 +404,10 @@ def paint(kind, cls, park_cls, to_map, scale, seed=7):
             if dd <= 1:
                 px[x, y] = BANK
             elif dd >= 10:
-                px[x, y] = DEEP_C
+                # Further from the shore the sea gets deeper, in two more
+                # soft steps (the same distances at every scale).
+                off = far[y, x]
+                px[x, y] = DEEP3_C if off >= DEEP3_AT else (DEEP2_C if off >= DEEP2_AT else DEEP_C)
             else:
                 px[x, y] = WATER_C
     for y in range(h):

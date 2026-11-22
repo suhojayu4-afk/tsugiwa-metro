@@ -457,43 +457,16 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     final map = _map, vp = _viewport;
     if (map == null || vp == null) return;
     final a = _toWorld(Offset.zero), b = _toWorld(Offset(vp.width, vp.height));
-    final view = Rect.fromPoints(a, b);
     _tileClock++;
-    final fine = map.tileSets.isEmpty ? null : map.tileSets.last;
-    for (final set in map.tileSets) {
-      if (_scale < set.from) continue;
-      final span = set.span;
-      for (
-        var ty = ((view.top - set.origin.dy) / span).floor();
-        ty <= ((view.bottom - set.origin.dy) / span).floor();
-        ty++
-      ) {
-        for (
-          var tx = ((view.left - set.origin.dx) / span).floor();
-          tx <= ((view.right - set.origin.dx) / span).floor();
-          tx++
-        ) {
-          final asset = set.asset(tx, ty);
-          if (asset == null) continue;
-          // Under the finer Tokyo tiles a coarse tile is not needed.
-          final r = Rect.fromLTWH(set.origin.dx + tx * span, set.origin.dy + ty * span, span, span);
-          if (fine != null &&
-              set != fine &&
-              _scale >= fine.from &&
-              fine.area.contains(r.topLeft) &&
-              fine.area.contains(r.bottomRight)) {
-            continue;
-          }
-          _tileUsed[asset] = _tileClock;
-          if (_tiles.containsKey(asset) || !_tileLoading.add(asset)) continue;
-          _image(asset).then((img) {
-            _tileLoading.remove(asset);
-            if (!mounted) return img.dispose();
-            setState(() => _tiles[asset] = img);
-            _forgetOldTiles();
-          });
-        }
-      }
+    for (final asset in mapTilesFor(map, Rect.fromPoints(a, b), _scale)) {
+      _tileUsed[asset] = _tileClock;
+      if (_tiles.containsKey(asset) || !_tileLoading.add(asset)) continue;
+      _image(asset).then((img) {
+        _tileLoading.remove(asset);
+        if (!mounted) return img.dispose();
+        setState(() => _tiles[asset] = img);
+        _forgetOldTiles();
+      });
     }
   }
 
@@ -1293,7 +1266,7 @@ class _MapOverlayPainter extends CustomPainter {
   }();
 
   /// Text layouts kept between frames (laying out 1,000+ names every frame is slow).
-  static final _textCache = <String, TextPainter>{};
+  static final _textCache = <(String, double, int, double?), TextPainter>{};
 
   /// Stations in the order their names get room: the big ones first, then
   /// transfer stations (most lines first), then the rest.
@@ -1316,6 +1289,15 @@ class _MapOverlayPainter extends CustomPainter {
 
   /// Soft warm glows round the stations: big ones where many lines meet,
   /// so the city centres shine and the countryside stays dark.
+  static final _townGlow = [
+    for (var lines = 1; lines <= 6; lines++)
+      Paint()
+        ..shader = ui.Gradient.radial(Offset.zero, 1, [
+          Color.fromRGBO(255, 196, 120, 0.10 + 0.035 * lines),
+          const Color.fromRGBO(255, 180, 100, 0),
+        ]),
+  ];
+
   void _townLights(Canvas canvas, double s, Offset Function(Offset) sp, Rect view) {
     for (final stops in map.stations.values) {
       final at = stops.first.position;
@@ -1324,16 +1306,13 @@ class _MapOverlayPainter extends CustomPainter {
       final radius = (26.0 + 16 * math.min(lines, 6)) * s;
       if (radius < 3) continue;
       final p = sp(at);
-      final strength = 0.10 + 0.035 * math.min(lines, 6);
-      canvas.drawCircle(
-        p,
-        radius,
-        Paint()
-          ..shader = ui.Gradient.radial(p, radius, [
-            Color.fromRGBO(255, 196, 120, strength),
-            const Color.fromRGBO(255, 180, 100, 0),
-          ]),
-      );
+      // One glow per strength (radius 1 at the origin), scaled into place:
+      // no new shader for every station on every frame.
+      canvas.save();
+      canvas.translate(p.dx, p.dy);
+      canvas.scale(radius);
+      canvas.drawCircle(Offset.zero, 1, _townGlow[math.min(lines, 6) - 1]);
+      canvas.restore();
     }
   }
 
@@ -1616,13 +1595,13 @@ class _MapOverlayPainter extends CustomPainter {
         fill.color = got ? const Color(0xFFFFE7A0) : const Color(0xCCECEBE6);
         outline.color = got ? const Color(0xFFB98516) : const Color(0x66808590);
       }
-      final pts = stops.map((x) => sp(x.position)).toList();
       // Zoomed far out the whole network is on screen: only transfer
       // stations get a dot, so the lines stay readable.
-      if (s < 0.3 && pts.length == 1 && id != selected) continue;
+      if (s < 0.3 && stops.length == 1 && id != selected) continue;
       // All of Kanto on screen: only the big stations, or the middle is one white blob.
       if (s < 0.12 && !_major.contains(id) && id != selected) continue;
       if ((focusLine != null || route != null) && !onFocus && s < 0.6) continue;
+      final pts = [for (final x in stops) sp(x.position)];
       if (pts.length > 1) {
         // Transfer station: one white pill round its stop on each line.
         var box = Rect.fromPoints(pts.first, pts.first);
@@ -1804,7 +1783,7 @@ class _MapOverlayPainter extends CustomPainter {
   static Color _nightText(Color c) => c == PixelColors.ink ? const Color(0xFFF2F0E6) : const Color(0xFFC8CEDF);
 
   TextPainter _tp(String text, double size, Color color, {Paint? stroke}) {
-    final key = '$text|$size|${color.toARGB32()}|${stroke?.strokeWidth}';
+    final key = (text, size, color.toARGB32(), stroke?.strokeWidth);
     final hit = _textCache[key];
     if (hit != null) return hit;
     if (_textCache.length > 4000) _textCache.clear();
@@ -1832,6 +1811,9 @@ class _MapOverlayPainter extends CustomPainter {
     return Rect.fromLTWH(tl.dx, tl.dy, tp.width, tp.height + subH).inflate(2);
   }
 
+  /// The pale rims round the names (made once, not for every name on every frame).
+  static final _halos = <(bool, double), Paint>{};
+
   void _label(
     Canvas canvas,
     String text,
@@ -1841,11 +1823,11 @@ class _MapOverlayPainter extends CustomPainter {
     required _Anchor anchor,
     String? sub,
   }) {
-    Paint halo(double w) => Paint()
+    Paint halo(double w) => _halos[(night, w)] ??= (Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = w
       ..strokeJoin = StrokeJoin.round
-      ..color = night ? const Color(0xE6141A2E) : const Color(0xF2FAFAF6);
+      ..color = night ? const Color(0xE6141A2E) : const Color(0xF2FAFAF6));
     final front = _tp(text, size, night ? _nightText(color) : color);
     final subColor = night ? const Color(0xFFB4BCD4) : PixelColors.muted;
     final subFront = sub == null ? null : _tp(sub, size * 0.6, subColor);
@@ -2622,4 +2604,133 @@ class _CourseBar extends StatelessWidget {
       ),
     );
   }
+}
+
+/// The ground tiles wanted with [view] (map units) on screen at zoom [scale]:
+/// each set from its zoom on, and no coarse tile that lies wholly under the
+/// finer Tokyo tiles.
+List<String> mapTilesFor(RouteMapData map, Rect view, double scale) {
+  final out = <String>[];
+  final fine = map.tileSets.isEmpty ? null : map.tileSets.last;
+  for (final set in map.tileSets) {
+    if (scale < set.from) continue;
+    final span = set.span;
+    final y1 = ((view.bottom - set.origin.dy) / span).floor(), x1 = ((view.right - set.origin.dx) / span).floor();
+    for (var ty = ((view.top - set.origin.dy) / span).floor(); ty <= y1; ty++) {
+      for (var tx = ((view.left - set.origin.dx) / span).floor(); tx <= x1; tx++) {
+        final asset = set.asset(tx, ty);
+        if (asset == null) continue;
+        final r = Rect.fromLTWH(set.origin.dx + tx * span, set.origin.dy + ty * span, span, span);
+        if (fine != null &&
+            set != fine &&
+            scale >= fine.from &&
+            fine.area.contains(r.topLeft) &&
+            fine.area.contains(r.bottomRight)) {
+          continue;
+        }
+        out.add(asset);
+      }
+    }
+  }
+  return out;
+}
+
+/// One layer of the map as build() stacks them: [world] layers are drawn in
+/// map units (through the zoom matrix), the others in screen pixels;
+/// [filter] is the night colour filter over the layer, if any.
+typedef MapLayer = ({String name, CustomPainter painter, bool world, ColorFilter? filter});
+
+/// The map's own painters, bottom to top, for the render and benchmark tools
+/// (test/tools/render_map_polish.dart, test/map_paint_bench_test.dart):
+/// the same layers as [RouteMapScreen] builds, without the widgets.
+@visibleForTesting
+List<MapLayer> debugMapLayers({
+  required RouteMapData map,
+  required CityData city,
+  required ui.Image overview,
+  required Map<String, ui.Image> tiles,
+  required Map<String, ui.Image> images,
+  required TransformationController matrix,
+  required Animation<double> clock,
+  String lang = 'ja',
+  bool night = false,
+  bool still = false,
+  List<SeasonSpot> seasonal = const [],
+  TrainSim? sim,
+  Listenable? trainClock,
+}) {
+  const soft = ColorFilter.matrix([0.55, 0, 0, 0, 6, 0, 0.55, 0, 0, 8, 0.1, 0, 0.62, 0, 22, 0, 0, 0, 1, 0]);
+  _MapOverlayPainter overlay(bool labels) => _MapOverlayPainter(
+    map: map,
+    city: city,
+    lang: lang,
+    matrix: matrix,
+    landmarks: images,
+    selected: null,
+    focusLine: null,
+    route: null,
+    night: night,
+    labels: labels,
+  );
+  return [
+    (
+      name: 'terrain',
+      painter: _TerrainPainter(
+        overview,
+        map.size,
+        tiles: tiles,
+        tileCount: tiles.length,
+        sets: map.tileSets,
+        origin: map.terrainOrigin,
+        scale: map.terrainScale,
+      ),
+      world: true,
+      filter: night ? _RouteMapScreenState._nightGround : null,
+    ),
+    (name: 'glints', painter: _GlintPainter(map.glints, clock), world: true, filter: null),
+    (
+      name: 'moving',
+      painter: _MovingPainter(map: map, images: images, matrix: matrix, clock: clock, still: still),
+      world: false,
+      filter: night ? soft : null,
+    ),
+    if (seasonal.isNotEmpty)
+      (
+        name: 'season',
+        painter: SeasonPainter(
+          spots: seasonal,
+          images: images,
+          matrix: matrix,
+          clock: clock,
+          night: night,
+          still: still,
+        ),
+        world: false,
+        filter: null,
+      ),
+    (name: 'lines', painter: overlay(false), world: false, filter: null),
+    if (sim != null)
+      (
+        name: 'trains',
+        painter: TrainPainter(sim: sim, matrix: matrix, clock: trainClock ?? clock, visible: (_) => 1, night: night),
+        world: false,
+        filter: null,
+      ),
+    if (SeasonPainter.hasSky(seasonal))
+      (
+        name: 'season_sky',
+        painter: SeasonPainter(
+          spots: seasonal,
+          images: images,
+          matrix: matrix,
+          clock: clock,
+          night: night,
+          still: still,
+          sky: true,
+        ),
+        world: false,
+        filter: null,
+      ),
+    (name: 'names', painter: overlay(true), world: false, filter: null),
+  ];
 }

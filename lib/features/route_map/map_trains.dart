@@ -110,6 +110,19 @@ class LineGeo {
     return d;
   }
 
+  /// Box round the stretch from [a] to [a] + [d] (bends included).
+  Rect boxOf(double a, double d) {
+    var box = Rect.fromPoints(at(a), at(a + d));
+    final lo = math.min(a, a + d), hi = math.max(a, a + d);
+    for (var j = 0; j < _cum.length; j++) {
+      for (final k in closed ? const [-1, 0, 1] : const [0]) {
+        final v = _cum[j] + k * length;
+        if (v > lo && v < hi) box = box.expandToInclude(Rect.fromPoints(_pts[j], _pts[j]));
+      }
+    }
+    return box.inflate(1);
+  }
+
   /// Adds the stretch from [a] to [a] + [d] to [path] (bends included).
   void addTo(Path path, double a, double d, {required bool start}) {
     final p0 = at(a);
@@ -264,6 +277,12 @@ class LineRun {
   /// Seconds end to end (a loop: once round).
   final int total;
 
+  /// Box round the line between stop i and stop i + 1 (map units): a train
+  /// on a stretch off screen is skipped without working out where it is.
+  late final List<Rect> stretch = [
+    for (var i = 0; i + 1 < arc.length; i++) geo.boxOf(arc[i], geo.delta(arc[i], arc[i + 1])),
+  ];
+
   /// Spread the lines' trains apart (not all leaving on the same second).
   late final int phase = trainPhase(line.id);
 
@@ -379,6 +398,7 @@ class TrainSim {
       }
     }
     final i = lo;
+    if (n > 1 && !run.stretch[i < n - 1 ? i : n - 2].overlaps(view)) return;
     double s;
     var stopped = false;
     double sign;
@@ -434,6 +454,12 @@ class TrainPainter extends CustomPainter {
 
   /// Zoom from which trains appear.
   static const from = 0.3;
+
+  static final _glow = Paint()
+    ..shader = ui.Gradient.radial(Offset.zero, 1, const [
+      Color.fromRGBO(255, 240, 190, 0.45),
+      Color.fromRGBO(255, 240, 190, 0),
+    ]);
 
   static Color _shade(Color c, double k) => Color.lerp(c, const Color(0xFF1C2230), k)!;
   static Color _tint(Color c, double k) => Color.lerp(c, const Color(0xFFFFFFFF), k)!;
@@ -554,15 +580,12 @@ class TrainPainter extends CustomPainter {
       }
       if (night) {
         final ahead = Offset(len / 2 + w * 0.9, 0);
-        canvas.drawCircle(
-          ahead,
-          w * 1.3,
-          Paint()
-            ..shader = ui.Gradient.radial(ahead, w * 1.3, [
-              Color.fromRGBO(255, 240, 190, 0.45 * a),
-              const Color.fromRGBO(255, 240, 190, 0),
-            ]),
-        );
+        // One glow shader for every train (radius 1 at the origin), scaled into place.
+        canvas.save();
+        canvas.translate(ahead.dx, ahead.dy);
+        canvas.scale(w * 1.3);
+        canvas.drawCircle(Offset.zero, 1, _glow..color = Color.fromRGBO(255, 255, 255, a));
+        canvas.restore();
       }
       final lamp = stopped ? const Color(0xFFFFF0C0) : const Color(0xFFFFFBE6);
       paint.color = lamp.withValues(alpha: a);
