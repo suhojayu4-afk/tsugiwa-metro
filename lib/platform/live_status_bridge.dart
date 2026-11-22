@@ -178,7 +178,7 @@ class MethodChannelLiveStatusBridge implements LiveStatusBridge {
   /// Localized texts + bar layout for the native side.
   static Map<String, Object?> payload(LiveStatus s) {
     final t = lookupAppLocalizations(Locale(s.lang));
-    final eta = DateFormat.Hm().format(s.eta);
+    final eta = DateFormat.Hm().format(s.eta.toUtc().add(const Duration(hours: 9))); // Japan time
     final next = s.nextStation ?? s.destination;
     final (title, text) = switch (s.phase) {
       LivePhase.far => (t.liveFar(s.destination, s.remainingStops), t.liveFlow(s.currentStation, next)),

@@ -161,7 +161,7 @@ class _TripScreenState extends State<TripScreen> {
                       ),
                       const SizedBox(width: 12),
                       Expanded(
-                        child: _Stat(label: t.etaLabel, value: hm.format(s.eta)),
+                        child: _Stat(label: t.etaLabel, value: hm.format(_japanClock(s.eta))),
                       ),
                     ],
                   ),
@@ -181,7 +181,9 @@ class _TripScreenState extends State<TripScreen> {
                         for (var i = s.currentIndex; i < plan.stops.length; i++)
                           _StopRow(
                             time: hm.format(
-                              DateTime.now().add(Duration(seconds: plan.stops[i].arriveSec - s.elapsedSec)),
+                              _japanClock(
+                                DateTime.now().add(Duration(seconds: plan.stops[i].arriveSec - s.elapsedSec)),
+                              ),
                             ),
                             name: city.station(plan.stops[i].stationId).name.ja,
                             sub: lang == 'ja' ? '' : city.station(plan.stops[i].stationId).name.of(lang),
@@ -421,3 +423,6 @@ class _ArrivedCard extends StatelessWidget {
     );
   }
 }
+
+/// Clock times are shown in Japan time, whatever time zone the phone is in.
+DateTime _japanClock(DateTime t) => t.toUtc().add(const Duration(hours: 9));

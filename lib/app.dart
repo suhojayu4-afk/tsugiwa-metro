@@ -34,6 +34,9 @@ class TsugiwaApp extends StatelessWidget {
           final lang = device?.languageCode;
           return Locale(supportedLangs.contains(lang) ? lang! : 'ja');
         },
+        // Very large system text breaks the pixel layouts: follow it up to 1.3x.
+        builder: (context, child) =>
+            MediaQuery.withClampedTextScaling(maxScaleFactor: 1.3, child: child ?? const SizedBox.shrink()),
         // The first-run tour shows once, before the app.
         home: home,
       ),
