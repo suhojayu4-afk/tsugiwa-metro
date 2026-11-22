@@ -613,7 +613,7 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     MapLandmark? hit;
     var hitY = -double.infinity;
     for (final lm in map.landmarks) {
-      if (_scale <= 0.45 && !lm.giant) continue;
+      if (_scale <= landmarksFrom(widget.city.id) + 0.03 && !lm.giant) continue;
       final img = _landmarkImages[lm.image];
       if (img == null) continue;
       final p = MatrixUtils.transformPoint(_controller.value, lm.position);
@@ -1490,7 +1490,10 @@ class _MapOverlayPainter extends CustomPainter {
     // Hidden in the overview (Tokyo will have many lines); they fade in as
     // you zoom, standing on the ground with a shadow cast to the lower
     // right, like the light in the pictures (from the top left).
-    final lmAlphaAll = ((s - 0.42) / 0.2).clamp(0.0, 1.0);
+    final from = landmarksFrom(city.id);
+    final lmAlphaAll = ((s - from) / (city.id == 'tokyo' ? 0.2 : 0.05)).clamp(0.0, 1.0);
+    // Names a little after the pictures (Tokyo: from 0.75).
+    final namesFrom = from + (city.id == 'tokyo' ? 0.33 : 0.12);
     final lmNames = <(String, Offset)>[];
     {
       final px = (s * 1.1).clamp(0.5, 2.2);
@@ -1501,14 +1504,14 @@ class _MapOverlayPainter extends CustomPainter {
         if (!view.inflate(lm.giant ? 700 : 0).contains(lm.position)) continue;
         if (lm.frames > 1) {
           // Drawn by _MovingPainter; only its name here.
-          if (s > 0.75) lmNames.add((lm.name.of(lang), sp(lm.position).translate(0, 6)));
+          if (s > namesFrom) lmNames.add((lm.name.of(lang), sp(lm.position).translate(0, 6)));
           continue;
         }
         final img = landmarks[swap[lm.image] ?? lm.image] ?? landmarks[lm.image];
         if (img == null) continue;
         final p = sp(lm.position);
         if (labels) {
-          if (s > (lm.giant ? 0.06 : 0.75)) lmNames.add((lm.name.of(lang), p.translate(0, 6)));
+          if (s > (lm.giant ? 0.06 : namesFrom)) lmNames.add((lm.name.of(lang), p.translate(0, 6)));
           continue;
         }
         final k = _MapOverlayPainter.sizeOf(lm, s, px);
@@ -1951,6 +1954,11 @@ class _MapOverlayPainter extends CustomPainter {
 }
 
 // ---------------- chrome ----------------
+
+/// Zoom from which the landmark pictures fade in: Tokyo is full of lines
+/// and names, so only when zoomed in; Tottori's few lines leave room for
+/// them almost from the start.
+double landmarksFrom(String cityId) => cityId == 'tokyo' ? 0.42 : 0.03;
 
 /// Railway companies for the chips, in the order shown.
 const _groups = <String, ({String ja, String ko, String en})>{
