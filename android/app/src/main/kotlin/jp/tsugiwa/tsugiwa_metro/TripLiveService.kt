@@ -55,15 +55,34 @@ class TripLiveService : Service() {
         @Volatile
         var pending: Notification? = null
 
-        fun start(ctx: Context, first: Notification) {
+        /**
+         * Starts keeping the trip alive; false when it could not (yet).
+         * A location-type service needs the location permission first: started
+         * without it, it cannot go to the foreground and Android stops the app.
+         * The caller tries again on the next update.
+         */
+        fun start(ctx: Context, first: Notification): Boolean {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !canLocate(ctx)) return false
             pending = first
             val i = Intent(ctx, TripLiveService::class.java)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                ctx.startForegroundService(i)
-            } else {
-                ctx.startService(i)
+            return try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    ctx.startForegroundService(i)
+                } else {
+                    ctx.startService(i)
+                }
+                true
+            } catch (e: Exception) {
+                // Not allowed right now (the app is in the background).
+                false
             }
         }
+
+        private fun canLocate(ctx: Context) =
+            ctx.checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) ==
+                PackageManager.PERMISSION_GRANTED ||
+                ctx.checkSelfPermission(android.Manifest.permission.ACCESS_COARSE_LOCATION) ==
+                PackageManager.PERMISSION_GRANTED
 
         @Volatile
         private var instance: TripLiveService? = null

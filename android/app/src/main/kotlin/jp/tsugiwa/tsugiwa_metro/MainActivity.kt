@@ -31,10 +31,8 @@ class MainActivity : FlutterActivity() {
                         val names = args["channelNames"] as? Map<String, String> ?: emptyMap()
                         LiveNotification.createChannels(this, names)
                         val n = LiveNotification.build(this, LiveNotification.Payload.from(args))
-                        if (call.method == "start" && !serviceStarted) {
-                            TripLiveService.start(this, n)
-                            serviceStarted = true
-                        }
+                        // Also on updates: the first try waits for the location permission.
+                        if (!serviceStarted) serviceStarted = TripLiveService.start(this, n)
                         notificationManager().notify(LiveNotification.TRIP_ID, n)
                         result.success(null)
                     }
