@@ -127,6 +127,8 @@ class PostcardPictures {
       effects: base.effects,
       trainColor: train == null ? base.trainColor : train.color,
       trainArt: train == null ? base.trainArt : train.art,
+      headMark: base.headMark,
+      skyArt: base.skyArt,
     );
   }
 

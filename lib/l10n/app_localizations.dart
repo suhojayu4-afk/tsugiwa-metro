@@ -892,6 +892,18 @@ abstract class AppLocalizations {
   /// **'演出'**
   String get myTabEffect;
 
+  /// No description provided for @myTabSky.
+  ///
+  /// In ja, this message translates to:
+  /// **'空'**
+  String get myTabSky;
+
+  /// No description provided for @myTabMark.
+  ///
+  /// In ja, this message translates to:
+  /// **'ヘッドマーク'**
+  String get myTabMark;
+
   /// No description provided for @myEquipped.
   ///
   /// In ja, this message translates to:

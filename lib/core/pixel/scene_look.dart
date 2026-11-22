@@ -10,6 +10,8 @@ class SceneLook {
     this.effects = const {},
     this.trainColor,
     this.trainArt,
+    this.headMark,
+    this.skyArt,
     this.led = const [],
     this.ledColors = const [ledOrange],
     this.sign,
@@ -23,6 +25,13 @@ class SceneLook {
 
   /// Equipped train with its own pictures (folder), null = the usual train.
   final String? trainArt;
+
+  /// A head mark (ヘッドマーク) on the train's face: a small round plate.
+  final String? headMark;
+
+  /// Something floating in the sky (a hot-air balloon): its picture; a
+  /// smaller one further away is `<name>_far.png` next to it.
+  final String? skyArt;
 
   /// Scene picture per time of day. Empty = the built-in animated scene.
   /// A missing time of day falls back to another picture, colour-graded.
@@ -54,6 +63,8 @@ class SceneLook {
     effects: effects,
     trainColor: trainColor,
     trainArt: trainArt,
+    headMark: headMark,
+    skyArt: skyArt,
     led: pages,
     ledColors: colors,
     sign: sign,
@@ -66,6 +77,8 @@ class SceneLook {
     effects: effects,
     trainColor: trainColor,
     trainArt: trainArt,
+    headMark: headMark,
+    skyArt: skyArt,
     led: led,
     ledColors: ledColors,
     sign: s,
@@ -82,6 +95,8 @@ class SceneLook {
           effects: effects,
           trainColor: trainColor,
           trainArt: trainArt,
+          headMark: headMark,
+          skyArt: skyArt,
           led: led,
           ledColors: ledColors,
           sign: sign,
@@ -97,6 +112,8 @@ class SceneLook {
     ...effects,
     trainColor?.toARGB32() ?? '',
     'train=${trainArt ?? ''}',
+    'mark=${headMark ?? ''}',
+    'sky=${skyArt ?? ''}',
     'led=${led.join('/')}',
     'sign=${sign?.name}/${sign?.sub}/${sign?.band.toARGB32()}',
     for (final c in ledColors) c.toARGB32(),

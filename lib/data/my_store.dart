@@ -384,6 +384,8 @@ class MyStore extends ChangeNotifier {
       effects: {for (final d in deco) ?d.effect},
       trainColor: cat.item(equipped(MySlot.train)).color,
       trainArt: cat.item(equipped(MySlot.train)).art ?? cityTrainArt,
+      headMark: cat.item(equipped(MySlot.mark)).sprite,
+      skyArt: cat.item(equipped(MySlot.sky)).sprite,
     );
   }
 
@@ -413,6 +415,8 @@ class MyStore extends ChangeNotifier {
       effects: base.effects,
       trainColor: base.trainColor,
       trainArt: base.trainArt,
+      headMark: base.headMark,
+      skyArt: base.skyArt,
       led: base.led,
       ledColors: base.ledColors,
     );

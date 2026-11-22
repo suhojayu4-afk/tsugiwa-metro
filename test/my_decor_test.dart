@@ -102,6 +102,40 @@ void main() {
     });
   });
 
+  test('head marks and sky things: a small picture each, and a free "none" to take them off', () {
+    for (final slot in [MySlot.mark, MySlot.sky]) {
+      final items = catalog.inSlot(slot);
+      expect(items.where((i) => i.free && i.sprite == null), hasLength(1), reason: slot.name);
+      expect(items.where((i) => i.sprite != null), isNotEmpty, reason: slot.name);
+      for (final item in items.where((i) => i.sprite != null)) {
+        expect(File(item.sprite!).existsSync(), isTrue, reason: '${item.id}: ${item.sprite}');
+        expect(item.price, greaterThan(0), reason: item.id);
+      }
+    }
+    // A head mark fits on every train's face, between its sides.
+    for (final art in [null, 'assets/art/shinkansen', 'assets/art/tottori/diesel', 'assets/art/tottori/sl']) {
+      final at = SceneArt.markOf(art);
+      expect(at.dx, inInclusiveRange(20, 55), reason: '$art');
+      expect(at.dy, inInclusiveRange(30, 85), reason: '$art');
+    }
+  });
+
+  testWidgets('a look with a head mark and balloons loads and paints', (tester) async {
+    await tester.runAsync(() async {
+      final look = SceneLook(headMark: catalog.item('mark.sakura').sprite, skyArt: catalog.item('sky.balloon').sprite);
+      expect(look, isNot(const SceneLook()));
+      final art = await loadSceneArt(look, DayPart.day);
+      expect(art.mark, isNotNull);
+      expect(art.skies, hasLength(2));
+      final img = await renderSceneImage(look: look, part: DayPart.day, lineColor: const Color(0xFF80C241), scale: 1);
+      expect((img.width, img.height), (SceneArt.width, SceneArt.height));
+      // Underground there is no sky to float in.
+      final under = await loadSceneArt(look.withUnderground(true), DayPart.day);
+      expect(under.skies, isEmpty);
+      expect(under.mark, isNotNull);
+    });
+  });
+
   test('every drawn effect in the catalog is one the scene knows', () {
     final source = File('lib/core/pixel/scene_ambience.dart').readAsStringSync();
     for (final item in catalog.items.where((i) => i.effect != null)) {

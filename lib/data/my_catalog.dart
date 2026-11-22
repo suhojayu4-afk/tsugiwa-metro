@@ -7,7 +7,7 @@ import '../core/localized_text.dart';
 import '../core/pixel/pixel_scene.dart';
 
 /// Where an item goes in MY駅.
-enum MySlot { scene, plate, train, roof, platform, effect, melody, sticker }
+enum MySlot { scene, plate, train, mark, roof, sky, platform, effect, melody, sticker }
 
 class MyItem {
   const MyItem({
@@ -18,6 +18,7 @@ class MyItem {
     this.priceYen,
     this.images = const {},
     this.overlay,
+    this.sprite,
     this.effect,
     this.color,
     this.plate,
@@ -55,6 +56,10 @@ class MyItem {
   /// Station scene pictures per time of day (scene items only).
   final Map<DayPart, String> images;
   final String? overlay;
+
+  /// A small picture of its own: a head mark on the train's face (mark
+  /// items) or something floating in the sky (sky items).
+  final String? sprite;
   final String? effect;
   final Color? color;
 
@@ -87,6 +92,7 @@ class MyItem {
         DayPart.values.byName(e.key): e.value as String,
     },
     overlay: j['overlay'] as String?,
+    sprite: j['sprite'] as String?,
     effect: j['effect'] as String?,
     color: _color(j['color'] as String?),
     plate: j['plate'] == null ? null : PlateStyle.fromJson(j['plate'] as Map<String, dynamic>),

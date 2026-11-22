@@ -57,6 +57,9 @@ Future<ui.Image> renderSceneImage({
     life: life,
     graded: art.graded,
     overlays: art.overlays,
+    mark: art.mark,
+    markAt: SceneArt.markOf(look.trainArt),
+    skies: art.skies,
     weathered: art.weathered,
     sky: art.sky,
     closed: art.closed,
@@ -134,6 +137,9 @@ class _ScenePainter extends CustomPainter {
     this.trainWeatherTint = const Color(0xFFFFFFFF),
     this.graded,
     this.overlays = const [],
+    this.mark,
+    this.markAt = SceneArt.markDefault,
+    this.skies = const [],
     this.effects = const {},
     this.led = const [],
     this.ledColors = const [ledOrange],
@@ -218,6 +224,13 @@ class _ScenePainter extends CustomPainter {
   /// Set when the picture is another time of day's, to be colour-graded.
   final DayPart? graded;
   final List<ui.Image> overlays;
+
+  /// The head mark on the train's face (its centre in the train picture: [markAt]).
+  final ui.Image? mark;
+  final Offset markAt;
+
+  /// Things floating in the sky: the near one, then the far one.
+  final List<ui.Image> skies;
   final Set<String> effects;
 
   final SceneView view;
@@ -269,6 +282,7 @@ class _ScenePainter extends CustomPainter {
     ambience?.paint(canvas, part, life.value, weathered: weathered);
     // Easter eggs in the sky (shooting star, rainbow, airship), behind the train.
     if (!underground) events?.paintSky(canvas, bg: bg, part: part);
+    _skyThings(canvas);
     final trainSrc = Rect.fromLTWH(0, 0, trainBase.width.toDouble(), trainBase.height.toDouble());
     if (!_gone) {
       _atTrain(canvas, () {
@@ -308,6 +322,7 @@ class _ScenePainter extends CustomPainter {
             ..filterQuality = FilterQuality.none
             ..colorFilter = ColorFilter.mode(stripe, BlendMode.modulate),
         );
+        _headMark(canvas);
         if (trainWeather != null) {
           canvas.drawImageRect(
             trainWeather!,
@@ -434,6 +449,66 @@ class _ScenePainter extends CustomPainter {
     canvas.restore();
   }
 
+  /// The light of the hour on things that are not part of the picture.
+  Color get _hourLight => underground
+      ? const Color(0xFFFFFFFF)
+      : switch (part) {
+          DayPart.day => const Color(0xFFFFFFFF),
+          DayPart.evening => const Color(0xFFF0D2C4),
+          DayPart.night => const Color(0xFF7C86B4),
+        };
+
+  /// The head mark on the train's face, in the train's light. The back of
+  /// the train (leaving) has none.
+  void _headMark(Canvas canvas) {
+    final m = mark;
+    if (m == null || closed || (depart?.value ?? 0) > 0) return;
+    final at = SceneArt.trainRect.topLeft + markAt - Offset(m.width / 2, m.height / 2);
+    final wet = sky == 'rain' || sky == 'umbrella' || sky == 'snow' || sky == 'snowsoon';
+    canvas.drawImage(
+      m,
+      Offset(at.dx.roundToDouble(), at.dy.roundToDouble()),
+      Paint()
+        ..filterQuality = FilterQuality.none
+        ..colorFilter = ColorFilter.mode(
+          wet ? Color.lerp(_hourLight, const Color(0xFFADB5C6), 0.5)! : _hourLight,
+          BlendMode.modulate,
+        ),
+    );
+  }
+
+  /// Things floating in the sky (hot-air balloons): they drift slowly to and
+  /// fro and bob a little. Not in the rain or snow, and not underground.
+  void _skyThings(Canvas canvas) {
+    if (skies.isEmpty || underground || closed) return;
+    final wet =
+        sky == 'rain' ||
+        sky == 'umbrella' ||
+        sky == 'snow' ||
+        sky == 'snowsoon' ||
+        weather == WeatherKind.rain ||
+        weather == WeatherKind.snow;
+    if (wet) return;
+    final paint = Paint()
+      ..filterQuality = FilterQuality.none
+      ..colorFilter = ColorFilter.mode(_hourLight, BlendMode.modulate);
+    final t = life.value;
+    // Left of the overhead-wire mast (it stands at column 112-120), above the
+    // roofs: (start, how far it drifts, ticks there and back).
+    const paths = [(Offset(62, 30), 26.0, 420), (Offset(20, 14), 14.0, 640)];
+    for (var i = 0; i < skies.length && i < paths.length; i++) {
+      final (from, reach, period) = paths[i];
+      final p = (t % period) / period;
+      final drift = (p < 0.5 ? p * 2 : 2 - p * 2) * reach;
+      final bob = math.sin(t * 0.21 + i * 1.7) * 1.2;
+      canvas.drawImage(
+        skies[i],
+        Offset((from.dx + drift - skies[i].width / 2).roundToDouble(), (from.dy + bob).roundToDouble()),
+        paint,
+      );
+    }
+  }
+
   /// Rough day / night look for a scene that only has an evening picture.
   static ColorFilter _grade(DayPart part) => switch (part) {
     DayPart.night => const ColorFilter.matrix([
@@ -516,6 +591,8 @@ class _ScenePainter extends CustomPainter {
       old.bg != bg ||
       old.graded != graded ||
       old.overlays != overlays ||
+      old.mark != mark ||
+      old.skies != skies ||
       old.front != front ||
       old.decorShift != decorShift ||
       old.effects != effects ||

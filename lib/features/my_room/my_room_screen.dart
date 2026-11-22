@@ -213,7 +213,9 @@ class MyRoomScreenState extends State<MyRoomScreen> {
       MySlot.scene: t.myTabScene,
       MySlot.plate: t.myTabPlate,
       MySlot.train: t.myTabTrain,
+      MySlot.mark: t.myTabMark,
       MySlot.roof: t.myTabRoof,
+      MySlot.sky: t.myTabSky,
       MySlot.platform: t.myTabPlatform,
       MySlot.effect: t.myTabEffect,
       MySlot.melody: t.myTabMelody,
@@ -596,6 +598,15 @@ class _Thumb extends StatelessWidget {
             ),
           ),
         );
+      case MySlot.mark || MySlot.sky when item.sprite != null:
+        // The picture itself, enlarged.
+        return ColoredBox(
+          color: item.slot == MySlot.sky ? const Color(0xFF8CC4F4) : PixelColors.background,
+          child: Padding(
+            padding: const EdgeInsets.all(14),
+            child: Image.asset(item.sprite!, fit: BoxFit.contain, filterQuality: FilterQuality.none),
+          ),
+        );
       default:
         final icon = switch (item.id) {
           'roof.lanterns' => Icons.light_rounded,
@@ -603,6 +614,8 @@ class _Thumb extends StatelessWidget {
           'roof.tsurushi' => Icons.style_rounded,
           'roof.furin' => Icons.notifications_none_rounded,
           'roof.fuji' => Icons.local_florist_rounded,
+          'roof.bunting' => Icons.flag_rounded,
+          'roof.teru' => Icons.wb_cloudy_rounded,
           'platform.vending' => Icons.local_drink_rounded,
           'platform.bench' => Icons.chair_alt_rounded,
           'platform.bins' => Icons.delete_outline_rounded,

@@ -479,6 +479,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get myTabEffect => 'Effects';
 
   @override
+  String get myTabSky => 'Sky';
+
+  @override
+  String get myTabMark => 'Head mark';
+
+  @override
   String get myEquipped => 'In use';
 
   @override

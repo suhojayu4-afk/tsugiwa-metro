@@ -269,6 +269,10 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
     trainWeatherTint: art.trainWeatherTint,
     graded: art.graded,
     overlays: art.overlays,
+    // The rare yellow train carries no head mark.
+    mark: yellow != null ? null : art.mark,
+    markAt: SceneArt.markOf(widget.look.trainArt),
+    skies: art.skies,
     effects: widget.look.effects,
     // The yellow train shows its own dark display.
     led: yellow != null ? const [] : widget.look.led,

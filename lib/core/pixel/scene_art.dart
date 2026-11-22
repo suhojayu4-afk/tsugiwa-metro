@@ -48,6 +48,16 @@ class SceneArt {
   };
   static List<Offset> lampsOf(String? art) => _lamps[art] ?? lampsDefault;
 
+  /// Centre of a head mark on each train's face (75×96): below the
+  /// windscreen, between the lamps; on the locomotive, the smokebox door.
+  static const markDefault = Offset(37.5, 69);
+  static const _marks = {
+    'assets/art/shinkansen': Offset(37.5, 72),
+    tottoriDieselArt: Offset(37.5, 66),
+    'assets/art/tottori/sl': Offset(37.5, 46),
+  };
+  static Offset markOf(String? art) => _marks[art] ?? markDefault;
+
   /// Trains without a destination LED (the steam locomotive).
   static bool hasLed(String? art) => art != 'assets/art/tottori/sl';
 
@@ -209,6 +219,10 @@ typedef SceneArtSet = ({
   DayPart part,
   DayPart? graded,
   List<ui.Image> overlays,
+  // The head mark on the train's face and the things in the sky (the near
+  // one, then the far one), when equipped.
+  ui.Image? mark,
+  List<ui.Image> skies,
   bool weathered,
   // The weather picture in use ('rain', 'snow', 'umbrella', 'winter') and
   // what goes on the train for it (snow on the roof, raindrops).
@@ -340,6 +354,12 @@ class DecorIndex {
   }();
 }
 
+/// The sky thing and its far-away twin (`balloon.png`, `balloon_far.png`).
+Future<List<ui.Image>> _loadSkies(String? asset) async {
+  if (asset == null) return const [];
+  return [?await _loadOrNull(asset), ?await _loadOrNull(asset.replaceFirst(RegExp(r'\.png$'), '_far.png'))];
+}
+
 Future<ui.Image?> _loadOrNull(String? asset) async {
   if (asset == null) return null;
   try {
@@ -415,6 +435,8 @@ Future<SceneArtSet> loadSceneArt(SceneLook look, DayPart part, {String? sky}) as
     part: part,
     graded: graded,
     overlays: images.sublist(first),
+    mark: await _loadOrNull(look.headMark),
+    skies: await _loadSkies(look.skyArt),
     weathered: weathered != null,
     sky: weathered != null ? baseSky : null,
     closed: baseSky == 'closed',
@@ -459,6 +481,9 @@ Future<SceneArtSet> _loadUnderground(SceneLook look, String? sky) async {
     part: part,
     graded: null,
     overlays: images.sublist(3),
+    mark: await _loadOrNull(look.headMark),
+    // No sky down here.
+    skies: const <ui.Image>[],
     weathered: false,
     sky: null,
     closed: sky?.split('_').first == 'closed',

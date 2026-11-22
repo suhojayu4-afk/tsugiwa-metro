@@ -464,6 +464,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get myTabEffect => '演出';
 
   @override
+  String get myTabSky => '空';
+
+  @override
+  String get myTabMark => 'ヘッドマーク';
+
+  @override
   String get myEquipped => '設置中';
 
   @override

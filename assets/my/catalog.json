@@ -25,7 +25,9 @@
     "scene",
     "plate",
     "train",
+    "mark",
     "roof",
+    "sky",
     "platform",
     "effect",
     "melody",
@@ -538,6 +540,60 @@
       "color": "#12998A"
     },
     {
+      "id": "mark.none",
+      "slot": "mark",
+      "name": {
+        "ja": "なし",
+        "ko": "없음",
+        "en": "None"
+      },
+      "price": 0
+    },
+    {
+      "id": "mark.sakura",
+      "slot": "mark",
+      "name": {
+        "ja": "さくら",
+        "ko": "벚꽃",
+        "en": "Cherry blossom"
+      },
+      "price": 120,
+      "sprite": "assets/art/marks/sakura.png"
+    },
+    {
+      "id": "mark.moon",
+      "slot": "mark",
+      "name": {
+        "ja": "お月さま",
+        "ko": "달님",
+        "en": "Moon"
+      },
+      "price": 120,
+      "sprite": "assets/art/marks/moon.png"
+    },
+    {
+      "id": "mark.pear",
+      "slot": "mark",
+      "name": {
+        "ja": "二十世紀梨",
+        "ko": "이십세기 배",
+        "en": "Pear"
+      },
+      "price": 150,
+      "sprite": "assets/art/marks/pear.png"
+    },
+    {
+      "id": "mark.dune",
+      "slot": "mark",
+      "name": {
+        "ja": "砂丘と梨",
+        "ko": "사구와 배",
+        "en": "Dune & pear"
+      },
+      "price": 150,
+      "sprite": "assets/art/marks/dune.png"
+    },
+    {
       "id": "roof.none",
       "slot": "roof",
       "name": {
@@ -609,6 +665,49 @@
         "from": "04-15",
         "to": "05-15"
       }
+    },
+    {
+      "id": "roof.bunting",
+      "slot": "roof",
+      "name": {
+        "ja": "万国旗",
+        "ko": "만국기",
+        "en": "Bunting"
+      },
+      "price": 150,
+      "overlay": "assets/art/decor/bunting.webp"
+    },
+    {
+      "id": "roof.teru",
+      "slot": "roof",
+      "name": {
+        "ja": "てるてる坊主",
+        "ko": "테루테루보즈",
+        "en": "Teru teru bozu"
+      },
+      "price": 120,
+      "overlay": "assets/art/decor/teru.webp"
+    },
+    {
+      "id": "sky.none",
+      "slot": "sky",
+      "name": {
+        "ja": "なし",
+        "ko": "없음",
+        "en": "None"
+      },
+      "price": 0
+    },
+    {
+      "id": "sky.balloon",
+      "slot": "sky",
+      "name": {
+        "ja": "熱気球",
+        "ko": "열기구",
+        "en": "Hot-air balloons"
+      },
+      "price": 180,
+      "sprite": "assets/art/sky/balloon.png"
     },
     {
       "id": "platform.none",

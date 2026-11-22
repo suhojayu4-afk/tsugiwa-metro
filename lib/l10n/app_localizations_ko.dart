@@ -464,6 +464,12 @@ class AppLocalizationsKo extends AppLocalizations {
   String get myTabEffect => '연출';
 
   @override
+  String get myTabSky => '하늘';
+
+  @override
+  String get myTabMark => '헤드마크';
+
+  @override
   String get myEquipped => '설치 중';
 
   @override

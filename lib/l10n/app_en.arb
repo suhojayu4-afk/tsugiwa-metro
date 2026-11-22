@@ -132,6 +132,8 @@
   "myTabRoof": "Roof",
   "myTabPlatform": "Platform",
   "myTabEffect": "Effects",
+  "myTabSky": "Sky",
+  "myTabMark": "Head mark",
   "myEquipped": "In use",
   "myOwned": "Owned",
   "myFree": "Free",
