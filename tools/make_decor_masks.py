@@ -44,6 +44,10 @@ REF_SHIFT = 10
 
 def ref_path(path):
     name = os.path.splitext(os.path.basename(path))[0]
+    if '/tottori/' in path.replace(os.sep, '/'):
+        # Tottori: an empty version of the very same drawing
+        # (tools/tottori/gen_empty_refs.py), in the picture's own rows.
+        return os.path.join(ROOT, 'docs/art/gen/tottori/empty', name.replace('_anim', '') + '.webp')
     if name.startswith('scene_'):
         name = 'standard_' + name[6:]
     scene, part = name.split('_')[:2]
@@ -111,11 +115,12 @@ def translate(pic, ref, box):
     return out
 
 
-def people(pic, ref):
+def people(pic, ref, ref_shift=REF_SHIFT):
     """Mask (bool, H×W) of the people of [pic] inside the zone, and how many
-    rows its platform is below the built-in scene's."""
+    rows its platform is below the built-in scene's ([ref_shift]: the
+    empty picture's)."""
     dx, dy = align(pic, ref, (266, 40, W, 150))
-    shift = REF_SHIFT + dy
+    shift = ref_shift + dy
     zx0, zy0, zx1, zy1 = ZONE[0], ZONE[1] + shift, ZONE[2], min(H, ZONE[3] + shift)
     wide = (max(0, zx0 - 30), max(0, zy0 - 10), W, min(H, zy1 + 20))
     ref = moved(ref, dx, dy)
@@ -163,6 +168,10 @@ def pictures():
     pics = glob.glob(os.path.join(ROOT, 'assets/art/scene_*.webp'))
     for d in ('scenes', 'scenes_season', 'crowd', 'weather'):
         pics += glob.glob(os.path.join(ROOT, f'assets/art/{d}/*.webp'))
+    # Tottori: the country station and the station scenes (drawn from the
+    # built-in scene's original, so their platform is in its rows).
+    pics += glob.glob(os.path.join(ROOT, 'assets/art/tottori/rural_*.webp'))
+    pics += glob.glob(os.path.join(ROOT, 'assets/art/tottori/scenes/*.webp'))
     # An animated picture replaces its still one in the app.
     pics = [p for p in pics if not os.path.exists(p.replace('.webp', '_anim.webp'))]
     return sorted(p for p in pics if Image.open(p).size[0] == W)
@@ -191,7 +200,7 @@ def main():
         ref = np.asarray(Image.open(ref_path(path)).convert('RGB'))
         masks = []
         for f in range(img.shape[0] // H):
-            m, shift = people(img[f * H:(f + 1) * H], ref)
+            m, shift = people(img[f * H:(f + 1) * H], ref, 0 if '/tottori/' in path.replace(os.sep, '/') else REF_SHIFT)
             masks.append(m)
         shifts[name] = shift
         masks = steady(masks)

@@ -5,7 +5,7 @@ The composition stays the standard one, so the train, the passengers, the
 station sign and the vanishing point work unchanged.
 
 Outputs: docs/art/gen/tottori/rural_{part}_raw.png (GPT) and
-assets/art/tottori/scene_{part}.webp. Existing pictures are skipped
+assets/art/tottori/rural_{part}.webp. Existing pictures are skipped
 (delete one to draw it again).
 
   python tools/tottori/gen_rural_scene.py [--jobs 3] [--only day ...]
@@ -57,7 +57,7 @@ Look at {src} first (a generic elevated Tokyo station: city buildings, trees beh
 def job(part):
     name = f'rural_{part}'
     raw = f'{OUT_RAW}/{name}_raw.png'
-    out = f'{OUT}/scene_{part}.webp'
+    out = f'{OUT}/rural_{part}.webp'
     if not os.path.exists(raw):
         prompt = PROMPT.format(out=raw, src=f'{GEN}/{SRC[part]}', change=CHANGE.format(light=LIGHT[part]))
         open(f'{OUT_RAW}/prompt_{name}.txt', 'w', encoding='utf8').write(prompt)
@@ -74,7 +74,7 @@ def job(part):
         subprocess.run([sys.executable, f'{ROOT}/tools/pixelize.py', raw, out,
                         '--width', '384', '--aspect', '2.0', '--colors', '64'],
                        stdout=subprocess.DEVNULL, check=True)
-        os.replace(f'{OUT}/scene_{part}_preview.png', f'{OUT_RAW}/{name}_preview.png')
+        os.replace(f'{OUT}/rural_{part}_preview.png', f'{OUT_RAW}/{name}_preview.png')
     return f'ok {name}'
 
 

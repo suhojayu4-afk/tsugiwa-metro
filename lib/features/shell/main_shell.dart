@@ -3,7 +3,8 @@ import '../../data/achievements.dart' show RareSightings;
 import 'package:material_ui/material_ui.dart';
 
 import '../../app.dart';
-import '../../core/pixel/pixel_scene.dart' show DayPart;
+import '../../core/pixel/pixel_scene.dart' show DayPart, tottoriDieselArt;
+import '../../core/pixel/scene_events.dart' show rareTrainArt, tottoriSlArt, yellowTrainArt;
 import '../../core/pixel/pixel_ui.dart';
 import '../../core/services.dart';
 import '../../data/models/city.dart';
@@ -77,8 +78,12 @@ class _MainShellState extends State<MainShell> {
     super.initState();
     final my = Services.my;
     my.lines = {for (final l in widget.city.lines) l.id: l.stations};
+    my.cityId = widget.city.id;
+    // Tottori's country lines run diesel railcars.
+    my.cityTrainArt = widget.city.id == 'tottori' ? tottoriDieselArt : null;
+    rareTrainArt = widget.city.id == 'tottori' ? tottoriSlArt : yellowTrainArt;
     my.cityScene = widget.city.id == 'tottori'
-        ? {for (final p in DayPart.values) p: 'assets/art/tottori/scene_${p.name}.webp'}
+        ? {for (final p in DayPart.values) p: 'assets/art/tottori/rural_${p.name}.webp'}
         : const {};
     if (!my.loaded) my.load();
     // 月間乗車レポート on the 1st; tapping it opens MY.

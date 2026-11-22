@@ -1,0 +1,15 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/tottori/stations/koiyamagata_day_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at C:/dev/tsugiwa-metro/docs/art/gen/tottori/rural_day_raw.png first (a country railway station: scenery behind a fence on the left, the track in the centre, a covered platform on the right). Make the SAME picture with the changes below. Keep the composition exactly the same: identical camera (do not move, zoom or crop), the same horizon and vanishing point, the fence line, the EMPTY track in the centre with the rails in exactly the same place, the platform on the right with its edge in the same place, the platform roof at the same height.
+
+The change: this is KOI-YAMAGATA, a tiny mountain station famous for being painted PINK all over, a clear day, the same bright sky and light as the original.
+- LEFT SIDE, beyond the fence: steep green mountains covered in tall cedar forest, a clear mountain stream with rocks below, a few wild flowers. No village, no fields.
+- The fence, the platform canopy pillars and beams, the bench and the back wall are all painted soft pastel PINK; small pink heart-shaped decorations hang from the canopy (no text). The canopy keeps the same height and position.
+- People: a young couple standing close together, at the original people's places and sizes.
+- A sweet, cosy, romantic mood.
+
+- Landscape 1536x1024, the same detailed 16-bit era pixel art style as the original, crisp square pixels, almost no black outlines, hue-shifted shading.
+- The track in the centre stays EMPTY and clear: no train, nothing standing on the rails.
+- ABSOLUTELY NO text, letters, numbers, logos or signboards.

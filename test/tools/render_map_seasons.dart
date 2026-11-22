@@ -4,6 +4,7 @@
 // names), into docs/captures/map_seasons/ for review:
 //   flutter test test/tools/render_map_seasons.dart
 // On a device: flutter run --dart-define=MAP_SEASON_DATE=2027-04-01
+// MAP_CITY=tottori renders the Tottori map's seasons into docs/captures/tottori/seasons/.
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math' as math;
@@ -109,25 +110,81 @@ const _nightGround = ColorFilter.matrix([
 ]);
 const _nightSoft = ColorFilter.matrix([0.55, 0, 0, 0, 6, 0, 0.55, 0, 0, 8, 0.1, 0, 0.62, 0, 22, 0, 0, 0, 1, 0]);
 
+final _tottoriShots = <Shot>[
+  (name: 'hatsumode_hakuto', date: _jst(2027, 1, 2), center: null, at: '白兎神社', scale: 1.0, night: false, phase: 0.1),
+  (
+    name: 'sakura_tottori',
+    date: _jst(2027, 4, 5),
+    center: null,
+    at: '久松公園（鳥取城跡）',
+    scale: 1.0,
+    night: false,
+    phase: 0.2,
+  ),
+  (name: 'sakura_yonago', date: _jst(2027, 4, 5), center: null, at: '湊山公園（米子城跡）', scale: 1.0, night: false, phase: 0.4),
+  (
+    name: 'hanabi_tottori_night',
+    date: _jst(2027, 7, 25),
+    center: null,
+    at: '鳥取市民納涼花火大会',
+    scale: 1.0,
+    night: true,
+    phase: 0.3,
+  ),
+  (
+    name: 'hanabi_togo_night',
+    date: _jst(2027, 7, 25),
+    center: null,
+    at: '東郷湖 水郷祭',
+    scale: 0.8,
+    night: true,
+    phase: 0.6,
+  ),
+  (name: 'koyo_daisen', date: _jst(2026, 11, 5), center: null, at: '大山', scale: 0.6, night: false, phase: 0),
+  (name: 'koyo_mitoku', date: _jst(2026, 11, 5), center: null, at: '三徳山', scale: 1.0, night: false, phase: 0),
+  (
+    name: 'illumination_yonago_night',
+    date: _jst(2026, 12, 10),
+    center: null,
+    at: '米子駅前',
+    scale: 1.0,
+    night: true,
+    phase: 0.2,
+  ),
+  (
+    name: 'koyo_all',
+    date: _jst(2026, 11, 5),
+    center: Offset(3450, 1500),
+    at: null,
+    scale: 0.12,
+    night: false,
+    phase: 0,
+  ),
+];
+
 void main() {
+  final city = Platform.environment['MAP_CITY'] ?? 'tokyo';
   testWidgets('render', (tester) async {
     await tester.runAsync(() async {
-      final mapJson = _read('assets/cities/tokyo/map.json');
+      final mapJson = _read('assets/cities/$city/map.json');
       final colors = {
         for (final l in (jsonDecode(
-          File('assets/cities/tokyo/lines.json').readAsStringSync(),
+          File('assets/cities/$city/lines.json').readAsStringSync(),
         ) as List).cast<Map<String, dynamic>>())
           l['id'] as String: Color(int.parse((l['color'] as String).substring(1), radix: 16) | 0xFF000000),
       };
-      final out = Directory('docs/captures/map_seasons')..createSync(recursive: true);
+      final out = Directory(city == 'tokyo' ? 'docs/captures/map_seasons' : 'docs/captures/$city/seasons')
+        ..createSync(recursive: true);
       for (final p in MapSeasons.images) {
         await _img(p);
       }
-      for (final shot in _shots) {
+      for (final shot in city == 'tokyo' ? _shots : _tottoriShots) {
         final map = RouteMapData.fromJson(mapJson, const {}, now: shot.date);
-        final seasons = MapSeasons.fromJson(_read('assets/cities/tokyo/seasons.json'), map: map);
+        final seasons = MapSeasons.fromJson(_read('assets/cities/$city/seasons.json'), map: map);
         final spots = seasons.spotsAt(shot.date);
-        final ring = map.lines.firstWhere((l) => l.lineId == 'tokyo.yamanote').bounds.center;
+        final ring =
+            map.lines.where((l) => l.lineId == 'tokyo.yamanote').firstOrNull?.bounds.center ??
+            Offset(map.size.width / 2, map.size.height / 2);
         final center = shot.center ?? (shot.at == null ? ring : spots.firstWhere((s) => s.name.ja == shot.at).position);
         final s = shot.scale;
         final m = Matrix4.identity()

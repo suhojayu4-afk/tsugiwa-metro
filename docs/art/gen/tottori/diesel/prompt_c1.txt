@@ -1,0 +1,18 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/tottori/diesel/c1_raw.png
+(copy it there from wherever the tool stores it). Do not write or change any other files. Reply with the saved path only.
+
+Look at this first:
+- C:/dev/tsugiwa-metro/docs/art/gen/train_front_raw.png : a commuter train seen HEAD-ON on pure magenta. Copy EXACTLY its camera angle, image size, the train's position and size in the frame, its pixel-art style and its evening rim light. Also keep the SAME LAYOUT OF PARTS: a dark amber dot-matrix destination display band across the top of the windshield, the bright pure green stripe running straight across the face at the same height, the two round headlights at the same height and the same left/right positions just below the stripe, the skirt at the bottom.
+
+What to draw instead: an ORIGINAL Japanese rural DIESEL RAILCAR (a one-car "kidosha" of a quiet country line), seen head-on, NOT any real train model.
+- NO pantograph and NO overhead-wire equipment on the roof: instead a low air-conditioner box and a small black exhaust pipe sticking up at one side of the roof.
+- Body: cream-white with a slightly worn, friendly look; a flat, upright face.
+- Front: two front windows with a narrow gangway door (with its own small window) in the middle between them, the destination display band along the top.
+- The stripe across the face must be one single bright pure green (#33CC33) band, and the ONLY green anywhere on the train.
+- Headlights: two round lamps just below the stripe, as in the reference; small marker lights near the top corners.
+- Below: a sturdy dark grey skirt with a snow plough shape, a coupler in the middle.
+- Same detailed 16-bit era pixel art style, crisp square pixels, warm evening rim light.
+- Background: one flat solid pure magenta colour (#FF00FF) everywhere around the train - no ground, no rails, no sky, no platform, no shadows on the background.
+- ABSOLUTELY NO text, letters, numbers, logos or company marks anywhere.
+Variation 1 of 3: rounded roof corners, slightly larger windows

@@ -153,6 +153,14 @@ class MyStore extends ChangeNotifier {
   /// this picture is shown whatever scene is equipped. Empty = Tokyo.
   Map<DayPart, String> cityScene = const {};
 
+  /// The city shown ('tokyo', 'tottori'): a station scene bought for one of
+  /// its stations is shown there instead of [cityScene].
+  String cityId = 'tokyo';
+
+  /// The city's own train pictures (Tottori: the diesel railcar), used while
+  /// the equipped train has none of its own. Null = the standard train.
+  String? cityTrainArt;
+
   MyCatalog? get catalog => _catalog;
   bool get loaded => _catalog != null;
   int get coins => unlimited ? unlimitedCoinsShown : _coins;
@@ -371,11 +379,11 @@ class MyStore extends ChangeNotifier {
       cat.item(equipped(MySlot.effect)),
     ];
     return SceneLook(
-      images: cityScene.isNotEmpty ? cityScene : scene.images,
+      images: cityScene.isNotEmpty && !(scene.station?.startsWith('$cityId.') ?? false) ? cityScene : scene.images,
       overlays: [for (final d in deco) ?d.overlay],
       effects: {for (final d in deco) ?d.effect},
       trainColor: cat.item(equipped(MySlot.train)).color,
-      trainArt: cat.item(equipped(MySlot.train)).art,
+      trainArt: cat.item(equipped(MySlot.train)).art ?? cityTrainArt,
     );
   }
 

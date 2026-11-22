@@ -184,6 +184,74 @@
       }
     },
     {
+      "id": "scene.tottori_tottori",
+      "slot": "scene",
+      "name": {
+        "ja": "鳥取",
+        "ko": "돗토리",
+        "en": "Tottori"
+      },
+      "price": 1000,
+      "priceYen": 250,
+      "images": {
+        "day": "assets/art/tottori/scenes/tottori_day.webp",
+        "evening": "assets/art/tottori/scenes/tottori_evening.webp",
+        "night": "assets/art/tottori/scenes/tottori_night.webp"
+      },
+      "station": "tottori.tottori"
+    },
+    {
+      "id": "scene.tottori_yonago",
+      "slot": "scene",
+      "name": {
+        "ja": "米子",
+        "ko": "요나고",
+        "en": "Yonago"
+      },
+      "price": 1000,
+      "priceYen": 250,
+      "images": {
+        "day": "assets/art/tottori/scenes/yonago_day.webp",
+        "evening": "assets/art/tottori/scenes/yonago_evening.webp",
+        "night": "assets/art/tottori/scenes/yonago_night.webp"
+      },
+      "station": "tottori.yonago"
+    },
+    {
+      "id": "scene.tottori_sakaiminato",
+      "slot": "scene",
+      "name": {
+        "ja": "境港",
+        "ko": "사카이미나토",
+        "en": "Sakaiminato"
+      },
+      "price": 1000,
+      "priceYen": 250,
+      "images": {
+        "day": "assets/art/tottori/scenes/sakaiminato_day.webp",
+        "evening": "assets/art/tottori/scenes/sakaiminato_evening.webp",
+        "night": "assets/art/tottori/scenes/sakaiminato_night.webp"
+      },
+      "station": "tottori.sakaiminato"
+    },
+    {
+      "id": "scene.tottori_koiyamagata",
+      "slot": "scene",
+      "name": {
+        "ja": "恋山形",
+        "ko": "고이야마가타",
+        "en": "Koi-Yamagata"
+      },
+      "price": 1000,
+      "priceYen": 250,
+      "images": {
+        "day": "assets/art/tottori/scenes/koiyamagata_day.webp",
+        "evening": "assets/art/tottori/scenes/koiyamagata_evening.webp",
+        "night": "assets/art/tottori/scenes/koiyamagata_night.webp"
+      },
+      "station": "tottori.koi_yamagata"
+    },
+    {
       "id": "plate.basic",
       "slot": "plate",
       "name": {
@@ -294,6 +362,57 @@
       }
     },
     {
+      "id": "plate.sanin",
+      "slot": "plate",
+      "name": {
+        "ja": "山陰ブルー",
+        "ko": "산인 블루",
+        "en": "San'in blue"
+      },
+      "price": 0,
+      "unlock": "line:tottori.sanin",
+      "plate": {
+        "led": [
+          "#5AB4FF",
+          "#FFFFFF"
+        ]
+      }
+    },
+    {
+      "id": "plate.inbi",
+      "slot": "plate",
+      "name": {
+        "ja": "因美オレンジ",
+        "ko": "인비 오렌지",
+        "en": "Inbi orange"
+      },
+      "price": 0,
+      "unlock": "line:tottori.inbi",
+      "plate": {
+        "led": [
+          "#FFA040",
+          "#FFE6B0"
+        ]
+      }
+    },
+    {
+      "id": "plate.koi",
+      "slot": "plate",
+      "name": {
+        "ja": "恋山形ピンク",
+        "ko": "고이야마가타 핑크",
+        "en": "Koi-Yamagata pink"
+      },
+      "price": 0,
+      "unlock": "line:tottori.chizukyu",
+      "plate": {
+        "led": [
+          "#FF7FB8",
+          "#FFFFFF"
+        ]
+      }
+    },
+    {
       "id": "train.line",
       "slot": "train",
       "name": {
@@ -370,6 +489,53 @@
       "price": 0,
       "unlock": "line:tokyo.ginza",
       "color": "#FFD21F"
+    },
+    {
+      "id": "train.kidosha",
+      "slot": "train",
+      "name": {
+        "ja": "のんびり気動車",
+        "ko": "느긋한 기동차",
+        "en": "Easygoing railcar"
+      },
+      "price": 3000,
+      "art": "assets/art/tottori/diesel"
+    },
+    {
+      "id": "train.sakai",
+      "slot": "train",
+      "name": {
+        "ja": "境線むらさき号",
+        "ko": "사카이선 보라호",
+        "en": "Sakai purple"
+      },
+      "price": 0,
+      "unlock": "line:tottori.sakai",
+      "color": "#8A5CB8"
+    },
+    {
+      "id": "train.wakasa",
+      "slot": "train",
+      "name": {
+        "ja": "若桜みどり号",
+        "ko": "와카사 초록호",
+        "en": "Wakasa green"
+      },
+      "price": 0,
+      "unlock": "line:tottori.wakasa",
+      "color": "#2E9E5B"
+    },
+    {
+      "id": "train.hakubi",
+      "slot": "train",
+      "name": {
+        "ja": "やまなみ号",
+        "ko": "야마나미호",
+        "en": "Yamanami"
+      },
+      "price": 0,
+      "unlock": "line:tottori.hakubi",
+      "color": "#12998A"
     },
     {
       "id": "roof.none",

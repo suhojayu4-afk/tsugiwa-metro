@@ -1,0 +1,315 @@
+{
+ "about": "Seasonal decorations on the Tottori route map (tools/tottori/make_seasons.py). from/to are month-day in Japan; lat/lng go through the flat projection of tools/tottori/build_map.py; \"landmark\" = gather round that landmark picture.",
+ "projection": {
+  "center": [
+   35.66,
+   133.02
+  ],
+  "kmLng": 90.9,
+  "kmLat": 111.0,
+  "units": 55,
+  "power": 1.0,
+  "far": 1000.0,
+  "soft": 0.0,
+  "origin": [
+   0,
+   0
+  ]
+ },
+ "seasons": [
+  {
+   "id": "hatsumode",
+   "from": "01-01",
+   "to": "01-07",
+   "name": {
+    "ja": "初詣",
+    "ko": "하쓰모데 (새해 참배)",
+    "en": "New Year shrine visits"
+   }
+  },
+  {
+   "id": "sakura",
+   "from": "03-28",
+   "to": "04-15",
+   "name": {
+    "ja": "お花見",
+    "ko": "벚꽃 구경",
+    "en": "Cherry blossoms"
+   }
+  },
+  {
+   "id": "hanabi",
+   "from": "07-15",
+   "to": "08-31",
+   "name": {
+    "ja": "花火大会",
+    "ko": "불꽃놀이",
+    "en": "Fireworks festivals"
+   }
+  },
+  {
+   "id": "koyo",
+   "from": "10-15",
+   "to": "11-25",
+   "name": {
+    "ja": "紅葉狩り",
+    "ko": "단풍 구경",
+    "en": "Autumn leaves"
+   }
+  },
+  {
+   "id": "illumination",
+   "from": "11-20",
+   "to": "12-25",
+   "name": {
+    "ja": "イルミネーション",
+    "ko": "일루미네이션",
+    "en": "Winter illuminations"
+   }
+  }
+ ],
+ "spots": [
+  {
+   "season": "hatsumode",
+   "kind": "shrine",
+   "name": {
+    "ja": "白兎神社",
+    "ko": "하쿠토 신사",
+    "en": "Hakuto Shrine"
+   },
+   "lat": 35.5157,
+   "lng": 134.0717,
+   "landmark": "hakuto"
+  },
+  {
+   "season": "hatsumode",
+   "kind": "shrine",
+   "name": {
+    "ja": "宇倍神社",
+    "ko": "우베 신사",
+    "en": "Ube Shrine"
+   },
+   "lat": 35.4535,
+   "lng": 134.255
+  },
+  {
+   "season": "hatsumode",
+   "kind": "temple",
+   "name": {
+    "ja": "大山寺",
+    "ko": "다이센지",
+    "en": "Daisen-ji"
+   },
+   "lat": 35.389,
+   "lng": 133.539
+  },
+  {
+   "season": "hatsumode",
+   "kind": "temple",
+   "name": {
+    "ja": "三佛寺",
+    "ko": "산부쓰지",
+    "en": "Sanbutsu-ji"
+   },
+   "lat": 35.388,
+   "lng": 133.944,
+   "landmark": "nageiredo"
+  },
+  {
+   "season": "sakura",
+   "kind": "sakura",
+   "name": {
+    "ja": "久松公園（鳥取城跡）",
+    "ko": "히사마쓰 공원 (돗토리성 터)",
+    "en": "Kyusho Park, Tottori Castle"
+   },
+   "lat": 35.5105,
+   "lng": 134.2388,
+   "landmark": "jinpukaku",
+   "count": 6
+  },
+  {
+   "season": "sakura",
+   "kind": "sakura",
+   "name": {
+    "ja": "湊山公園（米子城跡）",
+    "ko": "미나토야마 공원 (요나고성 터)",
+    "en": "Minatoyama Park, Yonago Castle"
+   },
+   "lat": 35.428,
+   "lng": 133.323,
+   "landmark": "yonago_castle",
+   "count": 5
+  },
+  {
+   "season": "sakura",
+   "kind": "sakura",
+   "name": {
+    "ja": "打吹公園",
+    "ko": "우쓰부키 공원",
+    "en": "Utsubuki Park"
+   },
+   "lat": 35.4275,
+   "lng": 133.827,
+   "landmark": "kurayoshi",
+   "count": 5
+  },
+  {
+   "season": "sakura",
+   "kind": "sakura",
+   "name": {
+    "ja": "東郷湖畔",
+    "ko": "도고 호반",
+    "en": "Lake Togo shore"
+   },
+   "lat": 35.487,
+   "lng": 133.886,
+   "landmark": "togo",
+   "count": 4
+  },
+  {
+   "season": "sakura",
+   "kind": "sakura",
+   "name": {
+    "ja": "若桜鉄道沿線",
+    "ko": "와카사 철도 연선",
+    "en": "Along the Wakasa Railway"
+   },
+   "lat": 35.36,
+   "lng": 134.32,
+   "count": 4
+  },
+  {
+   "season": "hanabi",
+   "kind": "hanabi",
+   "name": {
+    "ja": "鳥取市民納涼花火大会",
+    "ko": "돗토리 시민 납량 불꽃놀이",
+    "en": "Tottori summer fireworks"
+   },
+   "lat": 35.518,
+   "lng": 134.195
+  },
+  {
+   "season": "hanabi",
+   "kind": "hanabi",
+   "name": {
+    "ja": "がいな祭 花火",
+    "ko": "가이나 축제 불꽃놀이",
+    "en": "Gaina Festival fireworks"
+   },
+   "lat": 35.442,
+   "lng": 133.35
+  },
+  {
+   "season": "hanabi",
+   "kind": "hanabi",
+   "name": {
+    "ja": "東郷湖 水郷祭",
+    "ko": "도고호 스이고 축제",
+    "en": "Lake Togo water festival"
+   },
+   "lat": 35.48,
+   "lng": 133.895,
+   "landmark": "togo"
+  },
+  {
+   "season": "hanabi",
+   "kind": "hanabi",
+   "name": {
+    "ja": "境港 みなと祭",
+    "ko": "사카이미나토 항구 축제",
+    "en": "Sakaiminato port festival"
+   },
+   "lat": 35.545,
+   "lng": 133.245,
+   "landmark": "sakaiminato"
+  },
+  {
+   "season": "koyo",
+   "kind": "momiji",
+   "name": {
+    "ja": "大山",
+    "ko": "다이센",
+    "en": "Mt. Daisen"
+   },
+   "lat": 35.3712,
+   "lng": 133.5463,
+   "landmark": "daisen_big",
+   "count": 7
+  },
+  {
+   "season": "koyo",
+   "kind": "momiji",
+   "name": {
+    "ja": "三徳山",
+    "ko": "미토쿠산",
+    "en": "Mt. Mitoku"
+   },
+   "lat": 35.388,
+   "lng": 133.944,
+   "landmark": "nageiredo",
+   "count": 5
+  },
+  {
+   "season": "koyo",
+   "kind": "momiji",
+   "name": {
+    "ja": "芦津渓谷",
+    "ko": "아시즈 계곡",
+    "en": "Ashizu Gorge"
+   },
+   "lat": 35.23,
+   "lng": 134.32,
+   "count": 4
+  },
+  {
+   "season": "koyo",
+   "kind": "mixed",
+   "name": {
+    "ja": "とっとり花回廊",
+    "ko": "돗토리 하나카이로",
+    "en": "Tottori Flower Park"
+   },
+   "lat": 35.37,
+   "lng": 133.42,
+   "landmark": "hanakairo",
+   "count": 4
+  },
+  {
+   "season": "illumination",
+   "kind": "lights",
+   "name": {
+    "ja": "鳥取駅前",
+    "ko": "돗토리역 앞",
+    "en": "Tottori Station square"
+   },
+   "lat": 35.496,
+   "lng": 134.227
+  },
+  {
+   "season": "illumination",
+   "kind": "lights",
+   "name": {
+    "ja": "米子駅前",
+    "ko": "요나고역 앞",
+    "en": "Yonago Station square"
+   },
+   "lat": 35.425,
+   "lng": 133.338
+  },
+  {
+   "season": "illumination",
+   "kind": "lights",
+   "name": {
+    "ja": "とっとり花回廊 ウィンターイルミネーション",
+    "ko": "돗토리 하나카이로 겨울 일루미네이션",
+    "en": "Tottori Flower Park winter lights"
+   },
+   "lat": 35.37,
+   "lng": 133.42,
+   "landmark": "hanakairo",
+   "count": 5
+  }
+ ]
+}

@@ -77,7 +77,7 @@ void main() {
       expect(File(lm.image).existsSync(), isTrue, reason: lm.image);
     }
     for (final p in ['day', 'evening', 'night']) {
-      expect(File('assets/art/tottori/scene_$p.webp').existsSync(), isTrue);
+      expect(File('assets/art/tottori/rural_$p.webp').existsSync(), isTrue);
     }
   });
 
@@ -107,5 +107,41 @@ void main() {
     }
     final notes = _read('landmarks.json') as Map<String, dynamic>;
     expect(notes.keys.toSet(), keys);
+  });
+
+  test('MY shop: Tottori scenes, the railcar and a reward for each local line', () {
+    final cat = jsonDecode(File('assets/my/catalog.json').readAsStringSync()) as Map<String, dynamic>;
+    final items = (cat['items'] as List).cast<Map<String, dynamic>>();
+    final scenes = items.where((i) => (i['station'] as String? ?? '').startsWith('tottori.')).toList();
+    expect(scenes, hasLength(4));
+    for (final s in scenes) {
+      expect(city.stations.containsKey(s['station']), isTrue, reason: s['id'] as String);
+      for (final img in (s['images'] as Map).values) {
+        expect(File(img as String).existsSync(), isTrue, reason: img);
+      }
+    }
+    for (final line in ['sanin', 'sakai', 'inbi', 'wakasa', 'chizukyu', 'hakubi']) {
+      expect(items.where((i) => i['unlock'] == 'line:tottori.$line'), hasLength(1), reason: line);
+    }
+    for (final art in ['assets/art/tottori/diesel', 'assets/art/tottori/sl']) {
+      for (final f in [
+        'front_base_day.webp',
+        'front_base_evening.webp',
+        'front_base_night.webp',
+        'front_stripe.webp',
+      ]) {
+        expect(File('$art/$f').existsSync(), isTrue, reason: '$art/$f');
+      }
+    }
+    expect(File('assets/art/tottori/diesel/side_base.webp').existsSync(), isTrue);
+  });
+
+  test('seasonal spots stand on the Tottori map', () {
+    final s = _read('seasons.json') as Map<String, dynamic>;
+    final keys = {for (final lm in map.landmarks) lm.image.split('/').last.replaceAll('.png', '')};
+    for (final spot in (s['spots'] as List).cast<Map<String, dynamic>>()) {
+      final lm = spot['landmark'] as String?;
+      if (lm != null) expect(keys, contains(lm));
+    }
   });
 }

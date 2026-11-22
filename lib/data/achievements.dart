@@ -1,7 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/localized_text.dart';
-import '../core/pixel/scene_events.dart' show yellowTrainSightings;
+import '../core/pixel/scene_events.dart' show slTrainSightings, yellowTrainSightings;
 import '../features/trip/trip_estimator.dart' show distanceMeters;
 import 'models/city.dart';
 import 'my_store.dart';
@@ -149,12 +149,25 @@ const badges = [
       'en': 'Spot the rare yellow train at the platform',
     }),
   ),
+  TripBadge(
+    'sl',
+    BadgeTier.gold,
+    'assets/art/tottori/sl/front_base_day.webp',
+    LocalizedText({'ja': '若桜のSL', 'ko': '와카사의 SL', 'en': 'Wakasa Steam'}),
+    LocalizedText({
+      'ja': '鳥取ののりばに めったに来ない蒸気機関車に会う',
+      'ko': '돗토리 승강장에 아주 가끔 오는 증기기관차 만나기',
+      'en': 'Spot the rare steam locomotive on a Tottori platform',
+    }),
+  ),
 ];
 
 /// Rare things seen on the platform (scene_events.dart), kept on the phone.
 class RareSightings {
   static const _key = 'badges.yellowTrain';
+  static const _slKey = 'badges.slTrain';
   static bool yellow = false;
+  static bool sl = false;
   static bool _attached = false;
 
   /// Loads what was seen and starts listening for the yellow train.
@@ -162,10 +175,19 @@ class RareSightings {
     if (_attached) return;
     _attached = true;
     try {
-      yellow = (await SharedPreferences.getInstance()).getBool(_key) ?? false;
+      final prefs = await SharedPreferences.getInstance();
+      yellow = prefs.getBool(_key) ?? false;
+      sl = prefs.getBool(_slKey) ?? false;
     } catch (_) {
       // A badge is a nicety.
     }
+    slTrainSightings.addListener(() async {
+      if (sl || slTrainSightings.value == 0) return;
+      sl = true;
+      try {
+        await (await SharedPreferences.getInstance()).setBool(_slKey, true);
+      } catch (_) {}
+    });
     yellowTrainSightings.addListener(() async {
       if (yellow || yellowTrainSightings.value == 0) return;
       yellow = true;
@@ -218,6 +240,7 @@ Set<String> earnedBadges(CityData city, MyStore store) {
   if (done.contains('tokyo.yamanote')) got.add('yamanote');
   if (done.length >= 5) got.add('line5');
   if (RareSightings.yellow) got.add('yellow');
+  if (RareSightings.sl) got.add('sl');
   return got;
 }
 

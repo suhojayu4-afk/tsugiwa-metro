@@ -55,6 +55,9 @@ flutter:
     - assets/art/tottori/
     - assets/art/tottori/landmarks/
     - assets/art/tottori/map_tiles/
+    - assets/art/tottori/diesel/
+    - assets/art/tottori/sl/
+    - assets/art/tottori/scenes/
     - assets/my/
     - assets/sounds/
     - assets/fonts/licenses/

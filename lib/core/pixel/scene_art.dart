@@ -1,6 +1,9 @@
 part of 'pixel_scene.dart';
 
 /// Illustrated platform scenes (pixel-art pictures, lossless WebP; see docs/art/STYLE.md).
+/// Tottori's country diesel railcar (tools/tottori/make_diesel.py).
+const tottoriDieselArt = 'assets/art/tottori/diesel';
+
 class SceneArt {
   static const width = 384;
   static const height = 192;
@@ -38,9 +41,15 @@ class SceneArt {
   static const lampsDefault = [Offset(14, 64.5), Offset(58.5, 64.5)];
   static const _lamps = {
     'assets/art/shinkansen': [Offset(14.5, 63), Offset(59.5, 63)],
+    tottoriDieselArt: [Offset(15, 65), Offset(58, 65)],
+    // The steam locomotive: its big headlamp on the smokebox and two small lamps.
+    'assets/art/tottori/sl': [Offset(37.5, 27), Offset(18, 71), Offset(55, 71)],
     yellowTrainArt: [Offset(16.5, 67.5), Offset(56.5, 67.5)],
   };
   static List<Offset> lampsOf(String? art) => _lamps[art] ?? lampsDefault;
+
+  /// Trains without a destination LED (the steam locomotive).
+  static bool hasLed(String? art) => art != 'assets/art/tottori/sl';
 
   /// Crowd levels with their own pictures (tools/gen_crowd_scenes.py).
   static const crowdLevels = {'relaxed', 'normal', 'crowded', 'packed'};

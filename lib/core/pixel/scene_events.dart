@@ -55,6 +55,16 @@ const yellowTrainOdds = 40;
 /// used like an equipped train's folder ([SceneLook.trainArt]).
 const yellowTrainArt = 'assets/art/yellow_train';
 
+/// Tottori's rare train instead: the little steam locomotive.
+const tottoriSlArt = 'assets/art/tottori/sl';
+
+/// The rare train of the city shown (set by the shell): the yellow
+/// inspection train in Tokyo, the steam locomotive in Tottori.
+String rareTrainArt = yellowTrainArt;
+
+/// Counts how often Tottori's steam locomotive has stopped at the platform.
+final slTrainSightings = ValueNotifier<int>(0);
+
 /// Counts how often the yellow inspection train has stopped at the platform
 /// on screen. Listen to it to award a badge (e.g. when it becomes 1).
 final yellowTrainSightings = ValueNotifier<int>(0);
@@ -248,6 +258,9 @@ class SceneEventDirector extends ChangeNotifier {
   final _art = <String, ui.Image>{};
   Future<void>? _loading;
 
+  /// This scene's rare train (the city's, when the scene was made).
+  final String rareArt = rareTrainArt;
+
   static const _sprites = ['cat', 'pigeon', 'staff', 'staff_toward', 'staff_away', 'blimp'];
 
   Future<void> _ensureArt() => _loading ??= () async {
@@ -261,8 +274,8 @@ class SceneEventDirector extends ChangeNotifier {
 
     await Future.wait([
       for (final s in _sprites) get(s, 'assets/art/events/$s.webp'),
-      for (final p in DayPart.values) get('yellow_${p.name}', SceneArt.trainBase(p, yellowTrainArt)),
-      get('yellow_stripe', SceneArt.trainStripeOf(yellowTrainArt)),
+      for (final p in DayPart.values) get('yellow_${p.name}', SceneArt.trainBase(p, rareArt)),
+      get('yellow_stripe', SceneArt.trainStripeOf(rareArt)),
     ]);
   }();
 
@@ -295,7 +308,7 @@ class SceneEventDirector extends ChangeNotifier {
   }
 
   /// The yellow train has stopped at the platform: one more sighting.
-  void yellowTrainArrived() => yellowTrainSightings.value++;
+  void yellowTrainArrived() => rareArt == yellowTrainArt ? yellowTrainSightings.value++ : slTrainSightings.value++;
 
   /// The yellow train's pictures for [part], once loaded.
   ({ui.Image base, ui.Image stripe})? yellowTrain(DayPart part) {

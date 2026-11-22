@@ -226,6 +226,11 @@ enum RouteStopKind { start, change, end }
 
 /// Lines with short trains: trams, people movers, monorails, one-car lines.
 const _oneCar = {
+  // Tottori: one-car railcars on the quiet lines.
+  'tottori.wakasa',
+  'tottori.chizukyu',
+  'tottori.hakubi',
+  'tottori.inbi',
   'tokyo.toden_arakawa',
   'tokyo.tokyu_setagaya',
   'tokyo.isumi',
@@ -242,6 +247,12 @@ const _oneCar = {
   'tokyo.disney_resort_line',
 };
 const _twoCars = {
+  // Tottori: two cars on the San'in and Sakai lines and the expresses.
+  'tottori.sanin',
+  'tottori.sakai',
+  'tottori.matsukaze',
+  'tottori.hakuto',
+  'tottori.yakumo',
   'tokyo.enoden',
   'tokyo.yurikamome',
   'tokyo.nippori_toneri',

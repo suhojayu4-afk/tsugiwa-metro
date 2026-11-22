@@ -249,7 +249,8 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
     bg: art.bg,
     trainBase: yellow?.base ?? art.base,
     trainStripe: yellow?.stripe ?? art.stripe,
-    lamps: SceneArt.lampsOf(yellow != null ? yellowTrainArt : widget.look.trainArt),
+    lamps: SceneArt.lampsOf(yellow != null ? _events.rareArt : widget.look.trainArt),
+    hasLed: SceneArt.hasLed(yellow != null ? _events.rareArt : widget.look.trainArt),
     // At night the stripe is in shadow like the rest of the train.
     lineColor: stripeColor(widget.look.trainColor ?? widget.lineColor, art.part),
     weather: widget.weather ?? WeatherKind.sunny,

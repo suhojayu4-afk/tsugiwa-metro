@@ -51,6 +51,7 @@ Future<ui.Image> renderSceneImage({
     trainBase: art.base,
     trainStripe: art.stripe,
     lamps: SceneArt.lampsOf(look.trainArt),
+    hasLed: SceneArt.hasLed(look.trainArt),
     lineColor: stripeColor(look.trainColor ?? lineColor, art.part),
     weather: weather,
     life: life,
@@ -144,10 +145,14 @@ class _ScenePainter extends CustomPainter {
     this.overlayLights = const [],
     this.ambience,
     this.events,
+    this.hasLed = true,
   }) : super(repaint: Listenable.merge([life, ?arrive, ?platform, ?depart, ?gather, ?events]));
 
   /// Easter-egg events (scene_events.dart), or null.
   final SceneEventDirector? events;
+
+  /// The train has a destination LED (a steam locomotive has none).
+  final bool hasLed;
 
   final StationSign? sign;
 
@@ -347,7 +352,7 @@ class _ScenePainter extends CustomPainter {
       // Empty track: nothing to light.
     } else if (closed) {
       _atTrain(canvas, () => paintLed(canvas, SceneArt.ledRect, '運行終了', ledColors.first));
-    } else if (led.isNotEmpty) {
+    } else if (led.isNotEmpty && hasLed) {
       // A page lasts about 3 seconds (life ticks every 320 ms).
       final page = (life.value ~/ 10) % led.length;
       // Dark far down the line; it flickers on as the train comes close.

@@ -1,0 +1,17 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/tottori/sl/c1_raw.png
+(copy it there from wherever the tool stores it). Do not write or change any other files. Reply with the saved path only.
+
+Look at this first:
+- C:/dev/tsugiwa-metro/docs/art/gen/train_front_raw.png : a commuter train seen HEAD-ON on pure magenta. Copy EXACTLY its camera angle, image size, the train's position and size in the frame, its pixel-art style and its evening rim light. Also keep the SAME LAYOUT OF PARTS: a dark amber dot-matrix destination display band across the top of the windshield, the bright pure green stripe running straight across the face at the same height, the two round headlights at the same height and the same left/right positions just below the stripe, the skirt at the bottom.
+
+What to draw instead: an ORIGINAL small Japanese STEAM LOCOMOTIVE (a little tank engine of a country railway), seen head-on, NOT any real locomotive model, filling the same area as the reference train.
+- Glossy black body with a round smokebox door in the middle (with a small round number plate WITHOUT any numbers), a tall black chimney on top with a little white steam, one big round headlight on top of the smokebox, small handrails.
+- Where the reference has its destination display band, put a dark horizontal nameplate board across the upper front (plain, no text).
+- A bright red buffer beam across the bottom with two buffers and a coupler, and a short snow plough / cowcatcher below it.
+- Use ONE thin bright pure green (#33CC33) line along the edge of the buffer beam as the stripe, the ONLY green anywhere.
+- Small round marker lamps at the lower corners.
+- Same detailed 16-bit era pixel art style, crisp square pixels, warm evening rim light.
+- Background: one flat solid pure magenta colour (#FF00FF) everywhere around the train - no ground, no rails, no sky, no platform, no shadows on the background.
+- ABSOLUTELY NO text, letters, numbers, logos or company marks anywhere.
+Variation 1 of 3: classic, with gold trim lines on the smokebox ring

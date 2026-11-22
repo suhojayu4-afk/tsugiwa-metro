@@ -35,11 +35,14 @@ void main() {
       'assets/art/scenes_season',
       'assets/art/crowd',
       'assets/art/weather',
+      'assets/art/tottori',
+      'assets/art/tottori/scenes',
     ]) {
       for (final f in Directory(dir).listSync().whereType<File>()) {
         final name = f.uri.pathSegments.last;
         if (!name.endsWith('.webp') || name.endsWith('_anim.webp')) continue;
         if (dir == 'assets/art' && !RegExp(r'^scene_(day|evening|night)\.webp$').hasMatch(name)) continue;
+        if (dir == 'assets/art/tottori' && !name.startsWith('rural_')) continue;
         out.add('$dir/$name');
       }
     }
