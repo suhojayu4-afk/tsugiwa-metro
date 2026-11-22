@@ -1396,6 +1396,8 @@ class _Banner extends StatelessWidget {
           .withUnderground(
             fromId != null &&
                 city.station(fromId!).isUndergroundOn(route?.legs.first.lineId ?? city.station(fromId!).lines.first),
+            // The equipped scene is another station's view: underground it would show sky.
+            overScene: !owned,
           ),
       // A new route: the train pulls in. Rain: umbrellas.
       arrivalKey: route == null ? null : '${route!.fromId}>${route!.toId}',

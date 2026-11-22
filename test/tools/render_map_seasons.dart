@@ -125,7 +125,7 @@ void main() {
       }
       for (final shot in _shots) {
         final map = RouteMapData.fromJson(mapJson, const {}, now: shot.date);
-        final seasons = MapSeasons.fromJson(_read('assets/cities/tokyo/seasons.json'), landmarks: map.landmarks);
+        final seasons = MapSeasons.fromJson(_read('assets/cities/tokyo/seasons.json'), map: map);
         final spots = seasons.spotsAt(shot.date);
         final ring = map.lines.firstWhere((l) => l.lineId == 'tokyo.yamanote').bounds.center;
         final center = shot.center ?? (shot.at == null ? ring : spots.firstWhere((s) => s.name.ja == shot.at).position);

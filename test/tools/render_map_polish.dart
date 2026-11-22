@@ -6,10 +6,12 @@
 // at a middle zoom. Other shots come from a JSON file named in the
 // MAP_POLISH_JOBS environment variable, a list of
 //   {"name": "nikko", "lat": 36.75, "lng": 139.6, "scale": 0.8, "night": false,
-//    "w": 900, "h": 900, "date": "2027-06-15", "names": true}
+//    "w": 900, "h": 900, "date": "2027-06-15", "names": true,
+//    "stickers": {"tokyo.tokyo": "heart"}, "unplaced": false}
 // ("x"/"y" in map units or "station" (an id) instead of lat/lng; MAP_POLISH_PREFIX
-// goes in front of every file name, e.g. before_ / after_; MAP_POLISH_MAP is
-// another map.json to draw, e.g. a kept copy of the old one for "before").
+// goes in front of every file name, e.g. before_ / after_; MAP_POLISH_OUT is
+// another folder to write to; MAP_POLISH_MAP is another map.json to draw,
+// e.g. a kept copy of the old one for "before").
 import 'dart:convert';
 import 'dart:io';
 import 'dart:ui' as ui;
@@ -46,6 +48,8 @@ Future<ui.Image> renderMap({
   bool names = true,
   List<SeasonSpot> seasonal = const [],
   double phase = 0.1,
+  Map<String, String> stickers = const {},
+  DateTime? now,
 }) async {
   final m = Matrix4.identity()
     ..translateByDouble(size.width / 2 - center.dx * scale, size.height / 2 - center.dy * scale, 0, 1)
@@ -66,6 +70,9 @@ Future<ui.Image> renderMap({
     clock: AlwaysStoppedAnimation(phase),
     night: night,
     seasonal: seasonal,
+    now: now,
+    stickers: stickers,
+    stickerImages: {for (final name in stickers.values.toSet()) name: ?await _img('assets/art/stickers/$name.png')},
   );
   final rec = ui.PictureRecorder();
   final canvas = Canvas(rec, Offset.zero & size);
@@ -98,7 +105,8 @@ void main() {
       final seasonsJson = _read('assets/cities/tokyo/seasons.json');
       final proj = SeasonProjection.fromJson(seasonsJson['projection'] as Map<String, dynamic>);
       final city = loadTokyo();
-      final out = Directory('docs/captures/map_polish')..createSync(recursive: true);
+      final out = Directory(Platform.environment['MAP_POLISH_OUT'] ?? 'docs/captures/map_polish')
+        ..createSync(recursive: true);
       final prefix = Platform.environment['MAP_POLISH_PREFIX'] ?? '';
       final jobsFile = Platform.environment['MAP_POLISH_JOBS'];
       final first = RouteMapData.fromJson(mapJson, const {});
@@ -138,10 +146,14 @@ void main() {
           ...map.landmarks.map((l) => l.image),
           ...map.decor.map((d) => d.image),
           ...MapSeasons.images,
+          ...MapSeasons.landmarkArt,
         ]) {
           await _img(p);
         }
-        final seasons = MapSeasons.fromJson(seasonsJson, landmarks: map.landmarks);
+        // "unplaced": the seasonal spots at their real places, not moved clear of the lines.
+        final seasons = j['unplaced'] == true
+            ? MapSeasons.fromJson(seasonsJson, landmarks: map.landmarks)
+            : MapSeasons.fromJson(seasonsJson, map: map, nameEms: (id) => stationNameEms(city, id));
         final center = switch (j) {
           {'station': final String id} => map.stopsOf(id).first.position,
           {'lat': final num lat, 'lng': final num lng} => proj.toMap(lat.toDouble(), lng.toDouble()),
@@ -157,6 +169,8 @@ void main() {
           names: j['names'] as bool? ?? true,
           seasonal: seasons.spotsAt(date),
           phase: (j['phase'] as num? ?? 0.1).toDouble(),
+          now: date,
+          stickers: (j['stickers'] as Map<String, dynamic>? ?? const {}).cast<String, String>(),
         );
         final bytes = await img.toByteData(format: ui.ImageByteFormat.png);
         File('${out.path}/$prefix${j['name']}.png').writeAsBytesSync(bytes!.buffer.asUint8List());

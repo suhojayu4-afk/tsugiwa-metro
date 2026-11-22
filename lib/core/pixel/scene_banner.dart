@@ -205,11 +205,15 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
     }
   }
 
+  int _loads = 0;
+
   Future<void> _load() async {
     final part = _currentPart();
     _part = part;
+    // A slower, older request must not replace the picture asked for later.
+    final mine = ++_loads;
     final art = await loadSceneArt(widget.look, part, sky: widget.sky);
-    if (!mounted) return;
+    if (!mounted || mine != _loads) return;
     final old = _art;
     if (old != null && identical(old.bg, art.bg)) {
       setState(() => _art = art);

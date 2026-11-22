@@ -72,10 +72,12 @@ class SceneLook {
     underground: underground,
   );
 
-  SceneLook withUnderground(bool value) => value == underground
+  /// [overScene]: the subway platform also replaces the equipped scene
+  /// (a scene bought for this very station still wins: pass false).
+  SceneLook withUnderground(bool value, {bool overScene = false}) => value == underground && !(value && overScene)
       ? this
       : SceneLook(
-          images: images,
+          images: value && overScene ? const {} : images,
           overlays: overlays,
           effects: effects,
           trainColor: trainColor,

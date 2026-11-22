@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../../app.dart';
+import '../../core/localized_text.dart';
 import '../../core/pixel/pixel_ui.dart';
 import '../../core/services.dart';
 import '../../data/models/city.dart';
@@ -132,6 +133,9 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
 
   static const _maxScale = 4.0;
 
+  /// Where the buttons may begin: under the top bar.
+  static const _controlsTop = 84.0;
+
   @override
   void initState() {
     super.initState();
@@ -157,32 +161,69 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     _load();
   }
 
+  /// The small picture of all Kanto: shown at once, while the map itself loads.
+  static const _overviewAsset = 'assets/art/map_overview.png';
+  ui.Image? _preview;
+
+  /// Goes up with every batch of pictures that comes in (the painters redraw).
+  int _art = 0;
+
+  /// The map is on screen as soon as its data and the overview picture are
+  /// in (ground, lines, stations, names); the landmark and scenery pictures,
+  /// the trains and the seasonal spots follow without holding it back.
   Future<void> _load() async {
+    final preview = _image(_overviewAsset).then<ui.Image?>((img) {
+      if (mounted && _map == null) setState(() => _preview = img);
+      return img;
+    }, onError: (_) => null);
     final map = await RouteMapData.load(widget.city.id);
-    final terrain = await _image(map.terrainImage);
+    final first = await preview;
+    final terrain = first != null && map.terrainImage == _overviewAsset ? first : await _image(map.terrainImage);
     final outer = map.outer == null ? null : await _image(map.outer!.image);
-    for (final lm in map.landmarks) {
-      _landmarkImages[lm.image] = await _image(lm.image);
-    }
-    for (final d in map.decor) {
-      _landmarkImages[d.image] ??= await _image(d.image);
-    }
-    final info = await loadLandmarkInfo(widget.city.id);
-    // Seasonal decorations and their few small pictures.
-    final seasons = await MapSeasons.load(widget.city.id, map);
-    for (final p in MapSeasons.images) {
-      _landmarkImages[p] ??= await _image(p);
-    }
     if (!mounted) return;
     setState(() {
-      _seasons = seasons;
       _map = map;
       _terrain = terrain;
       _outer = outer;
-      _lmInfo = info;
-      _sim = TrainSim(map, widget.city);
+      _preview = null;
     });
     _onRoute();
+    // The trains, once the map has been drawn.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) setState(() => _sim = TrainSim(map, widget.city));
+    });
+    // The pictures, all at once (they are small) instead of one after another.
+    final pictures = {
+      for (final lm in map.landmarks) lm.image,
+      for (final d in map.decor) d.image,
+      ...MapSeasons.images,
+      ...MapSeasons.landmarkArt,
+    };
+    final art =
+        Future.wait([
+          for (final p in pictures)
+            _image(p).then<void>(
+              (img) => _landmarkImages[p] = img,
+              onError: (_) {
+                // A picture missing from the app: drawn without it.
+              },
+            ),
+        ]).then((_) {
+          if (mounted) setState(() => _art++);
+        });
+    final info = loadLandmarkInfo(widget.city.id).then((info) {
+      if (mounted) setState(() => _lmInfo = info);
+    });
+    // Seasonal decorations: room for each is found off the UI thread.
+    final seasons =
+        MapSeasons.load(
+          widget.city.id,
+          map,
+          nameEms: {for (final id in map.stations.keys) id: stationNameEms(widget.city, id)},
+        ).then((seasons) {
+          if (mounted) setState(() => _seasons = seasons);
+        });
+    await Future.wait([art, info, seasons]);
   }
 
   // ---------------- my route ----------------
@@ -526,17 +567,21 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
         best = stop;
       }
     }
-    if (best != null && bestDist < 26) {
+    // A station wins a tap near it; only a finger exactly on a seasonal
+    // picture (they never lie on a station) goes to the picture instead.
+    final seasonal = _seasons.spotsAt(MapSeasons.now());
+    final onPicture = seasonSpotAt(seasonal, _controller.value, d.localPosition, exact: true);
+    if (best != null && stationWinsTap(bestDist, _scale, onPicture: onPicture != null)) {
       _openStation(best.stationId);
       return;
     }
-    final lm = _landmarkAt(d.localPosition);
+    final lm = onPicture == null ? _landmarkAt(d.localPosition) : null;
     if (lm != null) {
       _openLandmark(lm);
       return;
     }
     // A seasonal spot (お花見, 花火 ...): its name in a snackbar.
-    final spot = seasonSpotAt(_seasons.spotsAt(MapSeasons.now()), _controller.value, d.localPosition);
+    final spot = onPicture ?? seasonSpotAt(seasonal, _controller.value, d.localPosition);
     if (spot != null) {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
@@ -585,7 +630,7 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
       builder: (_) => LandmarkSheet(
         city: widget.city,
         landmark: lm,
-        image: _landmarkImages[lm.image],
+        image: _landmarkImages[MapSeasons.landmarkArtAt(MapSeasons.now())[lm.image] ?? lm.image],
         info: _lmInfo[landmarkKey(lm)],
       ),
     );
@@ -595,7 +640,7 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
 
   Future<void> _search() async {
     final id = await pickStation(context, widget.city);
-    if (id == null || !mounted) return;
+    if (id == null || !mounted || _map == null) return;
     _openStation(id);
   }
 
@@ -655,6 +700,8 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     final map = _map, terrain = _terrain;
     // Seasonal spots shown today (Japan time), and reduce-motion.
     final seasonal = _seasons.spotsAt(MapSeasons.now());
+    // Landmarks with cherry trees wear the season's colours.
+    final swap = MapSeasons.landmarkArtAt(MapSeasons.now());
     final still = MediaQuery.of(context).disableAnimations;
     final List<({Offset at, bool done})>? course = _course == null || map == null
         ? null
@@ -663,9 +710,37 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
               if (map.stopsOf(st.station).firstOrNull case final p?)
                 (at: p.position, done: my.loaded && my.stamped(st.station)),
           ];
+    final buttons = <(IconData, String, VoidCallback)>[
+      (Icons.add, t.mapZoomIn, () => _zoomBy(1.8)),
+      (Icons.remove, t.mapZoomOut, () => _zoomBy(1 / 1.8)),
+      (Icons.zoom_out_map_rounded, t.mapFitAll, _fitAll),
+      (
+        night ? Icons.light_mode_outlined : Icons.dark_mode_outlined,
+        night ? t.mapDayView : t.mapNightView,
+        () => setState(() => _nightOverride = !night),
+      ),
+      (Icons.my_location_rounded, t.nearestButton, _goToMe),
+      (Icons.tour_rounded, t.mapCourses, _openCourses),
+      (
+        _stampMode ? Icons.close_rounded : Icons.approval_rounded,
+        t.mapStampMode,
+        () {
+          if (!_stampMode) _onStamps();
+          setState(() {
+            _stampMode = !_stampMode;
+            if (_stampMode) _course = null;
+          });
+        },
+      ),
+      if (lang != 'ja')
+        (Icons.translate_rounded, t.mapNamesSwap, () => setState(() => _namesJa = !(_namesJa ?? false))),
+    ];
     return LayoutBuilder(
       builder: (context, box) {
         _viewport = box.biggest;
+        final controls = mapControlsLayout(box.biggest.height - _controlsTop - 20, buttons.length);
+        // The bars along the bottom end where the buttons begin.
+        final barRight = 28 + controls.columns * (controls.size + 10);
         if (map != null && !_fitted) {
           _fitted = true;
           if (_route != null) {
@@ -681,7 +756,14 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                 child: ColoredBox(
                   color: night ? const Color(0xFF151A30) : const Color(0xFFF3F2EC),
                   child: map == null || terrain == null
-                      ? const SizedBox.shrink()
+                      ? _MapLoading(
+                          preview: _preview,
+                          clock: _twinkle,
+                          night: night,
+                          lang: lang,
+                          still: still,
+                          wrap: (child) => _maybeNight(night, child),
+                        )
                       : GestureDetector(
                           onTapUp: _onTap,
                           child: InteractiveViewer(
@@ -788,6 +870,8 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                         stamp: stamp,
                         course: course,
                         labels: false,
+                        swap: swap,
+                        art: _art,
                       ),
                     ),
                   ),
@@ -847,6 +931,8 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                         labels: true,
                         stickers: Services.stickers.marks,
                         stickerImages: _stickerImages,
+                        swap: swap,
+                        art: _art,
                       ),
                     ),
                   ),
@@ -862,54 +948,31 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                   onSearch: _search,
                 ),
               ),
-              if (map != null)
-                Positioned(
-                  right: 16,
-                  bottom: 20,
-                  child: Column(
+              // The buttons are there from the start (dimmed until the map is
+              // ready), and wrap into a second column on a short screen.
+              Positioned(
+                right: 16,
+                bottom: 20,
+                top: _controlsTop,
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: Wrap(
+                    direction: Axis.vertical,
+                    alignment: WrapAlignment.end,
+                    textDirection: TextDirection.rtl,
+                    spacing: controls.gap,
+                    runSpacing: 10,
                     children: [
-                      _MapButton(icon: Icons.add, label: t.mapZoomIn, onTap: () => _zoomBy(1.8)),
-                      const SizedBox(height: 10),
-                      _MapButton(icon: Icons.remove, label: t.mapZoomOut, onTap: () => _zoomBy(1 / 1.8)),
-                      const SizedBox(height: 10),
-                      _MapButton(icon: Icons.zoom_out_map_rounded, label: t.mapFitAll, onTap: _fitAll),
-                      const SizedBox(height: 10),
-                      _MapButton(
-                        icon: night ? Icons.light_mode_outlined : Icons.dark_mode_outlined,
-                        label: night ? t.mapDayView : t.mapNightView,
-                        onTap: () => setState(() => _nightOverride = !night),
-                      ),
-                      const SizedBox(height: 10),
-                      _MapButton(icon: Icons.my_location_rounded, label: t.nearestButton, onTap: _goToMe),
-                      const SizedBox(height: 10),
-                      _MapButton(icon: Icons.tour_rounded, label: t.mapCourses, onTap: _openCourses),
-                      const SizedBox(height: 10),
-                      _MapButton(
-                        icon: _stampMode ? Icons.close_rounded : Icons.approval_rounded,
-                        label: t.mapStampMode,
-                        onTap: () {
-                          if (!_stampMode) _onStamps();
-                          setState(() {
-                            _stampMode = !_stampMode;
-                            if (_stampMode) _course = null;
-                          });
-                        },
-                      ),
-                      if (lang != 'ja') ...[
-                        const SizedBox(height: 10),
-                        _MapButton(
-                          icon: Icons.translate_rounded,
-                          label: t.mapNamesSwap,
-                          onTap: () => setState(() => _namesJa = !(_namesJa ?? false)),
-                        ),
-                      ],
+                      for (final (icon, label, onTap) in buttons)
+                        _MapButton(icon: icon, label: label, size: controls.size, onTap: map == null ? null : onTap),
                     ],
                   ),
                 ),
+              ),
               if (map != null && _course != null)
                 Positioned(
                   left: 16,
-                  right: 84,
+                  right: barRight,
                   bottom: 20,
                   child: _CourseBar(
                     course: _course!,
@@ -929,7 +992,7 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
               if (map != null && _stampMode)
                 Positioned(
                   left: 16,
-                  right: 84,
+                  right: barRight,
                   bottom: 20,
                   child: _StampBar(
                     visited: stamp.visited.length,
@@ -942,7 +1005,7 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
               if (map != null && _route != null && !_stampMode && _course == null)
                 Positioned(
                   left: 16,
-                  right: 84,
+                  right: barRight,
                   bottom: 20,
                   child: _RouteBar(
                     city: widget.city,
@@ -1208,7 +1271,15 @@ class _MapOverlayPainter extends CustomPainter {
     this.course,
     this.stickers = const {},
     this.stickerImages = const {},
+    this.swap = const {},
+    this.art = 0,
   }) : super(repaint: matrix);
+
+  /// Landmark pictures drawn with another one in this season (picture → picture).
+  final Map<String, String> swap;
+
+  /// Batches of pictures loaded so far (a new batch redraws).
+  final int art;
 
   /// Stickers stuck on stations (station id → sticker), and their pictures.
   final Map<String, String> stickers;
@@ -1366,19 +1437,7 @@ class _MapOverlayPainter extends CustomPainter {
   };
 
   /// Names always shown, even fully zoomed out.
-  static const _major = {
-    'tokyo.tokyo',
-    'tokyo.shinjuku',
-    'tokyo.shibuya',
-    'tokyo.ikebukuro',
-    'tokyo.shinagawa',
-    'tokyo.ueno',
-    'tokyo.asakusa',
-    'tokyo.akihabara',
-    'tokyo.ginza',
-    'tokyo.shimbashi',
-    'tokyo.kanda',
-  };
+  static const _major = mapMajorStations;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -1433,7 +1492,7 @@ class _MapOverlayPainter extends CustomPainter {
           if (s > 0.75) lmNames.add((lm.name.of(lang), sp(lm.position).translate(0, 6)));
           continue;
         }
-        final img = landmarks[lm.image];
+        final img = landmarks[swap[lm.image] ?? lm.image] ?? landmarks[lm.image];
         if (img == null) continue;
         final p = sp(lm.position);
         if (labels) {
@@ -1476,7 +1535,7 @@ class _MapOverlayPainter extends CustomPainter {
     // ---- lines ----
     // Paths are built once in map units and drawn through the zoom matrix
     // (no rebuilding 160+ paths every frame while panning).
-    final width = (5.5 * s).clamp(2.0, 7.0);
+    final width = mapLineWidth(s);
     if (!labels) {
       _lines(canvas, m, s, view, width);
       return;
@@ -1580,7 +1639,7 @@ class _MapOverlayPainter extends CustomPainter {
     final route = this.route;
     final onRoute = route == null ? const <String>{} : _onRoute;
     // ---- stations ----
-    final r = (6.5 * s).clamp(2.2, 8.5);
+    final r = mapStationRadius(s);
     final fill = Paint()..color = PixelColors.card;
     final outline = Paint()
       ..color = PixelColors.ink
@@ -1631,25 +1690,41 @@ class _MapOverlayPainter extends CustomPainter {
     }
 
     // ---- stickers the user stuck on stations after trips ----
-    final stickerSize = (22 + 10 * s).clamp(20.0, 40.0);
-    for (final MapEntry(key: id, value: name) in stickers.entries) {
-      final img = stickerImages[name];
-      final stops = map.stopsOf(id);
-      if (img == null || stops.isEmpty || !view.contains(stops.first.position)) continue;
-      final p = sp(stops.first.position);
-      // Up and to the left of the dot, slightly tilted like a real sticker.
-      final k = stickerSize / math.max(img.width, img.height);
-      final w = img.width * k, h = img.height * k;
-      canvas.save();
-      canvas.translate(p.dx - r - w * 0.35, p.dy - r - h * 0.55);
-      canvas.rotate(((id.hashCode % 7) - 3) * 0.04);
-      canvas.drawImageRect(
-        img,
-        Rect.fromLTWH(0, 0, img.width.toDouble(), img.height.toDouble()),
-        Rect.fromCenter(center: Offset.zero, width: w, height: h),
-        Paint()..filterQuality = FilterQuality.none,
-      );
-      canvas.restore();
+    // They shrink with the map (within a readable size) and fade out far
+    // out, where they would cover the middle of Tokyo.
+    final stickerAlpha = mapStickerAlpha(s);
+    if (stickerAlpha > 0) {
+      final stickerSize = mapStickerSize(s);
+      final paint = Paint()
+        ..filterQuality = FilterQuality.none
+        ..color = Color.fromRGBO(0, 0, 0, stickerAlpha);
+      for (final MapEntry(key: id, value: name) in stickers.entries) {
+        final img = stickerImages[name];
+        final stops = map.stopsOf(id);
+        if (img == null || stops.isEmpty || !view.contains(stops.first.position)) continue;
+        var box = Rect.fromPoints(sp(stops.first.position), sp(stops.first.position));
+        for (final x in stops) {
+          box = box.expandToInclude(Rect.fromPoints(sp(x.position), sp(x.position)));
+        }
+        // A pin stands on this station (a course stop, or an end of my route): go below it.
+        final pinned =
+            (course?.any((c) => (c.at - stops.first.position).distance < 1) ?? false) ||
+            (route?.stops.any((x) => x.stationId == id && x.kind != RouteStopKind.change) ?? false);
+        final k = stickerSize / math.max(img.width, img.height);
+        final w = img.width * k, h = img.height * k;
+        canvas.save();
+        final at = mapStickerCentre(box, r, Size(w, h), below: pinned);
+        canvas.translate(at.dx, at.dy);
+        // Slightly tilted, like a real sticker.
+        canvas.rotate(((id.hashCode % 7) - 3) * 0.04);
+        canvas.drawImageRect(
+          img,
+          Rect.fromLTWH(0, 0, img.width.toDouble(), img.height.toDouble()),
+          Rect.fromCenter(center: Offset.zero, width: w, height: h),
+          paint,
+        );
+        canvas.restore();
+      }
     }
 
     // ---- a sightseeing course: numbered stops (gold once stamped) ----
@@ -1740,10 +1815,11 @@ class _MapOverlayPainter extends CustomPainter {
       };
       // Japanese first (as on the signs) or the app's language first; the
       // other one small underneath when zoomed in.
-      final main = stamp.namesJa ? station.name.ja : station.name.of(lang);
+      // (Without the 「（千代田区）」 / "(Chiyoda)" that only tells two stations of one name apart.)
+      final main = mapStationName(stamp.namesJa ? station.name.ja : station.name.of(lang));
       final sub = stamp.namesJa
-          ? (s > 1.3 ? (lang == 'ja' ? station.kana : station.name.of(lang)) : null)
-          : (s > 0.9 ? station.name.ja : null);
+          ? (s > 1.3 ? (lang == 'ja' ? station.kana : mapStationName(station.name.of(lang))) : null)
+          : (s > 0.9 ? mapStationName(station.name.ja) : null);
       final fs = ((font * (major ? 1.15 : 1)) * 2).roundToDouble() / 2;
       final rect = _bounds(main, sub, origin, anchor, fs);
       if (rect.right < 0 || rect.left > size.width || rect.bottom < 0 || rect.top > size.height) continue;
@@ -1858,7 +1934,8 @@ class _MapOverlayPainter extends CustomPainter {
       old.course?.length != course?.length ||
       old.stickers != stickers ||
       old.stickerImages.length != stickerImages.length ||
-      old.landmarks.length != landmarks.length;
+      old.swap != swap ||
+      old.art != art;
 }
 
 // ---------------- chrome ----------------
@@ -1967,26 +2044,32 @@ class _TopBarState extends State<_TopBar> {
             children: [
               PixelText(t.tabMap, size: 24),
               const SizedBox(width: 10),
+              // The chips scroll in their own room and fade out at its end,
+              // so a long row (English names) never runs under the search button.
               Expanded(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      for (final g in groups)
-                        chip(
-                          label: name(_groups[g] ?? (ja: g, ko: g, en: g)),
-                          color: city.lines.firstWhere((l) => l.group == g).color,
-                          on: _group == g,
-                          onTap: () {
-                            final close = _group == g;
-                            setState(() => _group = close ? null : g);
-                            widget.onFocus(close ? null : 'g:$g');
-                          },
-                        ),
-                    ],
+                child: _FadeEnd(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.only(right: 14),
+                    child: Row(
+                      children: [
+                        for (final g in groups)
+                          chip(
+                            label: name(_groups[g] ?? (ja: g, ko: g, en: g)),
+                            color: city.lines.firstWhere((l) => l.group == g).color,
+                            on: _group == g,
+                            onTap: () {
+                              final close = _group == g;
+                              setState(() => _group = close ? null : g);
+                              widget.onFocus(close ? null : 'g:$g');
+                            },
+                          ),
+                      ],
+                    ),
                   ),
                 ),
               ),
+              const SizedBox(width: 6),
               Semantics(
                 button: true,
                 label: t.mapSearch,
@@ -2007,17 +2090,20 @@ class _TopBarState extends State<_TopBar> {
               padding: const EdgeInsets.only(top: 6),
               child: SizedBox(
                 height: 28,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    for (final line in open)
-                      chip(
-                        label: line.name.of(lang),
-                        color: line.color,
-                        on: focus == line.id,
-                        onTap: () => widget.onFocus(focus == line.id ? 'g:$_group' : line.id),
-                      ),
-                  ],
+                child: _FadeEnd(
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.only(right: 14),
+                    children: [
+                      for (final line in open)
+                        chip(
+                          label: line.name.of(lang),
+                          color: line.color,
+                          on: focus == line.id,
+                          onTap: () => widget.onFocus(focus == line.id ? 'g:$_group' : line.id),
+                        ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -2027,30 +2113,142 @@ class _TopBarState extends State<_TopBar> {
   }
 }
 
+/// Fades the last few pixels of a row that scrolls sideways: more is there.
+class _FadeEnd extends StatelessWidget {
+  const _FadeEnd({required this.child});
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) => ShaderMask(
+    blendMode: BlendMode.dstIn,
+    shaderCallback: (r) => LinearGradient(
+      colors: const [Color(0xFFFFFFFF), Color(0xFFFFFFFF), Color(0x00FFFFFF)],
+      stops: [0, math.max(0, 1 - 18 / math.max(r.width, 1)), 1],
+    ).createShader(r),
+    child: child,
+  );
+}
+
 class _MapButton extends StatelessWidget {
-  const _MapButton({required this.icon, required this.label, required this.onTap});
+  const _MapButton({required this.icon, required this.label, required this.onTap, this.size = 46});
   final IconData icon;
   final String label;
-  final VoidCallback onTap;
+  final double size;
+
+  /// Null while the map is not ready: the button is there, dimmed.
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) => Semantics(
     button: true,
+    enabled: onTap != null,
     label: label,
     child: GestureDetector(
       onTap: onTap,
-      child: Container(
-        width: 46,
-        height: 46,
-        decoration: BoxDecoration(
-          color: PixelColors.card,
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: PixelColors.line),
-          boxShadow: const [BoxShadow(color: Color(0x14000000), blurRadius: 8, offset: Offset(0, 2))],
+      child: Opacity(
+        opacity: onTap == null ? 0.55 : 1,
+        child: Container(
+          width: size,
+          height: size,
+          decoration: BoxDecoration(
+            color: PixelColors.card,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: PixelColors.line),
+            boxShadow: const [BoxShadow(color: Color(0x14000000), blurRadius: 8, offset: Offset(0, 2))],
+          ),
+          child: Icon(icon, size: size * 0.52, color: onTap == null ? PixelColors.muted : PixelColors.ink),
         ),
-        child: Icon(icon, size: 24, color: PixelColors.ink),
       ),
     ),
+  );
+}
+
+/// The map's buttons in the [height] free for them: their size, the gap
+/// between them and how many columns they take. Smaller and closer on a
+/// short screen, then a second column, so none is ever pushed off screen.
+({double size, double gap, int columns}) mapControlsLayout(double height, int count) {
+  double tall(double size, double gap, int n) => n * size + (n - 1) * gap;
+  if (tall(46, 10, count) <= height) return (size: 46, gap: 10, columns: 1);
+  const size = 40.0, gap = 8.0;
+  final perColumn = math.max(1, ((height + gap) / (size + gap)).floor());
+  return (size: size, gap: gap, columns: (count / perColumn).ceil());
+}
+
+/// What the 路線図 tab shows while the map loads: the small picture of all
+/// Kanto (as soon as it is in), a pixel loading mark and a short line.
+class _MapLoading extends StatelessWidget {
+  const _MapLoading({
+    required this.preview,
+    required this.clock,
+    required this.night,
+    required this.lang,
+    required this.still,
+    required this.wrap,
+  });
+  final ui.Image? preview;
+  final Animation<double> clock;
+  final bool night, still;
+  final String lang;
+
+  /// The night colours over the picture.
+  final Widget Function(Widget) wrap;
+
+  static const _text = LocalizedText({'ja': '路線図を読み込み中…', 'ko': '노선도를 불러오는 중…', 'en': 'Loading the map…'});
+
+  @override
+  Widget build(BuildContext context) => Stack(
+    fit: StackFit.expand,
+    children: [
+      if (preview != null)
+        Opacity(
+          opacity: 0.6,
+          child: wrap(RawImage(image: preview, fit: BoxFit.cover, filterQuality: FilterQuality.none)),
+        ),
+      // (Clear of the buttons on the right.)
+      Container(
+        alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(horizontal: 68),
+        child: Semantics(
+          liveRegion: true,
+          label: _text.of(lang),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+            decoration: BoxDecoration(
+              color: PixelColors.card,
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(color: PixelColors.line),
+              boxShadow: const [BoxShadow(color: Color(0x14000000), blurRadius: 8, offset: Offset(0, 2))],
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Four square lamps lighting up one after another.
+                AnimatedBuilder(
+                  animation: clock,
+                  builder: (context, _) {
+                    final lit = still ? 3 : (clock.value * 18).floor() % 5;
+                    return Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        for (var i = 0; i < 4; i++)
+                          Container(
+                            width: 10,
+                            height: 10,
+                            margin: const EdgeInsets.symmetric(horizontal: 3),
+                            color: i < lit ? const Color(0xFF2E9447) : PixelColors.line,
+                          ),
+                      ],
+                    );
+                  },
+                ),
+                const SizedBox(height: 8),
+                ExcludeSemantics(child: PixelText(_text.of(lang), size: 14, color: PixelColors.muted, maxLines: 2)),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ],
   );
 }
 
@@ -2606,6 +2804,48 @@ class _CourseBar extends StatelessWidget {
   }
 }
 
+/// A sticker on a station, on screen at zoom [s]: its size (it shrinks with
+/// the map, between a size that still reads and the full one) and how
+/// strongly it shows (gone when all of Kanto is on screen).
+double mapStickerSize(double s) => (6 + 28 * s).clamp(13.0, 34.0);
+double mapStickerAlpha(double s) => ((s - 0.16) / 0.1).clamp(0.0, 1.0);
+
+/// Where a [size] sticker sits: beside the station's dot or pill (its stops
+/// span [stops] on screen, drawn with radius [r]), up and to the left - or
+/// down and to the left when a pin stands on the station ([below]) - never on it.
+Offset mapStickerCentre(Rect stops, double r, Size size, {bool below = false}) {
+  // Clear of the dot's rim (and a transfer station's wider pill).
+  final rim = r + 3, dx = size.width / 2 * 0.95, dy = size.height / 2 * 0.95;
+  return below
+      ? Offset(stops.left - rim * 0.7 - dx, stops.bottom + rim * 0.7 + dy)
+      : Offset(stops.left - rim * 0.7 - dx, stops.top - rim * 0.7 - dy);
+}
+
+/// A station's name as written on the map: without the bracket at its end
+/// that only tells two stations of one name apart in lists, 「小川町（千代田区）」
+/// or "Ogawamachi (Chiyoda)" (on the map they are far from each other).
+String mapStationName(String name) {
+  final cut = _nameBracket.firstMatch(name);
+  return cut == null || cut.start == 0 ? name : name.substring(0, cut.start);
+}
+
+final _nameBracket = RegExp(r'(（[^（）]*）| \([^()]*\))$');
+
+/// How wide a station's name is on the map, in ems: the widest of the app's
+/// languages (Latin letters are about half an em).
+double stationNameEms(CityData city, String id) {
+  var ems = 1.0;
+  for (final v in city.station(id).name.values.values) {
+    final name = mapStationName(v);
+    var w = 0.0;
+    for (final c in name.runes) {
+      w += c < 0x2000 ? 0.55 : 1;
+    }
+    ems = math.max(ems, w);
+  }
+  return ems;
+}
+
 /// The ground tiles wanted with [view] (map units) on screen at zoom [scale]:
 /// each set from its zoom on, and no coarse tile that lies wholly under the
 /// finer Tokyo tiles.
@@ -2658,6 +2898,9 @@ List<MapLayer> debugMapLayers({
   List<SeasonSpot> seasonal = const [],
   TrainSim? sim,
   Listenable? trainClock,
+  Map<String, String> stickers = const {},
+  Map<String, ui.Image> stickerImages = const {},
+  DateTime? now,
 }) {
   const soft = ColorFilter.matrix([0.55, 0, 0, 0, 6, 0, 0.55, 0, 0, 8, 0.1, 0, 0.62, 0, 22, 0, 0, 0, 1, 0]);
   _MapOverlayPainter overlay(bool labels) => _MapOverlayPainter(
@@ -2671,6 +2914,9 @@ List<MapLayer> debugMapLayers({
     route: null,
     night: night,
     labels: labels,
+    stickers: labels ? stickers : const {},
+    stickerImages: stickerImages,
+    swap: now == null ? const {} : MapSeasons.landmarkArtAt(now),
   );
   return [
     (
@@ -2733,4 +2979,12 @@ List<MapLayer> debugMapLayers({
       ),
     (name: 'names', painter: overlay(true), world: false, filter: null),
   ];
+}
+
+/// Pictures the map screen has loaded so far (landmarks, scenery, seasons,
+/// ground tiles), for test/tools/render_map_load.dart.
+@visibleForTesting
+int debugMapPictureCount(State<RouteMapScreen> state) {
+  final s = state as _RouteMapScreenState;
+  return s._landmarkImages.length + s._tiles.length;
 }
