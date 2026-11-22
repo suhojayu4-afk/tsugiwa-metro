@@ -54,8 +54,17 @@ class _GuideCardState extends State<GuideCard> {
   @override
   void didUpdateWidget(GuideCard old) {
     super.didUpdateWidget(old);
+    // The same list again (guideTips keeps it): nothing to do.
+    if (identical(old.tips, widget.tips) || old.tips.isEmpty || widget.tips.isEmpty) return;
     // A new situation (a route, the weather): start from the most useful tip.
-    if (old.tips.isNotEmpty && widget.tips.isNotEmpty && old.tips.first.text.ja != widget.tips.first.text.ja) _i = 0;
+    if (old.tips.first.key != widget.tips.first.key) {
+      _i = 0;
+      return;
+    }
+    // The same situation a little later (a minute less to the last train, a
+    // new hour): stay on the tip that is showing.
+    final at = widget.tips.indexWhere((t) => t.key == old.tips[_i % old.tips.length].key);
+    _i = at >= 0 ? at : _i % old.tips.length;
   }
 
   @override
@@ -102,7 +111,7 @@ class _GuideCardState extends State<GuideCard> {
                         duration: const Duration(milliseconds: 220),
                         child: PixelText(
                           tip.text.of(lang),
-                          key: ValueKey(_i % widget.tips.length),
+                          key: ValueKey(tip.key),
                           size: 14,
                           color: warn ? const Color(0xFFB33A2A) : PixelColors.ink,
                           maxLines: 3,

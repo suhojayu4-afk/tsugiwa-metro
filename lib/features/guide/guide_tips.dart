@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import '../../core/localized_text.dart';
 import '../../data/congestion/congestion_source.dart';
 import '../../data/models/city.dart';
@@ -5,20 +7,53 @@ import '../../data/weather/weather_source.dart';
 import '../trip/route_finder.dart';
 import 'guide_data.dart';
 
-/// What a tip is about (the attendant points for warnings).
-enum TipKind { warn, help, fun }
-
-class GuideTip {
-  const GuideTip(this.kind, this.text);
-  final TipKind kind;
-  final LocalizedText text;
-}
+export 'guide_data.dart' show GuideTip, TipKind;
 
 LocalizedText _t(String ja, String ko, String en) => LocalizedText({'ja': ja, 'ko': ko, 'en': en});
 
-/// The station attendant's tips for now, most useful first: the last train,
-/// rain, a long change, the best exit at the destination, crowds, stamps, a
-/// course to try, then a greeting for the time of day.
+/// The rotation takes one line from each of these in turn, so two lines of
+/// the same kind never follow each other while another kind still has some.
+/// What depends on the moment comes first (after the stations' own tips).
+const _rotation = ['weather', 'season', 'greet', 'crowd', 'manners', 'howto', 'app', 'trivia'];
+
+/// A warning at the head comes back after this many other lines.
+const _warnEvery = 10;
+
+/// Greetings used when the general pool is not loaded (yet).
+final _greetings = [
+  PoolTip(
+    TipKind.fun,
+    _t('おはようございます。今日もいってらっしゃい！', '좋은 아침이에요. 오늘도 잘 다녀오세요!', 'Good morning! Have a nice day!'),
+    cat: 'greet',
+    hours: (4, 10),
+  ),
+  PoolTip(
+    TipKind.fun,
+    _t('こんにちは。つぎの電車もご案内します', '안녕하세요. 다음 열차도 안내해 드릴게요', 'Hello! I\'ll guide you to the next train'),
+    cat: 'greet',
+    hours: (10, 17),
+  ),
+  PoolTip(
+    TipKind.fun,
+    _t('おつかれさまでした。気をつけて帰ってね', '수고 많으셨어요. 조심히 들어가세요', 'Good work today. Get home safe'),
+    cat: 'greet',
+    hours: (17, 4),
+  ),
+];
+
+Object? _memoKey;
+List<GuideTip> _memo = const [];
+
+/// The station attendant's tips for now. First what matters most: the last
+/// train, rain, a long change, the best exit at the destination, crowds,
+/// stamps, a course to try. Then a long rotation that does not repeat: tips of
+/// the start and destination stations and the general pool (only the lines
+/// that fit the hour, the season, the weather and the crowd), one category
+/// after another, in an order fixed by the day and the stations. A greeting
+/// for the time of day closes the round.
+///
+/// The platform screen asks on every build: the same situation gives back the
+/// very same list, so nothing is built twice (and the card keeps its place).
 List<GuideTip> guideTips({
   required CityData city,
   required GuideData data,
@@ -33,13 +68,36 @@ List<GuideTip> guideTips({
   bool Function(String stationId)? stayed,
 }) {
   final jst = now.toUtc().add(const Duration(hours: 9));
+  // Last train: from an hour before.
+  final lineId = route?.legs.first.lineId ?? (fromId == null ? null : city.station(fromId).lines.first);
+  final left = lineId == null ? null : city.timetables[lineId]?.minutesToLastTrain(jst);
+  final toLast = left != null && left <= 60 ? left : null;
+  final temp = weather?.tempC;
+  final key = (
+    city,
+    data,
+    lang,
+    jst.year * 10000 + jst.month * 100 + jst.day,
+    jst.hour,
+    toLast,
+    route == null
+        ? null
+        : Object.hashAll([for (final l in route.legs) Object.hash(l.lineId, l.stationIds.first, l.through)]),
+    fromId,
+    toId,
+    weather?.kind,
+    weather?.wetLater,
+    temp == null ? 0 : (temp >= 30 ? 1 : (temp <= 5 ? -1 : 0)),
+    crowd,
+    fromId == null ? null : stamped?.call(fromId),
+    fromId == null ? null : stayed?.call(fromId),
+  );
+  if (key == _memoKey) return _memo;
+
   final tips = <GuideTip>[];
   String name(String id) => city.station(id).name.of(lang);
 
-  // Last train: from an hour before.
-  final lineId = route?.legs.first.lineId ?? (fromId == null ? null : city.station(fromId).lines.first);
-  final toLast = lineId == null ? null : city.timetables[lineId]?.minutesToLastTrain(jst);
-  if (toLast != null && toLast <= 60) {
+  if (toLast != null) {
     tips.add(
       GuideTip(
         TipKind.warn,
@@ -48,6 +106,7 @@ List<GuideTip> guideTips({
           '막차까지 $toLast분 남았어요. 놓치지 않게 조심하세요',
           'The last train leaves in $toLast min. Don\'t miss it!',
         ),
+        id: 'last',
       ),
     );
   }
@@ -76,13 +135,22 @@ List<GuideTip> guideTips({
   }
 
   // A long change on the way.
+  final changeAt = <String>[];
+  var through = false;
   if (route != null) {
+    var told = false;
     for (var i = 1; i < route.legs.length; i++) {
       final a = route.legs[i - 1], b = route.legs[i];
-      if (b.through) continue;
+      if (b.through) {
+        through = true;
+        continue;
+      }
       final at = a.stationIds.last, next = b.stationIds.first;
+      changeAt.add(at);
+      if (told) continue;
       final walk = at == next ? city.station(at).transferWalkMin(a.lineId, b.lineId) : (city.walkMin(at, next) ?? 5);
       if (walk >= 5) {
+        told = true;
         tips.add(
           GuideTip(
             TipKind.help,
@@ -91,9 +159,9 @@ List<GuideTip> guideTips({
               '${name(at)}에서 환승은 걸어서 약 $walk분. 여유 있게 가세요',
               'Changing at ${name(at)} takes about $walk min on foot. Give yourself time',
             ),
+            id: 'change:$at',
           ),
         );
-        break;
       }
     }
   }
@@ -112,6 +180,7 @@ List<GuideTip> guideTips({
             '${name(exitAt)}에서는 「${e.name.of('ko')}」가 ${e.near.of('ko')}에 편해요',
             'At ${name(exitAt)}, the ${e.name.of('en')} is handy for ${e.near.of('en')}',
           ),
+          id: 'exit:$exitAt',
         ),
       );
     }
@@ -141,6 +210,7 @@ List<GuideTip> guideTips({
           '${name(fromId)} 스탬프는 아직이에요. 타고 모아 봐요',
           'No stamp from ${name(fromId)} yet. Ride to collect it',
         ),
+        id: 'stamp:$fromId',
       ),
     );
   } else if (fromId != null && stayed != null && !stayed(fromId)) {
@@ -167,21 +237,95 @@ List<GuideTip> guideTips({
           '나들이라면 「${c.name.of('ko')}」 어때요? 노선도의 「코스」에서 볼 수 있어요',
           'Going out? Try "${c.name.of('en')}" from Courses on the route map',
         ),
+        id: 'course:${c.id}',
       ),
     );
   }
 
-  // A greeting for the time of day.
-  final h = jst.hour;
-  tips.add(
-    GuideTip(
-      TipKind.fun,
-      h < 10
-          ? _t('おはようございます。今日もいってらっしゃい！', '좋은 아침이에요. 오늘도 잘 다녀오세요!', 'Good morning! Have a nice day!')
-          : h < 17
-          ? _t('こんにちは。つぎの電車もご案内します', '안녕하세요. 다음 열차도 안내해 드릴게요', 'Hello! I\'ll guide you to the next train')
-          : _t('おつかれさまでした。気をつけて帰ってね', '수고 많으셨어요. 조심히 들어가세요', 'Good work today. Get home safe'),
-    ),
+  // The rotation, in an order of its own for each day and pair of stations.
+  final moment = TipMoment.at(
+    jst,
+    weather: weather,
+    crowd: crowd,
+    hasRoute: route != null,
+    changes: changeAt.isNotEmpty,
+    through: through,
   );
-  return tips;
+  final seed = _hash('${jst.year}-${jst.month}-${jst.day}|$fromId|$toId');
+  final queues = <List<GuideTip>>[
+    _stationTips(city, data, [?toId, ?fromId, ...changeAt], seed),
+    for (final (i, cat) in _rotation.indexed)
+      [
+        for (final p in data.pool)
+          if (p.cat == cat && p.fits(moment)) p,
+      ]..shuffle(Random(seed + i + 1)),
+  ];
+  // The greeting that closes the round.
+  final greets = queues[1 + _rotation.indexOf('greet')];
+  final at = greets.lastIndexWhere((g) => g.kind == TipKind.fun);
+  final GuideTip bye = at >= 0
+      ? greets.removeAt(at)
+      : _greetings.firstWhere((g) => g.fits(moment), orElse: () => _greetings.last);
+
+  final seen = {for (final t in tips) t.key};
+  final warns = [
+    for (final t in tips)
+      if (t.kind == TipKind.warn) t,
+  ];
+  var count = 0;
+  for (var round = 0, more = true; more; round++) {
+    more = false;
+    for (final q in queues) {
+      if (round >= q.length) continue;
+      more = true;
+      final t = q[round];
+      if (t.key == bye.key || !seen.add(t.key)) continue;
+      tips.add(t);
+      if (++count % _warnEvery == 0) tips.addAll(warns);
+    }
+  }
+  tips.add(bye);
+
+  _memoKey = key;
+  return _memo = List.unmodifiable(tips);
+}
+
+/// Tips of the stations of this trip, each with the station's name in front:
+/// the destination and the start in turn, then where trains are changed.
+List<GuideTip> _stationTips(CityData city, GuideData data, List<String> ids, int seed) {
+  final lists = <List<GuideTip>>[];
+  final done = <String>{};
+  for (final id in ids) {
+    final lines = data.stationTips[id];
+    if (lines == null || !done.add(id)) continue;
+    final n = city.station(id).name;
+    lists.add(
+      [
+        for (final l in lines)
+          GuideTip(
+            TipKind.help,
+            _t('${n.of('ja')}：${l.of('ja')}', '${n.of('ko')}: ${l.of('ko')}', '${n.of('en')}: ${l.of('en')}'),
+          ),
+      ]..shuffle(Random(seed ^ lists.length)),
+    );
+  }
+  final out = <GuideTip>[];
+  for (var i = 0, more = true; more; i++) {
+    more = false;
+    for (final l in lists) {
+      if (i >= l.length) continue;
+      more = true;
+      out.add(l[i]);
+    }
+  }
+  return out;
+}
+
+/// FNV-1a: the same number for the same text on every run and device.
+int _hash(String s) {
+  var h = 0x811c9dc5;
+  for (final c in s.codeUnits) {
+    h = ((h ^ c) * 0x01000193) & 0x7fffffff;
+  }
+  return h;
 }

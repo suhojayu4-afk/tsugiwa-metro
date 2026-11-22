@@ -1,4 +1,82 @@
 {
+ "tokyo.tokyo": [
+  {
+   "ja": "赤レンガの駅舎は「丸の内口」側",
+   "ko": "빨간 벽돌 역사는 「마루노우치 출구」 쪽이에요",
+   "en": "The red-brick station building is on the Marunouchi side"
+  },
+  {
+   "ja": "新幹線と高速バスは「八重洲口」側が近い",
+   "ko": "신칸센과 고속버스는 「야에스 출구」 쪽이 가까워요",
+   "en": "Shinkansen and highway buses: head for the Yaesu side"
+  },
+  {
+   "ja": "京葉線ホームは遠い地下。乗り換えは15分ほどみて",
+   "ko": "게이요선 승강장은 멀리 떨어진 지하. 환승에 15분쯤 잡으세요",
+   "en": "Keiyo Line platforms are far and deep. Allow about 15 min"
+  },
+  {
+   "ja": "とても広い駅。待ち合わせは改札の名前で決めよう",
+   "ko": "아주 넓은 역이에요. 만날 때는 개찰구 이름으로 정해요",
+   "en": "A huge station. Agree on a named gate when meeting up"
+  }
+ ],
+ "tokyo.shinjuku": [
+  {
+   "ja": "都庁の展望室は「西口」から 歩いて約10分",
+   "ko": "도쿄도청 전망대는 「서쪽 출구」에서 걸어서 약 10분",
+   "en": "Metropolitan Government observatory: ~10 min from the West Exit"
+  },
+  {
+   "ja": "歌舞伎町は「東口」、新宿御苑は「南口」方面",
+   "ko": "가부키초는 「동쪽 출구」, 신주쿠 교엔은 「남쪽 출구」 방면",
+   "en": "Kabukicho: East Exit. Shinjuku Gyoen: South Exit side"
+  },
+  {
+   "ja": "高速バスの「バスタ新宿」は 新南改札のすぐ上",
+   "ko": "고속버스 「바스타 신주쿠」는 신남 개찰구 바로 위예요",
+   "en": "Busta Shinjuku (highway buses) is right above the New South Gate"
+  },
+  {
+   "ja": "世界一利用者が多い駅。出口名を確認してから歩こう",
+   "ko": "세계에서 가장 붐비는 역. 출구 이름부터 확인하고 걸어요",
+   "en": "The world's busiest station. Check your exit name before walking"
+  }
+ ],
+ "tokyo.shibuya": [
+  {
+   "ja": "スクランブル交差点・ハチ公像は「ハチ公口」",
+   "ko": "스크램블 교차로·하치코 동상은 「하치코 출구」",
+   "en": "Scramble Crossing and Hachiko: take the Hachiko Exit"
+  },
+  {
+   "ja": "銀座線のホームは地上3階。地下ではないので注意",
+   "ko": "긴자선 승강장은 지상 3층. 지하가 아니니 주의하세요",
+   "en": "The Ginza Line platform is up on the 3rd floor, not underground"
+  },
+  {
+   "ja": "東横線・副都心線は地下5階。乗り換えは余裕をもって",
+   "ko": "도요코선·후쿠토신선은 지하 5층. 환승은 여유 있게",
+   "en": "Toyoko and Fukutoshin lines are 5 floors down. Allow extra time"
+  }
+ ],
+ "tokyo.ikebukuro": [
+  {
+   "ja": "サンシャインシティは「東口」から 歩いて約10分",
+   "ko": "선샤인 시티는 「동쪽 출구」에서 걸어서 약 10분",
+   "en": "Sunshine City is about 10 min on foot from the East Exit"
+  },
+  {
+   "ja": "東口に西武、西口に東武。名前と逆なので気をつけて",
+   "ko": "동쪽 출구에 세이부(西武), 서쪽 출구에 도부(東武). 이름과 반대예요",
+   "en": "Seibu (\"west\") is at the East Exit and Tobu (\"east\") at the West"
+  },
+  {
+   "ja": "待ち合わせは 東口側の「いけふくろう」像が定番",
+   "ko": "약속 장소는 동쪽 출구 쪽 「이케후쿠로」 부엉이상이 유명해요",
+   "en": "The Ikefukuro owl statue (East side) is the classic meeting spot"
+  }
+ ],
  "tokyo.ueno": [
   {
    "ja": "上野公園・美術館・動物園は「公園口」がいちばん近い",
@@ -11,50 +89,161 @@
    "en": "Ameyoko market is right outside the Shinobazu Exit"
   },
   {
-   "ja": "JRと銀座線の乗り換えは 徒歩数分",
-   "ko": "JR과 긴자선 환승은 걸어서 몇 분",
-   "en": "JR ⇄ Ginza Line transfer is a few minutes on foot"
+   "ja": "スカイライナーは京成上野駅から。歩いて数分",
+   "ko": "스카이라이너는 게이세이 우에노역에서. 걸어서 몇 분",
+   "en": "The Skyliner to Narita leaves from Keisei Ueno, minutes away"
   }
  ],
- "tokyo.tokyo": [
+ "tokyo.akihabara": [
   {
-   "ja": "赤レンガの駅舎は「丸の内口」側",
-   "ko": "빨간 벽돌 역사는 「마루노우치 출구」 쪽",
-   "en": "The red-brick station building is on the Marunouchi side"
+   "ja": "電気街は「電気街口」から",
+   "ko": "전자상가는 「전기가 출구(電気街口)」로",
+   "en": "Electric Town: use the Electric Town Exit"
   },
   {
-   "ja": "高速バスのりばは「八重洲口」側",
-   "ko": "고속버스 승강장은 「야에스 출구」 쪽",
-   "en": "Highway buses leave from the Yaesu side"
+   "ja": "総武線は上の階、山手線・京浜東北線は下の階",
+   "ko": "소부선은 위층, 야마노테선·게이힌도호쿠선은 아래층",
+   "en": "Sobu Line platforms are upstairs; the Yamanote is below"
   },
   {
-   "ja": "とても広い駅。乗り換えは時間に余裕を",
-   "ko": "매우 넓은 역이에요. 환승은 여유 있게",
-   "en": "A huge station — allow extra time to change"
+   "ja": "つくばエクスプレスは地下深く。乗り換えは余裕を",
+   "ko": "쓰쿠바 익스프레스는 지하 깊은 곳. 환승은 여유 있게",
+   "en": "The Tsukuba Express is deep underground. Allow time to change"
   }
  ],
- "tokyo.shibuya": [
+ "tokyo.shinagawa": [
   {
-   "ja": "スクランブル交差点・ハチ公は「ハチ公口」",
-   "ko": "스크램블 교차로·하치코 동상은 「하치코 출구」",
-   "en": "Scramble Crossing and Hachiko: Hachiko Exit"
+   "ja": "新幹線のりばは「港南口」寄り",
+   "ko": "신칸센 타는 곳은 「고난 출구(港南口)」 쪽이에요",
+   "en": "Shinkansen platforms are on the Konan Exit side"
   },
   {
-   "ja": "銀座線のホームは地上3階の高いところ",
-   "ko": "긴자선 승강장은 지상 3층 높은 곳에 있어요",
-   "en": "The Ginza Line platform is up on the 3rd floor"
+   "ja": "羽田空港へは 京急の「羽田空港行き」が便利",
+   "ko": "하네다 공항은 게이큐선 「하네다 공항행」이 편해요",
+   "en": "For Haneda Airport, take a Keikyu train bound for Haneda"
+  },
+  {
+   "ja": "品川駅は 品川区ではなく港区にあります",
+   "ko": "시나가와역은 시나가와구가 아니라 미나토구에 있어요",
+   "en": "Fun fact: this station is in Minato ward, not Shinagawa"
   }
  ],
- "tokyo.shinjuku": [
+ "tokyo.shimbashi": [
   {
-   "ja": "都庁は「西口」から 徒歩約10分",
-   "ko": "도쿄도청은 「서쪽 출구」에서 걸어서 약 10분",
-   "en": "Metropolitan Government Building: ~10 min from the West Exit"
+   "ja": "ゆりかもめのりばは「汐留口」側",
+   "ko": "유리카모메 타는 곳은 「시오도메 출구」 쪽",
+   "en": "The Yurikamome station is on the Shiodome Exit side"
   },
   {
-   "ja": "世界一乗降客が多い駅。出口名を確認してから歩こう",
-   "ko": "세계에서 가장 붐비는 역. 출구 이름을 확인하고 움직여요",
-   "en": "The world's busiest station — check the exit name first"
+   "ja": "SL広場（蒸気機関車）は「日比谷口」を出てすぐ",
+   "ko": "SL 광장(증기기관차)은 「히비야 출구」로 나가면 바로",
+   "en": "The steam locomotive plaza is right outside the Hibiya Exit"
+  },
+  {
+   "ja": "ゆりかもめは無人運転。先頭の席は景色がいいよ",
+   "ko": "유리카모메는 무인 운전. 맨 앞자리 경치가 좋아요",
+   "en": "The Yurikamome is driverless. Front seats have the best view"
+  }
+ ],
+ "tokyo.yurakucho": [
+  {
+   "ja": "銀座へは「銀座口」から 歩いて数分",
+   "ko": "긴자는 「긴자 출구」에서 걸어서 몇 분",
+   "en": "Ginza is a few minutes' walk from the Ginza Exit"
+  },
+  {
+   "ja": "東京国際フォーラムは「国際フォーラム口」の前",
+   "ko": "도쿄 국제포럼은 「국제포럼 출구」 바로 앞",
+   "en": "Tokyo International Forum is by the Kokusai Forum Exit"
+  },
+  {
+   "ja": "地下鉄の日比谷駅とは 地下でつながっています",
+   "ko": "지하철 히비야역과는 지하로 이어져 있어요",
+   "en": "Linked underground to Hibiya subway station"
+  }
+ ],
+ "tokyo.harajuku": [
+  {
+   "ja": "竹下通りは「竹下口」、明治神宮は「西口」がすぐ",
+   "ko": "다케시타 거리는 「다케시타 출구」, 메이지 신궁은 「서쪽 출구」",
+   "en": "Takeshita Street: Takeshita Exit. Meiji Shrine: West Exit"
+  },
+  {
+   "ja": "地下鉄の明治神宮前駅は「東口」のすぐ前",
+   "ko": "지하철 메이지진구마에역은 「동쪽 출구」 바로 앞",
+   "en": "Meiji-jingumae subway station is just outside the East Exit"
+  }
+ ],
+ "tokyo.ebisu": [
+  {
+   "ja": "恵比寿ガーデンプレイスは「東口」から動く歩道で",
+   "ko": "에비스 가든 플레이스는 「동쪽 출구」에서 무빙워크로",
+   "en": "Yebisu Garden Place: moving walkway from the East Exit"
+  },
+  {
+   "ja": "発車メロディは ビールのCMで有名な「第三の男」",
+   "ko": "발차 멜로디는 맥주 광고로 유명한 「제3의 사나이」",
+   "en": "The departure jingle is \"The Third Man\", famous from beer ads"
+  }
+ ],
+ "tokyo.meguro": [
+  {
+   "ja": "目黒川の桜並木は「西口」から坂を下って約5分",
+   "ko": "메구로강 벚꽃길은 「서쪽 출구」에서 언덕을 내려가 약 5분",
+   "en": "Meguro River's cherry trees: 5 min downhill from the West Exit"
+  },
+  {
+   "ja": "南北線・三田線は東急目黒線に直通。行き先を確認",
+   "ko": "난보쿠선·미타선은 도큐 메구로선과 직통. 행선지 확인",
+   "en": "Namboku and Mita lines run through onto the Tokyu Meguro Line"
+  },
+  {
+   "ja": "目黒駅は 目黒区ではなく品川区にあります",
+   "ko": "메구로역은 메구로구가 아니라 시나가와구에 있어요",
+   "en": "Fun fact: this station is in Shinagawa ward, not Meguro"
+  }
+ ],
+ "tokyo.kanda": [
+  {
+   "ja": "神田古書店街の最寄りは 神田駅ではなく神保町駅",
+   "ko": "간다 고서점 거리는 간다역이 아니라 진보초역이 가까워요",
+   "en": "The Kanda book town is near Jimbocho Station, not here"
+  },
+  {
+   "ja": "中央線快速なら 東京駅までひと駅",
+   "ko": "주오선 쾌속으로 도쿄역까지 한 정거장",
+   "en": "Tokyo Station is one stop away on the Chuo Rapid Line"
+  }
+ ],
+ "tokyo.nippori": [
+  {
+   "ja": "谷中銀座・夕やけだんだんは「西口」から約5分",
+   "ko": "야나카긴자·유야케단단은 「서쪽 출구」에서 약 5분",
+   "en": "Yanaka Ginza and its sunset steps: 5 min from the West Exit"
+  },
+  {
+   "ja": "京成スカイライナーで成田空港へ乗り換えできます",
+   "ko": "게이세이 스카이라이너로 나리타 공항에 갈 수 있어요",
+   "en": "Change here for the Keisei Skyliner to Narita Airport"
+  }
+ ],
+ "tokyo.oshiage": [
+  {
+   "ja": "東京スカイツリーとソラマチは 駅の真上",
+   "ko": "도쿄 스카이트리와 소라마치는 역 바로 위",
+   "en": "Tokyo Skytree and Solamachi are right above the station"
+  },
+  {
+   "ja": "成田・羽田どちらの空港へも 直通電車があります",
+   "ko": "나리타·하네다 두 공항 모두 직통 열차가 있어요",
+   "en": "Direct trains run from here to both Narita and Haneda"
+  }
+ ],
+ "tokyo.tokyo_skytree": [
+  {
+   "ja": "東京スカイツリーの正面。浅草から東武線でひと駅",
+   "ko": "도쿄 스카이트리 정면. 아사쿠사에서 도부선으로 한 정거장",
+   "en": "Right at Tokyo Skytree, one stop from Asakusa on the Tobu line"
   }
  ],
  "tokyo.asakusa": [
@@ -66,35 +255,280 @@
   {
    "ja": "スカイツリーは隅田川の向こう。歩くと約20分",
    "ko": "스카이트리는 스미다강 건너편. 걸으면 약 20분",
-   "en": "Skytree is across the Sumida River, ~20 min on foot"
+   "en": "Skytree is across the Sumida River, about 20 min on foot"
+  },
+  {
+   "ja": "つくばエクスプレスの浅草駅は 約600m離れた別の駅",
+   "ko": "쓰쿠바 익스프레스 아사쿠사역은 약 600m 떨어진 다른 역",
+   "en": "The Tsukuba Express Asakusa station is separate, ~600 m away"
   }
  ],
- "tokyo.akihabara": [
+ "tokyo.ryogoku": [
   {
-   "ja": "電気街は「電気街口」から",
-   "ko": "전자상가는 「전기가 출구(電気街口)」로",
-   "en": "Electric Town: use the Electric Town Exit"
+   "ja": "国技館は JR「西口」を出てすぐ",
+   "ko": "국기관(스모 경기장)은 JR 「서쪽 출구」로 나가면 바로",
+   "en": "The Kokugikan sumo arena is right outside the JR West Exit"
+  },
+  {
+   "ja": "JRと大江戸線は少し離れています。乗り換えは数分",
+   "ko": "JR과 오에도선은 조금 떨어져 있어요. 환승에 몇 분",
+   "en": "JR and the Oedo Line are a few minutes' walk apart"
   }
  ],
- "tokyo.harajuku": [
+ "tokyo.maihama": [
   {
-   "ja": "竹下通りは「竹下口」、明治神宮は「表参道口」側",
-   "ko": "다케시타 거리는 「다케시타 출구」, 메이지 신궁은 「오모테산도 출구」 쪽",
-   "en": "Takeshita St: Takeshita Exit · Meiji Shrine: Omotesando side"
+   "ja": "東京ディズニーランドは「南口」から 歩いて約5分",
+   "ko": "도쿄 디즈니랜드는 「남쪽 출구」에서 걸어서 약 5분",
+   "en": "Tokyo Disneyland is about 5 min on foot from the South Exit"
+  },
+  {
+   "ja": "ディズニーシーへは 駅前のモノレールで",
+   "ko": "디즈니씨는 역 앞 모노레일로 가요",
+   "en": "For DisneySea, take the monorail from outside the station"
+  },
+  {
+   "ja": "閉園後は大混雑。ICカードの残高は先に確認を",
+   "ko": "폐장 후에는 매우 붐벼요. IC카드 잔액은 미리 확인",
+   "en": "It's packed after closing. Top up your IC card beforehand"
   }
  ],
- "tokyo.hamamatsucho": [
+ "tokyo.daiba": [
   {
-   "ja": "東京タワーまで 徒歩約15分",
-   "ko": "도쿄타워까지 걸어서 약 15분",
-   "en": "Tokyo Tower is ~15 min on foot"
+   "ja": "フジテレビとアクアシティは 駅からすぐ",
+   "ko": "후지TV와 아쿠아시티는 역에서 바로",
+   "en": "Fuji TV and Aqua City are right by the station"
+  },
+  {
+   "ja": "自由の女神像とレインボーブリッジの眺めは 数分",
+   "ko": "자유의 여신상과 레인보우 브리지 전망은 걸어서 몇 분",
+   "en": "The Statue of Liberty and Rainbow Bridge view: minutes away"
   }
  ],
- "tokyo.ikebukuro": [
+ "tokyo.odaiba_kaihinkoen": [
   {
-   "ja": "サンシャインシティは「東口」から",
-   "ko": "선샤인 시티는 「동쪽 출구」에서",
-   "en": "Sunshine City: East Exit"
+   "ja": "砂浜のある お台場海浜公園へ 歩いて数分",
+   "ko": "모래사장이 있는 오다이바 해변공원까지 걸어서 몇 분",
+   "en": "Odaiba Seaside Park and its beach are minutes on foot"
+  }
+ ],
+ "tokyo.tokyo_teleport": [
+  {
+   "ja": "埼京線直通の電車なら 渋谷・新宿へ乗り換えなし",
+   "ko": "사이쿄선 직통 열차라면 시부야·신주쿠까지 환승 없이",
+   "en": "Through trains run direct to Shibuya and Shinjuku"
+  },
+  {
+   "ja": "ダイバーシティ東京（ガンダム像）へ 歩いて数分",
+   "ko": "다이버시티 도쿄(건담상)까지 걸어서 몇 분",
+   "en": "DiverCity Tokyo and its giant Gundam are minutes away"
+  }
+ ],
+ "tokyo.toyosu": [
+  {
+   "ja": "豊洲市場は ゆりかもめで2駅の「市場前」駅へ",
+   "ko": "도요스 시장은 유리카모메로 두 정거장 「시조마에」역",
+   "en": "Toyosu Market: two stops on the Yurikamome, at Shijo-mae"
+  },
+  {
+   "ja": "有楽町線とゆりかもめは 改札を出て乗り換え",
+   "ko": "유라쿠초선과 유리카모메는 개찰구를 나와서 환승해요",
+   "en": "Yurakucho Line and Yurikamome: change outside the gates"
+  }
+ ],
+ "tokyo.shijo_mae": [
+  {
+   "ja": "豊洲市場へは 駅から屋根つきの通路で直結",
+   "ko": "도요스 시장까지 역에서 지붕 있는 통로로 바로 연결",
+   "en": "Toyosu Market is linked to the station by a covered walkway"
+  }
+ ],
+ "tokyo.tokyo_big_sight": [
+  {
+   "ja": "東京ビッグサイトは 駅の目の前",
+   "ko": "도쿄 빅사이트는 역 바로 앞",
+   "en": "Tokyo Big Sight is right in front of the station"
+  }
+ ],
+ "tokyo.kokusai_tenjijo": [
+  {
+   "ja": "東京ビッグサイトへは 歩いて約7分",
+   "ko": "도쿄 빅사이트까지 걸어서 약 7분",
+   "en": "Tokyo Big Sight is about 7 min on foot"
+  },
+  {
+   "ja": "ゆりかもめの有明駅は すぐとなり",
+   "ko": "유리카모메 아리아케역이 바로 옆이에요",
+   "en": "Ariake on the Yurikamome is right next door"
+  }
+ ],
+ "tokyo.ariake": [
+  {
+   "ja": "りんかい線の国際展示場駅は すぐとなり",
+   "ko": "린카이선 고쿠사이텐지조역이 바로 옆이에요",
+   "en": "Kokusai-tenjijo on the Rinkai Line is right next door"
+  }
+ ],
+ "tokyo.telecom_center": [
+  {
+   "ja": "日本科学未来館へ 歩いて約5分",
+   "ko": "일본과학미래관까지 걸어서 약 5분",
+   "en": "The Miraikan science museum is about 5 min on foot"
+  }
+ ],
+ "tokyo.roppongi": [
+  {
+   "ja": "六本木ヒルズは 日比谷線「1C出口」から直結",
+   "ko": "롯폰기 힐즈는 히비야선 「1C 출구」에서 바로 연결",
+   "en": "Roppongi Hills: direct from Hibiya Line Exit 1C"
+  },
+  {
+   "ja": "東京ミッドタウンは 大江戸線「8番出口」から直結",
+   "ko": "도쿄 미드타운은 오에도선 「8번 출구」에서 바로 연결",
+   "en": "Tokyo Midtown: direct from Oedo Line Exit 8"
+  },
+  {
+   "ja": "大江戸線ホームは とても深い。エレベーターが楽",
+   "ko": "오에도선 승강장은 아주 깊어요. 엘리베이터가 편해요",
+   "en": "The Oedo Line platforms are very deep. Take the elevator"
+  }
+ ],
+ "tokyo.omotesando": [
+  {
+   "ja": "表参道ヒルズは「A2出口」からすぐ",
+   "ko": "오모테산도 힐즈는 「A2 출구」에서 바로",
+   "en": "Omotesando Hills is just outside Exit A2"
+  },
+  {
+   "ja": "銀座線と半蔵門線は 同じホームの向かい側",
+   "ko": "긴자선과 한조몬선은 같은 승강장 맞은편에서 환승",
+   "en": "Ginza and Hanzomon lines connect across the same platform"
+  }
+ ],
+ "tokyo.meiji_jingumae": [
+  {
+   "ja": "JR原宿駅は すぐとなり。歩いて乗り換えできます",
+   "ko": "JR 하라주쿠역이 바로 옆. 걸어서 갈아탈 수 있어요",
+   "en": "JR Harajuku Station is right next door for an easy change"
+  },
+  {
+   "ja": "明治神宮の入口は「2番出口」からすぐ",
+   "ko": "메이지 신궁 입구는 「2번 출구」에서 바로",
+   "en": "The Meiji Shrine entrance is just outside Exit 2"
+  }
+ ],
+ "tokyo.tsukiji": [
+  {
+   "ja": "築地場外市場は「1番出口」から 歩いてすぐ",
+   "ko": "쓰키지 장외시장은 「1번 출구」에서 걸어서 바로",
+   "en": "Tsukiji Outer Market is a short walk from Exit 1"
+  },
+  {
+   "ja": "市場は豊洲へ移転。場外市場は今も営業中",
+   "ko": "도매시장은 도요스로 이전. 장외시장은 지금도 영업 중",
+   "en": "The wholesale market moved to Toyosu; the outer market remains"
+  }
+ ],
+ "tokyo.tsukijishijo": [
+  {
+   "ja": "築地場外市場は「A1出口」から 歩いてすぐ",
+   "ko": "쓰키지 장외시장은 「A1 출구」에서 걸어서 바로",
+   "en": "Tsukiji Outer Market is a short walk from Exit A1"
+  },
+  {
+   "ja": "駅名は「市場」のままですが 市場は豊洲へ移転",
+   "ko": "역 이름은 그대로지만 도매시장은 도요스로 옮겼어요",
+   "en": "Despite the name, the wholesale market has moved to Toyosu"
+  }
+ ],
+ "tokyo.tsukishima": [
+  {
+   "ja": "もんじゃストリートは「7番出口」からすぐ",
+   "ko": "몬자 스트리트는 「7번 출구」에서 바로",
+   "en": "Monja Street is just outside Exit 7"
+  }
+ ],
+ "tokyo.korakuen": [
+  {
+   "ja": "東京ドームは 駅のすぐ前",
+   "ko": "도쿄돔은 역 바로 앞이에요",
+   "en": "Tokyo Dome is right in front of the station"
+  },
+  {
+   "ja": "丸ノ内線は高架、南北線は地下深く。乗り換え数分",
+   "ko": "마루노우치선은 고가, 난보쿠선은 지하 깊이. 환승에 몇 분",
+   "en": "Marunouchi is elevated, Namboku deep below: minutes to change"
+  },
+  {
+   "ja": "春日駅（三田線・大江戸線）とつながっています",
+   "ko": "가스가역(미타선·오에도선)과 이어져 있어요",
+   "en": "Connected to Kasuga station (Mita and Oedo lines)"
+  }
+ ],
+ "tokyo.suidobashi": [
+  {
+   "ja": "東京ドームは JR「西口」から 歩いて数分",
+   "ko": "도쿄돔은 JR 「서쪽 출구」에서 걸어서 몇 분",
+   "en": "Tokyo Dome is a few minutes from the JR West Exit"
+  }
+ ],
+ "tokyo.iidabashi": [
+  {
+   "ja": "神楽坂の坂下は JR「西口」やB3出口からすぐ",
+   "ko": "가구라자카 언덕 입구는 JR 「서쪽 출구」나 B3 출구에서 바로",
+   "en": "The foot of Kagurazaka is by the JR West Exit or Exit B3"
+  },
+  {
+   "ja": "大江戸線ホームは遠くて深い。乗り換えは余裕を",
+   "ko": "오에도선 승강장은 멀고 깊어요. 환승은 여유 있게",
+   "en": "The Oedo Line platforms are far and deep. Allow extra time"
+  }
+ ],
+ "tokyo.kudanshita": [
+  {
+   "ja": "日本武道館・千鳥ヶ淵は「2番出口」から",
+   "ko": "일본 부도칸·지도리가후치는 「2번 출구」로",
+   "en": "Nippon Budokan and Chidorigafuchi: use Exit 2"
+  },
+  {
+   "ja": "押上方面の半蔵門線と新宿方面の新宿線は同じホーム",
+   "ko": "오시아게 방면 한조몬선과 신주쿠 방면 신주쿠선은 같은 승강장",
+   "en": "Hanzomon (for Oshiage) and Shinjuku Line trains share a platform"
+  }
+ ],
+ "tokyo.otemachi": [
+  {
+   "ja": "5路線が集まる広い駅。乗り換えは10分かかることも",
+   "ko": "5개 노선이 모이는 넓은 역. 환승에 10분 걸리기도 해요",
+   "en": "Five lines meet in this vast station. Changes can take 10 min"
+  },
+  {
+   "ja": "東京駅の丸の内側とは 地下通路でつながっています",
+   "ko": "도쿄역 마루노우치 쪽과는 지하 통로로 이어져 있어요",
+   "en": "An underground passage links to Tokyo Station (Marunouchi)"
+  },
+  {
+   "ja": "皇居東御苑（大手門）へ 歩いて約5分",
+   "ko": "고쿄 히가시교엔(오테몬)까지 걸어서 약 5분",
+   "en": "The Imperial Palace East Gardens are about 5 min on foot"
+  }
+ ],
+ "tokyo.nihombashi": [
+  {
+   "ja": "道路の起点「日本橋」の橋へ 歩いて数分",
+   "ko": "일본 도로의 기점 「니혼바시」 다리까지 걸어서 몇 분",
+   "en": "Nihonbashi Bridge, Japan's road origin, is minutes away"
+  },
+  {
+   "ja": "日本橋三越本店は となりの「三越前」駅が直結",
+   "ko": "니혼바시 미쓰코시 본점은 옆 「미쓰코시마에」역과 바로 연결",
+   "en": "For Mitsukoshi's main store, use Mitsukoshimae next door"
+  }
+ ],
+ "tokyo.mitsukoshimae": [
+  {
+   "ja": "日本橋三越本店に直結。駅名もデパートから",
+   "ko": "미쓰코시 본점과 바로 연결. 역 이름도 백화점에서 왔어요",
+   "en": "Linked to Mitsukoshi, the store this station is named after"
   }
  ],
  "tokyo.ginza": [
@@ -102,6 +536,1287 @@
    "ja": "銀座の中心・四丁目交差点は 地下からすぐ",
    "ko": "긴자 중심 4초메 교차로는 지하에서 바로",
    "en": "Ginza 4-chome crossing is right above the station"
+  },
+  {
+   "ja": "歌舞伎座は となりの東銀座駅の真上",
+   "ko": "가부키자는 옆 히가시긴자역 바로 위에 있어요",
+   "en": "The Kabukiza theatre is above Higashi-ginza, next door"
+  },
+  {
+   "ja": "3路線のホームが離れています。路線の色を目印に",
+   "ko": "세 노선의 승강장이 떨어져 있어요. 노선 색을 따라가요",
+   "en": "The three lines' platforms are apart. Follow the line colours"
+  }
+ ],
+ "tokyo.higashi_ginza": [
+  {
+   "ja": "歌舞伎座は「3番出口」から直結",
+   "ko": "가부키자는 「3번 출구」에서 바로 연결",
+   "en": "The Kabukiza theatre is directly linked to Exit 3"
+  }
+ ],
+ "tokyo.hibiya": [
+  {
+   "ja": "日比谷公園は 地上に出てすぐ",
+   "ko": "히비야 공원은 지상으로 나가면 바로",
+   "en": "Hibiya Park is right above the station"
+  },
+  {
+   "ja": "JR有楽町駅へも 歩いて数分",
+   "ko": "JR 유라쿠초역까지도 걸어서 몇 분",
+   "en": "JR Yurakucho Station is a few minutes' walk away"
+  }
+ ],
+ "tokyo.nakano": [
+  {
+   "ja": "中野ブロードウェイは「北口」からアーケードを抜けて",
+   "ko": "나카노 브로드웨이는 「북쪽 출구」에서 아케이드를 지나서",
+   "en": "Nakano Broadway: through the arcade from the North Exit"
+  },
+  {
+   "ja": "東西線はここが起点。始発電車で座りやすい",
+   "ko": "도자이선은 여기가 기점. 시발 열차라 앉기 쉬워요",
+   "en": "The Tozai Line starts here, so seats are easy to find"
+  }
+ ],
+ "tokyo.kichijoji": [
+  {
+   "ja": "井の頭公園は「公園口（南口）」から 歩いて約5分",
+   "ko": "이노카시라 공원은 「공원 출구(남쪽)」에서 걸어서 약 5분",
+   "en": "Inokashira Park is about 5 min from the Park (South) Exit"
+  },
+  {
+   "ja": "ハモニカ横丁は「北口」を出てすぐ",
+   "ko": "하모니카 요코초는 「북쪽 출구」로 나가면 바로",
+   "en": "Harmonica Yokocho alley is right outside the North Exit"
+  }
+ ],
+ "tokyo.mitaka": [
+  {
+   "ja": "ジブリ美術館は「南口」から歩いて約15分かバス",
+   "ko": "지브리 미술관은 「남쪽 출구」에서 걸어서 약 15분 또는 버스",
+   "en": "Ghibli Museum: ~15 min on foot or a bus from the South Exit"
+  },
+  {
+   "ja": "ジブリ美術館は日時指定の予約制。チケットは事前に",
+   "ko": "지브리 미술관은 날짜·시간 지정 예약제. 티켓은 미리",
+   "en": "The Ghibli Museum is advance booking only. Get tickets ahead"
+  }
+ ],
+ "tokyo.shimo_kitazawa": [
+  {
+   "ja": "小田急線は地下、井の頭線は地上。改札は別々",
+   "ko": "오다큐선은 지하, 이노카시라선은 지상. 개찰구가 따로예요",
+   "en": "Odakyu is underground, Inokashira above, with separate gates"
+  }
+ ],
+ "tokyo.jiyugaoka": [
+  {
+   "ja": "東横線は上のホーム、大井町線は下のホーム",
+   "ko": "도요코선은 위쪽, 오이마치선은 아래쪽 승강장이에요",
+   "en": "Toyoko Line platforms are upstairs; Oimachi Line is below"
+  }
+ ],
+ "tokyo.futako_tamagawa": [
+  {
+   "ja": "田園都市線と大井町線は 同じホームで乗り換え",
+   "ko": "덴엔토시선과 오이마치선은 같은 승강장에서 환승해요",
+   "en": "Den-en-toshi and Oimachi lines connect across the platform"
+  },
+  {
+   "ja": "ホームは多摩川の上。川の景色が見えます",
+   "ko": "승강장이 다마강 위에 있어 강 풍경이 보여요",
+   "en": "The platforms stretch over the Tama River. Enjoy the view"
+  }
+ ],
+ "tokyo.yokohama": [
+  {
+   "ja": "新幹線は横浜駅に止まりません。新横浜駅へ",
+   "ko": "신칸센은 요코하마역에 서지 않아요. 신요코하마역으로",
+   "en": "The Shinkansen doesn't stop here. Go to Shin-Yokohama"
+  },
+  {
+   "ja": "みなとみらい・中華街へは みなとみらい線が便利",
+   "ko": "미나토미라이·차이나타운은 미나토미라이선이 편해요",
+   "en": "Take the Minatomirai Line for Minato Mirai and Chinatown"
+  },
+  {
+   "ja": "そごう・シーバスは「東口」、高島屋は「西口」",
+   "ko": "소고·수상버스는 「동쪽 출구」, 다카시마야는 「서쪽 출구」",
+   "en": "Sogo and the Sea Bass boat: East Exit. Takashimaya: West Exit"
+  }
+ ],
+ "tokyo.shin_yokohama": [
+  {
+   "ja": "新幹線は「のぞみ」をふくめ 全列車が止まります",
+   "ko": "신칸센은 「노조미」를 포함해 모든 열차가 서요",
+   "en": "Every Shinkansen stops here, Nozomi included"
+  },
+  {
+   "ja": "日産スタジアムは歩いて約15分、横浜アリーナは約5分",
+   "ko": "닛산 스타디움은 걸어서 약 15분, 요코하마 아레나는 약 5분",
+   "en": "Nissan Stadium: ~15 min on foot. Yokohama Arena: ~5 min"
+  }
+ ],
+ "tokyo.sakuragicho": [
+  {
+   "ja": "ランドマークタワーへは 動く歩道で",
+   "ko": "랜드마크 타워까지는 무빙워크로 가요",
+   "en": "A moving walkway leads to Landmark Tower"
+  },
+  {
+   "ja": "ロープウェイ「エアキャビン」のりばは 駅前",
+   "ko": "로프웨이 「에어 캐빈」 타는 곳은 역 앞",
+   "en": "The Air Cabin ropeway boards right outside the station"
+  },
+  {
+   "ja": "日本初の鉄道の「横浜駅」は ここにありました",
+   "ko": "일본 최초 철도의 「요코하마역」은 바로 여기에 있었어요",
+   "en": "Japan's first railway had its Yokohama terminus right here"
+  }
+ ],
+ "tokyo.minatomirai": [
+  {
+   "ja": "ランドマークプラザ・クイーンズスクエアに直結",
+   "ko": "랜드마크 플라자·퀸즈 스퀘어와 바로 연결",
+   "en": "Directly linked to Landmark Plaza and Queen's Square"
+  },
+  {
+   "ja": "パシフィコ横浜へ 歩いて約5分",
+   "ko": "퍼시피코 요코하마까지 걸어서 약 5분",
+   "en": "Pacifico Yokohama is about 5 min on foot"
+  }
+ ],
+ "tokyo.bashamichi": [
+  {
+   "ja": "赤レンガ倉庫へ 歩いて10分弱",
+   "ko": "아카렌가 창고까지 걸어서 10분이 채 안 걸려요",
+   "en": "The Red Brick Warehouse is under 10 min on foot"
+  }
+ ],
+ "tokyo.nihon_odori": [
+  {
+   "ja": "山下公園・大さん橋へ 歩いて数分",
+   "ko": "야마시타 공원·오산바시까지 걸어서 몇 분",
+   "en": "Yamashita Park and Osanbashi Pier are minutes away"
+  },
+  {
+   "ja": "横浜スタジアムへも 歩いてすぐ",
+   "ko": "요코하마 스타디움도 걸어서 바로",
+   "en": "Yokohama Stadium is also a short walk away"
+  }
+ ],
+ "tokyo.motomachi_chukagai": [
+  {
+   "ja": "中華街は「中華街口」、元町商店街は「元町口」",
+   "ko": "차이나타운은 「주카가이 출구」, 모토마치는 「모토마치 출구」",
+   "en": "Chinatown: Chukagai Exit. Motomachi street: Motomachi Exit"
+  },
+  {
+   "ja": "みなとみらい線の終点。渋谷から直通もあります",
+   "ko": "미나토미라이선 종점. 시부야에서 직통 열차도 있어요",
+   "en": "End of the Minatomirai Line; through trains run from Shibuya"
+  },
+  {
+   "ja": "港の見える丘公園は「アメリカ山公園口」が便利",
+   "ko": "항구가 보이는 언덕 공원은 「아메리카야마 공원 출구」로",
+   "en": "Harbour View Park: go up via the America-yama Park Exit"
+  }
+ ],
+ "tokyo.kannai": [
+  {
+   "ja": "横浜スタジアムは「南口」からすぐ",
+   "ko": "요코하마 스타디움은 「남쪽 출구」에서 바로",
+   "en": "Yokohama Stadium is just outside the South Exit"
+  }
+ ],
+ "tokyo.ishikawacho": [
+  {
+   "ja": "中華街は「北口」、元町は「南口」が近い",
+   "ko": "차이나타운은 「북쪽 출구」, 모토마치는 「남쪽 출구」가 가까워요",
+   "en": "Chinatown: North Exit. Motomachi: South Exit"
+  }
+ ],
+ "tokyo.kamakura": [
+  {
+   "ja": "鶴岡八幡宮・小町通りは「東口」",
+   "ko": "쓰루가오카 하치만구·고마치 거리는 「동쪽 출구」",
+   "en": "Tsurugaoka Hachimangu and Komachi Street: East Exit"
+  },
+  {
+   "ja": "江ノ電のりばは「西口」側",
+   "ko": "에노덴 타는 곳은 「서쪽 출구」 쪽",
+   "en": "The Enoden line boards on the West Exit side"
+  },
+  {
+   "ja": "大仏へは 江ノ電で3駅の長谷駅から",
+   "ko": "대불은 에노덴으로 세 정거장 하세역에서",
+   "en": "For the Great Buddha, ride the Enoden three stops to Hase"
+  }
+ ],
+ "tokyo.kita_kamakura": [
+  {
+   "ja": "円覚寺は 駅のすぐ前",
+   "ko": "엔가쿠지는 역 바로 앞이에요",
+   "en": "Engakuji temple is right in front of the station"
+  },
+  {
+   "ja": "あじさいの明月院へ歩いて約10分。6月は混みます",
+   "ko": "수국 명소 메이게쓰인까지 걸어서 약 10분. 6월엔 붐벼요",
+   "en": "Meigetsuin, the hydrangea temple: ~10 min. Busy in June"
+  }
+ ],
+ "tokyo.hase": [
+  {
+   "ja": "鎌倉大仏へ 歩いて約10分、長谷寺へ約5分",
+   "ko": "가마쿠라 대불까지 걸어서 약 10분, 하세데라까지 약 5분",
+   "en": "The Great Buddha is ~10 min on foot; Hasedera ~5 min"
+  }
+ ],
+ "tokyo.enoshima": [
+  {
+   "ja": "江の島へは 橋をわたって歩いて約15〜20分",
+   "ko": "에노시마까지는 다리를 건너 걸어서 약 15~20분",
+   "en": "Enoshima island is 15–20 min on foot across the bridge"
+  },
+  {
+   "ja": "小田急の片瀬江ノ島駅・モノレールの駅は別の場所",
+   "ko": "오다큐 가타세에노시마역·모노레일역은 다른 곳에 있어요",
+   "en": "Odakyu's Katase-Enoshima and the monorail are separate stations"
+  }
+ ],
+ "tokyo.katase_enoshima": [
+  {
+   "ja": "竜宮城のような駅舎は 記念写真の人気スポット",
+   "ko": "용궁 같은 역 건물은 기념사진 명소예요",
+   "en": "The dragon-palace station building is a favourite photo spot"
+  },
+  {
+   "ja": "新江ノ島水族館へ 歩いて数分",
+   "ko": "신에노시마 수족관까지 걸어서 몇 분",
+   "en": "Enoshima Aquarium is a few minutes on foot"
+  }
+ ],
+ "tokyo.kamakurakokomae": [
+  {
+   "ja": "踏切と海の景色が人気。撮影は車道に出ないでね",
+   "ko": "건널목과 바다 풍경이 인기. 촬영할 때 차도로 나가지 마세요",
+   "en": "The crossing-and-sea view is famous. Stay off the road"
+  }
+ ],
+ "tokyo.fujisawa": [
+  {
+   "ja": "江ノ電のりばは「南口」側のビルの2階",
+   "ko": "에노덴 타는 곳은 「남쪽 출구」 쪽 건물 2층",
+   "en": "The Enoden boards on the 2nd floor of a South Exit building"
+  }
+ ],
+ "tokyo.ofuna": [
+  {
+   "ja": "湘南モノレールで 江の島方面へ行けます",
+   "ko": "쇼난 모노레일로 에노시마 방면에 갈 수 있어요",
+   "en": "The Shonan Monorail runs from here towards Enoshima"
+  }
+ ],
+ "tokyo.kawasaki": [
+  {
+   "ja": "京急川崎駅は別の駅。歩いて約5分",
+   "ko": "게이큐 가와사키역은 다른 역. 걸어서 약 5분",
+   "en": "Keikyu Kawasaki is a separate station, about 5 min on foot"
+  },
+  {
+   "ja": "ラゾーナ川崎は「西口」から直結",
+   "ko": "라조나 가와사키는 「서쪽 출구」에서 바로 연결",
+   "en": "Lazona Kawasaki mall is directly linked to the West Exit"
+  }
+ ],
+ "tokyo.omiya": [
+  {
+   "ja": "鉄道博物館へは ニューシャトルでひと駅",
+   "ko": "철도박물관은 뉴 셔틀로 한 정거장",
+   "en": "The Railway Museum is one stop away on the New Shuttle"
+  },
+  {
+   "ja": "氷川神社は「東口」から 歩いて約15〜20分",
+   "ko": "히카와 신사는 「동쪽 출구」에서 걸어서 약 15~20분",
+   "en": "Hikawa Shrine is 15–20 min on foot from the East Exit"
+  }
+ ],
+ "tokyo.tetsudo_hakubutsukan": [
+  {
+   "ja": "鉄道博物館は 駅から直結",
+   "ko": "철도박물관은 역에서 바로 연결돼요",
+   "en": "The Railway Museum is directly linked to the station"
+  }
+ ],
+ "tokyo.saitama_shintoshin": [
+  {
+   "ja": "さいたまスーパーアリーナは 駅からデッキで直結",
+   "ko": "사이타마 슈퍼 아레나는 역에서 데크로 바로 연결",
+   "en": "Saitama Super Arena is linked to the station by a walkway"
+  }
+ ],
+ "tokyo.kawagoe": [
+  {
+   "ja": "蔵造りの町並みへは 歩くと約25分。バスが便利",
+   "ko": "전통 창고 거리까지 걸으면 약 25분. 버스가 편해요",
+   "en": "The old warehouse district is ~25 min on foot. Take the bus"
+  },
+  {
+   "ja": "本川越駅（西武線）は 少し離れた別の駅",
+   "ko": "혼카와고에역(세이부선)은 조금 떨어진 다른 역이에요",
+   "en": "Hon-Kawagoe (Seibu Line) is a separate station some way off"
+  }
+ ],
+ "tokyo.hon_kawagoe": [
+  {
+   "ja": "蔵造りの町並み・時の鐘へ 歩いて約15分",
+   "ko": "전통 창고 거리·도키노카네까지 걸어서 약 15분",
+   "en": "The warehouse district and Bell Tower are ~15 min on foot"
+  }
+ ],
+ "tokyo.takaosanguchi": [
+  {
+   "ja": "ケーブルカー・リフトのりばへ 歩いて約5分",
+   "ko": "케이블카·리프트 타는 곳까지 걸어서 약 5분",
+   "en": "The cable car and chair lift are about 5 min on foot"
+  },
+  {
+   "ja": "駅のとなりに 日帰り温泉があります",
+   "ko": "역 바로 옆에 당일치기 온천이 있어요",
+   "en": "There's a day-trip hot spring right next to the station"
+  },
+  {
+   "ja": "紅葉の週末は大混雑。早めの時間がおすすめ",
+   "ko": "단풍철 주말은 매우 붐벼요. 이른 시간을 추천해요",
+   "en": "Autumn weekends get very crowded. Come early"
+  }
+ ],
+ "tokyo.takao": [
+  {
+   "ja": "高尾山へは 京王線でひと駅の高尾山口へ",
+   "ko": "다카오산은 게이오선으로 한 정거장 다카오산구치로",
+   "en": "For Mt. Takao, ride the Keio Line one stop to Takaosanguchi"
+  }
+ ],
+ "tokyo.hakone_yumoto": [
+  {
+   "ja": "強羅方面の登山電車は ここで乗り換え",
+   "ko": "고라 방면 등산열차는 여기서 갈아타요",
+   "en": "Change here for the mountain railway up to Gora"
+  },
+  {
+   "ja": "荷物を宿まで届けるサービスが駅にあります",
+   "ko": "짐을 숙소까지 보내 주는 서비스가 역에 있어요",
+   "en": "A service at the station delivers luggage to your inn"
+  }
+ ],
+ "tokyo.odawara": [
+  {
+   "ja": "小田原城は「東口」から 歩いて約10分",
+   "ko": "오다와라성은 「동쪽 출구」에서 걸어서 약 10분",
+   "en": "Odawara Castle is about 10 min on foot from the East Exit"
+  },
+  {
+   "ja": "箱根へは 箱根登山線に乗り換え",
+   "ko": "하코네는 하코네 등산선으로 갈아타요",
+   "en": "For Hakone, change to the Hakone Tozan Line"
+  }
+ ],
+ "tokyo.gora": [
+  {
+   "ja": "早雲山へケーブルカー、その先はロープウェイで大涌谷",
+   "ko": "소운잔까지 케이블카, 그다음 로프웨이로 오와쿠다니",
+   "en": "Cable car to Sounzan, then the ropeway on to Owakudani"
+  }
+ ],
+ "tokyo.nikko": [
+  {
+   "ja": "東武日光駅は 歩いて数分のところにあります",
+   "ko": "도부 닛코역은 걸어서 몇 분 거리에 있어요",
+   "en": "Tobu-Nikko Station is a few minutes' walk away"
+  },
+  {
+   "ja": "東照宮へはバスが便利。歩くと上り坂で約30分",
+   "ko": "도쇼구는 버스가 편해요. 걸으면 오르막으로 약 30분",
+   "en": "Take the bus to Toshogu. On foot it's ~30 min uphill"
+  }
+ ],
+ "tokyo.tobu_nikko": [
+  {
+   "ja": "JR日光駅は 歩いて数分のところにあります",
+   "ko": "JR 닛코역은 걸어서 몇 분 거리에 있어요",
+   "en": "JR Nikko Station is a few minutes' walk away"
+  },
+  {
+   "ja": "東照宮へは駅前からバスが便利。歩くと約30分",
+   "ko": "도쇼구는 역 앞 버스가 편해요. 걸으면 약 30분",
+   "en": "Buses for Toshogu leave out front. On foot it's ~30 min"
+  }
+ ],
+ "tokyo.narita_airport": [
+  {
+   "ja": "ここは第1ターミナルの駅。第2・第3はひとつ手前",
+   "ko": "여기는 제1터미널역. 제2·제3터미널은 한 정거장 앞",
+   "en": "This is Terminal 1. Terminals 2 and 3 are one stop before"
+  },
+  {
+   "ja": "JRと京成で 改札もホームも別々です",
+   "ko": "JR과 게이세이는 개찰구와 승강장이 따로예요",
+   "en": "JR and Keisei have separate gates and platforms"
+  }
+ ],
+ "tokyo.airport_terminal_2": [
+  {
+   "ja": "第2・第3ターミナルの駅。第3へは歩くか連絡バス",
+   "ko": "제2·제3터미널역. 제3터미널은 걷거나 연결 버스로",
+   "en": "For Terminals 2 and 3. Reach T3 on foot or by shuttle bus"
+  },
+  {
+   "ja": "JRと京成で 改札が別々。きっぷを確認してね",
+   "ko": "JR과 게이세이는 개찰구가 따로예요. 표를 확인하세요",
+   "en": "JR and Keisei use separate gates. Check your ticket"
+  }
+ ],
+ "tokyo.haneda_airport_terminal_3": [
+  {
+   "ja": "国際線が中心。出発ロビーは駅の上の階",
+   "ko": "국제선 중심 터미널. 출발 로비는 역 위층이에요",
+   "en": "Mainly international flights. Departures are upstairs"
+  },
+  {
+   "ja": "京急は品川方面、モノレールは浜松町へ",
+   "ko": "게이큐는 시나가와 방면, 모노레일은 하마마쓰초로 가요",
+   "en": "Keikyu heads for Shinagawa; the monorail for Hamamatsucho"
+  }
+ ],
+ "tokyo.haneda_airport_terminal_12": [
+  {
+   "ja": "第1はJAL、第2はANAが中心。出口が逆方向",
+   "ko": "제1은 JAL, 제2는 ANA 중심. 출구가 반대 방향",
+   "en": "JAL is mainly T1, ANA T2, at opposite ends"
+  }
+ ],
+ "tokyo.haneda_airport_terminal_1": [
+  {
+   "ja": "第1ターミナルは JAL・スカイマークなど",
+   "ko": "제1터미널은 JAL·스카이마크 등이에요",
+   "en": "Terminal 1 serves JAL, Skymark and others"
+  }
+ ],
+ "tokyo.haneda_airport_terminal_2": [
+  {
+   "ja": "第2ターミナルは ANAなど。モノレールの終点",
+   "ko": "제2터미널은 ANA 등. 모노레일 종점이에요",
+   "en": "Terminal 2 serves ANA and others. End of the monorail"
+  }
+ ],
+ "tokyo.hamamatsucho": [
+  {
+   "ja": "東京タワーまで 歩いて約15分",
+   "ko": "도쿄타워까지 걸어서 약 15분",
+   "en": "Tokyo Tower is about 15 min on foot"
+  },
+  {
+   "ja": "羽田空港へは 東京モノレールに乗り換え",
+   "ko": "하네다 공항은 도쿄 모노레일로 갈아타요",
+   "en": "Change to the Tokyo Monorail for Haneda Airport"
+  },
+  {
+   "ja": "伊豆諸島への船が出る竹芝桟橋は「北口」から約10分",
+   "ko": "이즈 제도행 배가 떠나는 다케시바 부두는 「북쪽 출구」에서 약 10분",
+   "en": "Takeshiba Pier (Izu Islands ferries): ~10 min from the North Exit"
+  },
+  {
+   "ja": "ホームの端に 衣装が変わる小便小僧がいます",
+   "ko": "승강장 끝에 옷을 갈아입는 오줌싸개 동상이 있어요",
+   "en": "A little statue at the platform end gets new outfits regularly"
+  }
+ ],
+ "tokyo.daimon": [
+  {
+   "ja": "増上寺・東京タワーへ歩けます。JR浜松町駅もすぐ",
+   "ko": "조조지·도쿄타워까지 걸어갈 수 있어요. JR 하마마쓰초역도 바로",
+   "en": "Walk to Zojoji and Tokyo Tower. JR Hamamatsucho is close by"
+  }
+ ],
+ "tokyo.akabanebashi": [
+  {
+   "ja": "東京タワーへは「赤羽橋口」から 歩いて約5分",
+   "ko": "도쿄타워는 「아카바네바시 출구」에서 걸어서 약 5분",
+   "en": "Tokyo Tower is about 5 min from the Akabanebashi Exit"
+  }
+ ],
+ "tokyo.kamiyacho": [
+  {
+   "ja": "東京タワーへ 歩いて約10分",
+   "ko": "도쿄타워까지 걸어서 약 10분",
+   "en": "Tokyo Tower is about 10 min on foot"
+  },
+  {
+   "ja": "麻布台ヒルズは 駅から直結",
+   "ko": "아자부다이 힐즈는 역에서 바로 연결돼요",
+   "en": "Azabudai Hills is directly linked to the station"
+  }
+ ],
+ "tokyo.gotanda": [
+  {
+   "ja": "池上線のホームは ビルの4階の高いところ",
+   "ko": "이케가미선 승강장은 건물 4층 높이에 있어요",
+   "en": "The Ikegami Line platform is up on the 4th floor"
+  }
+ ],
+ "tokyo.osaki": [
+  {
+   "ja": "りんかい線で お台場方面へ乗り換えなし",
+   "ko": "린카이선으로 오다이바 방면까지 환승 없이 가요",
+   "en": "The Rinkai Line runs direct from here to the Odaiba area"
+  },
+  {
+   "ja": "山手線は「大崎止まり」の電車があります",
+   "ko": "야마노테선에는 「오사키 종착」 열차가 있어요",
+   "en": "Some Yamanote trains terminate here at Osaki"
+  }
+ ],
+ "tokyo.takanawa_gateway": [
+  {
+   "ja": "山手線でいちばん新しい駅（2020年開業）",
+   "ko": "야마노테선에서 가장 새로운 역(2020년 개업)",
+   "en": "The newest station on the Yamanote Line, opened in 2020"
+  },
+  {
+   "ja": "都営浅草線・京急の泉岳寺駅へ 歩いて数分",
+   "ko": "도에이 아사쿠사선·게이큐 센가쿠지역까지 걸어서 몇 분",
+   "en": "Sengakuji (Asakusa Line, Keikyu) is a few minutes' walk"
+  }
+ ],
+ "tokyo.tamachi": [
+  {
+   "ja": "都営地下鉄の三田駅へ 歩いて数分",
+   "ko": "도에이 지하철 미타역까지 걸어서 몇 분",
+   "en": "Mita subway station is a few minutes on foot"
+  }
+ ],
+ "tokyo.mita": [
+  {
+   "ja": "JR田町駅へ 歩いて数分",
+   "ko": "JR 다마치역까지 걸어서 몇 분",
+   "en": "JR Tamachi Station is a few minutes on foot"
+  }
+ ],
+ "tokyo.okachimachi": [
+  {
+   "ja": "アメ横は「北口」からすぐ。上野まで続きます",
+   "ko": "아메요코는 「북쪽 출구」에서 바로. 우에노까지 이어져요",
+   "en": "Ameyoko starts by the North Exit and runs up to Ueno"
+  }
+ ],
+ "tokyo.uguisudani": [
+  {
+   "ja": "東京国立博物館へは「南口」から 歩いて約10分",
+   "ko": "도쿄 국립박물관은 「남쪽 출구」에서 걸어서 약 10분",
+   "en": "Tokyo National Museum is ~10 min from the South Exit"
+  }
+ ],
+ "tokyo.sugamo": [
+  {
+   "ja": "とげぬき地蔵・地蔵通り商店街へ 歩いて約5分",
+   "ko": "도게누키 지장·지조도리 상점가까지 걸어서 약 5분",
+   "en": "Togenuki Jizo and its shopping street: ~5 min on foot"
+  }
+ ],
+ "tokyo.komagome": [
+  {
+   "ja": "六義園は「南口」から 歩いて約7分",
+   "ko": "리쿠기엔 정원은 「남쪽 출구」에서 걸어서 약 7분",
+   "en": "Rikugien Garden is about 7 min on foot from the South Exit"
+  },
+  {
+   "ja": "発車メロディは「さくらさくら」",
+   "ko": "발차 멜로디는 「사쿠라 사쿠라」예요",
+   "en": "The departure jingle here is \"Sakura Sakura\""
+  }
+ ],
+ "tokyo.otsuka": [
+  {
+   "ja": "都電荒川線（東京さくらトラム）に乗り換えできます",
+   "ko": "도덴 아라카와선(도쿄 사쿠라 트램)으로 갈아탈 수 있어요",
+   "en": "Change here for the Toden Arakawa streetcar"
+  }
+ ],
+ "tokyo.takadanobaba": [
+  {
+   "ja": "発車メロディは「鉄腕アトム」のテーマ",
+   "ko": "발차 멜로디는 「우주소년 아톰」 주제가예요",
+   "en": "The departure jingle is the Astro Boy theme"
+  }
+ ],
+ "tokyo.shin_okubo": [
+  {
+   "ja": "コリアンタウンは 改札を出て右の大久保通り沿い",
+   "ko": "코리아타운은 개찰구를 나와 오른쪽 오쿠보 거리예요",
+   "en": "Koreatown lies along Okubo-dori, to the right of the gate"
+  },
+  {
+   "ja": "改札はひとつだけ。週末はとても混みます",
+   "ko": "개찰구가 하나뿐이라 주말에는 아주 붐벼요",
+   "en": "There's only one gate, and weekends get very crowded"
+  }
+ ],
+ "tokyo.sendagaya": [
+  {
+   "ja": "国立競技場・東京体育館の最寄り駅",
+   "ko": "국립경기장·도쿄 체육관에서 가까운 역이에요",
+   "en": "The JR stop for the National Stadium and Tokyo Gymnasium"
+  }
+ ],
+ "tokyo.kokuritsu_kyogijo": [
+  {
+   "ja": "国立競技場は「A2出口」からすぐ",
+   "ko": "국립경기장은 「A2 출구」에서 바로",
+   "en": "The National Stadium is just outside Exit A2"
+  }
+ ],
+ "tokyo.gaiemmae": [
+  {
+   "ja": "神宮球場・秩父宮ラグビー場は「3番出口」から",
+   "ko": "진구 구장·지치부노미야 럭비장은 「3번 출구」로",
+   "en": "Jingu Stadium and the rugby ground: use Exit 3"
+  }
+ ],
+ "tokyo.aoyama_itchome": [
+  {
+   "ja": "神宮外苑のいちょう並木へ 歩いて数分",
+   "ko": "진구가이엔 은행나무길까지 걸어서 몇 분",
+   "en": "The Jingu Gaien ginkgo avenue is a few minutes on foot"
+  }
+ ],
+ "tokyo.nogizaka": [
+  {
+   "ja": "国立新美術館は「6番出口」から直結",
+   "ko": "국립신미술관은 「6번 출구」에서 바로 연결",
+   "en": "The National Art Center is directly linked to Exit 6"
+  }
+ ],
+ "tokyo.shinjuku_sanchome": [
+  {
+   "ja": "伊勢丹は 地下通路から直結",
+   "ko": "이세탄 백화점은 지하 통로에서 바로 연결",
+   "en": "Isetan department store is linked by underground passage"
+  },
+  {
+   "ja": "新宿駅までは 地下通路で歩けます",
+   "ko": "신주쿠역까지 지하 통로로 걸어갈 수 있어요",
+   "en": "You can walk underground from here to Shinjuku Station"
+  }
+ ],
+ "tokyo.shinjuku_gyoemmae": [
+  {
+   "ja": "新宿御苑（新宿門）は「1番出口」から約5分",
+   "ko": "신주쿠 교엔(신주쿠몬)은 「1번 출구」에서 약 5분",
+   "en": "Shinjuku Gyoen (Shinjuku Gate) is ~5 min from Exit 1"
+  }
+ ],
+ "tokyo.tochomae": [
+  {
+   "ja": "都庁の展望室へは 駅から直結",
+   "ko": "도쿄도청 전망대는 역에서 바로 연결돼요",
+   "en": "The Metropolitan Government observatory is linked directly"
+  },
+  {
+   "ja": "大江戸線は環状ではなく「6の字」。行き先を確認",
+   "ko": "오에도선은 순환선이 아니라 「6자」 모양. 행선지 확인",
+   "en": "The Oedo Line is a \"6\" shape, not a loop. Check the destination"
+  }
+ ],
+ "tokyo.naka_meguro": [
+  {
+   "ja": "目黒川の桜並木は 駅のすぐそば",
+   "ko": "메구로강 벚꽃길은 역 바로 근처예요",
+   "en": "The Meguro River cherry trees are right by the station"
+  },
+  {
+   "ja": "日比谷線と東横線は 同じホームで乗り換え",
+   "ko": "히비야선과 도요코선은 같은 승강장에서 환승해요",
+   "en": "Hibiya and Toyoko lines connect across the same platform"
+  }
+ ],
+ "tokyo.sangen_jaya": [
+  {
+   "ja": "世田谷線のりばは キャロットタワー側",
+   "ko": "세타가야선 타는 곳은 캐럿 타워 쪽이에요",
+   "en": "The Setagaya Line tram boards over by Carrot Tower"
+  }
+ ],
+ "tokyo.musashi_kosugi": [
+  {
+   "ja": "横須賀線ホームは離れています。乗り換え約10分",
+   "ko": "요코스카선 승강장은 떨어져 있어요. 환승에 약 10분",
+   "en": "The Yokosuka Line platforms are far off. Allow ~10 min"
+  }
+ ],
+ "tokyo.tachikawa": [
+  {
+   "ja": "昭和記念公園は「北口」から 歩いて約10〜15分",
+   "ko": "쇼와 기념공원은 「북쪽 출구」에서 걸어서 약 10~15분",
+   "en": "Showa Kinen Park is 10–15 min on foot from the North Exit"
+  },
+  {
+   "ja": "多摩モノレールは「立川北」「立川南」の別の駅",
+   "ko": "다마 모노레일은 「다치카와키타」「다치카와미나미」역",
+   "en": "The Tama Monorail uses separate Tachikawa-Kita/-Minami stops"
+  }
+ ],
+ "tokyo.hachioji": [
+  {
+   "ja": "京王八王子駅は別の駅。歩いて約5分",
+   "ko": "게이오 하치오지역은 다른 역. 걸어서 약 5분",
+   "en": "Keio-Hachioji is a separate station, about 5 min on foot"
+  }
+ ],
+ "tokyo.ogikubo": [
+  {
+   "ja": "丸ノ内線はここが起点。始発電車で座りやすい",
+   "ko": "마루노우치선은 여기가 기점. 시발 열차라 앉기 쉬워요",
+   "en": "The Marunouchi Line starts here, so seats are easy to find"
+  }
+ ],
+ "tokyo.koenji": [
+  {
+   "ja": "土休日は中央線快速が通過。黄色い各駅停車に",
+   "ko": "주말·공휴일엔 주오선 쾌속이 통과해요. 노란 각역정차로",
+   "en": "Rapid trains skip this stop on weekends. Take the yellow local"
+  }
+ ],
+ "tokyo.asagaya": [
+  {
+   "ja": "土休日は快速が止まりません。総武線の各駅停車で",
+   "ko": "주말·공휴일엔 쾌속이 서지 않아요. 소부선 각역정차로",
+   "en": "No rapid trains stop here on weekends. Use the Sobu local"
+  }
+ ],
+ "tokyo.nishi_ogikubo": [
+  {
+   "ja": "土休日は快速が通過する駅。各駅停車を使おう",
+   "ko": "주말·공휴일엔 쾌속이 통과하는 역. 각역정차를 이용해요",
+   "en": "Rapid trains pass through on weekends. Use the local trains"
+  }
+ ],
+ "tokyo.kita_senju": [
+  {
+   "ja": "5路線が集まる駅。日比谷線は3階、千代田線は地下",
+   "ko": "5개 노선이 모이는 역. 히비야선은 3층, 지요다선은 지하",
+   "en": "Five lines meet here. Hibiya is on the 3rd floor, Chiyoda below"
+  }
+ ],
+ "tokyo.kinshicho": [
+  {
+   "ja": "半蔵門線で 押上（スカイツリー前）へひと駅",
+   "ko": "한조몬선으로 오시아게(스카이트리 앞)까지 한 정거장",
+   "en": "Oshiage (Skytree) is one stop away on the Hanzomon Line"
+  }
+ ],
+ "tokyo.kameido": [
+  {
+   "ja": "亀戸天神は「北口」から 歩いて約15分",
+   "ko": "가메이도 덴진은 「북쪽 출구」에서 걸어서 약 15분",
+   "en": "Kameido Tenjin shrine is ~15 min from the North Exit"
+  }
+ ],
+ "tokyo.shin_kiba": [
+  {
+   "ja": "ディズニーの舞浜へは 京葉線の各駅停車で2駅",
+   "ko": "디즈니가 있는 마이하마는 게이요선 각역정차로 두 정거장",
+   "en": "Maihama (Disney) is two local stops away on the Keiyo Line"
+  }
+ ],
+ "tokyo.kasai_rinkai_park": [
+  {
+   "ja": "水族園と大観覧車は 駅の正面",
+   "ko": "수족관과 대관람차는 역 정면에 있어요",
+   "en": "The aquarium and giant Ferris wheel are straight ahead"
+  }
+ ],
+ "tokyo.hatchobori": [
+  {
+   "ja": "京葉線から地下鉄へは 東京駅よりここが楽",
+   "ko": "게이요선에서 지하철로는 도쿄역보다 여기가 편해요",
+   "en": "From the Keiyo Line, changing to the subway is easier here"
+  }
+ ],
+ "tokyo.kaihim_makuhari": [
+  {
+   "ja": "幕張メッセは「南口」から 歩いて約5分",
+   "ko": "마쿠하리 멧세는 「남쪽 출구」에서 걸어서 약 5분",
+   "en": "Makuhari Messe is about 5 min on foot from the South Exit"
+  },
+  {
+   "ja": "マリンスタジアムへは 歩いて約15分かバス",
+   "ko": "마린 스타디움은 걸어서 약 15분 또는 버스",
+   "en": "The Marine Stadium is ~15 min on foot, or take the bus"
+  }
+ ],
+ "tokyo.chiba": [
+  {
+   "ja": "千葉都市モノレールは ぶら下がって走る懸垂式",
+   "ko": "지바 도시 모노레일은 매달려 달리는 현수식이에요",
+   "en": "Chiba's monorail is the suspended kind, hanging from its rail"
+  }
+ ],
+ "tokyo.funabashi": [
+  {
+   "ja": "京成船橋駅は別の駅。歩いて数分",
+   "ko": "게이세이 후나바시역은 다른 역. 걸어서 몇 분",
+   "en": "Keisei-Funabashi is a separate station, minutes away"
+  }
+ ],
+ "tokyo.oji": [
+  {
+   "ja": "飛鳥山公園は駅のとなり。都電にも乗り換えできます",
+   "ko": "아스카야마 공원은 역 바로 옆. 노면전차도 탈 수 있어요",
+   "en": "Asukayama Park is next door, and the streetcar stops here"
+  }
+ ],
+ "tokyo.seibukyujo_mae": [
+  {
+   "ja": "ドーム球場は駅の目の前。試合のあとは大混雑",
+   "ko": "돔 구장은 역 바로 앞. 경기가 끝나면 매우 붐벼요",
+   "en": "The dome is right outside. Expect big crowds after games"
+  }
+ ],
+ "tokyo.seibu_chichibu": [
+  {
+   "ja": "駅のとなりに 温泉施設「祭の湯」があります",
+   "ko": "역 바로 옆에 온천 시설 「마쓰리노유」가 있어요",
+   "en": "The Matsuri-no-Yu hot spring is right next to the station"
+  },
+  {
+   "ja": "秩父鉄道の御花畑駅へ 歩いて約5分",
+   "ko": "지치부 철도 오하나바타케역까지 걸어서 약 5분",
+   "en": "Ohanabatake (Chichibu Railway) is about 5 min on foot"
+  }
+ ],
+ "tokyo.toshimaen": [
+  {
+   "ja": "ハリー・ポッターのスタジオツアーへ 歩いて数分",
+   "ko": "해리 포터 스튜디오 투어까지 걸어서 몇 분",
+   "en": "The Harry Potter studio tour is a few minutes on foot"
+  }
+ ],
+ "tokyo.kiyosumi_shirakawa": [
+  {
+   "ja": "清澄庭園は「A3出口」から 歩いて約3分",
+   "ko": "기요스미 정원은 「A3 출구」에서 걸어서 약 3분",
+   "en": "Kiyosumi Garden is about 3 min on foot from Exit A3"
+  },
+  {
+   "ja": "東京都現代美術館は「B2出口」から 歩いて約10分",
+   "ko": "도쿄도 현대미술관은 「B2 출구」에서 걸어서 약 10분",
+   "en": "The Museum of Contemporary Art is ~10 min from Exit B2"
+  }
+ ],
+ "tokyo.monzen_nakacho": [
+  {
+   "ja": "富岡八幡宮・深川不動堂は「1番出口」からすぐ",
+   "ko": "도미오카 하치만구·후카가와 후도도는 「1번 출구」에서 바로",
+   "en": "Tomioka Hachimangu and Fukagawa Fudodo: just outside Exit 1"
+  }
+ ],
+ "tokyo.kuramae": [
+  {
+   "ja": "浅草線と大江戸線は 地上を歩いて乗り換え",
+   "ko": "아사쿠사선과 오에도선은 지상으로 걸어서 환승해요",
+   "en": "Asakusa and Oedo lines connect by a walk at street level"
+  }
+ ],
+ "tokyo.tennozu_isle": [
+  {
+   "ja": "モノレールとりんかい線は別の建物。乗り換え数分",
+   "ko": "모노레일과 린카이선은 다른 건물. 환승에 몇 분 걸려요",
+   "en": "The monorail and Rinkai Line are in separate buildings"
+  }
+ ],
+ "tokyo.kamata": [
+  {
+   "ja": "京急蒲田駅は 約800m離れた別の駅",
+   "ko": "게이큐 가마타역은 약 800m 떨어진 다른 역이에요",
+   "en": "Keikyu Kamata is a separate station about 800 m away"
+  }
+ ],
+ "tokyo.keikyu_kamata": [
+  {
+   "ja": "羽田空港行きは ここで分かれます。行き先を確認",
+   "ko": "하네다 공항행은 여기서 갈라져요. 행선지를 확인하세요",
+   "en": "The airport branch splits off here. Check the destination"
+  }
+ ],
+ "tokyo.sengakuji": [
+  {
+   "ja": "「西馬込行き」は空港へ行きません。行き先を確認",
+   "ko": "「니시마고메행」은 공항에 가지 않아요. 행선지 확인",
+   "en": "Trains for Nishi-magome don't go to the airport"
+  },
+  {
+   "ja": "赤穂浪士ゆかりの泉岳寺は「A2出口」からすぐ",
+   "ko": "아코 낭사로 유명한 센가쿠지는 「A2 출구」에서 바로",
+   "en": "Sengakuji, temple of the 47 Ronin, is just outside Exit A2"
+  }
+ ],
+ "tokyo.nezu": [
+  {
+   "ja": "根津神社は「1番出口」から 歩いて約5分",
+   "ko": "네즈 신사는 「1번 출구」에서 걸어서 약 5분",
+   "en": "Nezu Shrine is about 5 min on foot from Exit 1"
+  }
+ ],
+ "tokyo.sendagi": [
+  {
+   "ja": "谷中銀座へ 歩いて約5分",
+   "ko": "야나카긴자까지 걸어서 약 5분",
+   "en": "Yanaka Ginza is about 5 min on foot"
+  }
+ ],
+ "tokyo.yushima": [
+  {
+   "ja": "湯島天神は「3番出口」から 歩いてすぐ",
+   "ko": "유시마 덴진은 「3번 출구」에서 걸어서 바로",
+   "en": "Yushima Tenjin shrine is a short walk from Exit 3"
+  }
+ ],
+ "tokyo.keisei_ueno": [
+  {
+   "ja": "スカイライナーで成田空港へ。JR上野駅は歩いて数分",
+   "ko": "스카이라이너로 나리타 공항까지. JR 우에노역은 걸어서 몇 분",
+   "en": "The Skyliner to Narita starts here. JR Ueno is minutes away"
+  },
+  {
+   "ja": "上野公園・西郷さんの像は 出口のすぐ上",
+   "ko": "우에노 공원·사이고 다카모리 동상은 출구 바로 위",
+   "en": "Ueno Park and the Saigo statue are right above the exit"
+  }
+ ],
+ "tokyo.keisei_narita": [
+  {
+   "ja": "成田山新勝寺へは 参道を歩いて約10分",
+   "ko": "나리타산 신쇼지까지 참배길을 걸어 약 10분",
+   "en": "Naritasan Shinshoji: ~10 min on foot along the temple street"
+  },
+  {
+   "ja": "JR成田駅は 歩いて数分の別の駅",
+   "ko": "JR 나리타역은 걸어서 몇 분 거리의 다른 역",
+   "en": "JR Narita is a separate station a few minutes' walk away"
+  }
+ ],
+ "tokyo.narita": [
+  {
+   "ja": "成田山新勝寺へは 参道を歩いて約10〜15分",
+   "ko": "나리타산 신쇼지까지 참배길을 걸어 약 10~15분",
+   "en": "Naritasan Shinshoji: 10–15 min on foot along the temple street"
+  },
+  {
+   "ja": "ここは成田空港の駅ではありません。空港はこの先",
+   "ko": "여기는 나리타 공항역이 아니에요. 공항은 더 가야 해요",
+   "en": "This isn't the airport station. The airport is further on"
+  }
+ ],
+ "tokyo.shibamata": [
+  {
+   "ja": "帝釈天へは参道を歩いて数分。駅前に寅さんの像",
+   "ko": "다이샤쿠텐까지 참배길로 몇 분. 역 앞에 도라상 동상",
+   "en": "Taishakuten temple is minutes away, past Tora-san's statue"
+  }
+ ],
+ "tokyo.aoto": [
+  {
+   "ja": "上野方面と押上（都営浅草線）方面の分かれ道",
+   "ko": "우에노 방면과 오시아게(도에이 아사쿠사선) 방면의 갈림길",
+   "en": "Lines split here for Ueno and for Oshiage (Asakusa Line)"
+  }
+ ],
+ "tokyo.kasukabe": [
+  {
+   "ja": "発車メロディは「クレヨンしんちゃん」の曲",
+   "ko": "발차 멜로디는 「짱구는 못말려」 노래예요",
+   "en": "The departure jingle is the Crayon Shin-chan theme"
+  }
+ ],
+ "tokyo.jimbocho": [
+  {
+   "ja": "世界最大級の古書店街は 地上に出てすぐ",
+   "ko": "세계 최대급 고서점 거리는 지상으로 나가면 바로",
+   "en": "One of the world's biggest used-book districts is upstairs"
+  }
+ ],
+ "tokyo.ochanomizu": [
+  {
+   "ja": "中央線快速と総武線各駅停車は 同じホームで乗り換え",
+   "ko": "주오선 쾌속과 소부선 각역정차는 같은 승강장에서 환승",
+   "en": "Chuo Rapid and Sobu local trains connect across the platform"
+  },
+  {
+   "ja": "神田明神・湯島聖堂は「聖橋口」から",
+   "ko": "간다 묘진·유시마 성당은 「히지리바시 출구」로",
+   "en": "Kanda Myojin and Yushima Seido: use the Hijiribashi Exit"
+  }
+ ],
+ "tokyo.yotsuya": [
+  {
+   "ja": "迎賓館赤坂離宮は「赤坂口」から 歩いて約7分",
+   "ko": "영빈관 아카사카 이궁은 「아카사카 출구」에서 약 7분",
+   "en": "Akasaka Palace is about 7 min on foot from the Akasaka Exit"
+  }
+ ],
+ "tokyo.ichigaya": [
+  {
+   "ja": "JRのホームから お堀の釣り堀が見えます",
+   "ko": "JR 승강장에서 해자의 낚시터가 보여요",
+   "en": "From the JR platform you can see a fishing pond in the moat"
+  }
+ ],
+ "tokyo.akasaka_mitsuke": [
+  {
+   "ja": "銀座線と丸ノ内線は 同じホームの向かい側",
+   "ko": "긴자선과 마루노우치선은 같은 승강장 맞은편에서 환승",
+   "en": "Ginza and Marunouchi lines connect across the same platform"
+  },
+  {
+   "ja": "永田町駅とつながっています。乗り換えは少し歩きます",
+   "ko": "나가타초역과 이어져 있어요. 환승은 조금 걸어요",
+   "en": "Connected to Nagatacho station, though it's a bit of a walk"
+  }
+ ],
+ "tokyo.nagatacho": [
+  {
+   "ja": "赤坂見附駅とつながり 銀座線・丸ノ内線にも乗れます",
+   "ko": "아카사카미쓰케역과 이어져 긴자선·마루노우치선도 타요",
+   "en": "Linked to Akasaka-mitsuke for the Ginza and Marunouchi lines"
+  }
+ ],
+ "tokyo.kokkai_gijido_mae": [
+  {
+   "ja": "溜池山王駅とつながっています",
+   "ko": "다메이케산노역과 이어져 있어요",
+   "en": "This station is connected to Tameike-sanno"
+  }
+ ],
+ "tokyo.toranomon_hills": [
+  {
+   "ja": "銀座線の虎ノ門駅とは 地下通路でつながっています",
+   "ko": "긴자선 도라노몬역과는 지하 통로로 이어져 있어요",
+   "en": "An underground passage links to Toranomon (Ginza Line)"
+  }
+ ],
+ "tokyo.shiodome": [
+  {
+   "ja": "新橋駅へは 地下通路で歩けます",
+   "ko": "신바시역까지 지하 통로로 걸어갈 수 있어요",
+   "en": "You can walk underground from here to Shimbashi Station"
+  }
+ ],
+ "tokyo.takeshiba": [
+  {
+   "ja": "伊豆諸島への船が出る竹芝桟橋は 駅の目の前",
+   "ko": "이즈 제도행 배가 떠나는 다케시바 부두는 역 바로 앞",
+   "en": "Takeshiba Pier, for Izu Islands ferries, is right outside"
+  }
+ ],
+ "tokyo.hinode": [
+  {
+   "ja": "浅草・お台場への水上バスのりばは 駅の近く",
+   "ko": "아사쿠사·오다이바행 수상버스 타는 곳이 역 근처예요",
+   "en": "Water buses to Asakusa and Odaiba leave from nearby"
+  }
+ ],
+ "tokyo.noborito": [
+  {
+   "ja": "藤子・F・不二雄ミュージアムへは 駅から直行バス",
+   "ko": "후지코·F·후지오 뮤지엄은 역에서 직행버스로 가요",
+   "en": "A direct bus runs to the Fujiko F. Fujio (Doraemon) Museum"
+  }
+ ],
+ "tokyo.machida": [
+  {
+   "ja": "JRと小田急の駅は 歩いて約5分離れています",
+   "ko": "JR과 오다큐 역은 걸어서 약 5분 떨어져 있어요",
+   "en": "The JR and Odakyu stations are about 5 min apart on foot"
+  }
+ ],
+ "tokyo.chofu": [
+  {
+   "ja": "京王線と相模原線の分かれ道。行き先を確認",
+   "ko": "게이오선과 사가미하라선의 갈림길. 행선지를 확인하세요",
+   "en": "The Keio and Sagamihara lines split here. Check the destination"
+  }
+ ],
+ "tokyo.tobitakyu": [
+  {
+   "ja": "味の素スタジアムへ 歩いて約5分",
+   "ko": "아지노모토 스타디움까지 걸어서 약 5분",
+   "en": "Ajinomoto Stadium is about 5 min on foot"
+  }
+ ],
+ "tokyo.takahatafudo": [
+  {
+   "ja": "高幡不動尊へ 歩いて数分",
+   "ko": "다카하타 후도손까지 걸어서 몇 분",
+   "en": "Takahata Fudo temple is a few minutes on foot"
+  }
+ ],
+ "tokyo.tama_dobutsukoen": [
+  {
+   "ja": "多摩動物公園の正門は 駅の目の前",
+   "ko": "다마 동물공원 정문은 역 바로 앞",
+   "en": "The Tama Zoo main gate is right in front of the station"
+  }
+ ],
+ "tokyo.keio_tama_center": [
+  {
+   "ja": "サンリオピューロランドへ 歩いて約5分",
+   "ko": "산리오 퓨로랜드까지 걸어서 약 5분",
+   "en": "Sanrio Puroland is about 5 min on foot"
+  }
+ ],
+ "tokyo.odakyu_tama_center": [
+  {
+   "ja": "サンリオピューロランドへは 歩いて約5分です",
+   "ko": "산리오 퓨로랜드까지는 걸어서 약 5분이에요",
+   "en": "Sanrio Puroland is roughly a 5 min walk away"
+  }
+ ],
+ "tokyo.keio_yomiuri_land": [
+  {
+   "ja": "よみうりランドへは 駅前からゴンドラで",
+   "ko": "요미우리랜드는 역 앞에서 곤돌라로 가요",
+   "en": "Ride the gondola from the station up to Yomiuriland"
+  }
+ ],
+ "tokyo.fuchu_hommachi": [
+  {
+   "ja": "東京競馬場へは 専用の通路で直結",
+   "ko": "도쿄 경마장까지 전용 통로로 바로 연결",
+   "en": "A dedicated walkway leads straight to Tokyo Racecourse"
+  }
+ ],
+ "tokyo.kanazawa_hakkei": [
+  {
+   "ja": "八景島シーパラダイスへは シーサイドラインで",
+   "ko": "핫케이지마 시 파라다이스는 시사이드 라인으로 가요",
+   "en": "Change to the Seaside Line for Hakkeijima Sea Paradise"
+  }
+ ],
+ "tokyo.hakkeijima": [
+  {
+   "ja": "八景島シーパラダイスへ 歩いて数分",
+   "ko": "핫케이지마 시 파라다이스까지 걸어서 몇 분",
+   "en": "Hakkeijima Sea Paradise is a few minutes on foot"
+  }
+ ],
+ "tokyo.misakiguchi": [
+  {
+   "ja": "まぐろで有名な三崎港へは 駅前からバス",
+   "ko": "참치로 유명한 미사키항은 역 앞에서 버스로 가요",
+   "en": "Buses from the station go to Misaki Port, famous for tuna"
+  }
+ ],
+ "tokyo.yokosuka_chuo": [
+  {
+   "ja": "記念艦「三笠」のある三笠公園へ 歩いて約15分",
+   "ko": "기념함 「미카사」가 있는 미카사 공원까지 걸어서 약 15분",
+   "en": "Mikasa Park and its battleship are about 15 min on foot"
+  }
+ ],
+ "tokyo.gotokuji": [
+  {
+   "ja": "招き猫の豪徳寺へは 歩いて約10分",
+   "ko": "마네키네코로 유명한 고토쿠지까지 걸어서 약 10분",
+   "en": "Gotokuji, the lucky-cat temple, is about 10 min on foot"
+  }
+ ],
+ "tokyo.togoshi_ginza": [
+  {
+   "ja": "東京でいちばん長い商店街（約1.3km）の駅",
+   "ko": "도쿄에서 가장 긴 상점가(약 1.3km)가 있는 역",
+   "en": "Home to Tokyo's longest shopping street, about 1.3 km"
+  }
+ ],
+ "tokyo.higashi_ikebukuro": [
+  {
+   "ja": "サンシャインシティへは 地下通路でつながっています",
+   "ko": "선샤인 시티까지 지하 통로로 이어져 있어요",
+   "en": "An underground passage leads to Sunshine City"
+  }
+ ],
+ "tokyo.kotake_mukaihara": [
+  {
+   "ja": "有楽町線と副都心線の分かれ道。行き先を確認",
+   "ko": "유라쿠초선과 후쿠토신선의 갈림길. 행선지를 확인하세요",
+   "en": "Yurakucho and Fukutoshin lines split here. Check the destination"
+  }
+ ],
+ "tokyo.utsunomiya": [
+  {
+   "ja": "日光へは JR日光線に乗り換え",
+   "ko": "닛코는 JR 닛코선으로 갈아타요",
+   "en": "Change here to the JR Nikko Line for Nikko"
+  },
+  {
+   "ja": "LRT「ライトライン」のりばは「東口」",
+   "ko": "LRT 「라이트 라인」 타는 곳은 「동쪽 출구」",
+   "en": "The Lightline LRT boards at the East Exit"
+  }
+ ],
+ "tokyo.atami": [
+  {
+   "ja": "熱海サンビーチへは 坂を下って歩いて約15分",
+   "ko": "아타미 선비치까지 언덕을 내려가 걸어서 약 15분",
+   "en": "Atami Sun Beach is about 15 min downhill on foot"
+  }
+ ],
+ "tokyo.hongo_sanchome": [
+  {
+   "ja": "東京大学の赤門へ 歩いて数分",
+   "ko": "도쿄대학 아카몬(붉은 문)까지 걸어서 몇 분",
+   "en": "The University of Tokyo's Red Gate is minutes on foot"
+  }
+ ],
+ "tokyo.nishiarai": [
+  {
+   "ja": "西新井大師へは 大師線に乗り換えてひと駅",
+   "ko": "니시아라이 다이시는 다이시선으로 갈아타 한 정거장",
+   "en": "Nishiarai Daishi temple is one stop away on the Daishi Line"
+  }
+ ],
+ "tokyo.suitengumae": [
+  {
+   "ja": "安産祈願の水天宮は 出口からすぐ",
+   "ko": "순산 기원으로 유명한 스이텐구는 출구에서 바로",
+   "en": "Suitengu shrine is just outside the exit"
+  },
+  {
+   "ja": "空港リムジンバスが出るT-CATに直結",
+   "ko": "공항 리무진 버스가 떠나는 T-CAT과 바로 연결",
+   "en": "Linked to T-CAT, where airport limousine buses depart"
+  }
+ ],
+ "tokyo.ningyocho": [
+  {
+   "ja": "甘酒横丁へ 歩いてすぐ",
+   "ko": "아마자케 요코초까지 걸어서 바로",
+   "en": "Amazake Yokocho street is a short walk away"
+  }
+ ],
+ "tokyo.nijubashimae": [
+  {
+   "ja": "皇居の二重橋へ歩けます。東京駅の丸の内側もすぐ",
+   "ko": "고쿄 니주바시까지 걸어갈 수 있어요. 도쿄역도 가까워요",
+   "en": "Walk to the Imperial Palace's Nijubashi. Tokyo Station is close"
+  }
+ ],
+ "tokyo.tsukuba": [
+  {
+   "ja": "筑波山へは となりのバスターミナルからシャトルバス",
+   "ko": "쓰쿠바산은 옆 버스터미널에서 셔틀버스로 가요",
+   "en": "Shuttle buses to Mt. Tsukuba leave from the terminal next door"
   }
  ]
 }
