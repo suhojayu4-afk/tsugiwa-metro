@@ -464,6 +464,14 @@ class AppLocalizationsJa extends AppLocalizations {
   String get myTabEffect => '演出';
 
   @override
+  String mySceneElsewhere(String city) {
+    return '$cityの駅は、$cityにいるときに表示されます';
+  }
+
+  @override
+  String get mySceneSeason => '季節';
+
+  @override
   String get myTabSky => '空';
 
   @override

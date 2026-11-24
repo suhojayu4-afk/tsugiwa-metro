@@ -14,6 +14,7 @@ import '../../data/my_store.dart';
 import '../../l10n/app_localizations.dart';
 import '../../platform/purchases.dart';
 import '../album/album_screen.dart';
+import '../settings/app_city.dart';
 import '../settings/settings_screen.dart';
 import 'plate_editor.dart';
 import 'share_card.dart';
@@ -74,6 +75,17 @@ class MyRoomScreenState extends State<MyRoomScreen> {
   MyStore get _store => Services.my;
   MySlot _tab = MySlot.scene;
 
+  /// The city whose station scenes are listed (the 駅 tab is sorted by
+  /// city); null = the city the app is showing. [seasonCity] = the seasonal
+  /// scenes, which belong to no city.
+  String? _sceneCity;
+  static const seasonCity = 'season';
+
+  /// The city a scene belongs to: its station's, the season's for the
+  /// limited ones, Tokyo for the first station.
+  static String cityOfScene(MyItem item) =>
+      item.station?.split('.').first ?? (item.season != null ? seasonCity : 'tokyo');
+
   @override
   void initState() {
     super.initState();
@@ -110,7 +122,12 @@ class MyRoomScreenState extends State<MyRoomScreen> {
     );
   }
 
-  PlateData _plate(String lang) => PlateData.of(_store, fallbackName: _store.sceneItem?.name.of(lang) ?? '');
+  PlateData _plate(String lang) {
+    final scene = _store.sceneItem;
+    // Another city's own picture is shown (Osaka …): its name, not the equipped Tokyo scene's.
+    final own = _store.cityScene.isNotEmpty && !(scene?.station?.startsWith('${widget.city.id}.') ?? false);
+    return PlateData.of(_store, fallbackName: own ? widget.city.name.of(lang) : scene?.name.of(lang) ?? '');
+  }
 
   Future<void> _sheet(Widget child) => showModalBottomSheet<void>(
     context: context,
@@ -221,171 +238,264 @@ class MyRoomScreenState extends State<MyRoomScreen> {
       MySlot.melody: t.myTabMelody,
       MySlot.sticker: t.shareStickers,
     };
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(20, 20, 20, 32),
+    final jst = DateTime.now().toUtc().add(const Duration(hours: 9));
+    final scenes = shopItems(cat.inSlot(MySlot.scene), _store.owns, jst);
+    // Cities that have scenes, in the app's order, the seasonal ones last.
+    final sceneCities = [
+      for (final c in [...AppCity.choices, seasonCity])
+        if (scenes.any((i) => cityOfScene(i) == c)) c,
+    ];
+    final sceneCity = sceneCities.contains(_sceneCity)
+        ? _sceneCity!
+        : sceneCities.contains(widget.city.id)
+        ? widget.city.id
+        : sceneCities.firstOrNull ?? 'tokyo';
+    final items = _tab == MySlot.scene
+        ? [
+            for (final i in scenes)
+              if (cityOfScene(i) == sceneCity) i,
+          ]
+        : shopItems(cat.inSlot(_tab), _store.owns, jst);
+    // In a city with its own picture, only that city's station scenes show.
+    final elsewhere =
+        _tab == MySlot.scene && _store.cityScene.isNotEmpty && sceneCity != widget.city.id && sceneCity != seasonCity;
+    Widget chip(String label, bool on, VoidCallback onTap, {bool small = false}) => Padding(
+      padding: const EdgeInsets.only(right: 8),
+      child: GestureDetector(
+        onTap: onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 150),
+          padding: EdgeInsets.symmetric(horizontal: small ? 12 : 16, vertical: small ? 6 : 8),
+          decoration: BoxDecoration(
+            color: on ? (small ? PixelColors.ink : _green) : PixelColors.card,
+            borderRadius: BorderRadius.circular(18),
+            border: Border.all(color: on ? (small ? PixelColors.ink : _green) : PixelColors.line),
+          ),
+          child: PixelText(label, size: small ? 14 : 16, color: on ? PixelColors.card : PixelColors.ink),
+        ),
+      ),
+    );
+    final bar = Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            Expanded(child: PixelText(t.myTitle, size: 30)),
-            const SettingsGearButton(),
-            const SizedBox(width: 4),
-            _CoinChip(coins: _store.coins, onTap: _openCoinShop, test: _store.unlimited),
-          ],
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
+            children: [for (final e in tabs.entries) chip(e.value, _tab == e.key, () => setState(() => _tab = e.key))],
+          ),
         ),
-        const SizedBox(height: 14),
-        // The same picture as the top of のりば, with everything equipped.
-        MyStationView(look: _store.look, plate: _plate(lang), lineColor: myDefaultLine, onTap: () => _editPlate(lang)),
-        const SizedBox(height: 10),
-        Row(
-          children: [
-            Expanded(
-              child: _ActionChip(icon: Icons.edit_rounded, label: t.plateEdit, onTap: () => _editPlate(lang)),
+        if (_tab == MySlot.scene) ...[
+          const SizedBox(height: 8),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              children: [
+                for (final c in sceneCities)
+                  chip(
+                    c == seasonCity ? t.mySceneSeason : (AppCity.names[c]?.of(lang) ?? c),
+                    c == sceneCity,
+                    () => setState(() => _sceneCity = c),
+                    small: true,
+                  ),
+              ],
             ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: _ActionChip(
-                icon: Icons.approval_rounded,
-                label: t.stampOpen,
-                onTap: () =>
-                    Navigator.of(context)
-                        .push(MaterialPageRoute<void>(builder: (_) => StampBookScreen(city: widget.city))),
+          ),
+        ],
+      ],
+    );
+    return CustomScrollView(
+      slivers: [
+        SliverPadding(
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+          sliver: SliverList(
+            delegate: SliverChildListDelegate([
+              Row(
+                children: [
+                  Expanded(child: PixelText(t.myTitle, size: 30)),
+                  const SettingsGearButton(),
+                  const SizedBox(width: 4),
+                  _CoinChip(coins: _store.coins, onTap: _openCoinShop, test: _store.unlimited),
+                ],
               ),
-            ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: _ActionChip(
-                icon: Icons.ios_share_rounded,
-                label: t.shareOpen,
-                onTap: () => _sheet(ShareCardSheet(city: widget.city, plate: _plate(lang), lineColor: myDefaultLine)),
+              const SizedBox(height: 14),
+              // The same picture as the top of のりば, with everything equipped.
+              MyStationView(
+                look: _store.look,
+                plate: _plate(lang),
+                lineColor: myDefaultLine,
+                onTap: () => _editPlate(lang),
               ),
-            ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: _ActionChip(
-                icon: Icons.widgets_rounded,
-                label: t.widgetAdd,
-                onTap: () async {
-                  // Home-screen widgets are Android only for now (iPhone needs WidgetKit).
-                  if (!kIsWeb && defaultTargetPlatform == TargetPlatform.iOS) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(_widgetSoon.of(lang))));
-                    return;
-                  }
-                  final kind = await _chooseWidget(t);
-                  if (kind == null || !context.mounted) return;
-                  if (await Services.homeWidget.requestPin(kind: kind) || !context.mounted) return;
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(t.widgetManual)));
-                },
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  Expanded(
+                    child: _ActionChip(icon: Icons.edit_rounded, label: t.plateEdit, onTap: () => _editPlate(lang)),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: _ActionChip(
+                      icon: Icons.approval_rounded,
+                      label: t.stampOpen,
+                      onTap: () =>
+                          Navigator.of(context)
+                              .push(MaterialPageRoute<void>(builder: (_) => StampBookScreen(city: widget.city))),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: _ActionChip(
+                      icon: Icons.ios_share_rounded,
+                      label: t.shareOpen,
+                      onTap: () =>
+                          _sheet(ShareCardSheet(city: widget.city, plate: _plate(lang), lineColor: myDefaultLine)),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: _ActionChip(
+                      icon: Icons.widgets_rounded,
+                      label: t.widgetAdd,
+                      onTap: () async {
+                        // Home-screen widgets are Android only for now (iPhone needs WidgetKit).
+                        if (!kIsWeb && defaultTargetPlatform == TargetPlatform.iOS) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(_widgetSoon.of(lang))));
+                          return;
+                        }
+                        final kind = await _chooseWidget(t);
+                        if (kind == null || !context.mounted) return;
+                        if (await Services.homeWidget.requestPin(kind: kind) || !context.mounted) return;
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(t.widgetManual)));
+                      },
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 8),
-        Row(
-          children: [
-            Expanded(
-              child: _ActionChip(
-                icon: Icons.train_rounded,
-                label: trainDexTitle.of(lang),
-                onTap: () =>
-                    Navigator.of(context)
-                        .push(MaterialPageRoute<void>(builder: (_) => TrainDexScreen(city: widget.city))),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Expanded(
+                    child: _ActionChip(
+                      icon: Icons.train_rounded,
+                      label: trainDexTitle.of(lang),
+                      onTap: () =>
+                          Navigator.of(context)
+                              .push(MaterialPageRoute<void>(builder: (_) => TrainDexScreen(city: widget.city))),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  // 駅印帳: the stamps as a 御朱印帳-style book.
+                  Expanded(
+                    child: _ActionChip(
+                      icon: Icons.menu_book_rounded,
+                      label: _ekiInTitle.of(lang),
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute<void>(
+                          builder: (_) => EkiInBookScreen(city: widget.city, stamps: _store.stamps),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  // 旅のアルバム: a picture postcard from every station got off at.
+                  Expanded(
+                    child: _ActionChip(
+                      icon: Icons.local_post_office_rounded,
+                      label: albumTitle.of(lang),
+                      onTap: () =>
+                          Navigator.of(context)
+                              .push(MaterialPageRoute<void>(builder: (_) => AlbumScreen(city: widget.city))),
+                    ),
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(width: 8),
-            // 駅印帳: the stamps as a 御朱印帳-style book.
-            Expanded(
-              child: _ActionChip(
-                icon: Icons.menu_book_rounded,
-                label: _ekiInTitle.of(lang),
-                onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute<void>(
-                    builder: (_) => EkiInBookScreen(city: widget.city, stamps: _store.stamps),
+              const SizedBox(height: 10),
+              PixelText(
+                t.myEarnRules(rules.perTrip, rules.firstVisit, rules.firstTripOfDay),
+                size: 12,
+                color: PixelColors.muted,
+              ),
+              // A friend's invite code (from their share card): coins, once.
+              if (!_store.inviteUsed)
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: TextButton.icon(
+                    style: TextButton.styleFrom(padding: EdgeInsets.zero, visualDensity: VisualDensity.compact),
+                    onPressed: () => _enterInvite(t),
+                    icon: const Icon(Icons.card_giftcard_rounded, size: 16, color: _green),
+                    label: Text(
+                      '${t.myInviteEnter} (+${MyStore.inviteCoins})',
+                      style: const TextStyle(fontSize: 12, color: PixelColors.ink),
+                    ),
                   ),
                 ),
-              ),
-            ),
-            const SizedBox(width: 8),
-            // 旅のアルバム: a picture postcard from every station got off at.
-            Expanded(
-              child: _ActionChip(
-                icon: Icons.local_post_office_rounded,
-                label: albumTitle.of(lang),
-                onTap: () =>
-                    Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => AlbumScreen(city: widget.city))),
-              ),
-            ),
-          ],
+              const SizedBox(height: 6),
+            ]),
+          ),
         ),
-        const SizedBox(height: 10),
-        PixelText(
-          t.myEarnRules(rules.perTrip, rules.firstVisit, rules.firstTripOfDay),
-          size: 12,
-          color: PixelColors.muted,
+        // The tabs stay at the top while the items scroll under them.
+        SliverPersistentHeader(
+          pinned: true,
+          delegate: _PinnedBar(height: _tab == MySlot.scene ? 100 : 58, child: bar),
         ),
-        // A friend's invite code (from their share card): coins, once.
-        if (!_store.inviteUsed)
-          Align(
-            alignment: Alignment.centerLeft,
-            child: TextButton.icon(
-              style: TextButton.styleFrom(padding: EdgeInsets.zero, visualDensity: VisualDensity.compact),
-              onPressed: () => _enterInvite(t),
-              icon: const Icon(Icons.card_giftcard_rounded, size: 16, color: _green),
-              label: Text(
-                '${t.myInviteEnter} (+${MyStore.inviteCoins})',
-                style: const TextStyle(fontSize: 12, color: PixelColors.ink),
+        if (elsewhere)
+          SliverPadding(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
+            sliver: SliverToBoxAdapter(
+              child: PixelText(
+                t.mySceneElsewhere(AppCity.names[sceneCity]?.of(lang) ?? sceneCity),
+                size: 12,
+                color: PixelColors.muted,
               ),
             ),
           ),
-        const SizedBox(height: 14),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
+        SliverPadding(
+          padding: const EdgeInsets.fromLTRB(20, 4, 20, 32),
+          sliver: SliverGrid.count(
+            crossAxisCount: 2,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            childAspectRatio: 1.25,
             children: [
-              for (final e in tabs.entries)
-                Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: GestureDetector(
-                    onTap: () => setState(() => _tab = e.key),
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 150),
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                      decoration: BoxDecoration(
-                        color: _tab == e.key ? _green : PixelColors.card,
-                        borderRadius: BorderRadius.circular(18),
-                        border: Border.all(color: _tab == e.key ? _green : PixelColors.line),
-                      ),
-                      child: PixelText(e.value, size: 16, color: _tab == e.key ? PixelColors.card : PixelColors.ink),
-                    ),
-                  ),
+              for (final item in items)
+                _ItemCard(
+                  item: item,
+                  owned: _store.owns(item.id),
+                  equipped: _store.isEquipped(item.id),
+                  onTap: () => _tapItem(item),
                 ),
             ],
           ),
         ),
-        const SizedBox(height: 12),
-        GridView.count(
-          crossAxisCount: 2,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          mainAxisSpacing: 10,
-          crossAxisSpacing: 10,
-          childAspectRatio: 1.25,
-          children: [
-            for (final item in shopItems(
-              cat.inSlot(_tab),
-              _store.owns,
-              DateTime.now().toUtc().add(const Duration(hours: 9)),
-            ))
-              _ItemCard(
-                item: item,
-                owned: _store.owns(item.id),
-                equipped: _store.isEquipped(item.id),
-                onTap: () => _tapItem(item),
-              ),
-          ],
-        ),
       ],
     );
   }
+}
+
+/// The shop's tab rows, kept at the top of the page: a fixed height on the
+/// page's own ground, so the items pass under it.
+class _PinnedBar extends SliverPersistentHeaderDelegate {
+  const _PinnedBar({required this.height, required this.child});
+  final double height;
+  final Widget child;
+
+  @override
+  double get minExtent => height;
+  @override
+  double get maxExtent => height;
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) => Container(
+    color: PixelColors.background,
+    alignment: Alignment.centerLeft,
+    padding: const EdgeInsets.symmetric(vertical: 8),
+    child: child,
+  );
+
+  @override
+  bool shouldRebuild(_PinnedBar old) => old.height != height || old.child != child;
 }
 
 class _CoinChip extends StatelessWidget {
@@ -571,7 +681,8 @@ class _Thumb extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (item.slot) {
       case MySlot.scene:
-        final path = item.images[DayPart.evening] ?? 'assets/art/scene_evening.webp';
+        // By day: the evening pictures are all the same pink at a glance.
+        final path = item.images[DayPart.day] ?? item.images[DayPart.evening] ?? 'assets/art/scene_day.webp';
         return Image.asset(path, fit: BoxFit.cover, filterQuality: FilterQuality.none);
       case MySlot.plate:
         return ColoredBox(
@@ -756,7 +867,7 @@ class _BuySheet extends StatelessWidget {
                   color: missing > 0 ? PixelColors.muted : PixelColors.card,
                 ),
               ),
-            if (item.priceYen != null) ...[
+            if (item.priceYen != null && Services.purchases.available) ...[
               const SizedBox(height: 10),
               _BigButton(
                 color: PixelColors.ink,

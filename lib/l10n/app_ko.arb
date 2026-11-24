@@ -132,6 +132,15 @@
   "myTabRoof": "지붕",
   "myTabPlatform": "승강장",
   "myTabEffect": "연출",
+  "mySceneElsewhere": "{city} 역 장면은 {city}에 있을 때 보여요",
+  "@mySceneElsewhere": {
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "mySceneSeason": "계절",
   "myTabSky": "하늘",
   "myTabMark": "헤드마크",
   "myEquipped": "설치 중",

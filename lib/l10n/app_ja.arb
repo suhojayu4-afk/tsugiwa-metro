@@ -336,6 +336,15 @@
   "myTabRoof": "屋根",
   "myTabPlatform": "ホーム",
   "myTabEffect": "演出",
+  "mySceneElsewhere": "{city}の駅は、{city}にいるときに表示されます",
+  "@mySceneElsewhere": {
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "mySceneSeason": "季節",
   "myTabSky": "空",
   "myTabMark": "ヘッドマーク",
   "myEquipped": "設置中",

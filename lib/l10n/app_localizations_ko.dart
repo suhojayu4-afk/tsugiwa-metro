@@ -464,6 +464,14 @@ class AppLocalizationsKo extends AppLocalizations {
   String get myTabEffect => '연출';
 
   @override
+  String mySceneElsewhere(String city) {
+    return '$city 역 장면은 $city에 있을 때 보여요';
+  }
+
+  @override
+  String get mySceneSeason => '계절';
+
+  @override
   String get myTabSky => '하늘';
 
   @override

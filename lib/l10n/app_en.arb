@@ -132,6 +132,15 @@
   "myTabRoof": "Roof",
   "myTabPlatform": "Platform",
   "myTabEffect": "Effects",
+  "mySceneElsewhere": "{city}'s stations show while you are in {city}",
+  "@mySceneElsewhere": {
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "mySceneSeason": "Seasons",
   "myTabSky": "Sky",
   "myTabMark": "Head mark",
   "myEquipped": "In use",

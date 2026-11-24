@@ -892,6 +892,18 @@ abstract class AppLocalizations {
   /// **'演出'**
   String get myTabEffect;
 
+  /// No description provided for @mySceneElsewhere.
+  ///
+  /// In ja, this message translates to:
+  /// **'{city}の駅は、{city}にいるときに表示されます'**
+  String mySceneElsewhere(String city);
+
+  /// No description provided for @mySceneSeason.
+  ///
+  /// In ja, this message translates to:
+  /// **'季節'**
+  String get mySceneSeason;
+
   /// No description provided for @myTabSky.
   ///
   /// In ja, this message translates to:

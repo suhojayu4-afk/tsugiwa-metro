@@ -479,6 +479,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get myTabEffect => 'Effects';
 
   @override
+  String mySceneElsewhere(String city) {
+    return '$city\'s stations show while you are in $city';
+  }
+
+  @override
+  String get mySceneSeason => 'Seasons';
+
+  @override
   String get myTabSky => 'Sky';
 
   @override
