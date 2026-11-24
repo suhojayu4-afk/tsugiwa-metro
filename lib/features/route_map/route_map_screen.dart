@@ -650,7 +650,10 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
       final p = MatrixUtils.transformPoint(_controller.value, lm.position);
       final k = _MapOverlayPainter.sizeOf(lm, _scale, px);
       final w = img.width / lm.frames * k, h = img.height * k;
-      final r = Rect.fromLTWH(p.dx - w / 2, p.dy - h + 4 * k, w, h).deflate(w * 0.1);
+      // At least about a finger wide, even for small pictures far out.
+      final box = Rect.fromLTWH(p.dx - w / 2, p.dy - h + 4 * k, w, h);
+      final grow = math.max(0.0, (44 - math.min(w, h)) / 2);
+      final r = grow > 0 ? box.inflate(grow) : box.deflate(w * 0.1);
       if (r.contains(screen) && p.dy > hitY) {
         hit = lm;
         hitY = p.dy;
@@ -679,6 +682,37 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     );
     if (!mounted || picked == null) return;
     widget.onUseStation?.call(picked.$1, from: picked.$2);
+  }
+
+  /// 名所をさがす: the list of landmarks; the one picked is flown to and opened.
+  Future<void> _openSights() async {
+    final map = _map;
+    if (map == null) return;
+    final lm = await showModalBottomSheet<MapLandmark>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: PixelColors.card,
+      showDragHandle: true,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(22))),
+      builder: (_) => DraggableScrollableSheet(
+        expand: false,
+        initialChildSize: 0.7,
+        maxChildSize: 0.92,
+        builder: (context, scroll) => SightsSheet(
+          city: widget.city,
+          // The ones with a note first (the city's own sights), in map order.
+          landmarks: [
+            ...map.landmarks.where((l) => _lmInfo.containsKey(landmarkKey(l))),
+            ...map.landmarks.where((l) => !_lmInfo.containsKey(landmarkKey(l)) && !l.giant),
+          ],
+          images: _landmarkImages,
+          info: _lmInfo,
+          scroll: scroll,
+        ),
+      ),
+    );
+    if (lm == null || !mounted) return;
+    await _openLandmark(lm);
   }
 
   Future<void> _search() async {
@@ -763,6 +797,7 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
         () => setState(() => _nightOverride = !night),
       ),
       (Icons.my_location_rounded, t.nearestButton, _goToMe),
+      if (map != null && map.landmarks.isNotEmpty) (Icons.attractions_rounded, t.mapSights, _openSights),
       (Icons.tour_rounded, t.mapCourses, _openCourses),
       (
         _stampMode ? Icons.close_rounded : Icons.approval_rounded,
@@ -2005,6 +2040,11 @@ const _groups = <String, ({String ja, String ko, String en})>{
   'keikyu': (ja: '京急', ko: '게이큐', en: 'Keikyu'),
   'sotetsu': (ja: '相鉄', ko: '소테쓰', en: 'Sotetsu'),
   'yokohama': (ja: '横浜', ko: '요코하마', en: 'Yokohama'),
+  'keihan': (ja: '京阪', ko: '게이한', en: 'Keihan'),
+  'nankai': (ja: '南海', ko: '난카이', en: 'Nankai'),
+  'hankyu': (ja: '阪急', ko: '한큐', en: 'Hankyu'),
+  'kintetsu': (ja: '近鉄', ko: '긴테쓰', en: 'Kintetsu'),
+  'nishitetsu': (ja: '西鉄', ko: '니시테쓰', en: 'Nishitetsu'),
   'wakasa': (ja: '若桜鉄道', ko: '와카사 철도', en: 'Wakasa Railway'),
   'chizukyu': (ja: '智頭急行', ko: '지즈 급행', en: 'Chizu Express'),
   'other': (ja: 'その他', ko: '기타', en: 'Others'),

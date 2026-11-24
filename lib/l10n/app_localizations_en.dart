@@ -971,4 +971,23 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get positionPlan => 'Position estimated from the timetable';
+
+  @override
+  String get mapSights => 'Sights';
+
+  @override
+  String get mapSightsTitle => 'Find sights';
+
+  @override
+  String get mapSightsHint => 'Tap one to see it on the map';
+
+  @override
+  String mapGoHere(String station) {
+    return 'Go here ($station)';
+  }
+
+  @override
+  String mapNearSt(String station) {
+    return 'From $station';
+  }
 }

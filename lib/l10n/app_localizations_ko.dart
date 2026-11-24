@@ -952,4 +952,23 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get positionPlan => '위치는 시간표로 추정했어요';
+
+  @override
+  String get mapSights => '명소';
+
+  @override
+  String get mapSightsTitle => '명소 찾기';
+
+  @override
+  String get mapSightsHint => '누르면 지도에서 그 장소로 가요';
+
+  @override
+  String mapGoHere(String station) {
+    return '여기로 가기 ($station)';
+  }
+
+  @override
+  String mapNearSt(String station) {
+    return '$station역에서';
+  }
 }

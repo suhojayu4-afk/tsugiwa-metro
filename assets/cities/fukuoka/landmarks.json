@@ -29,7 +29,8 @@
   "stations": [
    "fukuoka.kushida-jinja-mae",
    "fukuoka.gion",
-   "fukuoka.nakasu-kawabata"
+   "fukuoka.nakasu-kawabata",
+   "fukuoka.hakata"
   ]
  },
  "ohori": {
@@ -55,12 +56,13 @@
  },
  "dazaifu": {
   "about": {
-   "ja": "学問の神さま・菅原道真をまつる神社。梅の名所で、参道の「梅ヶ枝餅」が名物です（西鉄で）。",
-   "ko": "학문의 신 스가와라노 미치자네를 모신 신사. 매화 명소이며 참배길의 「우메가에모치」가 명물(니시테쓰 이용).",
-   "en": "The shrine of Sugawara no Michizane, god of learning: plum blossom and umegae-mochi (by Nishitetsu)."
+   "ja": "学問の神さま・菅原道真をまつる神社。梅の名所で、参道の「梅ヶ枝餅」が名物です。西鉄太宰府駅から歩いてすぐ。",
+   "ko": "학문의 신 스가와라노 미치자네를 모신 신사. 매화 명소이며 참배길의 「우메가에모치」가 명물. 니시테쓰 다자이후역에서 걸어서 금방이에요.",
+   "en": "The shrine of Sugawara no Michizane, god of learning: plum blossom and umegae-mochi cakes, a short walk from Nishitetsu Dazaifu station."
   },
   "stations": [
-   "fukuoka.tenjin"
+   "fukuoka.dazaifu",
+   "fukuoka.nishitetsu-futsukaichi"
   ]
  },
  "fukuoka_castle": {
@@ -70,8 +72,8 @@
    "en": "The stone walls of the Kuroda clan's castle in Maizuru Park, a cherry-blossom favourite."
   },
   "stations": [
-   "fukuoka.akasaka",
-   "fukuoka.ohorikoen"
+   "fukuoka.ohorikoen",
+   "fukuoka.akasaka"
   ]
  },
  "nokonoshima": {
@@ -82,6 +84,49 @@
   },
   "stations": [
    "fukuoka.meinohama"
+  ]
+ },
+ "kushida": {
+  "about": {
+   "ja": "「お櫛田さん」とよばれる博多の総鎮守。7月の博多祇園山笠の舞台で、境内には一年中かざり山笠が立ちます。",
+   "ko": "「오쿠시다상」이라 불리는 하카타의 수호 신사. 7월 하카타 기온 야마카사 축제의 무대로, 경내에 장식 가마가 일 년 내내 서 있어요.",
+   "en": "Hakata's guardian shrine and home of the Hakata Gion Yamakasa festival in July; a tall festival float stands here all year."
+  },
+  "stations": [
+   "fukuoka.kushida-jinja-mae",
+   "fukuoka.gion",
+   "fukuoka.nakasu-kawabata"
+  ]
+ },
+ "hakata_station": {
+  "about": {
+   "ja": "九州の玄関口となる大きな駅。新幹線や地下鉄が集まり、駅ビルの屋上には線路が見える庭園があります。",
+   "ko": "규슈의 관문인 큰 역. 신칸센과 지하철이 모이고, 역 빌딩 옥상에는 선로가 내려다보이는 정원이 있어요.",
+   "en": "Kyushu's great gateway station for the shinkansen and the subway, with a rooftop garden over the tracks."
+  },
+  "stations": [
+   "fukuoka.hakata"
+  ]
+ },
+ "port_tower": {
+  "about": {
+   "ja": "博多ふ頭に立つ赤い鉄塔（1964年）。展望室は無料で、博多湾を行き来する船が見えます。",
+   "ko": "하카타 부두에 선 붉은 철탑(1964년). 전망실은 무료이고 하카타만을 오가는 배가 보여요.",
+   "en": "The red lattice tower (1964) on Hakata Pier; its free deck looks over the ferries on Hakata Bay."
+  },
+  "stations": [
+   "fukuoka.gofukumachi",
+   "fukuoka.nakasu-kawabata"
+  ]
+ },
+ "uminonakamichi": {
+  "about": {
+   "ja": "博多湾と玄界灘にはさまれた砂州の大きな公園。季節の花畑と海辺のサイクリングが楽しめます。JR香椎で香椎線に乗りかえ。",
+   "ko": "하카타만과 겐카이나다 사이 모래톱의 넓은 공원. 계절 꽃밭과 바닷가 자전거길을 즐길 수 있어요. JR 가시이역에서 가시이선으로 환승.",
+   "en": "A big park on the sand spit between Hakata Bay and the open sea: seasonal flower fields and seaside cycling. Change at JR Kashii for the Kashii Line."
+  },
+  "stations": [
+   "fukuoka.kashii"
   ]
  }
 }

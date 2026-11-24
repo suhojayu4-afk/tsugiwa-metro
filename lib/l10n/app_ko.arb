@@ -265,5 +265,10 @@
   "onTime": "정시",
   "trainNo": "열차 번호 {no}",
   "positionLive": "운행 위치·지연: JR 서일본",
-  "positionPlan": "위치는 시간표로 추정했어요"
+  "positionPlan": "위치는 시간표로 추정했어요",
+  "mapSights": "명소",
+  "mapSightsTitle": "명소 찾기",
+  "mapSightsHint": "누르면 지도에서 그 장소로 가요",
+  "mapGoHere": "여기로 가기 ({station})",
+  "mapNearSt": "{station}역에서"
 }

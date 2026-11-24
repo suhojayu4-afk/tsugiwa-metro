@@ -83,7 +83,7 @@
   "id": "fukuoka.ohorikoen",
   "name": {
    "ja": "大濠公園",
-   "ko": "오호리 공원",
+   "ko": "오호리코엔",
    "en": "Ohorikoen"
   },
   "kana": "おおほりこうえん",
@@ -174,7 +174,8 @@
   },
   "lines": [
    "fukuoka.kuko",
-   "fukuoka.nanakuma"
+   "fukuoka.nanakuma",
+   "fukuoka.kagoshima"
   ]
  },
  {
@@ -245,7 +246,7 @@
   "id": "fukuoka.maidashi-kyudai-byoin-mae",
   "name": {
    "ja": "馬出九大病院前",
-   "ko": "마이다시큐다이병원앞",
+   "ko": "마이다시큐다이뵤인마에",
    "en": "Maidashi Kyudai-byoin-mae"
   },
   "kana": "まいだしきゅうだいびょういんまえ",
@@ -261,7 +262,7 @@
   "id": "fukuoka.hakozakimiyamae",
   "name": {
    "ja": "箱崎宮前",
-   "ko": "하코자키궁앞",
+   "ko": "하코자키미야마에",
    "en": "Hakozakimiyamae"
   },
   "kana": "はこざきみやまえ",
@@ -277,7 +278,7 @@
   "id": "fukuoka.hakozaki-kyudai-mae",
   "name": {
    "ja": "箱崎九大前",
-   "ko": "하코자키규슈대학앞",
+   "ko": "하코자키큐다이마에",
    "en": "Hakozaki Kyudai-mae"
   },
   "kana": "はこざききゅうだいまえ",
@@ -389,7 +390,7 @@
   "id": "fukuoka.fukudai-mae",
   "name": {
    "ja": "福大前",
-   "ko": "후쿠다이앞",
+   "ko": "후쿠다이마에",
    "en": "Fukudai-mae"
   },
   "kana": "ふくだいまえ",
@@ -526,7 +527,8 @@
    "lng": 130.401673
   },
   "lines": [
-   "fukuoka.nanakuma"
+   "fukuoka.nanakuma",
+   "fukuoka.tenjin_omuta"
   ]
  },
  {
@@ -575,6 +577,407 @@
   },
   "lines": [
    "fukuoka.nanakuma"
+  ]
+ },
+ {
+  "id": "fukuoka.nishitetsu-fukuoka",
+  "name": {
+   "ja": "西鉄福岡（天神）",
+   "ko": "니시테쓰후쿠오카(덴진)",
+   "en": "Nishitetsu-Fukuoka (Tenjin)"
+  },
+  "kana": "にしてつふくおか（てんじん）",
+  "geo": {
+   "lat": 33.589255,
+   "lng": 130.399422
+  },
+  "lines": [
+   "fukuoka.tenjin_omuta"
+  ]
+ },
+ {
+  "id": "fukuoka.nishitetsu-hirao",
+  "name": {
+   "ja": "西鉄平尾",
+   "ko": "니시테쓰히라오",
+   "en": "Nishitetsu-Hirao"
+  },
+  "kana": "にしてつひらお",
+  "geo": {
+   "lat": 33.573978,
+   "lng": 130.405972
+  },
+  "lines": [
+   "fukuoka.tenjin_omuta"
+  ]
+ },
+ {
+  "id": "fukuoka.takamiya",
+  "name": {
+   "ja": "高宮",
+   "ko": "다카미야",
+   "en": "Takamiya"
+  },
+  "kana": "たかみや",
+  "geo": {
+   "lat": 33.567236,
+   "lng": 130.414495
+  },
+  "lines": [
+   "fukuoka.tenjin_omuta"
+  ]
+ },
+ {
+  "id": "fukuoka.ohashi",
+  "name": {
+   "ja": "大橋",
+   "ko": "오하시",
+   "en": "Ohashi"
+  },
+  "kana": "おおはし",
+  "geo": {
+   "lat": 33.559205,
+   "lng": 130.426466
+  },
+  "lines": [
+   "fukuoka.tenjin_omuta"
+  ]
+ },
+ {
+  "id": "fukuoka.ijiri",
+  "name": {
+   "ja": "井尻",
+   "ko": "이지리",
+   "en": "Ijiri"
+  },
+  "kana": "いじり",
+  "geo": {
+   "lat": 33.552063,
+   "lng": 130.44334
+  },
+  "lines": [
+   "fukuoka.tenjin_omuta"
+  ]
+ },
+ {
+  "id": "fukuoka.zasshonokuma",
+  "name": {
+   "ja": "雑餉隈",
+   "ko": "잣쇼노쿠마",
+   "en": "Zasshonokuma"
+  },
+  "kana": "ざっしょのくま",
+  "geo": {
+   "lat": 33.547399,
+   "lng": 130.461851
+  },
+  "lines": [
+   "fukuoka.tenjin_omuta"
+  ]
+ },
+ {
+  "id": "fukuoka.kasugabaru",
+  "name": {
+   "ja": "春日原",
+   "ko": "가스가바루",
+   "en": "Kasugabaru"
+  },
+  "kana": "かすがばる",
+  "geo": {
+   "lat": 33.538009,
+   "lng": 130.473096
+  },
+  "lines": [
+   "fukuoka.tenjin_omuta"
+  ]
+ },
+ {
+  "id": "fukuoka.shirakibaru",
+  "name": {
+   "ja": "白木原",
+   "ko": "시라키바루",
+   "en": "Shirakibaru"
+  },
+  "kana": "しらきばる",
+  "geo": {
+   "lat": 33.528286,
+   "lng": 130.48311
+  },
+  "lines": [
+   "fukuoka.tenjin_omuta"
+  ]
+ },
+ {
+  "id": "fukuoka.shimo-ori",
+  "name": {
+   "ja": "下大利",
+   "ko": "시모오리",
+   "en": "Shimo-Ori"
+  },
+  "kana": "しもおおり",
+  "geo": {
+   "lat": 33.52231,
+   "lng": 130.489381
+  },
+  "lines": [
+   "fukuoka.tenjin_omuta"
+  ]
+ },
+ {
+  "id": "fukuoka.tofuromae",
+  "name": {
+   "ja": "都府楼前",
+   "ko": "도후로마에",
+   "en": "Tofuromae"
+  },
+  "kana": "とふろうまえ",
+  "geo": {
+   "lat": 33.511922,
+   "lng": 130.507663
+  },
+  "lines": [
+   "fukuoka.tenjin_omuta"
+  ]
+ },
+ {
+  "id": "fukuoka.nishitetsu-futsukaichi",
+  "name": {
+   "ja": "西鉄二日市",
+   "ko": "니시테쓰후쓰카이치",
+   "en": "Nishitetsu-Futsukaichi"
+  },
+  "kana": "にしてつふつかいち",
+  "geo": {
+   "lat": 33.502153,
+   "lng": 130.517778
+  },
+  "lines": [
+   "fukuoka.tenjin_omuta",
+   "fukuoka.dazaifu"
+  ]
+ },
+ {
+  "id": "fukuoka.nishitetsu-gojo",
+  "name": {
+   "ja": "西鉄五条",
+   "ko": "니시테쓰고조",
+   "en": "Nishitetsu-Gojo"
+  },
+  "kana": "にしてつごじょう",
+  "geo": {
+   "lat": 33.511087,
+   "lng": 130.526177
+  },
+  "lines": [
+   "fukuoka.dazaifu"
+  ]
+ },
+ {
+  "id": "fukuoka.dazaifu",
+  "name": {
+   "ja": "太宰府",
+   "ko": "다자이후",
+   "en": "Dazaifu"
+  },
+  "kana": "だざいふ",
+  "geo": {
+   "lat": 33.51849,
+   "lng": 130.53116
+  },
+  "lines": [
+   "fukuoka.dazaifu"
+  ]
+ },
+ {
+  "id": "fukuoka.kashii",
+  "name": {
+   "ja": "香椎",
+   "ko": "가시이",
+   "en": "Kashii"
+  },
+  "kana": "かしい",
+  "geo": {
+   "lat": 33.659655,
+   "lng": 130.444104
+  },
+  "lines": [
+   "fukuoka.kagoshima"
+  ]
+ },
+ {
+  "id": "fukuoka.chihaya",
+  "name": {
+   "ja": "千早",
+   "ko": "지하야",
+   "en": "Chihaya"
+  },
+  "kana": "ちはや",
+  "geo": {
+   "lat": 33.64917,
+   "lng": 130.440379
+  },
+  "lines": [
+   "fukuoka.kagoshima"
+  ]
+ },
+ {
+  "id": "fukuoka.hakozaki",
+  "name": {
+   "ja": "箱崎",
+   "ko": "하코자키",
+   "en": "Hakozaki"
+  },
+  "kana": "はこざき",
+  "geo": {
+   "lat": 33.618017,
+   "lng": 130.426867
+  },
+  "lines": [
+   "fukuoka.kagoshima"
+  ]
+ },
+ {
+  "id": "fukuoka.yoshizuka",
+  "name": {
+   "ja": "吉塚",
+   "ko": "요시즈카",
+   "en": "Yoshizuka"
+  },
+  "kana": "よしづか",
+  "geo": {
+   "lat": 33.607025,
+   "lng": 130.423834
+  },
+  "lines": [
+   "fukuoka.kagoshima"
+  ]
+ },
+ {
+  "id": "fukuoka.takeshita",
+  "name": {
+   "ja": "竹下",
+   "ko": "다케시타",
+   "en": "Takeshita"
+  },
+  "kana": "たけした",
+  "geo": {
+   "lat": 33.568646,
+   "lng": 130.431465
+  },
+  "lines": [
+   "fukuoka.kagoshima"
+  ]
+ },
+ {
+  "id": "fukuoka.sasabaru",
+  "name": {
+   "ja": "笹原",
+   "ko": "사사바루",
+   "en": "Sasabaru"
+  },
+  "kana": "ささばる",
+  "geo": {
+   "lat": 33.552916,
+   "lng": 130.448918
+  },
+  "lines": [
+   "fukuoka.kagoshima"
+  ]
+ },
+ {
+  "id": "fukuoka.minami-fukuoka",
+  "name": {
+   "ja": "南福岡",
+   "ko": "미나미후쿠오카",
+   "en": "Minami-Fukuoka"
+  },
+  "kana": "みなみふくおか",
+  "geo": {
+   "lat": 33.541893,
+   "lng": 130.460416
+  },
+  "lines": [
+   "fukuoka.kagoshima"
+  ]
+ },
+ {
+  "id": "fukuoka.kasuga",
+  "name": {
+   "ja": "春日",
+   "ko": "가스가",
+   "en": "Kasuga"
+  },
+  "kana": "かすが",
+  "geo": {
+   "lat": 33.535097,
+   "lng": 130.468863
+  },
+  "lines": [
+   "fukuoka.kagoshima"
+  ]
+ },
+ {
+  "id": "fukuoka.onojo",
+  "name": {
+   "ja": "大野城",
+   "ko": "오노조",
+   "en": "Onojo"
+  },
+  "kana": "おおのじょう",
+  "geo": {
+   "lat": 33.525527,
+   "lng": 130.479526
+  },
+  "lines": [
+   "fukuoka.kagoshima"
+  ]
+ },
+ {
+  "id": "fukuoka.mizuki",
+  "name": {
+   "ja": "水城",
+   "ko": "미즈키",
+   "en": "Mizuki"
+  },
+  "kana": "みずき",
+  "geo": {
+   "lat": 33.517846,
+   "lng": 130.49019
+  },
+  "lines": [
+   "fukuoka.kagoshima"
+  ]
+ },
+ {
+  "id": "fukuoka.tofuro-minami",
+  "name": {
+   "ja": "都府楼南",
+   "ko": "도후로미나미",
+   "en": "Tofuro-Minami"
+  },
+  "kana": "とふろうみなみ",
+  "geo": {
+   "lat": 33.503096,
+   "lng": 130.506705
+  },
+  "lines": [
+   "fukuoka.kagoshima"
+  ]
+ },
+ {
+  "id": "fukuoka.futsukaichi",
+  "name": {
+   "ja": "二日市",
+   "ko": "후쓰카이치",
+   "en": "Futsukaichi"
+  },
+  "kana": "ふつかいち",
+  "geo": {
+   "lat": 33.494431,
+   "lng": 130.518755
+  },
+  "lines": [
+   "fukuoka.kagoshima"
   ]
  }
 ]

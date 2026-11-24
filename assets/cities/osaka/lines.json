@@ -81,7 +81,7 @@
    "forward": {
     "ja": "八尾南方面",
     "ko": "야오미나미 방면",
-    "en": "for Yaominami"
+    "en": "for Yao-Minami"
    },
    "reverse": {
     "ja": "大日方面",
@@ -325,7 +325,7 @@
    },
    "reverse": {
     "ja": "天神橋筋六丁目方面",
-    "ko": "덴진바시스지로쿠초메 방면",
+    "ko": "덴진바시스지 6초메 방면",
     "en": "for Tenjimbashisuji 6-chome"
    }
   },
@@ -368,7 +368,7 @@
    "forward": {
     "ja": "門真南方面",
     "ko": "가도마미나미 방면",
-    "en": "for Kadoma-minami"
+    "en": "for Kadoma-Minami"
    },
    "reverse": {
     "ja": "大正方面",
@@ -583,7 +583,7 @@
    "ko": "JR 유메사키선",
    "en": "JR Yumesaki Line"
   },
-  "color": "#2E4A9E",
+  "color": "#003C88",
   "loop": false,
   "dwellSec": 30,
   "group": "jr",
@@ -609,6 +609,150 @@
    280,
    120,
    130
+  ]
+ },
+ {
+  "id": "osaka.keihan",
+  "name": {
+   "ja": "京阪本線",
+   "ko": "게이한 본선",
+   "en": "Keihan Main Line"
+  },
+  "color": "#1D2088",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "keihan",
+  "directions": {
+   "forward": {
+    "ja": "京橋・京都方面",
+    "ko": "교바시·교토 방면",
+    "en": "for Kyobashi / Kyoto"
+   },
+   "reverse": {
+    "ja": "淀屋橋方面",
+    "ko": "요도야바시 방면",
+    "en": "for Yodoyabashi"
+   }
+  },
+  "stations": [
+   "osaka.yodoyabashi",
+   "osaka.kitahama",
+   "osaka.temmabashi",
+   "osaka.kyobashi"
+  ],
+  "runSec": [
+   90,
+   130,
+   200
+  ]
+ },
+ {
+  "id": "osaka.nankai",
+  "name": {
+   "ja": "南海本線",
+   "ko": "난카이 본선",
+   "en": "Nankai Main Line"
+  },
+  "color": "#0B3F8C",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "nankai",
+  "directions": {
+   "forward": {
+    "ja": "住吉大社・関西空港方面",
+    "ko": "스미요시타이샤·간사이 공항 방면",
+    "en": "for Sumiyoshitaisha / Kansai Airport"
+   },
+   "reverse": {
+    "ja": "なんば方面",
+    "ko": "난바 방면",
+    "en": "for Namba"
+   }
+  },
+  "stations": [
+   "osaka.namba",
+   "osaka.shin-imamiya",
+   "osaka.tengachaya",
+   "osaka.kishinosato-tamade",
+   "osaka.kohama",
+   "osaka.sumiyoshitaisha"
+  ],
+  "runSec": [
+   240,
+   190,
+   130,
+   170,
+   100
+  ]
+ },
+ {
+  "id": "osaka.hankyu",
+  "name": {
+   "ja": "阪急線",
+   "ko": "한큐선",
+   "en": "Hankyu Line"
+  },
+  "color": "#7A1F2B",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "hankyu",
+  "directions": {
+   "forward": {
+    "ja": "十三（神戸・宝塚・京都）方面",
+    "ko": "주소(고베·다카라즈카·교토) 방면",
+    "en": "for Juso (Kobe / Takarazuka / Kyoto)"
+   },
+   "reverse": {
+    "ja": "大阪梅田方面",
+    "ko": "오사카우메다 방면",
+    "en": "for Osaka-Umeda"
+   }
+  },
+  "stations": [
+   "osaka.osaka-umeda",
+   "osaka.hankyu-nakatsu",
+   "osaka.juso"
+  ],
+  "runSec": [
+   110,
+   200
+  ]
+ },
+ {
+  "id": "osaka.kintetsu",
+  "name": {
+   "ja": "近鉄奈良線",
+   "ko": "긴테쓰 나라선",
+   "en": "Kintetsu Nara Line"
+  },
+  "color": "#C22047",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "kintetsu",
+  "directions": {
+   "forward": {
+    "ja": "布施・奈良方面",
+    "ko": "후세·나라 방면",
+    "en": "for Fuse / Nara"
+   },
+   "reverse": {
+    "ja": "大阪難波方面",
+    "ko": "오사카난바 방면",
+    "en": "for Osaka-Namba"
+   }
+  },
+  "stations": [
+   "osaka.osaka-namba",
+   "osaka.kintetsu-nippombashi",
+   "osaka.osaka-uehommachi",
+   "osaka.tsuruhashi",
+   "osaka.fuse"
+  ],
+  "runSec": [
+   110,
+   180,
+   120,
+   380
   ]
  }
 ]

@@ -6,16 +6,17 @@
    "en": "The castle of Toyotomi Hideyoshi. Today's keep was rebuilt in 1931; the park round it is a famous cherry-blossom spot."
   },
   "stations": [
-   "osaka.tanimachi-4-chome",
    "osaka.osakajokoen",
-   "osaka.morinomiya"
+   "osaka.morinomiya",
+   "osaka.tanimachi-4-chome",
+   "osaka.temmabashi"
   ]
  },
  "tsutenkaku": {
   "about": {
-   "ja": "新世界の真ん中に立つ展望塔。足の裏をなでると幸せになる「ビリケンさん」と、串カツのお店が名物です。",
-   "ko": "신세카이 한가운데 선 전망탑. 발바닥을 쓰다듬으면 행운이 온다는 「빌리켄」과 꼬치튀김 가게가 명물이에요.",
-   "en": "The tower in the middle of Shinsekai, home of the lucky Billiken and the kushikatsu stalls."
+   "ja": "新世界の真ん中に立つ展望塔。まわりには串カツのお店がならび、昔ながらの下町の雰囲気が楽しめます。",
+   "ko": "신세카이 한가운데 선 전망탑. 주변에 꼬치튀김 가게가 늘어서 있어 옛 서민 동네 분위기를 즐길 수 있어요.",
+   "en": "The tower in the middle of Shinsekai, an old-style neighbourhood of kushikatsu stalls."
   },
   "stations": [
    "osaka.ebisucho",
@@ -25,13 +26,14 @@
  },
  "dotonbori": {
   "about": {
-   "ja": "大きなカニや走る人の看板がならぶ川ぞいの繁華街。たこ焼きやお好み焼きの食べ歩きが楽しい街です。",
-   "ko": "커다란 게와 달리는 사람 간판이 늘어선 강변 번화가. 다코야키와 오코노미야키를 먹으며 걷기 좋아요.",
-   "en": "The canal-side nightlife street of giant crab and running-man signs, takoyaki and okonomiyaki."
+   "ja": "大きなカニや派手な看板がならぶ川ぞいの繁華街。たこ焼きやお好み焼きの食べ歩きが楽しい街です。",
+   "ko": "커다란 게와 화려한 간판이 늘어선 강변 번화가. 다코야키와 오코노미야키를 먹으며 걷기 좋아요.",
+   "en": "The canal-side nightlife street of giant crab and bright signs, takoyaki and okonomiyaki."
   },
   "stations": [
    "osaka.namba",
-   "osaka.nippombashi"
+   "osaka.nippombashi",
+   "osaka.osaka-namba"
   ]
  },
  "umeda_sky": {
@@ -41,8 +43,8 @@
    "en": "Twin towers joined at the top by the Floating Garden Observatory, with views over Osaka at sunset."
   },
   "stations": [
-   "osaka.umeda",
    "osaka.osaka",
+   "osaka.umeda",
    "osaka.nishi-umeda"
   ]
  },
@@ -84,7 +86,42 @@
    "en": "Head shrine of all Sumiyoshi shrines, known for its steep arched Taikobashi bridge."
   },
   "stations": [
+   "osaka.sumiyoshitaisha",
    "osaka.tamade"
+  ]
+ },
+ "nakanoshima": {
+  "about": {
+   "ja": "堂島川と土佐堀川にはさまれた細長い島。赤レンガの中央公会堂（1918年）とバラ園のある公園があります。",
+   "ko": "도지마강과 도사보리강 사이의 길쭉한 섬. 붉은 벽돌의 중앙공회당(1918년)과 장미 정원이 있는 공원이 있어요.",
+   "en": "The long island between two rivers, with the red-brick Central Public Hall (1918) and a rose garden."
+  },
+  "stations": [
+   "osaka.kitahama",
+   "osaka.yodoyabashi"
+  ]
+ },
+ "kuromon": {
+  "about": {
+   "ja": "「大阪の台所」とよばれるアーケードの市場。新鮮な魚介や果物を、その場で食べ歩きできます。",
+   "ko": "「오사카의 부엌」이라 불리는 아케이드 시장. 신선한 해산물과 과일을 그 자리에서 맛볼 수 있어요.",
+   "en": "\"Osaka's kitchen\", a covered market where you can eat fresh seafood and fruit as you stroll."
+  },
+  "stations": [
+   "osaka.nippombashi",
+   "osaka.kintetsu-nippombashi",
+   "osaka.namba"
+  ]
+ },
+ "shitennoji": {
+  "about": {
+   "ja": "593年に聖徳太子が建てたと伝わる、日本でもっとも古いお寺のひとつ。朱色の五重塔が見どころです。",
+   "ko": "593년 쇼토쿠 태자가 세웠다고 전해지는, 일본에서 가장 오래된 절 중 하나. 붉은 오층탑이 볼거리예요.",
+   "en": "Said to be founded by Prince Shotoku in 593, one of Japan's oldest temples, with a red five-storey pagoda."
+  },
+  "stations": [
+   "osaka.shitennoji-mae-yuhigaoka",
+   "osaka.tennoji"
   ]
  }
 }

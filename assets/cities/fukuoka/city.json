@@ -13,7 +13,10 @@
  "lines": [
   "fukuoka.kuko",
   "fukuoka.hakozaki",
-  "fukuoka.nanakuma"
+  "fukuoka.nanakuma",
+  "fukuoka.tenjin_omuta",
+  "fukuoka.dazaifu",
+  "fukuoka.kagoshima"
  ],
  "weather": {
   "forecastOffice": "400000",

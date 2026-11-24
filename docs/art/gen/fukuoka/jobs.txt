@@ -6,3 +6,7 @@ yatai 2791d5d5-734b-4ac2-b79b-727ba86f1445
 dazaifu 93bc2eff-af8f-4d2a-96c9-e4d8e7aa119a
 fukuoka_castle 133207ef-e8ac-43e3-ba31-b2e43b311cb3
 nokonoshima 4ef43da4-7954-4ec3-8822-0cf85d1564a4
+kushida 74e9d41c-e958-4aea-89db-fafcd17b8e76
+hakata_station 234f5e48-cb8a-416e-b86a-ddc19b52ca97
+port_tower 46474282-eaa7-4ea7-9120-c0d98548264c
+uminonakamichi af068f68-7109-47fa-bd24-05247b8957b1

@@ -53,6 +53,7 @@ class LandmarkSheet extends StatelessWidget {
     final info = this.info;
     final name = landmark.name;
     final sub = lang == 'ja' ? name.of('en') : name.ja;
+    final near = info?.stations.where(city.stations.containsKey).firstOrNull;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
@@ -90,6 +91,24 @@ class LandmarkSheet extends StatelessWidget {
                 ),
               ],
             ),
+            // One big button: the nearest station as where to go.
+            if (near != null) ...[
+              const SizedBox(height: 14),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: FilledButton.icon(
+                  key: const ValueKey('landmark.goHere'),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: const Color(0xFFE0513F),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                  ),
+                  onPressed: () => Navigator.pop(context, (near, false)),
+                  icon: const Icon(Icons.directions_transit_rounded),
+                  label: Text(t.mapGoHere(city.station(near).name.of(lang)), style: const TextStyle(fontSize: 17)),
+                ),
+              ),
+            ],
             if (info != null) ...[
               const SizedBox(height: 14),
               Container(
@@ -166,6 +185,88 @@ class _StationRow extends StatelessWidget {
           const SizedBox(width: 8),
           button(t.mapTo, const Color(0xFFE0513F), false),
         ],
+      ),
+    );
+  }
+}
+
+/// 名所をさがす: every landmark of the city as a list, picture first; picking
+/// one pops it (the map then flies there and opens its card).
+class SightsSheet extends StatelessWidget {
+  const SightsSheet({
+    super.key,
+    required this.city,
+    required this.landmarks,
+    required this.images,
+    required this.info,
+    this.scroll,
+  });
+  final CityData city;
+  final List<MapLandmark> landmarks;
+  final Map<String, ui.Image> images;
+  final Map<String, LandmarkInfo> info;
+  final ScrollController? scroll;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
+    final lang = langOf(context);
+    return ListView(
+      controller: scroll,
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
+      children: [
+        PixelText(t.mapSightsTitle, size: 22),
+        const SizedBox(height: 2),
+        PixelText(t.mapSightsHint, size: 12, color: PixelColors.muted),
+        const SizedBox(height: 12),
+        for (final lm in landmarks) _row(context, lm, lang, t),
+      ],
+    );
+  }
+
+  Widget _row(BuildContext context, MapLandmark lm, String lang, AppLocalizations t) {
+    final i = info[landmarkKey(lm)];
+    final img = images[lm.image];
+    final near = i?.stations.where(city.stations.containsKey).firstOrNull;
+    return Semantics(
+      button: true,
+      label: lm.name.of(lang),
+      child: GestureDetector(
+        key: ValueKey('sight.${landmarkKey(lm)}'),
+        behavior: HitTestBehavior.opaque,
+        onTap: () => Navigator.pop(context, lm),
+        child: Container(
+          margin: const EdgeInsets.only(bottom: 8),
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(color: PixelColors.background, borderRadius: BorderRadius.circular(14)),
+          child: Row(
+            children: [
+              Container(
+                width: 64,
+                height: 64,
+                decoration: BoxDecoration(color: const Color(0xFFE9F0E2), borderRadius: BorderRadius.circular(12)),
+                child: img == null ? null : CustomPaint(painter: _PicturePainter(img, lm.frames, 0)),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    PixelText(lm.name.of(lang), size: 17, maxLines: 1),
+                    if (i != null) PixelText(i.about.of(lang), size: 12, color: PixelColors.muted, maxLines: 2),
+                    if (near != null)
+                      PixelText(
+                        t.mapNearSt(city.station(near).name.of(lang)),
+                        size: 12,
+                        color: const Color(0xFF2E9447),
+                      ),
+                  ],
+                ),
+              ),
+              const Icon(Icons.chevron_right_rounded, color: PixelColors.muted),
+            ],
+          ),
+        ),
       ),
     );
   }

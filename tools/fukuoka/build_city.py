@@ -20,6 +20,9 @@ sys.path.insert(0, HERE)
 import conf  # noqa: E402
 from kana import hangul, romaji  # noqa: E402
 from lines import EN_FIX, FIRST_LAST, HEADWAY, KANA, KO_FIX, LINES  # noqa: E402
+import lines as _L  # noqa: E402
+SID_FIX = getattr(_L, 'SID_FIX', {})   # '中津#阪急' -> 'hankyu-nakatsu'
+WALKS = getattr(_L, 'WALKS', [])       # (name, name, minutes) changes on foot
 
 CITY = os.path.join(ROOT, 'assets', 'cities', conf.CITY)
 OSM = os.path.join(HERE, 'osm')
@@ -81,7 +84,7 @@ for n in names:
         print('  reading differs:', ja, kana, '(OSM:', hira + ')')
     en = EN_FIX.get(n) or clean_en(t.get('name:en', '')) or romaji(kana)
     ko = KO_FIX.get(n) or re.sub(r'역$', '', t.get('name:ko', '')).strip() or hangul(kana)
-    sid = conf.CITY + '.' + re.sub(r'[^a-z0-9]+', '-', en.lower()).strip('-')
+    sid = conf.CITY + '.' + (SID_FIX.get(n) or re.sub(r'[^a-z0-9]+', '-', en.lower()).strip('-'))
     assert sid not in ids.values(), sid
     ids[n] = sid
     stations.append({'id': sid, 'name': {'ja': ja, 'ko': ko, 'en': en}, 'kana': kana,
@@ -123,7 +126,8 @@ def dump(name, obj):
 dump('stations.json', stations)
 dump('lines.json', lines)
 dump('timetables.json', tables)
-dump('walks.json', [])
+dump('walks.json', [{'a': ids[a], 'b': ids[b], 'min': m, 'names': f"{a.split('#')[0]} ↔ {b.split('#')[0]}"}
+                   for a, b, m in WALKS])
 dump('through.json', [])
 dump('city.json', {
     'id': conf.CITY,

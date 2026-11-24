@@ -1695,6 +1695,36 @@ abstract class AppLocalizations {
   /// In ja, this message translates to:
   /// **'位置は時刻表からの推定です'**
   String get positionPlan;
+
+  /// No description provided for @mapSights.
+  ///
+  /// In ja, this message translates to:
+  /// **'名所'**
+  String get mapSights;
+
+  /// No description provided for @mapSightsTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'名所をさがす'**
+  String get mapSightsTitle;
+
+  /// No description provided for @mapSightsHint.
+  ///
+  /// In ja, this message translates to:
+  /// **'タップすると地図でその場所へ'**
+  String get mapSightsHint;
+
+  /// No description provided for @mapGoHere.
+  ///
+  /// In ja, this message translates to:
+  /// **'ここへ行く（{station}）'**
+  String mapGoHere(String station);
+
+  /// No description provided for @mapNearSt.
+  ///
+  /// In ja, this message translates to:
+  /// **'{station}駅から'**
+  String mapNearSt(String station);
 }
 
 class _AppLocalizationsDelegate

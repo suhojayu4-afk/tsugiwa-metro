@@ -1,1 +1,92 @@
-[]
+[
+ {
+  "a": "osaka.umeda",
+  "b": "osaka.higashi-umeda",
+  "min": 5,
+  "names": "梅田 ↔ 東梅田"
+ },
+ {
+  "a": "osaka.umeda",
+  "b": "osaka.nishi-umeda",
+  "min": 5,
+  "names": "梅田 ↔ 西梅田"
+ },
+ {
+  "a": "osaka.higashi-umeda",
+  "b": "osaka.nishi-umeda",
+  "min": 6,
+  "names": "東梅田 ↔ 西梅田"
+ },
+ {
+  "a": "osaka.osaka",
+  "b": "osaka.umeda",
+  "min": 4,
+  "names": "大阪 ↔ 梅田"
+ },
+ {
+  "a": "osaka.osaka",
+  "b": "osaka.higashi-umeda",
+  "min": 5,
+  "names": "大阪 ↔ 東梅田"
+ },
+ {
+  "a": "osaka.osaka",
+  "b": "osaka.nishi-umeda",
+  "min": 4,
+  "names": "大阪 ↔ 西梅田"
+ },
+ {
+  "a": "osaka.osaka-umeda",
+  "b": "osaka.umeda",
+  "min": 4,
+  "names": "大阪梅田 ↔ 梅田"
+ },
+ {
+  "a": "osaka.osaka-umeda",
+  "b": "osaka.osaka",
+  "min": 6,
+  "names": "大阪梅田 ↔ 大阪"
+ },
+ {
+  "a": "osaka.osaka-namba",
+  "b": "osaka.namba",
+  "min": 3,
+  "names": "大阪難波 ↔ なんば"
+ },
+ {
+  "a": "osaka.kintetsu-nippombashi",
+  "b": "osaka.nippombashi",
+  "min": 2,
+  "names": "近鉄日本橋 ↔ 日本橋"
+ },
+ {
+  "a": "osaka.osaka-uehommachi",
+  "b": "osaka.tanimachi-9-chome",
+  "min": 3,
+  "names": "大阪上本町 ↔ 谷町九丁目"
+ },
+ {
+  "a": "osaka.shin-imamiya",
+  "b": "osaka.dobutsuen-mae",
+  "min": 3,
+  "names": "新今宮 ↔ 動物園前"
+ },
+ {
+  "a": "osaka.temma",
+  "b": "osaka.ogimachi",
+  "min": 3,
+  "names": "天満 ↔ 扇町"
+ },
+ {
+  "a": "osaka.noda",
+  "b": "osaka.noda-hanshin",
+  "min": 4,
+  "names": "野田 ↔ 野田阪神"
+ },
+ {
+  "a": "osaka.kishinosato-tamade",
+  "b": "osaka.kishinosato",
+  "min": 4,
+  "names": "岸里玉出 ↔ 岸里"
+ }
+]

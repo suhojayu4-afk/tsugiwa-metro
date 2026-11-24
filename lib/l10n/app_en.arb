@@ -265,5 +265,10 @@
   "onTime": "On time",
   "trainNo": "Train {no}",
   "positionLive": "Position and delay: JR West",
-  "positionPlan": "Position estimated from the timetable"
+  "positionPlan": "Position estimated from the timetable",
+  "mapSights": "Sights",
+  "mapSightsTitle": "Find sights",
+  "mapSightsHint": "Tap one to see it on the map",
+  "mapGoHere": "Go here ({station})",
+  "mapNearSt": "From {station}"
 }

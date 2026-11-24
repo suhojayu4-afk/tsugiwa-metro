@@ -39,8 +39,10 @@ def trim_tail(im):
 
 os.makedirs(OUT, exist_ok=True)
 done = []
-for name, (c, t) in PICKS.items():
-    src = Image.open(os.path.join(GEN, f'lm_{name}', f'c{c}.png'))
+for name, pick in PICKS.items():
+    c, t = pick[:2]
+    src_dir = pick[2] if len(pick) > 2 else name    # (c, t, 'umeda_sky2'): a later round of candidates
+    src = Image.open(os.path.join(GEN, f'lm_{src_dir}', f'c{c}.png'))
     flat = flatten(trim_tail(src), t)
     flat.save(os.path.join(OUT, name + '.png'))
     done.append((src.convert('RGBA'), flat))

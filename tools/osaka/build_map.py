@@ -462,6 +462,14 @@ def paint_ground(scale, ox, oy, pw, ph):
     return img, water
 
 
+def paint_padded(scale, ox, oy, pw, ph, pad=12):
+    """paint_ground with a margin cut off afterwards: woods and towns run on to
+    the edge instead of ending in their outline there (a dark seam where the
+    overview meets the picture round it)."""
+    img, water = paint_ground(scale, ox - pad * scale, oy - pad * scale, pw + 2 * pad, ph + 2 * pad)
+    return img.crop((pad, pad, pad + pw, pad + ph)), water[pad:pad + ph, pad:pad + pw]
+
+
 def save_png(img, path):
     img = img.convert('RGB')
     if img.getcolors(256) is not None:
@@ -528,7 +536,7 @@ def main():
     scale = SCALE * (int(PREVIEW) if PREVIEW else 1)
     pw, ph = W // scale, H // scale
     print('painting', pw, 'x', ph, 'at', scale, 'units/px')
-    full, water = paint_ground(scale, 0, 0, pw, ph)
+    full, water = paint_padded(scale, 0, 0, pw, ph)
     full.save(os.path.join(GEN, 'map_full.png' if not PREVIEW else 'map_preview.png'))
     if PREVIEW:
         M = OUTER_MARGIN

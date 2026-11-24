@@ -1,4 +1,5 @@
-"""Osaka lines: Osaka Metro, the JR Osaka Loop Line and the JR Yumesaki Line,
+"""Osaka lines: Osaka Metro, the JR Osaka Loop Line, the JR Yumesaki Line and the
+first stretch of the Keihan, Nankai, Hankyu and Kintetsu lines,
 stations in running order, with readings.
 
 Positions come from OpenStreetMap station nodes (osm/stations.json);
@@ -22,7 +23,7 @@ KANA = {
     '天神橋筋六丁目': 'てんじんばしすじろくちょうめ', '中崎町': 'なかざきちょう', '東梅田': 'ひがしうめだ',
     '南森町': 'みなみもりまち', '天満橋': 'てんまばし', '谷町四丁目': 'たにまちよんちょうめ',
     '谷町六丁目': 'たにまちろくちょうめ', '谷町九丁目': 'たにまちきゅうちょうめ',
-    '四天王寺前夕陽ケ丘': 'してんのうじまえゆうひがおか', '阿倍野': 'あべの', '文の里': 'ふみのさと', '田辺': 'たなべ',
+    '四天王寺前夕陽ヶ丘': 'してんのうじまえゆうひがおか', '阿倍野': 'あべの', '文の里': 'ふみのさと', '田辺': 'たなべ',
     '駒川中野': 'こまがわなかの', '平野': 'ひらの', '喜連瓜破': 'きれうりわり', '出戸': 'でと', '長原': 'ながはら',
     '八尾南': 'やおみなみ',
     # Yotsubashi
@@ -54,28 +55,45 @@ KANA = {
     '大阪': 'おおさか', '天満': 'てんま', '桜ノ宮': 'さくらのみや', '大阪城公園': 'おおさかじょうこうえん', '桃谷': 'ももだに',
     '寺田町': 'てらだちょう', '新今宮': 'しんいまみや', '今宮': 'いまみや', '芦原橋': 'あしはらばし', '西九条': 'にしくじょう',
     '野田': 'のだ', '福島': 'ふくしま', '安治川口': 'あじかわぐち', 'ユニバーサルシティ': 'ゆにばーさるしてぃ', '桜島': 'さくらじま',
+    # Nankai / Hankyu / Kintetsu
+    '岸里玉出': 'きしのさとたまで', '粉浜': 'こはま', '住吉大社': 'すみよしたいしゃ',
+    '大阪梅田': 'おおさかうめだ', '十三': 'じゅうそう',
+    '大阪難波': 'おおさかなんば', '近鉄日本橋': 'きんてつにっぽんばし', '大阪上本町': 'おおさかうえほんまち', '布施': 'ふせ',
 }
 
 EN_FIX = {'野田阪神': 'Noda-Hanshin', 'なんば': 'Namba', 'あびこ': 'Abiko', 'なかもず': 'Nakamozu', '梅田': 'Umeda', '本町': 'Hommachi',
           '日本橋': 'Nippombashi', '天神橋筋六丁目': 'Tenjimbashisuji 6-chome', '谷町四丁目': 'Tanimachi 4-chome',
           '谷町六丁目': 'Tanimachi 6-chome', '谷町九丁目': 'Tanimachi 9-chome', '蒲生四丁目': 'Gamo 4-chome',
-          '瑞光四丁目': 'Zuiko 4-chome', '四天王寺前夕陽ケ丘': 'Shitennoji-mae Yuhigaoka',
+          '瑞光四丁目': 'Zuiko 4-chome', '四天王寺前夕陽ヶ丘': 'Shitennoji-mae Yuhigaoka',
           'ドーム前千代崎': 'Dome-mae Chiyozaki', '大阪ビジネスパーク': 'Osaka Business Park',
           'ユニバーサルシティ': 'Universal City', 'コスモスクエア': 'Cosmosquare',
           'トレードセンター前': 'Trade Center-mae', 'フェリーターミナル': 'Ferry Terminal',
           'ポートタウン西': 'Port Town-nishi', 'ポートタウン東': 'Port Town-higashi', '中ふ頭': 'Nakafuto',
           'だいどう豊里': 'Daido-Toyosato', '新大阪': 'Shin-Osaka', '西中島南方': 'Nishinakajima-Minamigata',
           '大阪港': 'Osakako', '大阪城公園': 'Osakajokoen', '新今宮': 'Shin-Imamiya', '桜ノ宮': 'Sakuranomiya',
-          '森ノ宮': 'Morinomiya', '四ツ橋': 'Yotsubashi', '大阪': 'Osaka', '天王寺': 'Tennoji', '京橋': 'Kyobashi'}
+          '森ノ宮': 'Morinomiya', '四ツ橋': 'Yotsubashi', '大阪': 'Osaka', '天王寺': 'Tennoji', '京橋': 'Kyobashi',
+          '岸里玉出': 'Kishinosato-Tamade', '粉浜': 'Kohama', '住吉大社': 'Sumiyoshitaisha', '大阪梅田': 'Osaka-Umeda',
+          '中津#阪急': 'Nakatsu', '十三': 'Juso', '大阪難波': 'Osaka-Namba', '近鉄日本橋': 'Kintetsu-Nippombashi',
+          '大阪上本町': 'Osaka-Uehommachi', '布施': 'Fuse'}
 KO_FIX = {'ユニバーサルシティ': '유니버설시티', 'コスモスクエア': '코스모스퀘어', '大阪ビジネスパーク': '오사카 비즈니스 파크',
           'トレードセンター前': '트레이드센터마에', 'フェリーターミナル': '페리 터미널', 'ドーム前千代崎': '돔마에치요자키',
           'ポートタウン西': '포트타운니시', 'ポートタウン東': '포트타운히가시', '大阪': '오사카', '新大阪': '신오사카',
-          '梅田': '우메다', 'なんば': '난바', '天王寺': '덴노지', '心斎橋': '신사이바시'}
+          '梅田': '우메다', 'なんば': '난바', '天王寺': '덴노지', '心斎橋': '신사이바시',
+          # the Tokyo spelling: 前 -마에, 公園 -코엔, N丁目 'N초메' after a space
+          '動物園前': '도부쓰엔마에', '住之江公園': '스미노에코엔', '大阪城公園': '오사카조코엔',
+          '谷町四丁目': '다니마치 4초메', '谷町六丁目': '다니마치 6초메', '谷町九丁目': '다니마치 9초메',
+          '天神橋筋六丁目': '덴진바시스지 6초메', '蒲生四丁目': '가모 4초메', '瑞光四丁目': '즈이코 4초메',
+          '四天王寺前夕陽ヶ丘': '시텐노지마에유히가오카', '岸里玉出': '기시노사토타마데', '大阪梅田': '오사카우메다',
+          '中津#阪急': '나카쓰', '十三': '주소', '大阪難波': '오사카난바', '近鉄日本橋': '긴테쓰닛폰바시',
+          '大阪上本町': '오사카우에혼마치', '住吉大社': '스미요시타이샤'}
+# Station ids other than the English name would give (two stations of one name).
+SID_FIX = {'中津#阪急': 'hankyu-nakatsu'}
 
 
-def L(key, ja, ko, en, color, stations, kind='metro', group='metro', forward=None, reverse=None, loop=False):
+def L(key, ja, ko, en, color, stations, kind='metro', group='metro', forward=None, reverse=None, loop=False,
+      operator=None):
     return dict(key=key, ja=ja, ko=ko, en=en, color=color, stations=stations, kind=kind, group=group,
-                forward=forward, reverse=reverse, loop=loop)
+                forward=forward, reverse=reverse, loop=loop, operator=operator)
 
 
 def toward(ja, ko, en):
@@ -92,9 +110,9 @@ LINES = [
       forward=toward('なかもず', '나카모즈', 'Nakamozu'), reverse=toward('江坂', '에사카', 'Esaka')),
     L('tanimachi', '谷町線', '다니마치선', 'Tanimachi Line', '#522886',
       ['大日', '守口', '太子橋今市', '千林大宮', '関目高殿', '野江内代', '都島', '天神橋筋六丁目', '中崎町', '東梅田', '南森町',
-       '天満橋', '谷町四丁目', '谷町六丁目', '谷町九丁目', '四天王寺前夕陽ケ丘', '天王寺', '阿倍野', '文の里', '田辺', '駒川中野',
+       '天満橋', '谷町四丁目', '谷町六丁目', '谷町九丁目', '四天王寺前夕陽ヶ丘', '天王寺', '阿倍野', '文の里', '田辺', '駒川中野',
        '平野', '喜連瓜破', '出戸', '長原', '八尾南'],
-      forward=toward('八尾南', '야오미나미', 'Yaominami'), reverse=toward('大日', '다이니치', 'Dainichi')),
+      forward=toward('八尾南', '야오미나미', 'Yao-Minami'), reverse=toward('大日', '다이니치', 'Dainichi')),
     L('yotsubashi', '四つ橋線', '요쓰바시선', 'Yotsubashi Line', '#0078BA',
       ['西梅田', '肥後橋', '本町', '四ツ橋', 'なんば', '大国町', '花園町', '岸里', '玉出', '北加賀屋', '住之江公園'],
       forward=toward('住之江公園', '스미노에코엔', 'Suminoekoen'), reverse=toward('西梅田', '니시우메다', 'Nishi-Umeda')),
@@ -109,11 +127,11 @@ LINES = [
     L('sakaisuji', '堺筋線', '사카이스지선', 'Sakaisuji Line', '#814721',
       ['天神橋筋六丁目', '扇町', '南森町', '北浜', '堺筋本町', '長堀橋', '日本橋', '恵美須町', '動物園前', '天下茶屋'],
       forward=toward('天下茶屋', '덴가차야', 'Tengachaya'),
-      reverse=toward('天神橋筋六丁目', '덴진바시스지로쿠초메', 'Tenjimbashisuji 6-chome')),
+      reverse=toward('天神橋筋六丁目', '덴진바시스지 6초메', 'Tenjimbashisuji 6-chome')),
     L('nagahori', '長堀鶴見緑地線', '나가호리쓰루미료쿠치선', 'Nagahori Tsurumi-ryokuchi Line', '#A9CC51',
       ['大正', 'ドーム前千代崎', '西長堀', '西大橋', '心斎橋', '長堀橋', '松屋町', '谷町六丁目', '玉造', '森ノ宮', '大阪ビジネスパーク',
        '京橋', '蒲生四丁目', '今福鶴見', '横堤', '鶴見緑地', '門真南'],
-      forward=toward('門真南', '가도마미나미', 'Kadoma-minami'), reverse=toward('大正', '다이쇼', 'Taisho')),
+      forward=toward('門真南', '가도마미나미', 'Kadoma-Minami'), reverse=toward('大正', '다이쇼', 'Taisho')),
     L('imazatosuji', '今里筋線', '이마자토스지선', 'Imazatosuji Line', '#EE7B1A',
       ['井高野', '瑞光四丁目', 'だいどう豊里', '太子橋今市', '清水', '新森古市', '関目成育', '蒲生四丁目', '鴫野', '緑橋', '今里'],
       forward=toward('今里', '이마자토', 'Imazato'), reverse=toward('井高野', '이타카노', 'Itakano')),
@@ -124,9 +142,24 @@ LINES = [
     L('loop', 'JR大阪環状線', 'JR 오사카 순환선', 'JR Osaka Loop Line', '#D35400', LOOP, kind='local', group='jr',
       forward=toward('京橋・鶴橋', '교바시·쓰루하시', 'Kyobashi / Tsuruhashi'),
       reverse=toward('西九条・弁天町', '니시쿠조·벤텐초', 'Nishikujo / Bentencho'), loop=True),
-    L('yumesaki', 'JRゆめ咲線', 'JR 유메사키선', 'JR Yumesaki Line', '#2E4A9E',
+    L('yumesaki', 'JRゆめ咲線', 'JR 유메사키선', 'JR Yumesaki Line', '#003C88',
       ['西九条', '安治川口', 'ユニバーサルシティ', '桜島'], kind='local', group='jr',
       forward=toward('桜島', '사쿠라지마', 'Sakurajima'), reverse=toward('西九条', '니시쿠조', 'Nishikujo')),
+    # Private railways from the city's big terminals (only their first stretch, inside the map).
+    L('keihan', '京阪本線', '게이한 본선', 'Keihan Main Line', '#1D2088', ['淀屋橋', '北浜', '天満橋', '京橋'],
+      kind='local', group='keihan', operator='京阪',
+      forward=toward('京橋・京都', '교바시·교토', 'Kyobashi / Kyoto'), reverse=toward('淀屋橋', '요도야바시', 'Yodoyabashi')),
+    L('nankai', '南海本線', '난카이 본선', 'Nankai Main Line', '#0B3F8C',
+      ['なんば', '新今宮', '天下茶屋', '岸里玉出', '粉浜', '住吉大社'], kind='local', group='nankai', operator='南海',
+      forward=toward('住吉大社・関西空港', '스미요시타이샤·간사이 공항', 'Sumiyoshitaisha / Kansai Airport'),
+      reverse=toward('なんば', '난바', 'Namba')),
+    L('hankyu', '阪急線', '한큐선', 'Hankyu Line', '#7A1F2B', ['大阪梅田', '中津#阪急', '十三'], kind='local',
+      group='hankyu', operator='阪急',
+      forward=toward('十三（神戸・宝塚・京都）', '주소(고베·다카라즈카·교토)', 'Juso (Kobe / Takarazuka / Kyoto)'),
+      reverse=toward('大阪梅田', '오사카우메다', 'Osaka-Umeda')),
+    L('kintetsu', '近鉄奈良線', '긴테쓰 나라선', 'Kintetsu Nara Line', '#C22047',
+      ['大阪難波', '近鉄日本橋', '大阪上本町', '鶴橋', '布施'], kind='local', group='kintetsu', operator='近畿日本鉄道|近鉄',
+      forward=toward('布施・奈良', '후세·나라', 'Fuse / Nara'), reverse=toward('大阪難波', '오사카난바', 'Osaka-Namba')),
 ]
 
 _METRO = [('05:00', '07:00', 6), ('07:00', '09:30', 3), ('09:30', '17:00', 5), ('17:00', '20:00', 4),
@@ -139,3 +172,18 @@ HEADWAY['nanko'] = [('05:00', '07:00', 8), ('07:00', '09:30', 4), ('09:30', '20:
 FIRST_LAST = {l['key']: ('05:00', '24:00') for l in LINES}
 FIRST_LAST['loop'] = ('04:55', '24:10')
 FIRST_LAST['yumesaki'] = ('05:10', '23:50')
+HEADWAY['keihan'] = [('05:00', '07:00', 8), ('07:00', '09:30', 3), ('09:30', '17:00', 5), ('17:00', '20:00', 4),
+                     ('20:00', '24:00', 8)]
+HEADWAY['nankai'] = HEADWAY['keihan']
+HEADWAY['hankyu'] = [('05:00', '07:00', 6), ('07:00', '09:30', 3), ('09:30', '20:00', 4), ('20:00', '24:00', 6)]
+HEADWAY['kintetsu'] = HEADWAY['keihan']
+FIRST_LAST['keihan'] = ('05:00', '24:20')
+FIRST_LAST['nankai'] = ('05:00', '24:15')
+FIRST_LAST['hankyu'] = ('04:55', '24:25')
+FIRST_LAST['kintetsu'] = ('05:05', '24:15')
+
+# Changes between stations of different names, on foot (minutes, rough, from the station maps).
+WALKS = [('梅田', '東梅田', 5), ('梅田', '西梅田', 5), ('東梅田', '西梅田', 6), ('大阪', '梅田', 4), ('大阪', '東梅田', 5),
+         ('大阪', '西梅田', 4), ('大阪梅田', '梅田', 4), ('大阪梅田', '大阪', 6), ('大阪難波', 'なんば', 3),
+         ('近鉄日本橋', '日本橋', 2), ('大阪上本町', '谷町九丁目', 3), ('新今宮', '動物園前', 3), ('天満', '扇町', 3),
+         ('野田', '野田阪神', 4), ('岸里玉出', '岸里', 4)]

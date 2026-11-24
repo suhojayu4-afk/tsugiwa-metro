@@ -952,4 +952,23 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get positionPlan => '位置は時刻表からの推定です';
+
+  @override
+  String get mapSights => '名所';
+
+  @override
+  String get mapSightsTitle => '名所をさがす';
+
+  @override
+  String get mapSightsHint => 'タップすると地図でその場所へ';
+
+  @override
+  String mapGoHere(String station) {
+    return 'ここへ行く（$station）';
+  }
+
+  @override
+  String mapNearSt(String station) {
+    return '$station駅から';
+  }
 }

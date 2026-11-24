@@ -108,7 +108,8 @@
    "lng": 135.500954
   },
   "lines": [
-   "osaka.midosuji"
+   "osaka.midosuji",
+   "osaka.keihan"
   ]
  },
  {
@@ -161,7 +162,8 @@
   "lines": [
    "osaka.midosuji",
    "osaka.yotsubashi",
-   "osaka.sennichimae"
+   "osaka.sennichimae",
+   "osaka.nankai"
   ]
  },
  {
@@ -185,7 +187,7 @@
   "id": "osaka.dobutsuen-mae",
   "name": {
    "ja": "動物園前",
-   "ko": "동물원앞",
+   "ko": "도부쓰엔마에",
    "en": "Dobutsuen-mae"
   },
   "kana": "どうぶつえんまえ",
@@ -445,7 +447,7 @@
   "id": "osaka.tenjimbashisuji-6-chome",
   "name": {
    "ja": "天神橋筋六丁目",
-   "ko": "덴진바시스지6초메",
+   "ko": "덴진바시스지 6초메",
    "en": "Tenjimbashisuji 6-chome"
   },
   "kana": "てんじんばしすじろくちょうめ",
@@ -520,14 +522,15 @@
    "lng": 135.516422
   },
   "lines": [
-   "osaka.tanimachi"
+   "osaka.tanimachi",
+   "osaka.keihan"
   ]
  },
  {
   "id": "osaka.tanimachi-4-chome",
   "name": {
    "ja": "谷町四丁目",
-   "ko": "다니마치욘초메",
+   "ko": "다니마치 4초메",
    "en": "Tanimachi 4-chome"
   },
   "kana": "たにまちよんちょうめ",
@@ -544,7 +547,7 @@
   "id": "osaka.tanimachi-6-chome",
   "name": {
    "ja": "谷町六丁目",
-   "ko": "다니마치6초메",
+   "ko": "다니마치 6초메",
    "en": "Tanimachi 6-chome"
   },
   "kana": "たにまちろくちょうめ",
@@ -561,7 +564,7 @@
   "id": "osaka.tanimachi-9-chome",
   "name": {
    "ja": "谷町九丁目",
-   "ko": "다니마치9초메",
+   "ko": "다니마치 9초메",
    "en": "Tanimachi 9-chome"
   },
   "kana": "たにまちきゅうちょうめ",
@@ -577,7 +580,7 @@
  {
   "id": "osaka.shitennoji-mae-yuhigaoka",
   "name": {
-   "ja": "四天王寺前夕陽ケ丘",
+   "ja": "四天王寺前夕陽ヶ丘",
    "ko": "시텐노지마에유히가오카",
    "en": "Shitennoji-mae Yuhigaoka"
   },
@@ -850,7 +853,7 @@
   "id": "osaka.suminoekoen",
   "name": {
    "ja": "住之江公園",
-   "ko": "스미노에공원",
+   "ko": "스미노에코엔",
    "en": "Suminoekoen"
   },
   "kana": "すみのえこうえん",
@@ -1174,7 +1177,8 @@
   },
   "lines": [
    "osaka.sennichimae",
-   "osaka.loop"
+   "osaka.loop",
+   "osaka.kintetsu"
   ]
  },
  {
@@ -1287,7 +1291,8 @@
    "lng": 135.506582
   },
   "lines": [
-   "osaka.sakaisuji"
+   "osaka.sakaisuji",
+   "osaka.keihan"
   ]
  },
  {
@@ -1336,7 +1341,8 @@
    "lng": 135.497131
   },
   "lines": [
-   "osaka.sakaisuji"
+   "osaka.sakaisuji",
+   "osaka.nankai"
   ]
  },
  {
@@ -1451,14 +1457,15 @@
   },
   "lines": [
    "osaka.nagahori",
-   "osaka.loop"
+   "osaka.loop",
+   "osaka.keihan"
   ]
  },
  {
   "id": "osaka.gamo-4-chome",
   "name": {
    "ja": "蒲生四丁目",
-   "ko": "가모4초메",
+   "ko": "가모 4초메",
    "en": "Gamo 4-chome"
   },
   "kana": "がもうよんちょうめ",
@@ -1555,7 +1562,7 @@
   "id": "osaka.zuiko-4-chome",
   "name": {
    "ja": "瑞光四丁目",
-   "ko": "즈이코4초메",
+   "ko": "즈이코 4초메",
    "en": "Zuiko 4-chome"
   },
   "kana": "ずいこうよんちょうめ",
@@ -1827,7 +1834,7 @@
   "id": "osaka.osakajokoen",
   "name": {
    "ja": "大阪城公園",
-   "ko": "오사카성공원",
+   "ko": "오사카조코엔",
    "en": "Osakajokoen"
   },
   "kana": "おおさかじょうこうえん",
@@ -1884,7 +1891,8 @@
    "lng": 135.500219
   },
   "lines": [
-   "osaka.loop"
+   "osaka.loop",
+   "osaka.nankai"
   ]
  },
  {
@@ -2014,6 +2022,166 @@
   },
   "lines": [
    "osaka.yumesaki"
+  ]
+ },
+ {
+  "id": "osaka.kishinosato-tamade",
+  "name": {
+   "ja": "岸里玉出",
+   "ko": "기시노사토타마데",
+   "en": "Kishinosato-Tamade"
+  },
+  "kana": "きしのさとたまで",
+  "geo": {
+   "lat": 34.629562,
+   "lng": 135.494754
+  },
+  "lines": [
+   "osaka.nankai"
+  ]
+ },
+ {
+  "id": "osaka.kohama",
+  "name": {
+   "ja": "粉浜",
+   "ko": "고하마",
+   "en": "Kohama"
+  },
+  "kana": "こはま",
+  "geo": {
+   "lat": 34.618229,
+   "lng": 135.491782
+  },
+  "lines": [
+   "osaka.nankai"
+  ]
+ },
+ {
+  "id": "osaka.sumiyoshitaisha",
+  "name": {
+   "ja": "住吉大社",
+   "ko": "스미요시타이샤",
+   "en": "Sumiyoshitaisha"
+  },
+  "kana": "すみよしたいしゃ",
+  "geo": {
+   "lat": 34.612897,
+   "lng": 135.490309
+  },
+  "lines": [
+   "osaka.nankai"
+  ]
+ },
+ {
+  "id": "osaka.osaka-umeda",
+  "name": {
+   "ja": "大阪梅田",
+   "ko": "오사카우메다",
+   "en": "Osaka-Umeda"
+  },
+  "kana": "おおさかうめだ",
+  "geo": {
+   "lat": 34.705419,
+   "lng": 135.498372
+  },
+  "lines": [
+   "osaka.hankyu"
+  ]
+ },
+ {
+  "id": "osaka.hankyu-nakatsu",
+  "name": {
+   "ja": "中津",
+   "ko": "나카쓰",
+   "en": "Nakatsu"
+  },
+  "kana": "なかつ",
+  "geo": {
+   "lat": 34.70991,
+   "lng": 135.492371
+  },
+  "lines": [
+   "osaka.hankyu"
+  ]
+ },
+ {
+  "id": "osaka.juso",
+  "name": {
+   "ja": "十三",
+   "ko": "주소",
+   "en": "Juso"
+  },
+  "kana": "じゅうそう",
+  "geo": {
+   "lat": 34.720541,
+   "lng": 135.482178
+  },
+  "lines": [
+   "osaka.hankyu"
+  ]
+ },
+ {
+  "id": "osaka.osaka-namba",
+  "name": {
+   "ja": "大阪難波",
+   "ko": "오사카난바",
+   "en": "Osaka-Namba"
+  },
+  "kana": "おおさかなんば",
+  "geo": {
+   "lat": 34.667181,
+   "lng": 135.497776
+  },
+  "lines": [
+   "osaka.kintetsu"
+  ]
+ },
+ {
+  "id": "osaka.kintetsu-nippombashi",
+  "name": {
+   "ja": "近鉄日本橋",
+   "ko": "긴테쓰닛폰바시",
+   "en": "Kintetsu-Nippombashi"
+  },
+  "kana": "きんてつにっぽんばし",
+  "geo": {
+   "lat": 34.666909,
+   "lng": 135.5057
+  },
+  "lines": [
+   "osaka.kintetsu"
+  ]
+ },
+ {
+  "id": "osaka.osaka-uehommachi",
+  "name": {
+   "ja": "大阪上本町",
+   "ko": "오사카우에혼마치",
+   "en": "Osaka-Uehommachi"
+  },
+  "kana": "おおさかうえほんまち",
+  "geo": {
+   "lat": 34.665581,
+   "lng": 135.52015
+  },
+  "lines": [
+   "osaka.kintetsu"
+  ]
+ },
+ {
+  "id": "osaka.fuse",
+  "name": {
+   "ja": "布施",
+   "ko": "후세",
+   "en": "Fuse"
+  },
+  "kana": "ふせ",
+  "geo": {
+   "lat": 34.664115,
+   "lng": 135.563598
+  },
+  "lines": [
+   "osaka.kintetsu"
   ]
  }
 ]

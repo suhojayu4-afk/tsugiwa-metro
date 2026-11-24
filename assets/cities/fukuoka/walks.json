@@ -1,1 +1,20 @@
-[]
+[
+ {
+  "a": "fukuoka.nishitetsu-fukuoka",
+  "b": "fukuoka.tenjin",
+  "min": 3,
+  "names": "西鉄福岡（天神） ↔ 天神"
+ },
+ {
+  "a": "fukuoka.nishitetsu-fukuoka",
+  "b": "fukuoka.tenjin-minami",
+  "min": 4,
+  "names": "西鉄福岡（天神） ↔ 天神南"
+ },
+ {
+  "a": "fukuoka.tenjin",
+  "b": "fukuoka.tenjin-minami",
+  "min": 7,
+  "names": "天神 ↔ 天神南"
+ }
+]

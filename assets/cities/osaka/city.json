@@ -21,7 +21,11 @@
   "osaka.imazatosuji",
   "osaka.nanko",
   "osaka.loop",
-  "osaka.yumesaki"
+  "osaka.yumesaki",
+  "osaka.keihan",
+  "osaka.nankai",
+  "osaka.hankyu",
+  "osaka.kintetsu"
  ],
  "weather": {
   "forecastOffice": "270000",

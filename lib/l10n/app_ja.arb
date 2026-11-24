@@ -729,5 +729,12 @@
   "trainNo": "列車番号 {no}",
   "@trainNo": {"placeholders": {"no": {"type": "String"}}},
   "positionLive": "走行位置・遅れ: JR西日本",
-  "positionPlan": "位置は時刻表からの推定です"
+  "positionPlan": "位置は時刻表からの推定です",
+  "mapSights": "名所",
+  "mapSightsTitle": "名所をさがす",
+  "mapSightsHint": "タップすると地図でその場所へ",
+  "mapGoHere": "ここへ行く（{station}）",
+  "@mapGoHere": {"placeholders": {"station": {"type": "String"}}},
+  "mapNearSt": "{station}駅から",
+  "@mapNearSt": {"placeholders": {"station": {"type": "String"}}}
 }
