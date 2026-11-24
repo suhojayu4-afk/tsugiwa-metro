@@ -93,3 +93,7 @@ INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
 DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
+
+---
+
+Modified for this app: `Galmuri11.ttf` here is a subset of the original (the kanji that the app's first font, DotGothic16, already provides are removed; see `tools/subset_fonts.py`). `Galmuri11-Bold.ttf` is unchanged.
