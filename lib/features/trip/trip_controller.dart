@@ -82,7 +82,21 @@ class TripController extends ChangeNotifier {
     return GpsState.waiting;
   }
 
-  int get _elapsedSec => _elapsedMs ~/ 1000 + _correctionSec;
+  int get _elapsedSec => _elapsedMs ~/ 1000 + _correctionSec - _delaySec;
+
+  /// How late the real train being waited for / ridden runs (JR西日本's
+  /// 走行位置, Tottori), while no GPS fix has put the trip right.
+  int get _delaySec {
+    if (_lastGoodFix != null && _clock().difference(_lastGoodFix!).inSeconds < 90) return 0;
+    final train = plan.trainLeaving(snapshot.currentIndex);
+    return train == null ? 0 : Services.jrwest.delayOf(train.run.no) * 60;
+  }
+
+  /// Minutes late of the train now waited for or ridden (0 = on time / unknown).
+  int get delayMin {
+    final train = plan.trainLeaving(snapshot.currentIndex);
+    return train == null ? 0 : Services.jrwest.delayOf(train.run.no);
+  }
 
   void start() {
     _lastTick = _clock();

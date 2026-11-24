@@ -18,6 +18,7 @@ CityData loadTottori() => CityData.fromJson(
   timetables: _read('timetables.json') as Map<String, dynamic>,
   walks: _read('walks.json') as List<dynamic>,
   throughs: _read('through.json') as List<dynamic>,
+  trains: _read('trains.json') as Map<String, dynamic>,
 );
 
 void main() {

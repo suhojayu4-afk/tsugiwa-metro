@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+import '../data/realtime/jrwest_live.dart';
 import '../data/realtime/realtime_provider.dart';
 import '../data/realtime/train_status.dart';
 import '../data/last_train_alarm.dart';
@@ -23,6 +24,9 @@ class Services {
 
   /// Live 運行情報 (ODPT); quiet without an access key.
   static TrainStatusSource status = TrainStatusSource();
+
+  /// JR西日本's 運行情報 and train delays (Tottori only).
+  static JrWestLive jrwest = JrWestLive();
   static RouteStore routes = RouteStore();
   static MyStore my = MyStore();
 

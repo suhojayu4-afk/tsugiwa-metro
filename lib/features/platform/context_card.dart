@@ -15,6 +15,7 @@ import '../../data/night_options.dart';
 import '../../data/route_store.dart';
 import '../../l10n/app_localizations.dart';
 import '../trip/route_finder.dart';
+import '../trip/train_text.dart';
 import '../trip/trip_plan.dart';
 
 const _green = Color(0xFF2E9447);
@@ -430,7 +431,7 @@ class _NextTrain extends StatelessWidget {
     // on a phone that is set to another time zone.
     final jst = japanNow();
     final plan = TripPlan.build(city, route, jst);
-    final minutes = (plan.totalSec / 60).ceil() + route.headWalkMin(city) + route.tailWalkMin(city);
+    final minutes = (plan.rideSec / 60).ceil() + route.headWalkMin(city) + route.tailWalkMin(city);
     // The one last train of this route: the last departure that still makes
     // every connection (the same time the alarm and the widget show).
     final lastDep = lastDepartureMin(city, route);
@@ -450,8 +451,18 @@ class _NextTrain extends StatelessWidget {
         final nowMin = LineTimetable.serviceMinute(jst);
         final missed = missedLines(city, route, nowMin);
         final ended = tt != null && tt.endedFor(jst);
+        final real = live != null
+            ? const []
+            : realDepartures(city, leg.lineId, leg.stationIds.first, leg.stationIds.last, jst);
         if (live != null) {
           main = t.nextTrainIn(live);
+        } else if (real.isNotEmpty && (tt == null || tt.inService(jst))) {
+          final d = real.first;
+          main = t.departsIn(LineTimetable.clock(d.departMin), d.departMin - nowMin);
+          extra.add(trainText(t, city, d, lang));
+          final late = Services.jrwest.delayOf(d.run.no);
+          if (late > 0) extra.add(t.delayMin(late));
+          if (real.length > 1) extra.add(t.thenTrain(LineTimetable.clock(real[1].departMin)));
         } else if (tt != null && !tt.inService(jst)) {
           main = ended
               // The first train has its own line below.
@@ -495,7 +506,11 @@ class _NextTrain extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: PixelText(
-                                live != null ? t.liveBadge : t.estimateBadge,
+                                live != null
+                                    ? t.liveBadge
+                                    : real.isNotEmpty
+                                    ? t.timetableBadge
+                                    : t.estimateBadge,
                                 size: 11,
                                 color: live != null ? PixelColors.card : PixelColors.muted,
                               ),

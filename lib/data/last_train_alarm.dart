@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../features/trip/route_finder.dart';
 import '../features/trip/trip_plan.dart';
+import '../core/japan_time.dart';
 import 'models/city.dart';
 import 'models/timetable.dart';
 
@@ -34,8 +35,11 @@ int? minutesToLast(CityData city, DateTime jst, {RouteResult? route, String? lin
 /// still catch the last train of every line on the way. Null when no line on
 /// the route has a timetable.
 int? lastDepartureMin(CityData city, RouteResult route) {
+  // Real trains (Tottori): the last one that still makes every change today.
+  final real = lastRealDepartureMin(city, route, japanNow());
+  if (real != null) return real;
   // Plan it late in the evening: waits between trains are the night ones.
-  final plan = TripPlan.build(city, route, DateTime.utc(2026, 1, 5, 23));
+  final plan = TripPlan.build(city, route, DateTime.utc(2026, 1, 5, 23), realTrains: false);
   int? best;
   void check(String lineId, int boardSec) {
     final tt = city.timetables[lineId];
@@ -51,10 +55,64 @@ int? lastDepartureMin(CityData city, RouteResult route) {
   return best == null ? null : best! - route.headWalkMin(city);
 }
 
+/// With real timetables on every leg: the latest departure from the start
+/// (minus a walk there) whose trains connect all the way, on the service day
+/// of [jst]. Null when a leg has no real trains, or none connects.
+int? lastRealDepartureMin(CityData city, RouteResult route, DateTime jst) {
+  var mustArrive = 1 << 30; // at the end of the leg being looked at
+  int? dep;
+  for (var li = route.legs.length - 1; li >= 0; li--) {
+    final leg = route.legs[li];
+    final trains = city.trains[leg.lineId];
+    if (trains == null || leg.through) return null;
+    int? best;
+    for (final r in trains.runsOn(jst)) {
+      final a = r.indexOf(leg.stationIds.first), b = r.indexOf(leg.stationIds.last);
+      if (a == null || b == null || a >= b) continue;
+      if (r.stops[b].arriveMin > mustArrive) continue;
+      final d = r.stops[a].departMin;
+      if (best == null || d > best) best = d;
+    }
+    if (best == null) return null;
+    dep = best;
+    if (li > 0) {
+      final prev = route.legs[li - 1];
+      final from = prev.stationIds.last, to = leg.stationIds.first;
+      final walk = from == to ? city.station(to).transferWalkMin(prev.lineId, leg.lineId) : city.walkMin(from, to) ?? 5;
+      mustArrive = best - walk;
+    }
+  }
+  return dep == null ? null : dep - route.headWalkMin(city);
+}
+
 /// Lines on [route] whose last train is gone (or has not started yet) if you
 /// leave its first station at [nowMin] (service minutes, Japan time).
 Set<String> missedLines(CityData city, RouteResult route, int nowMin) {
-  final plan = TripPlan.build(city, route, DateTime.utc(2026, 1, 5, 23));
+  // Real trains (Tottori): follow the trains from now; the first leg with no
+  // train left today is the missed one.
+  if (route.legs.every((l) => city.trains.containsKey(l.lineId) && !l.through)) {
+    var t = nowMin + route.headWalkMin(city);
+    final day = japanNow();
+    for (var li = 0; li < route.legs.length; li++) {
+      final leg = route.legs[li];
+      int? arrive;
+      for (final r in city.trains[leg.lineId]!.runsOn(day)) {
+        final a = r.indexOf(leg.stationIds.first), b = r.indexOf(leg.stationIds.last);
+        if (a == null || b == null || a >= b || r.stops[a].departMin < t) continue;
+        if (arrive == null || r.stops[b].arriveMin < arrive) arrive = r.stops[b].arriveMin;
+      }
+      if (arrive == null) return {leg.lineId};
+      if (li + 1 < route.legs.length) {
+        final next = route.legs[li + 1];
+        final from = leg.stationIds.last, to = next.stationIds.first;
+        t =
+            arrive +
+            (from == to ? city.station(to).transferWalkMin(leg.lineId, next.lineId) : city.walkMin(from, to) ?? 5);
+      }
+    }
+    return const {};
+  }
+  final plan = TripPlan.build(city, route, DateTime.utc(2026, 1, 5, 23), realTrains: false);
   final out = <String>{};
   void check(String lineId, int boardSec) {
     final tt = city.timetables[lineId];

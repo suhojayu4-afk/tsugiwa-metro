@@ -1,8 +1,35 @@
 {
  "tottori.sanin": {
-  "firstTrain": "05:20",
-  "lastTrain": "22:50",
+  "firstTrain": "04:50",
+  "lastTrain": "23:02",
   "weekday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 40
+   },
+   {
+    "from": "07:00",
+    "to": "09:00",
+    "everyMin": 40
+   },
+   {
+    "from": "09:00",
+    "to": "16:00",
+    "everyMin": 70
+   },
+   {
+    "from": "16:00",
+    "to": "19:30",
+    "everyMin": 52
+   },
+   {
+    "from": "19:30",
+    "to": "23:00",
+    "everyMin": 70
+   }
+  ],
+  "holiday": [
    {
     "from": "05:00",
     "to": "07:00",
@@ -21,34 +48,7 @@
    {
     "from": "16:00",
     "to": "19:30",
-    "everyMin": 45
-   },
-   {
-    "from": "19:30",
-    "to": "23:00",
-    "everyMin": 70
-   }
-  ],
-  "holiday": [
-   {
-    "from": "05:00",
-    "to": "07:00",
-    "everyMin": 60
-   },
-   {
-    "from": "07:00",
-    "to": "09:00",
-    "everyMin": 60
-   },
-   {
-    "from": "09:00",
-    "to": "16:00",
-    "everyMin": 70
-   },
-   {
-    "from": "16:00",
-    "to": "19:30",
-    "everyMin": 45
+    "everyMin": 52
    },
    {
     "from": "19:30",
@@ -69,29 +69,29 @@
    {
     "from": "07:00",
     "to": "09:00",
-    "everyMin": 35
+    "everyMin": 60
    },
    {
     "from": "09:00",
     "to": "17:00",
-    "everyMin": 65
+    "everyMin": 69
    },
    {
     "from": "17:00",
     "to": "19:30",
-    "everyMin": 45
+    "everyMin": 50
    },
    {
     "from": "19:30",
     "to": "23:00",
-    "everyMin": 70
+    "everyMin": 52
    }
   ],
   "holiday": [
    {
     "from": "05:00",
     "to": "07:00",
-    "everyMin": 60
+    "everyMin": 120
    },
    {
     "from": "07:00",
@@ -101,12 +101,12 @@
    {
     "from": "09:00",
     "to": "17:00",
-    "everyMin": 65
+    "everyMin": 69
    },
    {
     "from": "17:00",
     "to": "19:30",
-    "everyMin": 45
+    "everyMin": 50
    },
    {
     "from": "19:30",
@@ -116,40 +116,40 @@
   ]
  },
  "tottori.inbi": {
-  "firstTrain": "05:40",
-  "lastTrain": "22:10",
+  "firstTrain": "05:57",
+  "lastTrain": "22:11",
   "weekday": [
    {
     "from": "05:00",
     "to": "07:00",
-    "everyMin": 70
+    "everyMin": 120
    },
    {
     "from": "07:00",
     "to": "09:00",
-    "everyMin": 50
+    "everyMin": 60
    },
    {
     "from": "09:00",
     "to": "16:00",
-    "everyMin": 110
+    "everyMin": 105
    },
    {
     "from": "16:00",
     "to": "19:30",
-    "everyMin": 60
+    "everyMin": 70
    },
    {
     "from": "19:30",
     "to": "23:00",
-    "everyMin": 100
+    "everyMin": 70
    }
   ],
   "holiday": [
    {
     "from": "05:00",
     "to": "07:00",
-    "everyMin": 70
+    "everyMin": 120
    },
    {
     "from": "07:00",
@@ -159,89 +159,89 @@
    {
     "from": "09:00",
     "to": "16:00",
-    "everyMin": 110
+    "everyMin": 105
    },
    {
     "from": "16:00",
     "to": "19:30",
-    "everyMin": 60
+    "everyMin": 70
    },
    {
     "from": "19:30",
     "to": "23:00",
-    "everyMin": 100
+    "everyMin": 70
    }
   ]
  },
  "tottori.wakasa": {
-  "firstTrain": "06:10",
+  "firstTrain": "06:20",
   "lastTrain": "22:29",
   "weekday": [
    {
     "from": "06:00",
     "to": "09:00",
-    "everyMin": 50
+    "everyMin": 60
    },
    {
     "from": "09:00",
     "to": "16:00",
-    "everyMin": 100
+    "everyMin": 84
    },
    {
     "from": "16:00",
     "to": "20:00",
-    "everyMin": 45
+    "everyMin": 60
    },
    {
     "from": "20:00",
     "to": "23:00",
-    "everyMin": 70
+    "everyMin": 90
    }
   ],
   "holiday": [
    {
     "from": "06:00",
     "to": "09:00",
-    "everyMin": 50
+    "everyMin": 60
    },
    {
     "from": "09:00",
     "to": "16:00",
-    "everyMin": 100
+    "everyMin": 105
    },
    {
     "from": "16:00",
     "to": "20:00",
-    "everyMin": 45
+    "everyMin": 60
    },
    {
     "from": "20:00",
     "to": "23:00",
-    "everyMin": 70
+    "everyMin": 90
    }
   ]
  },
  "tottori.chizukyu": {
-  "firstTrain": "06:20",
-  "lastTrain": "21:10",
+  "firstTrain": "05:45",
+  "lastTrain": "21:23",
   "weekday": [
    {
     "from": "06:00",
     "to": "22:00",
-    "everyMin": 150
+    "everyMin": 87
    }
   ],
   "holiday": [
    {
     "from": "06:00",
     "to": "22:00",
-    "everyMin": 150
+    "everyMin": 87
    }
   ]
  },
  "tottori.hakubi": {
-  "firstTrain": "05:40",
-  "lastTrain": "21:50",
+  "firstTrain": "06:14",
+  "lastTrain": "22:31",
   "weekday": [
    {
     "from": "05:00",
@@ -251,17 +251,17 @@
    {
     "from": "09:00",
     "to": "16:00",
-    "everyMin": 150
+    "everyMin": 105
    },
    {
     "from": "16:00",
     "to": "20:00",
-    "everyMin": 100
+    "everyMin": 80
    },
    {
     "from": "20:00",
     "to": "23:00",
-    "everyMin": 150
+    "everyMin": 90
    }
   ],
   "holiday": [
@@ -273,71 +273,71 @@
    {
     "from": "09:00",
     "to": "16:00",
-    "everyMin": 150
+    "everyMin": 105
    },
    {
     "from": "16:00",
     "to": "20:00",
-    "everyMin": 100
+    "everyMin": 80
    },
    {
     "from": "20:00",
     "to": "23:00",
-    "everyMin": 150
+    "everyMin": 90
    }
   ]
  },
  "tottori.matsukaze": {
-  "firstTrain": "06:40",
-  "lastTrain": "21:30",
+  "firstTrain": "06:57",
+  "lastTrain": "20:50",
   "weekday": [
    {
     "from": "06:00",
     "to": "22:00",
-    "everyMin": 75
+    "everyMin": 107
    }
   ],
   "holiday": [
    {
     "from": "06:00",
     "to": "22:00",
-    "everyMin": 75
+    "everyMin": 107
    }
   ]
  },
  "tottori.hakuto": {
-  "firstTrain": "06:30",
-  "lastTrain": "21:00",
+  "firstTrain": "06:04",
+  "lastTrain": "22:43",
   "weekday": [
    {
     "from": "06:00",
     "to": "21:30",
-    "everyMin": 75
+    "everyMin": 85
    }
   ],
   "holiday": [
    {
     "from": "06:00",
     "to": "21:30",
-    "everyMin": 75
+    "everyMin": 85
    }
   ]
  },
  "tottori.yakumo": {
-  "firstTrain": "06:15",
-  "lastTrain": "21:20",
+  "firstTrain": "05:32",
+  "lastTrain": "22:00",
   "weekday": [
    {
     "from": "06:00",
     "to": "21:30",
-    "everyMin": 60
+    "everyMin": 133
    }
   ],
   "holiday": [
    {
     "from": "06:00",
     "to": "21:30",
-    "everyMin": 60
+    "everyMin": 133
    }
   ]
  }

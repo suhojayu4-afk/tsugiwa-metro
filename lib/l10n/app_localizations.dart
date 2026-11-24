@@ -1635,6 +1635,66 @@ abstract class AppLocalizations {
   /// In ja, this message translates to:
   /// **'コードが正しくありません'**
   String get myInviteInvalid;
+
+  /// No description provided for @trainAt.
+  ///
+  /// In ja, this message translates to:
+  /// **'{kind} {to}行き'**
+  String trainAt(String kind, String to);
+
+  /// No description provided for @departsIn.
+  ///
+  /// In ja, this message translates to:
+  /// **'{time}発 あと{minutes}分'**
+  String departsIn(String time, int minutes);
+
+  /// No description provided for @timetableBadge.
+  ///
+  /// In ja, this message translates to:
+  /// **'時刻表'**
+  String get timetableBadge;
+
+  /// No description provided for @realTimesNote.
+  ///
+  /// In ja, this message translates to:
+  /// **'時刻は時刻表どおり (遅れはGPSで補正します)'**
+  String get realTimesNote;
+
+  /// No description provided for @thenTrain.
+  ///
+  /// In ja, this message translates to:
+  /// **'そのつぎ {time}'**
+  String thenTrain(String time);
+
+  /// No description provided for @delayMin.
+  ///
+  /// In ja, this message translates to:
+  /// **'{minutes}分遅れ'**
+  String delayMin(int minutes);
+
+  /// No description provided for @onTime.
+  ///
+  /// In ja, this message translates to:
+  /// **'定刻'**
+  String get onTime;
+
+  /// No description provided for @trainNo.
+  ///
+  /// In ja, this message translates to:
+  /// **'列車番号 {no}'**
+  String trainNo(String no);
+
+  /// No description provided for @positionLive.
+  ///
+  /// In ja, this message translates to:
+  /// **'走行位置・遅れ: JR西日本'**
+  String get positionLive;
+
+  /// No description provided for @positionPlan.
+  ///
+  /// In ja, this message translates to:
+  /// **'位置は時刻表からの推定です'**
+  String get positionPlan;
 }
 
 class _AppLocalizationsDelegate

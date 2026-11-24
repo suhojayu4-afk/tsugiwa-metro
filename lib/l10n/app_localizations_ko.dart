@@ -912,4 +912,44 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get myInviteInvalid => '코드가 올바르지 않아요';
+
+  @override
+  String trainAt(String kind, String to) {
+    return '$kind $to행';
+  }
+
+  @override
+  String departsIn(String time, int minutes) {
+    return '$time 출발 · $minutes분 후';
+  }
+
+  @override
+  String get timetableBadge => '시간표';
+
+  @override
+  String get realTimesNote => '시간은 시간표 기준이에요 (지연은 GPS로 보정해요)';
+
+  @override
+  String thenTrain(String time) {
+    return '그다음 $time';
+  }
+
+  @override
+  String delayMin(int minutes) {
+    return '$minutes분 지연';
+  }
+
+  @override
+  String get onTime => '정시';
+
+  @override
+  String trainNo(String no) {
+    return '열차 번호 $no';
+  }
+
+  @override
+  String get positionLive => '운행 위치·지연: JR 서일본';
+
+  @override
+  String get positionPlan => '위치는 시간표로 추정했어요';
 }

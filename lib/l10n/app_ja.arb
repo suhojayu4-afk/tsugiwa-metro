@@ -714,5 +714,20 @@
   "@myInviteOk": {"placeholders": {"coins": {"type": "int"}}},
   "myInviteOwn": "自分のコードは使えません",
   "myInviteUsed": "招待コードはもう使いました",
-  "myInviteInvalid": "コードが正しくありません"
+  "myInviteInvalid": "コードが正しくありません",
+  "trainAt": "{kind} {to}行き",
+  "@trainAt": {"placeholders": {"kind": {"type": "String"}, "to": {"type": "String"}}},
+  "departsIn": "{time}発 あと{minutes}分",
+  "@departsIn": {"placeholders": {"time": {"type": "String"}, "minutes": {"type": "int"}}},
+  "timetableBadge": "時刻表",
+  "realTimesNote": "時刻は時刻表どおり (遅れはGPSで補正します)",
+  "thenTrain": "そのつぎ {time}",
+  "@thenTrain": {"placeholders": {"time": {"type": "String"}}},
+  "delayMin": "{minutes}分遅れ",
+  "@delayMin": {"placeholders": {"minutes": {"type": "int"}}},
+  "onTime": "定刻",
+  "trainNo": "列車番号 {no}",
+  "@trainNo": {"placeholders": {"no": {"type": "String"}}},
+  "positionLive": "走行位置・遅れ: JR西日本",
+  "positionPlan": "位置は時刻表からの推定です"
 }

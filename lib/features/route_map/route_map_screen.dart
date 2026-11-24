@@ -21,6 +21,7 @@ import '../trip/route_finder.dart';
 import '../guide/guide_data.dart';
 import 'landmark_sheet.dart';
 import 'map_seasons.dart';
+import '../trip/train_sheet.dart';
 import 'map_trains.dart';
 
 /// Called when the user picks "出発にする" (from = true) or "到着にする".
@@ -587,6 +588,12 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
       _openStation(best.stationId);
       return;
     }
+    // A real train (Tottori): its stops, times and delay.
+    final train = onPicture == null ? _trainAt(d.localPosition) : null;
+    if (train != null) {
+      showTrainSheet(context, widget.city, train.run.line.id, train.train!);
+      return;
+    }
     final lm = onPicture == null ? _landmarkAt(d.localPosition) : null;
     if (lm != null) {
       _openLandmark(lm);
@@ -603,6 +610,30 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     // Empty spot: zoom in there.
     final s = math.min(_maxScaleAt(world), math.max(_scale * 2.2, _fitScale() * 2.5));
     _animateTo(_matrixFor(world, s));
+  }
+
+  /// The real (timetabled) train drawn under [screen], if any.
+  TrainAt? _trainAt(Offset screen) {
+    final sim = _sim, vp = _viewport;
+    if (sim == null || vp == null || widget.city.trains.isEmpty || _scale < TrainPainter.from) return null;
+    final m = _controller.value;
+    final inv = Matrix4.inverted(m);
+    final view = Rect.fromPoints(
+      MatrixUtils.transformPoint(inv, Offset.zero),
+      MatrixUtils.transformPoint(inv, Offset(vp.width, vp.height)),
+    );
+    TrainAt? best;
+    var bestD = 22.0; // px
+    for (final tr in sim.trainsIn(view, DateTime.now())) {
+      if (tr.train == null) continue;
+      final p = MatrixUtils.transformPoint(m, tr.run.geo.at(tr.s));
+      final dist = (p - screen).distance;
+      if (dist < bestD) {
+        bestD = dist;
+        best = tr;
+      }
+    }
+    return best;
   }
 
   /// The landmark picture under [screen], if any (the front-most one).

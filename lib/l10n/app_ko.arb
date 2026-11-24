@@ -255,5 +255,15 @@
   "myInviteOk": "{coins}코인을 받았어요",
   "myInviteOwn": "내 코드는 쓸 수 없어요",
   "myInviteUsed": "초대 코드는 이미 사용했어요",
-  "myInviteInvalid": "코드가 올바르지 않아요"
+  "myInviteInvalid": "코드가 올바르지 않아요",
+  "trainAt": "{kind} {to}행",
+  "departsIn": "{time} 출발 · {minutes}분 후",
+  "timetableBadge": "시간표",
+  "realTimesNote": "시간은 시간표 기준이에요 (지연은 GPS로 보정해요)",
+  "thenTrain": "그다음 {time}",
+  "delayMin": "{minutes}분 지연",
+  "onTime": "정시",
+  "trainNo": "열차 번호 {no}",
+  "positionLive": "운행 위치·지연: JR 서일본",
+  "positionPlan": "위치는 시간표로 추정했어요"
 }

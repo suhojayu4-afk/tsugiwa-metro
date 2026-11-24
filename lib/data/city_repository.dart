@@ -21,6 +21,14 @@ class CityRepository {
     }
   }
 
+  Future<Map<String, dynamic>> _optionalMap(String path) async {
+    try {
+      return await compute(jsonDecode, await _bundle.loadString(path)) as Map<String, dynamic>;
+    } catch (_) {
+      return const {};
+    }
+  }
+
   Future<List<CityEntry>> loadIndex() async {
     final json = jsonDecode(await _bundle.loadString('assets/cities/index.json')) as Map<String, dynamic>;
     return [for (final c in json['cities'] as List) CityEntry.fromJson(c as Map<String, dynamic>)];
@@ -38,6 +46,7 @@ class CityRepository {
       timetables: await read('timetables.json') as Map<String, dynamic>,
       walks: await _optional('assets/cities/$id/walks.json'),
       throughs: await _optional('assets/cities/$id/through.json'),
+      trains: await _optionalMap('assets/cities/$id/trains.json'),
     );
     return _cache[id] = city;
   }

@@ -1,5 +1,7 @@
 import '../../core/japan_time.dart';
 import '../../data/models/city.dart';
+import '../../data/models/timetable.dart';
+import '../../data/models/train_run.dart';
 
 /// One ride on a single line without changing trains.
 class RouteLeg {
@@ -60,6 +62,12 @@ class RouteFinder {
   RouteResult? find(String fromId, String toId, {DateTime? at, Set<String> avoid = const {}}) {
     if (fromId == toId) return null;
     final time = at ?? japanNow();
+    // Every line timetabled train by train (Tottori): the earliest arrival
+    // on the real trains, not average waits.
+    if (city.trains.isNotEmpty && city.lines.every((l) => city.trains.containsKey(l.id))) {
+      final real = findOnTrains(fromId, toId, time, avoid: avoid);
+      if (real != null) return real;
+    }
     final edges = _buildEdges(time, avoid);
 
     final dist = <String, int>{};
@@ -126,6 +134,74 @@ class RouteFinder {
     return RouteResult(legs, walkFromId: boardAt == fromId ? null : fromId, walkToId: leaveAt == toId ? null : toId);
   }
 
+  /// Minutes to change trains at a station (walk + a little margin).
+  static const changeMin = 3;
+
+  /// Earliest arrival from [fromId] to [toId] leaving at [time] (Japan time)
+  /// on the real trains of today and tomorrow morning (connection scan).
+  /// Null when no train gets there.
+  RouteResult? findOnTrains(String fromId, String toId, DateTime time, {Set<String> avoid = const {}}) {
+    final now = LineTimetable.serviceMinute(time);
+    final conns = <_Conn>[];
+    var trip = 0;
+    for (final e in city.trains.entries) {
+      if (avoid.contains(e.key)) continue;
+      for (final day in const [0, 1]) {
+        final off = day * 1440;
+        for (final r in e.value.runsOn(time.add(Duration(days: day)))) {
+          final st = r.stops;
+          if (st.last.arriveMin + off < now) continue;
+          for (var k = 0; k + 1 < st.length; k++) {
+            if (st[k].departMin + off < now) continue;
+            conns.add(_Conn(e.key, trip, r, k, st[k].departMin + off, st[k + 1].arriveMin + off));
+          }
+          trip++;
+        }
+      }
+    }
+    conns.sort((a, b) => a.dep != b.dep ? a.dep - b.dep : a.arr - b.arr);
+    final earliest = <String, int>{fromId: now};
+    final boarded = <int, _Conn>{};
+    final via = <String, (_Conn, _Conn)>{}; // station → (boarding, alighting)
+    for (final c in conns) {
+      final best = earliest[toId];
+      if (best != null && c.dep > best) break;
+      final from = c.run.stops[c.k].stationId;
+      final to = c.run.stops[c.k + 1].stationId;
+      if (!boarded.containsKey(c.trip)) {
+        final here = earliest[from];
+        if (here == null) continue;
+        final change = from == fromId && here == now ? 0 : changeMin;
+        if (here + change > c.dep) continue;
+        boarded[c.trip] = c;
+      }
+      if (c.arr < (earliest[to] ?? 1 << 30)) {
+        earliest[to] = c.arr;
+        via[to] = (boarded[c.trip]!, c);
+      }
+    }
+    if (!via.containsKey(toId)) return null;
+    final legs = <RouteLeg>[];
+    var at = toId;
+    for (var guard = 0; at != fromId && guard < 20; guard++) {
+      final (board, alight) = via[at]!;
+      final line = city.line(board.lineId);
+      final a = line.stations.indexOf(board.run.stops[board.k].stationId);
+      final b = line.stations.indexOf(alight.run.stops[alight.k + 1].stationId);
+      if (a < 0 || b < 0 || a == b) return null;
+      legs.insert(
+        0,
+        RouteLeg(
+          lineId: line.id,
+          forward: b > a,
+          stationIds: [for (var i = a; b > a ? i <= b : i >= b; i += b > a ? 1 : -1) line.stations[i]],
+        ),
+      );
+      at = line.stations[a];
+    }
+    return at == fromId && legs.isNotEmpty ? RouteResult(legs) : null;
+  }
+
   Map<String, List<_Edge>> _buildEdges(DateTime time, Set<String> avoid) {
     final edges = <String, List<_Edge>>{};
     void add(_Edge e) {
@@ -189,6 +265,17 @@ class RouteFinder {
     final cut = s.indexOf('>');
     return cut < 0 ? s : s.substring(0, cut);
   }
+}
+
+/// One hop of a real train between two stops in a row (minutes of the service day).
+class _Conn {
+  const _Conn(this.lineId, this.trip, this.run, this.k, this.dep, this.arr);
+  final String lineId;
+  final int trip;
+  final TrainRun run;
+  final int k;
+  final int dep;
+  final int arr;
 }
 
 class _Edge {

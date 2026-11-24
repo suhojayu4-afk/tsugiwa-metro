@@ -255,5 +255,15 @@
   "myInviteOk": "You got {coins} coins",
   "myInviteOwn": "That's your own code",
   "myInviteUsed": "You already used an invite code",
-  "myInviteInvalid": "That code isn't valid"
+  "myInviteInvalid": "That code isn't valid",
+  "trainAt": "{kind} for {to}",
+  "departsIn": "Leaves {time} · in {minutes} min",
+  "timetableBadge": "Timetable",
+  "realTimesNote": "Times follow the timetable (delays corrected by GPS)",
+  "thenTrain": "Then {time}",
+  "delayMin": "{minutes} min late",
+  "onTime": "On time",
+  "trainNo": "Train {no}",
+  "positionLive": "Position and delay: JR West",
+  "positionPlan": "Position estimated from the timetable"
 }

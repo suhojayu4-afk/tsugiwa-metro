@@ -4,10 +4,12 @@ import 'dart:ui' as ui;
 
 import 'package:material_ui/material_ui.dart';
 
+import '../../core/services.dart';
 import '../../data/models/city.dart';
 import '../../data/models/rail_line.dart';
 import '../../data/models/route_map.dart';
 import '../../data/models/timetable.dart';
+import '../../data/models/train_run.dart';
 import '../trip/route_finder.dart';
 
 /// A drawn line as a polyline measured along its length: points at a
@@ -332,7 +334,7 @@ const _wait = 60.0;
 
 /// Where one train is: distance along its line, which way it is heading
 /// along the line (+1 / -1), whether it waits at a station.
-typedef TrainAt = ({LineRun run, double s, double sign, bool stopped});
+typedef TrainAt = ({LineRun run, double s, double sign, bool stopped, TrainRun? train});
 
 /// Speed along a station-to-station run: speeds up, runs, brakes.
 double _ease(double f) {
@@ -363,6 +365,12 @@ class TrainSim {
     final out = <TrainAt>[];
     for (final run in _runs) {
       if (!run.mapLine.bounds.inflate(40).overlaps(view)) continue;
+      // Real trains (Tottori): where each one is by the printed times.
+      final real = city.trains[run.line.id];
+      if (real != null) {
+        _placeReal(run, real.runsOn(jst), sec / 60 + 240, out, view);
+        continue;
+      }
       final tt = city.timetables[run.line.id];
       if (tt != null && !tt.inService(jst)) continue;
       final head = (tt?.headwayMinAt(jst) ?? 6) * 60.0;
@@ -391,6 +399,42 @@ class TrainSim {
       }
     }
     return out;
+  }
+
+  /// Each real train running at [minute] (service-day minutes): standing at a
+  /// stop between its arrival and departure, or between two stops.
+  void _placeReal(LineRun run, List<TrainRun> trains, double now, List<TrainAt> out, Rect view) {
+    final order = run.line.stations;
+    for (final r in trains) {
+      final st = r.stops;
+      // Late trains (JR西日本's 走行位置) run that much later.
+      final minute = now - Services.jrwest.delayOf(r.no);
+      if (minute < st.first.departMin - 1 || minute > st.last.arriveMin + 0.5) continue;
+      for (var k = 0; k < st.length; k++) {
+        final a = order.indexOf(st[k].stationId);
+        if (a < 0) break;
+        final next = k + 1 < st.length ? order.indexOf(st[k + 1].stationId) : -1;
+        // Which way along the line (+1 / -1): towards the next stop, or from the last.
+        final b = next >= 0 ? next : (k > 0 ? order.indexOf(st[k - 1].stationId) : a);
+        if (minute <= st[k].departMin || next < 0) {
+          if (minute < st[k].arriveMin) continue;
+          final d = b == a ? 1.0 : run.geo.delta(run.arc[a], run.arc[b]);
+          final sign = (next >= 0 ? d : -d) >= 0 ? 1.0 : -1.0;
+          final p = run.geo.at(run.arc[a]);
+          if (view.contains(p)) out.add((run: run, s: run.arc[a], sign: sign, stopped: true, train: r));
+          break;
+        }
+        if (minute < st[k + 1].arriveMin) {
+          final span = st[k + 1].arriveMin - st[k].departMin;
+          final f = span <= 0 ? 1.0 : (minute - st[k].departMin) / span;
+          final d = run.geo.delta(run.arc[a], run.arc[next]);
+          final at = run.arc[a] + d * _ease(f);
+          final p = run.geo.at(at);
+          if (view.contains(p)) out.add((run: run, s: at, sign: d >= 0 ? 1 : -1, stopped: false, train: r));
+          break;
+        }
+      }
+    }
   }
 
   void _place(LineRun run, double e, bool forward, List<TrainAt> out, Rect view) {
@@ -434,7 +478,7 @@ class TrainSim {
     }
     final p = run.geo.at(s);
     if (!view.contains(p)) return;
-    out.add((run: run, s: s, sign: sign, stopped: stopped));
+    out.add((run: run, s: s, sign: sign, stopped: stopped, train: null));
   }
 }
 

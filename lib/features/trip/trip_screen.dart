@@ -12,9 +12,12 @@ import '../../app.dart';
 import '../../core/pixel/pixel_ui.dart';
 import '../../core/services.dart';
 import '../../data/models/city.dart';
+import '../../data/models/timetable.dart';
 import '../../data/my_store.dart';
 import '../../l10n/app_localizations.dart';
 import '../common/station_name.dart';
+import 'train_sheet.dart';
+import 'train_text.dart';
 import 'trip_controller.dart';
 import 'widgets/progress_track.dart';
 import 'widgets/side_train_view.dart';
@@ -169,6 +172,40 @@ class _TripScreenState extends State<TripScreen> {
                       StationName(station: cur, size: 26)
                     else
                       PixelText(t.betweenStations(cur.name.ja, next!.name.ja), size: 26),
+                    // Waiting for a real train (Tottori): when it leaves, which one.
+                    if (plan.trainLeaving(s.currentIndex) case final train? when s.atStation) ...[
+                      const SizedBox(height: 6),
+                      if (plan.stops[s.currentIndex].departSec - s.elapsedSec >= 30)
+                        PixelText(
+                          t.departsIn(
+                            LineTimetable.clock(train.departMin),
+                            ((plan.stops[s.currentIndex].departSec - s.elapsedSec) / 60).ceil(),
+                          ),
+                          size: 20,
+                          color: line.color,
+                        ),
+                      GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onTap: () => showTrainSheet(context, city, plan.lineAt(s.currentIndex), train.run),
+                        child: Row(
+                          children: [
+                            Flexible(
+                              child: PixelText(trainText(t, city, train, lang), size: 14, color: PixelColors.muted),
+                            ),
+                            if (c.delayMin > 0) ...[
+                              const SizedBox(width: 8),
+                              PixelText(t.delayMin(c.delayMin), size: 14, color: PixelColors.danger),
+                            ],
+                            const Icon(Icons.chevron_right_rounded, size: 18, color: PixelColors.muted),
+                          ],
+                        ),
+                      ),
+                    ],
+                    // On board a late train: say so.
+                    if (!s.atStation && c.delayMin > 0) ...[
+                      const SizedBox(height: 4),
+                      PixelText(t.delayMin(c.delayMin), size: 14, color: PixelColors.danger),
+                    ],
                     const SizedBox(height: 20),
                     PixelText(t.nextLabel, size: 20, color: line.color),
                     StationName(station: next!, size: 48),
@@ -193,7 +230,7 @@ class _TripScreenState extends State<TripScreen> {
                     lineColorOf: (id) => city.line(id).color,
                   ),
                   const SizedBox(height: 8),
-                  PixelText(t.estimateNote, size: 13, color: PixelColors.muted),
+                  PixelText(plan.timetabled ? t.realTimesNote : t.estimateNote, size: 13, color: PixelColors.muted),
                   const SizedBox(height: 20),
                   PixelBox(
                     child: Column(
@@ -202,7 +239,16 @@ class _TripScreenState extends State<TripScreen> {
                           _StopRow(
                             time: hm.format(
                               _japanClock(
-                                DateTime.now().add(Duration(seconds: plan.stops[i].arriveSec - s.elapsedSec)),
+                                DateTime.now().add(
+                                  Duration(
+                                    // Waiting here: when the train leaves.
+                                    seconds:
+                                        (i == s.currentIndex && s.atStation
+                                            ? plan.stops[i].departSec
+                                            : plan.stops[i].arriveSec) -
+                                        s.elapsedSec,
+                                  ),
+                                ),
                               ),
                             ),
                             name: city.station(plan.stops[i].stationId).name.ja,

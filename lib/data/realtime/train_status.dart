@@ -120,7 +120,16 @@ class TrainStatusSource extends ChangeNotifier {
   DateTime? get updated => _updated;
 
   /// Status of [lineId], or null when it is not a line with live data.
-  LineStatus? of(String lineId) => _status[lineId];
+  LineStatus? of(String lineId) => _status[lineId] ?? _extra[lineId];
+
+  /// 運行情報 from another source (JR西日本 for Tottori), shown alongside ODPT's.
+  Map<String, LineStatus> _extra = const {};
+
+  void putExtra(Map<String, LineStatus> status) {
+    _extra = status;
+    if (status.isNotEmpty) _updated = DateTime.now();
+    notifyListeners();
+  }
 
   void start() {
     if (!enabled || _timer != null) return;

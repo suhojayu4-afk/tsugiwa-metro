@@ -3,6 +3,7 @@ import '../weather/weather_source.dart';
 import 'rail_line.dart';
 import 'station.dart';
 import 'timetable.dart';
+import 'train_run.dart';
 
 /// Everything the app knows about one city, loaded from `assets/cities/<id>/`.
 class CityData {
@@ -15,6 +16,7 @@ class CityData {
     required this.timetables,
     this.walks = const [],
     this.throughs = const [],
+    this.trains = const {},
   });
 
   /// Builds a city from already-decoded JSON and checks that the files agree.
@@ -25,13 +27,10 @@ class CityData {
     required Map<String, dynamic> timetables,
     List<dynamic> walks = const [],
     List<dynamic> throughs = const [],
+    Map<String, dynamic> trains = const {},
   }) {
-    final stationMap = {
-      for (final s in stations) (s as Map<String, dynamic>)['id'] as String: Station.fromJson(s),
-    };
-    final lineMap = {
-      for (final l in lines) (l as Map<String, dynamic>)['id'] as String: RailLine.fromJson(l),
-    };
+    final stationMap = {for (final s in stations) (s as Map<String, dynamic>)['id'] as String: Station.fromJson(s)};
+    final lineMap = {for (final l in lines) (l as Map<String, dynamic>)['id'] as String: RailLine.fromJson(l)};
     final order = List<String>.from(city['lines'] as List);
     for (final lineId in order) {
       final line = lineMap[lineId];
@@ -54,9 +53,7 @@ class CityData {
       weather: city['weather'] == null ? null : WeatherArea.fromJson(city['weather'] as Map<String, dynamic>),
       lines: [for (final id in order) lineMap[id]!],
       stations: stationMap,
-      timetables: {
-        for (final e in timetables.entries) e.key: LineTimetable.fromJson(e.value as Map<String, dynamic>),
-      },
+      timetables: {for (final e in timetables.entries) e.key: LineTimetable.fromJson(e.value as Map<String, dynamic>)},
       walks: [
         for (final w in walks.cast<Map<String, dynamic>>())
           if (stationMap.containsKey(w['a']) && stationMap.containsKey(w['b']))
@@ -67,6 +64,10 @@ class CityData {
           if (lineMap.containsKey(t['a']) && lineMap.containsKey(t['b']) && stationMap.containsKey(t['at']))
             ThroughRun(t['a'] as String, t['at'] as String, t['b'] as String, t['toward'] as String),
       ],
+      trains: {
+        for (final e in trains.entries)
+          if (lineMap.containsKey(e.key)) e.key: LineTrains.fromJson(e.value as Map<String, dynamic>),
+      }..removeWhere((_, v) => v.isEmpty),
     );
   }
 
@@ -82,6 +83,10 @@ class CityData {
 
   /// Trains that run on from one line onto another (副都心線 → 東横線 at 渋谷).
   final List<ThroughRun> throughs;
+
+  /// Real trains, train by train, where the published timetable is known
+  /// (Tottori). Lines without an entry use [timetables]' intervals.
+  final Map<String, LineTrains> trains;
 
   /// Stations reachable on foot from [stationId], with the minutes.
   List<({String stationId, int minutes})> walksFrom(String stationId) => [

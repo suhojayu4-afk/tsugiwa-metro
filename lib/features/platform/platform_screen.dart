@@ -327,7 +327,7 @@ class PlatformScreenState extends State<PlatformScreen> {
         // (the widget picks the hour itself).
         'tripText': t.widgetTrip(
           city.station(saved.toId).name.of(lang),
-          (TripPlan.build(city, route, japanNow()).totalSec / 60).ceil() +
+          (TripPlan.build(city, route, japanNow()).rideSec / 60).ceil() +
               route.headWalkMin(city) +
               route.tailWalkMin(city),
         ),
@@ -1274,7 +1274,7 @@ class _RoutePreview extends StatelessWidget {
     final lang = langOf(context);
     final plan = TripPlan.build(city, route, japanNow());
     final headWalk = route.headWalkMin(city), tailWalk = route.tailWalkMin(city);
-    final minutes = (plan.totalSec / 60).ceil() + headWalk + tailWalk;
+    final minutes = (plan.rideSec / 60).ceil() + headWalk + tailWalk;
     return PixelBox(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

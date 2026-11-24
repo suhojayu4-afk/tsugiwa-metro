@@ -92,6 +92,8 @@ class _MainShellState extends State<MainShell> {
     RareSightings.attach();
     _stay = StayWatcher(city: widget.city, location: Services.location, onStay: _onStay)..start();
     Services.status.start();
+    // Tottori: JR西日本's 運行情報 and how late each train is.
+    if (widget.city.trains.isNotEmpty) Services.jrwest.start(Services.status);
     // Keep the home screen widget's pictures in step with MY駅.
     _widgetSync = HomeWidgetSync(
       bridge: Services.homeWidget,
@@ -128,6 +130,7 @@ class _MainShellState extends State<MainShell> {
     _widgetSync?.dispose();
     _stay?.stop();
     Services.status.stop();
+    Services.jrwest.stop();
     super.dispose();
   }
 

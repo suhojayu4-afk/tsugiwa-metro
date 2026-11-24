@@ -912,4 +912,44 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get myInviteInvalid => 'コードが正しくありません';
+
+  @override
+  String trainAt(String kind, String to) {
+    return '$kind $to行き';
+  }
+
+  @override
+  String departsIn(String time, int minutes) {
+    return '$time発 あと$minutes分';
+  }
+
+  @override
+  String get timetableBadge => '時刻表';
+
+  @override
+  String get realTimesNote => '時刻は時刻表どおり (遅れはGPSで補正します)';
+
+  @override
+  String thenTrain(String time) {
+    return 'そのつぎ $time';
+  }
+
+  @override
+  String delayMin(int minutes) {
+    return '$minutes分遅れ';
+  }
+
+  @override
+  String get onTime => '定刻';
+
+  @override
+  String trainNo(String no) {
+    return '列車番号 $no';
+  }
+
+  @override
+  String get positionLive => '走行位置・遅れ: JR西日本';
+
+  @override
+  String get positionPlan => '位置は時刻表からの推定です';
 }

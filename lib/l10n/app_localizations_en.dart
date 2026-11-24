@@ -930,4 +930,45 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get myInviteInvalid => 'That code isn\'t valid';
+
+  @override
+  String trainAt(String kind, String to) {
+    return '$kind for $to';
+  }
+
+  @override
+  String departsIn(String time, int minutes) {
+    return 'Leaves $time · in $minutes min';
+  }
+
+  @override
+  String get timetableBadge => 'Timetable';
+
+  @override
+  String get realTimesNote =>
+      'Times follow the timetable (delays corrected by GPS)';
+
+  @override
+  String thenTrain(String time) {
+    return 'Then $time';
+  }
+
+  @override
+  String delayMin(int minutes) {
+    return '$minutes min late';
+  }
+
+  @override
+  String get onTime => 'On time';
+
+  @override
+  String trainNo(String no) {
+    return 'Train $no';
+  }
+
+  @override
+  String get positionLive => 'Position and delay: JR West';
+
+  @override
+  String get positionPlan => 'Position estimated from the timetable';
 }

@@ -9,16 +9,22 @@ import '../../core/pixel/pixel_ui.dart';
 import '../../data/models/city.dart';
 import '../../data/models/rail_line.dart';
 import '../../data/models/timetable.dart';
+import '../../data/models/train_run.dart';
 import '../../l10n/app_localizations.dart';
 import '../route_map/map_trains.dart';
+import '../trip/train_sheet.dart';
+import '../trip/train_text.dart';
 
 /// One train leaving a station: which line and way, when (seconds since
 /// 04:00, the start of the service day in Japan) and where it is bound.
 class Departure {
-  const Departure({required this.line, required this.forward, required this.sec, required this.terminusId});
+  const Departure({required this.line, required this.forward, required this.sec, required this.terminusId, this.run});
   final RailLine line;
   final bool forward;
   final int sec;
+
+  /// The real train, where the line has a published timetable (Tottori).
+  final TrainRun? run;
 
   /// Last station that way (null on a loop line: the direction name is shown).
   final String? terminusId;
@@ -38,6 +44,25 @@ List<Departure> nextDepartures(CityData city, String stationId, DateTime now, {i
     final line = city.line(lineId);
     final i = line.stations.indexOf(stationId);
     if (i < 0) continue;
+    // Real trains (Tottori): straight from the timetable.
+    final real = city.trains[line.id];
+    if (real != null) {
+      for (final forward in const [true, false]) {
+        for (final d in real.nextWay(stationId, line.stations, forward, jst, count: perWay)) {
+          if (d.dayOffsetMin > 0) continue;
+          out.add(
+            Departure(
+              line: line,
+              forward: forward,
+              sec: (d.departMin - 240) * 60,
+              terminusId: forward ? line.stations.last : line.stations.first,
+              run: d.run,
+            ),
+          );
+        }
+      }
+      continue;
+    }
     final tt = city.timetables[line.id];
     if (tt != null && !tt.inService(jst)) continue;
     final head = (tt?.headwayMinAt(jst) ?? 6) * 60;
@@ -115,6 +140,7 @@ class _DepartureBoardState extends State<DepartureBoard> {
   void initState() {
     super.initState();
     Services.status.addListener(_onStatus);
+    Services.jrwest.addListener(_onStatus);
     // Twice a second: the clock, the blinking 「まもなく」 and the ticker.
     _timer = Timer.periodic(const Duration(milliseconds: 500), (_) {
       if (mounted && TickerMode.valuesOf(context).enabled) setState(() => _tick++);
@@ -128,6 +154,7 @@ class _DepartureBoardState extends State<DepartureBoard> {
   @override
   void dispose() {
     Services.status.removeListener(_onStatus);
+    Services.jrwest.removeListener(_onStatus);
     _timer?.cancel();
     super.dispose();
   }
@@ -216,10 +243,13 @@ class _DepartureBoardState extends State<DepartureBoard> {
   }
 
   Widget _row(Departure d, AppLocalizations t, String lang, {required bool soon}) {
-    final to = d.terminusId == null
+    final to = d.run != null
+        ? t.boardBound(trainToText(widget.city, d.run!, lang))
+        : d.terminusId == null
         ? d.line.directionName(d.forward).of(lang)
         : t.boardBound(widget.city.station(d.terminusId!).name.of(lang));
-    return Padding(
+    final late = d.run == null ? 0 : Services.jrwest.delayOf(d.run!.no);
+    final row = Padding(
       padding: const EdgeInsets.symmetric(vertical: 3),
       child: Row(
         children: [
@@ -239,6 +269,13 @@ class _DepartureBoardState extends State<DepartureBoard> {
               decoration: BoxDecoration(color: const Color(0xFFD64545), borderRadius: BorderRadius.circular(3)),
               child: PixelText(s.status?.of(lang) ?? t.boardDelay, size: 11, color: PixelColors.card, maxLines: 1),
             )
+          else if (late > 0)
+            Container(
+              margin: const EdgeInsets.only(left: 4),
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+              decoration: BoxDecoration(color: const Color(0xFFD64545), borderRadius: BorderRadius.circular(3)),
+              child: PixelText(t.delayMin(late), size: 11, color: PixelColors.card, maxLines: 1),
+            )
           else if (soon)
             Opacity(
               opacity: _tick.isEven ? 1 : 0.25,
@@ -246,6 +283,13 @@ class _DepartureBoardState extends State<DepartureBoard> {
             ),
         ],
       ),
+    );
+    // A real train: tap for its stops, times and where it is.
+    if (d.run == null) return row;
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => showTrainSheet(context, widget.city, d.line.id, d.run!),
+      child: row,
     );
   }
 }
