@@ -147,17 +147,45 @@
 226.5,
 99.2
 ],
+"fukuoka_momochi_day_rain.webp": [
+226.3,
+99.4
+],
+"fukuoka_momochi_day_snow.webp": [
+226.8,
+98.6
+],
 "fukuoka_momochi_evening.webp": [
 226.2,
 98.9
+],
+"fukuoka_momochi_evening_rain.webp": [
+226.4,
+98.6
+],
+"fukuoka_momochi_evening_snow.webp": [
+228.6,
+82.8
 ],
 "fukuoka_momochi_night.webp": [
 226.3,
 99.0
 ],
+"fukuoka_momochi_night_rain.webp": [
+225.7,
+99.0
+],
 "fukuoka_nakasu_day.webp": [
 226.7,
 99.1
+],
+"fukuoka_nakasu_day_rain.webp": [
+226.3,
+98.2
+],
+"fukuoka_nakasu_day_snow.webp": [
+228.6,
+95.6
 ],
 "fukuoka_nakasu_evening.webp": [
 226.2,
@@ -166,6 +194,10 @@
 "fukuoka_nakasu_night.webp": [
 226.2,
 99.0
+],
+"fukuoka_nakasu_night_rain.webp": [
+226.3,
+99.4
 ],
 "ginza_day.webp": [
 225.8,
@@ -351,37 +383,93 @@
 226.7,
 98.9
 ],
+"osaka_castle_day_rain.webp": [
+226.3,
+98.5
+],
+"osaka_castle_day_snow.webp": [
+227.0,
+95.1
+],
 "osaka_castle_evening.webp": [
 226.4,
 98.8
+],
+"osaka_castle_evening_rain.webp": [
+226.4,
+99.0
 ],
 "osaka_castle_night.webp": [
 226.0,
 99.3
 ],
+"osaka_castle_night_rain.webp": [
+225.9,
+99.8
+],
 "osaka_shinsekai_day.webp": [
 226.5,
 99.2
+],
+"osaka_shinsekai_day_rain.webp": [
+225.7,
+99.5
 ],
 "osaka_shinsekai_evening.webp": [
 226.1,
 99.0
 ],
+"osaka_shinsekai_evening_rain.webp": [
+225.8,
+99.1
+],
 "osaka_shinsekai_night.webp": [
 226.0,
 99.5
+],
+"osaka_shinsekai_night_rain.webp": [
+225.8,
+99.3
+],
+"osaka_shinsekai_night_snow.webp": [
+225.0,
+92.8
 ],
 "osaka_umeda_day.webp": [
 226.7,
 99.0
 ],
+"osaka_umeda_day_rain.webp": [
+226.6,
+98.7
+],
+"osaka_umeda_day_snow.webp": [
+225.4,
+90.6
+],
 "osaka_umeda_evening.webp": [
 226.2,
 99.2
 ],
+"osaka_umeda_evening_rain.webp": [
+225.8,
+91.4
+],
+"osaka_umeda_evening_snow.webp": [
+226.3,
+98.9
+],
 "osaka_umeda_night.webp": [
 226.1,
 99.0
+],
+"osaka_umeda_night_rain.webp": [
+224.6,
+87.6
+],
+"osaka_umeda_night_snow.webp": [
+226.2,
+99.3
 ],
 "sakura_day.webp": [
 226.6,
@@ -399,25 +487,61 @@
 226.6,
 99.1
 ],
+"sapporo_odori_day_rain.webp": [
+226.5,
+98.6
+],
+"sapporo_odori_day_snow.webp": [
+225.8,
+99.5
+],
 "sapporo_odori_evening.webp": [
 226.3,
 98.6
+],
+"sapporo_odori_evening_rain.webp": [
+226.2,
+98.7
 ],
 "sapporo_odori_night.webp": [
 226.1,
 99.1
 ],
+"sapporo_odori_night_rain.webp": [
+225.5,
+91.5
+],
 "sapporo_otaru_day.webp": [
 226.6,
 99.3
+],
+"sapporo_otaru_day_rain.webp": [
+226.3,
+97.7
+],
+"sapporo_otaru_day_snow.webp": [
+227.6,
+87.0
 ],
 "sapporo_otaru_evening.webp": [
 226.3,
 99.1
 ],
+"sapporo_otaru_evening_rain.webp": [
+226.4,
+99.4
+],
+"sapporo_otaru_evening_snow.webp": [
+224.2,
+105.8
+],
 "sapporo_otaru_night.webp": [
 226.1,
 99.6
+],
+"sapporo_otaru_night_snow.webp": [
+227.8,
+89.5
 ],
 "scene_underground.webp": [
 226.5,
@@ -427,9 +551,21 @@
 226.5,
 99.1
 ],
+"sendai_aoba_day_rain.webp": [
+226.3,
+98.7
+],
 "sendai_aoba_evening.webp": [
 226.3,
 99.0
+],
+"sendai_aoba_evening_rain.webp": [
+225.9,
+99.7
+],
+"sendai_aoba_evening_snow.webp": [
+219.2,
+89.5
 ],
 "sendai_aoba_night.webp": [
 226.1,
@@ -439,9 +575,29 @@
 226.4,
 99.2
 ],
+"sendai_matsushima_day_rain.webp": [
+226.1,
+98.6
+],
+"sendai_matsushima_day_snow.webp": [
+226.2,
+99.2
+],
 "sendai_matsushima_evening.webp": [
 226.2,
 98.8
+],
+"sendai_matsushima_evening_rain.webp": [
+226.2,
+98.9
+],
+"sendai_matsushima_evening_snow.webp": [
+229.0,
+97.3
+],
+"sendai_matsushima_night_snow.webp": [
+221.7,
+98.3
 ],
 "shibuya_day.webp": [
 226.2,

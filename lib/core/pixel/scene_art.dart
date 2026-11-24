@@ -403,7 +403,9 @@ Future<SceneArtSet> loadSceneArt(SceneLook look, DayPart part, {String? sky}) as
     // The closed station is only drawn at night (it is always late then).
     final asset = SceneArt.weatherScene(SceneArt.sceneId(look), s == 'closed' ? DayPart.night : part, s);
     try {
-      weathered = await SceneArt.load(asset);
+      // Moving when it has an animation sheet beside it (`…_rain_anim.webp`),
+      // like the station scenes.
+      weathered = await SceneArt.loadMoving(asset);
       bgAsset = asset;
       break;
     } catch (_) {

@@ -106,5 +106,221 @@
  "sapporo_otaru_night": [
   "83180d32-ca2f-4f7c-b2a1-aff18896c7eb",
   "c8614ea2-e59e-40e8-8402-43d1894c91fd"
+ ],
+ "osaka_umeda_day_rain": [
+  "0afcc44a-f968-4f73-9d68-151a98fccc0a",
+  "4c585ac8-ba04-45ae-9b93-eb20e5382977"
+ ],
+ "osaka_umeda_evening_rain": [
+  "631ce6ff-988b-4249-b8b8-9f9f09a0291e",
+  "4e831e0e-140b-43b8-acd0-fda7b35dbe3c"
+ ],
+ "osaka_umeda_night_rain": [
+  "9813ea5e-5c31-4272-b5c3-57fb6745b189",
+  "d0749449-97fe-4506-996e-b37865af7013"
+ ],
+ "osaka_castle_day_rain": [
+  "f289a654-4b43-47b2-ab9d-614e96936118",
+  "bb2df00e-201d-4e48-ab48-3f8309b77759"
+ ],
+ "osaka_castle_evening_rain": [
+  "6f222a07-9c1e-4427-acd8-dff9a6d7485c",
+  "254697a4-ef6e-4c33-83c7-201642a88b9f"
+ ],
+ "osaka_castle_night_rain": [
+  "a300b87a-253e-4690-bf94-cdb0133c29ba",
+  "929c4978-04bc-4450-8e2d-1b0e54a8c7f0"
+ ],
+ "osaka_shinsekai_day_rain": [
+  "03dc39e8-8c2a-4c5d-a6f2-3535c719eee6",
+  "1254be3b-483b-4f00-80dd-335f04c8a72f"
+ ],
+ "osaka_shinsekai_evening_rain": [
+  "0332e1e4-8f39-4e63-b95b-ee440c29e0d6",
+  "ee93f607-2c59-46c1-9c44-360d164e990b"
+ ],
+ "osaka_shinsekai_night_rain": [
+  "86649e26-c294-4df5-9e2c-efee204233d0",
+  "0e989678-59c2-48b6-9dc9-78695472bfd2"
+ ],
+ "fukuoka_nakasu_day_rain": [
+  "2d3a7064-a08f-4fe5-9065-818b6315fcbf",
+  "15d42799-4316-42f8-94f3-7746aa015098"
+ ],
+ "fukuoka_nakasu_evening_rain": [
+  "286406bd-4112-44e6-a7a8-d79c31d16576",
+  "503a83dd-a78c-4de5-bfa6-8bcb4476b174"
+ ],
+ "fukuoka_nakasu_night_rain": [
+  "c9f4b205-866f-477c-bd2d-f181980571a8",
+  "c805dd7e-2751-4dc3-b00b-8faf7b5468ea"
+ ],
+ "fukuoka_momochi_day_rain": [
+  "b9e4415d-f867-4b71-b28c-18930b52969d",
+  "feb99ab9-0bd9-4e5b-a0bd-a064e3d27ef5"
+ ],
+ "fukuoka_momochi_evening_rain": [
+  "be9f1f14-6357-47ee-b7e9-ffe1e30d9cff",
+  "4663955f-b1af-4bdd-a83a-e764f37c55d4"
+ ],
+ "fukuoka_momochi_night_rain": [
+  "929d4818-25e3-4a1a-96e4-664202c932a6",
+  "37f18222-b7e6-44a4-b5a2-d0dd9d2c0358"
+ ],
+ "sendai_aoba_day_rain": [
+  "c4c89e2e-c0e2-4997-9dea-f176ec1e0279",
+  "c81c6b83-21e7-416d-b16a-f87e58fccae4"
+ ],
+ "sendai_aoba_evening_rain": [
+  "0b8899f1-d1ba-43c9-a3c8-b2033dfaa843",
+  "f6244a28-c9a2-4fe5-83e8-7053a1a0fb9c"
+ ],
+ "sendai_aoba_night_rain": [
+  "98d61918-6e60-4002-8aac-6eb86554a60a",
+  "ea364dae-0558-43ae-bbe0-4bc36f98d178"
+ ],
+ "sendai_matsushima_day_rain": [
+  "6e96c0dd-cbaf-4ad2-b914-e36e311b8d66",
+  "c8f24f6c-de02-4521-aa91-0a86d4e7fc44"
+ ],
+ "sendai_matsushima_evening_rain": [
+  "cadcfcf1-3a1c-428c-b8b6-8577ee8143f1",
+  "3ebc28b8-ce69-4d14-b93c-1c1462f3411e"
+ ],
+ "sendai_matsushima_night_rain": [
+  "ad701552-e9f5-4416-94a0-e11086899e48",
+  "4269a092-165b-4a8a-bc9e-66f53413e644"
+ ],
+ "sapporo_odori_day_rain": [
+  "1e4611a3-626d-4cf5-ac0b-8322d7b2dd52",
+  "05d91cd6-0c1f-4386-a11c-e0084652fbe9"
+ ],
+ "sapporo_odori_evening_rain": [
+  "de8af7ee-600d-4321-b800-71b54f33fb81",
+  "911c5048-13b6-4616-b352-e4dba32d0495"
+ ],
+ "sapporo_odori_night_rain": [
+  "3c100ca3-ee85-4a74-9f57-31ff46998185",
+  "4ce85583-7940-4f47-b23c-a23aced40872"
+ ],
+ "sapporo_otaru_day_rain": [
+  "c2d3c7f0-623b-4cca-adde-cdbbf56b3074",
+  "6e4a1d90-ab83-49d0-b917-7bafd03a188a"
+ ],
+ "sapporo_otaru_evening_rain": [
+  "fc4247f4-7e4a-4e43-8467-d83930fbd626",
+  "e60392db-b747-4e66-b963-93ffdec9ad9d"
+ ],
+ "sapporo_otaru_night_rain": [
+  "7f6f4f5b-b200-4e4c-853e-a8306d85f2e6",
+  "5bfa7eda-5431-4332-addc-74cc7ae3ec39"
+ ],
+ "osaka_umeda_day_snow": [
+  "9d9e289c-b95b-4624-912c-9c1d9e19c834",
+  "5e5903d9-35f7-4bcc-8693-22bc1ff75a8b"
+ ],
+ "osaka_umeda_evening_snow": [
+  "e7eaafcf-ceb5-4dae-93aa-f23b31dddc8e",
+  "d370dc42-3e77-4de5-9add-416b6dec44b6"
+ ],
+ "osaka_umeda_night_snow": [
+  "8d096d3e-6229-41b7-94e5-dfbb59113d52",
+  "bd87f2f0-291f-49f9-ac6f-25a7377e4e24"
+ ],
+ "osaka_castle_day_snow": [
+  "85ea8517-03d9-40e8-a025-323bbea74d51",
+  "0195ae80-52d0-4eb7-a4c9-4dc8fd7d5c89"
+ ],
+ "osaka_castle_evening_snow": [
+  "80dbcfa5-a7c9-4b76-920e-ae16dd74e945",
+  "0008e028-74f2-49be-a7c4-8aeadc267fb6"
+ ],
+ "osaka_castle_night_snow": [
+  "9cb71975-c37b-4299-8300-c49755c1b205",
+  "7117134e-9e5f-446a-bacc-851c8bd2384b"
+ ],
+ "osaka_shinsekai_day_snow": [
+  "7109df70-e228-44e8-86cf-d0052eb3fa51",
+  "0ac39a82-ee8b-4a70-91c1-ce6ad1003876"
+ ],
+ "osaka_shinsekai_evening_snow": [
+  "f2b875b5-cbae-4417-8116-829268587f56",
+  "80369419-3c47-4f20-87d1-b3c68adfea6e"
+ ],
+ "osaka_shinsekai_night_snow": [
+  "a12c2e71-e137-4a32-a114-7585d0ecd9a3",
+  "bb2c779c-7c70-4601-b29c-bca1c6295641"
+ ],
+ "fukuoka_nakasu_day_snow": [
+  "1ac0a0ff-dcff-41f3-83b4-a098fe30e255",
+  "d04a70d6-42dd-466d-8f73-95ba0be15227"
+ ],
+ "fukuoka_nakasu_evening_snow": [
+  "0186e43d-48a7-4115-9554-4cc9a7e6e2a2",
+  "ef0b005a-ae30-4517-9fb1-46e71c86019f"
+ ],
+ "fukuoka_nakasu_night_snow": [
+  "be9c3cb3-351a-476b-a87b-c6189921dd0a",
+  "226cd492-b9cc-4a03-b9be-ac737ce3836e"
+ ],
+ "fukuoka_momochi_day_snow": [
+  "cd3bbb0a-9ac8-451e-928b-f24e905f520f",
+  "b58f0571-a743-4ec9-b621-8aeab5f17269"
+ ],
+ "fukuoka_momochi_evening_snow": [
+  "33cca4b2-9255-44ff-95ae-002cc39059cc",
+  "f61d93e8-dd69-47fb-90cf-97d1cbbdf5a7"
+ ],
+ "fukuoka_momochi_night_snow": [
+  "a677b8fb-9f88-4849-9ebf-eefd9923a46e",
+  "6fa3c669-02a0-4be9-ace1-13017b32a04c"
+ ],
+ "sendai_aoba_day_snow": [
+  "72e20af1-f622-4504-b2ba-a07971f2ada6",
+  "0ad35235-fb3b-4f4e-9bb1-5c98f0eacaf9"
+ ],
+ "sendai_aoba_evening_snow": [
+  "33151bd9-98da-4aa0-aaae-7c9c99b1a1bb",
+  "726a786d-06b9-49b4-bedc-24828cf45214"
+ ],
+ "sendai_aoba_night_snow": [
+  "b62d132b-d34e-4d72-9dbb-538b7778b69a",
+  "cec6902d-599c-4f82-bc70-3b6957a37ea6"
+ ],
+ "sendai_matsushima_day_snow": [
+  "69d3dc1b-7354-4e58-86ee-a99a42849ea5",
+  "8688f19f-80ea-49f1-8a73-639c84994a61"
+ ],
+ "sendai_matsushima_evening_snow": [
+  "9ff2dc05-db1f-45b4-9ae5-ae3796131305",
+  "25e89856-e853-45a6-8077-f4693d794a6d"
+ ],
+ "sendai_matsushima_night_snow": [
+  "d9eb0c7f-8430-4ad0-864a-7b95a30761ea",
+  "b1f6e96e-1b7a-40d5-ae79-8c9ccbb37b08"
+ ],
+ "sapporo_odori_day_snow": [
+  "c22a2a47-0430-4932-81e7-b0dc7a87984e",
+  "72a8dfbd-3e72-4c59-8eef-03a1965cc907"
+ ],
+ "sapporo_odori_evening_snow": [
+  "61c376b9-f6a7-42a0-95c0-1e5e2671c938",
+  "80e4e305-3e82-438a-81b5-1eb491ba0bb2"
+ ],
+ "sapporo_odori_night_snow": [
+  "ae767fda-0bcd-4b83-b483-e9fe69e65aec",
+  "4d8c7036-b0c6-4fcf-a753-b13d5d3c0229"
+ ],
+ "sapporo_otaru_day_snow": [
+  "cc645ebd-c175-46ff-9b0c-6b4958d5a6af",
+  "d4691089-3765-40fd-895e-806b5c0a7b4e"
+ ],
+ "sapporo_otaru_evening_snow": [
+  "f3fefc16-3bbe-4d94-a8f7-6fbd66c4d8a9",
+  "f48b8aee-0f6e-4750-8a18-8ebda4fbb98b"
+ ],
+ "sapporo_otaru_night_snow": [
+  "be101515-82bc-4df1-9153-69c75f462f9d",
+  "75853500-ccdb-405f-90af-f901879ee222"
  ]
 }

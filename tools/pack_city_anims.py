@@ -14,11 +14,21 @@ import json
 import os
 import subprocess
 import sys
+import time
 import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RAW = os.path.join(ROOT, 'docs', 'art', 'gen', 'cities', 'anim')
 OUT = os.path.join(ROOT, 'assets', 'art', 'cities', 'scenes')
+# The rain and snow versions (tools/gen_city_weather.py) live with the other
+# weather pictures; the app looks for `{name}_anim.webp` beside each.
+WEATHER_OUT = os.path.join(ROOT, 'assets', 'art', 'weather')
+
+
+def folder(name):
+    return WEATHER_OUT if name.rsplit('_', 1)[-1] in ('rain', 'snow') else OUT
+
+
 # Pictures where the animator redrew too much of the left half: a smaller box.
 LEFT_BOX = {}
 
@@ -36,10 +46,18 @@ def main():
                     continue
                 req = urllib.request.Request(f'https://api.pixellab.ai/mcp/images/{job}/download?index={i}',
                                              headers={'User-Agent': 'pixel-scene-packer/1.0'})
-                open(p, 'wb').write(urllib.request.urlopen(req, timeout=60).read())
+                for attempt in range(4):  # the connection is sometimes reset
+                    try:
+                        data = urllib.request.urlopen(req, timeout=60).read()
+                        break
+                    except OSError:
+                        if attempt == 3:
+                            raise
+                        time.sleep(3)
+                open(p, 'wb').write(data)
         subprocess.run([sys.executable, os.path.join(ROOT, 'tools', 'anim_pack.py'),
-                        os.path.join(OUT, f'{name}.webp'), os.path.join(RAW, f'{name}_L'),
-                        os.path.join(RAW, f'{name}_R'), os.path.join(OUT, f'{name}_anim.webp'),
+                        os.path.join(folder(name), f'{name}.webp'), os.path.join(RAW, f'{name}_L'),
+                        os.path.join(RAW, f'{name}_R'), os.path.join(folder(name), f'{name}_anim.webp'),
                         '--left-box', LEFT_BOX.get(name, '0,0,192,128'), '--right-box', '96,60,192,175'],
                        check=True, cwd=os.path.join(ROOT, 'tools'))
         print('packed', name, flush=True)

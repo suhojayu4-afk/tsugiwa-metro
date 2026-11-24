@@ -3,7 +3,8 @@ assets/art/cities/scenes/) into the app:
 
   - assets/my/catalog.json: one MY shop scene per place, tied to its station
     (shown at that station once owned). Items already there are replaced.
-  - assets/art/vanishing.json: where the rails meet in each picture.
+  - assets/art/vanishing.json: where the rails meet in each picture (also in
+    its rain and snow versions, tools/gen_city_weather.py).
   - assets/art/decor/vending_front/ + index.json: the people standing where
     MY platform decorations go (the pictures are the built-in platform
     redrawn, so they are compared with its empty crowd picture, like the
@@ -63,12 +64,27 @@ def catalog():
     print(len(items), 'scenes in the shop')
 
 
-def vanishing():
-    out = json.load(open(VANISHING, encoding='utf8'))
+WEATHER_DIR = os.path.join(ROOT, 'assets', 'art', 'weather')
+
+
+def pictures():
+    """(file name, folder) of every city picture: the scenes and their rain
+    and snow versions (tools/gen_city_weather.py), where drawn."""
+    out = []
     for key in PLACES:
         for p in PARTS:
-            name = f'{key}_{p}.webp'
-            x, y, n = find_vanishing.find(os.path.join(SCENES, name))
+            out.append((f'{key}_{p}.webp', SCENES))
+            for w in ('rain', 'snow'):
+                if os.path.exists(os.path.join(WEATHER_DIR, f'{key}_{p}_{w}.webp')):
+                    out.append((f'{key}_{p}_{w}.webp', WEATHER_DIR))
+    return out
+
+
+def vanishing():
+    out = json.load(open(VANISHING, encoding='utf8'))
+    for name, folder in pictures():
+        if True:
+            x, y, n = find_vanishing.find(os.path.join(folder, name))
             if n < 30 or not (210 <= x <= 245 and 82 <= y <= 112):
                 print('unsure', name, x, y, n)  # the app's usual point for a station scene
                 out.pop(name, None)
@@ -80,11 +96,11 @@ def vanishing():
 def masks():
     index = json.load(open(INDEX, encoding='utf8'))
     names, shifts = set(index['masks']), dict(index['shifts'])
-    for key in PLACES:
-        for p in PARTS:
-            name = f'{key}_{p}.webp'
-            moving = os.path.join(SCENES, f'{key}_{p}_anim.webp')
-            path = moving if os.path.exists(moving) else os.path.join(SCENES, name)
+    for name, folder in pictures():
+        if True:
+            p = name.split('_')[2].replace('.webp', '')
+            moving = os.path.join(folder, name.replace('.webp', '_anim.webp'))
+            path = moving if os.path.exists(moving) else os.path.join(folder, name)
             img = np.asarray(Image.open(path).convert('RGB'))
             ref = np.asarray(Image.open(os.path.join(ROOT, 'assets', 'art', 'crowd',
                                                      f'standard_{p}_relaxed.webp')).convert('RGB'))
