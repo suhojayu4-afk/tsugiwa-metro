@@ -1,0 +1,110 @@
+{
+ "osaka_castle_day": [
+  "cc0995e8-1af2-4665-9ce5-0b04c08b7aba",
+  "6297bab9-21ed-4634-b9df-4de2f99eb2d9"
+ ],
+ "osaka_castle_evening": [
+  "e7793967-b365-4ac3-99f6-4b8b4078d1b8",
+  "ec4ca4c7-1b09-4749-bece-c50b4c7288e7"
+ ],
+ "osaka_castle_night": [
+  "51b69651-d3a6-4c0a-b692-f7413312c6fb",
+  "a7e6314b-8df7-490d-8704-6bc81642a382"
+ ],
+ "osaka_umeda_day": [
+  "fa602b2a-7e69-4d10-928c-994cd5ebe59b",
+  "89caf2a1-1565-4e3d-941e-0b27b22231e9"
+ ],
+ "osaka_umeda_evening": [
+  "fda34818-9fee-46b8-a434-ecc1565b935d",
+  "b1795852-879a-4407-a0a3-6e40b7a9152f"
+ ],
+ "osaka_umeda_night": [
+  "5150128c-545b-459d-a27f-7608cbb5c926",
+  "35615da7-1ecd-4dcd-bec8-c480047f863e"
+ ],
+ "osaka_shinsekai_day": [
+  "5259b40f-d810-483b-b8bf-a973c7f2606a",
+  "4619151c-9e7f-493a-93d4-893dbfe22792"
+ ],
+ "osaka_shinsekai_evening": [
+  "ad68fdb8-dd11-4162-abbd-cb4626e3dc2e",
+  "409b1b48-9a7a-4e6d-b074-c3c33cb0590b"
+ ],
+ "osaka_shinsekai_night": [
+  "18452051-d369-472b-b13a-0dd7acaae495",
+  "c28ee24b-52c6-45bc-b0fb-92a82528c345"
+ ],
+ "fukuoka_nakasu_day": [
+  "80dfd455-2db0-44ff-be9f-89e1d938ab38",
+  "2045ab8a-6c17-4d94-8d56-5c989db45dec"
+ ],
+ "fukuoka_nakasu_evening": [
+  "ee3cc5da-a928-45f8-9952-7cb7c18c60b2",
+  "5b1f2014-fe3b-4dda-9919-b552694a56c8"
+ ],
+ "fukuoka_nakasu_night": [
+  "bc51f63f-9e65-4fe0-a869-daf653a5949a",
+  "4c4e09e5-0223-4c90-bf47-0fadf4e6cf55"
+ ],
+ "fukuoka_momochi_day": [
+  "de32e885-c1a6-4401-a53d-3f703acd79d8",
+  "e85dc3b7-3d7a-4d5c-beb9-459608c90880"
+ ],
+ "fukuoka_momochi_evening": [
+  "e8f4edda-f0fa-41c4-8af4-279c460a6fa3",
+  "0431329e-2e1e-41a0-8364-aaa175adf832"
+ ],
+ "fukuoka_momochi_night": [
+  "bbd87673-30e6-40ca-8462-1dadd1cf08a4",
+  "27086e8b-8187-48df-98ac-b2485c623dbc"
+ ],
+ "sendai_aoba_day": [
+  "5493387c-56a2-4067-942b-a85b3d2ab0ef",
+  "3825dd82-0725-4348-8194-db9235ce5aca"
+ ],
+ "sendai_aoba_evening": [
+  "66ad87da-e92c-415c-b129-a59e4f3dc16e",
+  "15bf20a6-0679-4ebd-abc8-2d20a1246065"
+ ],
+ "sendai_aoba_night": [
+  "a6d3fd3a-fe15-43d1-94ec-55b90b92eea7",
+  "9c6f3af5-87ad-4240-8278-403c42470821"
+ ],
+ "sendai_matsushima_day": [
+  "ab375e1b-f67d-42a2-ab38-760f80039119",
+  "3c1f6ccd-2b01-4846-b4f0-c9825bc263da"
+ ],
+ "sendai_matsushima_evening": [
+  "f6ad9f3a-1b64-47e5-966f-b49d850d94ca",
+  "914bd2c3-5801-485d-b95f-7e8f313c62d5"
+ ],
+ "sendai_matsushima_night": [
+  "5a25a0cf-74a1-4f5e-8b01-2a3d9c4b6765",
+  "8eeb1ab6-bd2b-4ffa-9936-0f89786a7377"
+ ],
+ "sapporo_odori_day": [
+  "d54ba72c-49e9-4ac3-b4e4-decb84d19767",
+  "28fdfb92-c8f9-40fc-b8b8-45b651166d34"
+ ],
+ "sapporo_odori_evening": [
+  "435b40ea-bc3f-408d-ba4d-c6d930d50348",
+  "dbed8463-c97a-468e-a5a3-8f8e90e138d3"
+ ],
+ "sapporo_odori_night": [
+  "f70563a3-49c9-4f27-82cd-94ffd8563724",
+  "5006d76f-13fc-423a-a7e6-f31187584086"
+ ],
+ "sapporo_otaru_day": [
+  "0e3e9ee1-4a71-478b-a425-b345f0a68707",
+  "1bbc7a2e-6c04-4f3f-9e44-14e601a4c84c"
+ ],
+ "sapporo_otaru_evening": [
+  "dc9e79a0-16ac-44db-beb1-ecd20fb55d71",
+  "d10f0744-7146-4566-8dde-5e3bcfed0ced"
+ ],
+ "sapporo_otaru_night": [
+  "83180d32-ca2f-4f7c-b2a1-aff18896c7eb",
+  "c8614ea2-e59e-40e8-8402-43d1894c91fd"
+ ]
+}

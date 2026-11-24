@@ -143,6 +143,30 @@
 225.7,
 98.9
 ],
+"fukuoka_momochi_day.webp": [
+226.5,
+99.2
+],
+"fukuoka_momochi_evening.webp": [
+226.2,
+98.9
+],
+"fukuoka_momochi_night.webp": [
+226.3,
+99.0
+],
+"fukuoka_nakasu_day.webp": [
+226.7,
+99.1
+],
+"fukuoka_nakasu_evening.webp": [
+226.2,
+99.0
+],
+"fukuoka_nakasu_night.webp": [
+226.2,
+99.0
+],
 "ginza_day.webp": [
 225.8,
 89.8
@@ -323,6 +347,42 @@
 226.4,
 99.1
 ],
+"osaka_castle_day.webp": [
+226.7,
+98.9
+],
+"osaka_castle_evening.webp": [
+226.4,
+98.8
+],
+"osaka_castle_night.webp": [
+226.0,
+99.3
+],
+"osaka_shinsekai_day.webp": [
+226.5,
+99.2
+],
+"osaka_shinsekai_evening.webp": [
+226.1,
+99.0
+],
+"osaka_shinsekai_night.webp": [
+226.0,
+99.5
+],
+"osaka_umeda_day.webp": [
+226.7,
+99.0
+],
+"osaka_umeda_evening.webp": [
+226.2,
+99.2
+],
+"osaka_umeda_night.webp": [
+226.1,
+99.0
+],
 "sakura_day.webp": [
 226.6,
 99.2
@@ -335,9 +395,53 @@
 226.0,
 99.0
 ],
+"sapporo_odori_day.webp": [
+226.6,
+99.1
+],
+"sapporo_odori_evening.webp": [
+226.3,
+98.6
+],
+"sapporo_odori_night.webp": [
+226.1,
+99.1
+],
+"sapporo_otaru_day.webp": [
+226.6,
+99.3
+],
+"sapporo_otaru_evening.webp": [
+226.3,
+99.1
+],
+"sapporo_otaru_night.webp": [
+226.1,
+99.6
+],
 "scene_underground.webp": [
 226.5,
 99.1
+],
+"sendai_aoba_day.webp": [
+226.5,
+99.1
+],
+"sendai_aoba_evening.webp": [
+226.3,
+99.0
+],
+"sendai_aoba_night.webp": [
+226.1,
+99.2
+],
+"sendai_matsushima_day.webp": [
+226.4,
+99.2
+],
+"sendai_matsushima_evening.webp": [
+226.2,
+98.8
 ],
 "shibuya_day.webp": [
 226.2,

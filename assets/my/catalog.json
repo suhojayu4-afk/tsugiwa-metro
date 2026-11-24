@@ -254,6 +254,159 @@
       "station": "tottori.koi_yamagata"
     },
     {
+      "id": "scene.osaka_umeda",
+      "slot": "scene",
+      "name": {
+        "ja": "大阪・梅田",
+        "ko": "오사카 우메다",
+        "en": "Osaka Umeda"
+      },
+      "price": 1000,
+      "priceYen": 250,
+      "images": {
+        "day": "assets/art/cities/scenes/osaka_umeda_day.webp",
+        "evening": "assets/art/cities/scenes/osaka_umeda_evening.webp",
+        "night": "assets/art/cities/scenes/osaka_umeda_night.webp"
+      },
+      "station": "osaka.osaka"
+    },
+    {
+      "id": "scene.osaka_castle",
+      "slot": "scene",
+      "name": {
+        "ja": "大阪城",
+        "ko": "오사카성",
+        "en": "Osaka Castle"
+      },
+      "price": 1000,
+      "priceYen": 250,
+      "images": {
+        "day": "assets/art/cities/scenes/osaka_castle_day.webp",
+        "evening": "assets/art/cities/scenes/osaka_castle_evening.webp",
+        "night": "assets/art/cities/scenes/osaka_castle_night.webp"
+      },
+      "station": "osaka.osakajokoen"
+    },
+    {
+      "id": "scene.osaka_shinsekai",
+      "slot": "scene",
+      "name": {
+        "ja": "新世界",
+        "ko": "신세카이",
+        "en": "Shinsekai"
+      },
+      "price": 1000,
+      "priceYen": 250,
+      "images": {
+        "day": "assets/art/cities/scenes/osaka_shinsekai_day.webp",
+        "evening": "assets/art/cities/scenes/osaka_shinsekai_evening.webp",
+        "night": "assets/art/cities/scenes/osaka_shinsekai_night.webp"
+      },
+      "station": "osaka.shin-imamiya"
+    },
+    {
+      "id": "scene.fukuoka_nakasu",
+      "slot": "scene",
+      "name": {
+        "ja": "中洲",
+        "ko": "나카스",
+        "en": "Nakasu"
+      },
+      "price": 1000,
+      "priceYen": 250,
+      "images": {
+        "day": "assets/art/cities/scenes/fukuoka_nakasu_day.webp",
+        "evening": "assets/art/cities/scenes/fukuoka_nakasu_evening.webp",
+        "night": "assets/art/cities/scenes/fukuoka_nakasu_night.webp"
+      },
+      "station": "fukuoka.nakasu-kawabata"
+    },
+    {
+      "id": "scene.fukuoka_momochi",
+      "slot": "scene",
+      "name": {
+        "ja": "ももち浜",
+        "ko": "모모치 해변",
+        "en": "Momochi Seaside"
+      },
+      "price": 1000,
+      "priceYen": 250,
+      "images": {
+        "day": "assets/art/cities/scenes/fukuoka_momochi_day.webp",
+        "evening": "assets/art/cities/scenes/fukuoka_momochi_evening.webp",
+        "night": "assets/art/cities/scenes/fukuoka_momochi_night.webp"
+      },
+      "station": "fukuoka.nishijin"
+    },
+    {
+      "id": "scene.sendai_aoba",
+      "slot": "scene",
+      "name": {
+        "ja": "仙台",
+        "ko": "센다이",
+        "en": "Sendai"
+      },
+      "price": 1000,
+      "priceYen": 250,
+      "images": {
+        "day": "assets/art/cities/scenes/sendai_aoba_day.webp",
+        "evening": "assets/art/cities/scenes/sendai_aoba_evening.webp",
+        "night": "assets/art/cities/scenes/sendai_aoba_night.webp"
+      },
+      "station": "sendai.sendai"
+    },
+    {
+      "id": "scene.sendai_matsushima",
+      "slot": "scene",
+      "name": {
+        "ja": "松島",
+        "ko": "마쓰시마",
+        "en": "Matsushima"
+      },
+      "price": 1000,
+      "priceYen": 250,
+      "images": {
+        "day": "assets/art/cities/scenes/sendai_matsushima_day.webp",
+        "evening": "assets/art/cities/scenes/sendai_matsushima_evening.webp",
+        "night": "assets/art/cities/scenes/sendai_matsushima_night.webp"
+      },
+      "station": "sendai.matsushima-kaigan"
+    },
+    {
+      "id": "scene.sapporo_odori",
+      "slot": "scene",
+      "name": {
+        "ja": "大通公園",
+        "ko": "오도리 공원",
+        "en": "Odori Park"
+      },
+      "price": 1000,
+      "priceYen": 250,
+      "images": {
+        "day": "assets/art/cities/scenes/sapporo_odori_day.webp",
+        "evening": "assets/art/cities/scenes/sapporo_odori_evening.webp",
+        "night": "assets/art/cities/scenes/sapporo_odori_night.webp"
+      },
+      "station": "sapporo.odori"
+    },
+    {
+      "id": "scene.sapporo_otaru",
+      "slot": "scene",
+      "name": {
+        "ja": "小樽運河",
+        "ko": "오타루 운하",
+        "en": "Otaru Canal"
+      },
+      "price": 1000,
+      "priceYen": 250,
+      "images": {
+        "day": "assets/art/cities/scenes/sapporo_otaru_day.webp",
+        "evening": "assets/art/cities/scenes/sapporo_otaru_evening.webp",
+        "night": "assets/art/cities/scenes/sapporo_otaru_night.webp"
+      },
+      "station": "sapporo.otaru"
+    },
+    {
       "id": "plate.basic",
       "slot": "plate",
       "name": {

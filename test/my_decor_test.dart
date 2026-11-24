@@ -37,6 +37,7 @@ void main() {
       'assets/art/weather',
       'assets/art/tottori',
       'assets/art/tottori/scenes',
+      'assets/art/cities/scenes',
     ]) {
       for (final f in Directory(dir).listSync().whereType<File>()) {
         final name = f.uri.pathSegments.last;
