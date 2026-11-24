@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'dart:ui' show Color;
 
@@ -115,7 +116,32 @@ class TripController extends ChangeNotifier {
     _gpsPermissionGiven = await _location.ensurePermission();
     if (!_gpsPermissionGiven || _timer == null) return;
     notifyListeners();
-    _gpsSub = _location.watch().listen(_onFix, onError: (_) {});
+    _watch(_powerNow);
+  }
+
+  /// How hard to look for the phone's place right now: closely for the last
+  /// two stops, hardly at all in a tunnel, lightly in between. The battery
+  /// lasts much longer than with the best fix all the way.
+  GpsPower get _powerNow {
+    final s = snapshot;
+    if (s.arrived || s.currentIndex >= plan.lastIndex - 2) return GpsPower.precise;
+    final here = plan.stops[s.currentIndex];
+    final next = plan.stops[math.min(s.currentIndex + 1, plan.lastIndex)];
+    if (here.underground && next.underground) return GpsPower.idle;
+    return GpsPower.cruise;
+  }
+
+  GpsPower? _power;
+
+  /// Listens at [power]; a change of power starts the stream afresh. The
+  /// new one is opened before the old one is closed, so on an iPhone the
+  /// trip never stands without a stream in the background.
+  void _watch(GpsPower power) {
+    if (_power == power && _gpsSub != null) return;
+    _power = power;
+    final old = _gpsSub;
+    _gpsSub = _location.watch(power: power, background: true).listen(_onFix, onError: (_) {});
+    old?.cancel();
   }
 
   void setSpeed(double value) {
@@ -148,6 +174,7 @@ class TripController extends ChangeNotifier {
 
   void _refresh() {
     snapshot = estimateTrip(plan, _elapsedSec, _clock());
+    if (_gpsSub != null && !_arrivedSent) _watch(_powerNow);
     _checkEvents();
     if (!_arrivedSent) _bridge.update(_liveStatus());
     notifyListeners();

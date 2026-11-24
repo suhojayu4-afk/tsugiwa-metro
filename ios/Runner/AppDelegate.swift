@@ -123,8 +123,31 @@ final class TsugiwaNative: NSObject, UNUserNotificationCenterDelegate {
         let ok = status == .authorized || status == .provisional || status == .ephemeral
         DispatchQueue.main.async { result(ok) }
       }
+    case "start":
+      // A trip begins: ask once for notifications, so "next stop is yours"
+      // and "arrived" can be shown while the app is in the background.
+      center.requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in
+        DispatchQueue.main.async { result(nil) }
+      }
+    case "alert":
+      // "Next stop is yours" / "arrived": shown at once, also on the lock screen.
+      let kind = args["kind"] as? String ?? "approaching"
+      let content = UNMutableNotificationContent()
+      content.title = args["title"] as? String ?? ""
+      content.body = args["text"] as? String ?? ""
+      content.sound = UNNotificationSound.default
+      content.threadIdentifier = "tsugiwa.trip"
+      let request = UNNotificationRequest(identifier: "tsugiwa.trip." + kind, content: content, trigger: nil)
+      center.add(request) { _ in }
+      result(nil)
+    case "update":
+      // The lock-screen trip view is not on iPhone yet; the trip itself runs on.
+      result(nil)
+    case "end":
+      // The trip is over: its notices leave the lock screen.
+      center.removeDeliveredNotifications(withIdentifiers: ["tsugiwa.trip.approaching"])
+      result(nil)
     default:
-      // start / update / alert / end: lock-screen trip view, not on iPhone yet.
       result(FlutterMethodNotImplemented)
     }
   }

@@ -9,7 +9,11 @@
 	<key>CFBundleDisplayName</key>
 	<string>つぎは Metro</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>乗っている電車の位置をより正確に表示するためにGPSを使います。</string>
+	<string>乗っている電車の位置を表示し、降りる駅を知らせるためにGPSを使います。追跡中は、アプリを閉じていても続けます。</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

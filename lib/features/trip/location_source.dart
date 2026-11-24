@@ -1,7 +1,22 @@
+import 'package:flutter/foundation.dart' show TargetPlatform, defaultTargetPlatform;
 import 'package:flutter_compass/flutter_compass.dart';
 import 'package:geolocator/geolocator.dart';
 
 import 'trip_estimator.dart';
+
+/// How hard the phone looks for its place during a ride. Finding it costs
+/// battery, so a trip asks only for what it needs at each moment.
+enum GpsPower {
+  /// Near the destination: the best fix, often (getting off at the right stop).
+  precise,
+
+  /// Riding along above ground: to about a hundred metres, now and then.
+  cruise,
+
+  /// Underground, where no fix comes anyway: the least the phone can do
+  /// while still keeping the trip alive in the background.
+  idle,
+}
 
 /// GPS input. Swappable so tests and the emulator can run without real GPS.
 abstract class LocationSource {
@@ -11,8 +26,14 @@ abstract class LocationSource {
   /// Whether permission is already given (never asks).
   Future<bool> hasPermission();
 
-  /// Emits fixes while listened to. Call [ensurePermission] first.
-  Stream<GpsFix> watch();
+  /// Emits fixes while listened to. Call [ensurePermission] first. On an
+  /// iPhone the stream also keeps the trip running while the app is in the
+  /// background (the phone shows its blue location mark meanwhile).
+  ///
+  /// [background]: keep running with the app in the background (a trip).
+  /// A screen that only shows where the user is leaves it false, so the
+  /// phone stops looking when the app is put away.
+  Stream<GpsFix> watch({GpsPower power = GpsPower.precise, bool background = false});
 
   /// One position right now (or the last known one), null if unavailable.
   Future<GpsFix?> currentFix();
@@ -59,10 +80,41 @@ class GeolocatorLocationSource implements LocationSource {
   }
 
   @override
-  Stream<GpsFix> watch() {
+  Stream<GpsFix> watch({GpsPower power = GpsPower.precise, bool background = false}) {
     return Geolocator.getPositionStream(
-      locationSettings: const LocationSettings(accuracy: LocationAccuracy.high, distanceFilter: 30),
+      locationSettings: settingsFor(power, defaultTargetPlatform, background: background),
     ).map((p) => GpsFix(lat: p.latitude, lng: p.longitude, accuracyM: p.accuracy, time: p.timestamp));
+  }
+
+  /// What is asked of the phone at each [power].
+  static LocationSettings settingsFor(GpsPower power, TargetPlatform platform, {bool background = false}) {
+    final (accuracy, metres, seconds) = switch (power) {
+      GpsPower.precise => (LocationAccuracy.high, 30, 4),
+      GpsPower.cruise => (LocationAccuracy.medium, 120, 15),
+      GpsPower.idle => (LocationAccuracy.low, 400, 60),
+    };
+    if (platform == TargetPlatform.iOS) {
+      return AppleSettings(
+        accuracy: accuracy,
+        distanceFilter: metres,
+        activityType: ActivityType.otherNavigation,
+        // Never paused by the phone: a paused stream does not come back by
+        // itself in the background and the trip would stop there.
+        pauseLocationUpdatesAutomatically: !background,
+        // The trip goes on with the app in the background (Info.plist:
+        // UIBackgroundModes location); the phone shows its blue mark.
+        allowBackgroundLocationUpdates: background,
+        showBackgroundLocationIndicator: background,
+      );
+    }
+    if (platform == TargetPlatform.android) {
+      return AndroidSettings(
+        accuracy: accuracy,
+        distanceFilter: metres,
+        intervalDuration: Duration(seconds: seconds),
+      );
+    }
+    return LocationSettings(accuracy: accuracy, distanceFilter: metres);
   }
 
   @override
@@ -82,7 +134,7 @@ class NoLocationSource implements LocationSource {
   @override
   Future<GpsFix?> currentFix() async => null;
   @override
-  Stream<GpsFix> watch() => const Stream.empty();
+  Stream<GpsFix> watch({GpsPower power = GpsPower.precise, bool background = false}) => const Stream.empty();
   @override
   Stream<double> heading() => const Stream.empty();
 }

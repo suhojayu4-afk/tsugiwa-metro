@@ -42,7 +42,7 @@ class _FixedLocation implements LocationSource {
   @override
   Future<bool> hasPermission() async => true;
   @override
-  Stream<GpsFix> watch() => const Stream.empty();
+  Stream<GpsFix> watch({GpsPower power = GpsPower.precise, bool background = false}) => const Stream.empty();
   @override
   Future<GpsFix?> currentFix() async => fix;
 
