@@ -533,6 +533,9 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get myCoinsLimited => 'You\'ve reached today\'s coin limit';
+
+  @override
   String get myUse => 'Use';
 
   @override

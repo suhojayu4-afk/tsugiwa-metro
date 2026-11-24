@@ -350,6 +350,7 @@
   "myGot": "{name} を手に入れた！",
   "myEarnRules": "移動するたびに +{trip}・はじめての駅 +{visit}・その日はじめて +{day}",
   "myCoinsEarned": "+{coins} コイン",
+  "myCoinsLimited": "今日のコインは上限に達しました",
   "myUse": "つかう",
   "@myBuyCoins": {
     "placeholders": {

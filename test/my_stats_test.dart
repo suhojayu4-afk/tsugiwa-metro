@@ -46,7 +46,14 @@ void main() {
     expect(await s.useInvite(s.inviteCode), InviteResult.own);
     expect(await s.useInvite('abc'), InviteResult.invalid);
     final before = s.coins;
-    final friend = s.inviteCode == 'ACDEFG' ? 'GFEDCA' : 'ACDEFG';
+    var friend = MyStore.newInvite();
+    while (friend == s.inviteCode) {
+      friend = MyStore.newInvite();
+    }
+    // A code typed at random has the wrong check letters.
+    final wrong = friend.substring(0, 5) + (friend[5] == 'A' ? 'C' : 'A');
+    expect(MyStore.validInvite(wrong), isFalse);
+    expect(await s.useInvite(wrong), InviteResult.invalid);
     expect(await s.useInvite(friend.toLowerCase()), InviteResult.ok);
     expect(s.coins, before + MyStore.inviteCoins);
     expect(await s.useInvite(friend), InviteResult.used);

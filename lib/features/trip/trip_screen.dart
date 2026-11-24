@@ -390,6 +390,7 @@ class _ArrivedCard extends StatelessWidget {
           if (reward != null && reward!.total > 0) ...[
             const SizedBox(height: 10),
             PixelText(t.myCoinsEarned(reward!.total), size: 22, bold: true, color: const Color(0xFFB7791F)),
+            if (reward!.limited) PixelText(t.myCoinsLimited, size: 12, color: PixelColors.muted),
           ],
           if (reward != null && reward!.stamped.isNotEmpty) ...[
             PixelText(t.arrivedStamps(reward!.stamped.length), size: 17, color: const Color(0xFFB7791F)),

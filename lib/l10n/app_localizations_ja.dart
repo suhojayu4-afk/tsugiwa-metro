@@ -518,6 +518,9 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String get myCoinsLimited => '今日のコインは上限に達しました';
+
+  @override
   String get myUse => 'つかう';
 
   @override

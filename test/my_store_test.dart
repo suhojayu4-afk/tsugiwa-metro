@@ -44,6 +44,50 @@ void main() {
     expect(store.coins, r1.total + r2.total);
   });
 
+  test('coins from riding have a daily limit, smaller when the location did not confirm the ride', () async {
+    final rules = catalog.rules;
+    final day = DateTime(2026, 11, 24, 9);
+    // Confirmed rides: ten a day pay, the eleventh does not; the next day pays again.
+    final a = MyStore(unlimited: false);
+    await a.load(catalog: catalog);
+    for (var i = 0; i < MyStore.coinTripsPerDay; i++) {
+      final r = await a.rewardTrip(['s$i', 't$i'], now: day);
+      expect(r.trip, rules.perTrip, reason: 'trip $i');
+      expect(r.limited, isFalse);
+    }
+    final over = await a.rewardTrip(['x', 'y'], now: day);
+    expect(over.total, 0);
+    expect(over.limited, isTrue);
+    // ... but its stations are stamped all the same.
+    expect(a.stamped('x'), isTrue);
+    expect((await a.rewardTrip(['x', 'z'], now: day.add(const Duration(days: 1)))).trip, rules.perTrip);
+
+    // Unconfirmed rides: three a day pay, and first-visit coins for ten stations.
+    SharedPreferences.setMockInitialValues({});
+    final b = MyStore(unlimited: false);
+    await b.load(catalog: catalog);
+    final first = await b.rewardTrip([for (var i = 0; i < 14; i++) 'n$i'], now: day, confirmed: false);
+    expect(first.newStations, MyStore.unconfirmedNewStationsPerDay * rules.firstVisit);
+    expect(first.limited, isTrue);
+    expect(first.stamped, hasLength(14));
+    expect((await b.rewardTrip(['p', 'q'], now: day, confirmed: false)).newStations, 0);
+    expect((await b.rewardTrip(['r', 's'], now: day, confirmed: false)).trip, rules.perTrip);
+    expect((await b.rewardTrip(['t', 'u'], now: day, confirmed: false)).total, 0);
+    // A confirmed ride the same day still pays in full.
+    final real = await b.rewardTrip(['v', 'w'], now: day);
+    expect(real.trip, rules.perTrip);
+    expect(real.newStations, 2 * rules.firstVisit);
+    // The count survives a restart.
+    final again = MyStore(unlimited: false);
+    await again.load(catalog: catalog);
+    expect((await again.rewardTrip(['y1', 'y2'], now: day, confirmed: false)).total, 0);
+  });
+
+  test('endless coins are a build switch that is off unless a test build asks for it', () {
+    expect(unlimitedCoins, isFalse);
+    expect(MyStore().unlimited, isFalse);
+  });
+
   test('test builds: unlimited coins, buying costs nothing', () async {
     final store = MyStore(unlimited: true);
     await store.load(catalog: catalog);

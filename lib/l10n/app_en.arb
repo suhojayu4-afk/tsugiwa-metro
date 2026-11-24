@@ -146,6 +146,7 @@
   "myGot": "You got {name}!",
   "myEarnRules": "Every trip +{trip} · new station +{visit} · first trip of the day +{day}",
   "myCoinsEarned": "+{coins} coins",
+  "myCoinsLimited": "You've reached today's coin limit",
   "myUse": "Use",
   "myTabPlate": "LED",
   "myLocked": "Limited",

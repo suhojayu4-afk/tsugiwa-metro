@@ -976,6 +976,12 @@ abstract class AppLocalizations {
   /// **'+{coins} コイン'**
   String myCoinsEarned(int coins);
 
+  /// No description provided for @myCoinsLimited.
+  ///
+  /// In ja, this message translates to:
+  /// **'今日のコインは上限に達しました'**
+  String get myCoinsLimited;
+
   /// No description provided for @myUse.
   ///
   /// In ja, this message translates to:

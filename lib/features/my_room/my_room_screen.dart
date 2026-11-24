@@ -229,7 +229,7 @@ class MyRoomScreenState extends State<MyRoomScreen> {
             Expanded(child: PixelText(t.myTitle, size: 30)),
             const SettingsGearButton(),
             const SizedBox(width: 4),
-            _CoinChip(coins: _store.coins, onTap: _openCoinShop),
+            _CoinChip(coins: _store.coins, onTap: _openCoinShop, test: _store.unlimited),
           ],
         ),
         const SizedBox(height: 14),
@@ -389,8 +389,11 @@ class MyRoomScreenState extends State<MyRoomScreen> {
 }
 
 class _CoinChip extends StatelessWidget {
-  const _CoinChip({required this.coins, required this.onTap});
+  const _CoinChip({required this.coins, required this.onTap, this.test = false});
   final int coins;
+
+  /// A test build with endless coins: marked, so it is never shipped unnoticed.
+  final bool test;
   final VoidCallback onTap;
 
   @override
@@ -408,6 +411,14 @@ class _CoinChip extends StatelessWidget {
         children: [
           const CoinIcon(size: 22),
           const SizedBox(width: 8),
+          if (test) ...[
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+              color: const Color(0xFFD8402C),
+              child: const PixelText('TEST', size: 12, bold: true, color: PixelColors.card),
+            ),
+            const SizedBox(width: 6),
+          ],
           PixelText('$coins', size: 20, bold: true),
           const SizedBox(width: 8),
           Container(

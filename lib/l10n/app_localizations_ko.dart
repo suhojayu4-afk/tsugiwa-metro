@@ -518,6 +518,9 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
+  String get myCoinsLimited => '오늘 받을 수 있는 코인을 다 받았어요';
+
+  @override
   String get myUse => '사용하기';
 
   @override

@@ -146,6 +146,7 @@
   "myGot": "{name}을(를) 얻었어요!",
   "myEarnRules": "이동할 때마다 +{trip} · 처음 가는 역 +{visit} · 그날 첫 이동 +{day}",
   "myCoinsEarned": "+{coins} 코인",
+  "myCoinsLimited": "오늘 받을 수 있는 코인을 다 받았어요",
   "myUse": "사용하기",
   "myTabPlate": "행선 LED",
   "myLocked": "한정",

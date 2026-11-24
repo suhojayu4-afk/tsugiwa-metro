@@ -17,7 +17,11 @@ class TripReward {
     this.stamped = const [],
     this.completedLines = const [],
     this.unlocked = const [],
+    this.limited = false,
   });
+
+  /// Today's coin limit cut this trip's coins (see MyStore.coinTripsPerDay).
+  final bool limited;
   final int trip;
   final int newStations;
   final int firstOfDay;
@@ -111,7 +115,10 @@ class PlateText {
 }
 
 /// Test builds only (`--dart-define=TSUGIWA_UNLIMITED_COINS=true`, see
-/// codemagic.yaml): coins never run out. Off in normal builds.
+/// codemagic.yaml): coins never run out. Off in normal builds: it can only
+/// be set when the app is built, never in an installed app, and a build
+/// that has it says so on the MY screen (a red TEST mark by the coins) so
+/// it cannot be shipped unnoticed. A store build must not pass it.
 const unlimitedCoins = bool.fromEnvironment('TSUGIWA_UNLIMITED_COINS');
 const unlimitedCoinsShown = 999999;
 
@@ -141,6 +148,23 @@ class MyStore extends ChangeNotifier {
 
   /// Coins for entering a friend's invite code (once).
   static const inviteCoins = 300;
+
+  /// Coins from riding have a daily limit, so they cannot be collected
+  /// without end: this many trips a day pay coins.
+  static const coinTripsPerDay = 10;
+
+  /// A trip the phone's location could not confirm (deep underground, or
+  /// location off - or nobody riding at all) still counts and still stamps
+  /// its stations, but fewer of them pay: this many trips a day, and
+  /// first-visit coins for this many stations a day.
+  static const unconfirmedCoinTripsPerDay = 3;
+  static const unconfirmedNewStationsPerDay = 10;
+
+  // Today's count for the limits above (Japan date).
+  String? _limitDay;
+  int _paidTrips = 0;
+  int _paidUnconfirmedTrips = 0;
+  int _paidUnconfirmedStations = 0;
 
   /// Trips kept for the ride report.
   static const _keepTrips = 400;
@@ -180,7 +204,30 @@ class MyStore extends ChangeNotifier {
   String get inviteCode => _invite;
   bool get inviteUsed => _inviteUsed;
 
-  static bool validInvite(String code) => RegExp(r'^[ACDEFGHJKLMNPQRTUVWXY3479]{6}$').hasMatch(code);
+  static const _inviteLetters = 'ACDEFGHJKLMNPQRTUVWXY3479';
+
+  /// The two check letters of an invite code's first four: a code typed at
+  /// random is almost never a real one (1 in 625).
+  static String _inviteCheck(String four) {
+    var h = 7;
+    for (final c in four.codeUnits) {
+      h = (h * 31 + c) % 625;
+    }
+    return _inviteLetters[h ~/ 25] + _inviteLetters[h % 25];
+  }
+
+  static bool validInvite(String code) =>
+      RegExp(r'^[ACDEFGHJKLMNPQRTUVWXY3479]{6}$').hasMatch(code) &&
+      _inviteCheck(code.substring(0, 4)) == code.substring(4);
+
+  /// A new invite code: four letters and their two check letters.
+  static String newInvite([math.Random? random]) {
+    final r = random ?? math.Random.secure();
+    final four = String.fromCharCodes([
+      for (var i = 0; i < 4; i++) _inviteLetters.codeUnitAt(r.nextInt(_inviteLetters.length)),
+    ]);
+    return four + _inviteCheck(four);
+  }
 
   /// A friend's code: [inviteCoins] coins, once, and not your own.
   Future<InviteResult> useInvite(String code) async {
@@ -252,11 +299,13 @@ class MyStore extends ChangeNotifier {
       // The ride report is a nicety; start it again.
     }
     _inviteUsed = prefs.getBool('$prefix.inviteUsed') ?? false;
+    _limitDay = prefs.getString('$prefix.limitDay');
+    _paidTrips = prefs.getInt('$prefix.paidTrips') ?? 0;
+    _paidUnconfirmedTrips = prefs.getInt('$prefix.paidUnconfirmedTrips') ?? 0;
+    _paidUnconfirmedStations = prefs.getInt('$prefix.paidUnconfirmedStations') ?? 0;
     _invite = prefs.getString('$prefix.invite') ?? '';
     if (!validInvite(_invite)) {
-      const letters = 'ACDEFGHJKLMNPQRTUVWXY3479';
-      final r = math.Random.secure();
-      _invite = String.fromCharCodes([for (var i = 0; i < 6; i++) letters.codeUnitAt(r.nextInt(letters.length))]);
+      _invite = newInvite();
       await prefs.setString('$prefix.invite', _invite);
     }
     _equipped.clear();
@@ -330,8 +379,15 @@ class MyStore extends ChangeNotifier {
 
   /// Coins for a finished trip: per trip, first visit to each station, and
   /// a small bonus for the first trip of the day (Japan time). New stations
-  /// are stamped; finishing a line gives its reward item.
-  Future<TripReward> rewardTrip(List<String> stationIds, {DateTime? now, List<String> ridden = const []}) async {
+  /// are stamped; finishing a line gives its reward item. [confirmed]: the
+  /// phone's location showed the ride really happened; without it the day's
+  /// smaller limits apply (see [unconfirmedCoinTripsPerDay]).
+  Future<TripReward> rewardTrip(
+    List<String> stationIds, {
+    DateTime? now,
+    List<String> ridden = const [],
+    bool confirmed = true,
+  }) async {
     final rules = _catalog?.rules ?? const CoinRules();
     final jst = now ?? DateTime.now().toUtc().add(const Duration(hours: 9));
     final day = jst.toIso8601String().substring(0, 10);
@@ -351,10 +407,28 @@ class MyStore extends ChangeNotifier {
     ];
     final unlocked = [for (final l in completed) ?rewardFor(l)?.id];
     _owned.addAll(unlocked);
+    if (_limitDay != day) {
+      _limitDay = day;
+      _paidTrips = _paidUnconfirmedTrips = _paidUnconfirmedStations = 0;
+    }
+    final pays = _paidTrips < coinTripsPerDay && (confirmed || _paidUnconfirmedTrips < unconfirmedCoinTripsPerDay);
+    final paidStations = !pays
+        ? 0
+        : confirmed
+        ? fresh.length
+        : math.min(fresh.length, unconfirmedNewStationsPerDay - _paidUnconfirmedStations);
+    if (pays) {
+      _paidTrips++;
+      if (!confirmed) {
+        _paidUnconfirmedTrips++;
+        _paidUnconfirmedStations += paidStations;
+      }
+    }
     final reward = TripReward(
-      trip: rules.perTrip,
-      newStations: fresh.length * rules.firstVisit,
-      firstOfDay: _lastTripDay == day ? 0 : rules.firstTripOfDay,
+      trip: pays ? rules.perTrip : 0,
+      newStations: paidStations * rules.firstVisit,
+      firstOfDay: _lastTripDay == day || !pays ? 0 : rules.firstTripOfDay,
+      limited: !pays || paidStations < fresh.length,
       stamped: fresh,
       completedLines: completed,
       unlocked: unlocked,
@@ -438,5 +512,9 @@ class MyStore extends ChangeNotifier {
     await prefs.setString('$prefix.plate', jsonEncode(_plate.toJson()));
     await prefs.setString('$prefix.trips', jsonEncode([for (final t in _trips) t.toJson()]));
     await prefs.setBool('$prefix.inviteUsed', _inviteUsed);
+    if (_limitDay != null) await prefs.setString('$prefix.limitDay', _limitDay!);
+    await prefs.setInt('$prefix.paidTrips', _paidTrips);
+    await prefs.setInt('$prefix.paidUnconfirmedTrips', _paidUnconfirmedTrips);
+    await prefs.setInt('$prefix.paidUnconfirmedStations', _paidUnconfirmedStations);
   }
 }

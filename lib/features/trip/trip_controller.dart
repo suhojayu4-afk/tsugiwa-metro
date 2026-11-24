@@ -52,6 +52,17 @@ class TripController extends ChangeNotifier {
   bool _approachingSent = false;
   bool _arrivedSent = false;
 
+  // What the phone's location showed of this ride, for the coins: where it
+  // was first seen, how far from there it got, and whether it came near
+  // the last station.
+  GpsFix? _firstFix;
+  double _movedM = 0;
+  bool _nearEnd = false;
+
+  /// The location showed a real ride: the phone moved a good way, or was
+  /// seen at the station where the trip ends (not just where it began).
+  bool get rideConfirmed => _movedM >= 600 || (_nearEnd && _movedM >= 200);
+
   /// Coins earned by this trip, once arrived.
   TripReward? reward;
 
@@ -106,6 +117,13 @@ class TripController extends ChangeNotifier {
   }
 
   void _onFix(GpsFix fix) {
+    if (fix.accuracyM <= 150) {
+      final first = _firstFix ??= fix;
+      final moved = distanceMeters(first.lat, first.lng, fix.lat, fix.lng);
+      if (moved > _movedM) _movedM = moved;
+      final end = city.station(plan.stops.last.stationId);
+      if (distanceMeters(fix.lat, fix.lng, end.lat, end.lng) <= 500) _nearEnd = true;
+    }
     final delta = gpsCorrection(plan, city, fix, _elapsedSec);
     if (delta != null) {
       _lastGoodFix = _clock();
@@ -180,9 +198,11 @@ class TripController extends ChangeNotifier {
   Future<void> _giveCoins() async {
     final store = Services.my;
     if (!store.loaded) await store.load();
-    reward = await store.rewardTrip([
-      for (final s in plan.stops) s.stationId,
-    ], ridden: {for (final s in plan.stops) s.lineId}.toList());
+    reward = await store.rewardTrip(
+      [for (final s in plan.stops) s.stationId],
+      ridden: {for (final s in plan.stops) s.lineId}.toList(),
+      confirmed: rideConfirmed,
+    );
     // A picture postcard from where the user got off (旅のアルバム).
     await PostcardBook.instance.add(
       my: store,
