@@ -13,10 +13,14 @@ import '../../core/localized_text.dart';
 class AppCity {
   static const key = 'settings.city';
   static const receivedKey = 'settings.cities';
-  static const choices = ['tokyo', 'tottori'];
+  static const choices = ['tokyo', 'tottori', 'osaka', 'fukuoka', 'sendai', 'sapporo'];
   static const names = {
     'tokyo': LocalizedText({'ja': '東京・関東', 'ko': '도쿄·간토', 'en': 'Tokyo & Kanto'}),
     'tottori': LocalizedText({'ja': '鳥取・米子', 'ko': '돗토리·요나고', 'en': 'Tottori & Yonago'}),
+    'osaka': LocalizedText({'ja': '大阪', 'ko': '오사카', 'en': 'Osaka'}),
+    'fukuoka': LocalizedText({'ja': '福岡', 'ko': '후쿠오카', 'en': 'Fukuoka'}),
+    'sendai': LocalizedText({'ja': '仙台・松島', 'ko': '센다이·마쓰시마', 'en': 'Sendai & Matsushima'}),
+    'sapporo': LocalizedText({'ja': '札幌・小樽', 'ko': '삿포로·오타루', 'en': 'Sapporo & Otaru'}),
   };
 
   /// Listened to by the city loader (lib/app.dart).

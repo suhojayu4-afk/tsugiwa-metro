@@ -32,6 +32,10 @@ flutter:
     - assets/cities/
     - assets/cities/tokyo/
     - assets/cities/tottori/
+    - assets/cities/osaka/
+    - assets/cities/fukuoka/
+    - assets/cities/sendai/
+    - assets/cities/sapporo/
     - assets/art/
     - assets/art/landmarks/
     - assets/art/scenes/
@@ -64,6 +68,18 @@ flutter:
     - assets/art/tottori/diesel/
     - assets/art/tottori/sl/
     - assets/art/tottori/scenes/
+    - assets/art/osaka/
+    - assets/art/osaka/landmarks/
+    - assets/art/osaka/map_tiles/
+    - assets/art/fukuoka/
+    - assets/art/fukuoka/landmarks/
+    - assets/art/fukuoka/map_tiles/
+    - assets/art/sendai/
+    - assets/art/sendai/landmarks/
+    - assets/art/sendai/map_tiles/
+    - assets/art/sapporo/
+    - assets/art/sapporo/landmarks/
+    - assets/art/sapporo/map_tiles/
     - assets/my/
     - assets/sounds/
     - assets/fonts/licenses/

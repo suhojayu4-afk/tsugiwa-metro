@@ -456,7 +456,7 @@ class _NextTrain extends StatelessWidget {
             : realDepartures(city, leg.lineId, leg.stationIds.first, leg.stationIds.last, jst);
         if (live != null) {
           main = t.nextTrainIn(live);
-        } else if (real.isNotEmpty && (tt == null || tt.inService(jst))) {
+        } else if (real.isNotEmpty && missed.isEmpty && (tt == null || tt.inService(jst))) {
           final d = real.first;
           main = t.departsIn(LineTimetable.clock(d.departMin), d.departMin - nowMin);
           extra.add(trainText(t, city, d, lang));

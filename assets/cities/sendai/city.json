@@ -1,0 +1,24 @@
+{
+ "id": "sendai",
+ "name": {
+  "ja": "仙台",
+  "ko": "센다이",
+  "en": "Sendai"
+ },
+ "timezone": "Asia/Tokyo",
+ "center": {
+  "lat": 38.26,
+  "lng": 140.88
+ },
+ "lines": [
+  "sendai.namboku",
+  "sendai.tozai",
+  "sendai.senseki"
+ ],
+ "weather": {
+  "forecastOffice": "040000",
+  "forecastArea": "040010",
+  "amedas": "34392"
+ },
+ "dataNote": "Stations and lines: OpenStreetMap contributors (ODbL). Run times and headways are approximate estimates. Replace with licensed timetable data later."
+}

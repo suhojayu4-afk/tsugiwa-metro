@@ -1,0 +1,724 @@
+[
+ {
+  "id": "sendai.izumi-chuo",
+  "name": {
+   "ja": "泉中央",
+   "ko": "이즈미중앙",
+   "en": "Izumi-Chuo"
+  },
+  "kana": "いずみちゅうおう",
+  "geo": {
+   "lat": 38.323211,
+   "lng": 140.880693
+  },
+  "lines": [
+   "sendai.namboku"
+  ]
+ },
+ {
+  "id": "sendai.yaotome",
+  "name": {
+   "ja": "八乙女",
+   "ko": "야오토메",
+   "en": "Yaotome"
+  },
+  "kana": "やおとめ",
+  "geo": {
+   "lat": 38.313206,
+   "lng": 140.88378
+  },
+  "lines": [
+   "sendai.namboku"
+  ]
+ },
+ {
+  "id": "sendai.kuromatsu",
+  "name": {
+   "ja": "黒松",
+   "ko": "구로마쓰",
+   "en": "Kuromatsu"
+  },
+  "kana": "くろまつ",
+  "geo": {
+   "lat": 38.303112,
+   "lng": 140.886421
+  },
+  "lines": [
+   "sendai.namboku"
+  ]
+ },
+ {
+  "id": "sendai.asahigaoka",
+  "name": {
+   "ja": "旭ケ丘",
+   "ko": "아사히가오카",
+   "en": "Asahigaoka"
+  },
+  "kana": "あさひがおか",
+  "geo": {
+   "lat": 38.295848,
+   "lng": 140.883704
+  },
+  "lines": [
+   "sendai.namboku"
+  ]
+ },
+ {
+  "id": "sendai.dainohara",
+  "name": {
+   "ja": "台原",
+   "ko": "다이노하라",
+   "en": "Dainohara"
+  },
+  "kana": "だいのはら",
+  "geo": {
+   "lat": 38.288318,
+   "lng": 140.878352
+  },
+  "lines": [
+   "sendai.namboku"
+  ]
+ },
+ {
+  "id": "sendai.kita-sendai",
+  "name": {
+   "ja": "北仙台",
+   "ko": "기타센다이",
+   "en": "Kita-Sendai"
+  },
+  "kana": "きたせんだい",
+  "geo": {
+   "lat": 38.28253,
+   "lng": 140.868852
+  },
+  "lines": [
+   "sendai.namboku"
+  ]
+ },
+ {
+  "id": "sendai.kita-yobancho",
+  "name": {
+   "ja": "北四番丁",
+   "ko": "기타요반초",
+   "en": "Kita-Yobancho"
+  },
+  "kana": "きたよばんちょう",
+  "geo": {
+   "lat": 38.272036,
+   "lng": 140.86913
+  },
+  "lines": [
+   "sendai.namboku"
+  ]
+ },
+ {
+  "id": "sendai.kotodai-koen",
+  "name": {
+   "ja": "勾当台公園",
+   "ko": "고토다이코엔",
+   "en": "Kotodai-koen"
+  },
+  "kana": "こうとうだいこうえん",
+  "geo": {
+   "lat": 38.266793,
+   "lng": 140.871169
+  },
+  "lines": [
+   "sendai.namboku"
+  ]
+ },
+ {
+  "id": "sendai.hirose-dori",
+  "name": {
+   "ja": "広瀬通",
+   "ko": "히로세도리",
+   "en": "Hirose-dori"
+  },
+  "kana": "ひろせどおり",
+  "geo": {
+   "lat": 38.262861,
+   "lng": 140.875485
+  },
+  "lines": [
+   "sendai.namboku"
+  ]
+ },
+ {
+  "id": "sendai.sendai",
+  "name": {
+   "ja": "仙台",
+   "ko": "센다이",
+   "en": "Sendai"
+  },
+  "kana": "せんだい",
+  "geo": {
+   "lat": 38.259753,
+   "lng": 140.880025
+  },
+  "lines": [
+   "sendai.namboku",
+   "sendai.tozai",
+   "sendai.senseki"
+  ]
+ },
+ {
+  "id": "sendai.itsutsubashi",
+  "name": {
+   "ja": "五橋",
+   "ko": "이쓰쓰바시",
+   "en": "Itsutsubashi"
+  },
+  "kana": "いつつばし",
+  "geo": {
+   "lat": 38.251864,
+   "lng": 140.881079
+  },
+  "lines": [
+   "sendai.namboku"
+  ]
+ },
+ {
+  "id": "sendai.atagobashi",
+  "name": {
+   "ja": "愛宕橋",
+   "ko": "아타고바시",
+   "en": "Atagobashi"
+  },
+  "kana": "あたごばし",
+  "geo": {
+   "lat": 38.247419,
+   "lng": 140.881686
+  },
+  "lines": [
+   "sendai.namboku"
+  ]
+ },
+ {
+  "id": "sendai.kawaramachi",
+  "name": {
+   "ja": "河原町",
+   "ko": "가와라마치",
+   "en": "Kawaramachi"
+  },
+  "kana": "かわらまち",
+  "geo": {
+   "lat": 38.24072,
+   "lng": 140.887858
+  },
+  "lines": [
+   "sendai.namboku"
+  ]
+ },
+ {
+  "id": "sendai.nagamachi-1-chome",
+  "name": {
+   "ja": "長町一丁目",
+   "ko": "나가마치1초메",
+   "en": "Nagamachi 1-chome"
+  },
+  "kana": "ながまちいっちょうめ",
+  "geo": {
+   "lat": 38.234337,
+   "lng": 140.887571
+  },
+  "lines": [
+   "sendai.namboku"
+  ]
+ },
+ {
+  "id": "sendai.nagamachi",
+  "name": {
+   "ja": "長町",
+   "ko": "나가마치",
+   "en": "Nagamachi"
+  },
+  "kana": "ながまち",
+  "geo": {
+   "lat": 38.228529,
+   "lng": 140.884886
+  },
+  "lines": [
+   "sendai.namboku"
+  ]
+ },
+ {
+  "id": "sendai.nagamachi-minami",
+  "name": {
+   "ja": "長町南",
+   "ko": "나가마치미나미",
+   "en": "Nagamachi-Minami"
+  },
+  "kana": "ながまちみなみ",
+  "geo": {
+   "lat": 38.224698,
+   "lng": 140.87708
+  },
+  "lines": [
+   "sendai.namboku"
+  ]
+ },
+ {
+  "id": "sendai.tomizawa",
+  "name": {
+   "ja": "富沢",
+   "ko": "도미자와",
+   "en": "Tomizawa"
+  },
+  "kana": "とみざわ",
+  "geo": {
+   "lat": 38.21445,
+   "lng": 140.870681
+  },
+  "lines": [
+   "sendai.namboku"
+  ]
+ },
+ {
+  "id": "sendai.yagiyama-zoological-park",
+  "name": {
+   "ja": "八木山動物公園",
+   "ko": "야기야마 동물공원",
+   "en": "Yagiyama Zoological Park"
+  },
+  "kana": "やぎやまどうぶつこうえん",
+  "geo": {
+   "lat": 38.243395,
+   "lng": 140.844012
+  },
+  "lines": [
+   "sendai.tozai"
+  ]
+ },
+ {
+  "id": "sendai.aobayama",
+  "name": {
+   "ja": "青葉山",
+   "ko": "아오바야마",
+   "en": "Aobayama"
+  },
+  "kana": "あおばやま",
+  "geo": {
+   "lat": 38.25525,
+   "lng": 140.835343
+  },
+  "lines": [
+   "sendai.tozai"
+  ]
+ },
+ {
+  "id": "sendai.kawauchi",
+  "name": {
+   "ja": "川内",
+   "ko": "가와우치",
+   "en": "Kawauchi"
+  },
+  "kana": "かわうち",
+  "geo": {
+   "lat": 38.260882,
+   "lng": 140.850364
+  },
+  "lines": [
+   "sendai.tozai"
+  ]
+ },
+ {
+  "id": "sendai.international-center",
+  "name": {
+   "ja": "国際センター",
+   "ko": "국제센터",
+   "en": "International Center"
+  },
+  "kana": "こくさいせんたー",
+  "geo": {
+   "lat": 38.260252,
+   "lng": 140.856778
+  },
+  "lines": [
+   "sendai.tozai"
+  ]
+ },
+ {
+  "id": "sendai.omachi-nishi-koen",
+  "name": {
+   "ja": "大町西公園",
+   "ko": "오마치니시코엔",
+   "en": "Omachi Nishi-koen"
+  },
+  "kana": "おおまちにしこうえん",
+  "geo": {
+   "lat": 38.258997,
+   "lng": 140.864463
+  },
+  "lines": [
+   "sendai.tozai"
+  ]
+ },
+ {
+  "id": "sendai.aobadori-ichibancho",
+  "name": {
+   "ja": "青葉通一番町",
+   "ko": "아오바도리이치반초",
+   "en": "Aobadori Ichibancho"
+  },
+  "kana": "あおばどおりいちばんちょう",
+  "geo": {
+   "lat": 38.259698,
+   "lng": 140.871921
+  },
+  "lines": [
+   "sendai.tozai"
+  ]
+ },
+ {
+  "id": "sendai.miyagino-dori",
+  "name": {
+   "ja": "宮城野通",
+   "ko": "미야기노도리",
+   "en": "Miyagino-dori"
+  },
+  "kana": "みやぎのどおり",
+  "geo": {
+   "lat": 38.257938,
+   "lng": 140.885866
+  },
+  "lines": [
+   "sendai.tozai"
+  ]
+ },
+ {
+  "id": "sendai.rembo",
+  "name": {
+   "ja": "連坊",
+   "ko": "렌보",
+   "en": "Rembo"
+  },
+  "kana": "れんぼう",
+  "geo": {
+   "lat": 38.251174,
+   "lng": 140.89327
+  },
+  "lines": [
+   "sendai.tozai"
+  ]
+ },
+ {
+  "id": "sendai.yakushido",
+  "name": {
+   "ja": "薬師堂",
+   "ko": "야쿠시도",
+   "en": "Yakushido"
+  },
+  "kana": "やくしどう",
+  "geo": {
+   "lat": 38.249749,
+   "lng": 140.905741
+  },
+  "lines": [
+   "sendai.tozai"
+  ]
+ },
+ {
+  "id": "sendai.oroshimachi",
+  "name": {
+   "ja": "卸町",
+   "ko": "오로시마치",
+   "en": "Oroshimachi"
+  },
+  "kana": "おろしまち",
+  "geo": {
+   "lat": 38.251598,
+   "lng": 140.92086
+  },
+  "lines": [
+   "sendai.tozai"
+  ]
+ },
+ {
+  "id": "sendai.rokuchonome",
+  "name": {
+   "ja": "六丁の目",
+   "ko": "로쿠초노메",
+   "en": "Rokuchonome"
+  },
+  "kana": "ろくちょうのめ",
+  "geo": {
+   "lat": 38.250988,
+   "lng": 140.935629
+  },
+  "lines": [
+   "sendai.tozai"
+  ]
+ },
+ {
+  "id": "sendai.arai",
+  "name": {
+   "ja": "荒井",
+   "ko": "아라이",
+   "en": "Arai"
+  },
+  "kana": "あらい",
+  "geo": {
+   "lat": 38.244886,
+   "lng": 140.948421
+  },
+  "lines": [
+   "sendai.tozai"
+  ]
+ },
+ {
+  "id": "sendai.aoba-dori",
+  "name": {
+   "ja": "あおば通",
+   "ko": "아오바도리",
+   "en": "Aoba-dori"
+  },
+  "kana": "あおばどおり",
+  "geo": {
+   "lat": 38.260688,
+   "lng": 140.878691
+  },
+  "lines": [
+   "sendai.senseki"
+  ]
+ },
+ {
+  "id": "sendai.tsutsujigaoka",
+  "name": {
+   "ja": "榴ケ岡",
+   "ko": "쓰쓰지가오카",
+   "en": "Tsutsujigaoka"
+  },
+  "kana": "つつじがおか",
+  "geo": {
+   "lat": 38.258771,
+   "lng": 140.894264
+  },
+  "lines": [
+   "sendai.senseki"
+  ]
+ },
+ {
+  "id": "sendai.miyaginohara",
+  "name": {
+   "ja": "宮城野原",
+   "ko": "미야기노하라",
+   "en": "Miyaginohara"
+  },
+  "kana": "みやぎのはら",
+  "geo": {
+   "lat": 38.260825,
+   "lng": 140.90482
+  },
+  "lines": [
+   "sendai.senseki"
+  ]
+ },
+ {
+  "id": "sendai.rikuzen-haranomachi",
+  "name": {
+   "ja": "陸前原ノ町",
+   "ko": "리쿠젠하라노마치",
+   "en": "Rikuzen-Haranomachi"
+  },
+  "kana": "りくぜんはらのまち",
+  "geo": {
+   "lat": 38.266206,
+   "lng": 140.911002
+  },
+  "lines": [
+   "sendai.senseki"
+  ]
+ },
+ {
+  "id": "sendai.nigatake",
+  "name": {
+   "ja": "苦竹",
+   "ko": "니가타케",
+   "en": "Nigatake"
+  },
+  "kana": "にがたけ",
+  "geo": {
+   "lat": 38.268632,
+   "lng": 140.91898
+  },
+  "lines": [
+   "sendai.senseki"
+  ]
+ },
+ {
+  "id": "sendai.kozurushinden",
+  "name": {
+   "ja": "小鶴新田",
+   "ko": "고즈루신덴",
+   "en": "Kozurushinden"
+  },
+  "kana": "こづるしんでん",
+  "geo": {
+   "lat": 38.273401,
+   "lng": 140.935357
+  },
+  "lines": [
+   "sendai.senseki"
+  ]
+ },
+ {
+  "id": "sendai.fukudamachi",
+  "name": {
+   "ja": "福田町",
+   "ko": "후쿠다마치",
+   "en": "Fukudamachi"
+  },
+  "kana": "ふくだまち",
+  "geo": {
+   "lat": 38.274937,
+   "lng": 140.958754
+  },
+  "lines": [
+   "sendai.senseki"
+  ]
+ },
+ {
+  "id": "sendai.rikuzen-takasago",
+  "name": {
+   "ja": "陸前高砂",
+   "ko": "리쿠젠타카사고",
+   "en": "Rikuzen-Takasago"
+  },
+  "kana": "りくぜんたかさご",
+  "geo": {
+   "lat": 38.273561,
+   "lng": 140.968003
+  },
+  "lines": [
+   "sendai.senseki"
+  ]
+ },
+ {
+  "id": "sendai.nakanosakae",
+  "name": {
+   "ja": "中野栄",
+   "ko": "나카노사카에",
+   "en": "Nakanosakae"
+  },
+  "kana": "なかのさかえ",
+  "geo": {
+   "lat": 38.280497,
+   "lng": 140.984802
+  },
+  "lines": [
+   "sendai.senseki"
+  ]
+ },
+ {
+  "id": "sendai.tagajo",
+  "name": {
+   "ja": "多賀城",
+   "ko": "다가조",
+   "en": "Tagajo"
+  },
+  "kana": "たがじょう",
+  "geo": {
+   "lat": 38.291696,
+   "lng": 141.006017
+  },
+  "lines": [
+   "sendai.senseki"
+  ]
+ },
+ {
+  "id": "sendai.geba",
+  "name": {
+   "ja": "下馬",
+   "ko": "게바",
+   "en": "Geba"
+  },
+  "kana": "げば",
+  "geo": {
+   "lat": 38.305628,
+   "lng": 141.015152
+  },
+  "lines": [
+   "sendai.senseki"
+  ]
+ },
+ {
+  "id": "sendai.nishi-shiogama",
+  "name": {
+   "ja": "西塩釜",
+   "ko": "니시시오가마",
+   "en": "Nishi-Shiogama"
+  },
+  "kana": "にししおがま",
+  "geo": {
+   "lat": 38.311995,
+   "lng": 141.018502
+  },
+  "lines": [
+   "sendai.senseki"
+  ]
+ },
+ {
+  "id": "sendai.hon-shiogama",
+  "name": {
+   "ja": "本塩釜",
+   "ko": "혼시오가마",
+   "en": "Hon-Shiogama"
+  },
+  "kana": "ほんしおがま",
+  "geo": {
+   "lat": 38.317815,
+   "lng": 141.022811
+  },
+  "lines": [
+   "sendai.senseki"
+  ]
+ },
+ {
+  "id": "sendai.higashi-shiogama",
+  "name": {
+   "ja": "東塩釜",
+   "ko": "히가시시오가마",
+   "en": "Higashi-Shiogama"
+  },
+  "kana": "ひがししおがま",
+  "geo": {
+   "lat": 38.325502,
+   "lng": 141.031791
+  },
+  "lines": [
+   "sendai.senseki"
+  ]
+ },
+ {
+  "id": "sendai.rikuzen-hamada",
+  "name": {
+   "ja": "陸前浜田",
+   "ko": "리쿠젠하마다",
+   "en": "Rikuzen-Hamada"
+  },
+  "kana": "りくぜんはまだ",
+  "geo": {
+   "lat": 38.350775,
+   "lng": 141.041993
+  },
+  "lines": [
+   "sendai.senseki"
+  ]
+ },
+ {
+  "id": "sendai.matsushima-kaigan",
+  "name": {
+   "ja": "松島海岸",
+   "ko": "마쓰시마카이간",
+   "en": "Matsushima-Kaigan"
+  },
+  "kana": "まつしまかいがん",
+  "geo": {
+   "lat": 38.367849,
+   "lng": 141.058996
+  },
+  "lines": [
+   "sendai.senseki"
+  ]
+ }
+]

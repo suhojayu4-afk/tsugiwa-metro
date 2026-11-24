@@ -2,7 +2,9 @@
   "cities": [
     { "id": "tokyo",  "status": "available",  "name": { "ja": "東京", "ko": "도쿄", "en": "Tokyo" } },
     { "id": "tottori", "status": "available", "name": { "ja": "鳥取・米子", "ko": "돗토리·요나고", "en": "Tottori & Yonago" } },
-    { "id": "osaka",  "status": "comingSoon", "name": { "ja": "大阪", "ko": "오사카", "en": "Osaka" } },
-    { "id": "sendai", "status": "comingSoon", "name": { "ja": "仙台", "ko": "센다이", "en": "Sendai" } }
+    { "id": "osaka",  "status": "available", "name": { "ja": "大阪", "ko": "오사카", "en": "Osaka" } },
+    { "id": "fukuoka", "status": "available", "name": { "ja": "福岡", "ko": "후쿠오카", "en": "Fukuoka" } },
+    { "id": "sendai", "status": "available", "name": { "ja": "仙台・松島", "ko": "센다이·마쓰시마", "en": "Sendai & Matsushima" } },
+    { "id": "sapporo", "status": "available", "name": { "ja": "札幌・小樽", "ko": "삿포로·오타루", "en": "Sapporo & Otaru" } }
   ]
 }

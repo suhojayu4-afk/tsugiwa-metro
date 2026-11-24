@@ -55,3 +55,6 @@ docs/art/gen/**/previews/
 
 # API keys (passed with --dart-define-from-file=secrets.json)
 secrets.json
+
+# OpenStreetMap extracts used to build the city maps (tens of MB each)
+tools/*/osm/

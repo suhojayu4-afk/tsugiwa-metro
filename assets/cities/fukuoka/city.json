@@ -1,0 +1,24 @@
+{
+ "id": "fukuoka",
+ "name": {
+  "ja": "福岡",
+  "ko": "후쿠오카",
+  "en": "Fukuoka"
+ },
+ "timezone": "Asia/Tokyo",
+ "center": {
+  "lat": 33.59,
+  "lng": 130.4
+ },
+ "lines": [
+  "fukuoka.kuko",
+  "fukuoka.hakozaki",
+  "fukuoka.nanakuma"
+ ],
+ "weather": {
+  "forecastOffice": "400000",
+  "forecastArea": "400010",
+  "amedas": "82182"
+ },
+ "dataNote": "Stations and lines: OpenStreetMap contributors (ODbL). Run times and headways are approximate estimates. Replace with licensed timetable data later."
+}

@@ -1,0 +1,32 @@
+{
+ "id": "osaka",
+ "name": {
+  "ja": "大阪",
+  "ko": "오사카",
+  "en": "Osaka"
+ },
+ "timezone": "Asia/Tokyo",
+ "center": {
+  "lat": 34.69,
+  "lng": 135.505
+ },
+ "lines": [
+  "osaka.midosuji",
+  "osaka.tanimachi",
+  "osaka.yotsubashi",
+  "osaka.chuo",
+  "osaka.sennichimae",
+  "osaka.sakaisuji",
+  "osaka.nagahori",
+  "osaka.imazatosuji",
+  "osaka.nanko",
+  "osaka.loop",
+  "osaka.yumesaki"
+ ],
+ "weather": {
+  "forecastOffice": "270000",
+  "forecastArea": "270000",
+  "amedas": "62078"
+ },
+ "dataNote": "Stations and lines: OpenStreetMap contributors (ODbL). Run times and headways are approximate estimates. Replace with licensed timetable data later."
+}

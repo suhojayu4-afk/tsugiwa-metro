@@ -2010,6 +2010,17 @@ const _groups = <String, ({String ja, String ko, String en})>{
   'other': (ja: 'その他', ko: '기타', en: 'Others'),
 };
 
+/// The same group keys under each city's own company names.
+const _cityGroups = <String, Map<String, ({String ja, String ko, String en})>>{
+  'osaka': {'metro': (ja: '大阪メトロ', ko: '오사카 메트로', en: 'Osaka Metro')},
+  'fukuoka': {'metro': (ja: '福岡市地下鉄', ko: '후쿠오카 지하철', en: 'Fukuoka Subway')},
+  'sendai': {'metro': (ja: '仙台市地下鉄', ko: '센다이 지하철', en: 'Sendai Subway')},
+  'sapporo': {
+    'metro': (ja: '札幌市営地下鉄', ko: '삿포로 지하철', en: 'Sapporo Subway'),
+    'streetcar': (ja: '札幌市電', ko: '삿포로 시덴', en: 'Sapporo Streetcar'),
+  },
+};
+
 /// Top bar: company chips; tapping one lights up its lines and opens a
 /// second row with each of them.
 class _TopBar extends StatefulWidget {
@@ -2108,7 +2119,7 @@ class _TopBarState extends State<_TopBar> {
                       children: [
                         for (final g in groups)
                           chip(
-                            label: name(_groups[g] ?? (ja: g, ko: g, en: g)),
+                            label: name(_cityGroups[city.id]?[g] ?? _groups[g] ?? (ja: g, ko: g, en: g)),
                             color: city.lines.firstWhere((l) => l.group == g).color,
                             on: _group == g,
                             onTap: () {

@@ -1,0 +1,159 @@
+[
+ {
+  "id": "fukuoka.kuko",
+  "name": {
+   "ja": "空港線",
+   "ko": "공항선",
+   "en": "Kuko Line"
+  },
+  "color": "#F08300",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "metro",
+  "directions": {
+   "forward": {
+    "ja": "福岡空港方面",
+    "ko": "후쿠오카 공항 방면",
+    "en": "for Fukuoka Airport"
+   },
+   "reverse": {
+    "ja": "姪浜方面",
+    "ko": "메이노하마 방면",
+    "en": "for Meinohama"
+   }
+  },
+  "stations": [
+   "fukuoka.meinohama",
+   "fukuoka.muromi",
+   "fukuoka.fujisaki",
+   "fukuoka.nishijin",
+   "fukuoka.tojinmachi",
+   "fukuoka.ohorikoen",
+   "fukuoka.akasaka",
+   "fukuoka.tenjin",
+   "fukuoka.nakasu-kawabata",
+   "fukuoka.gion",
+   "fukuoka.hakata",
+   "fukuoka.higashi-hie",
+   "fukuoka.fukuoka-airport"
+  ],
+  "runSec": [
+   200,
+   120,
+   160,
+   180,
+   120,
+   160,
+   120,
+   130,
+   120,
+   110,
+   160,
+   240
+  ]
+ },
+ {
+  "id": "fukuoka.hakozaki",
+  "name": {
+   "ja": "箱崎線",
+   "ko": "하코자키선",
+   "en": "Hakozaki Line"
+  },
+  "color": "#0072BC",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "metro",
+  "directions": {
+   "forward": {
+    "ja": "貝塚方面",
+    "ko": "가이즈카 방면",
+    "en": "for Kaizuka"
+   },
+   "reverse": {
+    "ja": "中洲川端方面",
+    "ko": "나카스카와바타 방면",
+    "en": "for Nakasu-Kawabata"
+   }
+  },
+  "stations": [
+   "fukuoka.nakasu-kawabata",
+   "fukuoka.gofukumachi",
+   "fukuoka.chiyo-kencho-guchi",
+   "fukuoka.maidashi-kyudai-byoin-mae",
+   "fukuoka.hakozakimiyamae",
+   "fukuoka.hakozaki-kyudai-mae",
+   "fukuoka.kaizuka"
+  ],
+  "runSec": [
+   90,
+   100,
+   150,
+   100,
+   130,
+   160
+  ]
+ },
+ {
+  "id": "fukuoka.nanakuma",
+  "name": {
+   "ja": "七隈線",
+   "ko": "나나쿠마선",
+   "en": "Nanakuma Line"
+  },
+  "color": "#00A54F",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "metro",
+  "directions": {
+   "forward": {
+    "ja": "博多方面",
+    "ko": "하카타 방면",
+    "en": "for Hakata"
+   },
+   "reverse": {
+    "ja": "橋本方面",
+    "ko": "하시모토 방면",
+    "en": "for Hashimoto"
+   }
+  },
+  "stations": [
+   "fukuoka.hashimoto",
+   "fukuoka.jiromaru",
+   "fukuoka.kamo",
+   "fukuoka.noke",
+   "fukuoka.umebayashi",
+   "fukuoka.fukudai-mae",
+   "fukuoka.nanakuma",
+   "fukuoka.kanayama",
+   "fukuoka.chayama",
+   "fukuoka.befu",
+   "fukuoka.ropponmatsu",
+   "fukuoka.sakurazaka",
+   "fukuoka.yakuin-odori",
+   "fukuoka.yakuin",
+   "fukuoka.watanabe-dori",
+   "fukuoka.tenjin-minami",
+   "fukuoka.kushida-jinja-mae",
+   "fukuoka.hakata"
+  ],
+  "runSec": [
+   130,
+   120,
+   130,
+   130,
+   110,
+   100,
+   120,
+   130,
+   140,
+   120,
+   140,
+   150,
+   90,
+   70,
+   100,
+   140,
+   120
+  ]
+ }
+]

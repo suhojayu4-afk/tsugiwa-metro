@@ -1,0 +1,176 @@
+{
+ "sendai.namboku": {
+  "firstTrain": "05:45",
+  "lastTrain": "24:00",
+  "weekday": [
+   {
+    "from": "06:00",
+    "to": "07:00",
+    "everyMin": 8
+   },
+   {
+    "from": "07:00",
+    "to": "09:00",
+    "everyMin": 4
+   },
+   {
+    "from": "09:00",
+    "to": "17:00",
+    "everyMin": 7
+   },
+   {
+    "from": "17:00",
+    "to": "19:30",
+    "everyMin": 5
+   },
+   {
+    "from": "19:30",
+    "to": "24:00",
+    "everyMin": 10
+   }
+  ],
+  "holiday": [
+   {
+    "from": "06:00",
+    "to": "07:00",
+    "everyMin": 8
+   },
+   {
+    "from": "07:00",
+    "to": "09:00",
+    "everyMin": 5
+   },
+   {
+    "from": "09:00",
+    "to": "17:00",
+    "everyMin": 7
+   },
+   {
+    "from": "17:00",
+    "to": "19:30",
+    "everyMin": 5
+   },
+   {
+    "from": "19:30",
+    "to": "24:00",
+    "everyMin": 10
+   }
+  ]
+ },
+ "sendai.tozai": {
+  "firstTrain": "05:40",
+  "lastTrain": "24:05",
+  "weekday": [
+   {
+    "from": "06:00",
+    "to": "07:00",
+    "everyMin": 8
+   },
+   {
+    "from": "07:00",
+    "to": "09:00",
+    "everyMin": 4
+   },
+   {
+    "from": "09:00",
+    "to": "17:00",
+    "everyMin": 7
+   },
+   {
+    "from": "17:00",
+    "to": "19:30",
+    "everyMin": 5
+   },
+   {
+    "from": "19:30",
+    "to": "24:00",
+    "everyMin": 10
+   }
+  ],
+  "holiday": [
+   {
+    "from": "06:00",
+    "to": "07:00",
+    "everyMin": 8
+   },
+   {
+    "from": "07:00",
+    "to": "09:00",
+    "everyMin": 5
+   },
+   {
+    "from": "09:00",
+    "to": "17:00",
+    "everyMin": 7
+   },
+   {
+    "from": "17:00",
+    "to": "19:30",
+    "everyMin": 5
+   },
+   {
+    "from": "19:30",
+    "to": "24:00",
+    "everyMin": 10
+   }
+  ]
+ },
+ "sendai.senseki": {
+  "firstTrain": "05:30",
+  "lastTrain": "23:45",
+  "weekday": [
+   {
+    "from": "05:30",
+    "to": "07:00",
+    "everyMin": 20
+   },
+   {
+    "from": "07:00",
+    "to": "09:00",
+    "everyMin": 8
+   },
+   {
+    "from": "09:00",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 10
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 20
+   }
+  ],
+  "holiday": [
+   {
+    "from": "05:30",
+    "to": "07:00",
+    "everyMin": 20
+   },
+   {
+    "from": "07:00",
+    "to": "09:00",
+    "everyMin": 8
+   },
+   {
+    "from": "09:00",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 10
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 20
+   }
+  ]
+ }
+}

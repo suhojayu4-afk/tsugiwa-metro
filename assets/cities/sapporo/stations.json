@@ -1,0 +1,1335 @@
+[
+ {
+  "id": "sapporo.asabu",
+  "name": {
+   "ja": "麻生",
+   "ko": "아사부",
+   "en": "Asabu"
+  },
+  "kana": "あさぶ",
+  "geo": {
+   "lat": 43.10835,
+   "lng": 141.338366
+  },
+  "lines": [
+   "sapporo.namboku"
+  ]
+ },
+ {
+  "id": "sapporo.kita-34-jo",
+  "name": {
+   "ja": "北34条",
+   "ko": "기타34조",
+   "en": "Kita 34-jo"
+  },
+  "kana": "きたさんじゅうよじょう",
+  "geo": {
+   "lat": 43.100211,
+   "lng": 141.34205
+  },
+  "lines": [
+   "sapporo.namboku"
+  ]
+ },
+ {
+  "id": "sapporo.kita-24-jo",
+  "name": {
+   "ja": "北24条",
+   "ko": "기타24조",
+   "en": "Kita 24-jo"
+  },
+  "kana": "きたにじゅうよじょう",
+  "geo": {
+   "lat": 43.089491,
+   "lng": 141.344765
+  },
+  "lines": [
+   "sapporo.namboku"
+  ]
+ },
+ {
+  "id": "sapporo.kita-18-jo",
+  "name": {
+   "ja": "北18条",
+   "ko": "기타18조",
+   "en": "Kita 18-jo"
+  },
+  "kana": "きたじゅうはちじょう",
+  "geo": {
+   "lat": 43.081575,
+   "lng": 141.346776
+  },
+  "lines": [
+   "sapporo.namboku"
+  ]
+ },
+ {
+  "id": "sapporo.kita-12-jo",
+  "name": {
+   "ja": "北12条",
+   "ko": "기타12조",
+   "en": "Kita 12-jo"
+  },
+  "kana": "きたじゅうにじょう",
+  "geo": {
+   "lat": 43.07477,
+   "lng": 141.348474
+  },
+  "lines": [
+   "sapporo.namboku"
+  ]
+ },
+ {
+  "id": "sapporo.sapporo",
+  "name": {
+   "ja": "札幌",
+   "ko": "삿포로",
+   "en": "Sapporo"
+  },
+  "kana": "さっぽろ",
+  "geo": {
+   "lat": 43.068636,
+   "lng": 141.350922
+  },
+  "lines": [
+   "sapporo.namboku",
+   "sapporo.toho",
+   "sapporo.hakodate"
+  ]
+ },
+ {
+  "id": "sapporo.odori",
+  "name": {
+   "ja": "大通",
+   "ko": "오도리",
+   "en": "Odori"
+  },
+  "kana": "おおどおり",
+  "geo": {
+   "lat": 43.060723,
+   "lng": 141.355315
+  },
+  "lines": [
+   "sapporo.namboku",
+   "sapporo.tozai",
+   "sapporo.toho"
+  ]
+ },
+ {
+  "id": "sapporo.susukino",
+  "name": {
+   "ja": "すすきの",
+   "ko": "스스키노",
+   "en": "Susukino"
+  },
+  "kana": "すすきの",
+  "geo": {
+   "lat": 43.055595,
+   "lng": 141.352789
+  },
+  "lines": [
+   "sapporo.namboku",
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.nakajima-koen",
+  "name": {
+   "ja": "中島公園",
+   "ko": "나카지마공원",
+   "en": "Nakajima-koen"
+  },
+  "kana": "なかじまこうえん",
+  "geo": {
+   "lat": 43.04833,
+   "lng": 141.355121
+  },
+  "lines": [
+   "sapporo.namboku"
+  ]
+ },
+ {
+  "id": "sapporo.horohira-bashi",
+  "name": {
+   "ja": "幌平橋",
+   "ko": "호로히라바시",
+   "en": "Horohira-Bashi"
+  },
+  "kana": "ほろひらばし",
+  "geo": {
+   "lat": 43.040188,
+   "lng": 141.355976
+  },
+  "lines": [
+   "sapporo.namboku"
+  ]
+ },
+ {
+  "id": "sapporo.nakanoshima",
+  "name": {
+   "ja": "中の島",
+   "ko": "나카노시마",
+   "en": "Nakanoshima"
+  },
+  "kana": "なかのしま",
+  "geo": {
+   "lat": 43.037526,
+   "lng": 141.361175
+  },
+  "lines": [
+   "sapporo.namboku"
+  ]
+ },
+ {
+  "id": "sapporo.hiragishi",
+  "name": {
+   "ja": "平岸",
+   "ko": "히라기시",
+   "en": "Hiragishi"
+  },
+  "kana": "ひらぎし",
+  "geo": {
+   "lat": 43.034572,
+   "lng": 141.368299
+  },
+  "lines": [
+   "sapporo.namboku"
+  ]
+ },
+ {
+  "id": "sapporo.minami-hiragishi",
+  "name": {
+   "ja": "南平岸",
+   "ko": "미나미히라기시",
+   "en": "Minami-Hiragishi"
+  },
+  "kana": "みなみひらぎし",
+  "geo": {
+   "lat": 43.026527,
+   "lng": 141.371258
+  },
+  "lines": [
+   "sapporo.namboku"
+  ]
+ },
+ {
+  "id": "sapporo.sumikawa",
+  "name": {
+   "ja": "澄川",
+   "ko": "스미카와",
+   "en": "Sumikawa"
+  },
+  "kana": "すみかわ",
+  "geo": {
+   "lat": 43.017203,
+   "lng": 141.367324
+  },
+  "lines": [
+   "sapporo.namboku"
+  ]
+ },
+ {
+  "id": "sapporo.jieitai-mae",
+  "name": {
+   "ja": "自衛隊前",
+   "ko": "지에이타이마에",
+   "en": "Jieitai-mae"
+  },
+  "kana": "じえいたいまえ",
+  "geo": {
+   "lat": 43.006332,
+   "lng": 141.364788
+  },
+  "lines": [
+   "sapporo.namboku"
+  ]
+ },
+ {
+  "id": "sapporo.makomanai",
+  "name": {
+   "ja": "真駒内",
+   "ko": "마코마나이",
+   "en": "Makomanai"
+  },
+  "kana": "まこまない",
+  "geo": {
+   "lat": 42.991171,
+   "lng": 141.35843
+  },
+  "lines": [
+   "sapporo.namboku"
+  ]
+ },
+ {
+  "id": "sapporo.miyanosawa",
+  "name": {
+   "ja": "宮の沢",
+   "ko": "미야노사와",
+   "en": "Miyanosawa"
+  },
+  "kana": "みやのさわ",
+  "geo": {
+   "lat": 43.089503,
+   "lng": 141.277971
+  },
+  "lines": [
+   "sapporo.tozai"
+  ]
+ },
+ {
+  "id": "sapporo.hassamu-minami",
+  "name": {
+   "ja": "発寒南",
+   "ko": "핫사무미나미",
+   "en": "Hassamu-Minami"
+  },
+  "kana": "はっさむみなみ",
+  "geo": {
+   "lat": 43.081611,
+   "lng": 141.290211
+  },
+  "lines": [
+   "sapporo.tozai"
+  ]
+ },
+ {
+  "id": "sapporo.kotoni",
+  "name": {
+   "ja": "琴似",
+   "ko": "고토니",
+   "en": "Kotoni"
+  },
+  "kana": "ことに",
+  "geo": {
+   "lat": 43.075456,
+   "lng": 141.304445
+  },
+  "lines": [
+   "sapporo.tozai"
+  ]
+ },
+ {
+  "id": "sapporo.nijuyonken",
+  "name": {
+   "ja": "二十四軒",
+   "ko": "니주욘켄",
+   "en": "Nijuyonken"
+  },
+  "kana": "にじゅうよんけん",
+  "geo": {
+   "lat": 43.070484,
+   "lng": 141.313618
+  },
+  "lines": [
+   "sapporo.tozai"
+  ]
+ },
+ {
+  "id": "sapporo.nishi-28-chome",
+  "name": {
+   "ja": "西28丁目",
+   "ko": "니시28초메",
+   "en": "Nishi 28-chome"
+  },
+  "kana": "にしにじゅうはっちょうめ",
+  "geo": {
+   "lat": 43.061003,
+   "lng": 141.314652
+  },
+  "lines": [
+   "sapporo.tozai"
+  ]
+ },
+ {
+  "id": "sapporo.maruyama-koen",
+  "name": {
+   "ja": "円山公園",
+   "ko": "마루야마공원",
+   "en": "Maruyama-koen"
+  },
+  "kana": "まるやまこうえん",
+  "geo": {
+   "lat": 43.055761,
+   "lng": 141.319447
+  },
+  "lines": [
+   "sapporo.tozai"
+  ]
+ },
+ {
+  "id": "sapporo.nishi-18-chome",
+  "name": {
+   "ja": "西18丁目",
+   "ko": "니시18초메",
+   "en": "Nishi 18-chome"
+  },
+  "kana": "にしじゅうはっちょうめ",
+  "geo": {
+   "lat": 43.057234,
+   "lng": 141.330352
+  },
+  "lines": [
+   "sapporo.tozai"
+  ]
+ },
+ {
+  "id": "sapporo.nishi-11-chome",
+  "name": {
+   "ja": "西11丁目",
+   "ko": "니시11초메",
+   "en": "Nishi 11-chome"
+  },
+  "kana": "にしじゅういっちょうめ",
+  "geo": {
+   "lat": 43.058718,
+   "lng": 141.341389
+  },
+  "lines": [
+   "sapporo.tozai"
+  ]
+ },
+ {
+  "id": "sapporo.bus-center-mae",
+  "name": {
+   "ja": "バスセンター前",
+   "ko": "버스센터마에",
+   "en": "Bus Center-mae"
+  },
+  "kana": "ばすせんたーまえ",
+  "geo": {
+   "lat": 43.061555,
+   "lng": 141.361963
+  },
+  "lines": [
+   "sapporo.tozai"
+  ]
+ },
+ {
+  "id": "sapporo.kikusui",
+  "name": {
+   "ja": "菊水",
+   "ko": "기쿠스이",
+   "en": "Kikusui"
+  },
+  "kana": "きくすい",
+  "geo": {
+   "lat": 43.057361,
+   "lng": 141.372798
+  },
+  "lines": [
+   "sapporo.tozai"
+  ]
+ },
+ {
+  "id": "sapporo.higashi-sapporo",
+  "name": {
+   "ja": "東札幌",
+   "ko": "히가시삿포로",
+   "en": "Higashi-Sapporo"
+  },
+  "kana": "ひがしさっぽろ",
+  "geo": {
+   "lat": 43.05186,
+   "lng": 141.38475
+  },
+  "lines": [
+   "sapporo.tozai"
+  ]
+ },
+ {
+  "id": "sapporo.shiroishi",
+  "name": {
+   "ja": "白石",
+   "ko": "시로이시",
+   "en": "Shiroishi"
+  },
+  "kana": "しろいし",
+  "geo": {
+   "lat": 43.046441,
+   "lng": 141.395656
+  },
+  "lines": [
+   "sapporo.tozai"
+  ]
+ },
+ {
+  "id": "sapporo.nango-7-chome",
+  "name": {
+   "ja": "南郷7丁目",
+   "ko": "난고7초메",
+   "en": "Nango 7-chome"
+  },
+  "kana": "なんごうななちょうめ",
+  "geo": {
+   "lat": 43.040368,
+   "lng": 141.411005
+  },
+  "lines": [
+   "sapporo.tozai"
+  ]
+ },
+ {
+  "id": "sapporo.nango-13-chome",
+  "name": {
+   "ja": "南郷13丁目",
+   "ko": "난고13초메",
+   "en": "Nango 13-chome"
+  },
+  "kana": "なんごうじゅうさんちょうめ",
+  "geo": {
+   "lat": 43.035787,
+   "lng": 141.422917
+  },
+  "lines": [
+   "sapporo.tozai"
+  ]
+ },
+ {
+  "id": "sapporo.nango-18-chome",
+  "name": {
+   "ja": "南郷18丁目",
+   "ko": "난고18초메",
+   "en": "Nango 18-chome"
+  },
+  "kana": "なんごうじゅうはっちょうめ",
+  "geo": {
+   "lat": 43.030362,
+   "lng": 141.43527
+  },
+  "lines": [
+   "sapporo.tozai"
+  ]
+ },
+ {
+  "id": "sapporo.oyachi",
+  "name": {
+   "ja": "大谷地",
+   "ko": "오야치",
+   "en": "Oyachi"
+  },
+  "kana": "おおやち",
+  "geo": {
+   "lat": 43.02798,
+   "lng": 141.453165
+  },
+  "lines": [
+   "sapporo.tozai"
+  ]
+ },
+ {
+  "id": "sapporo.hibarigaoka",
+  "name": {
+   "ja": "ひばりが丘",
+   "ko": "히바리가오카",
+   "en": "Hibarigaoka"
+  },
+  "kana": "ひばりがおか",
+  "geo": {
+   "lat": 43.032269,
+   "lng": 141.4644
+  },
+  "lines": [
+   "sapporo.tozai"
+  ]
+ },
+ {
+  "id": "sapporo.shin-sapporo",
+  "name": {
+   "ja": "新さっぽろ",
+   "ko": "신삿포로",
+   "en": "Shin-Sapporo"
+  },
+  "kana": "しんさっぽろ",
+  "geo": {
+   "lat": 43.038857,
+   "lng": 141.473981
+  },
+  "lines": [
+   "sapporo.tozai"
+  ]
+ },
+ {
+  "id": "sapporo.sakaemachi",
+  "name": {
+   "ja": "栄町",
+   "ko": "사카에마치",
+   "en": "Sakaemachi"
+  },
+  "kana": "さかえまち",
+  "geo": {
+   "lat": 43.113005,
+   "lng": 141.367129
+  },
+  "lines": [
+   "sapporo.toho"
+  ]
+ },
+ {
+  "id": "sapporo.shindo-higashi",
+  "name": {
+   "ja": "新道東",
+   "ko": "신도히가시",
+   "en": "Shindo higashi"
+  },
+  "kana": "しんどうひがし",
+  "geo": {
+   "lat": 43.104735,
+   "lng": 141.369094
+  },
+  "lines": [
+   "sapporo.toho"
+  ]
+ },
+ {
+  "id": "sapporo.motomachi",
+  "name": {
+   "ja": "元町",
+   "ko": "모토마치",
+   "en": "Motomachi"
+  },
+  "kana": "もとまち",
+  "geo": {
+   "lat": 43.094085,
+   "lng": 141.371711
+  },
+  "lines": [
+   "sapporo.toho"
+  ]
+ },
+ {
+  "id": "sapporo.kanjo-dori-higashi",
+  "name": {
+   "ja": "環状通東",
+   "ko": "간조도리히가시",
+   "en": "Kanjo-dori-Higashi"
+  },
+  "kana": "かんじょうどおりひがし",
+  "geo": {
+   "lat": 43.082425,
+   "lng": 141.374474
+  },
+  "lines": [
+   "sapporo.toho"
+  ]
+ },
+ {
+  "id": "sapporo.higashi-kuyakusho-mae",
+  "name": {
+   "ja": "東区役所前",
+   "ko": "히가시구청앞",
+   "en": "Higashi-Kuyakusho-mae"
+  },
+  "kana": "ひがしくやくしょまえ",
+  "geo": {
+   "lat": 43.078262,
+   "lng": 141.365359
+  },
+  "lines": [
+   "sapporo.toho"
+  ]
+ },
+ {
+  "id": "sapporo.kita-13-jo-higashi",
+  "name": {
+   "ja": "北13条東",
+   "ko": "기타13조히가시",
+   "en": "Kita 13-jo Higashi"
+  },
+  "kana": "きたじゅうさんじょうひがし",
+  "geo": {
+   "lat": 43.076848,
+   "lng": 141.354966
+  },
+  "lines": [
+   "sapporo.toho"
+  ]
+ },
+ {
+  "id": "sapporo.hosui-susukino",
+  "name": {
+   "ja": "豊水すすきの",
+   "ko": "호스이스스키노",
+   "en": "Hosui-Susukino"
+  },
+  "kana": "ほうすいすすきの",
+  "geo": {
+   "lat": 43.05416,
+   "lng": 141.357008
+  },
+  "lines": [
+   "sapporo.toho"
+  ]
+ },
+ {
+  "id": "sapporo.gakuen-mae",
+  "name": {
+   "ja": "学園前",
+   "ko": "학원앞",
+   "en": "Gakuen-Mae"
+  },
+  "kana": "がくえんまえ",
+  "geo": {
+   "lat": 43.047773,
+   "lng": 141.368974
+  },
+  "lines": [
+   "sapporo.toho"
+  ]
+ },
+ {
+  "id": "sapporo.toyohira-koen",
+  "name": {
+   "ja": "豊平公園",
+   "ko": "도요히라공원",
+   "en": "Toyohira-koen"
+  },
+  "kana": "とよひらこうえん",
+  "geo": {
+   "lat": 43.042117,
+   "lng": 141.376163
+  },
+  "lines": [
+   "sapporo.toho"
+  ]
+ },
+ {
+  "id": "sapporo.misono",
+  "name": {
+   "ja": "美園",
+   "ko": "미소노",
+   "en": "Misono"
+  },
+  "kana": "みその",
+  "geo": {
+   "lat": 43.036263,
+   "lng": 141.385616
+  },
+  "lines": [
+   "sapporo.toho"
+  ]
+ },
+ {
+  "id": "sapporo.tsukisamu-chuo",
+  "name": {
+   "ja": "月寒中央",
+   "ko": "쓰키사무추오",
+   "en": "Tsukisamu-Chuo"
+  },
+  "kana": "つきさむちゅうおう",
+  "geo": {
+   "lat": 43.029918,
+   "lng": 141.396668
+  },
+  "lines": [
+   "sapporo.toho"
+  ]
+ },
+ {
+  "id": "sapporo.fukuzumi",
+  "name": {
+   "ja": "福住",
+   "ko": "후쿠즈미",
+   "en": "Fukuzumi"
+  },
+  "kana": "ふくずみ",
+  "geo": {
+   "lat": 43.021849,
+   "lng": 141.402877
+  },
+  "lines": [
+   "sapporo.toho"
+  ]
+ },
+ {
+  "id": "sapporo.nishi-4-chome",
+  "name": {
+   "ja": "西4丁目",
+   "ko": "니시4초메",
+   "en": "Nishi 4-chome"
+  },
+  "kana": "にしよんちょうめ",
+  "geo": {
+   "lat": 43.058926,
+   "lng": 141.3519
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.nishi-8-chome",
+  "name": {
+   "ja": "西8丁目",
+   "ko": "니시8초메",
+   "en": "Nishi 8-chome"
+  },
+  "kana": "にしはっちょうめ",
+  "geo": {
+   "lat": 43.058174,
+   "lng": 141.34657
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.chuo-kuyakusho-mae",
+  "name": {
+   "ja": "中央区役所前",
+   "ko": "주오쿠야쿠쇼마에",
+   "en": "Chuo-Kuyakusho-mae"
+  },
+  "kana": "ちゅうおうくやくしょまえ",
+  "geo": {
+   "lat": 43.057529,
+   "lng": 141.341856
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.nishi-15-chome",
+  "name": {
+   "ja": "西15丁目",
+   "ko": "니시15초메",
+   "en": "Nishi 15-chome"
+  },
+  "kana": "にしじゅうごちょうめ",
+  "geo": {
+   "lat": 43.056412,
+   "lng": 141.335236
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.nishisen-6-jo",
+  "name": {
+   "ja": "西線6条",
+   "ko": "니시센6조",
+   "en": "Nishisen 6-jo"
+  },
+  "kana": "にせんろくじょう",
+  "geo": {
+   "lat": 43.051507,
+   "lng": 141.335072
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.nishisen-9-jo-asahiyama-koen-dori",
+  "name": {
+   "ja": "西線9条旭山公園通",
+   "ko": "니시센쿠조아사히야마코옌도리",
+   "en": "Nishisen 9-jo Asahiyama-koen-dori"
+  },
+  "kana": "にせんくじょうあさひやまこうえんどおり",
+  "geo": {
+   "lat": 43.048196,
+   "lng": 141.335494
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.nishisen-11-jo",
+  "name": {
+   "ja": "西線11条",
+   "ko": "니시센11조",
+   "en": "Nishisen 11-jo"
+  },
+  "kana": "にせんじゅういちじょう",
+  "geo": {
+   "lat": 43.044874,
+   "lng": 141.335918
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.nishisen-14-jo",
+  "name": {
+   "ja": "西線14条",
+   "ko": "니시센14조",
+   "en": "Nishisen 14-jo"
+  },
+  "kana": "にせんじゅうよじょう",
+  "geo": {
+   "lat": 43.040544,
+   "lng": 141.336474
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.nishisen-16-jo",
+  "name": {
+   "ja": "西線16条",
+   "ko": "니시센16조",
+   "en": "Nishisen 16-jo"
+  },
+  "kana": "にせんじゅうろくじょう",
+  "geo": {
+   "lat": 43.037195,
+   "lng": 141.336896
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.ropeway-iriguchi",
+  "name": {
+   "ja": "ロープウェイ入口",
+   "ko": "로프웨이 입구",
+   "en": "Ropeway-iriguchi"
+  },
+  "kana": "ろーぷうぇいいりぐち",
+  "geo": {
+   "lat": 43.033822,
+   "lng": 141.337336
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.densha-jigyosho-mae",
+  "name": {
+   "ja": "電車事業所前",
+   "ko": "덴샤지교쇼마에",
+   "en": "Densha-Jigyosho-mae"
+  },
+  "kana": "でんしゃじぎょうしょまえ",
+  "geo": {
+   "lat": 43.030632,
+   "lng": 141.337746
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.chuo-toshokan-mae",
+  "name": {
+   "ja": "中央図書館前",
+   "ko": "주오토쇼칸마에",
+   "en": "Chuo-Toshokan-mae"
+  },
+  "kana": "ちゅうおうとしょかんまえ",
+  "geo": {
+   "lat": 43.030553,
+   "lng": 141.341792
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.ishiyama-dori",
+  "name": {
+   "ja": "石山通",
+   "ko": "이시야마도리",
+   "en": "Ishiyama-Dori"
+  },
+  "kana": "いしやまどおり",
+  "geo": {
+   "lat": 43.030788,
+   "lng": 141.345215
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.higashi-tonden-dori",
+  "name": {
+   "ja": "東屯田通",
+   "ko": "히가시톤덴도리",
+   "en": "Higashi-Tonden-Dori"
+  },
+  "kana": "ひがしとんでんどおり",
+  "geo": {
+   "lat": 43.031028,
+   "lng": 141.348645
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.konan-shogakko-mae",
+  "name": {
+   "ja": "幌南小学校前",
+   "ko": "고난쇼갓코마에",
+   "en": "Konan-Shogakko-mae"
+  },
+  "kana": "こうなんしょうがっこうまえ",
+  "geo": {
+   "lat": 43.03245,
+   "lng": 141.351889
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.yamahana-19-jo",
+  "name": {
+   "ja": "山鼻19条",
+   "ko": "야마하나19조",
+   "en": "Yamahana 19-jo"
+  },
+  "kana": "やまはなじゅうくじょう",
+  "geo": {
+   "lat": 43.03491,
+   "lng": 141.351601
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.seishu-gakuen-mae",
+  "name": {
+   "ja": "静修学園前",
+   "ko": "세이슈가쿠엔마에",
+   "en": "Seishu-Gakuen-mae"
+  },
+  "kana": "せいしゅうがくえんまえ",
+  "geo": {
+   "lat": 43.038151,
+   "lng": 141.351175
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.gyokei-dori",
+  "name": {
+   "ja": "行啓通",
+   "ko": "교케이도리",
+   "en": "Gyokei-Dori"
+  },
+  "kana": "ぎょうけいどおり",
+  "geo": {
+   "lat": 43.041534,
+   "lng": 141.350727
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.nakajima-koen-dori",
+  "name": {
+   "ja": "中島公園通",
+   "ko": "나카지마코엔도리",
+   "en": "Nakajima-koen-dori"
+  },
+  "kana": "なかじまこうえんどおり",
+  "geo": {
+   "lat": 43.045782,
+   "lng": 141.350164
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.yamahana-9-jo",
+  "name": {
+   "ja": "山鼻9条",
+   "ko": "야마하나9조",
+   "en": "Yamahana 9-jo"
+  },
+  "kana": "やまはなくじょう",
+  "geo": {
+   "lat": 43.04893,
+   "lng": 141.349757
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.higashi-honganji-mae",
+  "name": {
+   "ja": "東本願寺前",
+   "ko": "히가시혼간지마에",
+   "en": "Higashi-Honganji-mae"
+  },
+  "kana": "ひがしほんがんじまえ",
+  "geo": {
+   "lat": 43.051687,
+   "lng": 141.34948
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.shiseikan-shogakko-mae",
+  "name": {
+   "ja": "資生館小学校前",
+   "ko": "시세이칸쇼갓코마에",
+   "en": "Shiseikan-Shogakko-mae"
+  },
+  "kana": "しせいかんしょうがっこうまえ",
+  "geo": {
+   "lat": 43.055104,
+   "lng": 141.349076
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.tanukikoji",
+  "name": {
+   "ja": "狸小路",
+   "ko": "다누키코지",
+   "en": "Tanukikoji"
+  },
+  "kana": "たぬきこうじ",
+  "geo": {
+   "lat": 43.05756,
+   "lng": 141.352967
+  },
+  "lines": [
+   "sapporo.streetcar"
+  ]
+ },
+ {
+  "id": "sapporo.soen",
+  "name": {
+   "ja": "桑園",
+   "ko": "소엔",
+   "en": "Soen"
+  },
+  "kana": "そうえん",
+  "geo": {
+   "lat": 43.070735,
+   "lng": 141.331986
+  },
+  "lines": [
+   "sapporo.hakodate"
+  ]
+ },
+ {
+  "id": "sapporo.kotoni-jr",
+  "name": {
+   "ja": "琴似",
+   "ko": "고토니(JR)",
+   "en": "Kotoni (JR)"
+  },
+  "kana": "ことに",
+  "geo": {
+   "lat": 43.075456,
+   "lng": 141.304445
+  },
+  "lines": [
+   "sapporo.hakodate"
+  ]
+ },
+ {
+  "id": "sapporo.hassamu-chuo",
+  "name": {
+   "ja": "発寒中央",
+   "ko": "핫사무추오",
+   "en": "Hassamu-Chuo"
+  },
+  "kana": "はっさむちゅうおう",
+  "geo": {
+   "lat": 43.089477,
+   "lng": 141.294237
+  },
+  "lines": [
+   "sapporo.hakodate"
+  ]
+ },
+ {
+  "id": "sapporo.hassamu",
+  "name": {
+   "ja": "発寒",
+   "ko": "핫사무",
+   "en": "Hassamu"
+  },
+  "kana": "はっさむ",
+  "geo": {
+   "lat": 43.099802,
+   "lng": 141.277292
+  },
+  "lines": [
+   "sapporo.hakodate"
+  ]
+ },
+ {
+  "id": "sapporo.inazumi-koen",
+  "name": {
+   "ja": "稲積公園",
+   "ko": "이나즈미공원",
+   "en": "Inazumi-koen"
+  },
+  "kana": "いなづみこうえん",
+  "geo": {
+   "lat": 43.112257,
+   "lng": 141.256798
+  },
+  "lines": [
+   "sapporo.hakodate"
+  ]
+ },
+ {
+  "id": "sapporo.teine",
+  "name": {
+   "ja": "手稲",
+   "ko": "데이네",
+   "en": "Teine"
+  },
+  "kana": "ていね",
+  "geo": {
+   "lat": 43.120263,
+   "lng": 141.243613
+  },
+  "lines": [
+   "sapporo.hakodate"
+  ]
+ },
+ {
+  "id": "sapporo.inaho",
+  "name": {
+   "ja": "稲穂",
+   "ko": "이나호",
+   "en": "Inaho"
+  },
+  "kana": "いなほ",
+  "geo": {
+   "lat": 43.128125,
+   "lng": 141.222974
+  },
+  "lines": [
+   "sapporo.hakodate"
+  ]
+ },
+ {
+  "id": "sapporo.hoshioki",
+  "name": {
+   "ja": "星置",
+   "ko": "호시오키",
+   "en": "Hoshioki"
+  },
+  "kana": "ほしおき",
+  "geo": {
+   "lat": 43.132339,
+   "lng": 141.21097
+  },
+  "lines": [
+   "sapporo.hakodate"
+  ]
+ },
+ {
+  "id": "sapporo.hoshimi",
+  "name": {
+   "ja": "ほしみ",
+   "ko": "호시미",
+   "en": "Hoshimi"
+  },
+  "kana": "ほしみ",
+  "geo": {
+   "lat": 43.133523,
+   "lng": 141.192141
+  },
+  "lines": [
+   "sapporo.hakodate"
+  ]
+ },
+ {
+  "id": "sapporo.zenibako",
+  "name": {
+   "ja": "銭函",
+   "ko": "제니바코",
+   "en": "Zenibako"
+  },
+  "kana": "ぜにばこ",
+  "geo": {
+   "lat": 43.143479,
+   "lng": 141.159717
+  },
+  "lines": [
+   "sapporo.hakodate"
+  ]
+ },
+ {
+  "id": "sapporo.asari",
+  "name": {
+   "ja": "朝里",
+   "ko": "아사리",
+   "en": "Asari"
+  },
+  "kana": "あさり",
+  "geo": {
+   "lat": 43.176908,
+   "lng": 141.063689
+  },
+  "lines": [
+   "sapporo.hakodate"
+  ]
+ },
+ {
+  "id": "sapporo.otaru-chikko",
+  "name": {
+   "ja": "小樽築港",
+   "ko": "오타루칫코",
+   "en": "Otaru-Chikko"
+  },
+  "kana": "おたるちっこう",
+  "geo": {
+   "lat": 43.180814,
+   "lng": 141.027758
+  },
+  "lines": [
+   "sapporo.hakodate"
+  ]
+ },
+ {
+  "id": "sapporo.minami-otaru",
+  "name": {
+   "ja": "南小樽",
+   "ko": "미나미오타루",
+   "en": "Minami-Otaru"
+  },
+  "kana": "みなみおたる",
+  "geo": {
+   "lat": 43.186858,
+   "lng": 141.007326
+  },
+  "lines": [
+   "sapporo.hakodate"
+  ]
+ },
+ {
+  "id": "sapporo.otaru",
+  "name": {
+   "ja": "小樽",
+   "ko": "오타루",
+   "en": "Otaru"
+  },
+  "kana": "おたる",
+  "geo": {
+   "lat": 43.197576,
+   "lng": 140.993375
+  },
+  "lines": [
+   "sapporo.hakodate"
+  ]
+ }
+]

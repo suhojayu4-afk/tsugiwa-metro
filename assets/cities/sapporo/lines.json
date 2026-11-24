@@ -1,0 +1,314 @@
+[
+ {
+  "id": "sapporo.namboku",
+  "name": {
+   "ja": "南北線",
+   "ko": "난보쿠선",
+   "en": "Namboku Line"
+  },
+  "color": "#008F3E",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "metro",
+  "directions": {
+   "forward": {
+    "ja": "真駒内方面",
+    "ko": "마코마나이 방면",
+    "en": "for Makomanai"
+   },
+   "reverse": {
+    "ja": "麻生方面",
+    "ko": "아사부 방면",
+    "en": "for Asabu"
+   }
+  },
+  "stations": [
+   "sapporo.asabu",
+   "sapporo.kita-34-jo",
+   "sapporo.kita-24-jo",
+   "sapporo.kita-18-jo",
+   "sapporo.kita-12-jo",
+   "sapporo.sapporo",
+   "sapporo.odori",
+   "sapporo.susukino",
+   "sapporo.nakajima-koen",
+   "sapporo.horohira-bashi",
+   "sapporo.nakanoshima",
+   "sapporo.hiragishi",
+   "sapporo.minami-hiragishi",
+   "sapporo.sumikawa",
+   "sapporo.jieitai-mae",
+   "sapporo.makomanai"
+  ],
+  "runSec": [
+   150,
+   180,
+   140,
+   120,
+   120,
+   150,
+   100,
+   130,
+   140,
+   100,
+   120,
+   140,
+   160,
+   180,
+   240
+  ]
+ },
+ {
+  "id": "sapporo.tozai",
+  "name": {
+   "ja": "東西線",
+   "ko": "도자이선",
+   "en": "Tozai Line"
+  },
+  "color": "#F39800",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "metro",
+  "directions": {
+   "forward": {
+    "ja": "新さっぽろ方面",
+    "ko": "신삿포로 방면",
+    "en": "for Shin-Sapporo"
+   },
+   "reverse": {
+    "ja": "宮の沢方面",
+    "ko": "미야노사와 방면",
+    "en": "for Miyanosawa"
+   }
+  },
+  "stations": [
+   "sapporo.miyanosawa",
+   "sapporo.hassamu-minami",
+   "sapporo.kotoni",
+   "sapporo.nijuyonken",
+   "sapporo.nishi-28-chome",
+   "sapporo.maruyama-koen",
+   "sapporo.nishi-18-chome",
+   "sapporo.nishi-11-chome",
+   "sapporo.odori",
+   "sapporo.bus-center-mae",
+   "sapporo.kikusui",
+   "sapporo.higashi-sapporo",
+   "sapporo.shiroishi",
+   "sapporo.nango-7-chome",
+   "sapporo.nango-13-chome",
+   "sapporo.nango-18-chome",
+   "sapporo.oyachi",
+   "sapporo.hibarigaoka",
+   "sapporo.shin-sapporo"
+  ],
+  "runSec": [
+   200,
+   210,
+   150,
+   160,
+   120,
+   150,
+   150,
+   180,
+   100,
+   160,
+   180,
+   170,
+   220,
+   170,
+   180,
+   230,
+   170,
+   170
+  ]
+ },
+ {
+  "id": "sapporo.toho",
+  "name": {
+   "ja": "東豊線",
+   "ko": "도호선",
+   "en": "Toho Line"
+  },
+  "color": "#0079C2",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "metro",
+  "directions": {
+   "forward": {
+    "ja": "福住方面",
+    "ko": "후쿠즈미 방면",
+    "en": "for Fukuzumi"
+   },
+   "reverse": {
+    "ja": "栄町方面",
+    "ko": "사카에마치 방면",
+    "en": "for Sakaemachi"
+   }
+  },
+  "stations": [
+   "sapporo.sakaemachi",
+   "sapporo.shindo-higashi",
+   "sapporo.motomachi",
+   "sapporo.kanjo-dori-higashi",
+   "sapporo.higashi-kuyakusho-mae",
+   "sapporo.kita-13-jo-higashi",
+   "sapporo.sapporo",
+   "sapporo.odori",
+   "sapporo.hosui-susukino",
+   "sapporo.gakuen-mae",
+   "sapporo.toyohira-koen",
+   "sapporo.misono",
+   "sapporo.tsukisamu-chuo",
+   "sapporo.fukuzumi"
+  ],
+  "runSec": [
+   140,
+   170,
+   190,
+   140,
+   150,
+   150,
+   150,
+   120,
+   190,
+   140,
+   160,
+   180,
+   160
+  ]
+ },
+ {
+  "id": "sapporo.streetcar",
+  "name": {
+   "ja": "札幌市電",
+   "ko": "삿포로 시덴(노면전차)",
+   "en": "Sapporo Streetcar"
+  },
+  "color": "#7D5BA6",
+  "loop": true,
+  "dwellSec": 20,
+  "group": "streetcar",
+  "directions": {
+   "forward": {
+    "ja": "西線・ロープウェイ入口方面",
+    "ko": "니시센·로프웨이 입구 방면",
+    "en": "for Nishisen / Ropeway"
+   },
+   "reverse": {
+    "ja": "すすきの・狸小路方面",
+    "ko": "스스키노·다누키코지 방면",
+    "en": "for Susukino / Tanukikoji"
+   }
+  },
+  "stations": [
+   "sapporo.nishi-4-chome",
+   "sapporo.nishi-8-chome",
+   "sapporo.chuo-kuyakusho-mae",
+   "sapporo.nishi-15-chome",
+   "sapporo.nishisen-6-jo",
+   "sapporo.nishisen-9-jo-asahiyama-koen-dori",
+   "sapporo.nishisen-11-jo",
+   "sapporo.nishisen-14-jo",
+   "sapporo.nishisen-16-jo",
+   "sapporo.ropeway-iriguchi",
+   "sapporo.densha-jigyosho-mae",
+   "sapporo.chuo-toshokan-mae",
+   "sapporo.ishiyama-dori",
+   "sapporo.higashi-tonden-dori",
+   "sapporo.konan-shogakko-mae",
+   "sapporo.yamahana-19-jo",
+   "sapporo.seishu-gakuen-mae",
+   "sapporo.gyokei-dori",
+   "sapporo.nakajima-koen-dori",
+   "sapporo.yamahana-9-jo",
+   "sapporo.higashi-honganji-mae",
+   "sapporo.shiseikan-shogakko-mae",
+   "sapporo.susukino",
+   "sapporo.tanukikoji"
+  ],
+  "runSec": [
+   160,
+   140,
+   190,
+   170,
+   120,
+   120,
+   160,
+   130,
+   130,
+   120,
+   120,
+   110,
+   110,
+   110,
+   100,
+   120,
+   130,
+   150,
+   120,
+   110,
+   130,
+   120,
+   80,
+   70
+  ]
+ },
+ {
+  "id": "sapporo.hakodate",
+  "name": {
+   "ja": "JR函館本線",
+   "ko": "JR 하코다테 본선",
+   "en": "JR Hakodate Line"
+  },
+  "color": "#D2493B",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "小樽方面",
+    "ko": "오타루 방면",
+    "en": "for Otaru"
+   },
+   "reverse": {
+    "ja": "札幌方面",
+    "ko": "삿포로 방면",
+    "en": "for Sapporo"
+   }
+  },
+  "stations": [
+   "sapporo.sapporo",
+   "sapporo.soen",
+   "sapporo.kotoni-jr",
+   "sapporo.hassamu-chuo",
+   "sapporo.hassamu",
+   "sapporo.inazumi-koen",
+   "sapporo.teine",
+   "sapporo.inaho",
+   "sapporo.hoshioki",
+   "sapporo.hoshimi",
+   "sapporo.zenibako",
+   "sapporo.asari",
+   "sapporo.otaru-chikko",
+   "sapporo.minami-otaru",
+   "sapporo.otaru"
+  ],
+  "runSec": [
+   220,
+   310,
+   230,
+   240,
+   290,
+   190,
+   260,
+   160,
+   220,
+   380,
+   1070,
+   390,
+   250,
+   220
+  ]
+ }
+]

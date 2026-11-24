@@ -1,0 +1,8 @@
+aoba_castle d1d20bba-aa90-43f9-8739-c4fbfa81e99d
+zuihoden a7815a32-9467-4251-ab29-1f2845245087
+jozenji dc39fcc2-eca9-4e12-a436-6703858f10d5
+matsushima ff311bf7-0daf-46ab-b277-c9d595792965
+osaki_hachimangu f85cc463-a09a-4f24-98ee-60658c69bb17
+daikannon 728f2e78-d202-4eae-bb5f-b91466bc8ce9
+tanabata 43d0f87d-1b45-44fb-8321-830f7b679964
+stadium 7fc3a42b-f3fc-4549-9e1f-3949ef8ca52d

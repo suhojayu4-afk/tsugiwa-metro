@@ -1,0 +1,8 @@
+clock_tower 50d1502a-17ab-4eb6-8c05-a36add063918
+tv_tower 2adb3686-923a-4b3f-8382-8b818a7924a5
+odori_snow 9ab902c2-4eff-4ffa-bbfb-60ba6fa83942
+moiwa 631f35a7-d75a-4d69-87ad-df256c5bd09e
+susukino 699f5f77-9901-4871-bbe9-551496a46f40
+okurayama bacda041-229c-44e3-b423-051f206cd20f
+red_brick e32d667e-0138-46b3-ba7e-39519954f497
+sapporo_dome 6f4ffaaa-13ba-4d62-b96c-a5349cfda12d

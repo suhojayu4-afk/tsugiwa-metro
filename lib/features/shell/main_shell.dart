@@ -82,9 +82,16 @@ class _MainShellState extends State<MainShell> {
     // Tottori's country lines run diesel railcars.
     my.cityTrainArt = widget.city.id == 'tottori' ? tottoriDieselArt : null;
     rareTrainArt = widget.city.id == 'tottori' ? tottoriSlArt : yellowTrainArt;
-    my.cityScene = widget.city.id == 'tottori'
-        ? {for (final p in DayPart.values) p: 'assets/art/tottori/rural_${p.name}.webp'}
-        : const {};
+    // Each city's own platform picture, until one of its station scenes is bought.
+    final cityScene = switch (widget.city.id) {
+      'tottori' => 'assets/art/tottori/rural',
+      'osaka' => 'assets/art/cities/scenes/osaka_umeda',
+      'fukuoka' => 'assets/art/cities/scenes/fukuoka_nakasu',
+      'sendai' => 'assets/art/cities/scenes/sendai_aoba',
+      'sapporo' => 'assets/art/cities/scenes/sapporo_odori',
+      _ => null,
+    };
+    my.cityScene = cityScene == null ? const {} : {for (final p in DayPart.values) p: '${cityScene}_${p.name}.webp'};
     if (!my.loaded) my.load();
     // 月間乗車レポート on the 1st; tapping it opens MY.
     MonthlyReport.attach(my, openMy: () => mounted ? _openMy(null) : null);

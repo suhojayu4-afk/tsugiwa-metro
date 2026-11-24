@@ -138,25 +138,22 @@ class RouteFinder {
   static const changeMin = 3;
 
   /// Earliest arrival from [fromId] to [toId] leaving at [time] (Japan time)
-  /// on the real trains of today and tomorrow morning (connection scan).
-  /// Null when no train gets there.
+  /// on today's real trains (connection scan). Null when none gets there
+  /// tonight: [find] then gives the usual route and the last-train warnings.
   RouteResult? findOnTrains(String fromId, String toId, DateTime time, {Set<String> avoid = const {}}) {
     final now = LineTimetable.serviceMinute(time);
     final conns = <_Conn>[];
     var trip = 0;
     for (final e in city.trains.entries) {
       if (avoid.contains(e.key)) continue;
-      for (final day in const [0, 1]) {
-        final off = day * 1440;
-        for (final r in e.value.runsOn(time.add(Duration(days: day)))) {
-          final st = r.stops;
-          if (st.last.arriveMin + off < now) continue;
-          for (var k = 0; k + 1 < st.length; k++) {
-            if (st[k].departMin + off < now) continue;
-            conns.add(_Conn(e.key, trip, r, k, st[k].departMin + off, st[k + 1].arriveMin + off));
-          }
-          trip++;
+      for (final r in e.value.runsOn(time)) {
+        final st = r.stops;
+        if (st.last.arriveMin < now) continue;
+        for (var k = 0; k + 1 < st.length; k++) {
+          if (st[k].departMin < now) continue;
+          conns.add(_Conn(e.key, trip, r, k, st[k].departMin, st[k + 1].arriveMin));
         }
+        trip++;
       }
     }
     conns.sort((a, b) => a.dep != b.dep ? a.dep - b.dep : a.arr - b.arr);

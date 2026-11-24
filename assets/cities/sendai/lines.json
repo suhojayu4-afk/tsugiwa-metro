@@ -1,0 +1,177 @@
+[
+ {
+  "id": "sendai.namboku",
+  "name": {
+   "ja": "南北線",
+   "ko": "난보쿠선",
+   "en": "Namboku Line"
+  },
+  "color": "#00923F",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "metro",
+  "directions": {
+   "forward": {
+    "ja": "富沢方面",
+    "ko": "도미자와 방면",
+    "en": "for Tomizawa"
+   },
+   "reverse": {
+    "ja": "泉中央方面",
+    "ko": "이즈미추오 방면",
+    "en": "for Izumi-Chuo"
+   }
+  },
+  "stations": [
+   "sendai.izumi-chuo",
+   "sendai.yaotome",
+   "sendai.kuromatsu",
+   "sendai.asahigaoka",
+   "sendai.dainohara",
+   "sendai.kita-sendai",
+   "sendai.kita-yobancho",
+   "sendai.kotodai-koen",
+   "sendai.hirose-dori",
+   "sendai.sendai",
+   "sendai.itsutsubashi",
+   "sendai.atagobashi",
+   "sendai.kawaramachi",
+   "sendai.nagamachi-1-chome",
+   "sendai.nagamachi",
+   "sendai.nagamachi-minami",
+   "sendai.tomizawa"
+  ],
+  "runSec": [
+   170,
+   170,
+   130,
+   150,
+   160,
+   170,
+   100,
+   100,
+   90,
+   140,
+   90,
+   140,
+   120,
+   110,
+   130,
+   180
+  ]
+ },
+ {
+  "id": "sendai.tozai",
+  "name": {
+   "ja": "東西線",
+   "ko": "도자이선",
+   "en": "Tozai Line"
+  },
+  "color": "#2CA9E1",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "metro",
+  "directions": {
+   "forward": {
+    "ja": "荒井方面",
+    "ko": "아라이 방면",
+    "en": "for Arai"
+   },
+   "reverse": {
+    "ja": "八木山動物公園方面",
+    "ko": "야기야마 동물공원 방면",
+    "en": "for Yagiyama Zoological Park"
+   }
+  },
+  "stations": [
+   "sendai.yagiyama-zoological-park",
+   "sendai.aobayama",
+   "sendai.kawauchi",
+   "sendai.international-center",
+   "sendai.omachi-nishi-koen",
+   "sendai.aobadori-ichibancho",
+   "sendai.sendai",
+   "sendai.miyagino-dori",
+   "sendai.rembo",
+   "sendai.yakushido",
+   "sendai.oroshimachi",
+   "sendai.rokuchonome",
+   "sendai.arai"
+  ],
+  "runSec": [
+   210,
+   210,
+   100,
+   120,
+   110,
+   120,
+   100,
+   150,
+   170,
+   200,
+   190,
+   190
+  ]
+ },
+ {
+  "id": "sendai.senseki",
+  "name": {
+   "ja": "JR仙石線",
+   "ko": "JR 센세키선",
+   "en": "JR Senseki Line"
+  },
+  "color": "#3A5BA9",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "松島海岸・石巻方面",
+    "ko": "마쓰시마카이간·이시노마키 방면",
+    "en": "for Matsushima-Kaigan / Ishinomaki"
+   },
+   "reverse": {
+    "ja": "あおば通方面",
+    "ko": "아오바도리 방면",
+    "en": "for Aoba-dori"
+   }
+  },
+  "stations": [
+   "sendai.aoba-dori",
+   "sendai.sendai",
+   "sendai.tsutsujigaoka",
+   "sendai.miyaginohara",
+   "sendai.rikuzen-haranomachi",
+   "sendai.nigatake",
+   "sendai.kozurushinden",
+   "sendai.fukudamachi",
+   "sendai.rikuzen-takasago",
+   "sendai.nakanosakae",
+   "sendai.tagajo",
+   "sendai.geba",
+   "sendai.nishi-shiogama",
+   "sendai.hon-shiogama",
+   "sendai.higashi-shiogama",
+   "sendai.rikuzen-hamada",
+   "sendai.matsushima-kaigan"
+  ],
+  "runSec": [
+   60,
+   170,
+   140,
+   120,
+   120,
+   200,
+   260,
+   120,
+   220,
+   280,
+   220,
+   110,
+   110,
+   160,
+   360,
+   300
+  ]
+ }
+]

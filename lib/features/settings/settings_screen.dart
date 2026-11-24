@@ -194,6 +194,26 @@ const _cityAbout = {
     'ko': '산인 본선·사카이선·인비선·와카사 철도·지즈 급행·하쿠비선과 특급. 시골 역과 다이센의 노선도',
     'en': "San'in, Sakai, Inbi, Wakasa, Chizu and Hakubi lines and limited expresses; country stations and Mt. Daisen",
   }),
+  'osaka': LocalizedText({
+    'ja': '大阪メトロ全線と大阪環状線。大阪城・通天閣・道頓堀の路線図',
+    'ko': '오사카 메트로 전 노선과 오사카 순환선. 오사카성·츠텐카쿠·도톤보리의 노선도',
+    'en': 'Every Osaka Metro line and the Osaka Loop; Osaka Castle, Tsutenkaku and Dotonbori on the map',
+  }),
+  'fukuoka': LocalizedText({
+    'ja': '福岡市地下鉄 空港線・箱崎線・七隈線。福岡タワー・大濠公園・中洲の屋台',
+    'ko': '후쿠오카 지하철 공항선·하코자키선·나나쿠마선. 후쿠오카 타워·오호리 공원·나카스 포장마차',
+    'en': 'Fukuoka subway: Airport, Hakozaki and Nanakuma lines; Fukuoka Tower, Ohori Park and the Nakasu stalls',
+  }),
+  'sendai': LocalizedText({
+    'ja': '仙台市地下鉄 南北線・東西線とJR仙石線で松島へ。青葉城・瑞鳳殿',
+    'ko': '센다이 지하철 남북선·동서선과 JR 센세키선으로 마쓰시마까지. 아오바성·즈이호덴',
+    'en': 'Sendai subway Namboku and Tozai lines, and the JR Senseki Line to Matsushima; Aoba Castle and Zuihoden',
+  }),
+  'sapporo': LocalizedText({
+    'ja': '札幌市営地下鉄3路線・市電とJR函館線で小樽へ。時計台・大通公園・藻岩山',
+    'ko': '삿포로 지하철 3개 노선·시덴과 JR 하코다테선으로 오타루까지. 시계탑·오도리 공원·모이와산',
+    'en': 'Three Sapporo subway lines, the streetcar and the JR Hakodate Line to Otaru; the Clock Tower, Odori Park, Mt. Moiwa',
+  }),
 };
 
 /// The cities: Tokyo comes with the app; other route maps are received

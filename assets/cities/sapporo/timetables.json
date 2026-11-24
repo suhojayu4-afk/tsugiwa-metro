@@ -1,0 +1,272 @@
+{
+ "sapporo.namboku": {
+  "firstTrain": "06:00",
+  "lastTrain": "24:20",
+  "weekday": [
+   {
+    "from": "06:00",
+    "to": "07:00",
+    "everyMin": 7
+   },
+   {
+    "from": "07:00",
+    "to": "09:00",
+    "everyMin": 4
+   },
+   {
+    "from": "09:00",
+    "to": "17:00",
+    "everyMin": 7
+   },
+   {
+    "from": "17:00",
+    "to": "19:30",
+    "everyMin": 5
+   },
+   {
+    "from": "19:30",
+    "to": "24:00",
+    "everyMin": 8
+   }
+  ],
+  "holiday": [
+   {
+    "from": "06:00",
+    "to": "07:00",
+    "everyMin": 7
+   },
+   {
+    "from": "07:00",
+    "to": "09:00",
+    "everyMin": 5
+   },
+   {
+    "from": "09:00",
+    "to": "17:00",
+    "everyMin": 7
+   },
+   {
+    "from": "17:00",
+    "to": "19:30",
+    "everyMin": 5
+   },
+   {
+    "from": "19:30",
+    "to": "24:00",
+    "everyMin": 8
+   }
+  ]
+ },
+ "sapporo.tozai": {
+  "firstTrain": "06:00",
+  "lastTrain": "24:15",
+  "weekday": [
+   {
+    "from": "06:00",
+    "to": "07:00",
+    "everyMin": 7
+   },
+   {
+    "from": "07:00",
+    "to": "09:00",
+    "everyMin": 4
+   },
+   {
+    "from": "09:00",
+    "to": "17:00",
+    "everyMin": 7
+   },
+   {
+    "from": "17:00",
+    "to": "19:30",
+    "everyMin": 5
+   },
+   {
+    "from": "19:30",
+    "to": "24:00",
+    "everyMin": 8
+   }
+  ],
+  "holiday": [
+   {
+    "from": "06:00",
+    "to": "07:00",
+    "everyMin": 7
+   },
+   {
+    "from": "07:00",
+    "to": "09:00",
+    "everyMin": 5
+   },
+   {
+    "from": "09:00",
+    "to": "17:00",
+    "everyMin": 7
+   },
+   {
+    "from": "17:00",
+    "to": "19:30",
+    "everyMin": 5
+   },
+   {
+    "from": "19:30",
+    "to": "24:00",
+    "everyMin": 8
+   }
+  ]
+ },
+ "sapporo.toho": {
+  "firstTrain": "06:00",
+  "lastTrain": "24:15",
+  "weekday": [
+   {
+    "from": "06:00",
+    "to": "07:00",
+    "everyMin": 7
+   },
+   {
+    "from": "07:00",
+    "to": "09:00",
+    "everyMin": 4
+   },
+   {
+    "from": "09:00",
+    "to": "17:00",
+    "everyMin": 7
+   },
+   {
+    "from": "17:00",
+    "to": "19:30",
+    "everyMin": 5
+   },
+   {
+    "from": "19:30",
+    "to": "24:00",
+    "everyMin": 8
+   }
+  ],
+  "holiday": [
+   {
+    "from": "06:00",
+    "to": "07:00",
+    "everyMin": 7
+   },
+   {
+    "from": "07:00",
+    "to": "09:00",
+    "everyMin": 5
+   },
+   {
+    "from": "09:00",
+    "to": "17:00",
+    "everyMin": 7
+   },
+   {
+    "from": "17:00",
+    "to": "19:30",
+    "everyMin": 5
+   },
+   {
+    "from": "19:30",
+    "to": "24:00",
+    "everyMin": 8
+   }
+  ]
+ },
+ "sapporo.streetcar": {
+  "firstTrain": "06:20",
+  "lastTrain": "23:30",
+  "weekday": [
+   {
+    "from": "06:20",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "20:00",
+    "everyMin": 7
+   },
+   {
+    "from": "20:00",
+    "to": "23:30",
+    "everyMin": 10
+   }
+  ],
+  "holiday": [
+   {
+    "from": "06:20",
+    "to": "07:00",
+    "everyMin": 10
+   },
+   {
+    "from": "07:00",
+    "to": "20:00",
+    "everyMin": 7
+   },
+   {
+    "from": "20:00",
+    "to": "23:30",
+    "everyMin": 10
+   }
+  ]
+ },
+ "sapporo.hakodate": {
+  "firstTrain": "05:50",
+  "lastTrain": "23:50",
+  "weekday": [
+   {
+    "from": "05:30",
+    "to": "07:00",
+    "everyMin": 20
+   },
+   {
+    "from": "07:00",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 12
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 20
+   }
+  ],
+  "holiday": [
+   {
+    "from": "05:30",
+    "to": "07:00",
+    "everyMin": 20
+   },
+   {
+    "from": "07:00",
+    "to": "09:00",
+    "everyMin": 10
+   },
+   {
+    "from": "09:00",
+    "to": "17:00",
+    "everyMin": 15
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 12
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 20
+   }
+  ]
+ }
+}

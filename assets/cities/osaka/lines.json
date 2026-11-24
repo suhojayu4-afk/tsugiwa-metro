@@ -1,0 +1,614 @@
+[
+ {
+  "id": "osaka.midosuji",
+  "name": {
+   "ja": "御堂筋線",
+   "ko": "미도스지선",
+   "en": "Midosuji Line"
+  },
+  "color": "#E5171F",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "metro",
+  "directions": {
+   "forward": {
+    "ja": "なかもず方面",
+    "ko": "나카모즈 방면",
+    "en": "for Nakamozu"
+   },
+   "reverse": {
+    "ja": "江坂方面",
+    "ko": "에사카 방면",
+    "en": "for Esaka"
+   }
+  },
+  "stations": [
+   "osaka.esaka",
+   "osaka.higashi-mikuni",
+   "osaka.shin-osaka",
+   "osaka.nishinakajima-minamigata",
+   "osaka.nakatsu",
+   "osaka.umeda",
+   "osaka.yodoyabashi",
+   "osaka.hommachi",
+   "osaka.shinsaibashi",
+   "osaka.namba",
+   "osaka.daikokucho",
+   "osaka.dobutsuen-mae",
+   "osaka.tennoji",
+   "osaka.showacho",
+   "osaka.nishi-tanabe",
+   "osaka.nagai",
+   "osaka.abiko",
+   "osaka.kita-hanada",
+   "osaka.shin-kanaoka",
+   "osaka.nakamozu"
+  ],
+  "runSec": [
+   270,
+   140,
+   110,
+   240,
+   130,
+   190,
+   140,
+   140,
+   140,
+   180,
+   150,
+   150,
+   200,
+   190,
+   200,
+   160,
+   260,
+   210,
+   220
+  ]
+ },
+ {
+  "id": "osaka.tanimachi",
+  "name": {
+   "ja": "谷町線",
+   "ko": "다니마치선",
+   "en": "Tanimachi Line"
+  },
+  "color": "#522886",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "metro",
+  "directions": {
+   "forward": {
+    "ja": "八尾南方面",
+    "ko": "야오미나미 방면",
+    "en": "for Yaominami"
+   },
+   "reverse": {
+    "ja": "大日方面",
+    "ko": "다이니치 방면",
+    "en": "for Dainichi"
+   }
+  },
+  "stations": [
+   "osaka.dainichi",
+   "osaka.moriguchi",
+   "osaka.taishibashi-imaichi",
+   "osaka.sembayashi-omiya",
+   "osaka.sekime-takadono",
+   "osaka.noe-uchindai",
+   "osaka.miyakojima",
+   "osaka.tenjimbashisuji-6-chome",
+   "osaka.nakazakicho",
+   "osaka.higashi-umeda",
+   "osaka.minamimorimachi",
+   "osaka.temmabashi",
+   "osaka.tanimachi-4-chome",
+   "osaka.tanimachi-6-chome",
+   "osaka.tanimachi-9-chome",
+   "osaka.shitennoji-mae-yuhigaoka",
+   "osaka.tennoji",
+   "osaka.abeno",
+   "osaka.fuminosato",
+   "osaka.tanabe",
+   "osaka.komagawa-nakano",
+   "osaka.hirano",
+   "osaka.kire-uriwari",
+   "osaka.deto",
+   "osaka.nagahara",
+   "osaka.yao-minami"
+  ],
+  "runSec": [
+   240,
+   170,
+   140,
+   150,
+   140,
+   170,
+   200,
+   100,
+   140,
+   160,
+   140,
+   140,
+   110,
+   150,
+   140,
+   200,
+   90,
+   140,
+   150,
+   160,
+   210,
+   190,
+   180,
+   150,
+   150
+  ]
+ },
+ {
+  "id": "osaka.yotsubashi",
+  "name": {
+   "ja": "四つ橋線",
+   "ko": "요쓰바시선",
+   "en": "Yotsubashi Line"
+  },
+  "color": "#0078BA",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "metro",
+  "directions": {
+   "forward": {
+    "ja": "住之江公園方面",
+    "ko": "스미노에코엔 방면",
+    "en": "for Suminoekoen"
+   },
+   "reverse": {
+    "ja": "西梅田方面",
+    "ko": "니시우메다 방면",
+    "en": "for Nishi-Umeda"
+   }
+  },
+  "stations": [
+   "osaka.nishi-umeda",
+   "osaka.higobashi",
+   "osaka.hommachi",
+   "osaka.yotsubashi",
+   "osaka.namba",
+   "osaka.daikokucho",
+   "osaka.hanazonocho",
+   "osaka.kishinosato",
+   "osaka.tamade",
+   "osaka.kitakagaya",
+   "osaka.suminoekoen"
+  ],
+  "runSec": [
+   140,
+   150,
+   160,
+   130,
+   180,
+   190,
+   160,
+   180,
+   150,
+   210
+  ]
+ },
+ {
+  "id": "osaka.chuo",
+  "name": {
+   "ja": "中央線",
+   "ko": "주오선",
+   "en": "Chuo Line"
+  },
+  "color": "#019A66",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "metro",
+  "directions": {
+   "forward": {
+    "ja": "長田方面",
+    "ko": "나가타 방면",
+    "en": "for Nagata"
+   },
+   "reverse": {
+    "ja": "夢洲方面",
+    "ko": "유메시마 방면",
+    "en": "for Yumeshima"
+   }
+  },
+  "stations": [
+   "osaka.yumeshima",
+   "osaka.cosmosquare",
+   "osaka.osakako",
+   "osaka.asashiobashi",
+   "osaka.bentencho",
+   "osaka.kujo",
+   "osaka.awaza",
+   "osaka.hommachi",
+   "osaka.sakaisuji-hommachi",
+   "osaka.tanimachi-4-chome",
+   "osaka.morinomiya",
+   "osaka.midoribashi",
+   "osaka.fukaebashi",
+   "osaka.takaida",
+   "osaka.nagata"
+  ],
+  "runSec": [
+   300,
+   320,
+   210,
+   210,
+   180,
+   210,
+   170,
+   100,
+   140,
+   190,
+   170,
+   170,
+   190,
+   240
+  ]
+ },
+ {
+  "id": "osaka.sennichimae",
+  "name": {
+   "ja": "千日前線",
+   "ko": "센니치마에선",
+   "en": "Sennichimae Line"
+  },
+  "color": "#E44D93",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "metro",
+  "directions": {
+   "forward": {
+    "ja": "南巽方面",
+    "ko": "미나미타쓰미 방면",
+    "en": "for Minami-Tatsumi"
+   },
+   "reverse": {
+    "ja": "野田阪神方面",
+    "ko": "노다한신 방면",
+    "en": "for Noda-Hanshin"
+   }
+  },
+  "stations": [
+   "osaka.noda-hanshin",
+   "osaka.tamagawa",
+   "osaka.awaza",
+   "osaka.nishi-nagahori",
+   "osaka.sakuragawa",
+   "osaka.namba",
+   "osaka.nippombashi",
+   "osaka.tanimachi-9-chome",
+   "osaka.tsuruhashi",
+   "osaka.imazato",
+   "osaka.shin-fukae",
+   "osaka.shoji",
+   "osaka.kita-tatsumi",
+   "osaka.minami-tatsumi"
+  ],
+  "runSec": [
+   100,
+   200,
+   110,
+   140,
+   130,
+   100,
+   130,
+   180,
+   190,
+   160,
+   120,
+   140,
+   180
+  ]
+ },
+ {
+  "id": "osaka.sakaisuji",
+  "name": {
+   "ja": "堺筋線",
+   "ko": "사카이스지선",
+   "en": "Sakaisuji Line"
+  },
+  "color": "#814721",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "metro",
+  "directions": {
+   "forward": {
+    "ja": "天下茶屋方面",
+    "ko": "덴가차야 방면",
+    "en": "for Tengachaya"
+   },
+   "reverse": {
+    "ja": "天神橋筋六丁目方面",
+    "ko": "덴진바시스지로쿠초메 방면",
+    "en": "for Tenjimbashisuji 6-chome"
+   }
+  },
+  "stations": [
+   "osaka.tenjimbashisuji-6-chome",
+   "osaka.ogimachi",
+   "osaka.minamimorimachi",
+   "osaka.kitahama",
+   "osaka.sakaisuji-hommachi",
+   "osaka.nagahoribashi",
+   "osaka.nippombashi",
+   "osaka.ebisucho",
+   "osaka.dobutsuen-mae",
+   "osaka.tengachaya"
+  ],
+  "runSec": [
+   100,
+   120,
+   130,
+   150,
+   120,
+   140,
+   180,
+   120,
+   200
+  ]
+ },
+ {
+  "id": "osaka.nagahori",
+  "name": {
+   "ja": "長堀鶴見緑地線",
+   "ko": "나가호리쓰루미료쿠치선",
+   "en": "Nagahori Tsurumi-ryokuchi Line"
+  },
+  "color": "#A9CC51",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "metro",
+  "directions": {
+   "forward": {
+    "ja": "門真南方面",
+    "ko": "가도마미나미 방면",
+    "en": "for Kadoma-minami"
+   },
+   "reverse": {
+    "ja": "大正方面",
+    "ko": "다이쇼 방면",
+    "en": "for Taisho"
+   }
+  },
+  "stations": [
+   "osaka.taisho",
+   "osaka.dome-mae-chiyozaki",
+   "osaka.nishi-nagahori",
+   "osaka.nishiohashi",
+   "osaka.shinsaibashi",
+   "osaka.nagahoribashi",
+   "osaka.matsuyamachi",
+   "osaka.tanimachi-6-chome",
+   "osaka.tamatsukuri",
+   "osaka.morinomiya",
+   "osaka.osaka-business-park",
+   "osaka.kyobashi",
+   "osaka.gamo-4-chome",
+   "osaka.imafuku-tsurumi",
+   "osaka.yokozutsumi",
+   "osaka.tsurumi-ryokuchi",
+   "osaka.kadoma-minami"
+  ],
+  "runSec": [
+   110,
+   130,
+   110,
+   80,
+   110,
+   90,
+   100,
+   170,
+   120,
+   180,
+   100,
+   210,
+   180,
+   180,
+   160,
+   190
+  ]
+ },
+ {
+  "id": "osaka.imazatosuji",
+  "name": {
+   "ja": "今里筋線",
+   "ko": "이마자토스지선",
+   "en": "Imazatosuji Line"
+  },
+  "color": "#EE7B1A",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "metro",
+  "directions": {
+   "forward": {
+    "ja": "今里方面",
+    "ko": "이마자토 방면",
+    "en": "for Imazato"
+   },
+   "reverse": {
+    "ja": "井高野方面",
+    "ko": "이타카노 방면",
+    "en": "for Itakano"
+   }
+  },
+  "stations": [
+   "osaka.itakano",
+   "osaka.zuiko-4-chome",
+   "osaka.daido-toyosato",
+   "osaka.taishibashi-imaichi",
+   "osaka.shimizu",
+   "osaka.shimmori-furuichi",
+   "osaka.sekime-seiiku",
+   "osaka.gamo-4-chome",
+   "osaka.shigino",
+   "osaka.midoribashi",
+   "osaka.imazato"
+  ],
+  "runSec": [
+   140,
+   140,
+   230,
+   170,
+   130,
+   160,
+   180,
+   140,
+   190,
+   190
+  ]
+ },
+ {
+  "id": "osaka.nanko",
+  "name": {
+   "ja": "ニュートラム 南港ポートタウン線",
+   "ko": "뉴트램 난코 포트타운선",
+   "en": "New Tram Nanko Port Town Line"
+  },
+  "color": "#00A3D9",
+  "loop": false,
+  "dwellSec": 25,
+  "group": "metro",
+  "directions": {
+   "forward": {
+    "ja": "住之江公園方面",
+    "ko": "스미노에코엔 방면",
+    "en": "for Suminoekoen"
+   },
+   "reverse": {
+    "ja": "コスモスクエア方面",
+    "ko": "코스모스퀘어 방면",
+    "en": "for Cosmosquare"
+   }
+  },
+  "stations": [
+   "osaka.cosmosquare",
+   "osaka.trade-center-mae",
+   "osaka.nakafuto",
+   "osaka.port-town-nishi",
+   "osaka.port-town-higashi",
+   "osaka.ferry-terminal",
+   "osaka.nanko-higashi",
+   "osaka.nanko-guchi",
+   "osaka.hirabayashi",
+   "osaka.suminoekoen"
+  ],
+  "runSec": [
+   80,
+   110,
+   100,
+   100,
+   200,
+   110,
+   110,
+   170,
+   180
+  ]
+ },
+ {
+  "id": "osaka.loop",
+  "name": {
+   "ja": "JR大阪環状線",
+   "ko": "JR 오사카 순환선",
+   "en": "JR Osaka Loop Line"
+  },
+  "color": "#D35400",
+  "loop": true,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "京橋・鶴橋方面",
+    "ko": "교바시·쓰루하시 방면",
+    "en": "for Kyobashi / Tsuruhashi"
+   },
+   "reverse": {
+    "ja": "西九条・弁天町方面",
+    "ko": "니시쿠조·벤텐초 방면",
+    "en": "for Nishikujo / Bentencho"
+   }
+  },
+  "stations": [
+   "osaka.osaka",
+   "osaka.temma",
+   "osaka.sakuranomiya",
+   "osaka.kyobashi",
+   "osaka.osakajokoen",
+   "osaka.morinomiya",
+   "osaka.tamatsukuri",
+   "osaka.tsuruhashi",
+   "osaka.momodani",
+   "osaka.teradacho",
+   "osaka.tennoji",
+   "osaka.shin-imamiya",
+   "osaka.imamiya",
+   "osaka.ashiharabashi",
+   "osaka.taisho",
+   "osaka.bentencho",
+   "osaka.nishikujo",
+   "osaka.noda",
+   "osaka.fukushima"
+  ],
+  "runSec": [
+   200,
+   110,
+   170,
+   160,
+   110,
+   120,
+   140,
+   120,
+   170,
+   110,
+   190,
+   120,
+   100,
+   150,
+   220,
+   200,
+   210,
+   150,
+   140
+  ]
+ },
+ {
+  "id": "osaka.yumesaki",
+  "name": {
+   "ja": "JRゆめ咲線",
+   "ko": "JR 유메사키선",
+   "en": "JR Yumesaki Line"
+  },
+  "color": "#2E4A9E",
+  "loop": false,
+  "dwellSec": 30,
+  "group": "jr",
+  "directions": {
+   "forward": {
+    "ja": "桜島方面",
+    "ko": "사쿠라지마 방면",
+    "en": "for Sakurajima"
+   },
+   "reverse": {
+    "ja": "西九条方面",
+    "ko": "니시쿠조 방면",
+    "en": "for Nishikujo"
+   }
+  },
+  "stations": [
+   "osaka.nishikujo",
+   "osaka.ajikawaguchi",
+   "osaka.universal-city",
+   "osaka.sakurajima"
+  ],
+  "runSec": [
+   280,
+   120,
+   130
+  ]
+ }
+]

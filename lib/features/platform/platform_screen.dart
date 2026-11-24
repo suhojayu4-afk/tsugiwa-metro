@@ -1420,7 +1420,13 @@ class _Banner extends StatelessWidget {
               band: route != null ? trainColor : city.line(city.station(fromId!).lines.first).color,
             ),
       sky: sceneSky(weather, crowd: _crowd(), closed: _closed()),
-      plate: PlateData.of(my, fallbackName: shownScene?.name.of(lang) ?? ''),
+      plate: PlateData.of(
+        my,
+        // Another city's own picture is shown (Osaka …): its name, not the equipped Tokyo scene's.
+        fallbackName: my.cityScene.isNotEmpty && !(shownScene?.station?.startsWith('${city.id}.') ?? false)
+            ? city.name.of(lang)
+            : shownScene?.name.of(lang) ?? '',
+      ),
       led: route == null ? null : destinationLed(city, route!.legs.first),
       onTap: () => onOpenMy?.call(null),
       // The train pulls in with a quiet arrival sound, then the MY departure

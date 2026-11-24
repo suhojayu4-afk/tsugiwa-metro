@@ -1,0 +1,620 @@
+{
+ "osaka.midosuji": {
+  "firstTrain": "05:00",
+  "lastTrain": "24:00",
+  "weekday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 6
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 3
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 5
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 4
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 7
+   }
+  ],
+  "holiday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 6
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 5
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 5
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 5
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 7
+   }
+  ]
+ },
+ "osaka.tanimachi": {
+  "firstTrain": "05:00",
+  "lastTrain": "24:00",
+  "weekday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 6
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 3
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 5
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 4
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 7
+   }
+  ],
+  "holiday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 6
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 5
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 5
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 5
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 7
+   }
+  ]
+ },
+ "osaka.yotsubashi": {
+  "firstTrain": "05:00",
+  "lastTrain": "24:00",
+  "weekday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 6
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 3
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 5
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 4
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 7
+   }
+  ],
+  "holiday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 6
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 5
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 5
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 5
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 7
+   }
+  ]
+ },
+ "osaka.chuo": {
+  "firstTrain": "05:00",
+  "lastTrain": "24:00",
+  "weekday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 6
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 3
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 5
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 4
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 7
+   }
+  ],
+  "holiday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 6
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 5
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 5
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 5
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 7
+   }
+  ]
+ },
+ "osaka.sennichimae": {
+  "firstTrain": "05:00",
+  "lastTrain": "24:00",
+  "weekday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 6
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 3
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 5
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 4
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 7
+   }
+  ],
+  "holiday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 6
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 5
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 5
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 5
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 7
+   }
+  ]
+ },
+ "osaka.sakaisuji": {
+  "firstTrain": "05:00",
+  "lastTrain": "24:00",
+  "weekday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 6
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 3
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 5
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 4
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 7
+   }
+  ],
+  "holiday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 6
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 5
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 5
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 5
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 7
+   }
+  ]
+ },
+ "osaka.nagahori": {
+  "firstTrain": "05:00",
+  "lastTrain": "24:00",
+  "weekday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 6
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 3
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 5
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 4
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 7
+   }
+  ],
+  "holiday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 6
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 5
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 5
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 5
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 7
+   }
+  ]
+ },
+ "osaka.imazatosuji": {
+  "firstTrain": "05:00",
+  "lastTrain": "24:00",
+  "weekday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 6
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 3
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 5
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 4
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 7
+   }
+  ],
+  "holiday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 6
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 5
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 5
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 5
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 7
+   }
+  ]
+ },
+ "osaka.nanko": {
+  "firstTrain": "05:00",
+  "lastTrain": "24:00",
+  "weekday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 8
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 4
+   },
+   {
+    "from": "09:30",
+    "to": "20:00",
+    "everyMin": 6
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 9
+   }
+  ],
+  "holiday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 8
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 5
+   },
+   {
+    "from": "09:30",
+    "to": "20:00",
+    "everyMin": 6
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 9
+   }
+  ]
+ },
+ "osaka.loop": {
+  "firstTrain": "04:55",
+  "lastTrain": "24:10",
+  "weekday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 8
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 4
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 5
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 4
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 8
+   }
+  ],
+  "holiday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 8
+   },
+   {
+    "from": "07:00",
+    "to": "09:30",
+    "everyMin": 5
+   },
+   {
+    "from": "09:30",
+    "to": "17:00",
+    "everyMin": 5
+   },
+   {
+    "from": "17:00",
+    "to": "20:00",
+    "everyMin": 5
+   },
+   {
+    "from": "20:00",
+    "to": "24:00",
+    "everyMin": 8
+   }
+  ]
+ },
+ "osaka.yumesaki": {
+  "firstTrain": "05:10",
+  "lastTrain": "23:50",
+  "weekday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 12
+   },
+   {
+    "from": "07:00",
+    "to": "10:00",
+    "everyMin": 6
+   },
+   {
+    "from": "10:00",
+    "to": "22:00",
+    "everyMin": 8
+   },
+   {
+    "from": "22:00",
+    "to": "24:00",
+    "everyMin": 15
+   }
+  ],
+  "holiday": [
+   {
+    "from": "05:00",
+    "to": "07:00",
+    "everyMin": 12
+   },
+   {
+    "from": "07:00",
+    "to": "10:00",
+    "everyMin": 6
+   },
+   {
+    "from": "10:00",
+    "to": "22:00",
+    "everyMin": 8
+   },
+   {
+    "from": "22:00",
+    "to": "24:00",
+    "everyMin": 15
+   }
+  ]
+ }
+}

@@ -1,0 +1,26 @@
+{
+ "id": "sapporo",
+ "name": {
+  "ja": "札幌",
+  "ko": "삿포로",
+  "en": "Sapporo"
+ },
+ "timezone": "Asia/Tokyo",
+ "center": {
+  "lat": 43.062,
+  "lng": 141.354
+ },
+ "lines": [
+  "sapporo.namboku",
+  "sapporo.tozai",
+  "sapporo.toho",
+  "sapporo.streetcar",
+  "sapporo.hakodate"
+ ],
+ "weather": {
+  "forecastOffice": "016000",
+  "forecastArea": "016010",
+  "amedas": "14163"
+ },
+ "dataNote": "Stations and lines: OpenStreetMap contributors (ODbL). Run times and headways are approximate estimates. Replace with licensed timetable data later."
+}

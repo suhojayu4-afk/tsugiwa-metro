@@ -1,0 +1,8 @@
+osaka_castle 1bc02ed6-57c8-400c-9a35-43801f631f02
+tsutenkaku 71824cdb-6afb-41c5-a162-152646cd13e9
+dotonbori 3e4dfbf2-bf6d-48ac-8c43-b69301e74f63
+umeda_sky f1a82dd5-c6dd-404e-9d51-24329b487fbf
+usj 089740f8-ba80-4f95-b07d-a953a032368b
+kaiyukan a14470b5-5a7c-4b87-884d-35c7d5e86f83
+abeno_harukas 4c0d5630-fa03-401b-8993-4d46c240fb6c
+sumiyoshi 6270be31-8274-41f7-9c57-eb5243638914

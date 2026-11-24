@@ -1,0 +1,8 @@
+fukuoka_tower 1298bfb6-978a-4597-a958-5744c9edfe62
+dome f0e68c58-4abb-4d31-8916-b09a40c26d17
+canal_city 587f9866-cf20-487f-85a8-4b167d837b7f
+ohori f575fac5-e1e2-4cf9-b854-d429c757f734
+yatai 2791d5d5-734b-4ac2-b79b-727ba86f1445
+dazaifu 93bc2eff-af8f-4d2a-96c9-e4d8e7aa119a
+fukuoka_castle 133207ef-e8ac-43e3-ba31-b2e43b311cb3
+nokonoshima 4ef43da4-7954-4ec3-8822-0cf85d1564a4
