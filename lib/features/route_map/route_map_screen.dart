@@ -16,11 +16,13 @@ import '../../data/models/rail_line.dart';
 import '../../data/models/route_map.dart';
 import '../../l10n/app_localizations.dart';
 import '../platform/nearest_station.dart';
+import '../trip/trip_estimator.dart' show GpsFix;
 import '../platform/station_picker.dart';
 import '../trip/route_finder.dart';
 import '../guide/guide_data.dart';
 import 'landmark_sheet.dart';
 import 'map_seasons.dart';
+import 'my_location.dart';
 import '../trip/train_sheet.dart';
 import 'map_trains.dart';
 
@@ -79,6 +81,15 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     _trainTick.value++;
   });
 
+  /// Where the user is, once 現在地 was pressed: the spot on the map, how
+  /// sure the fix is, and which way the phone points (followed while the
+  /// map is open).
+  MapPlace? _me;
+  double _meAccuracy = 0;
+  double? _meHeading;
+  StreamSubscription<GpsFix>? _meFixes;
+  StreamSubscription<double>? _meHeadings;
+
   /// The route set on のりば, on the map; hidden by the user with the eye button.
   RouteOnMap? _route;
   String? _routeKey;
@@ -114,16 +125,48 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     }
     final near = nearestStation(widget.city, fix.lat, fix.lng);
     final stops = near == null ? const <MapStop>[] : _map!.stopsOf(near.station.id);
-    if (near == null || stops.isEmpty) {
+    final place = placeOnMap(widget.city, _map!, fix.lat, fix.lng);
+    if (near == null || stops.isEmpty || place == null) {
+      // Somewhere else: no marker on this city's map.
+      _meFixes?.cancel();
+      _meHeadings?.cancel();
+      setState(() => _me = null);
       messenger.showSnackBar(SnackBar(content: Text(t.nearestNone)));
       return;
     }
-    setState(() => _selected = near.station.id);
-    final s = math.min(math.max(_scale, 1.4), _maxScaleAt(stops.first.position));
-    _animateTo(_matrixFor(stops.first.position, s));
+    setState(() {
+      _selected = near.station.id;
+      _me = place;
+      _meAccuracy = fix.accuracyM;
+    });
+    _followMe();
+    // The user's own spot in the middle, the nearest station beside it.
+    final s = math.min(math.max(_scale, 1.4), _maxScaleAt(place.position));
+    _animateTo(_matrixFor(place.position, s));
     messenger.showSnackBar(
       SnackBar(content: Text(t.nearestFound(near.station.name.of(langOf(context)), near.meters.round()))),
     );
+  }
+
+  /// Keeps the marker where the user is and turned the way the phone
+  /// points, while the map is open.
+  void _followMe() {
+    final map = _map;
+    if (map == null) return;
+    _meFixes ??= Services.location.watch().listen((fix) {
+      final place = placeOnMap(widget.city, map, fix.lat, fix.lng);
+      if (!mounted || place == null) return;
+      setState(() {
+        _me = place;
+        _meAccuracy = fix.accuracyM;
+      });
+    }, onError: (_) {});
+    _meHeadings ??= Services.location.heading().listen((h) {
+      // Small wobbles of the compass are not worth a repaint.
+      final old = _meHeading;
+      if (!mounted || (old != null && ((h - old + 540) % 360 - 180).abs() < 2)) return;
+      setState(() => _meHeading = h);
+    }, onError: (_) {});
   }
 
   /// Landmark notes and nearest stations, by picture name.
@@ -368,6 +411,8 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     Services.stickers.removeListener(_onStickers);
     Services.my.removeListener(_onStamps);
     _trainTicker.dispose();
+    _meFixes?.cancel();
+    _meHeadings?.cancel();
     _minute?.cancel();
     _trainTick.dispose();
     _controller.dispose();
@@ -1011,6 +1056,24 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                         stickerImages: _stickerImages,
                         swap: swap,
                         art: _art,
+                      ),
+                    ),
+                  ),
+                ),
+              // Where the user is (after 現在地), over everything on the map.
+              if (map != null && _me != null)
+                Positioned.fill(
+                  child: IgnorePointer(
+                    child: RepaintBoundary(
+                      child: CustomPaint(
+                        painter: MyLocationPainter(
+                          place: _me!,
+                          matrix: _controller,
+                          clock: _twinkle,
+                          heading: _meHeading,
+                          accuracyM: _meAccuracy,
+                          still: still,
+                        ),
                       ),
                     ),
                   ),
@@ -3005,6 +3068,9 @@ List<MapLayer> debugMapLayers({
   Map<String, String> stickers = const {},
   Map<String, ui.Image> stickerImages = const {},
   DateTime? now,
+  MapPlace? me,
+  double? meHeading,
+  double meAccuracy = 0,
 }) {
   const soft = ColorFilter.matrix([0.55, 0, 0, 0, 6, 0, 0.55, 0, 0, 8, 0.1, 0, 0.62, 0, 22, 0, 0, 0, 1, 0]);
   _MapOverlayPainter overlay(bool labels) => _MapOverlayPainter(
@@ -3082,6 +3148,20 @@ List<MapLayer> debugMapLayers({
         filter: null,
       ),
     (name: 'names', painter: overlay(true), world: false, filter: null),
+    if (me != null)
+      (
+        name: 'me',
+        painter: MyLocationPainter(
+          place: me,
+          matrix: matrix,
+          clock: clock,
+          heading: meHeading,
+          accuracyM: meAccuracy,
+          still: still,
+        ),
+        world: false,
+        filter: null,
+      ),
   ];
 }
 

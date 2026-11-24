@@ -1,3 +1,4 @@
+import 'package:flutter_compass/flutter_compass.dart';
 import 'package:geolocator/geolocator.dart';
 
 import 'trip_estimator.dart';
@@ -15,6 +16,10 @@ abstract class LocationSource {
 
   /// One position right now (or the last known one), null if unavailable.
   Future<GpsFix?> currentFix();
+
+  /// Which way the phone points while listened to: degrees clockwise from
+  /// north (0 … 360). Empty where the phone has no compass.
+  Stream<double> heading();
 }
 
 class GeolocatorLocationSource implements LocationSource {
@@ -43,10 +48,7 @@ class GeolocatorLocationSource implements LocationSource {
     Position? p;
     try {
       p = await Geolocator.getCurrentPosition(
-        locationSettings: const LocationSettings(
-          accuracy: LocationAccuracy.high,
-          timeLimit: Duration(seconds: 10),
-        ),
+        locationSettings: const LocationSettings(accuracy: LocationAccuracy.high, timeLimit: Duration(seconds: 10)),
       );
     } catch (_) {
       // Weak signal (e.g. underground): fall back to the last known position.
@@ -62,6 +64,13 @@ class GeolocatorLocationSource implements LocationSource {
       locationSettings: const LocationSettings(accuracy: LocationAccuracy.high, distanceFilter: 30),
     ).map((p) => GpsFix(lat: p.latitude, lng: p.longitude, accuracyM: p.accuracy, time: p.timestamp));
   }
+
+  @override
+  Stream<double> heading() {
+    final events = FlutterCompass.events;
+    if (events == null) return const Stream.empty();
+    return events.where((e) => e.heading != null).map((e) => (e.heading! % 360 + 360) % 360).handleError((Object _) {});
+  }
 }
 
 class NoLocationSource implements LocationSource {
@@ -74,4 +83,6 @@ class NoLocationSource implements LocationSource {
   Future<GpsFix?> currentFix() async => null;
   @override
   Stream<GpsFix> watch() => const Stream.empty();
+  @override
+  Stream<double> heading() => const Stream.empty();
 }

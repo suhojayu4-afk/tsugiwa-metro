@@ -45,6 +45,9 @@ class _FixedLocation implements LocationSource {
   Stream<GpsFix> watch() => const Stream.empty();
   @override
   Future<GpsFix?> currentFix() async => fix;
+
+  @override
+  Stream<double> heading() => const Stream.empty();
 }
 
 void main() {

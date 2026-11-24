@@ -21,6 +21,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:tsugiwa_metro/data/models/route_map.dart';
 import 'package:tsugiwa_metro/features/route_map/map_seasons.dart';
+import 'package:tsugiwa_metro/features/route_map/my_location.dart';
 import 'package:tsugiwa_metro/features/route_map/route_map_screen.dart';
 
 import '../trip_logic_test.dart' show loadTokyo;
@@ -50,6 +51,9 @@ Future<ui.Image> renderMap({
   double phase = 0.1,
   Map<String, String> stickers = const {},
   DateTime? now,
+  MapPlace? me,
+  double? meHeading,
+  double meAccuracy = 0,
 }) async {
   final m = Matrix4.identity()
     ..translateByDouble(size.width / 2 - center.dx * scale, size.height / 2 - center.dy * scale, 0, 1)
@@ -73,6 +77,9 @@ Future<ui.Image> renderMap({
     now: now,
     stickers: stickers,
     stickerImages: {for (final name in stickers.values.toSet()) name: ?await _img('assets/art/stickers/$name.png')},
+    me: me,
+    meHeading: meHeading,
+    meAccuracy: meAccuracy,
   );
   final rec = ui.PictureRecorder();
   final canvas = Canvas(rec, Offset.zero & size);
