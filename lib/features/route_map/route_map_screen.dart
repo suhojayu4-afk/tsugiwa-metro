@@ -527,13 +527,30 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     }
   }
 
-  /// First view: central Tokyo (round the Yamanote Line); the whole area,
-  /// Yokohama to Narita, is one tap on "fit all" away.
+  /// First view: central Tokyo (round the Yamanote Line), or the heart of
+  /// another city; the whole area is one tap on "fit all" away.
   void _fitCentre() {
     final map = _map!, vp = _viewport!;
     final ring = map.lines.where((l) => l.lineId == 'tokyo.yamanote').firstOrNull;
-    if (ring == null) return _fitAll(animate: false);
-    final b = ring.bounds.inflate(120);
+    // Other cities: where most of the stations are. A long line running out
+    // to a far town (Otaru, Matsushima) would shrink the whole city to a
+    // speck, so the outermost tenth of the stops on each side is left out.
+    final Rect b;
+    if (ring != null) {
+      b = ring.bounds.inflate(120);
+    } else {
+      final xs = [
+        for (final l in map.lines)
+          for (final st in l.stops.values) st.position.dx,
+      ]..sort();
+      final ys = [
+        for (final l in map.lines)
+          for (final st in l.stops.values) st.position.dy,
+      ]..sort();
+      if (xs.length < 4) return _fitAll(animate: false);
+      double at(List<double> v, double q) => v[(q * (v.length - 1)).round()];
+      b = Rect.fromLTRB(at(xs, 0.1), at(ys, 0.1), at(xs, 0.9), at(ys, 0.9)).inflate(90);
+    }
     final s = math.min((vp.width - 40) / b.width, (vp.height - 190) / b.height);
     _controller.value = _matrixFor(b.center, s, screenAt: Offset(vp.width / 2, vp.height / 2 + 30));
   }
