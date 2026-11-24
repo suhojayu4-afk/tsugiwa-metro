@@ -1,0 +1,15 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/cities/sapporo_otaru_day_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at C:/dev/tsugiwa-metro/docs/art/gen/bg_day_raw.png first (a city railway station: scenery behind a fence on the left, the track in the centre, a covered platform on the right). Make the SAME picture with the changes below. Keep the composition exactly the same: identical camera (do not move, zoom or crop), the same horizon and vanishing point, the fence line, the EMPTY track in the centre with the rails in exactly the same place, the overhead-wire masts, the platform on the right with its edge in the same place, the platform roof at the same height.
+
+The change: this is the OTARU CANAL near Sapporo, a romantic old port town in winter, a clear day, the same bright sky and light as the original.
+- LEFT SIDE, beyond the fence: an old stone-lined canal with dark calm water. Along its far bank a row of big old BRICK AND STONE WAREHOUSES with snow on their roofs and ivy on the walls. Along the near bank a stone walkway with old-fashioned GAS STREET LAMPS glowing warm. Deep white snow on the ground, the roofs and the railings, small snow lanterns, and snowy hills behind the town. A few snowflakes in the air.
+- The fence and the platform edge have a little snow on them; the platform keeps its roof at the same height.
+- People: three or four people in winter coats and scarves, at the original people's places and sizes.
+
+- Draw the scenery on the left with great care and rich detail: it is the heart of the picture and must be recognisable at once.
+- Landscape 1536x1024, the same detailed 16-bit era pixel art style as the original, crisp square pixels, almost no black outlines, hue-shifted shading.
+- The track in the centre stays EMPTY and clear: no train, nothing standing on the rails.
+- ABSOLUTELY NO text, letters, numbers, logos or readable signboards.
