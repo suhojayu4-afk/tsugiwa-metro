@@ -188,7 +188,7 @@ class _GuideCardState extends State<GuideCard> {
                         label: MaterialLocalizations.of(context).closeButtonLabel,
                         child: GestureDetector(
                           onTap: () => setState(() => _hidden = true),
-                          child: const Padding(
+                          child: Padding(
                             padding: EdgeInsets.all(6),
                             child: Icon(Icons.close_rounded, size: 16, color: PixelColors.muted),
                           ),

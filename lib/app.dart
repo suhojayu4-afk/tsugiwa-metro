@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 import 'package:material_ui/material_ui.dart';
 
 import 'core/pixel/pixel_ui.dart';
@@ -8,23 +9,59 @@ import 'data/route_store.dart';
 import 'features/onboarding/onboarding_screen.dart';
 import 'features/settings/app_city.dart';
 import 'features/settings/app_language.dart';
+import 'features/settings/app_look.dart';
 import 'features/shell/main_shell.dart';
 import 'l10n/app_localizations.dart';
 
 const supportedLangs = ['ja', 'ko', 'en'];
 
-class TsugiwaApp extends StatelessWidget {
+class TsugiwaApp extends StatefulWidget {
   const TsugiwaApp({super.key, this.repository});
 
   final CityRepository? repository;
 
   @override
+  State<TsugiwaApp> createState() => _TsugiwaAppState();
+}
+
+class _TsugiwaAppState extends State<TsugiwaApp> with WidgetsBindingObserver {
+  CityRepository? get repository => widget.repository;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    AppLook.restart.addListener(_again);
+    AppLook.reduceMotion.addListener(_again);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    AppLook.restart.removeListener(_again);
+    AppLook.reduceMotion.removeListener(_again);
+    super.dispose();
+  }
+
+  void _again() => setState(() {});
+
+  /// The phone went dark or light by itself (設定 → 見た目: スマホにあわせる).
+  @override
+  void didChangePlatformBrightness() => AppLook.phoneLookChanged();
+
+  @override
   Widget build(BuildContext context) {
+    // The colours are read while the screens build, so they are set first.
+    final dark = AppLook.darkFor(WidgetsBinding.instance.platformDispatcher.platformBrightness);
+    PixelColors.dark = dark;
     // Kept outside the builder so a language change does not restart the app.
     final home = OnboardingGate(child: _CityLoader(repository: repository ?? CityRepository()));
     return ValueListenableBuilder<String?>(
       valueListenable: AppLanguage.override,
       builder: (context, picked, _) => MaterialApp(
+        // A new look (or all data deleted) builds everything again from the
+        // top: screens keep their colours in widgets that would not rebuild.
+        key: ValueKey('app.${AppLook.restart.value}.$dark'),
         onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
         debugShowCheckedModeBanner: false,
         theme: buildTheme(),
@@ -38,8 +75,18 @@ class TsugiwaApp extends StatelessWidget {
           return Locale(supportedLangs.contains(lang) ? lang! : 'ja');
         },
         // Very large system text breaks the pixel layouts: follow it up to 1.3x.
-        builder: (context, child) =>
-            MediaQuery.withClampedTextScaling(maxScaleFactor: 1.3, child: child ?? const SizedBox.shrink()),
+        builder: (context, child) {
+          final mq = MediaQuery.of(context);
+          return AnnotatedRegion<SystemUiOverlayStyle>(
+            // Status bar icons that read on the app's ground.
+            value: dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
+            child: MediaQuery(
+              // 設定 → 動きを減らす, on top of the phone's own setting.
+              data: mq.copyWith(disableAnimations: mq.disableAnimations || AppLook.reduceMotion.value),
+              child: MediaQuery.withClampedTextScaling(maxScaleFactor: 1.3, child: child ?? const SizedBox.shrink()),
+            ),
+          );
+        },
         // The first-run tour shows once, before the app.
         home: home,
       ),
@@ -49,7 +96,12 @@ class TsugiwaApp extends StatelessWidget {
 
 ThemeData buildTheme() {
   final base = ThemeData(
-    colorScheme: ColorScheme.fromSeed(seedColor: PixelColors.ink, surface: PixelColors.background),
+    brightness: PixelColors.dark ? Brightness.dark : Brightness.light,
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: PixelColors.ink,
+      surface: PixelColors.background,
+      brightness: PixelColors.dark ? Brightness.dark : Brightness.light,
+    ),
     scaffoldBackgroundColor: PixelColors.background,
     splashFactory: NoSplash.splashFactory,
     highlightColor: Colors.transparent,

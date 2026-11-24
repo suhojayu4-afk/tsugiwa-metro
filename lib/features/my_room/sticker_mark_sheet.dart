@@ -55,7 +55,7 @@ class _StickerMarkSheetState extends State<StickerMarkSheet> {
           children: [
             PixelText(_title.of(lang), size: 22),
             const SizedBox(height: 4),
-            Text(_hint.of(lang), style: const TextStyle(fontSize: 12, color: PixelColors.muted)),
+            Text(_hint.of(lang), style: TextStyle(fontSize: 12, color: PixelColors.muted)),
             for (final id in widget.stationIds.toSet()) ...[
               const SizedBox(height: 14),
               Row(
@@ -104,7 +104,7 @@ class _StickerMarkSheetState extends State<StickerMarkSheet> {
               ),
             ],
             const SizedBox(height: 12),
-            Text(_more.of(lang), style: const TextStyle(fontSize: 12, color: PixelColors.muted)),
+            Text(_more.of(lang), style: TextStyle(fontSize: 12, color: PixelColors.muted)),
           ],
         ),
       ),

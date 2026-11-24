@@ -1,3 +1,6 @@
+import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:flutter/foundation.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -5,8 +8,10 @@ import '../../app.dart';
 import '../../core/app_info.dart';
 import '../../core/localized_text.dart';
 import '../../core/pixel/pixel_ui.dart';
+import '../../core/services.dart';
 import '../guide/first_ride_data.dart' show firstRideTitle;
 import '../guide/first_ride_screen.dart';
+import 'app_look.dart';
 import 'app_city.dart';
 import 'app_language.dart';
 import 'font_licenses.dart';
@@ -28,6 +33,47 @@ const _cityNote = LocalizedText({
 });
 const _languageNames = {'ja': '日本語', 'ko': '한국어', 'en': 'English'};
 const _groupApp = LocalizedText({'ja': 'アプリ', 'ko': '앱', 'en': 'App'});
+const _groupLook = LocalizedText({'ja': '見た目と音', 'ko': '모양과 소리', 'en': 'Look and sound'});
+const _groupData = LocalizedText({'ja': '権限とデータ', 'ko': '권한과 데이터', 'en': 'Permissions and data'});
+const _look = LocalizedText({'ja': '見た目', 'ko': '화면 모드', 'en': 'Appearance'});
+const _lookNames = {
+  'system': _followDevice,
+  'light': LocalizedText({'ja': 'ライト', 'ko': '라이트', 'en': 'Light'}),
+  'dark': LocalizedText({'ja': 'ダーク', 'ko': '다크', 'en': 'Dark'}),
+};
+const _lookNote = LocalizedText({
+  'ja': '駅の絵や路線図はそのままです。乗車中にスマホが自動で切りかわったときは、降りてから変わります。',
+  'ko': '역 그림과 노선도는 그대로예요. 승차 중에 휴대폰이 자동으로 바뀌면 내린 뒤에 적용돼요.',
+  'en': 'Station pictures and the route map stay as they are. If the phone switches during a ride, the app follows after it.',
+});
+const _motion = LocalizedText({'ja': '動きを減らす', 'ko': '움직임 줄이기', 'en': 'Reduce motion'});
+const _motionSub = LocalizedText({
+  'ja': '絵のアニメーションを止めます（電池の節約にも）',
+  'ko': '그림 애니메이션을 멈춰요 (배터리 절약에도 좋아요)',
+  'en': 'Stops the picture animations (also saves battery)',
+});
+const _sound = LocalizedText({'ja': '到着音とメロディ', 'ko': '도착음과 멜로디', 'en': 'Arrival sound and melody'});
+const _on = LocalizedText({'ja': 'オン', 'ko': '켬', 'en': 'On'});
+const _off = LocalizedText({'ja': 'オフ', 'ko': '끔', 'en': 'Off'});
+const _permissions = LocalizedText({
+  'ja': '位置情報と通知の設定',
+  'ko': '위치·알림 권한 설정',
+  'en': 'Location and notification settings',
+});
+const _permissionsSub = LocalizedText({
+  'ja': 'スマホの設定をひらきます',
+  'ko': '휴대폰 설정 화면을 열어요',
+  'en': "Opens the phone's settings",
+});
+const _erase = LocalizedText({'ja': 'データをすべて消す', 'ko': '모든 데이터 지우기', 'en': 'Delete all data'});
+const _eraseAsk = LocalizedText({
+  'ja': 'コイン、スタンプ、買ったアイテム、アルバム、設定がこのスマホから消えます。もとに戻せません。',
+  'ko': '코인, 스탬프, 구입한 아이템, 앨범, 설정이 이 휴대폰에서 지워져요. 되돌릴 수 없어요.',
+  'en': 'Coins, stamps, items you bought, the album and settings are removed from this phone. This cannot be undone.',
+});
+const _eraseDo = LocalizedText({'ja': '消す', 'ko': '지우기', 'en': 'Delete'});
+const _cancel = LocalizedText({'ja': 'やめる', 'ko': '취소', 'en': 'Cancel'});
+const _contact = LocalizedText({'ja': 'お問い合わせ', 'ko': '문의하기', 'en': 'Contact'});
 const _groupAbout = LocalizedText({'ja': 'このアプリについて', 'ko': '이 앱에 대하여', 'en': 'About'});
 const licensesTitle = LocalizedText({'ja': 'ライセンス', 'ko': '라이선스', 'en': 'Licences'});
 const _version = LocalizedText({'ja': 'バージョン', 'ko': '버전', 'en': 'Version'});
@@ -71,11 +117,7 @@ class SettingsGearButton extends StatelessWidget {
     child: GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () => _push(context, const SettingsScreen()),
-      child: const SizedBox(
-        width: 44,
-        height: 44,
-        child: Icon(Icons.settings_rounded, size: 24, color: PixelColors.ink),
-      ),
+      child: SizedBox(width: 44, height: 44, child: Icon(Icons.settings_rounded, size: 24, color: PixelColors.ink)),
     ),
   );
 }
@@ -128,6 +170,74 @@ class SettingsScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 18),
+            _GroupLabel(_groupLook.of(lang)),
+            _Group(
+              rows: [
+                ValueListenableBuilder<String>(
+                  valueListenable: AppLook.look,
+                  builder: (context, look, _) => _Row(
+                    key: const ValueKey('settings.look'),
+                    icon: Icons.dark_mode_rounded,
+                    label: _look.of(lang),
+                    sub: _lookNames[look]!.of(lang),
+                    onTap: () => _pickLook(context),
+                  ),
+                ),
+                ValueListenableBuilder<bool>(
+                  valueListenable: AppLook.reduceMotion,
+                  builder: (context, on, _) => _Row(
+                    key: const ValueKey('settings.motion'),
+                    icon: Icons.motion_photos_off_rounded,
+                    label: _motion.of(lang),
+                    sub: _motionSub.of(lang),
+                    value: (on ? _on : _off).of(lang),
+                    onTap: () => AppLook.setReduceMotion(!on),
+                  ),
+                ),
+                ValueListenableBuilder<bool>(
+                  valueListenable: AppLook.sound,
+                  builder: (context, on, _) => _Row(
+                    key: const ValueKey('settings.sound'),
+                    icon: on ? Icons.volume_up_rounded : Icons.volume_off_rounded,
+                    label: _sound.of(lang),
+                    value: (on ? _on : _off).of(lang),
+                    onTap: () => AppLook.setSound(!on),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 18),
+            _GroupLabel(_groupData.of(lang)),
+            _Group(
+              rows: [
+                _Row(
+                  key: const ValueKey('settings.permissions'),
+                  icon: Icons.my_location_rounded,
+                  label: _permissions.of(lang),
+                  sub: _permissionsSub.of(lang),
+                  onTap: () => Geolocator.openAppSettings(),
+                ),
+                if (supportContact.isNotEmpty)
+                  _Row(
+                    key: const ValueKey('settings.contact'),
+                    icon: Icons.mail_rounded,
+                    label: _contact.of(lang),
+                    sub: supportContact,
+                    onTap: () async {
+                      await Clipboard.setData(const ClipboardData(text: supportContact));
+                      if (!context.mounted) return;
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text(supportContact)));
+                    },
+                  ),
+                _Row(
+                  key: const ValueKey('settings.erase'),
+                  icon: Icons.delete_forever_rounded,
+                  label: _erase.of(lang),
+                  onTap: () => _eraseAll(context),
+                ),
+              ],
+            ),
+            const SizedBox(height: 18),
             _GroupLabel(_groupAbout.of(lang)),
             _Group(
               rows: [
@@ -172,6 +282,109 @@ class SettingsScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+/// 設定 → 見た目: follow the phone, light or dark.
+Future<void> _pickLook(BuildContext context) => showModalBottomSheet<void>(
+  context: context,
+  backgroundColor: PixelColors.background,
+  shape: const RoundedRectangleBorder(),
+  isScrollControlled: true,
+  builder: (context) {
+    final lang = langOf(context);
+    Widget option(String look) {
+      final on = AppLook.look.value == look;
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 8),
+        child: GestureDetector(
+          key: ValueKey('settings.look.$look'),
+          behavior: HitTestBehavior.opaque,
+          onTap: () {
+            Navigator.pop(context);
+            AppLook.setLook(look);
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            decoration: BoxDecoration(
+              color: PixelColors.card,
+              border: Border.all(color: on ? PixelColors.ink : PixelColors.line, width: on ? 2 : 1),
+            ),
+            child: Row(
+              children: [
+                Expanded(child: PixelText(_lookNames[look]!.of(lang), size: 18)),
+                if (on) Icon(Icons.check_rounded, size: 20, color: PixelColors.ink),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 12),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            PixelText(_look.of(lang), size: 22),
+            const SizedBox(height: 12),
+            for (final look in AppLook.looks) option(look),
+            const SizedBox(height: 4),
+            PixelText(_lookNote.of(lang), size: 12, color: PixelColors.muted),
+          ],
+        ),
+      ),
+    );
+  },
+);
+
+/// 設定 → データをすべて消す: asks first, then empties this phone's store
+/// and starts the app afresh (first-run tour, Tokyo, no coins).
+Future<void> _eraseAll(BuildContext context) async {
+  final lang = langOf(context);
+  final yes = await showDialog<bool>(
+    context: context,
+    builder: (context) => AlertDialog(
+      backgroundColor: PixelColors.card,
+      shape: const RoundedRectangleBorder(),
+      title: PixelText(_erase.of(lang), size: 20),
+      content: Text(_eraseAsk.of(lang), style: TextStyle(color: PixelColors.ink, height: 1.5)),
+      actions: [
+        TextButton(
+          key: const ValueKey('settings.erase.cancel'),
+          onPressed: () => Navigator.pop(context, false),
+          child: Text(_cancel.of(lang), style: TextStyle(color: PixelColors.ink)),
+        ),
+        TextButton(
+          key: const ValueKey('settings.erase.yes'),
+          onPressed: () => Navigator.pop(context, true),
+          child: Text(
+            _eraseDo.of(lang),
+            style: TextStyle(color: PixelColors.danger, fontWeight: FontWeight.w700),
+          ),
+        ),
+      ],
+    ),
+  );
+  if (yes != true) return;
+  await eraseAllData();
+}
+
+/// Empties everything the app keeps on this phone and builds it again from
+/// the top with the settings as on a first start.
+Future<void> eraseAllData() async {
+  try {
+    await (await SharedPreferences.getInstance()).clear();
+  } catch (_) {
+    // Nothing kept, nothing to clear.
+  }
+  // What is held in memory goes too: the stores are made anew.
+  Services.reset();
+  await AppLanguage.load();
+  await AppCity.load();
+  await AppLook.load();
+  AppLook.restart.value++;
 }
 
 /// 設定 → 都市 (also opened by the city chip on のりば).
@@ -346,7 +559,7 @@ Future<void> _pickLanguage(BuildContext context) => showModalBottomSheet<void>(
           child: Row(
             children: [
               Expanded(child: PixelText(label, size: 18)),
-              if (picked == code) const Icon(Icons.check_rounded, size: 22, color: PixelColors.title),
+              if (picked == code) Icon(Icons.check_rounded, size: 22, color: PixelColors.title),
             ],
           ),
         ),
@@ -453,7 +666,7 @@ class _RowState extends State<_Row> {
               const SizedBox(width: 8),
               PixelText(widget.count!, size: 12, color: PixelColors.muted),
             ],
-            if (widget.onTap != null) const Icon(Icons.chevron_right_rounded, size: 22, color: PixelColors.muted),
+            if (widget.onTap != null) Icon(Icons.chevron_right_rounded, size: 22, color: PixelColors.muted),
           ],
         ),
       ),
@@ -503,7 +716,7 @@ class LegalPage extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.only(top: 5, right: 8),
                           child: PixelSquare(color: PixelColors.title, size: 10),
                         ),
@@ -529,7 +742,8 @@ class _Body extends StatelessWidget {
   const _Body(this.text);
   final String text;
 
-  static const _style = TextStyle(fontSize: 13.5, height: 1.65, color: PixelColors.ink, fontWeight: FontWeight.w500);
+  static TextStyle get _style =>
+      TextStyle(fontSize: 13.5, height: 1.65, color: PixelColors.ink, fontWeight: FontWeight.w500);
 
   @override
   Widget build(BuildContext context) {
@@ -544,7 +758,7 @@ class _Body extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('・', style: _style),
+                  Text('・', style: _style),
                   Expanded(child: Text(line.substring(1), style: _style)),
                 ],
               )
@@ -594,7 +808,7 @@ class _LicensesPageState extends State<LicensesPage> {
         future: _licenses,
         builder: (context, snap) {
           final all = snap.data;
-          if (all == null) return const Center(child: PixelText('…', size: 22, color: PixelColors.muted));
+          if (all == null) return Center(child: PixelText('…', size: 22, color: PixelColors.muted));
           final fonts = [
             for (final name in fontLicenses.keys)
               if (all.containsKey(name)) name,
@@ -662,7 +876,7 @@ class LicenseTextPage extends StatelessWidget {
               child: Text(
                 p.text,
                 textAlign: centered ? TextAlign.center : TextAlign.start,
-                style: const TextStyle(fontSize: 12, height: 1.5, color: PixelColors.ink),
+                style: TextStyle(fontSize: 12, height: 1.5, color: PixelColors.ink),
               ),
             );
           },

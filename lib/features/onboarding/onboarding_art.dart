@@ -254,7 +254,7 @@ class AlarmArt extends StatelessWidget {
                 const SizedBox(height: 4),
                 Row(
                   children: [
-                    const Icon(Icons.notifications_none_rounded, size: 12, color: PixelColors.title),
+                    Icon(Icons.notifications_none_rounded, size: 12, color: PixelColors.title),
                     const SizedBox(width: 3),
                     Text(
                       const LocalizedText({'ja': '始発 04:50', 'ko': '첫차 04:50', 'en': 'First 04:50'}).of(lang),
@@ -492,14 +492,14 @@ class _StationSign extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const Icon(Icons.arrow_left_rounded, size: 8, color: PixelColors.card),
+                  Icon(Icons.arrow_left_rounded, size: 8, color: PixelColors.card),
                   Text('うえの', style: _small(PixelColors.card, size: 6)),
                 ],
               ),
               Row(
                 children: [
                   Text('かんだ', style: _small(PixelColors.card, size: 6)),
-                  const Icon(Icons.arrow_right_rounded, size: 8, color: PixelColors.card),
+                  Icon(Icons.arrow_right_rounded, size: 8, color: PixelColors.card),
                 ],
               ),
             ],

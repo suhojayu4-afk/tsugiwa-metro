@@ -219,7 +219,7 @@ class _FirstVisitWelcomeState extends State<FirstVisitWelcome> with TickerProvid
                             child: OutlinedButton(
                               style: OutlinedButton.styleFrom(
                                 foregroundColor: PixelColors.card,
-                                side: const BorderSide(color: PixelColors.card),
+                                side: BorderSide(color: PixelColors.card),
                               ),
                               onPressed: () {
                                 Navigator.pop(context);

@@ -2217,7 +2217,7 @@ class _TopBarState extends State<_TopBar> {
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
       decoration: BoxDecoration(
-        color: const Color(0xF0FFFFFF),
+        color: PixelColors.card.withValues(alpha: 0.94),
         borderRadius: BorderRadius.circular(20),
         boxShadow: const [BoxShadow(color: Color(0x14000000), blurRadius: 10, offset: Offset(0, 2))],
       ),
@@ -2262,8 +2262,8 @@ class _TopBarState extends State<_TopBar> {
                   child: Container(
                     width: 40,
                     height: 40,
-                    decoration: const BoxDecoration(color: PixelColors.background, shape: BoxShape.circle),
-                    child: const Icon(Icons.search_rounded, size: 22, color: PixelColors.ink),
+                    decoration: BoxDecoration(color: PixelColors.background, shape: BoxShape.circle),
+                    child: Icon(Icons.search_rounded, size: 22, color: PixelColors.ink),
                   ),
                 ),
               ),
@@ -2480,7 +2480,7 @@ class _StationSheet extends StatelessWidget {
               const SizedBox(height: 4),
               Row(
                 children: [
-                  const Icon(Icons.place_outlined, size: 14, color: PixelColors.muted),
+                  Icon(Icons.place_outlined, size: 14, color: PixelColors.muted),
                   const SizedBox(width: 4),
                   Expanded(child: PixelText(area, size: 13, color: PixelColors.muted, maxLines: 1)),
                 ],
@@ -2539,7 +2539,7 @@ class _StationSheet extends StatelessWidget {
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.directions_walk_rounded, size: 16, color: PixelColors.muted),
+                      Icon(Icons.directions_walk_rounded, size: 16, color: PixelColors.muted),
                       PixelText(t.transferWalk(walk), size: 13, color: PixelColors.muted),
                     ],
                   ),
@@ -2565,7 +2565,7 @@ class _StationSheet extends StatelessWidget {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Icon(Icons.directions_walk_rounded, size: 16, color: PixelColors.muted),
+                          Icon(Icons.directions_walk_rounded, size: 16, color: PixelColors.muted),
                           const SizedBox(width: 4),
                           PixelText(city.station(w.stationId).name.ja, size: 16),
                           const SizedBox(width: 6),
@@ -2819,7 +2819,7 @@ class _StampBar extends StatelessWidget {
           IconButton(
             tooltip: t.mapStampMode,
             onPressed: onClose,
-            icon: const Icon(Icons.close_rounded, color: PixelColors.muted),
+            icon: Icon(Icons.close_rounded, color: PixelColors.muted),
           ),
         ],
       ),
@@ -2980,7 +2980,7 @@ class _CourseBar extends StatelessWidget {
           IconButton(
             tooltip: MaterialLocalizations.of(context).closeButtonLabel,
             onPressed: onClose,
-            icon: const Icon(Icons.close_rounded, color: PixelColors.muted),
+            icon: Icon(Icons.close_rounded, color: PixelColors.muted),
           ),
         ],
       ),

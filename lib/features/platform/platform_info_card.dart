@@ -103,7 +103,7 @@ class PlatformInfoCard extends StatelessWidget {
                   child: Row(
                     children: [
                       Expanded(child: PixelText(main, size: 22)),
-                      const Icon(Icons.chevron_right_rounded, color: PixelColors.muted),
+                      Icon(Icons.chevron_right_rounded, color: PixelColors.muted),
                     ],
                   ),
                 )

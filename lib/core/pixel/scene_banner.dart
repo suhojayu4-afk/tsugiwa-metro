@@ -302,11 +302,11 @@ class _PixelSceneBannerState extends State<PixelSceneBanner> with TickerProvider
             width: box.maxWidth,
             height: view.logicalHeight,
             child: art == null
-                ? const ColoredBox(color: PixelColors.soft)
+                ? ColoredBox(color: PixelColors.soft)
                 : Stack(
                     fit: StackFit.expand,
                     children: [
-                      if (_oldArt == null && _swap.value < 1) const ColoredBox(color: PixelColors.soft),
+                      if (_oldArt == null && _swap.value < 1) ColoredBox(color: PixelColors.soft),
                       if (_oldArt != null) RepaintBoundary(child: CustomPaint(painter: _painter(_oldArt!, view, null))),
                       FadeTransition(
                         opacity: _swap,

@@ -263,7 +263,7 @@ class SightsSheet extends StatelessWidget {
                   ],
                 ),
               ),
-              const Icon(Icons.chevron_right_rounded, color: PixelColors.muted),
+              Icon(Icons.chevron_right_rounded, color: PixelColors.muted),
             ],
           ),
         ),

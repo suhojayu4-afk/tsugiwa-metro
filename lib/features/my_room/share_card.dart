@@ -234,7 +234,7 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
                 PixelText(t.shareStickers, size: 14),
                 const SizedBox(width: 8),
                 Expanded(
-                  child: Text(t.shareStickersHint, style: const TextStyle(fontSize: 10, color: PixelColors.muted)),
+                  child: Text(t.shareStickersHint, style: TextStyle(fontSize: 10, color: PixelColors.muted)),
                 ),
               ],
             ),
@@ -286,7 +286,7 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.ios_share_rounded, color: PixelColors.card, size: 20),
+                    Icon(Icons.ios_share_rounded, color: PixelColors.card, size: 20),
                     const SizedBox(width: 8),
                     PixelText(t.shareButton, size: 18, color: PixelColors.card),
                   ],
@@ -960,7 +960,7 @@ class _ReportCard extends StatelessWidget {
                 decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
                 child: Row(
                   children: [
-                    Text(t.shareReportTopLine, style: const TextStyle(fontSize: 10, color: PixelColors.muted)),
+                    Text(t.shareReportTopLine, style: TextStyle(fontSize: 10, color: PixelColors.muted)),
                     const Spacer(),
                     Container(
                       width: 10,
@@ -1009,7 +1009,7 @@ class _Big extends StatelessWidget {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: const TextStyle(fontSize: 10, color: PixelColors.muted)),
+        Text(label, style: TextStyle(fontSize: 10, color: PixelColors.muted)),
         Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -1042,7 +1042,7 @@ class _Time extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(label, style: const TextStyle(fontSize: 9, color: PixelColors.muted)),
+              Text(label, style: TextStyle(fontSize: 9, color: PixelColors.muted)),
               PixelText(minute == null ? '―' : MonthRides.clock(minute!), size: 16, bold: true),
             ],
           ),

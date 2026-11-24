@@ -427,7 +427,7 @@ class MyRoomScreenState extends State<MyRoomScreen> {
                     icon: const Icon(Icons.card_giftcard_rounded, size: 16, color: _green),
                     label: Text(
                       '${t.myInviteEnter} (+${MyStore.inviteCoins})',
-                      style: const TextStyle(fontSize: 12, color: PixelColors.ink),
+                      style: TextStyle(fontSize: 12, color: PixelColors.ink),
                     ),
                   ),
                 ),
@@ -525,7 +525,7 @@ class _CoinChip extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
               color: const Color(0xFFD8402C),
-              child: const PixelText('TEST', size: 12, bold: true, color: PixelColors.card),
+              child: PixelText('TEST', size: 12, bold: true, color: PixelColors.card),
             ),
             const SizedBox(width: 6),
           ],
@@ -535,7 +535,7 @@ class _CoinChip extends StatelessWidget {
             width: 24,
             height: 24,
             decoration: const BoxDecoration(color: _green, shape: BoxShape.circle),
-            child: const Icon(Icons.add, size: 18, color: PixelColors.card),
+            child: Icon(Icons.add, size: 18, color: PixelColors.card),
           ),
         ],
       ),
@@ -591,7 +591,7 @@ class _ActionChip extends StatelessWidget {
             label,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(fontSize: 12, color: PixelColors.ink, fontWeight: FontWeight.w600),
+            style: TextStyle(fontSize: 12, color: PixelColors.ink, fontWeight: FontWeight.w600),
           ),
         ],
       ),
@@ -653,7 +653,7 @@ class _ItemCard extends StatelessWidget {
                   else if (owned)
                     PixelText(item.free ? t.myFree : t.myOwned, size: 12, color: PixelColors.muted)
                   else if (item.unlock != null) ...[
-                    const Icon(Icons.lock_rounded, size: 14, color: PixelColors.muted),
+                    Icon(Icons.lock_rounded, size: 14, color: PixelColors.muted),
                     const SizedBox(width: 2),
                     PixelText(t.myLocked, size: 12, color: PixelColors.muted),
                   ] else ...[

@@ -488,11 +488,11 @@ class PlatformScreenState extends State<PlatformScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: Text(t.cancel, style: const TextStyle(color: PixelColors.muted)),
+            child: Text(t.cancel, style: TextStyle(color: PixelColors.muted)),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            child: Text(t.remove, style: const TextStyle(color: PixelColors.danger)),
+            child: Text(t.remove, style: TextStyle(color: PixelColors.danger)),
           ),
         ],
       ),
@@ -896,10 +896,10 @@ class _FoldedBar extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.train_rounded, size: 18, color: PixelColors.muted),
+                    Icon(Icons.train_rounded, size: 18, color: PixelColors.muted),
                     const SizedBox(width: 8),
                     Expanded(child: PixelText(text, size: 16, maxLines: 1)),
-                    const Icon(Icons.keyboard_arrow_up_rounded, color: PixelColors.muted),
+                    Icon(Icons.keyboard_arrow_up_rounded, color: PixelColors.muted),
                   ],
                 ),
               ),
@@ -917,7 +917,7 @@ class _FoldedBar extends StatelessWidget {
                 width: 52,
                 height: 44,
                 decoration: BoxDecoration(color: PixelColors.title, borderRadius: BorderRadius.circular(14)),
-                child: const Icon(Icons.play_arrow_rounded, color: PixelColors.card, size: 28),
+                child: Icon(Icons.play_arrow_rounded, color: PixelColors.card, size: 28),
               ),
             ),
           ),
@@ -934,7 +934,7 @@ class _Panel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => DecoratedBox(
-    decoration: const BoxDecoration(
+    decoration: BoxDecoration(
       color: PixelColors.card,
       borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
       boxShadow: [BoxShadow(color: Color(0x1F1C1E24), blurRadius: 16, offset: Offset(0, -2))],
@@ -1167,9 +1167,9 @@ class _RoundButton extends StatelessWidget {
       child: Container(
         width: 38,
         height: 38,
-        decoration: const BoxDecoration(color: PixelColors.background, shape: BoxShape.circle),
+        decoration: BoxDecoration(color: PixelColors.background, shape: BoxShape.circle),
         child: busy
-            ? const Padding(
+            ? Padding(
                 padding: EdgeInsets.all(11),
                 child: CircularProgressIndicator(strokeWidth: 2, color: PixelColors.muted),
               )
@@ -1254,7 +1254,7 @@ class _RoutePreview extends StatelessWidget {
     padding: const EdgeInsets.only(top: 6),
     child: Row(
       children: [
-        const Icon(Icons.directions_walk_rounded, size: 17, color: PixelColors.muted),
+        Icon(Icons.directions_walk_rounded, size: 17, color: PixelColors.muted),
         const SizedBox(width: 8),
         Expanded(
           child: PixelText(

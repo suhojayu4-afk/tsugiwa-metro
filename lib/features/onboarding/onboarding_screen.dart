@@ -55,7 +55,7 @@ class _OnboardingGateState extends State<OnboardingGate> {
   @override
   Widget build(BuildContext context) {
     final Widget shown = switch (_seen) {
-      null => const ColoredBox(key: ValueKey('wait'), color: PixelColors.background),
+      null => ColoredBox(key: ValueKey('wait'), color: PixelColors.background),
       false => OnboardingScreen(key: const ValueKey('tour'), onDone: _done),
       true => KeyedSubtree(key: const ValueKey('app'), child: widget.child),
     };

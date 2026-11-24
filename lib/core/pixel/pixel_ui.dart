@@ -3,16 +3,20 @@ import 'package:material_ui/material_ui.dart';
 /// UI colours. Calm and neutral: the pixel art and line colours are the only
 /// strong colours on screen.
 class PixelColors {
-  static const ink = Color(0xFF1C1E24);
-  static const background = Color(0xFFF4F4F1);
-  static const card = Color(0xFFFFFFFF);
-  static const line = Color(0xFFE3E3DE); // hairline borders
-  static const muted = Color(0xFF8A8F98);
-  static const accent = ink; // primary buttons, selected states
-  static const soft = Color(0xFFEBEBE6); // disabled fill, unvisited rail
-  static const celebrate = Color(0xFFFFF3C4);
-  static const danger = Color(0xFFD64545);
-  static const title = Color(0xFF2E9447);
+  /// Dark look on (設定 → 見た目). Set by [AppLook] before the app rebuilds;
+  /// every colour below follows it, so nothing may keep one in a `const`.
+  static bool dark = false;
+
+  static Color get ink => dark ? const Color(0xFFECEDEF) : const Color(0xFF1C1E24);
+  static Color get background => dark ? const Color(0xFF14161B) : const Color(0xFFF4F4F1);
+  static Color get card => dark ? const Color(0xFF20232B) : const Color(0xFFFFFFFF);
+  static Color get line => dark ? const Color(0xFF343842) : const Color(0xFFE3E3DE); // hairline borders
+  static Color get muted => dark ? const Color(0xFF9097A3) : const Color(0xFF8A8F98);
+  static Color get accent => ink; // primary buttons, selected states
+  static Color get soft => dark ? const Color(0xFF2A2E38) : const Color(0xFFEBEBE6); // disabled fill, unvisited rail
+  static Color get celebrate => dark ? const Color(0xFF4A4320) : const Color(0xFFFFF3C4);
+  static Color get danger => dark ? const Color(0xFFFF6B6B) : const Color(0xFFD64545);
+  static Color get title => dark ? const Color(0xFF58C873) : const Color(0xFF2E9447);
 }
 
 /// One "unit" of the pixel grid in logical pixels — the same size as one

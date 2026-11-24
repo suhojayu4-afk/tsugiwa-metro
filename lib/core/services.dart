@@ -43,4 +43,14 @@ class Services {
   static HomeWidgetBridge homeWidget = MethodChannelHomeWidget();
   static LiveStatusBridge live = MethodChannelLiveStatusBridge();
   static MelodyPlayer melody = const MelodyPlayer();
+
+  /// After 設定 → データをすべて消す: what was read from the phone's store is
+  /// dropped, so the screens built next start empty.
+  static void reset() {
+    my = MyStore();
+    routes = RouteStore();
+    stickers = StickerMarks();
+    lastTrain = LastTrainAlarm();
+    chosenRoute.value = null;
+  }
 }

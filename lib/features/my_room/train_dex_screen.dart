@@ -143,7 +143,7 @@ class _Header extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            const Icon(Icons.train_rounded, size: 22, color: PixelColors.title),
+            Icon(Icons.train_rounded, size: 22, color: PixelColors.title),
             const SizedBox(width: 6),
             Expanded(child: PixelText(_count.of(lang), size: 16)),
             PixelText('$done', size: 26, bold: true, color: PixelColors.title),
@@ -366,7 +366,7 @@ class TrainDexDetail extends StatelessWidget {
             PixelText(got ? type.name.of(lang) : _unknown.of(lang), size: 22, align: TextAlign.center),
             if (got) ...[
               const SizedBox(height: 8),
-              Text(type.flavor.of(lang), style: const TextStyle(fontSize: 13, height: 1.5, color: PixelColors.ink)),
+              Text(type.flavor.of(lang), style: TextStyle(fontSize: 13, height: 1.5, color: PixelColors.ink)),
             ],
             const SizedBox(height: 14),
             if (type.bySighting)
@@ -382,7 +382,7 @@ class TrainDexDetail extends StatelessWidget {
               ],
               Text(
                 got ? _runsOn.of(lang) : _findOn.of(lang),
-                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: PixelColors.muted),
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: PixelColors.muted),
               ),
               const SizedBox(height: 6),
               Wrap(
@@ -395,7 +395,7 @@ class TrainDexDetail extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 5),
                       child: Text(
                         '${_more.of(lang)} ${shown.length - _maxLines}',
-                        style: const TextStyle(fontSize: 12, color: PixelColors.muted),
+                        style: TextStyle(fontSize: 12, color: PixelColors.muted),
                       ),
                     ),
                 ],
@@ -427,7 +427,7 @@ class _InfoRow extends StatelessWidget {
         Icon(icon, size: 18, color: gold ? _gold : PixelColors.title),
         const SizedBox(width: 8),
         Expanded(
-          child: Text(text, style: const TextStyle(fontSize: 13, color: PixelColors.ink)),
+          child: Text(text, style: TextStyle(fontSize: 13, color: PixelColors.ink)),
         ),
       ],
     ),

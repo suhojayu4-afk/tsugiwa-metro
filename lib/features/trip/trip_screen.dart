@@ -1,3 +1,4 @@
+import '../settings/app_look.dart';
 import '../../core/localized_text.dart';
 import '../my_room/sticker_mark_sheet.dart';
 
@@ -46,6 +47,8 @@ class _TripScreenState extends State<TripScreen> {
     _sub = c.events.listen(_onEvent);
     c.addListener(_maybeWelcome);
     c.start();
+    // The phone turning dark at dusk must not rebuild the app in mid-ride.
+    AppLook.hold();
   }
 
   /// Arrived at a station never reached before: its welcome, once the coins
@@ -64,6 +67,7 @@ class _TripScreenState extends State<TripScreen> {
 
   @override
   void dispose() {
+    AppLook.release();
     c.removeListener(_maybeWelcome);
     _sub?.cancel();
     c.cancel();
@@ -196,7 +200,7 @@ class _TripScreenState extends State<TripScreen> {
                               const SizedBox(width: 8),
                               PixelText(t.delayMin(c.delayMin), size: 14, color: PixelColors.danger),
                             ],
-                            const Icon(Icons.chevron_right_rounded, size: 18, color: PixelColors.muted),
+                            Icon(Icons.chevron_right_rounded, size: 18, color: PixelColors.muted),
                           ],
                         ),
                       ),

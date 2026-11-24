@@ -188,7 +188,7 @@ class _QuickRoutes extends StatelessWidget {
             const SizedBox(height: 8),
             Row(
               children: [
-                const Icon(Icons.history_rounded, size: 15, color: PixelColors.muted),
+                Icon(Icons.history_rounded, size: 15, color: PixelColors.muted),
                 const SizedBox(width: 4),
                 PixelText(t.recentRoutes, size: 12, color: PixelColors.muted),
                 const SizedBox(width: 8),
@@ -252,7 +252,7 @@ class _FavouriteChip extends StatelessWidget {
           Container(
             width: 30,
             height: 30,
-            decoration: const BoxDecoration(color: PixelColors.card, shape: BoxShape.circle),
+            decoration: BoxDecoration(color: PixelColors.card, shape: BoxShape.circle),
             child: Icon(icon, size: 18, color: _green),
           ),
           const SizedBox(width: 8),
@@ -309,7 +309,7 @@ class _NextTrain extends StatelessWidget {
       const SizedBox(height: 6),
       Row(
         children: [
-          const Icon(Icons.do_not_disturb_on_rounded, size: 15, color: PixelColors.danger),
+          Icon(Icons.do_not_disturb_on_rounded, size: 15, color: PixelColors.danger),
           const SizedBox(width: 4),
           Expanded(child: PixelText(t.routeMissed, size: 13, color: PixelColors.danger, maxLines: 1)),
         ],
@@ -410,7 +410,7 @@ class _NextTrain extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Icon(Icons.directions_walk_rounded, size: 16, color: PixelColors.muted),
+                Icon(Icons.directions_walk_rounded, size: 16, color: PixelColors.muted),
                 const SizedBox(width: 3),
                 PixelText(t.walkTime(walk), size: 13),
               ],
@@ -525,7 +525,7 @@ class _NextTrain extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 2),
                             child: Row(
                               children: [
-                                const Icon(Icons.warning_amber_rounded, size: 15, color: PixelColors.danger),
+                                Icon(Icons.warning_amber_rounded, size: 15, color: PixelColors.danger),
                                 const SizedBox(width: 4),
                                 PixelText(t.lastTrainWarn(toLast), size: 14, color: PixelColors.danger),
                               ],

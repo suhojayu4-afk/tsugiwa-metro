@@ -87,7 +87,7 @@ class BadgesSheet extends StatelessWidget {
             const SizedBox(height: 2),
             Text(
               _count.of(lang).replaceAll('{n}', '${got.length}').replaceAll('{all}', '${badges.length}'),
-              style: const TextStyle(fontSize: 12, color: PixelColors.muted),
+              style: TextStyle(fontSize: 12, color: PixelColors.muted),
             ),
             const SizedBox(height: 12),
             Flexible(
@@ -118,7 +118,7 @@ class BadgesSheet extends StatelessWidget {
                             b.how.of(lang),
                             maxLines: 2,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(fontSize: 9, color: PixelColors.muted),
+                            style: TextStyle(fontSize: 9, color: PixelColors.muted),
                           ),
                       ],
                     ),

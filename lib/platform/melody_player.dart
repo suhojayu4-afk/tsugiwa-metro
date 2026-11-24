@@ -1,3 +1,5 @@
+import '../features/settings/app_look.dart';
+
 import 'dart:async';
 
 import 'package:flutter/services.dart';
@@ -31,6 +33,8 @@ class MelodyPlayer {
   /// has stopped. A new arrival cancels the melody still waiting.
   void arrive(String? melody) {
     _then?.cancel();
+    // 設定 → 音: off = silent arrivals.
+    if (!AppLook.sound.value) return;
     play(arrivalSound);
     if (melody != null) _then = Timer(melodyAfterArrival, () => play(melody));
   }

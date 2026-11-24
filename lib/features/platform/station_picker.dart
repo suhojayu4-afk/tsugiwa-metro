@@ -90,7 +90,7 @@ class _StationPickerState extends State<_StationPicker> {
               padding: const EdgeInsets.fromLTRB(24, 36, 24, 24),
               child: Column(
                 children: [
-                  const Icon(Icons.search_off_rounded, size: 40, color: PixelColors.muted),
+                  Icon(Icons.search_off_rounded, size: 40, color: PixelColors.muted),
                   const SizedBox(height: 10),
                   PixelText(
                     searchNoMatch.of(lang),
