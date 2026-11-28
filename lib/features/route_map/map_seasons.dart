@@ -191,8 +191,14 @@ class SeasonProjection {
 
 /// On-screen sizes of the map's lines and station dots at zoom [s], as the
 /// map's overlay painter draws them (and as the seasonal pictures keep clear of).
-double mapLineWidth(double s) => (5.5 * s).clamp(2.0, 7.0);
-double mapStationRadius(double s) => (6.5 * s).clamp(2.2, 8.5);
+double mapLineWidth(double s, {bool sparse = false}) => (5.5 * s).clamp(sparse ? 4.0 : 2.0, sparse ? 8.0 : 7.0);
+double mapStationRadius(double s, {bool sparse = false}) => (6.5 * s).clamp(sparse ? 4.2 : 2.2, 8.5);
+
+/// A map whose stations lie far apart (Tottori: a whole prefecture): its
+/// lines, stations and trains are drawn bolder and shown further out, or the
+/// network vanishes into the countryside.
+bool mapIsSparse(RouteMapData map) => _sparse[map] ??= map.stations.length / (map.size.width * map.size.height) < 1e-5;
+final _sparse = Expando<bool>();
 
 /// Stations whose names are always shown, even fully zoomed out.
 const mapMajorStations = {

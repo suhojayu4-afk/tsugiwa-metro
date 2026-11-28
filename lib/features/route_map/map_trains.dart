@@ -492,7 +492,12 @@ class TrainPainter extends CustomPainter {
     required this.visible,
     this.night = false,
     this.still = false,
+    this.sparse = false,
   }) : super(repaint: Listenable.merge([matrix, clock]));
+
+  /// A map whose stations lie far apart (see mapIsSparse): trains at every
+  /// zoom, never smaller than a clear mark, so one can see where they are.
+  final bool sparse;
 
   final TrainSim sim;
   final TransformationController matrix;
@@ -524,7 +529,7 @@ class TrainPainter extends CustomPainter {
     final m = matrix.value;
     final s = m.storage[0];
     Offset sp(Offset w) => MatrixUtils.transformPoint(m, w);
-    if (s >= from) _trains(canvas, size, m, s, sp);
+    if (sparse || s >= from) _trains(canvas, size, m, s, sp);
   }
 
   void _trains(Canvas canvas, Size size, Matrix4 m, double s, Offset Function(Offset) sp) {
@@ -535,9 +540,9 @@ class TrainPainter extends CustomPainter {
     ).inflate(30 / s);
     final trains = sim.trainsIn(view, DateTime.now());
     // Fade in from [from].
-    final fade = ((s - from) / 0.15).clamp(0.0, 1.0);
-    final lineW = (5.5 * s).clamp(2.0, 7.0);
-    final w = (lineW * 1.15 + 1.6).clamp(3.6, 9.5);
+    final fade = sparse ? 1.0 : ((s - from) / 0.15).clamp(0.0, 1.0);
+    final lineW = (5.5 * s).clamp(sparse ? 4.0 : 2.0, sparse ? 8.0 : 7.0);
+    final w = (lineW * 1.15 + 1.6).clamp(sparse ? 8.0 : 3.6, sparse ? 11.0 : 9.5);
     final cars = s >= 0.95 ? 3 : (s >= 0.55 ? 2 : 1);
     final carL = cars == 1 ? w * 2.8 : w * 2.25;
     const gap = 1.2;

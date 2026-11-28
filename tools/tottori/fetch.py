@@ -18,7 +18,7 @@ import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, 'tools', 'data', 'osm_tottori')
-URL = 'https://overpass-api.de/api/interpreter'
+URL = os.environ.get('OVERPASS_URL', 'https://overpass-api.de/api/interpreter')
 
 # Tottori Prefecture from Iwami to Sakaiminato, plus Nakaumi, Yasugi and
 # Matsue across the border (drawn, not on the route map).
@@ -48,6 +48,19 @@ LAYERS = {
 }
 
 
+# The ground round the map (map_outer.png): the real coast, the big lakes and
+# the towns of the whole region (Oki, Shimane, Okayama, Hyogo), coarse.
+WIDE = (34.20, 131.95, 36.55, 135.45)
+BW = '(%s,%s,%s,%s)' % WIDE
+WIDE_LAYERS = {
+    'wide_coast': f'way["natural"="coastline"]{BW};out geom;',
+    'wide_water': (f'way["natural"="water"]["water"~"^(lake|lagoon|reservoir)$"](if:length()>8000){BW};out geom;'
+                   f'rel["natural"="water"]["water"~"^(lake|lagoon)$"]{BW};out geom;'),
+    'wide_places': f'node["place"~"^(city|town)$"]{BW};out;',
+}
+LAYERS.update(WIDE_LAYERS)
+
+
 def fetch(name):
     q = f'[out:json][timeout:300];{LAYERS[name]}'
     data = urllib.parse.urlencode({'data': q}).encode()
@@ -70,6 +83,6 @@ def fetch(name):
 
 if __name__ == '__main__':
     os.makedirs(OUT, exist_ok=True)
-    for n in sys.argv[1:] or LAYERS:
+    for n in sys.argv[1:] or [k for k in LAYERS if k not in WIDE_LAYERS]:
         fetch(n)
         time.sleep(3)

@@ -109,7 +109,12 @@ class PoolTip extends GuideTip {
       LocalizedText({'ja': j['ja'] as String, 'ko': j['ko'] as String, 'en': j['en'] as String}),
       cat: j['c'] as String,
       hours: h == null ? null : (h[0] as int, h[1] as int),
-      days: m == null ? null : (md(m[0]), md(m[1])),
+      // "MM-DD" .. "MM-DD", or a run of months ([11, 12, 1, 2, 3], Tottori's pool).
+      days: m == null || m.isEmpty
+          ? null
+          : m.first is int
+          ? ((m.first as int) * 100 + 1, (m.last as int) * 100 + 31)
+          : (md(m[0]), md(m[1])),
       wx: j['wx'] as String?,
       crowd: j['crowd'] as String?,
       day: j['day'] as String?,

@@ -107,9 +107,9 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
 
   /// The ground at night: dark navy, water deeper, parks dark green.
   static const _nightGround = ColorFilter.matrix([
-    0.22, 0, 0, 0, 4, //
-    0, 0.22, 0, 0, 5,
-    0.18, 0, 0.18, 0, 14,
+    0.36, 0, 0, 0, 8, //
+    0, 0.38, 0, 0, 12,
+    0.16, 0, 0.36, 0, 30,
     0, 0, 0, 1, 0,
   ]);
 
@@ -434,7 +434,7 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     // A phone held upright: fill the height (all of Kanto top to bottom) and
     // let the sides be panned, instead of a thin band in the middle.
     // Tottori, long and thin, fits across instead.
-    final across = math.min((vp.width - 130) / w, (vp.height - 190) / h);
+    final across = math.min((vp.width - 150) / w, (vp.height - 190) / h);
     final fit = vp.height > vp.width && widget.city.id == 'tokyo' ? (vp.height - 190) / h : across;
     return math.max(fit, _minScaleIn());
   }
@@ -469,7 +469,8 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     final vp = _viewport!, a = _allowed;
     var s = m.storage[0];
     var tx = m.storage[12], ty = m.storage[13];
-    final min = _minScaleIn();
+    // From this same area: worked out again it can differ (and the clamps below would cross).
+    final min = math.max(vp.width / a.width, vp.height / a.height);
     if (s < min) {
       // Keep the middle of the screen where it was.
       final cx = (vp.width / 2 - tx) / s, cy = (vp.height / 2 - ty) / s;
@@ -477,8 +478,9 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
       tx = vp.width / 2 - cx * s;
       ty = vp.height / 2 - cy * s;
     }
-    tx = tx.clamp(vp.width - a.right * s, -a.left * s);
-    ty = ty.clamp(vp.height - a.bottom * s, -a.top * s);
+    double keep(double v, double lo, double hi) => lo <= hi ? v.clamp(lo, hi) : (lo + hi) / 2;
+    tx = keep(tx, vp.width - a.right * s, -a.left * s);
+    ty = keep(ty, vp.height - a.bottom * s, -a.top * s);
     if (s == m.storage[0] && tx == m.storage[12] && ty == m.storage[13]) return m;
     return Matrix4.identity()
       ..translateByDouble(tx, ty, 0, 1)
@@ -519,13 +521,20 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     final center = Offset((b.min.dx + b.max.dx) / 2, (b.min.dy + b.max.dy) / 2);
     final vp = _viewport!;
     // A little below the middle, to leave room for the top bar.
-    final m = _matrixFor(center, _fitScale(), screenAt: Offset(vp.width / 2, vp.height / 2 + 30));
+    // Centred on the room left of the map buttons (a little below the top bar).
+    final m = _matrixFor(center, _fitScale(), screenAt: Offset((vp.width - 70) / 2, vp.height / 2 + 30));
     if (animate) {
       _animateTo(m);
     } else {
       _controller.value = m;
     }
   }
+
+  /// Where a city's first view centres, when not round most of its stations.
+  static const _hearts = {
+    // Yonago and the 境線 up to Sakaiminato (the 山陰線 and 伯備線 leave Yonago eastwards).
+    'tottori': ['tottori.yonago', 'tottori.sakaiminato'],
+  };
 
   /// First view: central Tokyo (round the Yamanote Line), or the heart of
   /// another city; the whole area is one tap on "fit all" away.
@@ -536,8 +545,20 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
     // to a far town (Otaru, Matsushima) would shrink the whole city to a
     // speck, so the outermost tenth of the stops on each side is left out.
     final Rect b;
+    final heart = [
+      for (final id in _hearts[widget.city.id] ?? const <String>[]) ...?map.stations[id]?.map((x) => x.position),
+    ];
     if (ring != null) {
       b = ring.bounds.inflate(120);
+    } else if (heart.length >= 2) {
+      // A city that opens on its own heart (Tottori: Yonago and the 境線 to Sakaiminato).
+      var r = Rect.fromPoints(heart.first, heart.first);
+      for (final p in heart) {
+        r = r.expandToInclude(Rect.fromPoints(p, p));
+      }
+      // Room round them: most on the west, where Sakaiminato's name sits left
+      // of its dot, and to the south for the lines leaving Yonago.
+      b = Rect.fromLTRB(r.left - 500, r.top - 250, r.right + 150, r.bottom + 500);
     } else {
       final xs = [
         for (final l in map.lines)
@@ -551,8 +572,10 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
       double at(List<double> v, double q) => v[(q * (v.length - 1)).round()];
       b = Rect.fromLTRB(at(xs, 0.1), at(ys, 0.1), at(xs, 0.9), at(ys, 0.9)).inflate(90);
     }
-    final s = math.min((vp.width - 40) / b.width, (vp.height - 190) / b.height);
-    _controller.value = _matrixFor(b.center, s, screenAt: Offset(vp.width / 2, vp.height / 2 + 30));
+    // The map buttons stand down the right edge: centre on the room left of them.
+    const buttons = 70.0;
+    final s = math.min((vp.width - 40 - buttons) / b.width, (vp.height - 190) / b.height);
+    _controller.value = _matrixFor(b.center, s, screenAt: Offset((vp.width - buttons) / 2, vp.height / 2 + 30));
   }
 
   /// Outside the detailed Tokyo-area picture the ground has big pixels
@@ -1028,6 +1051,7 @@ class _RouteMapScreenState extends State<RouteMapScreen> with TickerProviderStat
                           clock: _trainTick,
                           visible: _trainAlpha,
                           night: night,
+                          sparse: mapIsSparse(map),
                         ),
                       ),
                     ),
@@ -1696,7 +1720,7 @@ class _MapOverlayPainter extends CustomPainter {
     // ---- lines ----
     // Paths are built once in map units and drawn through the zoom matrix
     // (no rebuilding 160+ paths every frame while panning).
-    final width = mapLineWidth(s);
+    final width = mapLineWidth(s, sparse: mapIsSparse(map));
     if (!labels) {
       _lines(canvas, m, s, view, width);
       return;
@@ -1724,6 +1748,17 @@ class _MapOverlayPainter extends CustomPainter {
             ..strokeJoin = StrokeJoin.round
             ..strokeCap = StrokeCap.round
             ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 2),
+        );
+      }
+      if (mapIsSparse(map) && !dim) {
+        canvas.drawPath(
+          _pathOf(line),
+          Paint()
+            ..color = night ? const Color(0xE6101426) : const Color(0xF2FFFFFF)
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = (width + 3.5) / s
+            ..strokeJoin = StrokeJoin.round
+            ..strokeCap = StrokeCap.round,
         );
       }
       canvas.drawPath(
@@ -1800,7 +1835,8 @@ class _MapOverlayPainter extends CustomPainter {
     final route = this.route;
     final onRoute = route == null ? const <String>{} : _onRoute;
     // ---- stations ----
-    final r = mapStationRadius(s);
+    final sparse = mapIsSparse(map);
+    final r = mapStationRadius(s, sparse: sparse);
     final fill = Paint()..color = PixelColors.card;
     final outline = Paint()
       ..color = PixelColors.ink
@@ -1817,9 +1853,10 @@ class _MapOverlayPainter extends CustomPainter {
       }
       // Zoomed far out the whole network is on screen: only transfer
       // stations get a dot, so the lines stay readable.
-      if (s < 0.3 && stops.length == 1 && id != selected) continue;
+      // (A sparse map keeps every station much further out: they are far apart.)
+      if (s < (sparse ? 0.09 : 0.3) && stops.length == 1 && id != selected) continue;
       // All of Kanto on screen: only the big stations, or the middle is one white blob.
-      if (s < 0.12 && !_major.contains(id) && id != selected) continue;
+      if (s < (sparse ? 0.025 : 0.12) && !_major.contains(id) && id != selected) continue;
       if ((focusLine != null || route != null) && !onFocus && s < 0.6) continue;
       final pts = [for (final x in stops) sp(x.position)];
       if (pts.length > 1) {

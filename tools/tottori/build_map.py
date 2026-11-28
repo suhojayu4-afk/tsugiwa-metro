@@ -205,11 +205,24 @@ parks_o, _ = rings_of(load('parks'))
 peaks = sorted(((float(str(e['tags'].get('ele', '0')).split()[0].replace('m', '') or 0), (e['lat'], e['lon']))
                 for e in load('peaks') if e.get('tags', {}).get('ele')), reverse=True)
 places = [e for e in load('places') if 'name' in e.get('tags', {})]
+
+
+def load_wide(name):
+    # The coarse layers of the whole region (tools/tottori/fetch.py wide_*), for the ground round the map.
+    path = os.path.join(OSM, name + '.json')
+    return load(name) if os.path.exists(path) else []
+
+
+wide_coast = lines_of(load_wide('wide_coast'))
+wide_water_o, wide_water_i = rings_of(load_wide('wide_water'))
+wide_places = [e for e in load_wide('wide_places') if 'name' in e.get('tags', {})]
 BIG_RIVERS = {'千代川', '天神川', '日野川', '斐伊川', '八東川'}
 
 
-def nature(scale, ox, oy, pw, ph):
-    """Water, forest, towns and mountain ground of a picture of pw x ph pixels."""
+def nature(scale, ox, oy, pw, ph, wide=False):
+    """Water, forest, towns and mountain ground of a picture of pw x ph pixels.
+    wide: the picture round the map, drawn from the real coast, lakes and towns
+    of the whole region where they were fetched (else: sea north, land south)."""
     def tp(lat, lng):
         x, y = to_map(lat, lng)
         return (x - ox) / scale, (y - oy) / scale
@@ -218,7 +231,7 @@ def nature(scale, ox, oy, pw, ph):
     # Sea: the coastline drawn as a wall, then filled from the open sea in the north.
     wall = Image.new('L', (pw, ph), 0)
     wd = ImageDraw.Draw(wall)
-    for _, pts in coast:
+    for _, pts in coast + (wide_coast if wide else []):
         wd.line([tp(*q) for q in pts], fill=1, width=2)
     # Fill the sea from the north inside the area the coast data covers
     # only (the picture round the map reaches past it).
@@ -237,7 +250,19 @@ def nature(scale, ox, oy, pw, ph):
     ys, xs = np.mgrid[0:ph, 0:pw]
     outside = (xs < c0) | (xs >= c1) | (ys < r0) | (ys >= r1)
     north = (oy + (ys + 0.5) * scale) < to_map(35.60, GROUND[1])[1]
-    sea = np.where(outside, north, sea)
+    if wide and wide_coast:
+        # The real coast all round: the sea is what the open water north of the picture reaches.
+        lab, _ = ndimage.label(arr == 0)
+        seeds = {v for v in lab[0, :].tolist() if v}
+        # The Seto Inland Sea in the south is open water too (not reached from the north).
+        for lat, lng in ((34.40, 133.55), (34.45, 134.15), (34.30, 133.10), (34.35, 134.60), (34.55, 134.90)):
+            x, y = tp(lat, lng)
+            if 0 <= int(y) < ph and 0 <= int(x) < pw and lab[int(y), int(x)]:
+                seeds.add(int(lab[int(y), int(x)]))
+        sea_all = np.isin(lab, list(seeds)) | (arr == 1)
+        sea = np.where(outside, sea_all, sea)
+    else:
+        sea = np.where(outside, north, sea)
     kind = Image.fromarray(sea.astype(np.uint8), 'L')
     kd = ImageDraw.Draw(kind)
     for ring in water_o:
@@ -246,6 +271,21 @@ def nature(scale, ox, oy, pw, ph):
     for ring in water_i:
         if len(ring) > 2:
             kd.polygon([tp(*q) for q in ring], fill=0)
+    if wide:
+        # The big lakes round the map (Shinji, ...), only outside the detailed area.
+        lakes = Image.new('L', (pw, ph), 0)
+        ld = ImageDraw.Draw(lakes)
+        for ring in wide_water_o:
+            if len(ring) > 2:
+                ld.polygon([tp(*q) for q in ring], fill=1)
+        for ring in wide_water_i:
+            if len(ring) > 2:
+                ld.polygon([tp(*q) for q in ring], fill=0)
+        la = np.asarray(lakes) > 0
+        cur = np.asarray(kind).copy()
+        cur[la & outside] = 1
+        kind = Image.fromarray(cur, 'L')
+        kd = ImageDraw.Draw(kind)
     for tags, pts in rivers:
         # Only the rivers people know by name; the thousands of mountain streams would cover the hills.
         if tags.get('name') not in BIG_RIVERS:
@@ -278,8 +318,19 @@ def nature(scale, ox, oy, pw, ph):
                  y + math.sin(t) * r * (1 + 0.16 * math.sin(3 * t + seed) + 0.09 * math.sin(5 * t + seed * 1.7)))
                 for t in [i / 28 * 2 * math.pi for i in range(28)]]
 
+    def is_out(e):
+        return not (GROUND[0] <= e['lat'] <= GROUND[2] and GROUND[1] <= e['lon'] <= GROUND[3])
+
+    def big(e):
+        try:
+            return float(e['tags'].get('population', '0')) >= 20000
+        except ValueError:
+            return False
+
+    # Round the map only the bigger towns: a speck for every village reads as noise.
+    town_places = places + ([e for e in wide_places if is_out(e) and big(e)] if wide else [])
     for ring_k, c in ((1.0, T_SUB), (0.62, T_RES), (0.3, T_SHOP)):
-        for e in places:
+        for e in town_places:
             t = e['tags']
             if t.get('place') not in ('city', 'town'):
                 continue
@@ -312,13 +363,13 @@ def nature(scale, ox, oy, pw, ph):
     # Past the area the data covers: made-up hills on a jittered grid, so the
     # shading carries on into the Chugoku mountains round the map.
     fake = []
-    for gy in range(-6, 14):
-        for gx in range(-6, 26):
+    for gy in range(-16 if wide else -6, 24 if wide else 14):
+        for gx in range(-16 if wide else -6, 40 if wide else 26):
             hh = _h(gx, gy, 31)
             lat = GROUND[0] - 0.25 + gy * 0.06 + (hh % 100) / 100 * 0.04
             lng = GROUND[1] - 0.35 + gx * 0.07 + ((hh >> 8) % 100) / 100 * 0.05
             inside = GROUND[0] <= lat <= GROUND[2] and GROUND[1] <= lng <= GROUND[3]
-            if not inside and lat < 35.58:
+            if not inside and (wide or lat < 35.58):
                 fake.append((500 + (hh >> 16) % 900, (lat, lng)))
     for ele, (lat, lng) in peaks + fake:
         if ele < 250:
@@ -373,8 +424,8 @@ def dunes(img, nat, ox, oy, scale):
         px[x, y] = c
 
 
-def paint_ground(scale, ox, oy, pw, ph):
-    nat = nature(scale, ox, oy, pw, ph)
+def paint_ground(scale, ox, oy, pw, ph, wide=False):
+    nat = nature(scale, ox, oy, pw, ph, wide=wide)
     water = np.asarray(nat['kind']) == 1
     up = np.asarray(nat['urban'])
     sandm = np.asarray(nat['sand']) > 0
@@ -462,6 +513,12 @@ def areas():
 def main():
     os.makedirs(os.path.join(ART, 'map_tiles'), exist_ok=True)
     os.makedirs(GEN, exist_ok=True)
+    if os.environ.get('MAP_OUTER_ONLY'):
+        # Only the ground round the map (map_outer.png), from the wide layers.
+        M = OUTER_MARGIN
+        outer, _ = paint_ground(OUTER_SCALE, -M, -M, (W + 2 * M) // OUTER_SCALE, (H + 2 * M) // OUTER_SCALE, wide=True)
+        save_png(outer, os.path.join(ART, 'map_outer.png'))
+        return
     scale = SCALE * (int(PREVIEW) if PREVIEW else 1)
     pw, ph = W // scale, H // scale
     print('painting', pw, 'x', ph, 'at', scale, 'units/px')
@@ -482,7 +539,7 @@ def main():
     save_png(ov, os.path.join(ART, 'map_overview.png'))
     # Round the map (panned past its edge): the same ground, coarse.
     M = OUTER_MARGIN
-    outer, _ = paint_ground(OUTER_SCALE, -M, -M, (W + 2 * M) // OUTER_SCALE, (H + 2 * M) // OUTER_SCALE)
+    outer, _ = paint_ground(OUTER_SCALE, -M, -M, (W + 2 * M) // OUTER_SCALE, (H + 2 * M) // OUTER_SCALE, wide=True)
     save_png(outer, os.path.join(ART, 'map_outer.png'))
     # Little glints on the open sea.
     rnd = random.Random(5)
