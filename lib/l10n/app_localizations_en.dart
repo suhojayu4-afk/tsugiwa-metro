@@ -998,4 +998,45 @@ class AppLocalizationsEn extends AppLocalizations {
   String mapNearSt(String station) {
     return 'From $station';
   }
+
+  @override
+  String toStationTitle(String station) {
+    return 'To $station';
+  }
+
+  @override
+  String toStationSpare(int minutes) {
+    return '$minutes min to spare';
+  }
+
+  @override
+  String get toStationHurry => 'Hurry!';
+
+  @override
+  String get toStationMissed =>
+      'This train has left. At the station the trip moves to the next one';
+
+  @override
+  String get toStationHere => 'I\'m at the station';
+
+  @override
+  String toNextDistance(String distance) {
+    return '$distance to the next stop';
+  }
+
+  @override
+  String walkAbout(int minutes) {
+    return 'about $minutes min on foot';
+  }
+
+  @override
+  String get departLabel => 'Departs';
+
+  @override
+  String minutesLater(int minutes) {
+    return 'in $minutes min';
+  }
+
+  @override
+  String get boardLabel => 'Board';
 }

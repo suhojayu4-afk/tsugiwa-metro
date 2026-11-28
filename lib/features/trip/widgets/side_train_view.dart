@@ -60,8 +60,23 @@ class SideTrainArt {
   final ui.Image? leadGlass;
   final ui.Image? carGlass;
 
-  static String farAsset(DayPart p) => 'assets/art/side_far_${p.name}.webp';
-  static String midAsset(DayPart p) => 'assets/art/side_mid_${p.name}.webp';
+  /// The scenery sets: Tokyo's city, and the themes of tools/gen_side_scenery_gpt.py.
+  static const themes = [
+    'city',
+    'seaside',
+    'country',
+    'mountain',
+    'oldtown',
+    'river',
+    'suburb',
+    'snow',
+    'harbor',
+    'flower',
+  ];
+
+  static String _set(String theme) => theme == 'city' ? '' : '${theme}_';
+  static String farAsset(DayPart p, [String theme = 'city']) => 'assets/art/side_${_set(theme)}far_${p.name}.webp';
+  static String midAsset(DayPart p, [String theme = 'city']) => 'assets/art/side_${_set(theme)}mid_${p.name}.webp';
   static const tunnelAsset = 'assets/art/side_tunnel.webp';
   static const platformAsset = 'assets/art/side_platform.webp';
   static const platformUndergroundAsset = 'assets/art/side_platform_ug.webp';
@@ -74,7 +89,11 @@ class SideTrainArt {
   static const carGlassAsset = 'assets/art/side_car_mid_glass.webp';
 
   /// Loads everything for [part] with [load] (an asset path → image).
-  static Future<SideTrainArt> loadWith(DayPart part, Future<ui.Image> Function(String) load) async {
+  static Future<SideTrainArt> loadWith(
+    DayPart part,
+    Future<ui.Image> Function(String) load, {
+    String theme = 'city',
+  }) async {
     Future<ui.Image?> get(String a) async {
       try {
         return await load(a);
@@ -84,8 +103,8 @@ class SideTrainArt {
     }
 
     final r = await Future.wait([
-      get(farAsset(part)),
-      get(midAsset(part)),
+      get(farAsset(part, theme)),
+      get(midAsset(part, theme)),
       get(tunnelAsset),
       get(platformAsset),
       get(platformUndergroundAsset),
@@ -298,8 +317,52 @@ class _Pal {
 /// grass bank, track, masts and wires (1.0), the train (still), the fence
 /// (1.5). Underground the tunnel wall picture scrolls at 0.85. When the train
 /// stops, a platform (picture behind the train, edge in front) slides in.
+/// The depths of the side view, back to front, for a view that stands
+/// them apart in 3D (see LayeredTrainView).
+enum SideLayer {
+  /// Sky and skyline, or the tunnel wall.
+  back,
+
+  /// Houses and trees.
+  mid,
+
+  /// Grass bank, track, masts and wires, the platform behind the train.
+  track,
+
+  /// The platform edge, the fence and the speed lines in front of the train.
+  front,
+}
+
 class SideTrainPainter extends CustomPainter {
-  SideTrainPainter({required this.sim, required this.part, required this.lineColor, required this.art, super.repaint});
+  SideTrainPainter({
+    required this.sim,
+    required this.part,
+    required this.lineColor,
+    required this.art,
+    this.only,
+    this.drawTrain = true,
+    this.wireY,
+    this.wires = true,
+    this.snow = false,
+    super.repaint,
+  });
+
+  /// Paint just these layers (null = all, with the portal dark on top).
+  final Set<SideLayer>? only;
+
+  /// false = leave the train out (a 3D train is drawn in its place).
+  final bool drawTrain;
+
+  /// Height of the contact wire (null = at the top of the side view's pantographs).
+  final double? wireY;
+
+  /// false = a line without overhead wires: no masts, no wire.
+  final bool wires;
+
+  /// The ground under snow (the snowy scenery).
+  final bool snow;
+
+  bool _on(SideLayer l) => only == null || only!.contains(l);
 
   static const gridW = 384.0;
   static const gridH = 112.0;
@@ -376,7 +439,7 @@ class SideTrainPainter extends CustomPainter {
     } else {
       _outside(canvas);
     }
-    final d = sim.darkness;
+    final d = only == null ? sim.darkness : 0;
     if (d > 0) _r(canvas, 0, 0, gridW, gridH, Color.fromRGBO(6, 6, 10, ((d * 4).ceil() / 4).clamp(0, 0.96)));
     canvas.restore();
   }
@@ -385,43 +448,56 @@ class SideTrainPainter extends CustomPainter {
 
   void _outside(Canvas c) {
     final pal = _Pal.of(part);
-    _r(c, 0, 0, gridW, groundY, pal.sky);
-    final far = art.far;
-    if (far != null) {
-      final top = groundY - far.height;
-      _tiled(c, far, sim.offset * farSpeed, top, Rect.fromLTWH(0, top, gridW, far.height.toDouble()));
+    if (_on(SideLayer.back)) {
+      _r(c, 0, 0, gridW, groundY, pal.sky);
+      final far = art.far;
+      if (far != null) {
+        final top = groundY - far.height;
+        _tiled(c, far, sim.offset * farSpeed, top, Rect.fromLTWH(0, top, gridW, far.height.toDouble()));
+      }
     }
     final mid = art.mid;
-    if (mid != null) {
+    if (mid != null && _on(SideLayer.mid)) {
+      // Stood apart in 3D, the houses' plane rises over the track's: grass under them closes the gap.
+      if (only != null) {
+        final ground = snow ? const Color(0xFFDCE4EE) : const Color(0xFF4F8C45);
+        _r(c, 0, railY - 4, gridW, gridH - railY + 4, pal.t(ground));
+      }
       final top = railY - 2 - mid.height;
       _tiled(c, mid, sim.offset * midSpeed, top, Rect.fromLTWH(0, top, gridW, mid.height.toDouble()));
     }
-    _embankment(c, pal);
-    _track(
-      c,
-      pal.t(const Color(0xFF9C9488)),
-      pal.t(const Color(0xFF7F776C)),
-      pal.t(const Color(0xFFB8B0A2)),
-      pal.t(const Color(0xFF6E5A48)),
-      pal.t(const Color(0xFFE2E6EC)),
-      pal.t(const Color(0xFF7D8188)),
-    );
-    // Masts first: a platform canopy hides them.
-    _masts(c, pal);
-    if (_platformOn) _platformBack(c, pal, false);
-    _train(c, pal.lamps, pal.train);
-    if (part == DayPart.night) _beam(c, 0.18);
-    if (_platformOn) _platformFront(c, pal, false);
-    _fence(c, pal);
-    _speedLines(c, const Color(0xFFFFFFFF), part == DayPart.night ? 0.18 : 0.4);
+    if (_on(SideLayer.track)) {
+      _embankment(c, pal);
+      _track(
+        c,
+        pal.t(const Color(0xFF9C9488)),
+        pal.t(const Color(0xFF7F776C)),
+        pal.t(const Color(0xFFB8B0A2)),
+        pal.t(const Color(0xFF6E5A48)),
+        pal.t(const Color(0xFFE2E6EC)),
+        pal.t(const Color(0xFF7D8188)),
+      );
+      // Masts first: a platform canopy hides them.
+      if (wires) _masts(c, pal);
+      if (_platformOn) _platformBack(c, pal, false);
+    }
+    if (drawTrain && only == null) {
+      _train(c, pal.lamps, pal.train);
+      if (part == DayPart.night) _beam(c, 0.18);
+    }
+    if (_on(SideLayer.front)) {
+      if (_platformOn) _platformFront(c, pal, false);
+      _fence(c, pal);
+      _speedLines(c, const Color(0xFFFFFFFF), part == DayPart.night ? 0.18 : 0.4);
+    }
   }
 
   /// Grass bank between the houses and the track.
   void _embankment(Canvas c, _Pal pal) {
     const top = railY - 4;
-    final g = pal.t(const Color(0xFF6FAE52));
-    final gl = pal.t(const Color(0xFF8CC461));
-    final gd = pal.t(const Color(0xFF4F8C45));
+    final g = pal.t(snow ? const Color(0xFFE6ECF4) : const Color(0xFF6FAE52));
+    final gl = pal.t(snow ? const Color(0xFFFFFFFF) : const Color(0xFF8CC461));
+    final gd = pal.t(snow ? const Color(0xFFB9C6D6) : const Color(0xFF4F8C45));
     _r(c, 0, top, gridW, railY - top, g);
     _r(c, 0, top, gridW, 1, gl);
     final o = sim.offset * 0.9;
@@ -462,7 +538,7 @@ class SideTrainPainter extends CustomPainter {
   void _masts(Canvas c, _Pal pal) {
     final wire = pal.t(const Color(0xFF3E424B));
     // At the top of the pantographs.
-    final contactY = (railY + 1 - (art.car?.height ?? 88) * carScale).floorToDouble();
+    final contactY = (wireY ?? railY + 1 - (art.car?.height ?? 88) * carScale).floorToDouble();
     _r(c, 0, contactY, gridW, 1, wire);
     final m = art.mast;
     final o = sim.offset;
@@ -515,27 +591,35 @@ class SideTrainPainter extends CustomPainter {
   void _tunnel(Canvas c) {
     final o = sim.offset;
     final t = art.tunnel;
-    _r(c, 0, 0, gridW, gridH, const Color(0xFF1C1E24));
-    if (t != null) {
-      final top = railY - t.height;
-      _tiled(c, t, o * tunnelSpeed, top, Rect.fromLTWH(0, math.max(0, top), gridW, railY - math.max(0, top)));
+    if (_on(SideLayer.back)) {
+      _r(c, 0, 0, gridW, gridH, const Color(0xFF1C1E24));
+      if (t != null) {
+        final top = railY - t.height;
+        _tiled(c, t, o * tunnelSpeed, top, Rect.fromLTWH(0, math.max(0, top), gridW, railY - math.max(0, top)));
+      }
+      _tunnelStreaks(c);
     }
-    _tunnelStreaks(c);
-    if (_platformOn) _platformBack(c, _Pal.day, true);
-    _track(
-      c,
-      const Color(0xFF26282F),
-      const Color(0xFF1A1B20),
-      const Color(0xFF3A3D46),
-      const Color(0xFF34363E),
-      const Color(0xFFA9AEB9),
-      const Color(0xFF4E525C),
-    );
-    _train(c, true, const Color(0xFFB4B9CC));
-    _reflections(c);
-    _beam(c, 0.22);
-    if (_platformOn) _platformFront(c, _Pal.day, true);
-    _speedLines(c, const Color(0xFFFFF1C2), 0.22);
+    if (_on(SideLayer.track)) {
+      if (_platformOn) _platformBack(c, _Pal.day, true);
+      _track(
+        c,
+        const Color(0xFF26282F),
+        const Color(0xFF1A1B20),
+        const Color(0xFF3A3D46),
+        const Color(0xFF34363E),
+        const Color(0xFFA9AEB9),
+        const Color(0xFF4E525C),
+      );
+    }
+    if (drawTrain && only == null) {
+      _train(c, true, const Color(0xFFB4B9CC));
+      _reflections(c);
+      _beam(c, 0.22);
+    }
+    if (_on(SideLayer.front)) {
+      if (_platformOn) _platformFront(c, _Pal.day, true);
+      _speedLines(c, const Color(0xFFFFF1C2), 0.22);
+    }
   }
 
   static const _lightGap = 128;
@@ -682,5 +766,5 @@ class SideTrainPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(SideTrainPainter old) =>
-      old.part != part || old.lineColor != lineColor || old.art != art || old.sim != sim;
+      old.part != part || old.lineColor != lineColor || old.art != art || old.sim != sim || old.only != only;
 }

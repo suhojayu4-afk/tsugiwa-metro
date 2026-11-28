@@ -86,17 +86,18 @@ int? lastRealDepartureMin(CityData city, RouteResult route, DateTime jst) {
 }
 
 /// Lines on [route] whose last train is gone (or has not started yet) if you
-/// leave its first station at [nowMin] (service minutes, Japan time).
-Set<String> missedLines(CityData city, RouteResult route, int nowMin) {
+/// leave its first station at [nowMin] (service minutes, Japan time) on
+/// [day] (default today: weekday or holiday trains).
+Set<String> missedLines(CityData city, RouteResult route, int nowMin, {DateTime? day}) {
   // Real trains (Tottori): follow the trains from now; the first leg with no
   // train left today is the missed one.
   if (route.legs.every((l) => city.trains.containsKey(l.lineId) && !l.through)) {
     var t = nowMin + route.headWalkMin(city);
-    final day = japanNow();
+    final today = day ?? japanNow();
     for (var li = 0; li < route.legs.length; li++) {
       final leg = route.legs[li];
       int? arrive;
-      for (final r in city.trains[leg.lineId]!.runsOn(day)) {
+      for (final r in city.trains[leg.lineId]!.runsOn(today)) {
         final a = r.indexOf(leg.stationIds.first), b = r.indexOf(leg.stationIds.last);
         if (a == null || b == null || a >= b || r.stops[a].departMin < t) continue;
         if (arrive == null || r.stops[b].arriveMin < arrive) arrive = r.stops[b].arriveMin;

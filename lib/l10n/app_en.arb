@@ -279,5 +279,15 @@
   "mapSightsTitle": "Find sights",
   "mapSightsHint": "Tap one to see it on the map",
   "mapGoHere": "Go here ({station})",
-  "mapNearSt": "From {station}"
+  "mapNearSt": "From {station}",
+  "toStationTitle": "To {station}",
+  "toStationSpare": "{minutes} min to spare",
+  "toStationHurry": "Hurry!",
+  "toStationMissed": "This train has left. At the station the trip moves to the next one",
+  "toStationHere": "I'm at the station",
+  "toNextDistance": "{distance} to the next stop",
+  "walkAbout": "about {minutes} min on foot",
+  "departLabel": "Departs",
+  "minutesLater": "in {minutes} min",
+  "boardLabel": "Board"
 }

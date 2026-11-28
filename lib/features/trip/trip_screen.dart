@@ -10,6 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../../app.dart';
+import '../../core/japan_time.dart';
 import '../../core/pixel/pixel_ui.dart';
 import '../../core/services.dart';
 import '../../data/models/city.dart';
@@ -20,7 +21,9 @@ import '../common/station_name.dart';
 import 'train_sheet.dart';
 import 'train_text.dart';
 import 'trip_controller.dart';
+import 'widgets/layered_train_view.dart';
 import 'widgets/progress_track.dart';
+import 'widgets/trip_props.dart';
 import 'widgets/side_train_view.dart';
 import 'widgets/first_visit_welcome.dart';
 import 'widgets/stamp_slam.dart';
@@ -132,29 +135,35 @@ class _TripScreenState extends State<TripScreen> {
                         child: PixelText('×', size: 22),
                       ),
                       const SizedBox(width: 12),
-                      Flexible(
+                      // The line, and which way: two lines, so a long name is not cut.
+                      Expanded(
                         child: PixelBox(
                           color: line.color,
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                          child: PixelText(
-                            '${line.name.of(lang)} ${line.directionName(forward).of(lang)}',
-                            size: 18,
-                            color: PixelColors.card,
-                            maxLines: 1,
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              PixelText(line.name.of(lang), size: 17, color: PixelColors.card, maxLines: 1),
+                              PixelText(
+                                line.directionName(forward).of(lang),
+                                size: 13,
+                                color: PixelColors.card,
+                                maxLines: 1,
+                              ),
+                            ],
                           ),
                         ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 16),
-                  PixelBox(
-                    color: PixelColors.ink,
-                    padding: EdgeInsets.zero,
-                    child: SideTrainView(
-                      underground: sideTrainUnderground(plan, s),
-                      moving: !s.atStation && !s.arrived,
-                      lineColor: line.color,
-                    ),
+                  // The train as a layered diorama: drag it to look around.
+                  LayeredTrainView(
+                    theme: sceneryFor(city.id, line.id, s.currentIndex),
+                    electric: lineElectric(line.id),
+                    underground: sideTrainUnderground(plan, s),
+                    moving: !s.atStation && !s.arrived,
+                    lineColor: line.color,
                   ),
                   const SizedBox(height: 16),
                   Align(
@@ -171,50 +180,82 @@ class _TripScreenState extends State<TripScreen> {
                       toId: c.plan.stops.last.stationId,
                     )
                   else ...[
-                    PixelText(t.nowLabel, size: 16, color: PixelColors.muted),
-                    if (s.atStation)
-                      StationName(station: cur, size: 26)
-                    else
-                      PixelText(t.betweenStations(cur.name.ja, next!.name.ja), size: 26),
-                    // Waiting for a real train (Tottori): when it leaves, which one.
-                    if (plan.trainLeaving(s.currentIndex) case final train? when s.atStation) ...[
-                      const SizedBox(height: 6),
-                      if (plan.stops[s.currentIndex].departSec - s.elapsedSec >= 30)
-                        PixelText(
-                          t.departsIn(
-                            LineTimetable.clock(train.departMin),
-                            ((plan.stops[s.currentIndex].departSec - s.elapsedSec) / 60).ceil(),
-                          ),
-                          size: 20,
-                          color: line.color,
-                        ),
-                      GestureDetector(
-                        behavior: HitTestBehavior.opaque,
-                        onTap: () => showTrainSheet(context, city, plan.lineAt(s.currentIndex), train.run),
-                        child: Row(
-                          children: [
-                            Flexible(
-                              child: PixelText(trainText(t, city, train, lang), size: 14, color: PixelColors.muted),
-                            ),
-                            if (c.delayMin > 0) ...[
-                              const SizedBox(width: 8),
-                              PixelText(t.delayMin(c.delayMin), size: 14, color: PixelColors.danger),
-                            ],
-                            Icon(Icons.chevron_right_rounded, size: 18, color: PixelColors.muted),
+                    // Started away from the station: how far, and whether the train can be caught.
+                    if (c.approaching) ...[_ToStationCard(controller: c), const SizedBox(height: 16)],
+                    // Where the train is now, and the next stop: one card.
+                    PixelBox(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (!c.approaching) ...[
+                            PixelText(t.nowLabel, size: 14, color: PixelColors.muted),
+                            if (s.atStation)
+                              StationName(station: cur, size: 26)
+                            else
+                              PixelText(t.betweenStations(cur.name.ja, next!.name.ja), size: 26),
                           ],
-                        ),
+                          // Waiting for a real train (Tottori): when it leaves, which one.
+                          if (plan.trainLeaving(s.currentIndex) case final train?
+                              when s.atStation && !c.approaching) ...[
+                            const SizedBox(height: 6),
+                            if (plan.stops[s.currentIndex].departSec - s.elapsedSec >= 30)
+                              PixelText(
+                                t.departsIn(
+                                  LineTimetable.clock(train.departMin),
+                                  ((plan.stops[s.currentIndex].departSec - s.elapsedSec) / 60).ceil(),
+                                ),
+                                size: 20,
+                                color: line.color,
+                              ),
+                            GestureDetector(
+                              behavior: HitTestBehavior.opaque,
+                              onTap: () => showTrainSheet(context, city, plan.lineAt(s.currentIndex), train.run),
+                              child: Row(
+                                children: [
+                                  Flexible(
+                                    child: PixelText(
+                                      trainText(t, city, train, lang),
+                                      size: 14,
+                                      color: PixelColors.muted,
+                                    ),
+                                  ),
+                                  if (c.delayMin > 0) ...[
+                                    const SizedBox(width: 8),
+                                    PixelText(t.delayMin(c.delayMin), size: 14, color: PixelColors.danger),
+                                  ],
+                                  Icon(Icons.chevron_right_rounded, size: 18, color: PixelColors.muted),
+                                ],
+                              ),
+                            ),
+                          ],
+                          // On board a late train: say so.
+                          if (!s.atStation && c.delayMin > 0) ...[
+                            const SizedBox(height: 4),
+                            PixelText(t.delayMin(c.delayMin), size: 14, color: PixelColors.danger),
+                          ],
+                          if (!c.approaching)
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              child: Container(height: 2, color: PixelColors.soft),
+                            ),
+                          PixelText(t.nextLabel, size: 16, color: line.color),
+                          StationName(station: next!, size: 44),
+                          if (c.toNextM case final m?) ...[
+                            const SizedBox(height: 4),
+                            Row(
+                              children: [
+                                Icon(Icons.near_me_rounded, size: 16, color: line.color),
+                                const SizedBox(width: 6),
+                                PixelText(t.toNextDistance(distanceText(m)), size: 16, color: PixelColors.muted),
+                              ],
+                            ),
+                          ],
+                        ],
                       ),
-                    ],
-                    // On board a late train: say so.
-                    if (!s.atStation && c.delayMin > 0) ...[
-                      const SizedBox(height: 4),
-                      PixelText(t.delayMin(c.delayMin), size: 14, color: PixelColors.danger),
-                    ],
-                    const SizedBox(height: 20),
-                    PixelText(t.nextLabel, size: 20, color: line.color),
-                    StationName(station: next!, size: 48),
+                    ),
                   ],
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 16),
                   Row(
                     children: [
                       Expanded(
@@ -258,6 +299,7 @@ class _TripScreenState extends State<TripScreen> {
                             name: city.station(plan.stops[i].stationId).name.ja,
                             sub: lang == 'ja' ? '' : city.station(plan.stops[i].stationId).name.of(lang),
                             color: city.line(plan.stops[i].lineId).color,
+                            nextColor: i < plan.lastIndex ? city.line(plan.lineAt(i)).color : null,
                             isCurrent: i == s.currentIndex,
                             isLast: i == plan.lastIndex,
                             transferNote: plan.stops[i].transferToLineId == null
@@ -313,6 +355,164 @@ class _TripScreenState extends State<TripScreen> {
   }
 }
 
+/// 350m, 1.2km.
+String distanceText(double m) => m < 1000 ? '${(m / 10).round() * 10}m' : '${(m / 1000).toStringAsFixed(1)}km';
+
+/// On the way to the first station, in three bands: how far (and the walk),
+/// when the train leaves (and whether there is time), where to board.
+class _ToStationCard extends StatelessWidget {
+  const _ToStationCard({required this.controller});
+  final TripController controller;
+
+  static const _good = Color(0xFF3FA66B);
+
+  @override
+  Widget build(BuildContext context) {
+    final c = controller;
+    final t = AppLocalizations.of(context);
+    final lang = langOf(context);
+    final plan = c.plan;
+    final city = c.city;
+    final first = plan.stops.first;
+    final line = city.line(plan.lineAt(0));
+    final forward = plan.route.legs.first.forward;
+    final train = plan.trainLeaving(0);
+    final timed = train != null || first.departSec > 0;
+    final walk = c.walkMin;
+    final left = (c.departAt.difference(DateTime.now()).inSeconds / 60).floor() + c.delayMin;
+    final spare = walk == null ? null : left - walk;
+    final divider = Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      child: Container(height: 2, color: PixelColors.soft),
+    );
+
+    final Widget when;
+    if (!timed) {
+      when = PixelText(t.trainsEvery(city.timetables[line.id]?.headwayMinAt(japanNow()) ?? 5), size: 18);
+    } else if (left < 0) {
+      when = PixelText(t.toStationMissed, size: 15, color: PixelColors.danger);
+    } else {
+      final clock = DateFormat.Hm().format(_japanClock(c.departAt.add(Duration(minutes: c.delayMin))));
+      when = Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              PixelText(t.departLabel, size: 13, color: PixelColors.muted),
+              PixelText(clock, size: 30, color: line.color),
+            ],
+          ),
+          const SizedBox(width: 14),
+          Padding(padding: const EdgeInsets.only(bottom: 4), child: PixelText(t.minutesLater(left), size: 18)),
+          const Spacer(),
+          if (spare != null)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 4),
+              child: _Pill(
+                text: spare >= 0 ? t.toStationSpare(spare) : t.toStationHurry,
+                color: spare >= 2 ? _good : PixelColors.danger,
+              ),
+            ),
+        ],
+      );
+    }
+
+    return PixelBox(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // How far.
+          Row(
+            children: [
+              Icon(Icons.directions_walk_rounded, color: line.color, size: 24),
+              const SizedBox(width: 6),
+              Expanded(
+                child: PixelText(t.toStationTitle(city.station(first.stationId).name.of(lang)), size: 20, maxLines: 1),
+              ),
+              if (c.toStationM case final m?) PixelText(distanceText(m), size: 24),
+            ],
+          ),
+          if (walk != null)
+            Padding(
+              padding: const EdgeInsets.only(left: 30, top: 2),
+              child: PixelText(t.walkAbout(walk), size: 14, color: PixelColors.muted),
+            ),
+          divider,
+          // When.
+          when,
+          divider,
+          // Where to board, and which train.
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(width: 64, child: PixelText(t.boardLabel, size: 13, color: PixelColors.muted)),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        PixelSquare(color: line.color, size: 12),
+                        const SizedBox(width: 6),
+                        Expanded(child: PixelText(line.name.of(lang), size: 15, maxLines: 1)),
+                      ],
+                    ),
+                    PixelText(line.directionName(forward).of(lang), size: 13, color: PixelColors.muted, maxLines: 1),
+                    if (train != null)
+                      GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onTap: () => showTrainSheet(context, city, line.id, train.run),
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 2),
+                          child: Row(
+                            children: [
+                              Flexible(
+                                child: PixelText(
+                                  trainText(t, city, train, lang),
+                                  size: 13,
+                                  color: line.color,
+                                  maxLines: 1,
+                                ),
+                              ),
+                              Icon(Icons.chevron_right_rounded, size: 18, color: line.color),
+                            ],
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          PixelButton(
+            expand: true,
+            color: PixelColors.soft,
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            onPressed: c.reachedStation,
+            child: PixelText(t.toStationHere, size: 16),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _Pill extends StatelessWidget {
+  const _Pill({required this.text, required this.color});
+  final String text;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) => Container(
+    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+    decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(10)),
+    child: PixelText(text, size: 13, color: PixelColors.card),
+  );
+}
+
 class _GpsChip extends StatelessWidget {
   const _GpsChip({required this.state});
   final GpsState state;
@@ -353,7 +553,7 @@ class _Stat extends StatelessWidget {
       children: [
         PixelText(label, size: 14, color: PixelColors.muted),
         const SizedBox(height: 4),
-        PixelText(value, size: 30),
+        PixelText(value, size: 26, maxLines: 1),
       ],
     ),
   );
@@ -367,40 +567,98 @@ class _StopRow extends StatelessWidget {
     required this.color,
     required this.isCurrent,
     required this.isLast,
+    this.nextColor,
     this.transferNote,
   });
 
   final String time;
   final String name;
   final String sub;
+
+  /// Line arriving here, and the one leaving (null at the last stop).
   final Color color;
+  final Color? nextColor;
   final bool isCurrent;
   final bool isLast;
   final String? transferNote;
 
+  static const _head = 38.0;
+  static const _timeW = 52.0;
+  static const _railW = 28.0;
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(width: 56, child: PixelText(time, size: 15, color: PixelColors.muted)),
-          Padding(
-            padding: const EdgeInsets.only(top: 3, right: 12),
-            child: PixelSquare(color: color, size: 14, hollow: !isCurrent),
+    final strong = isCurrent || isLast;
+    final dot = strong ? 14.0 : 11.0;
+    final railX = _timeW + _railW / 2 - 1.5;
+    return Stack(
+      children: [
+        // The line through the stops: in from above, out below.
+        if (!isCurrent)
+          Positioned(
+            left: railX,
+            top: 0,
+            height: _head / 2,
+            width: 3,
+            child: ColoredBox(color: color),
           ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                PixelText(sub.isEmpty || sub == name ? name : '$name  $sub', size: isCurrent || isLast ? 20 : 17),
-                if (transferNote != null) PixelText(transferNote!, size: 13, color: color),
-              ],
+        if (nextColor != null)
+          Positioned(
+            left: railX,
+            top: _head / 2,
+            bottom: 0,
+            width: 3,
+            child: ColoredBox(color: nextColor!),
+          ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: _head,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: _timeW,
+                    child: PixelText(time, size: 15, color: strong ? PixelColors.ink : PixelColors.muted),
+                  ),
+                  SizedBox(
+                    width: _railW,
+                    child: Center(
+                      child: Container(
+                        width: dot,
+                        height: dot,
+                        decoration: BoxDecoration(
+                          color: isCurrent ? color : PixelColors.card,
+                          border: Border.all(color: isLast ? (nextColor ?? color) : color, width: 3),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: [
+                        Flexible(child: PixelText(name, size: strong ? 19 : 16, maxLines: 1)),
+                        if (sub.isNotEmpty && sub != name) ...[
+                          const SizedBox(width: 8),
+                          Flexible(child: PixelText(sub, size: 13, color: PixelColors.muted, maxLines: 1)),
+                        ],
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
+            if (transferNote != null)
+              Padding(
+                padding: const EdgeInsets.only(left: _timeW + _railW + 10, bottom: 8),
+                child: PixelText(transferNote!, size: 13, color: nextColor ?? color),
+              ),
+          ],
+        ),
+      ],
     );
   }
 }

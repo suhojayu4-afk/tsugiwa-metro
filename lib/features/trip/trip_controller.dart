@@ -53,6 +53,16 @@ class TripController extends ChangeNotifier {
   bool _approachingSent = false;
   bool _arrivedSent = false;
 
+  /// Started away from the first station: the trip waits there (no train
+  /// leaves without the user) until the phone is seen at it or on board.
+  bool _approaching = false;
+
+  /// The phone's last good fix, for the distance to the station or the next stop.
+  GpsFix? lastFix;
+
+  /// When tracking started (the plan's second 0).
+  DateTime? _startedAt;
+
   // What the phone's location showed of this ride, for the coins: where it
   // was first seen, how far from there it got, and whether it came near
   // the last station.
@@ -83,6 +93,43 @@ class TripController extends ChangeNotifier {
     return GpsState.waiting;
   }
 
+  /// Walking to the first station: how far it is (m) as the crow flies.
+  double? get toStationM {
+    final f = lastFix;
+    if (!_approaching || f == null) return null;
+    final s = city.station(plan.stops.first.stationId);
+    return distanceMeters(f.lat, f.lng, s.lat, s.lng);
+  }
+
+  /// Walking minutes to the first station (streets wind: a little more than
+  /// the straight line, at 80 m a minute).
+  int? get walkMin {
+    final d = toStationM;
+    return d == null ? null : (d * 1.3 / 80).ceil();
+  }
+
+  /// When the first train leaves the first station (phone time).
+  DateTime get departAt => (_startedAt ?? _clock()).add(Duration(seconds: plan.stops.first.departSec));
+
+  /// On board above ground with a fresh fix: metres to the next stop.
+  double? get toNextM {
+    final f = lastFix;
+    final s = snapshot;
+    if (_approaching || f == null || s.nextIndex == null || gpsState != GpsState.corrected) return null;
+    final st = city.station(plan.stops[s.nextIndex!].stationId);
+    return distanceMeters(f.lat, f.lng, st.lat, st.lng);
+  }
+
+  /// Still on the way to the first station.
+  bool get approaching => _approaching;
+
+  /// The user says they are at the station (or on board) already.
+  void reachedStation() {
+    if (!_approaching) return;
+    _approaching = false;
+    _refresh();
+  }
+
   int get _elapsedSec => _elapsedMs ~/ 1000 + _correctionSec - _delaySec;
 
   /// How late the real train being waited for / ridden runs (JR西日本's
@@ -100,7 +147,7 @@ class TripController extends ChangeNotifier {
   }
 
   void start() {
-    _lastTick = _clock();
+    _lastTick = _startedAt = _clock();
     _timer = Timer.periodic(const Duration(seconds: 1), (_) => _tick());
     _bridge.start(_liveStatus());
     // 終了 on the lock-screen notification ends the trip in the app too.
@@ -151,20 +198,43 @@ class TripController extends ChangeNotifier {
 
   void _tick() {
     final now = _clock();
-    _elapsedMs += now.difference(_lastTick ?? now).inMilliseconds * speed;
+    final step = now.difference(_lastTick ?? now).inMilliseconds * speed;
     _lastTick = now;
+    // On the way to the station the trip waits there for the first train.
+    _elapsedMs += step;
+    if (_approaching) {
+      // Held just before the departure: the train is still standing there.
+      final over = _elapsedSec - (plan.stops.first.departSec - 1);
+      if (over > 0) _elapsedMs = math.max(0, _elapsedMs - over * 1000);
+    }
+    // In an underground station the fixes stop: seen near it, then silence = there.
+    final last = _lastFixAt;
+    if (_approaching && last != null && now.difference(last).inSeconds > 90 && (toStationM ?? 1e9) <= 600) {
+      _approaching = false;
+    }
     _refresh();
   }
 
+  DateTime? _lastFixAt;
+
   void _onFix(GpsFix fix) {
     if (fix.accuracyM <= 150) {
+      lastFix = fix;
+      _lastFixAt = _clock();
+      final origin = city.station(plan.stops.first.stationId);
+      final toOrigin = distanceMeters(fix.lat, fix.lng, origin.lat, origin.lng);
+      final onRoute = gpsElapsed(plan, city, fix, _elapsedSec);
+      final pastFirst = plan.stops.length > 1 && onRoute != null && onRoute >= plan.stops[1].arriveSec;
+      if (_firstFix == null && toOrigin > 300 && !pastFirst) _approaching = true;
+      if (_approaching && (toOrigin <= 250 || pastFirst)) _approaching = false;
       final first = _firstFix ??= fix;
       final moved = distanceMeters(first.lat, first.lng, fix.lat, fix.lng);
       if (moved > _movedM) _movedM = moved;
       final end = city.station(plan.stops.last.stationId);
       if (distanceMeters(fix.lat, fix.lng, end.lat, end.lng) <= 500) _nearEnd = true;
     }
-    final delta = gpsCorrection(plan, city, fix, _elapsedSec);
+    // Walking to the station: the streets there are not the route.
+    final delta = _approaching ? null : gpsCorrection(plan, city, fix, _elapsedSec);
     if (delta != null) {
       _lastGoodFix = _clock();
       _correctionSec += delta;

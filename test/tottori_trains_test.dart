@@ -111,8 +111,8 @@ void main() {
         .map((r) => r.stops.first.departMin)
         .reduce((a, b) => a > b ? a : b);
     expect(last, lastRun);
-    expect(missedLines(city, direct, last + 1), {'tottori.sakai'});
-    expect(missedLines(city, direct, last - 30), isEmpty);
+    expect(missedLines(city, direct, last + 1, day: tue10), {'tottori.sakai'});
+    expect(missedLines(city, direct, last - 30, day: tue10), isEmpty);
   });
 
   test('JR西日本 运行情報 and 走行位置 are read', () {

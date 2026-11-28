@@ -58,3 +58,8 @@ secrets.json
 
 # OpenStreetMap extracts used to build the city maps (tens of MB each)
 tools/*/osm/
+
+# Blender renders of the trip train (remade by tools/blender/train3d.py)
+docs/art/gen/train3d/
+# GPT originals of the themed trip scenery (about 2 MB each; kept on the PC, the cut art is in assets/art)
+docs/art/gen/side_train/*_raw.png

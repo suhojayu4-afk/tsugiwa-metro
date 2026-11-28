@@ -979,4 +979,44 @@ class AppLocalizationsKo extends AppLocalizations {
   String mapNearSt(String station) {
     return '$station역에서';
   }
+
+  @override
+  String toStationTitle(String station) {
+    return '$station역까지';
+  }
+
+  @override
+  String toStationSpare(int minutes) {
+    return '여유 $minutes분';
+  }
+
+  @override
+  String get toStationHurry => '서둘러야 해요';
+
+  @override
+  String get toStationMissed => '이 열차는 떠났어요. 역에 도착하면 다음 열차로 맞춰요';
+
+  @override
+  String get toStationHere => '역에 도착했어요';
+
+  @override
+  String toNextDistance(String distance) {
+    return '다음 역까지 $distance';
+  }
+
+  @override
+  String walkAbout(int minutes) {
+    return '걸어서 약 $minutes분';
+  }
+
+  @override
+  String get departLabel => '출발';
+
+  @override
+  String minutesLater(int minutes) {
+    return '$minutes분 후';
+  }
+
+  @override
+  String get boardLabel => '타는 곳';
 }

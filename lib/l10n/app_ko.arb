@@ -279,5 +279,15 @@
   "mapSightsTitle": "명소 찾기",
   "mapSightsHint": "누르면 지도에서 그 장소로 가요",
   "mapGoHere": "여기로 가기 ({station})",
-  "mapNearSt": "{station}역에서"
+  "mapNearSt": "{station}역에서",
+  "toStationTitle": "{station}역까지",
+  "toStationSpare": "여유 {minutes}분",
+  "toStationHurry": "서둘러야 해요",
+  "toStationMissed": "이 열차는 떠났어요. 역에 도착하면 다음 열차로 맞춰요",
+  "toStationHere": "역에 도착했어요",
+  "toNextDistance": "다음 역까지 {distance}",
+  "walkAbout": "걸어서 약 {minutes}분",
+  "departLabel": "출발",
+  "minutesLater": "{minutes}분 후",
+  "boardLabel": "타는 곳"
 }

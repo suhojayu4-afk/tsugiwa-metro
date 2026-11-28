@@ -21,12 +21,14 @@ import 'package:tsugiwa_metro/features/trip/location_source.dart';
 import 'package:tsugiwa_metro/features/trip/route_finder.dart';
 import 'package:tsugiwa_metro/features/trip/train_sheet.dart';
 import 'package:tsugiwa_metro/features/trip/trip_controller.dart';
+import 'package:tsugiwa_metro/features/trip/trip_estimator.dart';
 import 'package:tsugiwa_metro/features/trip/trip_plan.dart';
 import 'package:tsugiwa_metro/features/trip/trip_screen.dart';
 import 'package:tsugiwa_metro/l10n/app_localizations.dart';
 import 'package:tsugiwa_metro/platform/live_status_bridge.dart';
 
 import '../tottori_city_test.dart' show loadTottori;
+import '../trip_gps_test.dart' show FakeLocation;
 
 void main() {
   final city = loadTottori();
@@ -38,6 +40,15 @@ void main() {
   Future<void> fonts(WidgetTester tester) => tester.runAsync(() async {
     final sys = FontLoader('Roboto')..addFont(rootBundle.load('assets/fonts/DotGothic16-Regular.ttf'));
     await sys.load();
+    final icons = FontLoader('MaterialIcons')
+      ..addFont(
+        Future.value(
+          ByteData.sublistView(
+            File('C:/dev/flutter/bin/cache/artifacts/material_fonts/materialicons-regular.otf').readAsBytesSync(),
+          ),
+        ),
+      );
+    await icons.load();
     for (final f in ['DotGothic16-Regular.ttf', 'Galmuri11.ttf', 'Galmuri11-Bold.ttf']) {
       final font = FontLoader(f.startsWith('Dot') ? 'DotGothic16' : 'Galmuri11')
         ..addFont(rootBundle.load('assets/fonts/$f'));
@@ -135,6 +146,38 @@ void main() {
       await tester.pumpWidget(app(TripScreen(controller: c), lang));
       await settle(tester);
       await save(tester, 'trip_$lang');
+      await tester.pumpWidget(const SizedBox());
+      await settle(tester, 2);
+    });
+  }
+
+  // Walking to 鳥取 from 1 km away, then riding between two stations.
+  for (final (name, onBoard) in [('walk_ko', false), ('ride_ko', true)]) {
+    testWidgets(name, (tester) async {
+      tester.view.physicalSize = const Size(780, 3400);
+      tester.view.devicePixelRatio = 2;
+      addTearDown(tester.view.reset);
+      await fonts(tester);
+      final route = RouteFinder(city).find('tottori.tottori', 'tottori.yonago', at: jst)!;
+      final plan = TripPlan.build(city, route, jst);
+      final loc = FakeLocation();
+      final c = TripController(city: city, plan: plan, lang: 'ko', location: loc, bridge: const NoopLiveStatusBridge());
+      await tester.pumpWidget(app(TripScreen(controller: c), 'ko'));
+      await settle(tester, 2);
+      final o = city.station(plan.stops[onBoard ? 3 : 0].stationId);
+      final b = city.station(plan.stops[4].stationId);
+      loc.fixes.add(
+        onBoard
+            ? GpsFix(
+                lat: o.lat * 0.4 + b.lat * 0.6,
+                lng: o.lng * 0.4 + b.lng * 0.6,
+                accuracyM: 20,
+                time: DateTime.now(),
+              )
+            : GpsFix(lat: o.lat - 0.006, lng: o.lng + 0.004, accuracyM: 20, time: DateTime.now()),
+      );
+      await settle(tester);
+      await save(tester, name);
       await tester.pumpWidget(const SizedBox());
       await settle(tester, 2);
     });

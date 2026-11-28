@@ -171,6 +171,8 @@ def no_sun(q):
         return q
     y0, y1, x0, x1 = ys.min() - 2, ys.max() + 3, xs.min() - 2, xs.max() + 3
     bw = x1 - x0
+    if bw > q.shape[1] // 4:
+        return q  # a wide glow, not a disc: leave it
     # Only the sun's own pixels (and a 1-pixel rim) change; buildings stay.
     loose = (r > 225) & (g > 150) & (b < 140)
     box = np.zeros_like(loose)
@@ -178,7 +180,8 @@ def no_sun(q):
     m = loose & box
     m = box & (m | np.roll(m, 1, 0) | np.roll(m, -1, 0) | np.roll(m, 1, 1) | np.roll(m, -1, 1))
     my, mx = np.nonzero(m)
-    q[my, mx] = q[my, mx + bw]
+    w = q.shape[1]
+    q[my, mx] = q[my, np.where(mx + bw < w, mx + bw, mx - bw)]
     print(f'  removed the sun from the mirrored copy at {x0},{y0} ({bw}x{y1 - y0})')
     return q
 
@@ -325,6 +328,11 @@ JOBS = {
     'mast': lambda: keyed('mast', 12, (0, 1024), tile=None),
     'train3d_b': train,
 }
+# The themed scenery of tools/gen_side_scenery_gpt.py, cut like the Tokyo set.
+for _t in ('seaside', 'country', 'mountain', 'oldtown', 'river', 'suburb', 'snow', 'harbor', 'flower'):
+    for _p in ('day', 'evening', 'night'):
+        JOBS[f'{_t}_far_{_p}'] = (lambda n: lambda: full(n, 6, (1024 - 540, 1024), tile='mirror'))(f'{_t}_far_{_p}')
+        JOBS[f'{_t}_mid_{_p}'] = (lambda n: lambda: keyed(n, 7, (500, 1024), tile='mirror'))(f'{_t}_mid_{_p}')
 
 if __name__ == '__main__':
     for n in sys.argv[1:] or JOBS:

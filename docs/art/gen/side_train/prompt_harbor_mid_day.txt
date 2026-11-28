@@ -1,0 +1,20 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/side_train/harbor_mid_day_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at these first: C:/dev/tsugiwa-metro/docs/art/gen/stations/shinjuku_evening_raw.png and C:/dev/tsugiwa-metro/docs/art/gen/stations/tokyo_day_raw.png (Tokyo station platforms in a detailed 16-bit era pixel art style: crisp square pixels, almost no black outlines, hue-shifted shading, skyscrapers with many small lit windows, soft pixel clouds, round leafy trees). Use EXACTLY that style, the same pixel size and the same palette feel.
+
+Draw the NEAR SCENERY seen from a train passing the waterfront beside the line: brick warehouses, stacked colourful shipping containers, a small
+lighthouse at the end of a pier, bollards and coiled ropes, palm-like trees in planters, seagulls; the tallest thing
+reaches 40 percent of the picture height. It is a background layer for a SIDE-SCROLLING game: a FLAT SIDE VIEW, looking straight at the scenery from a train window. NO perspective, NO vanishing point, NO road or rails going into the distance; every building is seen straight from the front.
+- Plain flat solid MAGENTA background (#FF00FF) everywhere above and between the things: NO sky, no clouds, no
+distant scenery (those are a separate layer).
+- One continuous row along the bottom edge; varied heights, many lower than the tallest.
+- Along the very bottom edge, a continuous strip (about 6 percent of the height) of grass and bushes in front of
+everything, all the way across.
+- DAYTIME lighting.
+- Leave magenta gaps between some things so the sky behind shows through.
+- It must TILE HORIZONTALLY without a seam: the picture is repeated side by side endlessly, so the LEFT edge must continue exactly into the RIGHT edge (same sky colours at the same heights at both edges, and no building cut by the left or right edge). At BOTH the left and right edges there is only the low strip and a tree or bush.
+- Crisp edges against the magenta: no glow, no anti-aliased fringe, no shadow on the magenta.
+- Landscape 1536x1024.
+- ABSOLUTELY NO text, letters, numbers, logos or signboards with writing.

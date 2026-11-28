@@ -745,5 +745,20 @@
   "mapGoHere": "ここへ行く（{station}）",
   "@mapGoHere": {"placeholders": {"station": {"type": "String"}}},
   "mapNearSt": "{station}駅から",
-  "@mapNearSt": {"placeholders": {"station": {"type": "String"}}}
+  "@mapNearSt": {"placeholders": {"station": {"type": "String"}}},
+  "toStationTitle": "{station}駅まで",
+  "@toStationTitle": {"placeholders": {"station": {"type": "String"}}},
+  "toStationSpare": "{minutes}分の余裕",
+  "@toStationSpare": {"placeholders": {"minutes": {"type": "int"}}},
+  "toStationHurry": "急いで！",
+  "toStationMissed": "この電車は出たあと。駅に着いたら次の電車に合わせます",
+  "toStationHere": "駅に着いた",
+  "toNextDistance": "次の駅まで {distance}",
+  "@toNextDistance": {"placeholders": {"distance": {"type": "String"}}},
+  "walkAbout": "歩いて約{minutes}分",
+  "@walkAbout": {"placeholders": {"minutes": {"type": "int"}}},
+  "departLabel": "発車",
+  "minutesLater": "あと{minutes}分",
+  "@minutesLater": {"placeholders": {"minutes": {"type": "int"}}},
+  "boardLabel": "のりば"
 }

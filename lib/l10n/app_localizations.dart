@@ -1737,6 +1737,66 @@ abstract class AppLocalizations {
   /// In ja, this message translates to:
   /// **'{station}駅から'**
   String mapNearSt(String station);
+
+  /// No description provided for @toStationTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'{station}駅まで'**
+  String toStationTitle(String station);
+
+  /// No description provided for @toStationSpare.
+  ///
+  /// In ja, this message translates to:
+  /// **'{minutes}分の余裕'**
+  String toStationSpare(int minutes);
+
+  /// No description provided for @toStationHurry.
+  ///
+  /// In ja, this message translates to:
+  /// **'急いで！'**
+  String get toStationHurry;
+
+  /// No description provided for @toStationMissed.
+  ///
+  /// In ja, this message translates to:
+  /// **'この電車は出たあと。駅に着いたら次の電車に合わせます'**
+  String get toStationMissed;
+
+  /// No description provided for @toStationHere.
+  ///
+  /// In ja, this message translates to:
+  /// **'駅に着いた'**
+  String get toStationHere;
+
+  /// No description provided for @toNextDistance.
+  ///
+  /// In ja, this message translates to:
+  /// **'次の駅まで {distance}'**
+  String toNextDistance(String distance);
+
+  /// No description provided for @walkAbout.
+  ///
+  /// In ja, this message translates to:
+  /// **'歩いて約{minutes}分'**
+  String walkAbout(int minutes);
+
+  /// No description provided for @departLabel.
+  ///
+  /// In ja, this message translates to:
+  /// **'発車'**
+  String get departLabel;
+
+  /// No description provided for @minutesLater.
+  ///
+  /// In ja, this message translates to:
+  /// **'あと{minutes}分'**
+  String minutesLater(int minutes);
+
+  /// No description provided for @boardLabel.
+  ///
+  /// In ja, this message translates to:
+  /// **'のりば'**
+  String get boardLabel;
 }
 
 class _AppLocalizationsDelegate

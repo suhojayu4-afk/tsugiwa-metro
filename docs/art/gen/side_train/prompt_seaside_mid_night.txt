@@ -1,0 +1,14 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/side_train/seaside_mid_night_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at C:/dev/tsugiwa-metro/docs/art/gen/side_train/seaside_mid_day_raw.png first (the near scenery of a
+side-scrolling game, on a flat MAGENTA background) and at C:/dev/tsugiwa-metro/docs/art/gen/stations/shinjuku_night_raw.png (the
+wanted night lighting).
+
+Make the SAME picture with ONE change: it is NIGHT: the buildings dark blue-purple, MANY windows lit warm yellow, some balconies and shop fronts lit, a few street lamps glowing, trees dark blue-green. Keep EVERYTHING else exactly the same: identical composition,
+the same things in exactly the same places and sizes, the same flat side view, and the same plain flat solid MAGENTA
+background (#FF00FF) everywhere around them (do NOT paint a sky; the magenta stays pure #FF00FF).
+- Crisp edges against the magenta: no glow or halo spilling onto the magenta.
+- Landscape 1536x1024.
+- ABSOLUTELY NO text, letters, numbers, logos or signboards with writing.

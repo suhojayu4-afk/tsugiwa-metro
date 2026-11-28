@@ -1,0 +1,15 @@
+Use your image generation tool to create ONE image, then save the resulting PNG file to exactly this path:
+C:/dev/tsugiwa-metro/docs/art/gen/side_train/river_far_night_raw.png
+(copy it there from wherever the tool stores it, replacing any old file). Do not write or change any other files. Reply with the saved path only.
+
+Look at these first: C:/dev/tsugiwa-metro/docs/art/gen/stations/shinjuku_evening_raw.png and C:/dev/tsugiwa-metro/docs/art/gen/stations/tokyo_day_raw.png (Tokyo station platforms in a detailed 16-bit era pixel art style: crisp square pixels, almost no black outlines, hue-shifted shading, skyscrapers with many small lit windows, soft pixel clouds, round leafy trees). Use EXACTLY that style, the same pixel size and the same palette feel.
+
+Draw a DISTANT PANORAMA: a WIDE RIVER the line runs along: the river fills the bottom 25 percent with gentle pixel ripples, a long
+steel truss bridge far away crossing it, low-rise riverside town on the far bank and soft green hills behind; the
+tallest thing reaches 40 percent of the picture height. It is a background layer for a SIDE-SCROLLING game: a FLAT SIDE VIEW, looking straight at the scenery from a train window. NO perspective, NO vanishing point, NO road or rails going into the distance; every building is seen straight from the front.
+- Sky: a deep navy NIGHT sky with small twinkling stars and a crescent moon (in the middle, not near the edges); the buildings are dark blue-purple silhouettes with MANY warm lit windows, red aviation lights blinking on the tallest towers, a soft city glow along the horizon.
+- The sky fills the top 60 percent of the picture; the scenery fills the bottom 40 percent and stands on the very
+bottom edge. No rails, no people, no vehicles on land.
+- It must TILE HORIZONTALLY without a seam: the picture is repeated side by side endlessly, so the LEFT edge must continue exactly into the RIGHT edge (same sky colours at the same heights at both edges, and no building cut by the left or right edge).
+- Landscape 1536x1024.
+- ABSOLUTELY NO text, letters, numbers, logos or signboards with writing.

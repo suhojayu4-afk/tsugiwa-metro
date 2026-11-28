@@ -979,4 +979,44 @@ class AppLocalizationsJa extends AppLocalizations {
   String mapNearSt(String station) {
     return '$station駅から';
   }
+
+  @override
+  String toStationTitle(String station) {
+    return '$station駅まで';
+  }
+
+  @override
+  String toStationSpare(int minutes) {
+    return '$minutes分の余裕';
+  }
+
+  @override
+  String get toStationHurry => '急いで！';
+
+  @override
+  String get toStationMissed => 'この電車は出たあと。駅に着いたら次の電車に合わせます';
+
+  @override
+  String get toStationHere => '駅に着いた';
+
+  @override
+  String toNextDistance(String distance) {
+    return '次の駅まで $distance';
+  }
+
+  @override
+  String walkAbout(int minutes) {
+    return '歩いて約$minutes分';
+  }
+
+  @override
+  String get departLabel => '発車';
+
+  @override
+  String minutesLater(int minutes) {
+    return 'あと$minutes分';
+  }
+
+  @override
+  String get boardLabel => 'のりば';
 }
