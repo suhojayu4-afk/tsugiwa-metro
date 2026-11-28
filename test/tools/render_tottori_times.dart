@@ -23,7 +23,11 @@ import 'package:tsugiwa_metro/features/trip/train_sheet.dart';
 import 'package:tsugiwa_metro/features/trip/trip_controller.dart';
 import 'package:tsugiwa_metro/features/trip/trip_estimator.dart';
 import 'package:tsugiwa_metro/features/trip/trip_plan.dart';
+import 'package:tsugiwa_metro/core/pixel/pixel_scene.dart';
 import 'package:tsugiwa_metro/features/trip/trip_screen.dart';
+import 'package:tsugiwa_metro/features/trip/widgets/layered_train_view.dart';
+import 'package:tsugiwa_metro/features/trip/widgets/side_train_view.dart';
+import 'package:tsugiwa_metro/features/trip/widgets/trip_props.dart';
 import 'package:tsugiwa_metro/l10n/app_localizations.dart';
 import 'package:tsugiwa_metro/platform/live_status_bridge.dart';
 
@@ -36,6 +40,18 @@ void main() {
   final shot = GlobalKey();
   // Tuesday 2026-11-24 10:05 in Japan.
   final jst = DateTime(2026, 11, 24, 10, 5);
+
+  // The trip view's pictures, loaded for real before a trip is shown.
+  Future<void> art(WidgetTester tester) => tester.runAsync(() async {
+    await Train3dArt.load();
+    await Train3dArt.load(electric: false);
+    await Props3dArt.load(SceneArt.load);
+    // Tottori's scenery sets, at the time of day the view shows (the phone's clock).
+    final part = dayPartOf(DateTime.now().toUtc().add(const Duration(hours: 9)));
+    for (final t in ['city', 'seaside', 'country', 'mountain', 'oldtown', 'river', 'flower']) {
+      await SideTrainArt.loadWith(part, SceneArt.load, theme: t);
+    }
+  });
 
   Future<void> fonts(WidgetTester tester) => tester.runAsync(() async {
     final sys = FontLoader('Roboto')..addFont(rootBundle.load('assets/fonts/DotGothic16-Regular.ttf'));
@@ -132,6 +148,7 @@ void main() {
       tester.view.devicePixelRatio = 2;
       addTearDown(tester.view.reset);
       await fonts(tester);
+      await art(tester);
       final route = RouteFinder(city).find('tottori.yonago', 'tottori.sakaiminato')!;
       final plan = TripPlan.build(city, route, jst);
       final start = DateTime.now();
@@ -158,6 +175,7 @@ void main() {
       tester.view.devicePixelRatio = 2;
       addTearDown(tester.view.reset);
       await fonts(tester);
+      await art(tester);
       final route = RouteFinder(city).find('tottori.tottori', 'tottori.yonago', at: jst)!;
       final plan = TripPlan.build(city, route, jst);
       final loc = FakeLocation();

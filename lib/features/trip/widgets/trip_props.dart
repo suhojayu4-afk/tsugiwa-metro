@@ -143,7 +143,8 @@ class TripPropsPainter extends CustomPainter {
     final last = ((scroll + SideTrainPainter.gridW + 120) / slot).ceil();
     for (var i = first; i <= last; i++) {
       final x = i * slot - scroll;
-      final run = _run(theme, i);
+      // No bridge or sound wall where a platform is (the train stands at a station).
+      final run = sim.platformX == null ? _run(theme, i) : null;
       if (layer != PropLayer.side) {
         if (run == 'truss') {
           final name = layer == PropLayer.trussBack ? 'truss_back' : 'truss_front';
